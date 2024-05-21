@@ -17,11 +17,14 @@ return new class extends Migration
             $table->string('mname');
             $table->string('lname');
             $table->date('DOB');
+            $table->string('username');
             $table->enum('gender', ['Male', 'Female'])->nullable();
             $table->enum('marital_status',['Married','Single','Divorced', 'Widower'])->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('religion')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('job_title')->nullable();
             $table->string('home_address')->nullable();
             $table->string('district')->nullable();
             $table->string('professional_reg_number')->nullable();
@@ -30,8 +33,8 @@ return new class extends Migration
             $table->string('street')->nullable();
             $table->bigInteger('deptId')->unsigned();
             $table->bigInteger('employment_typeId')->unsigned();
-            $table->bigInteger('health_info_Id')->unsigned();
-            $table->string('profile_photo')->nullable();
+            // $table->bigInteger('health_info_Id')->unsigned();
+            $table->string('employee_cv')->nullable();
             $table->string('NIN')->nullable();
             $table->string('nssf_no')->nullable();
             $table->string('domicile')->nullable();
@@ -39,7 +42,7 @@ return new class extends Migration
             $table->string('password');
             $table->foreign('deptId')->references('id')->on('departments');
             $table->foreign('employment_typeId')->references('id')->on('employment_types');
-            $table->foreign('health_info_Id')->references('id')->on('health_details');
+            // $table->foreign('health_info_Id')->references('id')->on('health_details');
             $table->rememberToken();
             $table->timestamps();
         });

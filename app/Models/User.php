@@ -20,19 +20,23 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'fname',
+        'mname',
         'lname',
         'email',
+        'username',
         'DOB',
         'gender',
         'marital_status',
         'religion',
+        'mobile',
+        'job_title',
         'home_address',
         'district',
         'professional_reg_number',
         'place_of_birth',
         'house_no',
         'street',
-        'profile_photo',
+        'employee_cv',
         'NIN',
         'nssf_no',
         'domicile',
@@ -71,7 +75,7 @@ class User extends Authenticatable
     }
 
     public function healthInfo() {
-        return $this->belongsTo(HealthDetails::class);
+        return $this->hasMany(HealthDetails::class);
     }
 
     public function nextOfKins() {

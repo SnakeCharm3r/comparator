@@ -40,16 +40,16 @@
 						<i class="zmdi zmdi-font"></i>
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-						<input class="input100" type="text" name="email">
-						<span class="focus-input100" data-placeholder="Email"></span>
+					<div class="wrap-input100 validate-input" >
+						<input class="input100" type="text" name="username" required>
+						<span class="focus-input100" data-placeholder="Username"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
 						</span>
-						<input class="input100" type="password" name="pass">
+						<input class="input100" type="password" name="password">
 						<span class="focus-input100" data-placeholder="Password"></span>
 					</div>
 
@@ -67,7 +67,7 @@
 							Don’t have an account?
 						</span>
 
-						<a class="txt2" href="{{ route('nav.register') }}">
+						<a class="txt2" href="{{ route('register') }}">
 							Sign Up
 						</a>
 					</div>
