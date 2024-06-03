@@ -85,4 +85,11 @@ class User extends Authenticatable
     public function familyData() {
         return $this->hasMany(UserFamilyDetails::class);
     }
+
+    public function language() {
+        return $this->hasMany(LanguageKnowledge::class);
+    }
+    public function relation() {
+        return $this->hasMany(CcbrtRelation::class);
+    }
 }

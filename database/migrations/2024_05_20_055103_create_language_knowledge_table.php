@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('language_knowledge', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('userId')->unsigned();
+            $table->string('language');
+            $table->string('speaking');
+            $table->string('reading');
+            $table->string('writing');
+            $table->foreign('userId')->references('id')->on('users');
             $table->timestamps();
         });
     }

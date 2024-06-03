@@ -13,9 +13,8 @@ class UserFamilyDetails extends Model
         'userId',
         'full_name',
         'relationship',
-        'address',
-        'mobile',
-        'email',
+        'DOB',
+        'phone_number',
         'occupation'
     ];
 

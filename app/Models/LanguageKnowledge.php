@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class LanguageKnowledge extends Model
 {
     use HasFactory;
+
+    protected $fillable =[
+        'language',
+        'speaking',
+        'reading',
+        'writing',
+        'userId',
+    ];
+
+    public function user(){
+        return $this->belongsTo(User::class, 'userId');
+    }
 }

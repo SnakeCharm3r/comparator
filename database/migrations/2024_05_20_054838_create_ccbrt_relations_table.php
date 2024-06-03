@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('ccbrt_relations', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('userId')->unsigned();
+            $table->string('names')->nullable() ;
+            $table->string('position')->nullable();
+            $table->string('department')->nullable();
+            $table->string('relation')->nullable();
+            $table->foreign('userId')->references('id')->on('users');
             $table->timestamps();
         });
     }
