@@ -1,21 +1,5 @@
-@extends('nav.app')
-
-@section('content')
+@include('includes.head')
 <div class="content container-fluid">
-    <div class="page-header">
-        <div class="row align-items-center">
-            <div class="col-sm-12">
-                <div class="page-sub-header">
-                    <h3 class="page-title">Registration Panel</h3>
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="students.html">Employee</a></li>
-                        <li class="breadcrumb-item active">Register as employee</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="row">
         <div class="col-sm-12">
             <div class="card comman-shadow">
@@ -75,7 +59,7 @@
                                     </select>
                                 </div>
                             </div>
-                            
+
                             <div class="col-12 col-sm-4">
                                 <div class="form-group local-forms calendar-icon">
                                     <label>Date Of Birth <span class="login-danger">*</span></label>
@@ -89,7 +73,7 @@
                                     <input class="form-control" type="text" placeholder="Enter Job Title" name="job_title">
                                 </div>
                             </div>
-  
+
 
                             <div class="col-12 col-sm-4">
                                 <div class="form-group local-forms">
@@ -171,7 +155,7 @@
                                 </div>
                             </div>
 
-            
+
                             <div class="col-12 col-sm-4">
                                 <div class="form-group local-forms">
                                     <label>Departments <span class="login-danger">*</span></label>
@@ -195,13 +179,13 @@
                                     </select>
                                 </div>
                             </div>
-                         
+
                             <div class="col-12 col-sm-4">
                                 <div class="form-group local-forms">
                                     <label>Phone </label>
                                     <input class="form-control" type="text" placeholder="Enter Phone Number" name="mobile">
                                 </div>
-                            </div> 
+                            </div>
 
                             <div class="col-12 col-sm-4">
                                 <div class="form-group local-forms">
@@ -232,4 +216,4 @@
         </div>
     </div>
 </div>
-@endsection
+@include('includes.scripts')
