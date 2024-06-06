@@ -1,89 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>E-Docs Login </title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets2/vendor/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets2/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets2/fonts/iconic/css/material-design-iconic-font.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets2/vendor/animate/animate.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets2/vendor/css-hamburgers/hamburgers.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets2/vendor/animsition/css/animsition.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets2/vendor/select2/select2.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets2/vendor/daterangepicker/daterangepicker.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets2/css/util.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets2/css/main.css') }}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>eDOCS | Login</title>
+    <link rel="shortcut icon" href="assets/img/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/plugins/feather/feather.css">
+    <link rel="stylesheet" href="assets/plugins/icons/flags/flags.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <div class="limiter">
-        <div class="container-login100">
-            <div class="wrap-login100">
-                <form method="POST" action="{{ route('login.handleLogin') }}" class="login100-form validate-form">
-                    @csrf
-                    <span class="login100-form-title p-b-26">
-                        Welcome
-                    </span>
-                    <span class="login100-form-title p-b-48">
-                        <!-- <i class="zmdi zmdi-font"></i> -->
-                    </span>
-
-                    @if($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
+<div class="main-wrapper login-body">
+    <div class="login-wrapper">
+        <div class="container">
+            <div class="loginbox">
+                <div class="login-left">
+                    <img class="img-fluid" src="assets/img/login.jpeg" alt="Logo">
+                </div>
+                <div class="login-right">
+                    <div class="login-right-wrap">
+                        <div style="text-align: center;">
+                            <img src="assets/img/ccbrt.jpg" alt="CCBRT eDOCS Logo" style="max-width: 150px;">
                         </div>
-                    @endif
+                        <h1 style="text-align: center; font-family: 'Roboto', sans-serif; font-size: medium">CCBRT eDOCS</h1><br>
+                    @if($errors->has('login_error'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('login_error') }}
+                            </div>
+                        @endif
+                        <form method="POST" action="{{ route('login.handleLogin') }}" class="login100-form validate-form">
+                            @csrf
+                            <div class="form-group">
+                                <label for="username">Username <span class="login-danger">*</span></label>
+                                <input id="username" class="form-control" type="text" name="username" value="{{ old('username') }}" required>
+                                <span class="profile-views"><i class="fas fa-user-circle"></i></span>
+                                @error('username')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password <span class="login-danger">*</span></label>
+                                <input id="password" class="form-control pass-input" type="password" name="password" required>
+                                <span class="profile-views feather-eye toggle-password"></span>
+                                @error('password')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="forgotpass">
+                                <div class="remember-me">
+                                    <label class="custom_check mr-2 mb-0 d-inline-flex remember-me"> Remember me
+                                        <input type="checkbox" name="radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <a href="#">Forgot Password?</a>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-block" type="submit">Login</button>
+                            </div>
+                        </form>
 
-                    <div class="wrap-input100 validate-input">
-                        <input class="input100" type="text" name="username" value="{{ old('username') }}" required>
-                        <span class="focus-input100" data-placeholder="Username"></span>
+                        <p class="account-subtitle">Need an account? <a href="{{ route('register') }}">Sign Up</a></p>
                     </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Enter password">
-                        <span class="btn-show-pass">
-                            <i class="zmdi zmdi-eye"></i>
-                        </span>
-                        <input class="input100" type="password" name="password" required>
-                        <span class="focus-input100" data-placeholder="Password"></span>
-                    </div>
-
-                    <div class="container-login100-form-btn">
-                        <div class="wrap-login100-form-btn">
-                            <div class="login100-form-bgbtn"></div>
-                            <button class="login100-form-btn">
-                                Login
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="text-center p-t-115">
-                        <span class="txt1">
-                            Don’t have an account?
-                        </span>
-                        <a class="txt2" href="{{ route('register') }}">
-                            Sign Up
-                        </a>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-    
-    <div id="dropDownSelect1"></div>
+</div>
 
-    <script src="{{ asset('assets2/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('assets2/vendor/animsition/js/animsition.min.js') }}"></script>
-    <script src="{{ asset('assets2/vendor/bootstrap/js/popper.js') }}"></script>
-    <script src="{{ asset('assets2/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets2/vendor/select2/select2.min.js') }}"></script>
-    <script src="{{ asset('assets2/vendor/daterangepicker/moment.min.js') }}"></script>
-    <script src="{{ asset('assets2/vendor/daterangepicker/daterangepicker.js') }}"></script>
-    <script src="{{ asset('assets2/vendor/countdowntime/countdowntime.js') }}"></script>
-    <script src="{{ asset('assets2/js/main.js') }}"></script>
+<script src="assets/js/jquery-3.6.0.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/feather.min.js"></script>
+<script src="assets/js/script.js"></script>
 </body>
-</html>
