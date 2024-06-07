@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    
+
     public function login(){
         return view('auth.login');
     }
@@ -73,7 +73,7 @@ class AuthController extends Controller
           'email' => 'required|email|unique:users',
           'deptId' => 'required',
           'employment_typeId' => 'required',
-          'password' => 'required|min:6',  
+          'password' => 'required|min:6',
         ]);
 
         if($validator->fails()) {
@@ -113,7 +113,7 @@ class AuthController extends Controller
             'deptId' => $request->input('deptId'),
             'employment_typeId' => $request->input('employment_typeId'),
             'password' => Hash::make($request->input('password')),
-        
+
         ]);
             // Example of assigning role
             //$user->assignRole('super admin');
@@ -121,7 +121,7 @@ class AuthController extends Controller
          return redirect()->route('login')->with(
             'success', 'User registered successfully. Please login.');
 
-     
+
     }
 
     public function logout() {
@@ -134,8 +134,6 @@ class AuthController extends Controller
         $user_id = session('userId');
         return view('auth.next_of_kins', compact('userId'));
     }
-
-
 
 
 }

@@ -1,4 +1,4 @@
-@extends('nav.app')
+@extends('layouts.template')
 @section('content')
 
 <div class="page-wrapper">
@@ -167,7 +167,7 @@
                                             </div>
                                         @endif
 
-                                     
+
                                         <!-- Display Family Data Details if available -->
                                         @if($familyData->isNotEmpty())
                                             <div class="row mt-4">
@@ -339,7 +339,7 @@
                                                             <p class="col-sm-3 text-muted text-sm-end mb-0">Department</p>
                                                             <p class="col-sm-9">{{ $kin->department }}</p>
                                                         </div>
-                                                       
+
                                                     @endforeach
                                                 </div>
                                             </div>
@@ -373,8 +373,8 @@
                                                         <label for="position" class="form-label">Position</label>
                                                         <input type="text" class="form-control" id="position" name="position">
                                                     </div>
-                                                   
-                                                    
+
+
                                                     <button type="submit" class="btn btn-success">Add Ccbrt Relation</button>
                                                 </form>
                                             </div>
@@ -430,14 +430,14 @@
     </div>
 @endif
 
-                                       
 
-                                           
+
+
                                     </div>
                                 </div>
                             </div>
 
-                           
+
                         </div>
 
                     </div>
@@ -520,7 +520,7 @@
                         <label for="DOB_${memberCount}" class="form-label">Date of Birth</label>
                         <input type="date" class="form-control" id="DOB_${memberCount}" name="familyData[${memberCount - 1}][DOB]">
                     </div>
-                  
+
                     <div class="mb-3">
                         <label for="occupation_${memberCount}" class="form-label">Occupation</label>
                         <input type="text" class="form-control" id="occupation_${memberCount}" name="familyData[${memberCount - 1}][occupation]">
@@ -555,7 +555,7 @@
 
     addButton.addEventListener('click', function() {
         addMember();
-      }); 
+      });
  });
 
 
