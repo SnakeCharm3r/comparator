@@ -179,61 +179,81 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="table-responsive">
-                                                    <table class="table table-striped mb-0">
-                                                        <p>IT Assets Requested (Software/Logical Access)</p>
-                                                        <thead>
-                                                        <tr>
-                                                            <th>Item</th>
-                                                            <th>Grant</th>
-                                                            <th>Revoke</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr>
-                                                            <td>Domain Controller</td>
-                                                            <td>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="grant_printer" id="grant_printer_normal" value="Normal User">
-                                                                    <label class="form-check-label" for="grant_printer_normal">Normal User</label>
-                                                                </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="grant_printer" id="grant_printer_admin" value="Administrator">
-                                                                    <label class="form-check-label" for="grant_printer_admin">Administrator</label>
-                                                                </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="grant_printer" id="grant_printer_super" value="Super Administrator">
-                                                                    <label class="form-check-label" for="grant_printer_super">Super Administrator</label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="revoke_printer" id="revoke_printer_normal" value="Normal User">
-                                                                    <label class="form-check-label" for="revoke_printer_normal">Normal User</label>
-                                                                </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="revoke_printer" id="revoke_printer_admin" value="Administrator">
-                                                                    <label class="form-check-label" for="revoke_printer_admin">Administrator</label>
-                                                                </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="revoke_printer" id="revoke_printer_super" value="Super Administrator">
-                                                                    <label class="form-check-label" for="revoke_printer_super">Super Administrator</label>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                        </tr>
-                                                        <tr>
-
-                                                        </tbody>
-                                                    </table>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-striped mb-0">
+                                                            <p>IT Assets Requested (Software/Logical Access)</p>
+                                                            <thead>
+                                                            <tr>
+                                                                <th>Item</th>
+                                                                <th>Grant</th>
+                                                                <th>Revoke</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td>Domain Controller</td>
+                                                                <td>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="grant_printer" id="grant_printer_normal" value="Normal User">
+                                                                        <label class="form-check-label" for="grant_printer_normal">Normal User</label>
+                                                                    </div>
+                                                                    <!-- Remaining grant options -->
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="revoke_printer" id="revoke_printer_normal" value="Normal User">
+                                                                        <label class="form-check-label" for="revoke_printer_normal">Normal User</label>
+                                                                    </div>
+                                                                    <!-- Remaining revoke options -->
+                                                                </td>
+                                                            </tr>
+                                                            <!-- Additional rows -->
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-striped mb-0">
+                                                            <p>Email</p>
+                                                            <thead>
+                                                          
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td>Domain Controller</td>
+                                                                <td>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="grant_printer" id="grant_printer_normal" value="Normal User">
+                                                                        <label class="form-check-label" for="grant_printer_normal">Normal User</label>
+                                                                    </div>
+                                                                    <!-- Remaining grant options -->
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="revoke_printer" id="revoke_printer_normal" value="Normal User">
+                                                                        <label class="form-check-label" for="revoke_printer_normal">Normal User</label>
+                                                                    </div>
+                                                                    <!-- Remaining revoke options -->
+                                                                </td>
+                                                            </tr>
+                                                            <!-- Additional rows -->
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
 
                                     <div class="col-lg-12">
                                         <div class="card">
@@ -241,35 +261,32 @@
                                                 <div class="table-responsive">
                                                     <p>Open Clinic</p>
                                                     <table class="table table-striped mb-0">
-
+                                                        <thead>
+                                                        </thead>
                                                         <tbody>
                                                         <tr>
                                                             <td>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" name="grant_domain_controller[]" id="grant_domain_controller_normal" value="Normal User">
-                                                                    <label class="form-check-label" for="grant_domain_controller_normal">Normal User</label>
+                                                                    <label class="form-check-label" for="grant_domain_controller_normal">Domain Controller Normal User</label>
                                                                 </div>
+                                                            </td>
+                                                            <td>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" name="grant_domain_controller[]" id="grant_domain_controller_admin" value="Administrator">
-                                                                    <label class="form-check-label" for="grant_domain_controller_admin">Administrator</label>
-                                                                </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox" name="grant_domain_controller[]" id="grant_domain_controller_super" value="Super Administrator">
-                                                                    <label class="form-check-label" for="grant_domain_controller_super">Super Administrator</label>
+                                                                    <label class="form-check-label" for="grant_domain_controller_admin">Domain Controller Administrator</label>
                                                                 </div>
                                                             </td>
                                                             <td>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" name="revoke_domain_controller[]" id="revoke_domain_controller_normal" value="Normal User">
-                                                                    <label class="form-check-label" for="revoke_domain_controller_normal">Normal User</label>
+                                                                    <label class="form-check-label" for="revoke_domain_controller_normal">Domain Controller Normal User</label>
                                                                 </div>
+                                                            </td>
+                                                            <td>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" name="revoke_domain_controller[]" id="revoke_domain_controller_admin" value="Administrator">
-                                                                    <label class="form-check-label" for="revoke_domain_controller_admin">Administrator</label>
-                                                                </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox" name="revoke_domain_controller[]" id="revoke_domain_controller_super" value="Super Administrator">
-                                                                    <label class="form-check-label" for="revoke_domain_controller_super">Super Administrator</label>
+                                                                    <label class="form-check-label" for="revoke_domain_controller_admin">Domain Controller Administrator</label>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -277,29 +294,25 @@
                                                             <td>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" name="grant_cash_sales[]" id="grant_cash_sales_normal" value="Normal User">
-                                                                    <label class="form-check-label" for="grant_cash_sales_normal">Normal User</label>
+                                                                    <label class="form-check-label" for="grant_cash_sales_normal">Cash Sales Normal User</label>
                                                                 </div>
+                                                            </td>
+                                                            <td>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" name="grant_cash_sales[]" id="grant_cash_sales_admin" value="Administrator">
-                                                                    <label class="form-check-label" for="grant_cash_sales_admin">Administrator</label>
-                                                                </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox" name="grant_cash_sales[]" id="grant_cash_sales_super" value="Super Administrator">
-                                                                    <label class="form-check-label" for="grant_cash_sales_super">Super Administrator</label>
+                                                                    <label class="form-check-label" for="grant_cash_sales_admin">Cash Sales Administrator</label>
                                                                 </div>
                                                             </td>
                                                             <td>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" name="revoke_cash_sales[]" id="revoke_cash_sales_normal" value="Normal User">
-                                                                    <label class="form-check-label" for="revoke_cash_sales_normal">Normal User</label>
+                                                                    <label class="form-check-label" for="revoke_cash_sales_normal">Cash Sales Normal User</label>
                                                                 </div>
+                                                            </td>
+                                                            <td>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" name="revoke_cash_sales[]" id="revoke_cash_sales_admin" value="Administrator">
-                                                                    <label class="form-check-label" for="revoke_cash_sales_admin">Administrator</label>
-                                                                </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox" name="revoke_cash_sales[]" id="revoke_cash_sales_super" value="Super Administrator">
-                                                                    <label class="form-check-label" for="revoke_cash_sales_super">Super Administrator</label>
+                                                                    <label class="form-check-label" for="revoke_cash_sales_admin">Cash Sales Administrator</label>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -307,102 +320,88 @@
                                                             <td>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" name="grant_controller[]" id="grant_controller_normal" value="Normal User">
-                                                                    <label class="form-check-label" for="grant_controller_normal">Normal User</label>
+                                                                    <label class="form-check-label" for="grant_controller_normal">Controller Normal User</label>
                                                                 </div>
+                                                            </td>
+                                                            <td>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" name="grant_controller[]" id="grant_controller_admin" value="Administrator">
-                                                                    <label class="form-check-label" for="grant_controller_admin">Administrator</label>
-                                                                </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox" name="grant_controller[]" id="grant_controller_super" value="Super Administrator">
-                                                                    <label class="form-check-label" for="grant_controller_super">Super Administrator</label>
+                                                                    <label class="form-check-label" for="grant_controller_admin">Controller Administrator</label>
                                                                 </div>
                                                             </td>
                                                             <td>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" name="revoke_controller[]" id="revoke_controller_normal" value="Normal User">
-                                                                    <label class="form-check-label" for="revoke_controller_normal">Normal User</label>
+                                                                    <label class="form-check-label" for="revoke_controller_normal">Controller Normal User</label>
                                                                 </div>
+                                                            </td>
+                                                            <td>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" name="revoke_controller[]" id="revoke_controller_admin" value="Administrator">
-                                                                    <label class="form-check-label" for="revoke_controller_admin">Administrator</label>
-                                                                </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox" name="revoke_controller[]" id="revoke_controller_super" value="Super Administrator">
-                                                                    <label class="form-check-label" for="revoke_controller_super">Super Administrator</label>
+                                                                    <label class="form-check-label" for="revoke_controller_admin">Controller Administrator</label>
                                                                 </div>
                                                             </td>
                                                         </tr>
-                                                        <!-- Add more items here in the same format -->
                                                         <tr>
                                                             <td>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" name="grant_cp_vvf[]" id="grant_cp_vvf_normal" value="Normal User">
-                                                                    <label class="form-check-label" for="grant_cp_vvf_normal">Normal User</label>
+                                                                    <label class="form-check-label" for="grant_cp_vvf_normal">CP VVF Normal User</label>
                                                                 </div>
+                                                            </td>
+                                                            <td>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" name="grant_cp_vvf[]" id="grant_cp_vvf_admin" value="Administrator">
-                                                                    <label class="form-check-label" for="grant_cp_vvf_admin">Administrator</label>
-                                                                </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox" name="grant_cp_vvf[]" id="grant_cp_vvf_super" value="Super Administrator">
-                                                                    <label class="form-check-label" for="grant_cp_vvf_super">Super Administrator</label>
+                                                                    <label class="form-check-label" for="grant_cp_vvf_admin">CP VVF Administrator</label>
                                                                 </div>
                                                             </td>
                                                             <td>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" name="revoke_cp_vvf[]" id="revoke_cp_vvf_normal" value="Normal User">
-                                                                    <label class="form-check-label" for="revoke_cp_vvf_normal">Normal User</label>
+                                                                    <label class="form-check-label" for="revoke_cp_vvf_normal">CP VVF Normal User</label>
                                                                 </div>
+                                                            </td>
+                                                            <td>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" name="revoke_cp_vvf[]" id="revoke_cp_vvf_admin" value="Administrator">
-                                                                    <label class="form-check-label" for="revoke_cp_vvf_admin">Administrator</label>
-                                                                </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox" name="revoke_cp_vvf[]" id="revoke_cp_vvf_super" value="Super Administrator">
-                                                                    <label class="form-check-label" for="revoke_cp_vvf_super">Super Administrator</label>
+                                                                    <label class="form-check-label" for="revoke_cp_vvf_admin">CP VVF Administrator</label>
                                                                 </div>
                                                             </td>
                                                         </tr>
-                                                        <!-- Add more items here in the same format -->
                                                         <tr>
                                                             <td>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" name="grant_diag_tech[]" id="grant_diag_tech_normal" value="Normal User">
-                                                                    <label class="form-check-label" for="grant_diag_tech_normal">Normal User</label>
+                                                                    <label class="form-check-label" for="grant_diag_tech_normal">Diagnostic Tech Normal User</label>
                                                                 </div>
+                                                            </td>
+                                                            <td>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" name="grant_diag_tech[]" id="grant_diag_tech_admin" value="Administrator">
-                                                                    <label class="form-check-label" for="grant_diag_tech_admin">Administrator</label>
-                                                                </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox" name="grant_diag_tech[]" id="grant_diag_tech_super" value="Super Administrator">
-                                                                    <label class="form-check-label" for="grant_diag_tech_super">Super Administrator</label>
+                                                                    <label class="form-check-label" for="grant_diag_tech_admin">Diagnostic Tech Administrator</label>
                                                                 </div>
                                                             </td>
                                                             <td>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" name="revoke_diag_tech[]" id="revoke_diag_tech_normal" value="Normal User">
-                                                                    <label class="form-check-label" for="revoke_diag_tech_normal">Normal User</label>
+                                                                    <label class="form-check-label" for="revoke_diag_tech_normal">Diagnostic Tech Normal User</label>
                                                                 </div>
+                                                            </td>
+                                                            <td>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox" name="revoke_diag_tech[]" id="revoke_diag_tech_admin" value="Administrator">
-                                                                    <label class="form-check-label" for="revoke_diag_tech_admin">Administrator</label>
-                                                                </div>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox" name="revoke_diag_tech[]" id="revoke_diag_tech_super" value="Super Administrator">
-                                                                    <label class="form-check-label" for="revoke_diag_tech_super">Super Administrator</label>
+                                                                    <label class="form-check-label" for="revoke_diag_tech_admin">Diagnostic Tech Administrator</label>
                                                                 </div>
                                                             </td>
                                                         </tr>
                                                         <!-- Add more items here in the same format -->
-                                                        <!-- Repeat the block above for each item in the list -->
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
 
 
 
