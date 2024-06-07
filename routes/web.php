@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\IctAccessController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmploymentTypesController;
@@ -35,9 +36,6 @@ Route::post('/register', [AuthController::class, 'handleRegistration'])->name('r
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Route::get('/next-of-kins', [AuthController::class, 'nextOfKins'])->name('auth.next_of_kins');
-
-
-
 Route::get('/departments', [DepartmentController::class, 'index']);
 Route::get('/employment-types', [EmploymentTypesController::class, 'index']);
 
@@ -54,5 +52,6 @@ Route::post('/languageData', [UserFamilyDetailsController::class, 'addLanguage']
 Route::post('/ccbrtRelation', [UserFamilyDetailsController::class, 'addRelation'])->name('ccbrtRelation.addRelation');
 
 
-
+//ict-access controller
+Route::resource('/form', IctAccessController::class);
 

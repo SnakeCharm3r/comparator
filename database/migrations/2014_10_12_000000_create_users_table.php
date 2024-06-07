@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('place_of_birth')->nullable();
             $table->string('house_no')->nullable();
             $table->string('street')->nullable();
+            $table->string('emp_id')->nullable();
             $table->bigInteger('deptId')->unsigned();
             $table->bigInteger('employment_typeId')->unsigned();
             // $table->bigInteger('health_info_Id')->unsigned();
@@ -38,7 +39,7 @@ return new class extends Migration
             $table->string('NIN')->nullable();
             $table->string('nssf_no')->nullable();
             $table->string('domicile')->nullable();
-            
+
             $table->string('password');
             $table->foreign('deptId')->references('id')->on('departments');
             $table->foreign('employment_typeId')->references('id')->on('employment_types');

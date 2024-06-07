@@ -36,6 +36,7 @@ class User extends Authenticatable
         'place_of_birth',
         'house_no',
         'street',
+        'emp_id',
         'employee_cv',
         'NIN',
         'nssf_no',
