@@ -13,7 +13,7 @@ class DashboardController extends Controller
     {
         // Logic to fetch and pass data based on roles and permissions
         $user = Auth::user();
-        $data = [];                       
+        $data = [];
 
         if ($user->hasRole('requester')) {
             $data['requester_content'] = 'Content for requesters';
@@ -37,5 +37,5 @@ class DashboardController extends Controller
 
         return view('dashboard', compact('data'));
     }
-    
+
 }

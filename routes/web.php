@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\IctAccessController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmploymentTypesController;
