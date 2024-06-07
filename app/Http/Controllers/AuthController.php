@@ -19,22 +19,41 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+    // public function handleLogin(Request $request) {
+    //     $validator = Validator::make($request->all(), [
+    //         'username' => 'required',
+    //         'password' => 'required'
+    //     ]);
+
+    //     if ($validator->fails()) {
+    //         return redirect()->back()->withErrors($validator)->withInput();
+    //      }
+
+    //      if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
+    //         return redirect()->route('dashboard')->with('success', 'Logged in successfully.');
+    //      } else {
+    //         return redirect()->back()->withErrors(['login_error' => 'Invalid username or password'])->withInput();
+    //      }
+    // }
+     
     public function handleLogin(Request $request) {
         $validator = Validator::make($request->all(), [
             'username' => 'required',
             'password' => 'required'
         ]);
-
+    
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
-         }
-
-         if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
+        }
+    
+        if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
             return redirect()->route('dashboard')->with('success', 'Logged in successfully.');
-         } else {
+        } else {
             return redirect()->back()->withErrors(['login_error' => 'Invalid username or password'])->withInput();
-         }
+        }
     }
+    
+    
 
 
     public function register() {
@@ -96,8 +115,10 @@ class AuthController extends Controller
             'password' => Hash::make($request->input('password')),
 
         ]);
+            // Example of assigning role
+            //$user->assignRole('super admin');
 
-        return redirect()->route('login')->with(
+         return redirect()->route('login')->with(
             'success', 'User registered successfully. Please login.');
 
 
@@ -113,5 +134,6 @@ class AuthController extends Controller
         $user_id = session('userId');
         return view('auth.next_of_kins', compact('userId'));
     }
+
 
 }
