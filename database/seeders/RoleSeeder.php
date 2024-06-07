@@ -25,6 +25,8 @@ class RoleSeeder extends Seeder
         'head of it' => ['approve it','approve hr','submit form', 'user dashboard', 'view forms', 'view own forms', 'check form status'],
         'head of department' => ['approve hod','submit form', 'user dashboard', 'view forms', 'view own forms', 'check form status'],
         'acting hod' => ['approve hr', 'approve it', 'approve hod'],
+        'super admin' => ['submit form', 'user dashboard', 'view forms', 'view own forms', 'check form status',
+                          'approve hr','approve it','approve hod','role assign','permission assign']
     ];
 
     // Create roles and assign permissions if they do not already exist

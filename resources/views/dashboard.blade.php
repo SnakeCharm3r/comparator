@@ -1,18 +1,63 @@
 @extends('layouts.template')
 @section('breadcrumb')
-    <div class="page-wrapper">
-        <div class="content container-fluid">
-            <div class="page-header">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="page-sub-header">
-                            <h3 class="page-title">Welcome Admin!</h3>
-                        </div>
-                    </div>
-                </div>
+<div class="container">
+    <h1>Dashboard</h1>
+
+    @if(isset($data['requester_content']))
+        <div class="card">
+            <div class="card-header">Requester Section</div>
+            <div class="card-body">
+                {{ $data['requester_content'] }}
             </div>
         </div>
-    </div>
+    @endif
+
+    @if(isset($data['super_admin_content']))
+        <div class="card">
+            <div class="card-header">Super Admin Section</div>
+            <div class="card-body">
+                {{ $data['super_admin_content'] }}
+            </div>
+        </div>
+    @endif
+</div>
+
+    @if(isset($data['hr_content']))
+        <div class="card">
+            <div class="card-header">HR Section</div>
+            <div class="card-body">
+                {{ $data['hr_content'] }}
+            </div>
+        </div>
+    @endif
+
+    @if(isset($data['it_content']))
+        <div class="card">
+            <div class="card-header">IT Section</div>
+            <div class="card-body">
+                {{ $data['it_content'] }}
+            </div>
+        </div>
+    @endif
+
+    @if(isset($data['hod_content']))
+        <div class="card">
+            <div class="card-header">Head of Department Section</div>
+            <div class="card-body">
+                {{ $data['hod_content'] }}
+            </div>
+        </div>
+    @endif
+
+    @if(isset($data['acting_hod_content']))
+        <div class="card">
+            <div class="card-header">Acting Head of Department Section</div>
+            <div class="card-body">
+                {{ $data['acting_hod_content'] }}
+            </div>
+        </div>
+    @endif
+</div>
 
 @endsection
 

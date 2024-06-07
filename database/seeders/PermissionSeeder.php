@@ -26,6 +26,8 @@ class PermissionSeeder extends Seeder
            'approve it',
            'approve hod',
            'approve acting hod',
+           'role assign',
+           'permission assign',
        ];
 
        // Create permissions if they do not already exist
