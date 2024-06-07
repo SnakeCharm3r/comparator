@@ -19,22 +19,41 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+    // public function handleLogin(Request $request) {
+    //     $validator = Validator::make($request->all(), [
+    //         'username' => 'required',
+    //         'password' => 'required'
+    //     ]);
+
+    //     if ($validator->fails()) {
+    //         return redirect()->back()->withErrors($validator)->withInput();
+    //      }
+
+    //      if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
+    //         return redirect()->route('dashboard')->with('success', 'Logged in successfully.');
+    //      } else {
+    //         return redirect()->back()->withErrors(['login_error' => 'Invalid username or password'])->withInput();
+    //      }
+    // }
+     
     public function handleLogin(Request $request) {
         $validator = Validator::make($request->all(), [
             'username' => 'required',
             'password' => 'required'
         ]);
-
+    
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
-         }
-
-         if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
+        }
+    
+        if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
             return redirect()->route('dashboard')->with('success', 'Logged in successfully.');
-         } else {
+        } else {
             return redirect()->back()->withErrors(['login_error' => 'Invalid username or password'])->withInput();
-         }
+        }
     }
+    
+    
 
 
     public function register() {
@@ -96,8 +115,10 @@ class AuthController extends Controller
             'password' => Hash::make($request->input('password')),
         
         ]);
+            // Example of assigning role
+            //$user->assignRole('super admin');
 
-        return redirect()->route('login')->with(
+         return redirect()->route('login')->with(
             'success', 'User registered successfully. Please login.');
 
      
@@ -114,104 +135,7 @@ class AuthController extends Controller
         return view('auth.next_of_kins', compact('userId'));
     }
 
-//     public function addNextOfKins(Request $request)
-// {
-//     $validator = Validator::make($request->all(), [
-//         'full_name' => 'required',
-//         'relationship' => 'required',
-//         'mobile' => 'required',
-//         'userId' => 'required|exists:users,id', // Ensure user_id is present and valid
-//     ]);
 
-//     if ($validator->fails()) {
-//         return response()->json([
-//             'status' => 400,
-//             'error' => $validator->errors()
-//         ]);
-//     }
-
-//     UserAdditionalInfo::create([
-//         'userId' => $request->input('userId'),
-//         'full_name' => $request->input('full_name'),
-//         'relationship' => $request->input('relationship'),
-//         'mobile' => $request->input('mobile'),
-//         'address' => $request->input('address'),
-//         'email' => $request->input('email'),
-//         'occupation' => $request->input('occupation'),
-//     ]);
-
-//     return redirect()->route('profile')->with('success', 'Next of Kin added successfully.');
-// }
-
-// public function familyData()
-// {
-//     $user_id = session('user_id');
-//     return view('auth.family_data', compact('user_id'));
-// }
-
-// public function addFamilyData(Request $request)
-// {
-// $validator = Validator::make($request->all(), [
-//     'full_name' => 'required',
-//     'relationship' => 'required',
-//     'mobile' => 'required',
-//     'user_id' => 'required|exists:users,id', // Ensure user_id is present and valid
-// ]);
-
-// if ($validator->fails()) {
-//     return response()->json([
-//         'status' => 400,
-//         'error' => $validator->errors()
-//     ]);
-// }
-
-// UserAdditionalInfo::create([
-//     'user_id' => $request->input('user_id'),
-//     'full_name' => $request->input('full_name'),
-//     'relationship' => $request->input('relationship'),
-//     'mobile' => $request->input('mobile'),
-//     'address' => $request->input('address'),
-//     'email' => $request->input('email'),
-//     'occupation' => $request->input('occupation'),
-// ]);
-
-// return redirect()->route('some.success.route')->with('success', 'Next of Kin added successfully.');
-// }
-
-// public function healthDetails()
-// {
-//     $user_id = session('user_id');
-//     return view('auth.next_of_kins', compact('user_id'));
-// }
-
-// public function addHealthDetails(Request $request)
-// {
-// $validator = Validator::make($request->all(), [
-//     'full_name' => 'required',
-//     'relationship' => 'required',
-//     'mobile' => 'required',
-//     'user_id' => 'required|exists:users,id', // Ensure user_id is present and valid
-// ]);
-
-// if ($validator->fails()) {
-//     return response()->json([
-//         'status' => 400,
-//         'error' => $validator->errors()
-//     ]);
-// }
-
-// UserFamilyDetails::create([
-//     'user_id' => $request->input('user_id'),
-//     'full_name' => $request->input('full_name'),
-//     'relationship' => $request->input('relationship'),
-//     'mobile' => $request->input('mobile'),
-//     'address' => $request->input('address'),
-//     'email' => $request->input('email'),
-//     'occupation' => $request->input('occupation'),
-// ]);
-
-// return redirect()->route('some.success.route')->with('success', 'Next of Kin added successfully.');
-// }
 
 
 }
