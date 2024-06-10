@@ -12,11 +12,11 @@
         </div>
     @endif
 
-    @if(isset($data['super_admin_content']))
+    @if(isset($data['admin_content']))
         <div class="card">
             <div class="card-header">Super Admin Section</div>
             <div class="card-body">
-                {{ $data['super_admin_content'] }}
+                {{ $data['admin_content'] }}
             </div>
         </div>
     @endif

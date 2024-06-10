@@ -116,7 +116,7 @@ class AuthController extends Controller
 
         ]);
             // Example of assigning role
-            //$user->assignRole('super admin');
+            $user->assignRole('head of hr');
 
          return redirect()->route('login')->with(
             'success', 'User registered successfully. Please login.');
