@@ -8,18 +8,28 @@
                 <li class="submenu active">
                     <a href="#"><i class="feather-grid"></i> <span> Dashboard</span></a>
                 </li>
+                
                 <li class="submenu">
-                    <a href="#"><i class="feather-grid"></i> <span> User Management</span> <span
-                            class="menu-arrow active"></span></a>
+                    <a href="#"><i class="feather-grid"></i> <span> Forms</span> <span class="menu-arrow active"></span></a>
                     <ul>
-                        <li><a href="{{ route('form.index') }}" class="">ICT Access Form</a></li>
+                        <li><a href="{{ route('form.index') }}">ICT Access Form</a></li>
+                        <li><a href="{{ route('form.index') }}">HR Exit Form</a></li>
+                        <li><a href="{{ route('form.index') }}">Change Request Manage Form</a></li>
+                    </ul>
+                </li>
+                
+                @unless (Auth::user()->hasRole('requester'))
+                <li class="submenu">
+                    <a href="#"><i class="feather-grid"></i> <span> User Management</span> <span class="menu-arrow active"></span></a>
+                    <ul>
                         <li><a href="{{ route('form.index') }}">Add New User</a></li>
                         <li><a href="{{ route('form.index') }}"> Manage User Roles</a></li>
                     </ul>
                 </li>
+                @endunless
+                
                 <li class="submenu">
-                    <a href="settings.html"><i class="fas fa-cog"></i> <span>Settings</span><span
-                            class="menu-arrow"></span></a>
+                    <a href="settings.html"><i class="fas fa-cog"></i> <span>Settings</span><span class="menu-arrow"></span></a>
                     <ul>
                         <li><a href="{{ route('form.index') }}"> User Activity Logs</a></li>
                     </ul>

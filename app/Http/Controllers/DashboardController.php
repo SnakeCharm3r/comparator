@@ -35,6 +35,10 @@ class DashboardController extends Controller
             $data['acting_hod_content'] = 'Content for acting heads of department';
         }
 
+        if ($user->hasRole('super admin')) {
+            $data['admin_content'] = 'Content for super admin';
+        }
+
         return view('dashboard', compact('data'));
     }
 
