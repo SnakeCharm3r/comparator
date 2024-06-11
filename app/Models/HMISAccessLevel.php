@@ -10,7 +10,7 @@ class HMISAccessLevel extends Model
     use HasFactory;
 
     protected $fillable = [
-        'rmk_name',
+        'names',
         'status'
     ];
 }

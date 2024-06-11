@@ -3,66 +3,62 @@
 namespace App\Http\Controllers;
 
 use App\Models\IctAccess;
+use App\Models\IctAccessResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class IctAccessController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-//        $user = User::find($userId);
-
-        return view('ict-access-form.index');
-    }
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+   
+    //
+    public function __construct(){
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    public function index(){
+        $ict = IctAccessResource::all();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'ICT Form List',
+            'data' => $ict
+        ]);
+        
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+    public function addIctForm(Request $request){
+    $valid = Validator::make($request->all(),[
+      'remarkId' => 'required',
+      'privilegeId' => 'required',
+      'email' => 'required',
+      'userId' => 'required',
+      'hmisId' => 'required',
+      'active_drt' => 'required'
+   
+      
+    ]); 
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+    // $ictCheck = IctAccessResource::where('rmk_name', $request->rmk_name)->first();
+    // if ($ictCheck) {
+    //     return response()->json([
+    //         'status' => 400,
+    //         'message' => 'This Remark is already exists in the system',
+    //         'data' => $request->all()
+    //     ], 400);
+    // } 
+     $remark = IctAccessResource::create([
+        'rmk_name' => $request->input('rmk_name'),
+        'status' => $request->input('status'),
+     ]);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+     return response()->json([
+        'status' => 200,
+        'message' => 'Remark is added successfull',
+        'data' => $remark
+    ]);
+   }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+  
 }
