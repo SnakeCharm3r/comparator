@@ -22,4 +22,22 @@ class IctAccessResource extends Model
         'physical_access',
         
      ];
+
+     public function user(){
+        return $this->belongsTo(User::class, 'userId');
+     }
+
+     public function remark(){
+        return $this->belongsTo(Remark::class, 'remarkId');
+     }
+
+     public function privi(){
+        return $this->belongsTo(PrivilegeLevel::class, 'privilegeId');
+     }
+     public function hmis(){
+        return $this->belongsTo(HMISAccessLevel::class, 'hmisId');
+     }
+     public function nhif(){
+        return $this->belongsTo(NhifQualification::class, 'nhifId');
+     }
 }
