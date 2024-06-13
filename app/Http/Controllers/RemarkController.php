@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HmisAccessController extends Controller
+class RemarkController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('hmis-access.index');
+        return view('remarks.index');
     }
 
     /**

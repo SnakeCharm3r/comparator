@@ -1,4 +1,7 @@
 
 <footer>
-    <p>Copyright © 2024 Developed by CCBRT e-DOCS V1.</p>
+    <p>
+        <span style="text-transform: capitalize;">Developed</span>
+        <span style="text-transform: capitalize;">by</span>
+        <span style="text-transform: capitalize;">CCBRT</span>
 </footer>

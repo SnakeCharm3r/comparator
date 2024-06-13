@@ -11,22 +11,16 @@ use Illuminate\Support\Facades\Validator;
 
 class IctAccessController extends Controller
 {
-   
-   
 
     public function index(){
-      return view('form.index');
+
+        return view('ict-access-form.index');
     }
 
-    public function getIctForm(){
-        $ict = IctAccessResource::all();
+    public  function show()
+    {
+>>>>>>> 138606914e40c2de26ab2092496b739a7fc3148c:app/Http/Controllers/IctAccessController.php
 
-        return response()->json([
-            'status' => 200,
-            'message' => 'ICT Form List',
-            'data' => $ict
-        ]);
-        
     }
 
     public function addIctForm(Request $request){
@@ -37,9 +31,9 @@ class IctAccessController extends Controller
       'userId' => 'required',
       'hmisId' => 'required',
       'active_drt' => 'required'
-   
-      
-    ]); 
+
+
+    ]);
 
     // $ictCheck = IctAccessResource::where('rmk_name', $request->rmk_name)->first();
     // if ($ictCheck) {
@@ -48,7 +42,7 @@ class IctAccessController extends Controller
     //         'message' => 'This Remark is already exists in the system',
     //         'data' => $request->all()
     //     ], 400);
-    // } 
+    // }
      $remark = IctAccessResource::create([
         'rmk_name' => $request->input('rmk_name'),
         'status' => $request->input('status'),
@@ -61,5 +55,5 @@ class IctAccessController extends Controller
     ]);
    }
 
-  
+
 }

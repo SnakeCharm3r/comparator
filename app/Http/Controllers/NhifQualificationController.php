@@ -2,67 +2,63 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NhifQualification;
 use Illuminate\Http\Request;
 
 class NhifQualificationController extends Controller
 {
-    //List all NHIF Qualification
-    public function index(){
-        $nhif = NhifQualification::all();
-
-        return response()->json([
-            'status' => 200,
-            'message' => 'NHIF Qualification List',
-            'data' => $nhif
-        ]);
-        
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        return view('nhif.index');
     }
 
-    public function addQualification(Request $request){
-    $valid = NhifQualification::make($request->all(),[
-      'names' => 'required',
-      'status' => 'required'
-    ]); 
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
 
-    $nhifCheck = NhifQualification::where('names', $request->names)->first();
-    if ($nhifCheck) {
-        return response()->json([
-            'status' => 400,
-            'message' => 'This NHIF Qualification is already exists in the system',
-            'data' => $request->all()
-        ], 400);
-    } 
-     $nhif = NhifQualification::create([
-        'names' => $request->input('names'),
-        'status' => $request->input('status'),
-     ]);
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
 
-     return response()->json([
-        'status' => 200,
-        'message' => 'NHIF Qualification is added successfull',
-        'data' => $nhif
-    ]);
-   }
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
 
-   public function updateNhifQual(Request $request){
-    $dept = NhifQualification::find($request->id);
-     if(!$dept){
-         return response()->json([
-             'status' => 400,
-             'message' => 'NHIF Qualification could not found',
-             'data' => ''
-         ]);
-     }
-       NhifQualification::where('id',$request->id)->update([
-         'names' => $request->names,
-         'status' => $request->status,
-       ]);
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
 
-       return response()->json([
-         'status' => 200,
-         'message' => 'NHIF Qualification updated successfull',
-         'data' => $dept
-       ]);
- }
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
 }

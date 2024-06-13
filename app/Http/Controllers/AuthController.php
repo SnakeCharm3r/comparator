@@ -66,9 +66,7 @@ class AuthController extends Controller
     public function handleRegistration(Request $request){
         $validator = Validator::make($request->all(), [
           'fname' => 'required',
-          'mname' => 'required',
           'lname' => 'required',
-          'DOB' => 'required',
           'job_title' => 'required',
           'email' => 'required|email|unique:users',
           'deptId' => 'required',
@@ -83,14 +81,14 @@ class AuthController extends Controller
             ]);
 
         }
-        $dob = \DateTime::createFromFormat('d-m-Y', $request->input('DOB'))->format('Y-m-d');
+        //$dob = \DateTime::createFromFormat('d-m-Y', $request->input('DOB'))->format('Y-m-d');
 
         $user = User::create([
             'fname' => $request->input('fname'),
             'mname' => $request->input('mname'),
             'lname' => $request->input('lname'),
             'username' => $request->input('username'),
-            'DOB' => $dob,
+            'DOB' => $request->input('DOB'),
             'gender' => $request->input('gender'),
             'marital_status' => $request->input('marital_status'),
             'email' => $request->input('email'),
@@ -116,7 +114,7 @@ class AuthController extends Controller
 
         ]);
             // Example of assigning role
-            $user->assignRole('head of hr');
+            // $user->assignRole('head of hr');
 
          return redirect()->route('login')->with(
             'success', 'User registered successfully. Please login.');
