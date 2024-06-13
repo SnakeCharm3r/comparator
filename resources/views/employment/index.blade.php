@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-sub-header">
-                            <h3 class="page-title">Human resource</h3>
+                            <h3 class="page-title">Employment Type</h3>
                         </div>
                     </div>
                 </div>

@@ -6,7 +6,7 @@
                     <span>Main Menu</span>
                 </li>
                 <li class="submenu active">
-                    <a href="#"><i class="feather-grid"></i> <span> Dashboard</span></a>
+                    <a href="{{ route('dashboard') }}"><i class="feather-grid"></i> <span> Dashboard</span></a>
                 </li>
 
                 <li class="submenu">
@@ -24,6 +24,7 @@
                 <li><a href="{{ route('hmis.index') }}"><i class="feather-grid"></i> <span> MHIS Access</span></a></li>
                 <li><a href="{{ route('remark.index') }}"><i class="feather-grid"></i> <span> Remark</span></a></li>
                 <li><a href="{{ route('privilege.index') }}"><i class="feather-grid"></i> <span> Privilege level</span></a></li>
+                <li><a href="{{ route('employment.index') }}"><i class="feather-grid"></i> <span>Employment Type</span></a></li>
 
 
 

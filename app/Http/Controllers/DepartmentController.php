@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Departments;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class DepartmentController extends Controller
 {
@@ -12,7 +13,8 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        return view('department.index');
+        $departments = Departments::all();
+        return view('department.index', compact('departments'));
 
     }
 
@@ -29,7 +31,7 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Departments::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'dept_name' => 'required',
             'description' => 'required',
         ]);
@@ -48,18 +50,20 @@ class DepartmentController extends Controller
                 'data' => $request->all()
             ]);
 
-            $depart = Departments::create([
-                'dept_name' => $request->input('dept_name'),
-                'description' => $request->input('description'),
-            ]);
+          }
+        $dept = Departments::create([
+            'dept_name' => $request->input('dept_name'),
+            'description' => $request->input('description'),
+        ]);
+        return redirect()->route('department.index')->with('success', 'Department added successfully.');
 
-            return response()->json([
-                'status' => 200,
-                'message' => 'department is added successfull',
-                'data' => $depart
-            ]);
 
-        }
+
+//        return response()->json([
+//            'status' => 200,
+//            'message' => 'department is added successfull',
+//            'data' => $dept
+//        ]);
     }
 
     /**
