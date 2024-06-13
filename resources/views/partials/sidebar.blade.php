@@ -26,14 +26,16 @@
                         <li><a href="{{ route('form.index') }}"> Manage User Roles</a></li>
                     </ul>
                 </li>
-                @endunless
-                
+
                 <li class="submenu">
                     <a href="settings.html"><i class="fas fa-cog"></i> <span>Settings</span><span class="menu-arrow"></span></a>
                     <ul>
                         <li><a href="{{ route('form.index') }}"> User Activity Logs</a></li>
                     </ul>
                 </li>
+                @endunless
+                
+                
             </ul>
         </div>
     </div>

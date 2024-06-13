@@ -12,12 +12,13 @@ use Illuminate\Support\Facades\Validator;
 class IctAccessController extends Controller
 {
    
-    //
-    public function __construct(){
-        
-    }
+   
 
     public function index(){
+      return view('form.index');
+    }
+
+    public function getIctForm(){
         $ict = IctAccessResource::all();
 
         return response()->json([

@@ -21,7 +21,8 @@ class RoleSeeder extends Seeder
     // List of roles and their permissions
     $roles = [
         'requester' => ['submit form', 'user dashboard', 'view forms', 'view own forms', 'check form status'],
-        'head of hr' => ['approve hr','submit form', 'user dashboard', 'view forms', 'view own forms', 'check form status'],
+        // 'hr officer' => [],
+        'head of hr' => ['approve hod','approve hr','submit form', 'user dashboard', 'view forms', 'view own forms', 'check form status'],
         'head of it' => ['approve it','approve hr','submit form', 'user dashboard', 'view forms', 'view own forms', 'check form status'],
         'head of department' => ['approve hod','submit form', 'user dashboard', 'view forms', 'view own forms', 'check form status'],
         'acting hod' => ['approve hr', 'approve it', 'approve hod'],
