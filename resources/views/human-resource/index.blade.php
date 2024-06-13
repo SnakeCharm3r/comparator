@@ -1,13 +1,34 @@
 @extends('layouts.template')
 @section('breadcrumb')
-    <section class="content-header">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-        <h1>
-            <small>Hr</small>
-        </h1>
-    </section>
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-sub-header">
+                            <h3 class="page-title">Human resource</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <p>Contents</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 @endsection
+
 @section('content')
-    <section class="content">
-    <p>rhdfghiruilbgsdfglvlisdfhgiosdfngvjilsdfkbvf</p>
 @endsection
+

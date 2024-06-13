@@ -52,19 +52,20 @@
                             </div>
                             <div class="forgotpass">
                                 <div class="remember-me">
-                                    <label class="custom_check mr-2 mb-0 d-inline-flex remember-me"> Remember me
+                                    <label class="custom_check mr-2 mb-0 d-inline-flex remember-me" style="color: #0f813c;"> Remember me
                                         <input type="checkbox" name="radio">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
-                                <a href="#">Forgot Password?</a>
+                                <a href="#" style="color: #0f813c;">Forgot Password?</a>
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-primary btn-block" type="submit">Login</button>
+                                <button class="btn btn-primary btn-block" type="submit" style="background-color: #0f813c;">Login</button>
                             </div>
+                            
                         </form>
 
-                        <p class="account-subtitle">Need an account? <a href="{{ route('register') }}">Sign Up</a></p>
+                        <p class="account-subtitle">Need an account? <a href="{{ route('register') }}" style="color: #0f813c;">Sign Up</a></p>
                     </div>
                 </div>
             </div>
