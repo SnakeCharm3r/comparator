@@ -11,12 +11,12 @@
 
     <div class="menu-toggle">
         <a href="javascript:void(0);" id="toggle_btn">
-            <i class="fas fa-bars" style="background-color: #61ce70; padding: 10px; border-radius: 5px;"></i>
+            <i class="fas fa-bars" style="background-color: #61ce70; padding: 12px; border-radius: 5px;"></i>
         </a>
     </div>
 
     <a class="mobile_btn" id="mobile_btn">
-        <i class="fas fa-bars"></i>
+        <i class="fas fa-bars" style="background-color: #61ce70; padding: 12px; border-radius: 5px;"></i>
     </a>
     <ul class="nav user-menu">
         <li class="nav-item dropdown noti-dropdown me-2">
