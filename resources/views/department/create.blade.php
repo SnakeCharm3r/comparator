@@ -7,7 +7,8 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <form>
+                        <form method="POST" action="{{route('department.store')}}" enctype="multipart/form-data">
+                            @csrf
                             <div class="row">
                                 <div class="col-12">
                                     <h5 class="form-title"><span>Department Details</span></h5>
@@ -15,13 +16,13 @@
                                 <div class="col-12 col-sm-4">
                                     <div class="form-group local-forms">
                                         <label>Department Name <span class="login-danger">*</span></label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" name="dept_name" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-4">
                                     <div class="form-group local-forms">
-                                        <label>Head of Department <span class="login-danger">*</span></label>
-                                        <input type="text" class="form-control">
+                                        <label>Descriptions <span class="login-danger">*</span></label>
+                                        <input type="text" name="description" class="form-control">
                                     </div>
                                 </div>
 

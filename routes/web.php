@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EmploymentTypeController;
 use App\Http\Controllers\HumanResourceController;
 use App\Http\Controllers\HmisAccessController;
 use App\Http\Controllers\IctAccessController;
@@ -63,5 +64,6 @@ Route::resource('/nhif', NhifQualificationController::class);
 Route::resource('/hmis', HmisAccessController::class);
 Route::resource('/remark', RemarkController::class);
 Route::resource('/privilege', PrivilegeLevelController::class);
+Route::resource('/employment', EmploymentTypeController::class);
 
 

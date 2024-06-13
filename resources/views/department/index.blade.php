@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-sub-header">
-                            <h3 class="page-title">Department</h3>
+                            <h3 class="page-title">Departments</h3>
                         </div>
                     </div>
                 </div>
@@ -18,48 +18,37 @@
                         <div class="card-body">
                             <div class="row position-relative">
                                 <div class="col-md-12">
-                                    <a href="{{ route('department.create') }}" class="btn btn-primary position-absolute top-0 end-0 mt-2 me-2">
+                                    <a href="{{ route('department.create') }}" class="btn btn-primary position-absolute top-0 end-0 mt-2 me-2" style="background-color: #61ce70; border-color: #61ce70;">
                                         <i class="fas fa-plus"></i>
                                     </a>
                                 </div>
                             </div>
-
-                            <div class="table-responsive">
-                                <table class="table table-striped">
-                                    <thead>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Head Of Department</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($departments as $department)
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Head of Department</th>
-                                        <th>Actions</th>
+                                        <td>{{ $department->dept_name }}</td>
+                                        <td>{{ $department->hod }}</td>
+                                        <td>{{ $department->description }}</td>
+                                        <td>
+                                            <a href="#" class="btn btn-sm"><i class="fas fa-edit" ></i> </a>
+                                            <form action="#" method="POST" style="display: inline;">
+                                                <button type="submit" class="btn btn-sm"><i class="fas fa-trash-alt"></i> </button>
+                                            </form>
+                                        </td>
+
                                     </tr>
-                                    </thead>
-                                    <tbody>
-{{--                                    @foreach($departments as $department)--}}
-                                        <tr>
-{{--                                            <td>{{ $department->name }}</td>--}}
-{{--                                            <td>{{ $department->name }}</td>--}}
-                                            <td>name</td>
-                                            <td>HOD</td>
-                                            <td>
-{{--                                                <a href="{{ route('departments.edit', $department->id) }}" class="btn btn-sm btn-warning">Edit</a>--}}
-                                                <a href="#" class="btn btn-sm">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <form action="#" method="POST" style="display: inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </button>
-                                                </form>
-
-                                            </td>
-                                        </tr>
-{{--                                    @endforeach--}}
-                                    </tbody>
-                                </table>
-                            </div>
-
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

@@ -2,7 +2,7 @@
 
     <div class="header-left">
         <a href="#" class="logo">
-            <img src="#" alt="Logo">
+            <img src="{{asset('assets/img/logo.png')}}" alt="Logo">
         </a>
         <a href="#" class="logo logo-small">
             <img src="{{asset('assets/img/logo-small.png')}}" alt="Logo" width="30" height="30">
@@ -11,9 +11,10 @@
 
     <div class="menu-toggle">
         <a href="javascript:void(0);" id="toggle_btn">
-            <i class="fas fa-bars"></i>
+            <i class="fas fa-bars" style="background-color: #61ce70; padding: 10px; border-radius: 5px;"></i>
         </a>
     </div>
+
     <a class="mobile_btn" id="mobile_btn">
         <i class="fas fa-bars"></i>
     </a>
