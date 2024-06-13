@@ -41,15 +41,12 @@
                         <li><a href="{{ route('form.index') }}" class="{{ request()->routeIs('roles.index') ? 'active' : '' }}">Manage User Roles</a></li>
                     </ul>
                 </li>
-                <li class="submenu">
-                    <a href="#"><i class="fas fa-cog"></i> <span>Settings</span><span class="menu-arrow"></span></a>
-                    <ul>
-                        <li><a href="{{ route('form.index') }}"> User Activity Logs</a></li>
+                <li class="submenu {{ request()->is('settings*') ? 'active' : '' }}">
+                    <a href="#"><i class="fas fa-cog"></i> <span> Settings</span> <span class="menu-arrow {{ request()->is('settings*') ? 'active' : '' }}"></span></a>
+                    <ul style="{{ request()->is('settings*') ? 'display: block;' : '' }}">
+                        <li><a href="{{ route('form.index') }}" class="{{ request()->routeIs('logs.index') ? 'active' : '' }}">User Activity Logs</a></li>
                     </ul>
                 </li>
-                @endunless
-                
-                
             </ul>
         </div>
     </div>
