@@ -11,18 +11,14 @@ use Illuminate\Support\Facades\Validator;
 
 class IctAccessController extends Controller
 {
-
+   
+  
     public function index(){
 
         return view('ict-access-form.index');
     }
 
-    public  function show()
-    {
->>>>>>> 138606914e40c2de26ab2092496b739a7fc3148c:app/Http/Controllers/IctAccessController.php
-
-    }
-
+   
     public function addIctForm(Request $request){
     $valid = Validator::make($request->all(),[
       'remarkId' => 'required',
