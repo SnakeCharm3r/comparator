@@ -1,12 +1,16 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HumanResourceController;
+use App\Http\Controllers\HmisAccessController;
 use App\Http\Controllers\IctAccessController;
+use App\Http\Controllers\NhifQualificationController;
+use App\Http\Controllers\PrivilegeLevelController;
+use App\Http\Controllers\RemarkController;
+use App\Models\PrivilegeLevel;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DepartmentController;
-use App\Http\Controllers\EmploymentTypesController;
 use App\Http\Controllers\UserAdditionalInfoController;
 use App\Http\Controllers\UserFamilyDetailsController;
 
@@ -38,8 +42,6 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Route::get('/next-of-kins', [AuthController::class, 'nextOfKins'])->name('auth.next_of_kins');
 Route::get('/departments', [DepartmentController::class, 'index']);
-Route::get('/employment-types', [EmploymentTypesController::class, 'index']);
-
 Route::get('/next_of_kins', [UserAdditionalInfoController::class, 'next_of_kins'])->name('next_of_kins');
 Route::post('/nextOfKins', [UserAdditionalInfoController::class, 'addNextOfKins'])->name('nextOfKins.addNextOfKins');
 
@@ -55,4 +57,11 @@ Route::post('/ccbrtRelation', [UserFamilyDetailsController::class, 'addRelation'
 
 //ict-access controller
 Route::resource('/form', IctAccessController::class);
+Route::resource('/hr', HumanResourceController::class);
+Route::resource('/department', DepartmentController::class);
+Route::resource('/nhif', NhifQualificationController::class);
+Route::resource('/hmis', HmisAccessController::class);
+Route::resource('/remark', RemarkController::class);
+Route::resource('/privilege', PrivilegeLevelController::class);
+
 

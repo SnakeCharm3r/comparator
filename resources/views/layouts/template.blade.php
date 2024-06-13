@@ -2,7 +2,7 @@
 <html>
 @include('includes.head')
 
-<body>
+<body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
     @include('partials.header')
     @include('partials.sidebar')

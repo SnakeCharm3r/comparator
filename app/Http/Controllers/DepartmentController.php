@@ -7,17 +7,28 @@ use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
-    public function index(){
-        $depart = Departments::all();
-        
-        return response()->json([
-            'status' => 200,
-            'message' => 'department list',
-            'data' => $depart
-        ]);
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        return view('department.index');
+
     }
 
-    public function addDepartment(Request $request){
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('department.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
         $validator = Departments::make($request->all(), [
             'dept_name' => 'required',
             'description' => 'required',
@@ -30,7 +41,7 @@ class DepartmentController extends Controller
         }
 
         $deptCheck = Departments::where('dept_name', $request->dept_name)->first();
-         if($deptCheck){
+        if($deptCheck){
             return response()->json([
                 'status' => 400,
                 'message' => 'Departments is already exist',
@@ -51,24 +62,35 @@ class DepartmentController extends Controller
         }
     }
 
-    public function updateDepartment(Request $request){
-       $dept = Departments::find($request->id);
-        if(!$dept){
-            return response()->json([
-                'status' => 400,
-                'message' => 'Department could not found',
-                'data' => ''
-            ]);
-        }
-          Departments::where('id',$request->id)->update([
-            'dept_name' => $request->dept_name,
-            'description' => $request->description,
-          ]);
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
 
-          return response()->json([
-            'status' => 200,
-            'message' => 'departments updated successfull',
-            'data' => $dept
-          ]);
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
     }
 }
