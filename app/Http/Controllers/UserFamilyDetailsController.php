@@ -13,35 +13,9 @@ class UserFamilyDetailsController extends Controller
     public function profileFamily(){
         $user = Auth::user();
         $familyData = UserFamilyDetails::where('userId', $user->id)->get();
-        
+
         return view('user_info.profile', compact('user','familyData'));
     }
-
-    // public function addFamilyData(Request $request){
-    //     $validator = Validator::make($request->all(), [
-    //         'full_name' => 'required',
-    //         'relationship' => 'required',
-    //         'userId' => 'required|exists:users,id',   
-    //     ]);
-
-    //     if($validator->fails()){
-    //         return response()->json([
-    //             'status' => 400,
-    //             'error' => $validator->errors()
-    //         ]);
-    //     }
-
-    //     $familyData = UserFamilyDetails::create([
-    //         'full_name' => $request->input('full_name'),
-    //         'relationship' => $request->input('relationship'),
-    //         'phone_number' => $request->input('phone_number'),
-    //         'email' => $request->input('email'),
-    //         'occupation' => $request->input('occupatiuon'),
-    //         'userId' => $request->input('userId')
-    //     ]);
-    //     return redirect()->route('profile')->with('success', 'Family Data added successfully.');
-
-    // }
 
     public function addFamilyData(Request $request) {
         $validator = Validator::make($request->all(), [
@@ -49,19 +23,19 @@ class UserFamilyDetailsController extends Controller
             'familyData' => 'required|array|min:2|max:5',
             'familyData.*.full_name' => 'required|string|max:255',
             'familyData.*.relationship' => 'required|string|max:255',
-            
+
         ]);
-    
+
         if ($validator->fails()) {
             return response()->json([
                 'status' => 400,
                 'error' => $validator->errors()
             ]);
         }
-    
+
         $userId = $request->input('userId');
         $familyData = $request->input('familyData');
-    
+
         foreach ($familyData as $data) {
             UserFamilyDetails::create([
                 'userId' => $userId,
@@ -72,7 +46,7 @@ class UserFamilyDetailsController extends Controller
                 'occupation' => $data['occupation'] ?? null,
             ]);
         }
-    
+
         return redirect()->route('profile')->with('success', 'Family members added successfully');
     }
 
@@ -100,7 +74,7 @@ class UserFamilyDetailsController extends Controller
     }
 
     public function addLanguage(Request $request){
-        
+
     }
-    
+
 }
