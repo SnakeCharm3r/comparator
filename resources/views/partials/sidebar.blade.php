@@ -13,7 +13,6 @@
                     <ul style="{{ request()->is('form*') ? 'display: block;' : '' }}">
                         <li><a href="{{ route('form.index') }}" class="{{ request()->routeIs('form.index') ? 'active' : '' }}">ICT Access Form</a></li>
                         <li><a href="{{ route('hr.index') }}" class="{{ request()->routeIs('hr.index') ? 'active' : '' }}">HR</a></li>
-                        <li><a href="{{ route('form.index') }}" class="{{ request()->routeIs('clearance.index') ? 'active' : '' }}">Clearance Form</a></li>
                     </ul>
                 </li>
                 <li class="{{ request()->routeIs('department.index') ? 'active' : '' }}">
@@ -37,8 +36,8 @@
                 <li class="submenu {{ request()->is('user-management*') ? 'active' : '' }}">
                     <a href="#"><i class="fas fa-users-cog"></i> <span> User Management</span> <span class="menu-arrow {{ request()->is('user-management*') ? 'active' : '' }}"></span></a>
                     <ul style="{{ request()->is('user-management*') ? 'display: block;' : '' }}">
-                        <li><a href="{{ route('form.index') }}" class="{{ request()->routeIs('form.index') ? 'active' : '' }}">Add New User</a></li>
-                        <li><a href="{{ route('form.index') }}" class="{{ request()->routeIs('roles.index') ? 'active' : '' }}">Manage User Roles</a></li>
+{{--                        <li><a href="#" class="{{ request()->routeIs('form.index') ? 'active' : '' }}">Add New User</a></li>--}}
+{{--                        <li><a href="#" class="{{ request()->routeIs('roles.index') ? 'active' : '' }}">Manage User Roles</a></li>--}}
                     </ul>
                 </li>
                 <li class="submenu {{ request()->is('settings*') ? 'active' : '' }}">

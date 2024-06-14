@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IctAccessController extends Controller
 {
@@ -11,7 +13,8 @@ class IctAccessController extends Controller
      */
     public function index()
     {
-        return view('ict-access-form.index');
+        $user = Auth::user()->load('department','employmentType');
+        return view('ict-access-form.index', compact('user'));
     }
 
     /**
