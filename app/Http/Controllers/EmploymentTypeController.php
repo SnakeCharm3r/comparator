@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EmploymentTypes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class EmploymentTypeController extends Controller
 {
@@ -11,7 +13,9 @@ class EmploymentTypeController extends Controller
      */
     public function index()
     {
-        return view('employment.index');
+        $emp = EmploymentTypes::all();
+
+        return view('employment.index', compact('employmentTypes'));
     }
 
     /**
@@ -19,7 +23,7 @@ class EmploymentTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('employment.create');
     }
 
     /**
@@ -27,7 +31,34 @@ class EmploymentTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'employment_type' => 'required',
+            'description' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return response()->json([
+                'stauss' => 400,
+                'error' > $request->errors(),
+                ]);
+        }
+
+        $empCheck = EmploymentTypes::where('employment_type',$request->employment_type)->first();
+         if($empCheck){
+            return response()->json([
+                'status' => 400,
+                'message' => 'Employment type is already exist',
+                'data' => $request->all()
+            ]);  
+         }
+
+         $emp = EmploymentTypes::create([
+            'employment_type' => $request->input('employment_type'),
+            'description' => $request->input('description'),
+         ]);
+
+         return redirect()->route('employment.index')->with('success', 'Employment type added successfully.');
+
     }
 
     /**
@@ -43,7 +74,10 @@ class EmploymentTypeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $emp = EmploymentTypes::findOrFail($id);
+        
+        return view('employment.edit', compact('employment'));
+
     }
 
     /**
@@ -51,7 +85,31 @@ class EmploymentTypeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'employment_type' => 'required',
+            'description' => 'required',
+        ]);
+    
+        $validator = Validator::make($request->all(), [
+            'employment_type' => 'required',
+            'description' => 'required',
+        ]);
+    
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'errors' => $validator->errors(),
+            ]);
+        }
+    
+        $empl = EmploymentTypes::findOrFail($id);
+        $empl->update([
+            'employment_type' => $request->input('employment_type'),
+            'description' => $request->input('description'),
+        ]);
+    
+       
+        return redirect()->route('employment.index')->with('success', 'Employment type updated successfully.');
     }
 
     /**
