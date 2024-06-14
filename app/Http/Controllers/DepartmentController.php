@@ -79,7 +79,8 @@ class DepartmentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $department = Departments::findOrFail($id);
+        return view('department.edit', compact('department'));
     }
 
     /**
@@ -87,7 +88,31 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'dept_name' => 'required',
+            'description' => 'required',
+        ]);
+    
+        $validator = Validator::make($request->all(), [
+            'dept_name' => 'required',
+            'description' => 'required',
+        ]);
+    
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'errors' => $validator->errors(),
+            ]);
+        }
+    
+        $department = Departments::findOrFail($id);
+        $department->update([
+            'dept_name' => $request->input('dept_name'),
+            'description' => $request->input('description'),
+        ]);
+    
+       
+        return redirect()->route('department.index')->with('success', 'Department updated successfully.');
     }
 
     /**
@@ -97,4 +122,9 @@ class DepartmentController extends Controller
     {
         //
     }
+
+
+
+
+    
 }
