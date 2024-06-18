@@ -14,7 +14,7 @@ class PrivilegeLevelController extends Controller
     public function index()
     {
         $priv = PrivilegeLevel::all();
-        return view('privilege.index', compact('priv'));
+        return view('privilege-level.index', compact('priv'));
     }
 
 

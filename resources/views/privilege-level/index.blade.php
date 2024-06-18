@@ -33,7 +33,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($privileges as $privilege)
+                                @foreach($priv as $privilege)
                                     <tr>
                                         <td>{{ $privilege->name }}</td>
                                         <td>{{ $privilege->status }}</td>
