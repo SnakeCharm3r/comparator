@@ -21,11 +21,6 @@ class IctAccessResource extends Model
     'pbax',
     'status',
     'physical_access',
-    'remarkId',
-    'privilegeId',
-    'userId',
-    'hmisId',
-    'nhifId'
      ];
 
      public function user(){

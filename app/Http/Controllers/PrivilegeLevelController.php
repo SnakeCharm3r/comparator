@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PrivilegeLevel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PrivilegeLevelController extends Controller
 {
@@ -11,7 +13,8 @@ class PrivilegeLevelController extends Controller
      */
     public function index()
     {
-        return view('privilege-level.index');
+        $priv = PrivilegeLevel::all();
+        return view('privilege.index', compact('priv'));
     }
 
     /**
@@ -19,7 +22,8 @@ class PrivilegeLevelController extends Controller
      */
     public function create()
     {
-        //
+        return view('privilege.create');
+        
     }
 
     /**
@@ -27,7 +31,34 @@ class PrivilegeLevelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'prv_name' => 'required',
+            'prv_status' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return response()->json([
+                'stauss' => 400,
+                'error' > $request->errors(),
+                ]);
+        }
+
+        $empCheck = PrivilegeLevel::where('prv_name',$request->prv_name)->first();
+         if($empCheck){
+            return response()->json([
+                'status' => 400,
+                'message' => 'privilege  is already exist',
+                'data' => $request->all()
+            ]);  
+         }
+
+         $emp = PrivilegeLevel::create([
+            'prv_name' => $request->input('prv_name'),
+            'prv_status' => $request->input('prv_status'),
+         ]);
+
+         return redirect()->route('privilege.index')->with('success', 'privilege added successfully.');
+
     }
 
     /**
@@ -43,7 +74,8 @@ class PrivilegeLevelController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $priv = PrivilegeLevel::findOrFail($id);
+        return view('privilege.edit', compact('priv'));
     }
 
     /**
@@ -51,7 +83,32 @@ class PrivilegeLevelController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'prv_name' => 'required',
+            'prv_status' => 'required',
+        ]);
+    
+        $validator = Validator::make($request->all(), [
+            'prv_name' => 'required',
+            'prv_status' => 'required',
+        ]);
+    
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'errors' => $validator->errors(),
+            ]);
+        }
+    
+        $empl = PrivilegeLevel::findOrFail($id);
+        $empl->update([
+            'prv_name' => $request->input('prv_name'),
+            'prv_status' => $request->input('prv_status'),
+        ]);
+    
+       
+        return redirect()->route('privilege.index')->with('success', 'Privilege updated successfully.');
+
     }
 
     /**
