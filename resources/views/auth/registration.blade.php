@@ -8,9 +8,7 @@
                         <div class="signup-container">
                             <h1>Register </h1>
                             <p class="account-subtitle">Enter details to create your account</p>
-                    
                         </div>
-                        
                         <form action="{{ route('register.handleRegistration') }}" method="POST">
                             @csrf
                             <div class="row">
@@ -36,8 +34,8 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Email <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="email" name="email" required>
+                                        <label>Email</label>
+                                        <input class="form-control" type="email" name="email">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -79,20 +77,26 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Professional Number</label>
+                                        <input class="form-control" type="text" name="professional_reg_number">
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group text-center">
                                         <button class="btn btn-primary btn-block" type="submit" style="background-color: #0f813c; color: white;">Register</button>
                                     </div>
-                                    
+
                                     <div class="text-center">
                                         <span>Already registered?</span> <a href="{{ route('login') }}" style="color: #0f813c;">Login here</a>
                                     </div>
-                                    
+
                                 </div>
                             </div>
-                            
+
                         </form>
                         <div class="login-or">
                             <span class="or-line"></span>
