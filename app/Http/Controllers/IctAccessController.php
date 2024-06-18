@@ -13,7 +13,7 @@ class IctAccessController extends Controller
      */
     public function index()
     {
-        $user = Auth::user()->load('department','employmentType');
+        $user = Auth::user()->load('department','emp');
         return view('ict-access-form.index', compact('user'));
     }
 
