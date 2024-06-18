@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\NhifQualification;
+use App\Models\PrivilegeLevel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,8 +15,16 @@ class IctAccessController extends Controller
      */
     public function index()
     {
+
         $user = Auth::user()->load('department','emp');
-        return view('ict-access-form.index', compact('user'));
+        
+      
+
+        $user = Auth::user()->load('department','employmentType','privileges');
+        $qualifications = NhifQualification::all();
+        $privileges = PrivilegeLevel::all();
+        return view('ict-access-form.index', compact('user','qualifications'));
+
     }
 
     /**

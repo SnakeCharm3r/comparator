@@ -35,25 +35,25 @@ class AuthController extends Controller
     //         return redirect()->back()->withErrors(['login_error' => 'Invalid username or password'])->withInput();
     //      }
     // }
-     
+
     public function handleLogin(Request $request) {
         $validator = Validator::make($request->all(), [
             'username' => 'required',
             'password' => 'required'
         ]);
-    
+
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-    
+
         if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
             return redirect()->route('dashboard')->with('success', 'Logged in successfully.');
         } else {
             return redirect()->back()->withErrors(['login_error' => 'Invalid username or password'])->withInput();
         }
     }
-    
-    
+
+
 
 
     public function register() {
@@ -108,8 +108,8 @@ class AuthController extends Controller
             'NIN' => $request->input('NIN'),
             'nssf_no' => $request->input('nssf_no'),
             'domicile' => $request->input('domicile'),
-            'deptId' => $request->input('deptId'),
-            'employment_typeId' => $request->input('employment_typeId'),
+//            'deptId' => $request->input('deptId'),
+//            'employment_typeId' => $request->input('employment_typeId'),
             'password' => Hash::make($request->input('password')),
 
         ]);
