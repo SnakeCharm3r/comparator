@@ -23,7 +23,7 @@ class PrivilegeLevelController extends Controller
      */
     public function create()
     {
-       return view( 'privilege.create');
+       return view( 'privilege-level.create');
     }
 
     /**
@@ -57,7 +57,7 @@ class PrivilegeLevelController extends Controller
             'prv_status' => $request->input('prv_status'),
          ]);
 
-         return redirect()->route('privilege.index')->with('success', 'privilege added successfully.');
+         return redirect()->route('privilege-level.index')->with('success', 'privilege added successfully.');
     }
 
     /**
@@ -106,7 +106,7 @@ class PrivilegeLevelController extends Controller
         ]);
 
 
-        return redirect()->route('privilege.index')->with('success', 'Privilege updated successfully.');
+        return redirect()->route('privilege-level.index')->with('success', 'Privilege updated successfully.');
 
     }
 
