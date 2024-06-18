@@ -15,7 +15,7 @@ class EmploymentTypeController extends Controller
     {
         $emp = EmploymentTypes::all();
 
-        return view('employment.index', compact('employmentTypes'));
+        return view('employment.index', compact('employment'));
     }
 
     /**
@@ -49,7 +49,7 @@ class EmploymentTypeController extends Controller
                 'status' => 400,
                 'message' => 'Employment type is already exist',
                 'data' => $request->all()
-            ]);  
+            ]);
          }
 
          $emp = EmploymentTypes::create([
@@ -75,7 +75,7 @@ class EmploymentTypeController extends Controller
     public function edit(string $id)
     {
         $emp = EmploymentTypes::findOrFail($id);
-        
+
         return view('employment.edit', compact('employment'));
 
     }
@@ -89,26 +89,26 @@ class EmploymentTypeController extends Controller
             'employment_type' => 'required',
             'description' => 'required',
         ]);
-    
+
         $validator = Validator::make($request->all(), [
             'employment_type' => 'required',
             'description' => 'required',
         ]);
-    
+
         if ($validator->fails()) {
             return response()->json([
                 'status' => 400,
                 'errors' => $validator->errors(),
             ]);
         }
-    
+
         $empl = EmploymentTypes::findOrFail($id);
         $empl->update([
             'employment_type' => $request->input('employment_type'),
             'description' => $request->input('description'),
         ]);
-    
-       
+
+
         return redirect()->route('employment.index')->with('success', 'Employment type updated successfully.');
     }
 

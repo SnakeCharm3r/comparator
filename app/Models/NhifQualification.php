@@ -10,7 +10,7 @@ class NhifQualification extends Model
     use HasFactory;
 
     protected $fillable = [
-     'names',
+     'name',
      'status'
     ];
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PrivilegeLevel;
 use Illuminate\Http\Request;
 
 class PrivilegeLevelController extends Controller
@@ -11,7 +12,8 @@ class PrivilegeLevelController extends Controller
      */
     public function index()
     {
-        return view('privilege-level.index');
+        $privileges = PrivilegeLevel::all();
+        return view('privilege-level.index', compact('privileges'));
     }
 
     /**
@@ -19,7 +21,7 @@ class PrivilegeLevelController extends Controller
      */
     public function create()
     {
-        //
+       return view( 'privilege-level.create');
     }
 
     /**
