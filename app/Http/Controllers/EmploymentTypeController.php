@@ -15,7 +15,7 @@ class EmploymentTypeController extends Controller
     {
         $emp = EmploymentTypes::all();
 
-        return view('employment.index', compact('employmentTypes'));
+        return view('employment.index', compact('emp'));
     }
 
     /**
