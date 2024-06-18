@@ -16,11 +16,11 @@ class IctAccessController extends Controller
     public function index()
     {
 
-        $user = Auth::user()->load('department','emp');
+      //  $user = Auth::user()->load('department','emp');
         
       
 
-        $user = Auth::user()->load('department','employmentType','privileges');
+        $user = Auth::user()->load('department','employmentType');
         $qualifications = NhifQualification::all();
         $privileges = PrivilegeLevel::all();
         return view('ict-access-form.index', compact('user','qualifications'));
