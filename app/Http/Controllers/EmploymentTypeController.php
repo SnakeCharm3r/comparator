@@ -76,7 +76,7 @@ class EmploymentTypeController extends Controller
     {
         $emp = EmploymentTypes::findOrFail($id);
         
-        return view('employment-type.edit', compact('employment'));
+        return view('employment-type.edit', compact('emp'));
 
     }
 
