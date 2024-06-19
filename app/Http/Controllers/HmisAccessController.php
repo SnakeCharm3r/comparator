@@ -12,6 +12,7 @@ class HmisAccessController extends Controller
     public function index()
     {
         return view('hmis-access.index');
+        
     }
 
     /**
