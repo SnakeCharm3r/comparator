@@ -13,7 +13,8 @@ class HmisAccessController extends Controller
      */
     public function index()
     {
-        return view('hmis-access.index');
+        $hmis = HMISAccessLevel::all();
+        return view('hmis-access.index', compact('hmis'));
         
     }
 
