@@ -38,7 +38,7 @@ class PrivilegeLevelController extends Controller
 
         if($validator->fails()){
             return response()->json([
-                'stauss' => 400,
+                'status' => 400,
                 'errors' => $validator->errors(),
                 ]);
         }

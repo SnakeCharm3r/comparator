@@ -34,14 +34,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($employment as $employment-type)
+                                    @foreach ($emp as $employments)
                                         <tr>
-                                            <td>{{ $employment-type->employment_type }}</td>
-                                            <td>{{ $employment-type->description }}</td>
+                                            <td>{{ $employments->employment_type }}</td>
+                                            <td>{{ $employments->description }}</td>
                                             <td>
                                                 <a href="#" class="btn btn-sm edit-btn"
-                                                    data-id="{{ $employment->id }}"><i class="fas fa-edit"></i></a>
-                                                <form action="{{ route('employment.destroy', $hmis->id) }}" method="POST"
+                                                    data-id="{{ $employments->id }}"><i class="fas fa-edit"></i></a>
+                                                <form action="{{ route('employment.destroy', $employments->id) }}" method="POST"
                                                     style="display: inline;">
                                                     @csrf
                                                     @method('DELETE')

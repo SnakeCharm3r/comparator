@@ -38,7 +38,7 @@
                                     @foreach ($priv as $privilege)
                                         <tr>
                                             <td>{{ $privilege->prv_name }}</td>
-                                            <td>{{ $privilege->status }}</td>
+                                            <td>{{ $privilege->prv_status }}</td>
                                             <td>
                                                 <a href="#" class="btn btn-sm edit-btn"
                                                     data-id="{{ $privilege->id }}"><i class="fas fa-edit"></i></a>
