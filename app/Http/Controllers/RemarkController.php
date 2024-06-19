@@ -56,7 +56,7 @@ class RemarkController extends Controller
             'status' => $request->input('status'),
          ]);
 
-         return redirect()->route('remarks.index')->with('success', 'Remark added successfully.');
+         return redirect()->route('remark.index')->with('success', 'Remark added successfully.');
 
      
     }
@@ -74,8 +74,8 @@ class RemarkController extends Controller
      */
     public function edit(string $id)
     {
-        $rmk = Remark::findOrFails($id);
-        return view('remarks.edit', compact('rmk'));
+        $rem = Remark::findOrFail($id);
+        return view('remarks.edit', compact('rem'));
     }
 
     /**
@@ -107,7 +107,7 @@ class RemarkController extends Controller
         ]);
     
        
-        return redirect()->route('remarks.index')->with('success', 'Remarks is updated successfully.');
+        return redirect()->route('remark.index')->with('success', 'Remarks is updated successfully.');
     }
 
     /**

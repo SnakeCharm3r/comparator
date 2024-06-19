@@ -40,8 +40,9 @@
                                             <td>{{ $privilege->prv_name }}</td>
                                             <td>{{ $privilege->prv_status }}</td>
                                             <td>
-                                                <a href="#" class="btn btn-sm edit-btn"
-                                                    data-id="{{ $privilege->id }}"><i class="fas fa-edit"></i></a>
+                                                <a href="{{ route('privilege.edit', $privilege->id) }}"
+                                                    class="btn btn-sm edit-btn" data-id="{{ $privilege->id }}"><i
+                                                        class="fas fa-edit"></i></a>
                                                 <form action="{{ route('privilege.destroy', $privilege->id) }}"
                                                     method="POST" style="display: inline;">
                                                     @csrf

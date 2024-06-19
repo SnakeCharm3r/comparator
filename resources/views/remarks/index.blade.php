@@ -16,9 +16,43 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-
-                            <p>Contents</p>
-
+                            <div class="row position-relative">
+                                <div class="col-md-12">
+                                    <a href="{{ route('remark.create') }}"
+                                        class="btn btn-primary position-absolute top-0 end-0 mt-2 me-2"
+                                        style="background-color: #61ce70; border-color: #61ce70;">
+                                        <i class="fas fa-plus"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($rem as $remark)
+                                        <tr>
+                                            <td>{{ $remark->rmk_name }}</td>
+                                            <td>{{ $remark->status }}</td>
+                                            <td>
+                                                <a href="{{ route('remark.edit', $remark->id) }}" class="btn btn-sm edit-btn"
+                                                    data-id="{{ $remark->id }}"><i class="fas fa-edit"></i></a>
+                                                <form action="{{ route('remark.destroy', $remark->id) }}" method="POST"
+                                                    style="display: inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm"><i
+                                                            class="fas fa-trash-alt"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

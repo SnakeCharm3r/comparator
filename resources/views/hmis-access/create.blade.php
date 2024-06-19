@@ -15,8 +15,8 @@
                                 <div class="row">
                                     <div class="col-12 col-md-6">
                                         <div class="form-group">
-                                            <label for="prv_name">Name <span class="text-danger">*</span></label>
-                                            <input type="text" name="name" id="name" class="form-control" required>
+                                            <label for="names">Name <span class="text-danger">*</span></label>
+                                            <input type="text" name="names" id="names" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">

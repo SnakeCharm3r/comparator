@@ -39,7 +39,7 @@
                                     <td>{{ $department->headOfDepartment ? $department->headOfDepartment->fname . ' ' . $department->headOfDepartment->lname : 'N/A' }}</td>
                                     <td>{{ $department->description }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-sm edit-btn" data-id="{{ $department->id }}"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ route('department.edit', $department->id) }}" class="btn btn-sm edit-btn" data-id="{{ $department->id }}"><i class="fas fa-edit"></i></a>
                                         <form action="{{ route('department.destroy', $department->id) }}" method="POST" style="display: inline;">
                                             @csrf
                                             @method('DELETE')

@@ -109,7 +109,7 @@ class EmploymentTypeController extends Controller
         ]);
     
        
-        return redirect()->route('employment-type.index')->with('success', 'Employment type updated successfully.');
+        return redirect()->route('employment.index')->with('success', 'Employment type updated successfully.');
     }
 
     /**

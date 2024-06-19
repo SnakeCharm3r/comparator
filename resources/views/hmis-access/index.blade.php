@@ -35,7 +35,7 @@
                                 <tbody>
                                     @foreach ($hmis as $hmi)
                                         <tr>
-                                            <td>{{ $hmi->name }}</td>
+                                            <td>{{ $hmi->names }}</td>
                                             <td>{{ $hmi->status }}</td>
                                             <td>
                                                 <a href="#" class="btn btn-sm edit-btn"

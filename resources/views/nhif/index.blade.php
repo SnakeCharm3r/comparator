@@ -18,34 +18,40 @@
                         <div class="card-body">
                             <div class="row position-relative">
                                 <div class="col-md-12">
-                                    <a href="{{ route('nhif.create') }}" class="btn btn-primary position-absolute top-0 end-0 mt-2 me-2" style="background-color: #61ce70; border-color: #61ce70;">
+                                    <a href="{{ route('nhif.create') }}"
+                                        class="btn btn-primary position-absolute top-0 end-0 mt-2 me-2"
+                                        style="background-color: #61ce70; border-color: #61ce70;">
                                         <i class="fas fa-plus"></i>
                                     </a>
                                 </div>
                             </div>
                             <table class="table table-striped">
                                 <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($nhif_qualifications as $nhif_qualification)
-                                    <tr>
-                                        <td>{{ $nhif_qualification->name }}</td>
-                                        <td>{{ $nhif_qualification->status }}</td>
-                                        <td>
-                                            <a href="#" class="btn btn-sm edit-btn" data-id="#"><i class="fas fa-edit"></i></a>
-                                            <form action="#" method="POST" style="display: inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm"><i class="fas fa-trash-alt"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                    @foreach ($nhif as $nhifs)
+                                        <tr>
+                                            <td>{{ $nhifs->name }}</td>
+                                            <td>{{ $nhifs->status }}</td>
+                                            <td>
+                                                <a href="{{ route('nhif.edit', $nhifs->id) }}"
+                                                    class="btn btn-sm edit-btn" data-id="#"><i
+                                                        class="fas fa-edit"></i></a>
+                                                <form action="{{ route('nhif.destroy', $nhifs->id) }}"
+                                                    method="POST" style="display: inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm"><i
+                                                            class="fas fa-trash-alt"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -56,7 +62,7 @@
         </div>
     </div>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('.table').DataTable();
 
             // Edit button click event
@@ -106,4 +112,3 @@
         </div>
     </div>
 @endsection
-
