@@ -26,10 +26,14 @@
                                         <input type="text" class="form-control" id="prv_name" name="prv_name"
                                             value="{{ old('prv_name', $priv->prv_name) }}" required>
                                     </div>
+                            
                                     <div class="mb-3">
                                         <label for="status" class="form-label">Status</label>
-                                        <input type="text" class="form-control" id="prv_status" name="prv_status"
-                                            value="{{ old('prv_status', $priv->prv_status) }}">
+                                        <select class="form-control" id="prv_status" name="prv_status" required>
+                                            <option value="active" {{ old('prv_status', $priv->prv_status) == 'active' ? 'selected' : '' }}>Active</option>
+                                            <option value="inactive" {{ old('prv_status', $priv->prv_status) == 'inactive' ? 'selected' : '' }}>Inactive</option>
+                                            
+                                        </select>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Update</button>
                                     <a href="{{ route('privilege.index') }}" class="btn btn-secondary">Cancel</a>
