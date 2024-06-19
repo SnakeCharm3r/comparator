@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Remark;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RemarkController extends Controller
 {
@@ -11,7 +13,8 @@ class RemarkController extends Controller
      */
     public function index()
     {
-        return view('remarks.index');
+        $rem = Remark::all();
+        return view('remarks.index', compact('rem'));
     }
 
     /**
@@ -19,7 +22,7 @@ class RemarkController extends Controller
      */
     public function create()
     {
-        //
+        return view('remarks.create');
     }
 
     /**
@@ -27,7 +30,35 @@ class RemarkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'rmk_name' => 'required',
+            'status' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return response()->json([
+                'status' => 400,
+                'error' > $request->errors(),
+                ]);
+        }
+
+        $rmkCheck = Remark::where('rmk_name',$request->rmk_name)->first();
+         if($rmkCheck){
+            return response()->json([
+                'status' => 400,
+                'message' => 'Remark type is already exist',
+                'data' => $request->all()
+            ]);  
+         }
+
+         $emp = Remark::create([
+            'rmk_name' => $request->input('rmk_name'),
+            'status' => $request->input('status'),
+         ]);
+
+         return redirect()->route('remarks.index')->with('success', 'Remark added successfully.');
+
+     
     }
 
     /**
@@ -43,7 +74,8 @@ class RemarkController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $rmk = Remark::findOrFails($id);
+        return view('remarks.edit', compact('rmk'));
     }
 
     /**
@@ -51,7 +83,31 @@ class RemarkController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'rmk_name' => 'required',
+            'status' => 'required',
+        ]);
+    
+        $validator = Validator::make($request->all(), [
+            'rmk_name' => 'required',
+            'status' => 'required',
+        ]);
+    
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'errors' => $validator->errors(),
+            ]);
+        }
+    
+        $empl = Remark::findOrFail($id);
+        $empl->update([
+            'rmk_name' => $request->input('rmk_name'),
+            'status' => $request->input('status'),
+        ]);
+    
+       
+        return redirect()->route('remarks.index')->with('success', 'Remarks is updated successfully.');
     }
 
     /**
