@@ -15,7 +15,7 @@ class EmploymentTypeController extends Controller
     {
         $emp = EmploymentTypes::all();
 
-        return view('employment.index', compact('emp'));
+        return view('employment-type.index', compact('emp'));
     }
 
     /**
@@ -23,7 +23,7 @@ class EmploymentTypeController extends Controller
      */
     public function create()
     {
-        return view('employment.create');
+        return view('employment-type.create');
     }
 
     /**
@@ -38,7 +38,7 @@ class EmploymentTypeController extends Controller
 
         if($validator->fails()){
             return response()->json([
-                'stauss' => 400,
+                'status' => 400,
                 'error' > $request->errors(),
                 ]);
         }
@@ -76,7 +76,7 @@ class EmploymentTypeController extends Controller
     {
         $emp = EmploymentTypes::findOrFail($id);
         
-        return view('employment.edit', compact('employment'));
+        return view('employment-type.edit', compact('employment'));
 
     }
 
@@ -109,7 +109,7 @@ class EmploymentTypeController extends Controller
         ]);
     
        
-        return redirect()->route('employment.index')->with('success', 'Employment type updated successfully.');
+        return redirect()->route('employment-type.index')->with('success', 'Employment type updated successfully.');
     }
 
     /**
