@@ -57,7 +57,7 @@ class PrivilegeLevelController extends Controller
             'prv_status' => $request->input('prv_status'),
          ]);
 
-         return redirect()->route('privilege-level.index')->with('success', 'privilege added successfully.');
+         return redirect()->route('privilege.index')->with('success', 'privilege added successfully.');
     }
 
     /**

@@ -15,17 +15,17 @@
                                 <div class="row">
                                     <div class="col-12 col-md-6">
                                         <div class="form-group">
-                                            <label for="name">Name <span class="text-danger">*</span></label>
-                                            <input type="text" name="name" id="name" class="form-control" required>
+                                            <label for="prv_name">Name <span class="text-danger">*</span></label>
+                                            <input type="text" name="prv_name" id="prv_name" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <div class="form-group">
                                             <label for="status">Status <span class="text-danger">*</span></label>
-                                            <select name="status" id="status" class="form-control" required>
+                                            <select name="prv_status" id="prv_status" class="form-control" required>
                                                 <option value="">Select Status</option>
-                                                <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Active</option>
-                                                <option value="not_active" {{ old('status') == 'not_active' ? 'selected' : '' }}>Not Active</option>
+                                                <option value="active" {{ old('prv_status') == 'active' ? 'selected' : '' }}>Active</option>
+                                                <option value="not_active" {{ old('prv_status') == 'not_active' ? 'selected' : '' }}>Not Active</option>
                                             </select>
                                         </div>
                                     </div>
