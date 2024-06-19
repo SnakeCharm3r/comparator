@@ -33,14 +33,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($hmis_access as $hmis)
+                                    @foreach ($hmis as $hmi)
                                         <tr>
-                                            <td>{{ $hmis->name }}</td>
-                                            <td>{{ $hmis->status }}</td>
+                                            <td>{{ $hmi->name }}</td>
+                                            <td>{{ $hmi->status }}</td>
                                             <td>
                                                 <a href="#" class="btn btn-sm edit-btn"
-                                                    data-id="{{ $hmis->id }}"><i class="fas fa-edit"></i></a>
-                                                <form action="{{ route('hmis.destroy', $hmis->id) }}"
+                                                    data-id="{{ $hmi->id }}"><i class="fas fa-edit"></i></a>
+                                                <form action="{{ route('hmis.destroy', $hmi->id) }}"
                                                     method="POST" style="display: inline;">
                                                     @csrf
                                                     @method('DELETE')
