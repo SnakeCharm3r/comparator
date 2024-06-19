@@ -12,6 +12,7 @@ class IctAccessResource extends Model
 
     'remarkId',
     'privilegeId',
+    'userCategoryId',
     'email',
     'userId',
     'hmisId',
@@ -39,5 +40,9 @@ class IctAccessResource extends Model
      }
      public function nhif(){
         return $this->belongsTo(NhifQualification::class, 'nhifId');
+     }
+
+     public function userCategory(){
+        return $this->belongsTo(UserCategory::class, 'userCategoryId');
      }
 }

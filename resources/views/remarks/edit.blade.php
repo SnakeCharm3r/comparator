@@ -26,10 +26,18 @@
                                         <input type="text" class="form-control" id="rmk_name" name="rmk_name"
                                             value="{{ old('rmk_name', $rem->rmk_name) }}" required>
                                     </div>
+
                                     <div class="mb-3">
                                         <label for="status" class="form-label">Status</label>
-                                        <input type="text" class="form-control" id="status" name="status"
-                                            value="{{ old('status', $rem->status) }}">
+                                        <select class="form-control" id="status" name="status" required>
+                                            <option value="active"
+                                                {{ old('status', $rem->status) == 'active' ? 'selected' : '' }}>Active
+                                            </option>
+                                            <option value="inactive"
+                                                {{ old('status', $rem->status) == 'inactive' ? 'selected' : '' }}>Inactive
+                                            </option>
+
+                                        </select>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Update</button>
                                     <a href="{{ route('remark.index') }}" class="btn btn-secondary">Cancel</a>

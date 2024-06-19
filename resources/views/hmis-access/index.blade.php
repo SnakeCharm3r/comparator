@@ -38,7 +38,7 @@
                                             <td>{{ $hmi->names }}</td>
                                             <td>{{ $hmi->status }}</td>
                                             <td>
-                                                <a href="#" class="btn btn-sm edit-btn"
+                                                <a href="{{ route('hmis.edit', $hmi->id) }}" class="btn btn-sm edit-btn"
                                                     data-id="{{ $hmi->id }}"><i class="fas fa-edit"></i></a>
                                                 <form action="{{ route('hmis.destroy', $hmi->id) }}"
                                                     method="POST" style="display: inline;">

@@ -26,11 +26,27 @@
                                         <input type="text" class="form-control" id="name" name="name"
                                             value="{{ old('name', $nhif->name) }}" required>
                                     </div>
-                                    <div class="mb-3">
+                                    {{-- <div class="mb-3">
                                         <label for="status" class="form-label">Status</label>
                                         <input type="text" class="form-control" id="status" name="status"
                                             value="{{ old('status', $nhif->status) }}">
+                                    </div> --}}
+
+                                    <div class="mb-3">
+                                        <label for="status" class="form-label">Status</label>
+                                        <select class="form-control" id="status" name="status" required>
+                                            <option value="active"
+                                                {{ old('status', $nhif->status) == 'Active' ? 'selected' : '' }}>Active
+                                            </option>
+                                            <option value="inactive"
+                                                {{ old('status', $nhif->status) == 'NotActive' ? 'selected' : '' }}>
+                                                Inactive
+                                            </option>
+
+                                        </select>
                                     </div>
+
+
                                     <button type="submit" class="btn btn-primary">Update</button>
                                     <a href="{{ route('nhif.index') }}" class="btn btn-secondary">Cancel</a>
                                 </form>

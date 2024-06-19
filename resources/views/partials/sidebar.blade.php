@@ -22,6 +22,10 @@
                     <a href="{{ route('department.index') }}"><i class="fas fa-building"></i> <span>
                             Departments</span></a>
                 </li>
+                <li class="{{ request()->routeIs('user-category.index') ? 'active' : '' }}">
+                    <a href="{{ route('user-category.index') }}"><i class="fas fa-building"></i> <span>
+                        User Category</span></a>
+                </li>
                 <li class="{{ request()->routeIs('nhif.index') ? 'active' : '' }}">
                     <a href="{{ route('nhif.index') }}"><i class="fas fa-medkit"></i> <span> NHIF
                             Qualifications</span></a>

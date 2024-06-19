@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('userId')->unsigned();
             $table->bigInteger('hmisId')->unsigned();
             $table->bigInteger('nhifId')->unsigned()->nullable();
+            $table->bigInteger('userCategoryId')->unsigned()->nullable();
             $table->string('active_drt')->nullable();
             $table->string('VPN')->nullable();
             $table->string('pbax')->nullable();
@@ -29,6 +30,8 @@ return new class extends Migration
             $table->foreign('userId')->references('id')->on('users');
             $table->foreign('hmisId')->references('id')->on('h_m_i_s_access_levels');
             $table->foreign('nhifId')->references('id')->on('nhif_qualifications');
+            $table->foreign('userCategoryId')->references('id')->on('user_categories');
+
             $table->timestamps();
         });
     }

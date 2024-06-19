@@ -13,6 +13,7 @@ use App\Models\PrivilegeLevel;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\UserAdditionalInfoController;
+use App\Http\Controllers\UserCategoryController;
 use App\Http\Controllers\UserFamilyDetailsController;
 
 /*
@@ -65,5 +66,6 @@ Route::resource('/hmis', HmisAccessController::class);
 Route::resource('/remark', RemarkController::class);
 Route::resource('/privilege', PrivilegeLevelController::class);
 Route::resource('/employment', EmploymentTypeController::class);
+Route::resource('/user', UserCategoryController::class);
 
 
