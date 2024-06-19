@@ -74,7 +74,7 @@ class PrivilegeLevelController extends Controller
     public function edit(string $id)
     {
         $priv = PrivilegeLevel::findOrFail($id);
-        return view('privilege.edit', compact('priv'));
+        return view('privilege-level.edit', compact('priv'));
     }
 
     /**
@@ -99,8 +99,8 @@ class PrivilegeLevelController extends Controller
             ]);
         }
 
-        $empl = PrivilegeLevel::findOrFail($id);
-        $empl->update([
+        $priv = PrivilegeLevel::findOrFail($id);
+        $priv->update([
             'prv_name' => $request->input('prv_name'),
             'prv_status' => $request->input('prv_status'),
         ]);

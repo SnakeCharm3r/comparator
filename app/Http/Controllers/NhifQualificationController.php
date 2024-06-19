@@ -13,8 +13,8 @@ class NhifQualificationController extends Controller
      */
     public function index()
     {
-        $nhif_qualifications = NhifQualification::all();
-        return view('nhif.index', compact('nhif_qualifications'));
+        $nhif = NhifQualification::all();
+        return view('nhif.index', compact('nhif'));
     }
 
     /**
@@ -74,6 +74,7 @@ class NhifQualificationController extends Controller
     {
         $nhif = NhifQualification::findOrFail($id);
         return view('nhif.edit', compact('nhif'));
+        
     }
 
     /**
@@ -100,7 +101,7 @@ class NhifQualificationController extends Controller
 
         $nhif = NhifQualification::findOrFail($id);
         $nhif->update([
-            'name' => $request->input('names'),
+            'name' => $request->input('name'),
             'status' => $request->input('status'),
         ]);
 

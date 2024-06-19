@@ -34,14 +34,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($emp as $employments)
+                                    @foreach ($rem as $remark)
                                         <tr>
-                                            <td>{{ $employments->employment_type }}</td>
-                                            <td>{{ $employments->description }}</td>
+                                            <td>{{ $remark->rmk_name }}</td>
+                                            <td>{{ $remark->status }}</td>
                                             <td>
-                                                <a href="#" class="btn btn-sm edit-btn"
-                                                    data-id="{{ $employments->id }}"><i class="fas fa-edit"></i></a>
-                                                <form action="{{ route('employment.destroy', $employments->id) }}" method="POST"
+                                                <a href="{{ route('remark.edit', $remark->id) }}" class="btn btn-sm edit-btn"
+                                                    data-id="{{ $remark->id }}"><i class="fas fa-edit"></i></a>
+                                                <form action="{{ route('remark.destroy', $remark->id) }}" method="POST"
                                                     style="display: inline;">
                                                     @csrf
                                                     @method('DELETE')

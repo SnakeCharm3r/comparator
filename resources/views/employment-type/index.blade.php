@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-sub-header">
-                            <h3 class="page-title">Human resource</h3>
+                            <h3 class="page-title">Employment Type </h3>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                                 <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Status</th>
+                                        <th>Description</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -39,10 +39,11 @@
                                             <td>{{ $employments->employment_type }}</td>
                                             <td>{{ $employments->description }}</td>
                                             <td>
-                                                <a href="#" class="btn btn-sm edit-btn"
-                                                    data-id="{{ $employments->id }}"><i class="fas fa-edit"></i></a>
-                                                <form action="{{ route('employment.destroy', $employments->id) }}" method="POST"
-                                                    style="display: inline;">
+                                                <a href="{{ route('employment.edit', $employments->id) }}"
+                                                    class="btn btn-sm edit-btn" data-id="{{ $employments->id }}"><i
+                                                        class="fas fa-edit"></i></a>
+                                                <form action="{{ route('employment.destroy', $employments->id) }}"
+                                                    method="POST" style="display: inline;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm"><i
