@@ -106,7 +106,7 @@ class PrivilegeLevelController extends Controller
         ]);
 
 
-        return redirect()->route('privilege-level.index')->with('success', 'Privilege updated successfully.');
+        return redirect()->route('privilege.index')->with('success', 'Privilege updated successfully.');
 
     }
 
