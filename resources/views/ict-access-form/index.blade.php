@@ -37,27 +37,67 @@
 
 
                                         <div class="form-group">
-                                            <label for="employee_id">Employee ID</label>
-                                            <input type="text" class="form-control" id="employee_id" name="employee_id">
+                                            <label for="openclinic_hms">User Category<span
+                                                    style="color: red;">*</span></label>
+                                            <select class="form-control" id="remark" name="remark" required>
+                                                <option value="">Select an option</option>
+                                                @foreach ($privileges as $privilege)
+                                                    <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
+
+
                                         <div class="form-group">
                                             <label for="openclinic_hms">Aruti HR MIS<span
                                                     style="color: red;">*</span></label>
-                                            <select class="form-control" id="openclinic_hms" name="openclinic_hms" required>
+                                            <select class="form-control" id="remark" name="remark" required>
                                                 <option value="">Select an option</option>
-                                                <option value="Medical Record">User</option>
-                                                <option value="Medical Record">Administrator</option>
-                                                <option value="Medical Record">Super Administrator</option>
-                                                <option value="Medical Record">HR Officer</option>
-                                                <option value="Medical Record">HR Manager</option>
+                                                @foreach ($privileges as $privilege)
+                                                    <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
+
 
                                         <div class="form-group">
                                             <label for="starting_date">Starting Date</label>
                                             <input type="date" class="form-control" id="starting_date"
                                                 name="starting_date" required>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="remark">Remark<span style="color: red;">*</span></label>
+                                            <select class="form-control" id="remark" name="remark" required>
+                                                <option value="">Select an option</option>
+                                                @foreach ($rmk as $remark)
+                                                    <option value="{{ $remark->rmk_name }}">{{ $remark->rmk_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="remark">Aruti HR MIS<span style="color: red;">*</span></label>
+                                            <select class="form-control" id="remark" name="remark" required>
+                                                <option value="">Select an option</option>
+                                                @foreach ($privileges as $privilege)
+                                                    <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="openclinic_hms">PABX<span style="color: red;">*</span></label>
+                                            <select class="form-control" id="remark" name="remark" required>
+                                                <option value="">Select an option</option>
+                                                @foreach ($privileges as $privilege)
+                                                    <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
                                     </div>
 
                                     <!-- Column 2 -->
@@ -68,7 +108,7 @@
                                                 value="{{ $user->fname }}" readonly>
                                         </div>
                                         <div class="form-group">
-                                            <label for="employee_id">Email<span style="color: red;">*</span></label>
+                                            <label for="employee_id">Email</span></label>
                                             <input type="email" class="form-control" id="email" name="email"
                                                 value="{{ $user->email }}" readonly>
                                         </div>
@@ -82,16 +122,18 @@
                                         <div class="form-group">
                                             <label for="openclinic_hms">Active Directory<span
                                                     style="color: red;">*</span></label>
-                                            <select class="form-control" id="openclinic_hms" name="openclinic_hms" required>
+                                            <select class="form-control" id="remark" name="remark" required>
                                                 <option value="">Select an option</option>
-                                                <option value="Medical Record">User</option>
-                                                <option value="Medical Record">Administrator</option>
-                                                <option value="Medical Record">Super Administrator</option>
+                                                @foreach ($privileges as $privilege)
+                                                    <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="ending_date">Ending Date</label>
-                                            <input type="date" class="form-control" id="ending_date" name="ending_date">
+                                            <input type="date" class="form-control" id="ending_date"
+                                                name="ending_date">
                                         </div>
                                         <div class="form-group">
                                             <label for="employee_id">Employee ID</label>
@@ -99,7 +141,7 @@
                                                 name="employee_id" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="hardware">Hardware <span class="required-field">*</span></label>
+                                            <label for="hardware">Hardware</span></label>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="checkbox">
@@ -122,8 +164,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-
                                     <!-- Column 3 -->
                                     <div class="col-md-4">
                                         <div class="form-group">
@@ -138,15 +178,6 @@
                                                 name="employment_type"
                                                 value="{{ $user->employmentType->employment_type }}" readonly>
                                         </div>
-                                        {{--                                            <div class="form-group"> --}}
-                                        {{--                                                <label for="openclinic_hms">NHIF Qualification</label> --}}
-                                        {{--                                                <select class="form-control" id="openclinic_hms" name="openclinic_hms" required> --}}
-                                        {{--                                                    <option value="">Select an option</option> --}}
-                                        {{--                                                    <option value="Medical Record">Medical Record</option> --}}
-                                        {{--                                                    <option value="Medical Record & General Billing">Medical Record & General Billing</option> --}}
-                                        {{--                                                    <option value="Nurses Anesthesia">Nurses Anesthesia</option> --}}
-                                        {{--                                                </select> --}}
-                                        {{--                                            </div> --}}
 
                                         <div class="form-group">
                                             <label for="openclinic_hms">NHIF Qualification</label>
@@ -159,41 +190,49 @@
                                                 @endforeach
                                             </select>
                                         </div>
-
-
-
-
                                         <div class="form-group">
                                             <label for="openclinic_hms">HMIS Access</label>
                                             <select class="form-control" id="openclinic_hms" name="openclinic_hms"
                                                 required>
                                                 <option value="">Select an option</option>
-                                                <option value="Medical Record">Medical Record</option>
-                                                <option value="Medical Record & General Billing">Medical Record & General
-                                                    Billing</option>
-                                                <option value="Nurses Anesthesia">Nurses Anesthesia</option>
+                                                @foreach ($hmis as $hmi)
+                                                    <option value="{{ $hmi->names }}">{{ $hmi->names }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="openclinic_hms">CCBRT Email<span
-                                                    style="color: red;">*</span></label>
-                                            <select class="form-control" id="openclinic_hms" name="openclinic_hms"
-                                                required>
+                                            <label for="openclinic_hms">CCBRT Email</label>
+                                            <select class="form-control" id="remark" name="remark" required>
                                                 <option value="">Select an option</option>
-                                                <option value="Medical Record">User</option>
-                                                <option value="Medical Record">Administrator</option>
-                                                <option value="Medical Record">Super Administrator</option>
+                                                @foreach ($privileges as $privilege)
+                                                    <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="openclinic_hms">Remark<span style="color: red;">*</span></label>
-                                            <select class="form-control" id="openclinic_hms" name="openclinic_hms"
-                                                required>
+                                            <label for="openclinic_hms">SAP ERP<span style="color: red;">*</span></label>
+                                            <select class="form-control" id="remark" name="remark" required>
                                                 <option value="">Select an option</option>
-                                                <option value="Medical Record">Grant</option>
-                                                <option value="Medical Record">Revoke</option>
+                                                @foreach ($privileges as $privilege)
+                                                    <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="openclinic_hms">Network Access VPN</label>
+                                            <select class="form-control" id="remark" name="remark" required>
+                                                <option value="">Select an option</option>
+                                                @foreach ($privileges as $privilege)
+                                                    <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary mt-3"
