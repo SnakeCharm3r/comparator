@@ -15,6 +15,6 @@ class LogicalAccess extends Model
 
     public function ict()
     {
-    return $this->hasMany(IctAccess::class);
+    return $this->hasMany(IctAccessResource::class);
     }
 }
