@@ -115,6 +115,19 @@ class HmisAccessController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $dept = HMISAccessLevel::find($id);
+
+    if (!$dept) {
+        return response()->json([
+            'status' => 404,
+            'message' => 'Hmis access not found',
+        ]);
+    }
+
+    $dept->update([
+        'delete_status' => 1
+    ]);
+
+    return redirect()->route('hmis.index')->with('success', 'Hmis access deleted successfully.');
     }
 }
