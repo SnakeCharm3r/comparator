@@ -18,10 +18,10 @@ class IctAccessController extends Controller
     {
 
         $user = Auth::user()->load('department','employmentType');
-        $qualifications = NhifQualification::all();
-        $privileges = PrivilegeLevel::all();
-        $rmk = Remark::all();
-        $hmis = HMISAccessLevel::all();
+        $qualifications = NhifQualification::where('delete_status',0)->get();
+        $privileges = PrivilegeLevel::where('delete_status',0)->get();
+        $rmk = Remark::where('delete_status',0)->get();
+        $hmis = HMISAccessLevel::where('delete_status',0)->get();
         return view('ict-access-form.index', compact(
             'user','qualifications','privileges',
             'rmk', 'hmis'
