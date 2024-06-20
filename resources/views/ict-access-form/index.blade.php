@@ -26,20 +26,19 @@
                                             <input type="text" class="form-control" id="username" name="username"
                                                 value="{{ $user->username }}" readonly>
                                         </div>
+
+
                                         <div class="form-group">
-                                            <label for="mobile_number">Mobile Number<span
-                                                    style="color: red;">*</span></label>
-                                            <input type="text" class="form-control" id="mobile_number"
-                                                name="mobile_number" placeholder="e.g., 255699990000" pattern="[0-9]{1,13}"
-                                                maxlength="13" title="Please enter a valid mobile number (up to 13 digits)"
-                                                required>
+                                            <label for="mobile">Mobile Number<span style="color: red;">*</span></label>
+                                            <input type="text" class="form-control" id="mobile" name="mobile"
+                                                value="{{ $user->mobile }}" readonly>
                                         </div>
 
 
                                         <div class="form-group">
                                             <label for="openclinic_hms">User Category<span
                                                     style="color: red;">*</span></label>
-                                            <select class="form-control" id="remark" name="remark" required>
+                                            <select class="form-control" id="privilegeId" name="privilegeId" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
                                                     <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
@@ -52,7 +51,7 @@
                                         <div class="form-group">
                                             <label for="openclinic_hms">Aruti HR MIS<span
                                                     style="color: red;">*</span></label>
-                                            <select class="form-control" id="remark" name="remark" required>
+                                            <select class="form-control" id="aruti" name="aruti" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
                                                     <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
@@ -69,7 +68,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="remark">Remark<span style="color: red;">*</span></label>
-                                            <select class="form-control" id="remark" name="remark" required>
+                                            <select class="form-control" id="remark" name="remarkId" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($rmk as $remark)
                                                     <option value="{{ $remark->rmk_name }}">{{ $remark->rmk_name }}
@@ -77,19 +76,19 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label for="remark">Aruti HR MIS<span style="color: red;">*</span></label>
-                                            <select class="form-control" id="prv_name" name="prv_name" required>
+                                            <select class="form-control" id="aruti" name="aruti" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
                                                     <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
                                                     </option>
                                                 @endforeach
                                             </select>
-                                        </div>
+                                        </div> --}}
                                         <div class="form-group">
                                             <label for="openclinic_hms">PABX<span style="color: red;">*</span></label>
-                                            <select class="form-control" id="remark" name="remark" required>
+                                            <select class="form-control" id="pbax" name="pbax" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
                                                     <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
@@ -146,19 +145,21 @@
                                                 <div class="col-md-6">
                                                     <div class="checkbox">
                                                         <label><input type="checkbox" class="hardware-checkbox"
-                                                                name="hardware[]" value="Laptop computer"> Laptop
+                                                                name="hardware_request[]" value="Laptop computer"> Laptop
                                                             computer</label>
                                                     </div>
                                                     <div class="checkbox">
                                                         <label><input type="checkbox" class="hardware-checkbox"
-                                                                name="hardware[]" value="Desktop computer"> Desktop
+                                                                name="hardware_request[]" value="Desktop computer">
+                                                            Desktop
                                                             computer</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="checkbox">
                                                         <label><input type="checkbox" class="hardware-checkbox"
-                                                                name="hardware[]" value="Telephone"> Telephone</label>
+                                                                name="hardware_request[]" value="Telephone">
+                                                            Telephone</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -181,8 +182,7 @@
 
                                         <div class="form-group">
                                             <label for="openclinic_hms">NHIF Qualification</label>
-                                            <select class="form-control" id="openclinic_hms" name="openclinic_hms"
-                                                required>
+                                            <select class="form-control" id="nhifId" name="nhifId" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($qualifications as $qualification)
                                                     <option value="{{ $qualification->name }}">{{ $qualification->name }}
@@ -192,8 +192,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="openclinic_hms">HMIS Access</label>
-                                            <select class="form-control" id="names" name="names"
-                                                required>
+                                            <select class="form-control" id="hmisId" name="hmisId" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($hmis as $hmi)
                                                     <option value="{{ $hmi->names }}">{{ $hmi->names }}
@@ -203,7 +202,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="openclinic_hms">CCBRT Email</label>
-                                            <select class="form-control" id="remark" name="remark" required>
+                                            <select class="form-control" id="privilegeId" name="privilegeId" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
                                                     <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
@@ -213,7 +212,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="openclinic_hms">SAP ERP<span style="color: red;">*</span></label>
-                                            <select class="form-control" id="remark" name="remark" required>
+                                            <select class="form-control" id="privilegeId" name="privilegeId" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
                                                     <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
@@ -223,7 +222,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="openclinic_hms">Network Access VPN</label>
-                                            <select class="form-control" id="remark" name="remark" required>
+                                            <select class="form-control" id="VPN" name="VPN" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
                                                     <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
