@@ -13,7 +13,7 @@ class EmploymentTypeController extends Controller
      */
     public function index()
     {
-        $emp = EmploymentTypes::all();
+        $emp = EmploymentTypes::where('delete_status', 0)->get();
 
         return view('employment-type.index', compact('emp'));
     }
@@ -55,6 +55,7 @@ class EmploymentTypeController extends Controller
          $emp = EmploymentTypes::create([
             'employment_type' => $request->input('employment_type'),
             'description' => $request->input('description'),
+            'delete_status' => 0
          ]);
 
          return redirect()->route('employment.index')->with('success', 'Employment type added successfully.');
@@ -117,6 +118,20 @@ class EmploymentTypeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $emp = EmploymentTypes::find($id);
+
+    if (!$emp) {
+        return response()->json([
+            'status' => 404,
+            'message' => 'Employmeny type not found',
+        ]);
     }
+
+    $emp->update([
+        'delete_status' => 1
+    ]);
+
+    return redirect()->route('employment.index')->with('success', 'Employment type deleted successfully.');
+    }
+    
 }

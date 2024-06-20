@@ -13,7 +13,7 @@ class NhifQualificationController extends Controller
      */
     public function index()
     {
-        $nhif = NhifQualification::all();
+        $nhif = NhifQualification::where('delete_status',0)->get();
         return view('nhif.index', compact('nhif'));
     }
 
@@ -54,6 +54,7 @@ class NhifQualificationController extends Controller
         $dept = NhifQualification::create([
             'name' => $request->input('name'),
             'status' => $request->input('status'),
+            'delete_status' => 0,
         ]);
         return redirect()->route('nhif.index')->with('success', 'nhif added successfully.');
 
@@ -114,6 +115,19 @@ class NhifQualificationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $nhif = NhifQualification::find($id);
+
+        if (!$nhif) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'NHIF Qualification not found',
+            ]);
+        }
+    
+        $nhif->update([
+            'delete_status' => 1
+        ]);
+    
+        return redirect()->route('nhif.index')->with('success', 'NHIF Qualification deleted successfully.');
     }
 }
