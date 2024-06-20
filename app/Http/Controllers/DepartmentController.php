@@ -13,7 +13,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Departments::all();
+        $departments = Departments::where('delete_status', 0)->get();
         return view('department.index', compact('departments'));
 
     }
