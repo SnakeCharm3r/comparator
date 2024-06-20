@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('prv_name');
             $table->string('prv_status');
+            $table->string('delete_status')->nullable();
             $table->timestamps();
         });
     }

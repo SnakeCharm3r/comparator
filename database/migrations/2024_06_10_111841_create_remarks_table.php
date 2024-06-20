@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('rmk_name');
             $table->string('status');
+            $table->string('delete_status')->nullable();
             $table->timestamps();
         });
     }
