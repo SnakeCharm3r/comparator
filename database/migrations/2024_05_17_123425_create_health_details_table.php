@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('insur_name')->nullable();
             $table->string('insur_no')->nullable();
             $table->string('allergies')->nullable();
+            $table->string('delete_status')->nullable();
             $table->foreign('userId')->references('id')->on('users');
             $table->timestamps();
         });

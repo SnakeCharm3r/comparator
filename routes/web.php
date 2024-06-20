@@ -67,3 +67,4 @@ Route::resource('/privilege', PrivilegeLevelController::class);
 Route::resource('/employment', EmploymentTypeController::class);
 
 
+

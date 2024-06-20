@@ -9,11 +9,12 @@ class LogicalAccess extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'access_name'
+        'access_name',
+        'delete_status'
     ];
 
     public function ict()
     {
-    return $this->hasMany(IctAccess::class);
+    return $this->hasMany(IctAccessResource::class);
     }
 }

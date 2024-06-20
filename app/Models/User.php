@@ -44,6 +44,7 @@ class User extends Authenticatable
         'deptId',
         'employment_typeId',
         'password',
+        'delete_status',
     ];
 
     /**

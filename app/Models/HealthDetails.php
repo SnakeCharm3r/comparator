@@ -18,6 +18,7 @@ class HealthDetails extends Model
         'insur_name',
         'insur_no',
         'allergies',
+        'delete_status',
     ];
 
     public function user(){

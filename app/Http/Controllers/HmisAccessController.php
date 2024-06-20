@@ -73,7 +73,7 @@ class HmisAccessController extends Controller
      */
     public function edit(string $id)
     {
-        $hmis = HMISAccessLevel::findOrFails($id);
+        $hmis = HMISAccessLevel::findOrFail($id);
         return view('hmis-access.edit', compact('hmis'));
     }
 

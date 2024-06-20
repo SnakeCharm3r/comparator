@@ -12,6 +12,7 @@ class IctAccessResource extends Model
 
     'remarkId',
     'privilegeId',
+    'userCategoryId',
     'email',
     'userId',
     'hmisId',
@@ -21,6 +22,7 @@ class IctAccessResource extends Model
     'pbax',
     'status',
     'physical_access',
+    'delete_status',
      ];
 
      public function user(){

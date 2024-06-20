@@ -15,6 +15,7 @@ class LanguageKnowledge extends Model
         'reading',
         'writing',
         'userId',
+        'delete_status',
     ];
 
     public function user(){

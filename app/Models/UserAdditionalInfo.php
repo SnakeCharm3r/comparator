@@ -16,7 +16,8 @@ class UserAdditionalInfo extends Model
         'address',
         'mobile',
         'email',
-        'occupation'
+        'occupation',
+        'delete_status'
     ];
 
     public function user(){

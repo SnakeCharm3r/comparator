@@ -11,6 +11,7 @@ class NhifQualification extends Model
 
     protected $fillable = [
      'name',
-     'status'
+     'status',
+     'delete_status'
     ];
 }

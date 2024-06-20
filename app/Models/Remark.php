@@ -10,6 +10,7 @@ class Remark extends Model
     use HasFactory;
     protected $fillable = [
         'rmk_name',
-        'status'
+        'status',
+        'delete_status'
     ];
 }

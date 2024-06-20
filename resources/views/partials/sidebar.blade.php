@@ -22,6 +22,7 @@
                     <a href="{{ route('department.index') }}"><i class="fas fa-building"></i> <span>
                             Departments</span></a>
                 </li>
+            
                 <li class="{{ request()->routeIs('nhif.index') ? 'active' : '' }}">
                     <a href="{{ route('nhif.index') }}"><i class="fas fa-medkit"></i> <span> NHIF
                             Qualifications</span></a>
@@ -33,8 +34,7 @@
                     <a href="{{ route('remark.index') }}"><i class="fas fa-comments"></i> <span> Remark</span></a>
                 </li>
                 <li class="{{ request()->routeIs('privilege.index') ? 'active' : '' }}">
-                    <a href="{{ route('privilege.index') }}"><i class="fas fa-user-shield"></i> <span> Privilege
-                            Level</span></a>
+                    <a href="{{ route('privilege.index') }}"><i class="fas fa-user-shield"></i> <span> User Category</span></a>
                 </li>
                 <li class="{{ request()->routeIs('employment.index') ? 'active' : '' }}">
                     <a href="{{ route('employment.index') }}"><i class="fas fa-briefcase"></i> <span> Employment

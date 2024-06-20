@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('mobile')->nullable();
             $table->string('email')->nullable();
             $table->string('occupation')->nullable();
+            $table->string('delete_status')->nullable();
             $table->foreign('userId')->references('id')->on('users');
             $table->timestamps();
         });
