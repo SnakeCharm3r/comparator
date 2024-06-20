@@ -13,7 +13,7 @@ class HmisAccessController extends Controller
      */
     public function index()
     {
-        $hmis = HMISAccessLevel::all();
+        $hmis = HMISAccessLevel::where('delete_status',0)->get();
         return view('hmis-access.index', compact('hmis'));
         
     }
@@ -55,6 +55,7 @@ class HmisAccessController extends Controller
          $hmis = HMISAccessLevel::create([
             'names' => $request->input('names'),
             'status' => $request->input('status'),
+            'delete_status' => 0,
          ]);
 
          return redirect()->route('hmis.index')->with('success', 'HMIS access added successfully.');

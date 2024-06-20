@@ -13,7 +13,7 @@ class PrivilegeLevelController extends Controller
      */
     public function index()
     {
-        $priv = PrivilegeLevel::all();
+        $priv = PrivilegeLevel::where('delete_status',0)->get();
         return view('privilege-level.index', compact('priv'));
     }
 
@@ -55,6 +55,7 @@ class PrivilegeLevelController extends Controller
          $emp = PrivilegeLevel::create([
             'prv_name' => $request->input('prv_name'),
             'prv_status' => $request->input('prv_status'),
+            'delete_status' => 0,
          ]);
 
          return redirect()->route('privilege.index')->with('success', 'privilege added successfully.');
@@ -115,6 +116,19 @@ class PrivilegeLevelController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $priv = PrivilegeLevel::find($id);
+
+    if (!$priv) {
+        return response()->json([
+            'status' => 404,
+            'message' => 'Privilege not found',
+        ]);
+    }
+
+    $priv->update([
+        'delete_status' => 1
+    ]);
+
+    return redirect()->route('privilege.index')->with('success', 'Privilege deleted successfully.');
     }
 }
