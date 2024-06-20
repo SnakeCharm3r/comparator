@@ -13,7 +13,7 @@ class RemarkController extends Controller
      */
     public function index()
     {
-        $rem = Remark::all();
+        $rem = Remark::where('delete_status', 0)->get();
         return view('remarks.index', compact('rem'));
     }
 
