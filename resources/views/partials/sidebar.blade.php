@@ -44,8 +44,8 @@
                     <a href="#"><i class="fas fa-users-cog"></i> <span> User Management</span> <span
                             class="menu-arrow {{ request()->is('user-management*') ? 'active' : '' }}"></span></a>
                     <ul style="{{ request()->is('user-management*') ? 'display: block;' : '' }}">
-                        {{--                        <li><a href="#" class="{{ request()->routeIs('form.index') ? 'active' : '' }}">Add New User</a></li> --}}
-                        {{--                        <li><a href="#" class="{{ request()->routeIs('roles.index') ? 'active' : '' }}">Manage User Roles</a></li> --}}
+                    <li><a href="#" class="{{ request()->routeIs('employment.index') ? 'active' : '' }}">Assign User</a></li>
+                    <li><a href="#" class="{{ request()->routeIs('employment.index') ? 'active' : '' }}">Manage Roles</a></li>
                     </ul>
                 </li>
                 <li class="submenu {{ request()->is('settings*') ? 'active' : '' }}">
