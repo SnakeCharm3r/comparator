@@ -54,6 +54,7 @@ class DepartmentController extends Controller
         $dept = Departments::create([
             'dept_name' => $request->input('dept_name'),
             'description' => $request->input('description'),
+            'delete_status' => 0, 
         ]);
         return redirect()->route('department.index')->with('success', 'Department added successfully.');
 
@@ -116,15 +117,43 @@ class DepartmentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+ * Remove the specified resource from storage.
+ */
+public function destroy(string $id)
+{
+    $dept = Departments::find($id);
+
+    if (!$dept) {
+        return response()->json([
+            'status' => 404,
+            'message' => 'Department not found',
+        ]);
     }
 
+    $dept->update([
+        'delete_status' => 1
+    ]);
+
+    return redirect()->route('department.index')->with('success', 'Department deleted successfully.');
+}
 
 
-
+    // public function softDelete(Request $request)
+    // {
+    //     $dept = Departments::find($request->id);
+    
+    //     if (!$dept) {
+    //         return response()->json([
+    //             'status' => 404,
+    //             'message' => 'Department not found',
+    //         ]);
+    //     }
+    
+    //     $dept->update([
+    //         'delete_status' => 1
+    //     ]);
+    
+    //     return redirect()->route('department.index')->with('success', 'Department deleted successfully.');
+    // }    
     
 }

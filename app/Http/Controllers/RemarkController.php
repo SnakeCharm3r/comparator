@@ -54,6 +54,7 @@ class RemarkController extends Controller
          $emp = Remark::create([
             'rmk_name' => $request->input('rmk_name'),
             'status' => $request->input('status'),
+            'delete_status' => 0,
          ]);
 
          return redirect()->route('remark.index')->with('success', 'Remark added successfully.');
@@ -115,6 +116,19 @@ class RemarkController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $rmk = Remark::find($id);
+
+    if (!$rmk) {
+        return response()->json([
+            'status' => 404,
+            'message' => 'Remark not found',
+        ]);
+    }
+
+    $rmk->update([
+        'delete_status' => 1
+    ]);
+
+    return redirect()->route('remark.index')->with('success', 'Remark deleted successfully.');
     }
 }

@@ -41,11 +41,11 @@
                                             <td>
                                                 <a href="{{ route('remark.edit', $remark->id) }}" class="btn btn-sm edit-btn"
                                                     data-id="{{ $remark->id }}"><i class="fas fa-edit"></i></a>
-                                                <form action="{{ route('remark.destroy', $remark->id) }}" method="POST"
+                                                <form action="{{ route('remark.destroy', $remark->id) }}" method="POST" class="delete-form"
                                                     style="display: inline;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm"><i
+                                                    <button type="submit" class="btn btn-sm delete-btn"><i
                                                             class="fas fa-trash-alt"></i></button>
                                                 </form>
                                             </td>
@@ -63,6 +63,29 @@
 
 @endsection
 
-@section('content')
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.delete-btn').forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                const form = this.closest('.delete-form');
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    });
+</script>
 @endsection
-
