@@ -37,8 +37,14 @@
 
 
                                         <div class="form-group">
-                                            <label for="employee_id">Employee ID</label>
-                                            <input type="text" class="form-control" id="employee_id" name="employee_id">
+                                            <label for="openclinic_hms">User Category<span
+                                                    style="color: red;">*</span></label>
+                                            <select class="form-control" id="openclinic_hms" name="openclinic_hms" required>
+                                                <option value="">Select an option</option>
+                                                <option value="Medical Record">User</option>
+                                                <option value="Medical Record">Administrator</option>
+                                                <option value="Medical Record">Super Administrator</option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="openclinic_hms">Aruti HR MIS<span
@@ -58,6 +64,15 @@
                                             <input type="date" class="form-control" id="starting_date"
                                                 name="starting_date" required>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="openclinic_hms">Remark<span style="color: red;">*</span></label>
+                                            <select class="form-control" id="openclinic_hms" name="openclinic_hms" required>
+                                                <option value="">Select an option</option>
+                                                <option value="Medical Record">Grant</option>
+                                                <option value="Medical Record">Revoke</option>
+                                            </select>
+                                        </div>
+
                                     </div>
 
                                     <!-- Column 2 -->
@@ -68,7 +83,7 @@
                                                 value="{{ $user->fname }}" readonly>
                                         </div>
                                         <div class="form-group">
-                                            <label for="employee_id">Email<span style="color: red;">*</span></label>
+                                            <label for="employee_id">Email</span></label>
                                             <input type="email" class="form-control" id="email" name="email"
                                                 value="{{ $user->email }}" readonly>
                                         </div>
@@ -82,7 +97,8 @@
                                         <div class="form-group">
                                             <label for="openclinic_hms">Active Directory<span
                                                     style="color: red;">*</span></label>
-                                            <select class="form-control" id="openclinic_hms" name="openclinic_hms" required>
+                                            <select class="form-control" id="openclinic_hms" name="openclinic_hms"
+                                                required>
                                                 <option value="">Select an option</option>
                                                 <option value="Medical Record">User</option>
                                                 <option value="Medical Record">Administrator</option>
@@ -91,7 +107,8 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="ending_date">Ending Date</label>
-                                            <input type="date" class="form-control" id="ending_date" name="ending_date">
+                                            <input type="date" class="form-control" id="ending_date"
+                                                name="ending_date">
                                         </div>
                                         <div class="form-group">
                                             <label for="employee_id">Employee ID</label>
@@ -138,15 +155,6 @@
                                                 name="employment_type"
                                                 value="{{ $user->employmentType->employment_type }}" readonly>
                                         </div>
-                                        {{--                                            <div class="form-group"> --}}
-                                        {{--                                                <label for="openclinic_hms">NHIF Qualification</label> --}}
-                                        {{--                                                <select class="form-control" id="openclinic_hms" name="openclinic_hms" required> --}}
-                                        {{--                                                    <option value="">Select an option</option> --}}
-                                        {{--                                                    <option value="Medical Record">Medical Record</option> --}}
-                                        {{--                                                    <option value="Medical Record & General Billing">Medical Record & General Billing</option> --}}
-                                        {{--                                                    <option value="Nurses Anesthesia">Nurses Anesthesia</option> --}}
-                                        {{--                                                </select> --}}
-                                        {{--                                            </div> --}}
 
                                         <div class="form-group">
                                             <label for="openclinic_hms">NHIF Qualification</label>
@@ -168,12 +176,14 @@
                                             <select class="form-control" id="openclinic_hms" name="openclinic_hms"
                                                 required>
                                                 <option value="">Select an option</option>
-                                                <option value="Medical Record">Medical Record</option>
-                                                <option value="Medical Record & General Billing">Medical Record & General
-                                                    Billing</option>
-                                                <option value="Nurses Anesthesia">Nurses Anesthesia</option>
+                                                @foreach ($hmis as $hmi)
+                                                    <option value="{{ $hmi->names }}">{{ $hmi->names }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
+
+
                                         <div class="form-group">
                                             <label for="openclinic_hms">CCBRT Email<span
                                                     style="color: red;">*</span></label>
@@ -185,15 +195,7 @@
                                                 <option value="Medical Record">Super Administrator</option>
                                             </select>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="openclinic_hms">Remark<span style="color: red;">*</span></label>
-                                            <select class="form-control" id="openclinic_hms" name="openclinic_hms"
-                                                required>
-                                                <option value="">Select an option</option>
-                                                <option value="Medical Record">Grant</option>
-                                                <option value="Medical Record">Revoke</option>
-                                            </select>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary mt-3"
