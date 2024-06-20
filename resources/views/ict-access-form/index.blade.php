@@ -79,7 +79,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="remark">Aruti HR MIS<span style="color: red;">*</span></label>
-                                            <select class="form-control" id="remark" name="remark" required>
+                                            <select class="form-control" id="prv_name" name="prv_name" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
                                                     <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
@@ -115,7 +115,7 @@
 
                                         <div class="form-group">
                                             <label for="department">Department<span style="color: red;">*</span></label>
-                                            <input type="text" class="form-control" id="department" name="department"
+                                            <input type="text" class="form-control" id="department" name="dept_name"
                                                 value="{{ $user->department->dept_name }}" readonly>
                                         </div>
 
@@ -192,7 +192,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="openclinic_hms">HMIS Access</label>
-                                            <select class="form-control" id="openclinic_hms" name="openclinic_hms"
+                                            <select class="form-control" id="names" name="names"
                                                 required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($hmis as $hmi)
