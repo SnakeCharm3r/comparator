@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('employment_type');
             $table->string('description');
+            $table->string('delete_status')->nullable();
             $table->timestamps();
         });
     }

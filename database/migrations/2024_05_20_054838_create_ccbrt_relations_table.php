@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('position')->nullable();
             $table->string('department')->nullable();
             $table->string('relation')->nullable();
+            $table->string('delete_status')->nullable();
             $table->foreign('userId')->references('id')->on('users');
+            
             $table->timestamps();
         });
     }

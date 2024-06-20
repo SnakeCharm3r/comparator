@@ -29,6 +29,7 @@ return new class extends Migration
             $table->foreign('privilegeId')->references('id')->on('privilege_levels');
             $table->foreign('userId')->references('id')->on('users');
             $table->foreign('hmisId')->references('id')->on('h_m_i_s_access_levels');
+            $table->string('delete_status')->nullable();
             $table->foreign('nhifId')->references('id')->on('nhif_qualifications');
             // $table->foreign('userCategoryId')->references('id')->on('user_categories');
 

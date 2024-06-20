@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('speaking');
             $table->string('reading');
             $table->string('writing');
+            $table->string('delete_status')->nullable();
             $table->foreign('userId')->references('id')->on('users');
             $table->timestamps();
         });

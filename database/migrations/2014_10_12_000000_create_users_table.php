@@ -43,6 +43,7 @@ return new class extends Migration
             $table->string('password');
             $table->foreign('deptId')->references('id')->on('departments');
             $table->foreign('employment_typeId')->references('id')->on('employment_types');
+            $table->string('delete_status')->nullable();
             // $table->foreign('health_info_Id')->references('id')->on('health_details');
             $table->rememberToken();
             $table->timestamps();

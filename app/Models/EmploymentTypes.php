@@ -12,6 +12,8 @@ class EmploymentTypes extends Model
     protected $fillable = [
         'employment_type',
         'description',
+        'delete_status',
+
     ];
 
     public function user() {

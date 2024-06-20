@@ -11,6 +11,8 @@ class HMISAccessLevel extends Model
 
     protected $fillable = [
         'names',
-        'status'
+        'status',
+        'delete_status'
+
     ];
 }

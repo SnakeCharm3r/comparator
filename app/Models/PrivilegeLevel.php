@@ -11,7 +11,8 @@ class PrivilegeLevel extends Model
 
     protected $fillable = [
         'prv_name',
-        'prv_status'
+        'prv_status',
+        'delete_status'
     ];
 
     // public function prv(){

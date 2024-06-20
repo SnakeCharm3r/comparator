@@ -14,6 +14,7 @@ class Departments extends Model
     'dept_name',
     'hod',
     'description',
+    'delete_status',
     ];
 
     public function user() {

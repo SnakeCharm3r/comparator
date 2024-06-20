@@ -22,6 +22,7 @@ class IctAccessResource extends Model
     'pbax',
     'status',
     'physical_access',
+    'delete_status',
      ];
 
      public function user(){

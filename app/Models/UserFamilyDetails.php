@@ -15,7 +15,8 @@ class UserFamilyDetails extends Model
         'relationship',
         'DOB',
         'phone_number',
-        'occupation'
+        'occupation',
+        'delete_status'
     ];
 
     public function user(){
