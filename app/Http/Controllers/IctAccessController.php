@@ -10,6 +10,7 @@ use App\Models\Remark;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class IctAccessController extends Controller
 {
