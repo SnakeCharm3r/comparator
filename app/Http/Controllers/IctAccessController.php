@@ -74,6 +74,9 @@ class IctAccessController extends Controller
                 'errors' => $validator->errors(),
                 ]);
         }
+        // Convert the hardware_request array to a string
+    $hardwareRequest = $request->input('hardware_request') ? implode(',', $request->input('hardware_request')) : null;
+
 
        $ict = IctAccessResource::create([
         'remarkId' => $request->input('remarkId'),
@@ -84,7 +87,7 @@ class IctAccessController extends Controller
         'aruti' => $request->input('aruti'),
         'sap' => $request->input('sap'),
         'nhifId' => $request->input('nhifId'),
-        'hardware_request' => $request->input('hardware_request'),
+        'hardware_request' => $hardwareRequest,
         'active_drt' => $request->input('active_drt'),
         'VPN' => $request->input('VPN'),
         'pbax' => $request->input('pbax'),
@@ -95,7 +98,7 @@ class IctAccessController extends Controller
 
         ]);
 
-        return redirect()->route('ict-access-form.index')->with('success', 'ICT Access Resource created successfully.');
+        return redirect()->route('form.index')->with('success', 'ICT Access Resource created successfully.');
     }
 
     /**

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('VPN')->nullable();
             $table->string('pbax')->nullable();
             $table->string('sap')->nullable();
-            $table->string('hardware_request')->nullable();
+            $table->text('hardware_request')->nullable();
             $table->string('status');
             $table->string('physical_access')->nullable();
             $table->foreign('remarkId')->references('id')->on('remarks');
