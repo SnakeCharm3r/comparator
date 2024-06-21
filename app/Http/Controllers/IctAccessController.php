@@ -94,6 +94,7 @@ class IctAccessController extends Controller
         'status' => $request->input('status'),
         'physical_access' => $request->input('physical_access'),
          'delete_status' => 0,
+         'start_date' =>1,
 
 
         ]);
