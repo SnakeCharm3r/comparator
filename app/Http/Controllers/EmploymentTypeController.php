@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\EmploymentTypes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class EmploymentTypeController extends Controller
 {
@@ -57,7 +58,7 @@ class EmploymentTypeController extends Controller
             'description' => $request->input('description'),
             'delete_status' => 0
          ]);
-
+         Alert::success('Employment type added successful','Employment type added');
          return redirect()->route('employment.index')->with('success', 'Employment type added successfully.');
 
     }
@@ -109,7 +110,7 @@ class EmploymentTypeController extends Controller
             'description' => $request->input('description'),
         ]);
     
-       
+        Alert::success('Employment type updated successful','Employment type updated');
         return redirect()->route('employment.index')->with('success', 'Employment type updated successfully.');
     }
 

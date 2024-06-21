@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class IctAccessController extends Controller
 {
@@ -94,11 +95,10 @@ class IctAccessController extends Controller
         'status' => $request->input('status'),
         'physical_access' => $request->input('physical_access'),
          'delete_status' => 0,
-         'start_date' =>1,
 
 
         ]);
-
+        Alert::success('IT access form request submit successful','IT access Request Added');
         return redirect()->route('form.index')->with('success', 'ICT Access Resource created successfully.');
     }
 
@@ -131,29 +131,7 @@ class IctAccessController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validatedData = $request->validate([
-            'remarkId' => 'required|exists:remarks,id',
-            'privilegeId' => 'required|exists:privilege_levels,id',
-            'userCategoryId' => 'required|exists:user_categories,id',
-            'email' => 'required|email',
-            'userId' => 'required|exists:users,id',
-            'hmisId' => 'required|exists:hmis_access_levels,id',
-            'aruti' => 'required|boolean',
-            'sap' => 'required|boolean',
-            'nhifId' => 'required|exists:nhif_qualifications,id',
-            'hardware_request' => 'nullable|string',
-            'active_drt' => 'required|boolean',
-            'VPN' => 'required|boolean',
-            'pbax' => 'required|boolean',
-            'status' => 'required|boolean',
-            'physical_access' => 'required|boolean',
-            'delete_status' => 'required|boolean',
-        ]);
-
-        $ictAccessResource = IctAccessResource::findOrFail($id);
-        $ictAccessResource->update($validatedData);
-
-        return redirect()->route('ict-access-form.index')->with('success', 'ICT Access Resource updated successfully.');
+        //
     }
 
     /**

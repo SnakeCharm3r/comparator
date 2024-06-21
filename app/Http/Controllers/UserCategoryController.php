@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class UserCategoryController extends Controller
 {
     /**
@@ -28,6 +28,8 @@ class UserCategoryController extends Controller
     public function store(Request $request)
     {
         //
+        Alert::success('User Category added Successful','Category added');
+        
     }
 
     /**
@@ -52,6 +54,7 @@ class UserCategoryController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        Alert::success('User Category Updated Successful','Category updated');
     }
 
     /**

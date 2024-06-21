@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Remark;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class RemarkController extends Controller
 {
     /**
@@ -56,7 +56,7 @@ class RemarkController extends Controller
             'status' => $request->input('status'),
             'delete_status' => 0,
          ]);
-
+         Alert::success('Remark added Successful','Remark added');
          return redirect()->route('remark.index')->with('success', 'Remark added successfully.');
 
      
@@ -107,7 +107,7 @@ class RemarkController extends Controller
             'status' => $request->input('status'),
         ]);
     
-       
+        Alert::success('Remark Updated Successful','Remark updated');
         return redirect()->route('remark.index')->with('success', 'Remarks is updated successfully.');
     }
 
@@ -128,7 +128,7 @@ class RemarkController extends Controller
     $rmk->update([
         'delete_status' => 1
     ]);
-
+    Alert::success('Remark deleted successful','Remark Deleted');
     return redirect()->route('remark.index')->with('success', 'Remark deleted successfully.');
     }
 }

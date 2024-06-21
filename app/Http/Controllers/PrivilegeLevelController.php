@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PrivilegeLevel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class PrivilegeLevelController extends Controller
 {
     /**
@@ -57,7 +57,7 @@ class PrivilegeLevelController extends Controller
             'prv_status' => $request->input('prv_status'),
             'delete_status' => 0,
          ]);
-
+         Alert::success('Privilege added Successful','Privilege added');
          return redirect()->route('privilege.index')->with('success', 'privilege added successfully.');
     }
 
@@ -106,7 +106,7 @@ class PrivilegeLevelController extends Controller
             'prv_status' => $request->input('prv_status'),
         ]);
 
-
+        Alert::success('Privilege Updated successful','Privilege updated');
         return redirect()->route('privilege.index')->with('success', 'Privilege updated successfully.');
 
     }

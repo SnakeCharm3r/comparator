@@ -1,5 +1,13 @@
 @extends('layouts.template')
+
 @section('breadcrumb')
+    @include('sweetalert::alert')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@endsection
+
+@section('content')
     <div class="page-wrapper">
         <div class="content container-fluid">
             <div class="page-header">
@@ -39,14 +47,17 @@
                                             <td>{{ $remark->rmk_name }}</td>
                                             <td>{{ $remark->status }}</td>
                                             <td>
-                                                <a href="{{ route('remark.edit', $remark->id) }}" class="btn btn-sm edit-btn"
-                                                    data-id="{{ $remark->id }}"><i class="fas fa-edit"></i></a>
-                                                <form action="{{ route('remark.destroy', $remark->id) }}" method="POST" class="delete-form"
-                                                    style="display: inline;">
+                                                <a href="{{ route('remark.edit', $remark->id) }}"
+                                                    class="btn btn-sm edit-btn" data-id="{{ $remark->id }}"><i
+                                                        class="fas fa-edit"></i></a>
+                                                <button
+                                                    onclick="deleteConfirmation('{{ route('remark.destroy', $remark->id) }}')"
+                                                    class="btn btn-sm btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                                <form id="delete-form-{{ $remark->id }}"
+                                                    action="{{ route('remark.destroy', $remark->id) }}" method="POST"
+                                                    style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm delete-btn"><i
-                                                            class="fas fa-trash-alt"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -61,31 +72,22 @@
         </div>
     </div>
 
-@endsection
-
-@section('scripts')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.delete-btn').forEach(button => {
-            button.addEventListener('click', function(event) {
-                event.preventDefault();
-                const form = this.closest('.delete-form');
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
+    <script>
+        function deleteConfirmation(urlToRedirect) {
+            swal({
+                    title: "Are you sure to delete?",
+                    text: "You will not be able to revert this!",
                     icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit();
+                    buttons: ["Cancel", "Delete"],
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        document.getElementById('delete-form-' + urlToRedirect.split('/').pop()).submit();
+                    } else {
+                        swal("Your remark is safe!");
                     }
                 });
-            });
-        });
-    });
-</script>
+        }
+    </script>
 @endsection

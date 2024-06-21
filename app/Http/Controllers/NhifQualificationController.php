@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\NhifQualification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class NhifQualificationController extends Controller
 {
@@ -56,6 +57,7 @@ class NhifQualificationController extends Controller
             'status' => $request->input('status'),
             'delete_status' => 0,
         ]);
+        Alert::success('NHIF added successful','NHIF added');
         return redirect()->route('nhif.index')->with('success', 'nhif added successfully.');
 
     }
@@ -106,7 +108,7 @@ class NhifQualificationController extends Controller
             'status' => $request->input('status'),
         ]);
 
-
+        Alert::success('NHIF Updated Successful','updated added');
         return redirect()->route('nhif.index')->with('success', 'nhif updated successfully.');
     }
 
@@ -127,7 +129,7 @@ class NhifQualificationController extends Controller
         $nhif->update([
             'delete_status' => 1
         ]);
-    
+        Alert::success('NHIF Updated successful','NHIF updated');
         return redirect()->route('nhif.index')->with('success', 'NHIF Qualification deleted successfully.');
     }
 }
