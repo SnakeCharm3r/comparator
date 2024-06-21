@@ -12,7 +12,6 @@ class IctAccessResource extends Model
 
     'remarkId',
     'privilegeId',
-    'userCategoryId',
     'email',
     'userId',
     'hmisId',
