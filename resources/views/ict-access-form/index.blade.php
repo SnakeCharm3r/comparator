@@ -20,6 +20,8 @@
                                 @csrf
                                 <div class="row">
                                     <!-- Column 1 -->
+                                    <input type="hidden" name="userId" value="{{ $user->id }}">
+                                    
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="username">Username<span style="color: red;">*</span></label>
@@ -29,7 +31,7 @@
 
 
                                         <div class="form-group">
-                                            <label for="mobile">Mobile Number<span style="color: red;">*</span></label>
+                                            <label for="mobile">Mobile Number</label>
                                             <input type="text" class="form-control" id="mobile" name="mobile"
                                                 value="{{ $user->mobile }}" readonly>
                                         </div>
@@ -41,7 +43,7 @@
                                             <select class="form-control" id="privilegeId" name="privilegeId" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
-                                                    <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
+                                                    <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -54,7 +56,7 @@
                                             <select class="form-control" id="aruti" name="aruti" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
-                                                    <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
+                                                    <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -71,7 +73,7 @@
                                             <select class="form-control" id="remark" name="remarkId" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($rmk as $remark)
-                                                    <option value="{{ $remark->rmk_name }}">{{ $remark->rmk_name }}
+                                                    <option value="{{ $remark->id }}">{{ $remark->rmk_name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -81,7 +83,7 @@
                                             <select class="form-control" id="aruti" name="aruti" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
-                                                    <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
+                                                    <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -91,7 +93,7 @@
                                             <select class="form-control" id="pbax" name="pbax" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
-                                                    <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
+                                                    <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -121,10 +123,10 @@
                                         <div class="form-group">
                                             <label for="openclinic_hms">Active Directory<span
                                                     style="color: red;">*</span></label>
-                                            <select class="form-control" id="remark" name="remark" required>
+                                            <select class="form-control" id="privilegeId" name="active_drt" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
-                                                    <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
+                                                    <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -185,7 +187,7 @@
                                             <select class="form-control" id="nhifId" name="nhifId" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($qualifications as $qualification)
-                                                    <option value="{{ $qualification->name }}">{{ $qualification->name }}
+                                                    <option value="{{ $qualification->id }}">{{ $qualification->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -195,7 +197,7 @@
                                             <select class="form-control" id="hmisId" name="hmisId" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($hmis as $hmi)
-                                                    <option value="{{ $hmi->names }}">{{ $hmi->names }}
+                                                    <option value="{{ $hmi->id }}">{{ $hmi->names }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -205,17 +207,17 @@
                                             <select class="form-control" id="privilegeId" name="privilegeId" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
-                                                    <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
+                                                    <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
                                                     </option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="openclinic_hms">SAP ERP<span style="color: red;">*</span></label>
-                                            <select class="form-control" id="privilegeId" name="privilegeId" required>
+                                            <select class="form-control" id="privilegeId" name="sap" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
-                                                    <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
+                                                    <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -225,7 +227,7 @@
                                             <select class="form-control" id="VPN" name="VPN" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
-                                                    <option value="{{ $privilege->prv_name }}">{{ $privilege->prv_name }}
+                                                    <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
                                                     </option>
                                                 @endforeach
                                             </select>
