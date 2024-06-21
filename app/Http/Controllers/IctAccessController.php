@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class IctAccessController extends Controller
 {
@@ -97,7 +98,7 @@ class IctAccessController extends Controller
 
 
         ]);
-
+        Alert::success('IT access form request submit successful','IT access Request Added');
         return redirect()->route('form.index')->with('success', 'ICT Access Resource created successfully.');
     }
 

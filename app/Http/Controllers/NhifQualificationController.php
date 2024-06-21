@@ -129,7 +129,7 @@ class NhifQualificationController extends Controller
         $nhif->update([
             'delete_status' => 1
         ]);
-    
+        Alert::success('NHIF Updated successful','NHIF updated');
         return redirect()->route('nhif.index')->with('success', 'NHIF Qualification deleted successfully.');
     }
 }

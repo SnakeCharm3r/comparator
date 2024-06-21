@@ -128,7 +128,7 @@ class RemarkController extends Controller
     $rmk->update([
         'delete_status' => 1
     ]);
-
+    Alert::success('Remark deleted successful','Remark Deleted');
     return redirect()->route('remark.index')->with('success', 'Remark deleted successfully.');
     }
 }

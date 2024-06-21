@@ -1,5 +1,5 @@
 @extends('layouts.template')
-
+@include('sweetalert::alert')
 @section('breadcrumb')
     <div class="page-wrapper">
         <div class="content container-fluid">
@@ -26,11 +26,6 @@
                                         <input type="text" class="form-control" id="name" name="name"
                                             value="{{ old('name', $nhif->name) }}" required>
                                     </div>
-                                    {{-- <div class="mb-3">
-                                        <label for="status" class="form-label">Status</label>
-                                        <input type="text" class="form-control" id="status" name="status"
-                                            value="{{ old('status', $nhif->status) }}">
-                                    </div> --}}
 
                                     <div class="mb-3">
                                         <label for="status" class="form-label">Status</label>
