@@ -51,7 +51,53 @@ class IctAccessController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         // Log the request data
+    \Log::info('Request data: ', $request->all());
+    
+        $validator = Validator::make($request->all(), [
+            'remarkId' => 'required|exists:remarks,id',
+            'privilegeId' => 'required|exists:privilege_levels,id',
+            'userId' => 'required|exists:users,id',
+            'hmisId' => 'required|exists:h_m_i_s_access_levels,id',
+            'aruti' => 'required|exists:privilege_levels,id',
+            'sap' => 'required|exists:privilege_levels,id',
+            'nhifId' => 'required|exists:nhif_qualifications,id',
+            'active_drt' => 'required|exists:privilege_levels,id',
+            'VPN' => 'required|exists:privilege_levels,id',
+            'pbax' => 'required|exists:privilege_levels,id',
+        ]);
+
+        if($validator->fails()){
+            return response()->json([
+                'stauss' => 400,
+                'errors' => $validator->errors(),
+                ]);
+        }
+        // Convert the hardware_request array to a string
+    $hardwareRequest = $request->input('hardware_request') ? implode(',', $request->input('hardware_request')) : null;
+
+
+       $ict = IctAccessResource::create([
+        'remarkId' => $request->input('remarkId'),
+        'privilegeId' => $request->input('privilegeId'),
+        'email' => $request->input('email'),
+        'userId' => $request->input('userId'),
+        'hmisId' => $request->input('hmisId'),
+        'aruti' => $request->input('aruti'),
+        'sap' => $request->input('sap'),
+        'nhifId' => $request->input('nhifId'),
+        'hardware_request' => $hardwareRequest,
+        'active_drt' => $request->input('active_drt'),
+        'VPN' => $request->input('VPN'),
+        'pbax' => $request->input('pbax'),
+        'status' => $request->input('status'),
+        'physical_access' => $request->input('physical_access'),
+         'delete_status' => 0,
+
+
+        ]);
+
+        return redirect()->route('form.index')->with('success', 'ICT Access Resource created successfully.');
     }
 
     /**
