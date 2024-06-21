@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
@@ -115,7 +116,7 @@ class AuthController extends Controller
         ]);
             // Example of assigning role
             // $user->assignRole('head of hr');
-
+            Alert::success('User Registered Successful','Please login');
          return redirect()->route('login')->with(
             'success', 'User registered successfully. Please login.');
 

@@ -1,12 +1,13 @@
 @extends('layouts.template')
 @section('breadcrumb')
+@include('sweetalert::alert')
     <div class="page-wrapper">
         <div class="content container-fluid">
             <div class="page-header">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-sub-header">
-                            <h3 class="page-title">ICT Access form</h3>
+                            <h3 class="page-title">IT Access Form</h3>
                         </div>
                     </div>
                 </div>
@@ -137,7 +138,7 @@
                                         <div class="form-group">
                                             <label for="employee_id">Employee ID</label>
                                             <input type="text" class="form-control" id="employee_id"
-                                                name="employee_id" required>
+                                                name="employee_id">
                                         </div>
                                         <div class="form-group">
                                             <label for="hardware">Hardware</span></label>

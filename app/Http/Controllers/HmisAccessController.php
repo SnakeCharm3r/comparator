@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\HMISAccessLevel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HmisAccessController extends Controller
 {
@@ -57,7 +58,7 @@ class HmisAccessController extends Controller
             'status' => $request->input('status'),
             'delete_status' => 0,
          ]);
-
+         Alert::success('HMIS added successful','HMIS added');
          return redirect()->route('hmis.index')->with('success', 'HMIS access added successfully.');
     }
 
@@ -106,7 +107,7 @@ class HmisAccessController extends Controller
             'status' => $request->input('status'),
         ]);
 
-
+        Alert::success('HMIS updated Successful','HMIS updated');
         return redirect()->route('hmis.index')->with('success', 'HMIS access updated successfully.');
 
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Departments;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DepartmentController extends Controller
 {
@@ -56,6 +57,7 @@ class DepartmentController extends Controller
             'description' => $request->input('description'),
             'delete_status' => 0, 
         ]);
+        Alert::success('Department added successful','Department Added');
         return redirect()->route('department.index')->with('success', 'Department added successfully.');
 
 
@@ -112,7 +114,7 @@ class DepartmentController extends Controller
             'description' => $request->input('description'),
         ]);
     
-       
+        Alert::success('Department Updated successful','Department updated');
         return redirect()->route('department.index')->with('success', 'Department updated successfully.');
     }
 

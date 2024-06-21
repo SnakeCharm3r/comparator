@@ -1,5 +1,6 @@
 @extends('layouts.template')
 @section('breadcrumb')
+@include('sweetalert::alert')
     <div class="page-wrapper">
         <div class="content container-fluid">
             <div class="page-header">

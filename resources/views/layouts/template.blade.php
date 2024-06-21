@@ -4,6 +4,7 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
+    @include('sweetalert::alert')
     @include('partials.header')
     @include('partials.sidebar')
 

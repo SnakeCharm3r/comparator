@@ -1,5 +1,13 @@
 @extends('layouts.template')
+
 @section('breadcrumb')
+    @include('sweetalert::alert')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@endsection
+
+@section('content')
     <div class="page-wrapper">
         <div class="content container-fluid">
             <div class="page-header">
@@ -45,15 +53,14 @@
                                                 <a href="{{ route('department.edit', $department->id) }}"
                                                     class="btn btn-sm edit-btn" data-id="{{ $department->id }}"><i
                                                         class="fas fa-edit"></i></a>
-                                                <form action="{{ route('department.destroy', $department->id) }}"
-                                                    method="POST" style="display: inline;">
+                                                <button
+                                                    onclick="deleteConfirmation('{{ route('department.destroy', $department->id) }}')"
+                                                    class="btn btn-sm btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                                <form id="delete-form-{{ $department->id }}"
+                                                    action="{{ route('department.destroy', $department->id) }}"
+                                                    method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-delete"><i
-                                                            class="fas fa-trash-alt"></i></button>
-                                                    <button type="button" class="btn btn-outline-primary mb-2"
-                                                        id="confirm-color"><i class="fas fa-trash-alt"></i></button>
-
                                                 </form>
                                             </td>
                                         </tr>
@@ -67,54 +74,23 @@
 
         </div>
     </div>
+
     <script>
-        $(document).ready(function() {
-            $('.table').DataTable();
-
-            // Edit button click event
-            $('.edit-btn').on('click', function(e) {
-                e.preventDefault();
-                var id = $(this).data('id');
-                $.get('/department/' + id + '/edit', function(data) {
-                    // Show edit modal with the fetched data
-                    $('#editModal .modal-content').html(data);
-                    $('#editModal').modal('show');
-                });
-            });
-
-            // Submit edit form via AJAX
-            $(document).on('submit', '#editDepartmentForm', function(e) {
-                e.preventDefault();
-                var form = $(this);
-                var url = form.attr('action');
-                $.ajax({
-                    type: 'PUT',
-                    url: url,
-                    data: form.serialize(),
-                    success: function(response) {
-                        if (response.status == 200) {
-                            $('#editModal').modal('hide');
-                            location.reload();
-                        } else {
-                            // Handle validation errors
-                            var errors = response.errors;
-                            for (var error in errors) {
-                                form.find('.' + error + '-error').text(errors[error][0]);
-                            }
-                        }
+        function deleteConfirmation(urlToRedirect) {
+            swal({
+                    title: "Are you sure to delete?",
+                    text: "You will not be able to revert this!",
+                    icon: "warning",
+                    buttons: ["Cancel", "Delete"],
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        document.getElementById('delete-form-' + urlToRedirect.split('/').pop()).submit();
+                    } else {
+                        swal("Your department is safe!");
                     }
                 });
-            });
-        });
+        }
     </script>
-
-
-
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <!-- Dynamic content will be loaded here -->
-            </div>
-        </div>
-    </div>
 @endsection

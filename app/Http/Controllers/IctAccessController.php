@@ -8,6 +8,7 @@ use App\Models\PrivilegeLevel;
 use App\Models\Remark;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class IctAccessController extends Controller
 {
@@ -43,6 +44,7 @@ class IctAccessController extends Controller
     public function store(Request $request)
     {
         //
+        Alert::success('It access form added Successful','It access form added');
     }
 
     /**
@@ -67,6 +69,8 @@ class IctAccessController extends Controller
     public function update(Request $request, string $id)
     {
         //
+
+        Alert::success('It access form added Successful','It access form added');
     }
 
     /**
