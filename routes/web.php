@@ -1,19 +1,22 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\EmploymentTypeController;
-use App\Http\Controllers\HumanResourceController;
-use App\Http\Controllers\HmisAccessController;
-use App\Http\Controllers\IctAccessController;
-use App\Http\Controllers\NhifQualificationController;
-use App\Http\Controllers\PrivilegeLevelController;
-use App\Http\Controllers\RemarkController;
 use App\Models\PrivilegeLevel;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\RemarkController;
+use App\Http\Controllers\RequestController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\IctAccessController;
 use App\Http\Controllers\DepartmentController;
-use App\Http\Controllers\UserAdditionalInfoController;
+use App\Http\Controllers\HmisAccessController;
+use App\Http\Controllers\HumanResourceController;
+use App\Http\Controllers\EmploymentTypeController;
+use App\Http\Controllers\PrivilegeLevelController;
+use App\Http\Controllers\NhifQualificationController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\UserFamilyDetailsController;
+use App\Http\Controllers\UserAdditionalInfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +68,13 @@ Route::resource('/hmis', HmisAccessController::class);
 Route::resource('/remark', RemarkController::class);
 Route::resource('/privilege', PrivilegeLevelController::class);
 Route::resource('/employment', EmploymentTypeController::class);
+Route::resource('/role',RoleController::class);
+Route::resource('/permission',PermissionController::class);
+Route::resource('/request',RequestController::class);
+Route::get('role-permission/{roleId}/give-permission', [RoleController::class, 'addPermissionToRole']);
+Route::put('role-permission/{roleId}/give-permission', [RoleController::class, 'givePermissionToRole']);
+
+
 
 
 

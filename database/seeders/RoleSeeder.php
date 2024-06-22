@@ -22,12 +22,12 @@ class RoleSeeder extends Seeder
     $roles = [
         'requester' => ['submit form', 'user dashboard', 'view forms', 'view own forms', 'check form status'],
         // 'hr officer' => [],
-        'head of hr' => ['approve hod','approve hr','submit form', 'user dashboard', 'view forms', 'view own forms', 'check form status'],
-        'head of it' => ['approve it','approve hr','submit form', 'user dashboard', 'view forms', 'view own forms', 'check form status'],
-        'head of department' => ['approve hod','submit form', 'user dashboard', 'view forms', 'view own forms', 'check form status'],
-        'acting hod' => ['approve hr', 'approve it', 'approve hod'],
+        'hr' => ['approve hod','approve hr','submit form', 'user dashboard', 'view forms', 'view own forms', 'check form status'],
+        'it' => ['approve it','approve hr','submit form', 'user dashboard', 'view forms', 'view own forms', 'check form status'],
+        'line manager' => ['approve hod','submit form', 'user dashboard', 'view forms', 'view own forms', 'check form status'],
         'super admin' => ['submit form', 'user dashboard', 'view forms', 'view own forms', 'check form status',
-                          'approve hr','approve it','approve hod','role assign','permission assign']
+                          'approve hr','approve it','approve hod','role assign','permission assign','view role','create role','edit role','delete role']
+        
     ];
 
     // Create roles and assign permissions if they do not already exist

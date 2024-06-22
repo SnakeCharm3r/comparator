@@ -18,11 +18,21 @@
                                 class="{{ request()->routeIs('hr.index') ? 'active' : '' }}">HR</a></li>
                     </ul>
                 </li>
+                <li class="submenu {{ request()->is('form*') ? 'active' : '' }}">
+                    <a href="#"><i class="fas fa-file-alt"></i> <span> My Requests</span> <span
+                            class="menu-arrow {{ request()->is('form*') ? 'active' : '' }}"></span></a>
+                    <ul style="{{ request()->is('form*') ? 'display: block;' : '' }}">
+                        <li><a href="{{ route('request.index') }}"
+                                class="{{ request()->routeIs('request') ? 'active' : '' }}">My Requests</a></li>
+                        <li><a href="{{ route('hr.index') }}"
+                                class="{{ request()->routeIs('#') ? 'active' : '' }}"></a></li>
+                    </ul>
+                </li>
                 <li class="{{ request()->routeIs('department.index') ? 'active' : '' }}">
                     <a href="{{ route('department.index') }}"><i class="fas fa-building"></i> <span>
                             Departments</span></a>
                 </li>
-            
+
                 <li class="{{ request()->routeIs('nhif.index') ? 'active' : '' }}">
                     <a href="{{ route('nhif.index') }}"><i class="fas fa-medkit"></i> <span> NHIF
                             Qualifications</span></a>
@@ -34,7 +44,8 @@
                     <a href="{{ route('remark.index') }}"><i class="fas fa-comments"></i> <span> Remark</span></a>
                 </li>
                 <li class="{{ request()->routeIs('privilege.index') ? 'active' : '' }}">
-                    <a href="{{ route('privilege.index') }}"><i class="fas fa-user-shield"></i> <span> User Category</span></a>
+                    <a href="{{ route('privilege.index') }}"><i class="fas fa-user-shield"></i> <span> User
+                            Category</span></a>
                 </li>
                 <li class="{{ request()->routeIs('employment.index') ? 'active' : '' }}">
                     <a href="{{ route('employment.index') }}"><i class="fas fa-briefcase"></i> <span> Employment
@@ -44,8 +55,15 @@
                     <a href="#"><i class="fas fa-users-cog"></i> <span> User Management</span> <span
                             class="menu-arrow {{ request()->is('user-management*') ? 'active' : '' }}"></span></a>
                     <ul style="{{ request()->is('user-management*') ? 'display: block;' : '' }}">
-                    <li><a href="#" class="{{ request()->routeIs('employment.index') ? 'active' : '' }}">Assign User</a></li>
-                    <li><a href="#" class="{{ request()->routeIs('employment.index') ? 'active' : '' }}">Manage Roles</a></li>
+                        <li><a href="#"
+                                class="{{ request()->routeIs('employment.index') ? 'active' : '' }}">Assign User</a>
+                        </li>
+                        <li><a href="{{ route('role.index') }}"
+                                class="{{ request()->routeIs('role.index') ? 'active' : '' }}">Manage Roles</a>
+                        </li>
+                        <li><a href="{{ route('permission.index') }}"
+                                class="{{ request()->routeIs('permission.index') ? 'active' : '' }}">Manage Permission</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="submenu {{ request()->is('settings*') ? 'active' : '' }}">

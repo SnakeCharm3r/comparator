@@ -28,6 +28,10 @@ class PermissionSeeder extends Seeder
            'approve acting hod',
            'role assign',
            'permission assign',
+           'create role',
+           'view role',
+           'edit role',
+           'delete role',
        ];
 
        // Create permissions if they do not already exist
