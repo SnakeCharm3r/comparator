@@ -40,7 +40,7 @@ class PermissionController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect('permissions')->with('status','Permission Created Successfully');
+        return redirect('permission')->with('status','Permission Created Successfully');
     }
 
     public function edit(Permission $permission)
@@ -69,6 +69,6 @@ class PermissionController extends Controller
     {
         $permission = Permission::find($permissionId);
         $permission->delete();
-        return redirect('permissions')->with('status','Permission Deleted Successfully');
+        return redirect('permission')->with('status','Permission Deleted Successfully');
     }
 }
