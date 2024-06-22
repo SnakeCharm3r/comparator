@@ -32,10 +32,10 @@ class UserRolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update user']);
         Permission::create(['name' => 'delete user']);
 
-        Permission::create(['name' => 'view product']);
-        Permission::create(['name' => 'create product']);
-        Permission::create(['name' => 'update product']);
-        Permission::create(['name' => 'delete product']);
+        Permission::create(['name' => 'view request']);
+        Permission::create(['name' => 'create request']);
+        Permission::create(['name' => 'update request']);
+        Permission::create(['name' => 'delete request']);
 
 
         // Create Roles
