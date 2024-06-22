@@ -40,7 +40,7 @@
 
 
                                     <tbody>
-                                        @foreach ($perm as $permission)
+                                        @foreach ($permissions as $permission)
                                             <tr>
                                                 <td>{{ $permission->id }}</td>
                                                 <td>{{ $permission->name }}</td>
