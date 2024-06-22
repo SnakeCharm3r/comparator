@@ -17,8 +17,8 @@ class PermissionController extends Controller
 
     public function index()
     {
-        $perm = Permission::get();
-        return view('role-permission.permission.index', ['perm' => $perm ]);
+        $permissions = Permission::get();
+        return view('role-permission.permission.index', ['permissions' => $permissions]);
     }
 
     public function create()
@@ -40,12 +40,12 @@ class PermissionController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect('permission')->with('status','Permission Created Successfully');
+        return redirect('permissions')->with('status','Permission Created Successfully');
     }
 
     public function edit(Permission $permission)
     {
-        return view('role-permission.permission.index', ['permission' => $permission]);
+        return view('role-permission.permission.edit', ['permission' => $permission]);
     }
 
     public function update(Request $request, Permission $permission)
@@ -69,6 +69,6 @@ class PermissionController extends Controller
     {
         $permission = Permission::find($permissionId);
         $permission->delete();
-        return redirect('permission')->with('status','Permission Deleted Successfully');
+        return redirect('permissions')->with('status','Permission Deleted Successfully');
     }
 }
