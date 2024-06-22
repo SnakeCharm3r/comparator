@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
+use Spatie\Permission\Models\Role;
 
 class AuthController extends Controller
 {
@@ -19,24 +20,20 @@ class AuthController extends Controller
     public function login(){
         return view('auth.login');
     }
-
-    // public function handleLogin(Request $request) {
-    //     $validator = Validator::make($request->all(), [
-    //         'username' => 'required',
-    //         'password' => 'required'
-    //     ]);
-
-    //     if ($validator->fails()) {
-    //         return redirect()->back()->withErrors($validator)->withInput();
-    //      }
-
-    //      if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
-    //         return redirect()->route('dashboard')->with('success', 'Logged in successfully.');
-    //      } else {
-    //         return redirect()->back()->withErrors(['login_error' => 'Invalid username or password'])->withInput();
-    //      }
-    // }
-
+    //get All user 
+    public function getAllUser(){
+        $users = User::all();
+        return view('user.index', compact('users'));
+    }
+    // find user by ID 
+    public function getUserById($id) {
+        $user = User::find($id);
+        if (!$user) {
+            return redirect()->back()->withErrors(['user_not_found' => 'User not found']);
+        }
+        return view('user.show', compact('user'));
+    }
+   
     public function handleLogin(Request $request) {
         $validator = Validator::make($request->all(), [
             'username' => 'required',
@@ -121,6 +118,49 @@ class AuthController extends Controller
             'success', 'User registered successfully. Please login.');
 
 
+    }
+
+
+    public function assignRole(Request $request, $userId)
+    {
+        $request->validate([
+            'role' => 'required|exists:roles,name',
+        ]);
+
+        $user = User::findOrFail($userId);
+        $user->assignRole($request->role);
+
+        return redirect()->back()->with('status', 'Role assigned successfully');
+    }
+
+    // Remove Role from User
+    public function removeRole(Request $request, $userId)
+    {
+        $request->validate([
+            'role' => 'required|exists:roles,name',
+        ]);
+
+        $user = User::findOrFail($userId);
+        $user->removeRole($request->role);
+
+        return redirect()->back()->with('status', 'Role removed successfully');
+    }
+
+    // Show Assign Role Form
+    public function showAssignRoleForm($userId)
+    {
+        $user = User::findOrFail($userId);
+        $roles = Role::all();
+
+        return view('user.assign-role', compact('user', 'roles'));
+    }
+
+    // Show Remove Role Form
+    public function showRemoveRoleForm($userId)
+    {
+        $user = User::findOrFail($userId);
+
+        return view('user.remove-role', compact('user'));
     }
 
     public function logout() {
