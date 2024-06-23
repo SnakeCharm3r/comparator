@@ -55,14 +55,17 @@
                     <a href="#"><i class="fas fa-users-cog"></i> <span> User Management</span> <span
                             class="menu-arrow {{ request()->is('user-management*') ? 'active' : '' }}"></span></a>
                     <ul style="{{ request()->is('user-management*') ? 'display: block;' : '' }}">
-                        <li><a href="#"
-                                class="{{ request()->routeIs('employment.index') ? 'active' : '' }}">Assign User</a>
-                        </li>
+                        <li>
+                            <a href="{{ route('users.index') }}"
+                                class="{{ request()->routeIs('users.index') ? 'active' : '' }}">
+                                Assign Roles</a>
+                             </li>
+
                         <li><a href="{{ route('role.index') }}"
                                 class="{{ request()->routeIs('role.index') ? 'active' : '' }}">Manage Roles</a>
                         </li>
                         <li><a href="{{ route('permission.index') }}"
-                                class="{{ request()->routeIs('permission.index') ? 'active' : '' }}">Manage Permission</a>
+                                class="{{ request()->routeIs('permission.index') ? 'active' : '' }}">Permission</a>
                         </li>
                     </ul>
                 </li>

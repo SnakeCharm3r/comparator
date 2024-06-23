@@ -23,7 +23,7 @@ class AuthController extends Controller
     //get All user 
     public function getAllUser(){
         $users = User::all();
-        return view('user.index', compact('users'));
+        return view('role-permission/user.index', compact('users'));
     }
     // find user by ID 
     public function getUserById($id) {
@@ -121,15 +121,13 @@ class AuthController extends Controller
     }
 
 
-    public function assignRole(Request $request, $userId)
+    public function editUserRole(Request $request, $userId)
     {
         $request->validate([
             'role' => 'required|exists:roles,name',
         ]);
-
         $user = User::findOrFail($userId);
         $user->assignRole($request->role);
-
         return redirect()->back()->with('status', 'Role assigned successfully');
     }
 
