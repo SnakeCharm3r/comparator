@@ -24,18 +24,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Key Metrics Cards -->
-                <div class="col-md-3">
-                    <div class="card text-center shadow-sm">
-                        <div class="card-header custom-header">
-                            <i class="fas fa-users"></i> Total Registered Users
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">50</h5>
-                        </div>
-                    </div>
 
-                </div>
                 <div class="col-md-3">
                     <div class="card text-center shadow-sm">
                         <div class="card-header bg-success text-white">
@@ -56,6 +45,18 @@
                             <h5 class="card-title">2</h5>
                         </div>
                     </div>
+                </div>
+                <!-- Key Metrics Cards -->
+                <div class="col-md-3">
+                    <div class="card text-center shadow-sm">
+                        <div class="card-header custom-header">
+                            <i class="fas fa-users"></i> Total Registered Users
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">50</h5>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

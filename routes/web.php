@@ -71,9 +71,16 @@ Route::resource('/employment', EmploymentTypeController::class);
 Route::resource('/role',RoleController::class);
 Route::resource('/permission',PermissionController::class);
 Route::resource('/request',RequestController::class);
-Route::get('/user', [AuthController::class, 'getAllUser'])->name('role-permission-user.getAllUser');
-Route::get('/user', [AuthController::class, 'assignRole'])->name('role-permission-user.assignRole');
-Route::get('/user', [AuthController::class, 'assignPermission'])->name('role-permission-user.assignPermission');
+
+Route::get('/users', [AuthController::class, 'getAllUser'])->name('users.index');
+Route::post('/users/{id}/edit', [AuthController::class, 'editUserRole'])->name('users.edit');
+Route::put('/users/{id}/destroy', [AuthController::class, 'destroyUserRole'])->name('users.destroy');
+
+
+// Route::get('/user', [AuthController::class, 'getAllUser'])->name('users');
+// Route::get('/users/create', [AuthController::class, 'create'])->name('users.create');
+// Route::get('/user', [AuthController::class, 'assignRole'])->name('role-permission-user.assignRole');
+// Route::get('/user', [AuthController::class, 'assignPermission'])->name('role-permission-user.assignPermission');
 
 Route::get('role-permission/{roleId}/give-permission', [RoleController::class, 'addPermissionToRole']);
 Route::put('role-permission/{roleId}/give-permission', [RoleController::class, 'givePermissionToRole']);
