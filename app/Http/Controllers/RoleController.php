@@ -115,4 +115,5 @@ class RoleController extends Controller
 
         return view('role-permission.user.edit', compact('user', 'roles', 'userRoles'));
     }
+    
 }
