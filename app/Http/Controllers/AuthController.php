@@ -37,8 +37,10 @@ class AuthController extends Controller
     //Function shows edit user form
     public function showEditForm($id){
         $user = User::findOrFail($id);
-        
-        return view('role-permission/user.edit', compact('user'));
+        $roles = Role::get();
+        $userRoles = $user->roles->pluck('name')->toArray(); // Get user roles
+
+        return view('role-permission/user.edit', compact('user','roles', 'userRoles'));
     }
    
     public function handleLogin(Request $request) {

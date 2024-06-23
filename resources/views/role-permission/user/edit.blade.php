@@ -24,9 +24,9 @@
                                 </h4>
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('users.edit' . $user->id) }}" method="POST">
+                                <form action="{{ route('users.edit' , $user->id) }}" method="POST">
                                     @csrf
-                                    @method('PUT')
+                                    @method('POST')
 
                                     <div class="mb-3">
                                         <label for="">Name</label>
