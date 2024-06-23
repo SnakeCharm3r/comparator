@@ -33,6 +33,13 @@ class AuthController extends Controller
         }
         return view('user.show', compact('user'));
     }
+
+    //Function shows edit user form
+    public function showEditForm($id){
+        $user = User::findOrFail($id);
+        
+        return view('user.edit', compact('user'));
+    }
    
     public function handleLogin(Request $request) {
         $validator = Validator::make($request->all(), [
