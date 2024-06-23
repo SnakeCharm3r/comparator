@@ -73,7 +73,7 @@ Route::resource('/permission',PermissionController::class);
 Route::resource('/request',RequestController::class);
 
 Route::get('/users', [AuthController::class, 'getAllUser'])->name('users.index');
-Route::get('/users/{id}/edit', [AuthController::class, 'showEditForm'])->name('users.edit');
+Route::get('/users/{id}/edit', [AuthController::class, 'showEditForm'])->name('users.showEditForm');
 Route::post('/users/{id}/edit', [AuthController::class, 'editUserRole'])->name('users.edit');
 Route::put('/users/{id}/destroy', [AuthController::class, 'destroyUserRole'])->name('users.destroy');
 
