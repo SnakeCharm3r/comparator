@@ -24,35 +24,28 @@
                                 </h4>
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('users.edit', $user->id) }}" method="POST">
+                                <form action="{{ route('users.edit.role', $user->id) }}" method="POST">
                                     @csrf
-                                    @method('PUT')
 
                                     <div class="mb-3">
                                         <label for="username">User Name</label>
-                                        <input type="text" name="username" value="{{ $user->username }}"
-                                            class="form-control" />
-                                        @error('username')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                        <input type="text" name="username" value="{{ $user->username }}" class="form-control" readonly />
                                     </div>
                                     <div class="mb-3">
                                         <label for="email">Email</label>
-                                        <input type="text" name="email" readonly value="{{ $user->email }}"
-                                            class="form-control" />
+                                        <input type="text" name="email" readonly value="{{ $user->email }}" class="form-control" />
                                     </div>
                                     <div class="mb-3">
                                         <label for="roles">Roles</label>
                                         @foreach ($roles as $role)
                                             <div class="form-check">
-                                                <input type="radio" name="roles" id="role-{{ $role->name }}"
-                                                    value="{{ $role->name }}" class="form-check-input"
+                                                <input type="radio" name="role" id="role-{{ $role->name }}" value="{{ $role->name }}"
+                                                    class="form-check-input" 
                                                     {{ !empty($userRoles) && $role->name == $userRoles[0] ? 'checked' : '' }}>
-                                                <label for="role-{{ $role->name }}"
-                                                    class="form-check-label">{{ $role->name }}</label>
+                                                <label for="role-{{ $role->name }}" class="form-check-label">{{ $role->name }}</label>
                                             </div>
                                         @endforeach
-                                        @error('roles')
+                                        @error('role')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
