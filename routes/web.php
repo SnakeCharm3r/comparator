@@ -76,6 +76,9 @@ Route::get('/users', [AuthController::class, 'getAllUser'])->name('users.index')
 Route::get('/users/{id}/edit', [AuthController::class, 'showEditForm'])->name('users.showEditForm');
 Route::post('/users/{id}/edit', [AuthController::class, 'editUserRole'])->name('users.edit');
 Route::put('/users/{id}/destroy', [AuthController::class, 'destroyUserRole'])->name('users.destroy');
+// Route::put('users/{id}', [AuthController::class, 'update'])->name('users.update');
+Route::post('users/{id}/role', [AuthController::class, 'editUserRole'])->name('users.edit.role');
+
 
 
 // Route::get('/user', [AuthController::class, 'getAllUser'])->name('users');

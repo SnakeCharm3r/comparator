@@ -130,15 +130,42 @@ class AuthController extends Controller
     }
 
 
+    // public function editUserRole(Request $request, $userId)
+    // {
+    //     $request->validate([
+    //         'role' => 'required|exists:roles,name',
+    //     ]);
+    //     $user = User::findOrFail($userId);
+    //     $user->assignRole($request->role);
+    //     return redirect()->back()->with('status', 'Role assigned successfully');
+    // }
     public function editUserRole(Request $request, $userId)
     {
         $request->validate([
             'role' => 'required|exists:roles,name',
         ]);
         $user = User::findOrFail($userId);
-        $user->assignRole($request->role);
+        $user->syncRoles([$request->role]);  // Changed to syncRoles to remove any previous roles
         return redirect()->back()->with('status', 'Role assigned successfully');
     }
+    
+//     public function editUserRole(Request $request, $id)
+// {
+//     $user = User::findOrFail($id);
+    
+//     $validated = $request->validate([
+//         'username' => 'required|string|max:255',
+//         'roles' => 'required|string|exists:roles,name',
+//     ]);
+
+//     $user->username = $request->input('username');
+//     $user->save();
+
+//     // Assuming user roles are stored in a many-to-many relationship
+//     $user->roles()->sync([$request->input('roles')]);
+
+//     return redirect()->route('users.index')->with('success', 'User role updated successfully.');
+// }
 
     // Remove Role from User
     public function removeRole(Request $request, $userId)
