@@ -24,43 +24,39 @@
                                 </h4>
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('users.edit' , $user->id) }}" method="POST">
+                                <form action="{{ route('users.edit', $user->id) }}" method="POST">
                                     @csrf
-                                    @method('POST')
+                                    @method('PUT')
 
                                     <div class="mb-3">
-                                        <label for="">User Name</label>
+                                        <label for="username">User Name</label>
                                         <input type="text" name="username" value="{{ $user->username }}"
                                             class="form-control" />
-                                        @error('name')
+                                        @error('username')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label for="">Email</label>
+                                        <label for="email">Email</label>
                                         <input type="text" name="email" readonly value="{{ $user->email }}"
                                             class="form-control" />
                                     </div>
-                                    {{-- <div class="mb-3">
-                                        <label for="">Password</label>
-                                        <input type="text" name="password" class="form-control" />
-                                        @error('password') <span class="text-danger">{{ $message }}</span> @enderror
-                                    </div> --}}
                                     <div class="mb-3">
-                                        <label for="">Roles</label>
-                                        <select name="roles[]" class="form-control" multiple>
-    <option value="">Select Role</option>
-    @foreach ($roles as $role)
-        <option value="{{ $role->name }}"
-            {{ in_array($role->name, $userRoles) ? 'selected' : '' }}>
-            {{ $role->name }}
-        </option>
-    @endforeach
-</select>
+                                        <label for="roles">Roles</label>
+                                        @foreach ($roles as $role)
+                                            <div class="form-check">
+                                                <input type="radio" name="roles" id="role-{{ $role->name }}"
+                                                    value="{{ $role->name }}" class="form-check-input"
+                                                    {{ !empty($userRoles) && $role->name == $userRoles[0] ? 'checked' : '' }}>
+                                                <label for="role-{{ $role->name }}"
+                                                    class="form-check-label">{{ $role->name }}</label>
+                                            </div>
+                                        @endforeach
                                         @error('roles')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
+
                                     <div class="mb-3">
                                         <button type="submit" class="btn btn-primary">Update</button>
                                     </div>
