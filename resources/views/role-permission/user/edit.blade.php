@@ -29,8 +29,8 @@
                                     @method('POST')
 
                                     <div class="mb-3">
-                                        <label for="">Name</label>
-                                        <input type="text" name="name" value="{{ $user->name }}"
+                                        <label for="">User Name</label>
+                                        <input type="text" name="username" value="{{ $user->username }}"
                                             class="form-control" />
                                         @error('name')
                                             <span class="text-danger">{{ $message }}</span>
@@ -49,14 +49,14 @@
                                     <div class="mb-3">
                                         <label for="">Roles</label>
                                         <select name="roles[]" class="form-control" multiple>
-                                            <option value="">Select Role</option>
-                                            @foreach ($roles as $role)
-                                                <option value="{{ $role }}"
-                                                    {{ in_array($role, $userRoles) ? 'selected' : '' }}>
-                                                    {{ $role }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+    <option value="">Select Role</option>
+    @foreach ($roles as $role)
+        <option value="{{ $role->name }}"
+            {{ in_array($role->name, $userRoles) ? 'selected' : '' }}>
+            {{ $role->name }}
+        </option>
+    @endforeach
+</select>
                                         @error('roles')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
