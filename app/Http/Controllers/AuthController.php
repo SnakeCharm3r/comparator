@@ -38,7 +38,7 @@ class AuthController extends Controller
     public function showEditForm($id){
         $user = User::findOrFail($id);
         
-        return view('user.edit', compact('user'));
+        return view('role-permission/user.edit', compact('user'));
     }
    
     public function handleLogin(Request $request) {
