@@ -26,12 +26,16 @@
                     </ul>
                 </li>
                 <li class="submenu {{ request()->is('request*') ? 'active' : '' }}">
-                    <a href="#"><i class="fas fa-file-alt"></i> <span> My Requests</span> <span
+                    <a href="#"><i class="fas fa-file-alt"></i> <span>Requests</span> <span
                             class="menu-arrow {{ request()->is('request*') ? 'active' : '' }}"></span></a>
                     <ul style="{{ request()->is('request*') ? 'display: block;' : '' }}">
                         <li><a href="{{ route('request.index') }}"
                                 class="{{ request()->routeIs('request.index') ? 'active' : '' }}">My Requests</a></li>
+                        <li><a href="{{ route('requestapprove.index') }}"
+                                class="{{ request()->routeIs('requestapprove.index') ? 'active' : '' }}">Requests
+                                Approval</a></li>
                     </ul>
+
                 </li>
                 <li class="{{ request()->routeIs('department.index') ? 'active' : '' }}">
                     <a href="{{ route('department.index') }}"><i class="fas fa-building"></i> <span>
