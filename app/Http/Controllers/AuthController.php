@@ -146,7 +146,7 @@ class AuthController extends Controller
         ]);
         $user = User::findOrFail($userId);
         $user->syncRoles([$request->role]);  // Changed to syncRoles to remove any previous roles
-        return redirect()->back()->with('status', 'Role assigned successfully');
+        return redirect('role')->with('status', 'Role assigned successfully');
     }
     
 //     public function editUserRole(Request $request, $id)

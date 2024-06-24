@@ -94,50 +94,54 @@
             <!-- CCBRT Policies -->
             <div class="row mt-4">
                 <div class="col-md-12">
-                    <h4>CCBRT Policies</h4>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Policy Name</th>
-                                    <th>Description</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Code of Conduct</td>
-                                    <td>Guidelines on acceptable behavior and workplace ethics.</td>
-                                    <td>
-                                        <a href="{{ asset('policies/code_of_conduct.pdf') }}" class="btn btn-primary btn-sm"
-                                            target="_blank">View</a>
-                                        <a href="{{ asset('policies/code_of_conduct.pdf') }}"
-                                            class="btn btn-secondary btn-sm" download>Download</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>HR Policy</td>
-                                    <td>Details on HR practices, employee benefits, and grievance procedures.</td>
-                                    <td>
-                                        <a href="{{ asset('policies/hr_policy.pdf') }}" class="btn btn-primary btn-sm"
-                                            target="_blank">View</a>
-                                        <a href="{{ asset('policies/hr_policy.pdf') }}" class="btn btn-secondary btn-sm"
-                                            download>Download</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>IT Security Policy</td>
-                                    <td>Instructions on maintaining IT security and data protection.</td>
-                                    <td>
-                                        <a href="{{ asset('policies/it_security_policy.pdf') }}"
-                                            class="btn btn-primary btn-sm" target="_blank">View</a>
-                                        <a href="{{ asset('policies/it_security_policy.pdf') }}"
-                                            class="btn btn-secondary btn-sm" download>Download</a>
-                                    </td>
-                                </tr>
-                                <!-- Additional policies can be added here -->
-                            </tbody>
-                        </table>
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-light">
+                            <h4>CCBRT Policies</h4>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Policy Name</th>
+                                        <th>Description</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Code of Conduct</td>
+                                        <td>Guidelines on acceptable behavior and workplace ethics.</td>
+                                        <td>
+                                            <a href="{{ asset('policies/code_of_conduct.pdf') }}"
+                                                class="btn btn-primary btn-sm" target="_blank">View</a>
+                                            <a href="{{ asset('policies/code_of_conduct.pdf') }}"
+                                                class="btn btn-secondary btn-sm" download>Download</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>HR Policy</td>
+                                        <td>Details on HR practices, employee benefits, and grievance procedures.</td>
+                                        <td>
+                                            <a href="{{ asset('policies/hr_policy.pdf') }}" class="btn btn-primary btn-sm"
+                                                target="_blank">View</a>
+                                            <a href="{{ asset('policies/hr_policy.pdf') }}" class="btn btn-secondary btn-sm"
+                                                download>Download</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>IT Security Policy</td>
+                                        <td>Instructions on maintaining IT security and data protection.</td>
+                                        <td>
+                                            <a href="{{ asset('policies/it_security_policy.pdf') }}"
+                                                class="btn btn-primary btn-sm" target="_blank">View</a>
+                                            <a href="{{ asset('policies/it_security_policy.pdf') }}"
+                                                class="btn btn-secondary btn-sm" download>Download</a>
+                                        </td>
+                                    </tr>
+                                    <!-- Additional policies can be added here -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -146,7 +150,7 @@
 
 
             <!-- Announcements -->
-            <div class="row mt-4">
+            {{-- <div class="row mt-4">
                 <div class="col-md-12">
                     <div class="card shadow-sm">
                         <div class="card-header bg-light">
@@ -163,7 +167,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 @endsection
