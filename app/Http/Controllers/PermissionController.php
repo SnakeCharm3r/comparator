@@ -3,7 +3,9 @@
 namespace  App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Contracts\Permission as ContractsPermission;
 use  Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class PermissionController extends Controller
 {
@@ -21,6 +23,21 @@ class PermissionController extends Controller
     {
         $permissions = Permission::get();
         return view('role-permission.permission.index', ['permissions' => $permissions]);
+    }
+     
+    public function showRolesWithPermission() {
+        $roles = Role::with('permission')->get();
+        $permissions = Permission::all();
+
+         return view('',compact('roles', 'permissions'));
+
+    }
+
+    public function updateRolesWithPermissions(Request $request)
+    {
+        $role = Role::findById($request->role_id);
+        $role->syncPermissions($request->permissions);
+        return redirect()->back()->with('status', 'Permissions updated successfully');
     }
 
     public function getPermRoles($id){
