@@ -18,9 +18,9 @@ class PermissionSeeder extends Seeder
             'view hr clearance form',
             'view data security agreement',
             'view change management',
-            'view requests',
-            'view my requests',
+            'view requests', // Ensure this permission is included
             'approve requests',
+            'view my requests',
             'view departments',
             'view nhif',
             'view hmis',
@@ -46,7 +46,13 @@ class PermissionSeeder extends Seeder
             'admin' => [
                 'view dashboard',
                 'view forms',
-                'view requests',
+                'view ict access form',
+                'view hr clearance form',
+                'view data security agreement',
+                'view change management',
+                'view requests', // Ensure this permission is included
+                'approve requests',
+                'view my requests',
                 'view departments',
                 'view nhif',
                 'view hmis',
@@ -64,7 +70,6 @@ class PermissionSeeder extends Seeder
                 'view dashboard',
                 'view forms',
                 'view hr clearance form',
-                'view requests',
                 'approve requests',
                 'view departments',
                 'view user category'
@@ -73,15 +78,14 @@ class PermissionSeeder extends Seeder
                 'view dashboard',
                 'view forms',
                 'view ict access form',
-                'view requests',
                 'approve requests',
                 'view departments',
-                'view user category'
+                'view user category',
+                'view requests' // Ensure this permission is included
             ],
             'line-manager' => [
                 'view dashboard',
                 'view forms',
-                'view requests',
                 'approve requests',
                 'view departments',
                 'view user category'
@@ -89,7 +93,6 @@ class PermissionSeeder extends Seeder
             'acting-line-manager' => [
                 'view dashboard',
                 'view forms',
-                'view requests',
                 'approve requests',
                 'view departments',
                 'view user category'
@@ -97,7 +100,8 @@ class PermissionSeeder extends Seeder
             'requester' => [
                 'view dashboard',
                 'view forms',
-                'view my requests'
+                'view my requests',
+                'view requests' // Ensure this permission is included if needed
             ]
         ];
 
