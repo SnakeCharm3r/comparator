@@ -101,7 +101,7 @@ class PermissionSeeder extends Seeder
                 'view dashboard',
                 'view forms',
                 'view my requests',
-                'view requests' // Ensure this permission is included if needed
+                // 'view requests' // Ensure this permission is included if needed
             ]
         ];
 
