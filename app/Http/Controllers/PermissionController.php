@@ -7,14 +7,14 @@ use  Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('role:super-admin', ['only' => ['index', 'create', 'store', 'addPermissionToRole', 'givePermissionToRole', 'update', 'edit', 'destroy']]);
-    //     $this->middleware('role:admin', ['only' => ['create', 'store', 'addPermissionToRole', 'givePermissionToRole', 'update', 'edit']]);
-    //     $this->middleware('role:hr', ['only' => ['create', 'store', 'addPermissionToRole', 'givePermissionToRole', 'update', 'edit']]);
-    //     $this->middleware('role:it', ['only' => ['create', 'store', 'addPermissionToRole', 'givePermissionToRole', 'update', 'edit']]);
-    //     $this->middleware('role:line-manager', ['only' => ['update', 'edit']]);
-    // }
+    public function __construct()
+    {
+        $this->middleware('role:super-admin', ['only' => ['index', 'create', 'store', 'addPermissionToRole', 'givePermissionToRole', 'update', 'edit', 'destroy']]);
+        $this->middleware('role:admin', ['only' => ['create', 'store', 'addPermissionToRole', 'givePermissionToRole', 'update', 'edit']]);
+        $this->middleware('role:hr', ['only' => ['create', 'store', 'addPermissionToRole', 'givePermissionToRole', 'update', 'edit']]);
+        $this->middleware('role:it', ['only' => ['create', 'store', 'addPermissionToRole', 'givePermissionToRole', 'update', 'edit']]);
+        $this->middleware('role:line-manager', ['only' => ['update', 'edit']]);
+    }
     
 
     public function index()

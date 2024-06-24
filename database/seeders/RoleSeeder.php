@@ -20,13 +20,13 @@ class RoleSeeder extends Seeder
 
     // List of roles and their permissions
     $roles = [
-      'Requester' => ['Submit Request Forms', 'Access User Dashboard', 'View All Request Forms', 'View Submitted Request Forms', 'Check Request Status'],
-      'HR Officer' => ['Approve Head of Department Requests', 'Approve HR Requests', 'Submit Request Forms', 'Access User Dashboard', 'View All Request Forms', 'View Submitted Request Forms', 'Check Request Status'],
-      'HR Manager' => ['Approve HR Requests', 'Approve Head of Department Requests', 'Submit Request Forms', 'Access User Dashboard', 'View All Request Forms', 'View Submitted Request Forms', 'Check Request Status', 'Manage Employee Information'],
-      'Admin' => ['Approve IT Requests', 'Approve HR Requests', 'Submit Request Forms', 'Access User Dashboard', 'View All Request Forms', 'View Submitted Request Forms', 'Check Request Status'],
-      'Line Manager' => ['Approve Head of Department Requests', 'Submit Request Forms', 'Access User Dashboard', 'View All Request Forms', 'View Submitted Request Forms', 'Check Request Status'],
-      'Acting Line Manager' => ['Approve Head of Department Requests', 'Submit Request Forms', 'Access User Dashboard', 'View All Request Forms', 'View Submitted Request Forms', 'Check Request Status'],
-      'Super Admin' => ['Submit Request Forms', 'Access User Dashboard', 'View All Request Forms', 'View Submitted Request Forms', 'Check Request Status', 'Approve HR Requests', 'Approve IT Requests', 'Approve Head of Department Requests', 'Assign Roles to Users', 'Assign Permissions to Roles', 'View Existing Roles', 'Create New Roles', 'Edit Existing Roles', 'Delete Roles'],
+      // 'Requester' => ['Submit Request Forms', 'Access User Dashboard', 'View All Request Forms', 'View Submitted Request Forms', 'Check Request Status'],
+      // 'HR Officer' => ['Approve Head of Department Requests', 'Approve HR Requests', 'Submit Request Forms', 'Access User Dashboard', 'View All Request Forms', 'View Submitted Request Forms', 'Check Request Status'],
+      // 'HR Manager' => ['Approve HR Requests', 'Approve Head of Department Requests', 'Submit Request Forms', 'Access User Dashboard', 'View All Request Forms', 'View Submitted Request Forms', 'Check Request Status', 'Manage Employee Information'],
+      // 'Admin' => ['Approve IT Requests', 'Approve HR Requests', 'Submit Request Forms', 'Access User Dashboard', 'View All Request Forms', 'View Submitted Request Forms', 'Check Request Status'],
+      // 'Line Manager' => ['Approve Head of Department Requests', 'Submit Request Forms', 'Access User Dashboard', 'View All Request Forms', 'View Submitted Request Forms', 'Check Request Status'],
+      // 'Acting Line Manager' => ['Approve Head of Department Requests', 'Submit Request Forms', 'Access User Dashboard', 'View All Request Forms', 'View Submitted Request Forms', 'Check Request Status'],
+      // 'Super Admin' => ['Submit Request Forms', 'Access User Dashboard', 'View All Request Forms', 'View Submitted Request Forms', 'Check Request Status', 'Approve HR Requests', 'Approve IT Requests', 'Approve Head of Department Requests', 'Assign Roles to Users', 'Assign Permissions to Roles', 'View Existing Roles', 'Create New Roles', 'Edit Existing Roles', 'Delete Roles'],
   ];
 
 
