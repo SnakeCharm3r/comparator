@@ -35,19 +35,27 @@
                         </ul>
                     </li>
                 @endcan
-
                 @can('view requests')
                     <li class="submenu {{ request()->is('request*') ? 'active' : '' }}">
                         <a href="#"><i class="fas fa-file-alt"></i> <span>Requests</span> <span
                                 class="menu-arrow {{ request()->is('request*') ? 'active' : '' }}"></span></a>
-                        <ul style="{{ request()->is('request*') ? 'display: block;' : '' }}">    
-                     <li><a href="{{ route('request.index') }}"
+                        <ul style="{{ request()->is('request*') ? 'display: block;' : '' }}">
+
+                            @can('view my requests')
+                                <li><a href="{{ route('request.index') }}"
                                         class="{{ request()->routeIs('request.index') ? 'active' : '' }}">My Requests</a></li>
-                     <li><a href="{{ route('requestapprove.index') }}"
-                    class="{{ request()->routeIs('requestapprove.index') ? 'active' : '' }}">Requests Approval</a></li>
+                            @endcan
+
+                            @can('approve requests')
+                                <li><a href="{{ route('requestapprove.index') }}"
+                                        class="{{ request()->routeIs('requestapprove.index') ? 'active' : '' }}">Requests
+                                        Approval</a></li>
+                            @endcan
+
                         </ul>
                     </li>
                 @endcan
+
 
                 @can('view departments')
                     <li class="{{ request()->routeIs('department.index') ? 'active' : '' }}">
