@@ -22,6 +22,7 @@ class PermissionController extends Controller
     public function index()
     {
         $permissions = Permission::get();
+        
         return view('role-permission.permission.index', ['permissions' => $permissions]);
     }
      
