@@ -130,10 +130,6 @@ class RoleSeeder extends Seeder
   //     ],
   // ];
   
-
-
-
-
     // Create roles and assign permissions if they do not already exist
     foreach ($roles as $roleName => $permissions) {
         $role = Role::firstOrCreate(['name' => $roleName]);

@@ -3,10 +3,12 @@
 use App\Models\PrivilegeLevel;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChangeManagementController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RemarkController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DataSecurityController;
 use App\Http\Controllers\IctAccessController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HmisAccessController;
@@ -33,16 +35,16 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-});
-
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'handleLogin'])->name('login.handleLogin');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'handleRegistration'])->name('register.handleRegistration');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::group(['middleware'=> 'auth'], function () 
+{
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // Route::get('/next-of-kins', [AuthController::class, 'nextOfKins'])->name('auth.next_of_kins');
 Route::get('/departments', [DepartmentController::class, 'index']);
@@ -62,6 +64,8 @@ Route::post('/ccbrtRelation', [UserFamilyDetailsController::class, 'addRelation'
 //ict-access controller
 Route::resource('/form', IctAccessController::class);
 Route::resource('/hr', HumanResourceController::class);
+Route::resource('/data', DataSecurityController::class);
+Route::resource('/change', ChangeManagementController::class);
 Route::resource('/department', DepartmentController::class);
 Route::resource('/nhif', NhifQualificationController::class);
 Route::resource('/hmis', HmisAccessController::class);
@@ -90,6 +94,6 @@ Route::get('role-permission/{roleId}/give-permission', [RoleController::class, '
 Route::put('role-permission/{roleId}/give-permission', [RoleController::class, 'givePermissionToRole']);
 
 
-
+});
 
 

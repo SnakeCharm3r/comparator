@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-sub-header">
-                            <h3 class="page-title">HR Clearance and Exit Form</h3>
+                            <h3 class="page-title">Data Security Agreement</h3>
                         </div>
                     </div>
                 </div>
