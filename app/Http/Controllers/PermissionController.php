@@ -21,10 +21,12 @@ class PermissionController extends Controller
 
     public function index()
     {
+
         
     $roles = Role::with('permissions')->get();
     $permissions = Permission::all();
     return view('role-permission.permission.index', compact('roles', 'permissions'));
+
     }
      
     public function showRolesWithPermission() {
@@ -40,6 +42,11 @@ class PermissionController extends Controller
         $role = Role::findById($request->role_id);
         $role->syncPermissions($request->permissions);
         return redirect()->back()->with('status', 'Permissions updated successfully');
+    }
+
+    public function getPermRoles($id){
+        $permissions = Permission::get();
+        
     }
 
     public function create()

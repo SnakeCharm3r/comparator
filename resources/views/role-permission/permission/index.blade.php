@@ -11,11 +11,9 @@
                 </div>
             </div>
 
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-
                         <div class="card mt-3">
                             <div class="card-body">
                                 <div class="row position-relative">
@@ -28,67 +26,73 @@
                                     </div>
                                 </div>
 
-                                <table class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Name</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="role-select" class="form-label">Select Role</label>
+                                        <select id="role-select" class="form-select">
+                                            <option value="">Select a role</option>
+                                            @foreach ($roles as $role)
+                                                <option value="{{ $permissions->id }}">{{ $role->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
 
-
-
-                                    <tbody>
-                                        @foreach ($permissions as $permission)
+                                <form id="permissions-form">
+                                    @csrf
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
                                             <tr>
-                                                <td>{{ $permission->id }}</td>
-                                                <td>{{ $permission->name }}</td>
-
-                                                <td>
-                                                    <a href="{{ route('permission.edit', $permission->id) }}"
-                                                        class="btn btn-sm edit-btn" data-id="{{ $permission->id }}"><i
-                                                            class="fas fa-edit"></i></a>
-                                                    <button
-                                                        onclick="deleteConfirmation('{{ route('permission.destroy', $permission->id) }}')"
-                                                        class="btn btn-sm btn-delete"><i
-                                                            class="fas fa-trash-alt"></i></button>
-                                                    <form id="delete-form-{{ $permission->id }}"
-                                                        action="{{ route('permission.destroy', $permission->id) }}"
-                                                        method="POST" style="display: none;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
-                                                </td>
-
+                                                <th>Id</th>
+                                                <th>Name</th>
+                                                <th>Actions</th>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($permissions as $permission)
+                                                <tr>
+                                                    <td>{{ $permission->id }}</td>
+                                                    <td>{{ $permission->name }}</td>
+                                                    <td>
+                                                        <input type="checkbox" name="permissions[]"
+                                                            value="{{ $permission->name }}" class="permission-checkbox">
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                    <button type="submit" class="btn btn-primary">Save Permissions</button>
+                                </form>
 
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
+
         <script>
-            function deleteConfirmation(urlToRedirect) {
-                swal({
-                        title: "Are you sure to delete?",
-                        text: "You will not be able to revert this!",
-                        icon: "warning",
-                        buttons: ["Cancel", "Delete"],
-                        dangerMode: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            document.getElementById('delete-form-' + urlToRedirect.split('/').pop()).submit();
-                        } else {
-                            swal("Permission is safe!");
-                        }
-                    });
-            }
+            document.addEventListener('DOMContentLoaded', function() {
+                const roleSelect = document.getElementById('role-select');
+                const checkboxes = document.querySelectorAll('.permission-checkbox');
+
+                roleSelect.addEventListener('change', function() {
+                    const roleId = this.value;
+                    if (roleId) {
+                        fetch(`/role/${roleId}/permissions`)
+                            .then(response => response.json())
+                            .then(data => {
+                                checkboxes.forEach(checkbox => {
+                                    checkbox.checked = data.includes(checkbox.value);
+                                });
+                            })
+                            .catch(error => console.error('Error fetching permissions:', error));
+                    } else {
+                        checkboxes.forEach(checkbox => {
+                            checkbox.checked = false;
+                        });
+                    }
+                });
+            });
         </script>
     @endsection
