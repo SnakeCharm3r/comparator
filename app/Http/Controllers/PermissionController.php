@@ -23,6 +23,11 @@ class PermissionController extends Controller
         return view('role-permission.permission.index', ['permissions' => $permissions]);
     }
 
+    public function getPermRoles($id){
+        $permissions = Permission::get();
+        
+    }
+
     public function create()
     {
         return view('role-permission.permission.create');

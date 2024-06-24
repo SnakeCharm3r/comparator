@@ -18,9 +18,9 @@ class PermissionSeeder extends Seeder
             'view hr clearance form',
             'view data security agreement',
             'view change management',
-            'view requests', // Ensure this permission is included
-            'approve requests',
+            'view requests',
             'view my requests',
+            'approve requests',
             'view departments',
             'view nhif',
             'view hmis',
@@ -50,9 +50,8 @@ class PermissionSeeder extends Seeder
                 'view hr clearance form',
                 'view data security agreement',
                 'view change management',
-                'view requests', // Ensure this permission is included
+                'view requests',
                 'approve requests',
-                'view my requests',
                 'view departments',
                 'view nhif',
                 'view hmis',
@@ -68,11 +67,7 @@ class PermissionSeeder extends Seeder
             ],
             'hr' => [
                 'view dashboard',
-                'view forms',
-                'view hr clearance form',
-                'approve requests',
-                'view departments',
-                'view user category'
+                'approve requests'
             ],
             'it' => [
                 'view dashboard',
@@ -81,7 +76,7 @@ class PermissionSeeder extends Seeder
                 'approve requests',
                 'view departments',
                 'view user category',
-                'view requests' // Ensure this permission is included
+                'view requests'
             ],
             'line-manager' => [
                 'view dashboard',
@@ -100,8 +95,7 @@ class PermissionSeeder extends Seeder
             'requester' => [
                 'view dashboard',
                 'view forms',
-                'view my requests',
-                // 'view requests' // Ensure this permission is included if needed
+                'view my requests'
             ]
         ];
 
