@@ -84,6 +84,8 @@ Route::post('/users/{id}/edit', [AuthController::class, 'editUserRole'])->name('
 Route::put('/users/{id}/destroy', [AuthController::class, 'destroyUserRole'])->name('users.destroy');
 // Route::put('users/{id}', [AuthController::class, 'update'])->name('users.update');
 Route::post('users/{id}/role', [AuthController::class, 'editUserRole'])->name('users.edit.role');
+Route::delete('/permission/{id}', 'PermissionController@destroy')->name('permission.delete');
+
 
 
 

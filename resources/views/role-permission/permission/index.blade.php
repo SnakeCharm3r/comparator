@@ -11,7 +11,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -35,11 +34,12 @@
                                         <thead>
                                             <tr>
                                                 <th style="width: 10%;">ID</th>
-                                                <th style="width: 70%;">Permission Name</th>
-                                                <th style="width: 20%;">Action</th>
+                                                <th style="width: 50%;">Permission Name</th>
+                                                <th style="width: 20%;">Change Permission</th>
+                                                <th style="width: 20%;">Delete</th> <!-- New column for delete action -->
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="permissions-table-body">
                                             @foreach ($permissions as $permission)
                                                 <tr>
                                                     <td>{{ $permission->id }}</td>
@@ -52,6 +52,12 @@
                                                             <label class="form-check-label"
                                                                 for="permission-{{ $permission->id }}"></label>
                                                         </div>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-sm delete-btn mx-2"
+                                                            onclick="deletePermission({{ $permission->id }})">
+                                                            <i class="fas fa-trash-alt text-danger"></i>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -77,7 +83,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const roleSelect = document.getElementById('role-select');
-            const checkboxes = document.querySelectorAll('.form-check-input');
+            const permissionsTableBody = document.getElementById('permissions-table-body');
 
             roleSelect.addEventListener('change', function() {
                 const roleId = this.value;
@@ -85,17 +91,59 @@
                     fetch(`/role/${roleId}/permissions`)
                         .then(response => response.json())
                         .then(data => {
-                            checkboxes.forEach(checkbox => {
-                                checkbox.checked = data.includes(checkbox.value);
+                            // Clear existing table body
+                            permissionsTableBody.innerHTML = '';
+
+                            // Append new rows based on fetched data
+                            data.forEach(permission => {
+                                const isChecked = permission.active ? 'checked' : '';
+                                permissionsTableBody.innerHTML += `
+                                    <tr>
+                                        <td>${permission.id}</td>
+                                        <td>${permission.name}</td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input type="checkbox" class="form-check-input"
+                                                    name="permissions[]" value="${permission.name}"
+                                                    id="permission-${permission.id}" ${isChecked}>
+                                                <label class="form-check-label"
+                                                    for="permission-${permission.id}"></label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm delete-btn mx-2"
+                                                onclick="deletePermission(${permission.id})">
+                                                <i class="fas fa-trash-alt text-danger"></i>
+                                            </button>
+                                        </td>
+                                    </tr>`;
                             });
                         })
                         .catch(error => console.error('Error fetching permissions:', error));
                 } else {
-                    checkboxes.forEach(checkbox => {
-                        checkbox.checked = false;
-                    });
+                    permissionsTableBody.innerHTML = '';
                 }
             });
         });
+
+        function deletePermission(permissionId) {
+            if (confirm("Are you sure you want to delete this permission?")) {
+                fetch(`/permission/${permissionId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Reload the page or update the UI as needed
+                            window.location.reload(); // Example: Reloads the page
+                        } else {
+                            console.error('Failed to delete permission');
+                        }
+                    })
+                    .catch(error => console.error('Error deleting permission:', error));
+            }
+        }
     </script>
 @endsection
