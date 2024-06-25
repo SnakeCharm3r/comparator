@@ -96,13 +96,14 @@
                 <div class="col-md-12">
                     <div class="card shadow-sm">
                         <div class="card-header bg-light">
-                            <h4>CCBRT Policies</h4>
+                            <h4>CCBRT Policies and SoPs</h4>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered">
                                 <thead class="table-light">
                                     <tr>
-                                        <th>Policy Name</th>
+                                        <th>Policy /SoP Name</th>
+                                        <th>Department Name</th>
                                         <th>Description</th>
                                         <th>Actions</th>
                                     </tr>
@@ -110,6 +111,7 @@
                                 <tbody>
                                     <tr>
                                         <td>Code of Conduct</td>
+
                                         <td>Guidelines on acceptable behavior and workplace ethics.</td>
                                         <td>
                                             <a href="{{ asset('policies/code_of_conduct.pdf') }}"
@@ -117,6 +119,11 @@
                                             <a href="{{ asset('policies/code_of_conduct.pdf') }}"
                                                 class="btn btn-secondary btn-sm" download>Download</a>
                                         </td>
+                                    </tr>
+                                    <tr>
+
+                                        <td>Department of IT & BA</td>
+
                                     </tr>
                                     <tr>
                                         <td>HR Policy</td>

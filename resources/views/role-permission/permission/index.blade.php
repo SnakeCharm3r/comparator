@@ -1,4 +1,5 @@
 @extends('layouts.template')
+
 @section('breadcrumb')
     @include('sweetalert::alert')
     <div class="page-wrapper">
@@ -10,89 +11,139 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card mt-3">
-                            <div class="card-body">
-                                <div class="row position-relative">
-                                    <div class="col-md-12">
-                                        <a href="{{ route('permission.create') }}"
-                                            class="btn btn-primary position-absolute top-0 end-0 mt-2 me-2"
-                                            style="background-color: #61ce70; border-color: #61ce70;">
-                                            <i class="fas fa-plus"></i>
-                                        </a>
-                                    </div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="role-select" class="form-label">Select Role</label>
+                                    <select id="role-select" class="form-select">
+                                        <option value="">Select a role</option>
+                                        @foreach ($roles as $role)
+                                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
+                            </div>
 
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <label for="role-select" class="form-label">Select Role</label>
-                                        <select id="role-select" class="form-select">
-                                            <option value="">Select a role</option>
-                                            @foreach ($roles as $role)
-                                                <option value="{{ $permissions->id }}">{{ $role->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <form id="permissions-form">
-                                    @csrf
+                            <form id="permissions-form">
+                                @csrf
+                                <div class="table-responsive">
                                     <table class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Id</th>
-                                                <th>Name</th>
-                                                <th>Actions</th>
+                                                <th style="width: 10%;">ID</th>
+                                                <th style="width: 50%;">Permission Name</th>
+                                                <th style="width: 20%;">Change Permission</th>
+                                                <th style="width: 20%;">Delete</th> <!-- New column for delete action -->
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="permissions-table-body">
                                             @foreach ($permissions as $permission)
                                                 <tr>
                                                     <td>{{ $permission->id }}</td>
                                                     <td>{{ $permission->name }}</td>
                                                     <td>
-                                                        <input type="checkbox" name="permissions[]"
-                                                            value="{{ $permission->name }}" class="permission-checkbox">
+                                                        <div class="form-check form-switch">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                name="permissions[]" value="{{ $permission->name }}"
+                                                                id="permission-{{ $permission->id }}">
+                                                            <label class="form-check-label"
+                                                                for="permission-{{ $permission->id }}"></label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-sm delete-btn mx-2"
+                                                            onclick="deletePermission({{ $permission->id }})">
+                                                            <i class="fas fa-trash-alt text-danger"></i>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    <button type="submit" class="btn btn-primary">Save Permissions</button>
-                                </form>
+                                </div>
 
-                            </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-12 text-end">
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        <a href="{{ route('permission.create') }}" class="btn btn-success ms-2">Add New</a>
+                                    </div>
+                                </div>
+                            </form>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const roleSelect = document.getElementById('role-select');
-                const checkboxes = document.querySelectorAll('.permission-checkbox');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const roleSelect = document.getElementById('role-select');
+            const permissionsTableBody = document.getElementById('permissions-table-body');
 
-                roleSelect.addEventListener('change', function() {
-                    const roleId = this.value;
-                    if (roleId) {
-                        fetch(`/role/${roleId}/permissions`)
-                            .then(response => response.json())
-                            .then(data => {
-                                checkboxes.forEach(checkbox => {
-                                    checkbox.checked = data.includes(checkbox.value);
-                                });
-                            })
-                            .catch(error => console.error('Error fetching permissions:', error));
-                    } else {
-                        checkboxes.forEach(checkbox => {
-                            checkbox.checked = false;
-                        });
-                    }
-                });
+            roleSelect.addEventListener('change', function() {
+                const roleId = this.value;
+                if (roleId) {
+                    fetch(`/role/${roleId}/permissions`)
+                        .then(response => response.json())
+                        .then(data => {
+                            // Clear existing table body
+                            permissionsTableBody.innerHTML = '';
+
+                            // Append new rows based on fetched data
+                            data.forEach(permission => {
+                                const isChecked = permission.active ? 'checked' : '';
+                                permissionsTableBody.innerHTML += `
+                                    <tr>
+                                        <td>${permission.id}</td>
+                                        <td>${permission.name}</td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input type="checkbox" class="form-check-input"
+                                                    name="permissions[]" value="${permission.name}"
+                                                    id="permission-${permission.id}" ${isChecked}>
+                                                <label class="form-check-label"
+                                                    for="permission-${permission.id}"></label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm delete-btn mx-2"
+                                                onclick="deletePermission(${permission.id})">
+                                                <i class="fas fa-trash-alt text-danger"></i>
+                                            </button>
+                                        </td>
+                                    </tr>`;
+                            });
+                        })
+                        .catch(error => console.error('Error fetching permissions:', error));
+                } else {
+                    permissionsTableBody.innerHTML = '';
+                }
             });
-        </script>
-    @endsection
+        });
+
+        function deletePermission(permissionId) {
+            if (confirm("Are you sure you want to delete this permission?")) {
+                fetch(`/permission/${permissionId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Reload the page or update the UI as needed
+                            window.location.reload(); // Example: Reloads the page
+                        } else {
+                            console.error('Failed to delete permission');
+                        }
+                    })
+                    .catch(error => console.error('Error deleting permission:', error));
+            }
+        }
+    </script>
+@endsection
