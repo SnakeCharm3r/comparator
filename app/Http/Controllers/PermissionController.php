@@ -24,20 +24,37 @@ class PermissionController extends Controller
         return view('role-permission.permission.index', compact('roles', 'permissions'));
     }
 
-    public function showRolesWithPermission()
-    {
-        $roles = Role::with('permissions')->get();
-        $permissions = Permission::all();
+   public function getRolePermissions($roleId){
+    $role = Role::with('permissions')->find($roleId);
+    $permissions = Permission::all();
 
-        return view('role-permission.permission.index', compact('roles', 'permissions'));
-    }
+    $rolePermissions = $role->permissions->pluck('name')->toArray();
+    $permissionsData = $permissions->map(function ($permission) use ($rolePermissions) {
 
-    public function updateRolesWithPermissions(Request $request)
-    {
-        $role = Role::findById($request->role_id);
-        $role->syncPermissions($request->permissions);
-        return redirect()->back()->with('status', 'Permissions updated successfully');
-    }
+        return  [
+            'id' => $permission->id,
+            'name' => $permission->name,
+            'active' => in_array($permission->name, $rolePermissions)
+        ];
+    });
+
+    return response()->json($permissionsData);
+   }
+
+   public function updateRolePermissions(Request $request)
+   {
+       $role = Role::find($request->role_id);  
+   
+       if ($role) {
+           $role->syncPermissions($request->permissions);
+   
+           return redirect()->back()->with('status', 'Permissions updated successfully');
+       }
+   
+       return redirect()->back()->with('error', 'Role not found');
+   }
+   
+   
 
     public function getPermissionsByRole($roleId)
     {
@@ -82,27 +99,33 @@ class PermissionController extends Controller
         return view('role-permission.permission.edit', ['permission' => $permission]);
     }
 
-    public function update(Request $request, Permission $permission)
-    {
-        $request->validate([
-            'name' => [
-                'required',
-                'string',
-                'unique:permissions,name,'.$permission->id
-            ]
-        ]);
+    // public function update(Request $request, Permission $permission)
+    // {
+    //     $request->validate([
+    //         'name' => [
+    //             'required',
+    //             'string',
+    //             'unique:permissions,name,'.$permission->id
+    //         ]
+    //     ]);
 
-        $permission->update([
-            'name' => $request->name
-        ]);
+    //      $permission->update([
+    //         'name' => $request->name
+    //     ]);
 
-        return redirect('permission')->with('status', 'Permission Updated Successfully');
-    }
+    //     return redirect('permission')->with('status', 'Permission Updated Successfully');
+    // }
 
     public function destroy($permissionId)
     {
         $permission = Permission::find($permissionId);
-        $permission->delete();
-        return redirect('permission')->with('status', 'Permission Deleted Successfully');
+    
+        if ($permission) {
+            $permission->delete();
+            return response()->json(['status' => 'success', 'message' => 'Permission deleted successfully']);
+        }
+    
+        return response()->json(['status' => 'error', 'message' => 'Permission not found'], 404);
     }
+    
 }
