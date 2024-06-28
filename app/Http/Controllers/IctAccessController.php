@@ -102,6 +102,73 @@ class IctAccessController extends Controller
         return redirect()->route('form.index')->with('success', 'ICT Access Resource created successfully.');
     }
 
+     public function requestApprovalList(){
+        //get user logeid in role
+         $userRole=Auth::user()->getRoleNames()->first();
+
+         $requestList=[];
+
+        switch ($userRole) {
+            case 'Line Manager Department':
+                $requestList=IctAccessResource::where('status',0)->get();
+                break;
+                case 'HR':
+                    $requestList=IctAccessResource::where('status',1)->get();
+                    break;
+                    case 'Linear Manager IT':
+                        $requestList=IctAccessResource::where('status',2)->get();
+                        break;
+                        //add othere required roles for approval
+                        // case 'value':
+                        //     # code...
+                        //     break;
+                        case 'Admin':
+                            $requestList=IctAccessResource::all();
+                            break;
+            default:
+                abort(404);
+                break;
+        }
+        return view('aproval form',[
+            'requestList' =>$requestList
+        ]);
+     }
+
+     public function viewApprovalRequest(IctAccessResource $form){  
+
+        return view ('getting the form',[
+            'formData' => $form
+        ]);
+     }
+
+     public function approveRequest(Request $request){
+        $status=null;
+
+        $userRole=Auth::user()->getRoleNames()->first();
+
+       switch ($userRole) {
+           case 'Linear Manager Department':
+               $status=1;
+               break;
+               case 'HR':
+                $status=2;
+                   break;
+                   case 'Linear Manager IT':
+                    $status=3;
+                       break;
+       }
+
+       $form=IctAccessResource::find($request->id);
+       $form->status=$status;
+       $form->save();
+
+       //return as success
+
+     }
+
+
+
+
     /**
      * Display the specified resource.
      */
