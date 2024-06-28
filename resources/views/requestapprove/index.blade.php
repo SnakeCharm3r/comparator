@@ -7,7 +7,7 @@
 @section('content')
     <div class="page-wrapper">
         <div class="content container-fluid">
-            {{-- <div class="page-header">
+            <div class="page-header">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-sub-header">
@@ -15,7 +15,65 @@
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered">
+                                    <thead class="table-primary">
+                                        <tr>
+                                            <th>Request Type</th>
+                                            <th>Status</th>
+                                            <th>Submitted</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><i class="fas fa-calendar-alt"></i> Leave Request</td>
+                                            <td>Pending</td>
+                                            <td>Jun 27, 2024</td>
+                                            <td>
+                                                <a href="#" class="btn btn-primary btn-sm" title="View">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                              
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fas fa-laptop"></i> Equipment Request</td>
+                                            <td>Approved</td>
+                                            <td>May 15, 2024</td>
+                                            <td>
+                                                <a href="#" class="btn btn-primary btn-sm" title="View">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                               
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fas fa-key"></i> ICT Access Form</td>
+                                            <td>Rejected</td>
+                                            <td>Apr 02, 2024</td>
+                                            <td>
+                                                <a href="#" class="btn btn-primary btn-sm" title="View">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                               
+                                            </td>
+                                        </tr>
+                                        <!-- Additional demo rows can be added here -->
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
