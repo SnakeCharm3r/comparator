@@ -53,7 +53,7 @@
                             <i class="fas fa-users"></i> Total Registered Users
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">50</h5>
+                            <h5 class="card-title">40</h5>
                         </div>
                     </div>
 
@@ -102,7 +102,7 @@
                             <table class="table table-striped table-bordered">
                                 <thead class="table-light">
                                     <tr>
-                                        <th>Policy /SoP Name</th>
+                                        <th>Policy / SoP Name</th>
                                         <th>Department Name</th>
                                         <th>Description</th>
                                         <th>Actions</th>
@@ -111,43 +111,70 @@
                                 <tbody>
                                     <tr>
                                         <td>Code of Conduct</td>
-
+                                        <td>General</td>
                                         <td>Guidelines on acceptable behavior and workplace ethics.</td>
                                         <td>
                                             <a href="{{ asset('policies/code_of_conduct.pdf') }}"
-                                                class="btn btn-primary btn-sm" target="_blank">View</a>
+                                                class="btn btn-primary btn-sm" target="_blank">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
                                             <a href="{{ asset('policies/code_of_conduct.pdf') }}"
-                                                class="btn btn-secondary btn-sm" download>Download</a>
+                                                class="btn btn-secondary btn-sm" download>
+                                                <i class="fas fa-download"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                     <tr>
-
                                         <td>Department of IT & BA</td>
-
+                                        <td>IT & Business Analysis</td>
+                                        <td>Details specific to IT and business analysis department.</td>
+                                        <td>
+                                            <a href="{{ asset('policies/hr_policy.pdf') }}" class="btn btn-primary btn-sm"
+                                            target="_blank">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a href="{{ asset('policies/hr_policy.pdf') }}" class="btn btn-secondary btn-sm"
+                                            download>
+                                            <i class="fas fa-download"></i>
+                                        </a>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>HR Policy</td>
+                                        <td>Human Resources</td>
                                         <td>Details on HR practices, employee benefits, and grievance procedures.</td>
                                         <td>
                                             <a href="{{ asset('policies/hr_policy.pdf') }}" class="btn btn-primary btn-sm"
-                                                target="_blank">View</a>
+                                                target="_blank">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
                                             <a href="{{ asset('policies/hr_policy.pdf') }}" class="btn btn-secondary btn-sm"
-                                                download>Download</a>
+                                                download>
+                                                <i class="fas fa-download"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>IT Security Policy</td>
+                                        <td>IT</td>
                                         <td>Instructions on maintaining IT security and data protection.</td>
                                         <td>
                                             <a href="{{ asset('policies/it_security_policy.pdf') }}"
-                                                class="btn btn-primary btn-sm" target="_blank">View</a>
+                                                class="btn btn-primary btn-sm" target="_blank">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
                                             <a href="{{ asset('policies/it_security_policy.pdf') }}"
-                                                class="btn btn-secondary btn-sm" download>Download</a>
+                                                class="btn btn-secondary btn-sm" download>
+                                                <i class="fas fa-download"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                     <!-- Additional policies can be added here -->
                                 </tbody>
                             </table>
+
+
+
                         </div>
                     </div>
                 </div>
