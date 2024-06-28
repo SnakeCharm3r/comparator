@@ -89,23 +89,26 @@
 
 
                 {{-- Requests --}}
-                @can('view requests')
-                    <li class="submenu {{ request()->is('request*') ? 'active' : '' }}">
-                        <a href="#"><i class="fas fa-file-alt"></i> <span>Requests</span> <span
-                                class="menu-arrow"></span></a>
-                        <ul style="{{ request()->is('request*') ? 'display: block;' : '' }}">
-                            @can('view my requests')
-                                <li><a href="{{ route('request.index') }}"
-                                        class="{{ request()->routeIs('request.index') ? 'active' : '' }}">My Requests</a></li>
-                            @endcan
-                            @can('approve requests')
-                                <li><a href="{{ route('requestapprove.index') }}"
-                                        class="{{ request()->routeIs('requestapprove.index') ? 'active' : '' }}">Requests
-                                        Approval</a></li>
-                            @endcan
-                        </ul>
-                    </li>
-                @endcan
+@can('view requests')
+<li class="submenu {{ request()->is('request*') ? 'active' : '' }}">
+    <a href="#"><i class="fas fa-file-alt"></i> <span>Requests</span> <span class="menu-arrow"></span></a>
+    <ul style="{{ request()->is('request*') ? 'display: block;' : '' }}">
+        @can('view my requests')
+            <li><a href="{{ route('request.index') }}" class="{{ request()->routeIs('request.index') ? 'active' : '' }}">My Requests</a></li>
+        @endcan
+    </ul>
+</li>
+@endcan
+
+{{-- Requests Approval --}}
+@can('approve requests')
+<li class="{{ request()->routeIs('requestapprove.index') ? 'active' : '' }}">
+    <a href="{{ route('requestapprove.index') }}"><i class="fas fa-file-alt"></i> <span>Requests Approval</span></a>
+</li>
+@endcan
+
+
+
 
                 {{-- Departments --}}
                 @can('view departments')
