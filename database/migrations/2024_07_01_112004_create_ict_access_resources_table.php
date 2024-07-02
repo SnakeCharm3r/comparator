@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('pbax')->nullable();
             $table->string('sap')->nullable();
             $table->text('hardware_request')->nullable();
-            $table->string('status');
+            $table->tinyInteger('status')->default(0);
             $table->string('physical_access')->nullable();
             $table->foreign('remarkId')->references('id')->on('remarks');
             $table->foreign('privilegeId')->references('id')->on('privilege_levels');

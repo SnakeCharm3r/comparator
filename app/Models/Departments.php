@@ -18,7 +18,11 @@ class Departments extends Model
     ];
 
     public function user() {
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class, 'deptId');
+    }
+    public function lineManager()
+    {
+        return $this->hasOne(User::class, 'deptId')->where('job_title', 'Line Manager');
     }
 
 }

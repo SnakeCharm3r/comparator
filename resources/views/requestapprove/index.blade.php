@@ -26,6 +26,7 @@
                                     <thead class="table-primary">
                                         <tr>
                                             <th>Request Type</th>
+                                            <th>Stage</th>
                                             <th>Status</th>
                                             <th>Submitted</th>
                                             <th>Actions</th>
@@ -34,6 +35,7 @@
                                     <tbody>
                                         <tr>
                                             <td><i class="fas fa-calendar-alt"></i> Leave Request</td>
+                                            <td>HR</td>
                                             <td>Pending</td>
                                             <td>Jun 27, 2024</td>
                                             <td>
@@ -43,28 +45,8 @@
                                               
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td><i class="fas fa-laptop"></i> Equipment Request</td>
-                                            <td>Approved</td>
-                                            <td>May 15, 2024</td>
-                                            <td>
-                                                <a href="#" class="btn btn-primary btn-sm" title="View">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                               
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="fas fa-key"></i> ICT Access Form</td>
-                                            <td>Rejected</td>
-                                            <td>Apr 02, 2024</td>
-                                            <td>
-                                                <a href="#" class="btn btn-primary btn-sm" title="View">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                               
-                                            </td>
-                                        </tr>
+                                        
+                                        
                                         <!-- Additional demo rows can be added here -->
                                     </tbody>
                                 </table>

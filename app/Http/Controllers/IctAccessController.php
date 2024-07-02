@@ -8,6 +8,7 @@ use App\Models\NhifQualification;
 use App\Models\PrivilegeLevel;
 use App\Models\Remark;
 use App\Models\User;
+use App\Notifications\RequestApprovalNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -38,14 +39,16 @@ class IctAccessController extends Controller
      */
     public function create()
     {
-        
-        $user = Auth::user()->load('department','employmentType');
-        $qualifications = NhifQualification::where('delete_status', 0)->get();
-        $privileges = PrivilegeLevel::where('delete_status', 0)->get();
-        $rmk = Remark::where('delete_status', 0)->get();
-        $hmis = HMISAccessLevel::where('delete_status', 0)->get();
+        $user = Auth::user()->load('department', 'employmentType');
+        $qualifications = NhifQualification::active()->get();
+        $privileges = PrivilegeLevel::active()->get();
+        $remarks = Remark::active()->get();
+        $hmisAccessLevels = HMISAccessLevel::active()->get();
 
-        return view('ict-access-form.create', compact('qualifications', 'privileges', 'rmk', 'hmis','user'));
+        return view('ict-access-form.create', compact(
+            'qualifications', 'privileges', 
+            'remarks', 'hmisAccessLevels', 'user'
+        ));
     }
 
     /**
@@ -53,9 +56,6 @@ class IctAccessController extends Controller
      */
     public function store(Request $request)
     {
-         // Log the request data
-    \Log::info('Request data: ', $request->all());
-    
         $validator = Validator::make($request->all(), [
             'remarkId' => 'required|exists:remarks,id',
             'privilegeId' => 'required|exists:privilege_levels,id',
@@ -69,37 +69,103 @@ class IctAccessController extends Controller
             'pbax' => 'required|exists:privilege_levels,id',
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return response()->json([
-                'stauss' => 400,
+                'status' => 400,
                 'errors' => $validator->errors(),
-                ]);
+            ]);
         }
-        // Convert the hardware_request array to a string
-    $hardwareRequest = $request->input('hardware_request') ? implode(',', $request->input('hardware_request')) : null;
 
+        $user = User::findOrFail($request->input('userId'));
+        $departmentId = $user->department->id;
 
-       $ict = IctAccessResource::create([
-        'remarkId' => $request->input('remarkId'),
-        'privilegeId' => $request->input('privilegeId'),
-        'email' => $request->input('email'),
-        'userId' => $request->input('userId'),
-        'hmisId' => $request->input('hmisId'),
-        'aruti' => $request->input('aruti'),
-        'sap' => $request->input('sap'),
-        'nhifId' => $request->input('nhifId'),
-        'hardware_request' => $hardwareRequest,
-        'active_drt' => $request->input('active_drt'),
-        'VPN' => $request->input('VPN'),
-        'pbax' => $request->input('pbax'),
-        'status' => $request->input('status'),
-        'physical_access' => $request->input('physical_access'),
-         'delete_status' => 0,
+        $hardwareRequest = $request->input('hardware_request') ? implode(',', $request->input('hardware_request')) : null;
 
+        $ictAccessResource = IctAccessResource::create([
+            'remarkId' => $request->input('remarkId'),
+            'privilegeId' => $request->input('privilegeId'),
+            'email' => $request->input('email'),
+            'userId' => $request->input('userId'),
 
+            'hmisId' => $request->input('hmisId'),
+            'aruti' => $request->input('aruti'),
+            'sap' => $request->input('sap'),
+            'nhifId' => $request->input('nhifId'),
+            'hardware_request' => $hardwareRequest,
+            'active_drt' => $request->input('active_drt'),
+            'VPN' => $request->input('VPN'),
+            'pbax' => $request->input('pbax'),
+            'status' => 0,
+            'physical_access' => $request->input('physical_access'),
+            'delete_status' => 0,
         ]);
-        Alert::success('IT access form request submit successful','IT access Request Added');
-        return redirect()->route('form.index')->with('success', 'ICT Access Resource created successfully.');
+
+        $this->initiateApprovalProcess($ictAccessResource);
+
+        Alert::success('IT access form request submitted successfully', 'IT Access Request Added');
+        // return redirect()->route('form.index')->with('success', 'ICT Access Resource created successfully.');
+        return redirect()->route('request.index')->with('success', 'ICT Access Resource created successfully.');
+
+    }
+
+    /**
+     * Initiate the approval process.
+     */
+    public function initiateApprovalProcess($ictAccessResource)
+    {
+        //dd($ictAccessResource->userId );
+
+        $user = User::findOrFail($ictAccessResource->userId);
+        $lineManager = User::Role('line-manager')->where('deptId', $user->deptId)->first();
+        $hrManager = User::Role('line-manager-hr')->first();
+        $itManager = User::Role('it-manager')->first();
+        $admin = User::Role('it')->first();
+
+        if ($lineManager) {
+            $lineManager->notify(new RequestApprovalNotification($ictAccessResource, 'line-manager'));
+        }
+
+        if ($ictAccessResource->approved_by_line_manager && $hrManager) {
+            $hrManager->notify(new RequestApprovalNotification($ictAccessResource, 'line-manager-hr'));
+        }
+
+        // if ($ictAccessResource->approved_by_hr_manager && $itManager) {
+        //     $itManager->notify(new RequestApprovalNotification($ictAccessResource, 'it-manager'));
+        // }
+
+        if ($ictAccessResource->approved_by_it_manager && $admin) {
+            $admin->notify(new RequestApprovalNotification($ictAccessResource, 'it'));
+        }
+    }
+
+    /**
+     * Display the list of requests based on the user's role.
+     */
+    public function requestApprovalList()
+    {
+        $userRole = Auth::user()->getRoleNames()->first();
+        $requestList = [];
+
+        switch ($userRole) {
+            case 'line-manager':
+                $requestList = IctAccessResource::where('status', 0)->get();
+                break;
+            case 'line-manager-hr':
+                $requestList = IctAccessResource::where('status', 1)->get();
+                break;
+            case 'it-manager':
+                $requestList = IctAccessResource::where('status', 2)->get();
+                break;
+            case 'it':
+                $requestList = IctAccessResource::all();
+                break;
+            default:
+                abort(404);
+        }
+
+        return view('approval_form', [
+            'requestList' => $requestList
+        ]);
     }
 
     /**
@@ -118,12 +184,14 @@ class IctAccessController extends Controller
     public function edit(string $id)
     {
         $ictAccessResource = IctAccessResource::findOrFail($id);
-        $qualifications = NhifQualification::where('delete_status', 0)->get();
-        $privileges = PrivilegeLevel::where('delete_status', 0)->get();
-        $rmk = Remark::where('delete_status', 0)->get();
-        $hmis = HMISAccessLevel::where('delete_status', 0)->get();
+        $qualifications = NhifQualification::active()->get();
+        $privileges = PrivilegeLevel::active()->get();
+        $remarks = Remark::active()->get();
+        $hmisAccessLevels = HMISAccessLevel::active()->get();
 
-        return view('ict-access-form.edit', compact('ictAccessResource', 'qualifications', 'privileges', 'rmk', 'hmis'));
+        return view('ict-access-form.edit', compact(
+            'ictAccessResource', 'qualifications', 'privileges', 'remarks', 'hmisAccessLevels'
+        ));
     }
 
     /**
@@ -131,7 +199,7 @@ class IctAccessController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Implement the update logic here
     }
 
     /**
