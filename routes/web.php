@@ -17,7 +17,7 @@ use App\Http\Controllers\EmploymentTypeController;
 use App\Http\Controllers\PrivilegeLevelController;
 use App\Http\Controllers\NhifQualificationController;
 use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\RequestApproveController;
+use App\Http\Controllers\RequestApprovalController;
 use App\Http\Controllers\UserFamilyDetailsController;
 use App\Http\Controllers\UserAdditionalInfoController;
 
@@ -76,7 +76,7 @@ Route::resource('/employment', EmploymentTypeController::class);
 Route::resource('/role',RoleController::class);
 Route::resource('/permission',PermissionController::class);
 Route::resource('/request',RequestController::class);
-Route::resource('/requestapprove',RequestApproveController::class);
+Route::resource('/requestapprove',RequestApprovalController::class);
 
 Route::get('/users', [AuthController::class, 'getAllUser'])->name('users.index');
 Route::get('/users/{id}/edit', [AuthController::class, 'showEditForm'])->name('users.showEditForm');
