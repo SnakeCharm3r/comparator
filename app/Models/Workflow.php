@@ -5,20 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Departments extends Model
+class Workflow extends Model
 {
     use HasFactory;
-
-
     protected $fillable = [
-    'dept_name',
-    'hod',
-    'description',
-    'delete_status',
+        'user_id',
+        'ict_request_resource_id',
+        'work_flow_status',
+        'work_flow_completed'
     ];
-
-    public function user() {
-        return $this->hasMany(User::class);
-    }
-
 }

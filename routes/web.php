@@ -14,10 +14,11 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HmisAccessController;
 use App\Http\Controllers\HumanResourceController;
 use App\Http\Controllers\EmploymentTypeController;
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\PrivilegeLevelController;
 use App\Http\Controllers\NhifQualificationController;
 use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\RequestApprovalController;
+use App\Http\Controllers\RequestApproveController;
 use App\Http\Controllers\UserFamilyDetailsController;
 use App\Http\Controllers\UserAdditionalInfoController;
 
@@ -43,7 +44,7 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'handleRegistration'])->name('register.handleRegistration');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::group(['middleware'=> 'auth'], function () 
+Route::group(['middleware'=> 'auth'], function ()
 {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -76,7 +77,7 @@ Route::resource('/employment', EmploymentTypeController::class);
 Route::resource('/role',RoleController::class);
 Route::resource('/permission',PermissionController::class);
 Route::resource('/request',RequestController::class);
-Route::resource('/requestapprove',RequestApprovalController::class);
+Route::resource('/requestapprove',RequestApproveController::class);
 
 Route::get('/users', [AuthController::class, 'getAllUser'])->name('users.index');
 Route::get('/users/{id}/edit', [AuthController::class, 'showEditForm'])->name('users.showEditForm');
@@ -87,6 +88,12 @@ Route::post('users/{id}/role', [AuthController::class, 'editUserRole'])->name('u
 Route::delete('/permission/{id}', 'PermissionController@destroy')->name('permission.delete');
 Route::post('roles/permissions', [PermissionController::class, 'updateRolePermissions'])->name('role.updatePermissions');
 Route::get('role/{roleId}/permissions', [PermissionController::class, 'getRolePermissions']);
+
+Route::post('/approve_form', [FormController::class, 'approveForm'])->name('approve_form');
+
+
+Route::get('/show_form/{id}', [FormController::class, 'getForm']);
+
 
 
 

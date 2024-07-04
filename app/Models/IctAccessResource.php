@@ -44,9 +44,4 @@ class IctAccessResource extends Model
      public function nhif(){
         return $this->belongsTo(NhifQualification::class, 'nhifId');
      }
-
-     public function approvals()
-     {
-         return $this->hasMany(Approval::class);
-     }
 }
