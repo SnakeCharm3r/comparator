@@ -58,7 +58,6 @@
                         </div>
                     </div>
                     <a class="dropdown-item" href="{{route('profile')}}">My Profile</a>
-                    <a class="dropdown-item" href="inbox.html">Inbox</a>
                     <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
                 @else
                     <a class="dropdown-item" href="{{ route('login') }}">Login</a>

@@ -78,6 +78,9 @@
                         <li><a href="{{ route('change.index') }}"
                                 class="{{ request()->routeIs('change.index') ? 'active' : '' }}">Change Management</a>
                         </li>
+                        <li><a href="{{ route('card.index') }}"
+                                class="{{ request()->routeIs('card.index') ? 'active' : '' }}">Id Card Request</a>
+                        </li>
 
                         {{-- Display additional forms based on permissions --}}
                         {{-- @can('view forms')
