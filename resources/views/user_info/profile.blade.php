@@ -168,223 +168,217 @@
                                         @endif
 
 
-                                       
+                                        <!-- Display Family Data Details if available -->
+                                        @if($familyData->isNotEmpty())
+                                            <div class="row mt-4">
+                                                <div class="col-sm-12">
+                                                    <h5 class="card-title d-flex justify-content-between">
+                                                        <span>Family Data</span>
+                                                        <a class="edit-link" data-bs-toggle="modal" href="#edit_next_of_kin"><i class="far fa-edit me-1"></i>Edit</a>
+                                                    </h5>
+                                                    @foreach($familyData as $fami)
+                                                        <div class="row mb-2">
+                                                            <p class="col-sm-3 text-muted text-sm-end mb-0">Full Name</p>
+                                                            <p class="col-sm-9">{{ $fami->full_name }}</p>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <p class="col-sm-3 text-muted text-sm-end mb-0">Relationship</p>
+                                                            <p class="col-sm-9">{{ $fami->relationship }}</p>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <p class="col-sm-3 text-muted text-sm-end mb-0">Mobile</p>
+                                                            <p class="col-sm-9">{{ $fami->mobile }}</p>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <p class="col-sm-3 text-muted text-sm-end mb-0">Address</p>
+                                                            <p class="col-sm-9">{{ $fami->address }}</p>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <p class="col-sm-3 text-muted text-sm-end mb-0">Email</p>
+                                                            <p class="col-sm-9">{{ $fami->email }}</p>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <p class="col-sm-3 text-muted text-sm-end mb-0">Occupation</p>
+                                                            <p class="col-sm-9">{{ $fami->occupation }}</p>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @else
+                                            <!-- Button to show hidden form -->
+                                            <div class="row mt-4">
+                                                <div class="col-sm-12 text-center">
+                                                    <button id="show-form-btn" class="btn btn-primary">Click here to add family members</button>
+                                                </div>
+                                            </div>
 
- <!-- Display Family Data Details if available -->
-@if($familyData->isNotEmpty())
-    <div class="row mt-4">
-        <div class="col-sm-12">
-            <h5 class="card-title d-flex justify-content-between">
-                <span>Family Data</span>
-                <a class="edit-link" data-bs-toggle="modal" href="#edit_next_of_kin"><i class="far fa-edit me-1"></i>Edit</a>
-            </h5>
-            @foreach($familyData as $fami)
-                <div class="row mb-2">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0">Full Name</p>
-                    <p class="col-sm-9">{{ $fami->full_name }}</p>
-                </div>
-                <div class="row mb-2">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0">Relationship</p>
-                    <p class="col-sm-9">{{ $fami->relationship }}</p>
-                </div>
-                <div class="row mb-2">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0">Mobile</p>
-                    <p class="col-sm-9">{{ $fami->mobile }}</p>
-                </div>
-                <div class="row mb-2">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0">Address</p>
-                    <p class="col-sm-9">{{ $fami->address }}</p>
-                </div>
-                <div class="row mb-2">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0">Email</p>
-                    <p class="col-sm-9">{{ $fami->email }}</p>
-                </div>
-                <div class="row mb-2">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0">Occupation</p>
-                    <p class="col-sm-9">{{ $fami->occupation }}</p>
-                </div>
-            @endforeach
-        </div>
-    </div>
-@else
-    <!-- Button to show hidden form -->
-    <div class="row mt-4">
-        <div class="col-sm-12 text-center">
-            <button id="show-family-form-btn" class="btn btn-primary">Click here to add family members</button>
-        </div>
-    </div>
+                                            <!-- Hidden form -->
+                                            <div id="family-data-form" style="display: none;" class="mt-4">
+                                                <form action="{{ route('familyData.addFamilyData') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="userId" value="{{ $user->id }}">
+                                                    <div id="family-members-container">
+                                                        <!-- Family member input fields will be added here by JavaScript -->
+                                                    </div>
+                                                    <button type="button" id="add-member-btn" class="btn btn-success">Add Another Member</button>
+                                                    <button type="submit" class="btn btn-primary">Save Family Data</button>
+                                                </form>
+                                            </div>
+                                        @endif
 
-    <!-- Hidden form -->
-    <div id="family-data-form" style="display: none;" class="mt-4">
-        <form action="{{ route('familyData.addFamilyData') }}" method="POST">
-            @csrf
-            <input type="hidden" name="userId" value="{{ $user->id }}">
-            <div id="family-members-container">
-                <!-- Family member input fields will be added here by JavaScript -->
-            </div>
-            <button type="button" id="add-member-btn" class="btn btn-success">Add Another Member</button>
-            <button type="submit" class="btn btn-primary">Save Family Data</button>
-        </form>
-    </div>
-@endif
+                                        <!-- Display Health Details if available -->
+                                        @if($healthDetails->isNotEmpty())
+                                            <div class="row mt-4">
+                                                <div class="col-sm-12">
+                                                    <h5 class="card-title d-flex justify-content-between">
+                                                        <span>Health Details</span>
+                                                        <a class="edit-link" data-bs-toggle="modal" href="#edit_health"><i class="far fa-edit me-1"></i>Edit</a>
+                                                    </h5>
+                                                    @foreach($healthDetails as $health)
+                                                        <div class="row mb-2">
+                                                            <p class="col-sm-3 text-muted text-sm-end mb-0">Physical Disability</p>
+                                                            <p class="col-sm-9">{{ $health->physical_disability }}</p>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <p class="col-sm-3 text-muted text-sm-end mb-0">Blood group</p>
+                                                            <p class="col-sm-9">{{ $health->blood_group }}</p>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <p class="col-sm-3 text-muted text-sm-end mb-0">Illness history</p>
+                                                            <p class="col-sm-9">{{ $health->illness_history }}</p>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <p class="col-sm-3 text-muted text-sm-end mb-0">Health Insurance</p>
+                                                            <p class="col-sm-9">{{ $health->health_insurance }}</p>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <p class="col-sm-3 text-muted text-sm-end mb-0">Insurer name</p>
+                                                            <p class="col-sm-9">{{ $health->insur_name }}</p>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <p class="col-sm-3 text-muted text-sm-end mb-0">Insurer number</p>
+                                                            <p class="col-sm-9">{{ $health->insur_no }}</p>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <p class="col-sm-3 text-muted text-sm-end mb-0">Allergies</p>
+                                                            <p class="col-sm-9">{{ $health->allergies }}</p>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @else
+                                            <!-- Button to show hidden form -->
+                                            <div class="row mt-4">
+                                                <div class="col-sm-12 text-center">
+                                                    <button id="show-form-btn" class="btn btn-primary">Click here to add health details</button>
+                                                </div>
+                                            </div>
 
-    <!-- Display Health Details if available -->
-@if($healthDetails->isNotEmpty())
-    <div class="row mt-4">
-        <div class="col-sm-12">
-            <h5 class="card-title d-flex justify-content-between">
-                <span>Health Details</span>
-                <a class="edit-link" data-bs-toggle="modal" href="#edit_health"><i class="far fa-edit me-1"></i>Edit</a>
-            </h5>
-            @foreach($healthDetails as $health)
-                <div class="row mb-2">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0">Physical Disability</p>
-                    <p class="col-sm-9">{{ $health->physical_disability }}</p>
-                </div>
-                <div class="row mb-2">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0">Blood group</p>
-                    <p class="col-sm-9">{{ $health->blood_group }}</p>
-                </div>
-                <div class="row mb-2">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0">Illness history</p>
-                    <p class="col-sm-9">{{ $health->illness_history }}</p>
-                </div>
-                <div class="row mb-2">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0">Health Insurance</p>
-                    <p class="col-sm-9">{{ $health->health_insurance }}</p>
-                </div>
-                <div class="row mb-2">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0">Insurer name</p>
-                    <p class="col-sm-9">{{ $health->insur_name }}</p>
-                </div>
-                <div class="row mb-2">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0">Insurer number</p>
-                    <p class="col-sm-9">{{ $health->insur_no }}</p>
-                </div>
-                <div class="row mb-2">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0">Allergies</p>
-                    <p class="col-sm-9">{{ $health->allergies }}</p>
-                </div>
-            @endforeach
-        </div>
-    </div>
-@else
-    <!-- Button to show hidden form -->
-    <div class="row mt-4">
-        <div class="col-sm-12 text-center">
-            <button id="show-health-form-btn" class="btn btn-primary">Click here to add health details</button>
-        </div>
-    </div>
+                                            <!-- Hidden form -->
+                                            <div id="health-form" style="display: none;" class="mt-4">
+                                                <form action="{{ route('healthDetails.addHealthData') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="userId" value="{{ $user->id }}">
 
-    <!-- Hidden form -->
-    <div id="health-form" style="display: none;" class="mt-4">
-        <form action="{{ route('healthDetails.addHealthData') }}" method="POST">
-            @csrf
-            <input type="hidden" name="userId" value="{{ $user->id }}">
+                                                    <div class="mb-3">
+                                                        <label for="physical_disability" class="form-label">Physical Disability</label>
+                                                        <input type="text" class="form-control" id="physical_disability" name="physical_disability" required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="blood_group" class="form-label">blood group</label>
+                                                        <input type="text" class="form-control" id="blood_group" name="blood_group" required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="illness_history" class="form-label">illness history</label>
+                                                        <input type="text" class="form-control" id="illness_history" name="illness_history" required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="health_insurance" class="form-label">health insurance</label>
+                                                        <input type="text" class="form-control" id="health_insurance" name="health_insurance">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="email" class="form-label">insurer name</label>
+                                                        <input type="email" class="form-control" id="insur_name" name="insur_name">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="insur_no" class="form-label">insurer number</label>
+                                                        <input type="text" class="form-control" id="insur_no" name="insur_no">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="allergies" class="form-label">allergies</label>
+                                                        <input type="text" class="form-control" id="allergies" name="allergies">
+                                                    </div>
+                                                    <button type="submit" class="btn btn-success">Add Health Details</button>
+                                                </form>
+                                            </div>
+                                        @endif
 
-            <div class="mb-3">
-                <label for="physical_disability" class="form-label">Physical Disability</label>
-                <input type="text" class="form-control" id="physical_disability" name="physical_disability" required>
-            </div>
-            <div class="mb-3">
-                <label for="blood_group" class="form-label">Blood group</label>
-                <input type="text" class="form-control" id="blood_group" name="blood_group" required>
-            </div>
-            <div class="mb-3">
-                <label for="illness_history" class="form-label">Illness history</label>
-                <input type="text" class="form-control" id="illness_history" name="illness_history" required>
-            </div>
-            <div class="mb-3">
-                <label for="health_insurance" class="form-label">Health insurance</label>
-                <input type="text" class="form-control" id="health_insurance" name="health_insurance">
-            </div>
-            <div class="mb-3">
-                <label for="insur_name" class="form-label">Insurer name</label>
-                <input type="text" class="form-control" id="insur_name" name="insur_name">
-            </div>
-            <div class="mb-3">
-                <label for="insur_no" class="form-label">Insurer number</label>
-                <input type="text" class="form-control" id="insur_no" name="insur_no">
-            </div>
-            <div class="mb-3">
-                <label for="allergies" class="form-label">Allergies</label>
-                <input type="text" class="form-control" id="allergies" name="allergies">
-            </div>
-            <button type="submit" class="btn btn-success">Add Health Details</button>
-        </form>
-    </div>
-@endif
+                                          <!-- Display Next of Kin Details if available -->
+
+                                          @if($ccbrtRelation->isNotEmpty())
+                                            <div class="row mt-4">
+                                                <div class="col-sm-12">
+                                                    <h5 class="card-title d-flex justify-content-between">
+                                                        <span>Ccbrt Relation</span>
+                                                        <a class="edit-link" data-bs-toggle="modal" href="#edit_ccbrt_relation"><i class="far fa-edit me-1"></i>Edit</a>
+                                                    </h5>
+                                                    @foreach($ccbrtRelation as $relate)
+                                                        <div class="row mb-2">
+                                                            <p class="col-sm-3 text-muted text-sm-end mb-0"> Names</p>
+                                                            <p class="col-sm-9">{{ $relate->names }}</p>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <p class="col-sm-3 text-muted text-sm-end mb-0">Relationship</p>
+                                                            <p class="col-sm-9">{{ $relate->relation }}</p>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <p class="col-sm-3 text-muted text-sm-end mb-0">Position</p>
+                                                            <p class="col-sm-9">{{ $relate->position }}</p>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <p class="col-sm-3 text-muted text-sm-end mb-0">Department</p>
+                                                            <p class="col-sm-9">{{ $kin->department }}</p>
+                                                        </div>
+
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @else
+                                            <!-- Button to show hidden form -->
+                                            <div class="row mt-4">
+                                                <div class="col-sm-12 text-center">
+                                                    <button id="show-form-btn" class="btn btn-primary">Click here to add Ccbrt relation</button>
+                                                </div>
+                                            </div>
+
+                                            <!-- Hidden form -->
+                                            <div id="ccbrt-relation-form" style="display: none;" class="mt-4">
+                                                <form action="{{ route('ccbrtRelation.addRelation') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="userId" value="{{ $user->id }}">
+
+                                                    <div class="mb-3">
+                                                        <label for="names" class="form-label">Names</label>
+                                                        <input type="text" class="form-control" id="names" name="names" required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="relations" class="form-label">Relation</label>
+                                                        <input type="text" class="form-control" id="relation" name="relations" required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="department" class="form-label">Department</label>
+                                                        <input type="text" class="form-control" id="department" name="department" required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="position" class="form-label">Position</label>
+                                                        <input type="text" class="form-control" id="position" name="position">
+                                                    </div>
 
 
-
-
-
-<!-- Display Next of Ccbrt Relation if available -->
-@if($ccbrtRelation->isNotEmpty())
-    <div class="row mt-4">
-        <div class="col-sm-12">
-            <h5 class="card-title d-flex justify-content-between">
-                <span>Ccbrt Relation</span>
-                <a class="edit-link" data-bs-toggle="modal" href="#edit_ccbrt_relation"><i class="far fa-edit me-1"></i>Edit</a>
-            </h5>
-            @foreach($ccbrtRelation as $relate)
-                <div class="row mb-2">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0">Names</p>
-                    <p class="col-sm-9">{{ $relate->names }}</p>
-                </div>
-                <div class="row mb-2">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0">Relationship</p>
-                    <p class="col-sm-9">{{ $relate->relation }}</p>
-                </div>
-                <div class="row mb-2">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0">Position</p>
-                    <p class="col-sm-9">{{ $relate->position }}</p>
-                </div>
-                <div class="row mb-2">
-                    <p class="col-sm-3 text-muted text-sm-end mb-0">Department</p>
-                    <p class="col-sm-9">{{ $relate->department }}</p>
-                </div>
-            @endforeach
-        </div>
-    </div>
-@else
-    <!-- Button to show hidden form -->
-    <div class="row mt-4">
-        <div class="col-sm-12 text-center">
-            <button id="show-ccbrt-form-btn" class="btn btn-primary">Click here to add Ccbrt relation</button>
-        </div>
-    </div>
-
-    <!-- Hidden form -->
-    <div id="ccbrt-relation-form" style="display: none;" class="mt-4">
-        <form action="{{ route('ccbrtRelation.addRelation') }}" method="POST">
-            @csrf
-            <input type="hidden" name="userId" value="{{ $user->id }}">
-
-            <div class="mb-3">
-                <label for="names" class="form-label">Names</label>
-                <input type="text" class="form-control" id="names" name="names" required>
-            </div>
-            <div class="mb-3">
-                <label for="relation" class="form-label">Relation</label>
-                <input type="text" class="form-control" id="relation" name="relation" required>
-            </div>
-            <div class="mb-3">
-                <label for="department" class="form-label">Department</label>
-                <input type="text" class="form-control" id="department" name="department" required>
-            </div>
-            <div class="mb-3">
-                <label for="position" class="form-label">Position</label>
-                <input type="text" class="form-control" id="position" name="position">
-            </div>
-
-            <button type="submit" class="btn btn-success">Add Ccbrt Relation</button>
-            <button type="button" id="close-ccbrt-form-btn" class="btn btn-secondary">Close</button>
-
-        </form>
-    </div>
-@endif
-
+                                                    <button type="submit" class="btn btn-success">Add Ccbrt Relation</button>
+                                                </form>
+                                            </div>
+                                        @endif
 
  <!-- Display Language Details if available -->
 @if($languageData->isNotEmpty())
@@ -487,55 +481,22 @@
         form.style.display = form.style.display === 'none' ? 'block' : 'none';
     });
 
-    document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('show-health-form-btn').addEventListener('click', function() {
+    document.getElementById('show-form-btn').addEventListener('click', function() {
         var form = document.getElementById('health-form');
         form.style.display = form.style.display === 'none' ? 'block' : 'none';
     });
-});
 
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     document.getElementById('show-ccbrt-form-btn').addEventListener('click', function() {
-//         var form = document.getElementById('ccbrt-relation-form');
-//         form.style.display = form.style.display === 'none' ? 'block' : 'none';
-//     });
-// });
-
-document.addEventListener('DOMContentLoaded', function() {
-    var showFormBtn = document.getElementById('show-ccbrt-form-btn');
-    var closeFormBtn = document.getElementById('close-ccbrt-form-btn');
-    var form = document.getElementById('ccbrt-relation-form');
-
-    showFormBtn.addEventListener('click', function() {
+    document.getElementById('show-form-btn').addEventListener('click', function() {
+        var form = document.getElementById('ccbrt-relation-form');
         form.style.display = form.style.display === 'none' ? 'block' : 'none';
     });
 
-    closeFormBtn.addEventListener('click', function() {
-        form.style.display = 'none';
-    });
-});
-
-
-
     document.addEventListener('DOMContentLoaded', function() {
-    // Function to show/hide forms
-    function toggleForm(buttonId, formId) {
-        document.getElementById(buttonId).addEventListener('click', function() {
-            const form = document.getElementById(formId);
-            form.style.display = form.style.display === 'none' ? 'block' : 'none';
-        });
-    }
-
-    // Initialize form toggles
-    toggleForm('show-family-form-btn', 'family-data-form');
-
-    // Add and remove family member fields
     const maxMembers = 5;
     const minMembers = 1;
-    let memberCount = 0;
     const container = document.getElementById('family-members-container');
     const addButton = document.getElementById('add-member-btn');
+    let memberCount = 0;
 
     function addMember() {
         if (memberCount < maxMembers) {
@@ -559,6 +520,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <label for="DOB_${memberCount}" class="form-label">Date of Birth</label>
                         <input type="date" class="form-control" id="DOB_${memberCount}" name="familyData[${memberCount - 1}][DOB]">
                     </div>
+
                     <div class="mb-3">
                         <label for="occupation_${memberCount}" class="form-label">Occupation</label>
                         <input type="text" class="form-control" id="occupation_${memberCount}" name="familyData[${memberCount - 1}][occupation]">
@@ -570,19 +532,22 @@ document.addEventListener('DOMContentLoaded', function() {
             container.insertAdjacentHTML('beforeend', memberFields);
             updateRemoveButtons();
         }
-    }
+      }
 
-    function updateRemoveButtons() {
+     function updateRemoveButtons() {
         const removeButtons = document.querySelectorAll('.remove-member-btn');
         removeButtons.forEach(button => {
             button.addEventListener('click', function() {
-                button.parentElement.remove();
-                memberCount--;
+                if (memberCount > minMembers) {
+                    button.parentElement.remove();
+                    memberCount--;
+                }
             });
         });
-    }
+          }
 
-    document.getElementById('show-family-form-btn').addEventListener('click', function() {
+    document.getElementById('show-form-btn').addEventListener('click', function() {
+        document.getElementById('family-data-form').style.display = 'block';
         for (let i = 0; i < minMembers; i++) {
             addMember();
         }
@@ -590,9 +555,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     addButton.addEventListener('click', function() {
         addMember();
-    });
-});
-
+      });
+ });
 
 
  // Language form members management

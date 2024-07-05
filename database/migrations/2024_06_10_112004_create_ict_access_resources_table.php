@@ -19,17 +19,15 @@ return new class extends Migration
             $table->bigInteger('userId')->unsigned();
             $table->bigInteger('hmisId')->unsigned();
             $table->bigInteger('nhifId')->unsigned()->nullable();
-            $table->bigInteger('form_id')->unsigned()->nullable();
             $table->string('aruti')->nullable();
             $table->string('active_drt')->nullable();
             $table->string('VPN')->nullable();
             $table->string('pbax')->nullable();
             $table->string('sap')->nullable();
             $table->text('hardware_request')->nullable();
-            $table->tinyInteger('status')->default(0);
+            $table->string('status');
             $table->string('physical_access')->nullable();
             $table->foreign('remarkId')->references('id')->on('remarks');
-            $table->foreign('form_id')->references('id')->on('forms');
             $table->foreign('privilegeId')->references('id')->on('privilege_levels');
             $table->foreign('userId')->references('id')->on('users');
             $table->foreign('hmisId')->references('id')->on('h_m_i_s_access_levels');

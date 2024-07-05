@@ -3,16 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Workflow;
+use Illuminate\Support\Facades\Auth;
 
-class RequestController extends Controller
+
+class RequestApproveController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // dd(123);
-        return view("myrequest.index");
+        $pending= Workflow::join('work_flow_histories','work_flow_histories.work_flow_id','=','workflows.id')->where('attended_by',Auth::user()->id)->get();
+        // dd($pending);
+        return view("requestapprove.index" ,compact ("pending"));
     }
 
     /**
