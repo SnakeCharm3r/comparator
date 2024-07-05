@@ -26,28 +26,36 @@
                                     <thead class="table-primary">
                                         <tr>
                                             <th>Request Type</th>
-                                            <th>Stage</th>
                                             <th>Status</th>
                                             <th>Submitted</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><i class="fas fa-calendar-alt"></i> Leave Request</td>
-                                            <td>HR</td>
-                                            <td>Pending</td>
-                                            <td>Jun 27, 2024</td>
-                                            <td>
-                                                <a href="#" class="btn btn-primary btn-sm" title="View">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                              
-                                            </td>
-                                        </tr>
-                                        
-                                        
-                                        <!-- Additional demo rows can be added here -->
+                                        {{-- {{dd($pending)}} --}}
+                                        @foreach ($pending as $pending)
+                                            <tr>
+                                                @if ($pending->ict_request_resource_id)
+                                                    <td>
+                                                        <i class="fas fa-key"></i> ICT Access Form
+                                                    </td>
+                                                    <td>
+                                                        <span class=" badge text-dark {{$pending->status==1 ? 'bg-success':'bg-warning'}} font-size-11">
+                                                            {{ $pending->status==1 ? 'Approved' : 'Pending' }}
+                                                            </span>
+                                                    </td>
+                                                    <td>{{$pending->attend_date}}</td>
+                                                    <td>
+                                                        <button href="#" class="btn btn-primary btn-sm" title="View" onclick="showForm({{$pending->ict_request_resource_id}})">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+
+                                                    </td>
+                                                @endif
+
+                                            </tr>
+                                        @endforeach
+
                                     </tbody>
                                 </table>
 
@@ -60,3 +68,13 @@
         </div>
     </div>
 @endsection
+
+<script type="text/javascript">
+    function showForm(id){
+        var url = '/show_form/' + id;
+
+        window.location.href = url;
+    }
+</script>
+
+

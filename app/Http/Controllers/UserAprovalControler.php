@@ -4,15 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class RequestController extends Controller
+class UserAprovalControler extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // dd(123);
-        return view("myrequest.index");
+        //
     }
 
     /**

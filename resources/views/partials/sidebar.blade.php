@@ -1,3 +1,20 @@
+<style>
+    /* Custom CSS for Blinking Badge */
+    .badge-blink {
+        animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+        0%, 100% {
+            opacity: 1;
+            background-color: #ff5733;
+        }
+        50% {
+            opacity: 0;
+            background-color: #ff0000;
+        }
+    }
+</style>
 <div class="sidebar" id="sidebar">
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
@@ -21,7 +38,7 @@
                     <li class="submenu {{ request()->is('form*') ? 'active' : '' }}">
                         <a href="#"><i class="fas fa-file-alt"></i> <span> Forms</span> <span
                                 class="menu-arrow"></span></a>
-                        <ul {{ request()->is('form*') ? 'display: block;' : '' }}>
+                        <ul style="{{ request()->is('form*') ? 'display: block;' : '' }}">
                             @can('view ict access form')
                                 <li><a href="{{ route('form.index') }}"
                                         class="{{ request()->routeIs('form.index') ? 'active' : '' }}">ICT Access Form</a></li>
@@ -48,7 +65,7 @@
                 <li class="submenu {{ request()->is('form*') ? 'active' : '' }}">
                     <a href="#"><i class="fas fa-file-alt"></i> <span> Forms</span> <span
                             class="menu-arrow"></span></a>
-                    <ul{{ request()->is('form*') ? 'display: block;' : '' }}>
+                    <ul style="{{ request()->is('form*') ? 'display: block;' : '' }}">
                         {{-- Always display these links --}}
                         <li><a href="{{ route('form.index') }}"
                                 class="{{ request()->routeIs('form.index') ? 'active' : '' }}">ICT Access Form</a></li>
@@ -60,6 +77,9 @@
                                 Agreement</a></li>
                         <li><a href="{{ route('change.index') }}"
                                 class="{{ request()->routeIs('change.index') ? 'active' : '' }}">Change Management</a>
+                        </li>
+                        <li><a href="{{ route('card.index') }}"
+                                class="{{ request()->routeIs('card.index') ? 'active' : '' }}">Id Card Request</a>
                         </li>
 
                         {{-- Display additional forms based on permissions --}}
@@ -89,23 +109,32 @@
 
 
                 {{-- Requests --}}
-@can('view requests')
-<li class="submenu {{ request()->is('request*') ? 'active' : '' }}">
-    <a href="#"><i class="fas fa-file-alt"></i> <span>Requests</span> <span class="menu-arrow"></span></a>
-    <ul{{ request()->is('request*') ? 'display: block;' : '' }}>
-        @can('view my requests')
-            <li><a href="{{ route('request.index') }}" class="{{ request()->routeIs('request.index') ? 'active' : '' }}">My Requests</a></li>
-        @endcan
-    </ul>
-</li>
-@endcan
+                @can('view requests')
+                    <li class="submenu {{ request()->is('request*') ? 'active' : '' }}">
+                        <a href="#"><i class="fas fa-file-alt"></i> <span>Requests</span> <span
+                                class="menu-arrow"></span></a>
+                        <ul style="{{ request()->is('request*') ? 'display: block;' : '' }}">
+                            @can('view my requests')
+                                <li><a href="{{ route('request.index') }}"
+                                        class="{{ request()->routeIs('request.index') ? 'active' : '' }}">My Requests</a></li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
 
-{{-- Requests Approval --}}
-@can('approve requests')
-<li class="{{ request()->routeIs('requestapprove.index') ? 'active' : '' }}">
-    <a href="{{ route('requestapprove.index') }}"><i class="fas fa-file-alt"></i> <span>Requests Approval</span></a>
-</li>
-@endcan
+                {{-- Requests Approval --}}
+                @can('approve requests')
+                    <li class="{{ request()->routeIs('requestapprove.index') ? 'active' : '' }}">
+                        <a href="{{ route('requestapprove.index') }}"><i class="fas fa-file-alt"></i> <span>Requests
+                                Approval
+                                @if(DB::table('work_flow_histories')->where('attended_by',Auth::user()->id)->where('status',0)->count() >0)
+                                <span class="badge badge-pill badge-primary badge-blink">
+                                    {{DB::table('work_flow_histories')->where('attended_by',Auth::user()->id)->where('status',0)->count()}}
+                                </span>
+                                @endif
+                            </span> </a>
+                    </li>
+                @endcan
 
 
 
@@ -161,7 +190,7 @@
                     <li class="submenu {{ request()->is('user-management*') ? 'active' : '' }}">
                         <a href="#"><i class="fas fa-users-cog"></i> <span>User Management</span> <span
                                 class="menu-arrow"></span></a>
-                        <ul {{ request()->is('user-management*') ? 'display: block;' : '' }}>
+                        <ul style="{{ request()->is('user-management*') ? 'display: block;' : '' }}">
                             @can('assign roles')
                                 <li><a href="{{ route('users.index') }}"
                                         class="{{ request()->routeIs('users.index') ? 'active' : '' }}">Assign Roles</a></li>
@@ -184,7 +213,7 @@
                     <li class="submenu {{ request()->is('settings*') ? 'active' : '' }}">
                         <a href="#"><i class="fas fa-cog"></i> <span>Settings</span> <span
                                 class="menu-arrow"></span></a>
-                        <ul{{ request()->is('settings*') ? 'display: block;' : '' }}>
+                        <ul style="{{ request()->is('settings*') ? 'display: block;' : '' }}">
                             @can('view logs')
                                 <li><a href="#" class="{{ request()->routeIs('logs.index') ? 'active' : '' }}">User
                                         Activity Logs</a></li>

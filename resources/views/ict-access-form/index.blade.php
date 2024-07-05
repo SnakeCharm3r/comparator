@@ -17,12 +17,13 @@
                     <div class="card">
                         <div class="card-body">
                             <p>Please fill out the following form.</p>
+                            
                             <form method="POST" action="#">
                                 @csrf
                                 <div class="row">
                                     <!-- Column 1 -->
                                     <input type="hidden" name="userId" value="{{ $user->id }}">
-                                    
+
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="username">Username<span style="color: red;">*</span></label>
