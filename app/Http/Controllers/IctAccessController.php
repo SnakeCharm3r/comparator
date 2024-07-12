@@ -110,21 +110,21 @@ class IctAccessController extends Controller
                     'physical_access' => $request->input('physical_access'),
                     'delete_status' => 0,
                 ]);
-    
-                \Log::info('ICT Access Resource created', ['ict' => $ict]);
-    
-                // Save workflow for ICT Access Resource
-                $workflow = $this->saveWorkflow([
+                // dd($ict);
+
+
+                $input = [
                     'user_id' => Auth::user()->id,
                     'ict_request_resource_id' => $ict->id,
                     'work_flow_status' => 'sent to approval',
-                    'work_flow_completed' => 0,
-                ]);
-    
-                \Log::info('Workflow saved', ['workflow' => $workflow]);
-    
-                // Save initial workflow history
-                $this->saveWorkflowHistory([
+                    'work_flow_completed' => 0
+
+                ];
+                // dd($input);
+
+                $workflow = $this->saveWorkflow($input);
+                // dd($workflow->id);
+                $input = [
                     'work_flow_id' => $workflow->id,
                     'forwarded_by' => Auth::user()->id,
                     'attended_by' => Auth::user()->id,
@@ -148,14 +148,18 @@ class IctAccessController extends Controller
                     'status' => '0',
                     'remark' => 'Forwarded for approval',
                     'attend_date' => Carbon::now()->format('d F Y'),
-                    'parent_id' => $workflow->id,
-                ]);
-    
-                \Log::info('Workflow history forwarded for approval');
-    
-                // Success alert and redirect
-                Alert::success('IT access form request submitted successfully', 'IT access Request Added');
-                return redirect()->route('form.index')->with('success', 'ICT Access Resource created successfully.');
+                    'parent_id' =>$workflowHistory->id ,
+                ];
+
+                $forwardWorkflowHistory=$this->forwardWorkflowHistory($input);
+
+                // dd($input);
+
+
+
+
+                // Alert::success('IT access form request submit successful', 'IT access Request Added');
+                return view('ict-access-form.index')->with('success', 'ICT Access Resource created successfully.');
             });
         } catch (\Exception $e) {
             // Log the exact error message for better debugging

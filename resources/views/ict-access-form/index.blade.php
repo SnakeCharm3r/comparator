@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('breadcrumb')
-@include('sweetalert::alert')
+    @include('sweetalert::alert')
     <div class="page-wrapper">
         <div class="content container-fluid">
             <div class="page-header">
@@ -17,8 +17,9 @@
                     <div class="card">
                         <div class="card-body">
                             <p>Please fill out the following form.</p>
-                            
-                            <form method="POST" action="#">
+
+                            <form method="POST" action="{{ route('form.store') }}">
+
                                 @csrf
                                 <div class="row">
                                     <!-- Column 1 -->
@@ -79,17 +80,7 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                        </div>
-                                        {{-- <div class="form-group">
-                                            <label for="remark">Aruti HR MIS<span style="color: red;">*</span></label>
-                                            <select class="form-control" id="aruti" name="aruti" required>
-                                                <option value="">Select an option</option>
-                                                @foreach ($privileges as $privilege)
-                                                    <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div> --}}
+                                        </div>                                 
                                         <div class="form-group">
                                             <label for="openclinic_hms">PABX<span style="color: red;">*</span></label>
                                             <select class="form-control" id="pbax" name="pbax" required>
