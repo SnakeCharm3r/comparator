@@ -5,10 +5,13 @@
     }
 
     @keyframes blink {
-        0%, 100% {
+
+        0%,
+        100% {
             opacity: 1;
             background-color: #ff5733;
         }
+
         50% {
             opacity: 0;
             background-color: #ff0000;
@@ -19,49 +22,11 @@
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
-                {{-- Main Menu --}}
 
-                {{-- Dashboard --}}
-                {{-- @can('view dashboard')
-                    <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                        <a href="{{ route('dashboard') }}"><i class="fas fa-tachometer-alt"></i> <span> Dashboard</span></a>
-                    </li>
-                @endcan --}}
                 {{-- Dashboard --}}
                 <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
                     <a href="{{ route('dashboard') }}"><i class="fas fa-tachometer-alt"></i> <span> Dashboard</span></a>
                 </li>
-
-
-                {{-- Forms --}}
-                {{-- @can('view forms')
-                    <li class="submenu {{ request()->is('form*') ? 'active' : '' }}">
-                        <a href="#"><i class="fas fa-file-alt"></i> <span> Forms</span> <span
-                                class="menu-arrow"></span></a>
-                        <ul style="{{ request()->is('form*') ? 'display: block;' : '' }}">
-                            @can('view ict access form')
-                                <li><a href="{{ route('form.index') }}"
-                                        class="{{ request()->routeIs('form.index') ? 'active' : '' }}">ICT Access Form</a></li>
-                            @endcan
-                            @can('view hr clearance form')
-                                <li><a href="{{ route('hr.index') }}"
-                                        class="{{ request()->routeIs('hr.index') ? 'active' : '' }}">HR Clearance and Exit
-                                        Form</a></li>
-                            @endcan
-                            @can('view data security agreement')
-                                <li><a href="{{ route('data.index') }}"
-                                        class="{{ request()->routeIs('data.index') ? 'active' : '' }}">Data Security
-                                        Agreement</a></li>
-                            @endcan
-                            @can('view change management')
-                                <li><a href="{{ route('change.index') }}"
-                                        class="{{ request()->routeIs('change.index') ? 'active' : '' }}">Change Management</a>
-                                </li>
-                            @endcan
-                        </ul>
-                    </li>
-                @endcan --}}
-                {{-- Forms --}}
                 <li class="submenu {{ request()->is('form*') ? 'active' : '' }}">
                     <a href="#"><i class="fas fa-file-alt"></i> <span> Forms</span> <span
                             class="menu-arrow"></span></a>
@@ -81,39 +46,19 @@
                         <li><a href="{{ route('card.index') }}"
                                 class="{{ request()->routeIs('card.index') ? 'active' : '' }}">Id Card Request</a>
                         </li>
-
-                        {{-- Display additional forms based on permissions --}}
-                        {{-- @can('view forms')
-                            @can('view ict access form')
-                                <li><a href="{{ route('form.index') }}"
-                                        class="{{ request()->routeIs('form.index') ? 'active' : '' }}">ICT Access Form</a></li>
-                            @endcan
-                            @can('view hr clearance form')
-                                <li><a href="{{ route('hr.index') }}"
-                                        class="{{ request()->routeIs('hr.index') ? 'active' : '' }}">HR Clearance and Exit
-                                        Form</a></li>
-                            @endcan
-                            @can('view data security agreement')
-                                <li><a href="{{ route('data.index') }}"
-                                        class="{{ request()->routeIs('data.index') ? 'active' : '' }}">Data Security
-                                        Agreement</a></li>
-                            @endcan
-                            @can('view change management')
-                                <li><a href="{{ route('change.index') }}"
-                                        class="{{ request()->routeIs('change.index') ? 'active' : '' }}">Change Management</a>
-                                </li>
-                            @endcan
-                        @endcan --}}
+                        {{-- <li><a href="{{ route('hslb.index') }}"
+                                class="{{ request()->routeIs('hslb.index') ? 'active' : '' }}">HESLB</a>
+                        </li> --}}
                     </ul>
                 </li>
 
 
                 {{-- Requests --}}
                 @can('view requests')
-                    <li class="submenu {{ request()->is('request*') ? 'active' : '' }}">
-                        <a href="#"><i class="fas fa-file-alt"></i> <span>Requests</span> <span
+                    <li class="submenu {{ request()->is('requests/*') ? 'active' : '' }}">
+                        <a href="#"><i class="fas fa-tasks"></i> <span>Requests</span> <span
                                 class="menu-arrow"></span></a>
-                        <ul style="{{ request()->is('request*') ? 'display: block;' : '' }}">
+                        <ul style="{{ request()->is('requests/*') ? 'display: block;' : '' }}">
                             @can('view my requests')
                                 <li><a href="{{ route('request.index') }}"
                                         class="{{ request()->routeIs('request.index') ? 'active' : '' }}">My Requests</a></li>
@@ -122,21 +67,28 @@
                     </li>
                 @endcan
 
-                {{-- Requests Approval --}}
-                @can('approve requests')
-                    <li class="{{ request()->routeIs('requestapprove.index') ? 'active' : '' }}">
-                        <a href="{{ route('requestapprove.index') }}"><i class="fas fa-file-alt"></i> <span>Requests
-                                Approval
-                                @if(DB::table('work_flow_histories')->where('attended_by',Auth::user()->id)->where('status',0)->count() >0)
-                                <span class="badge badge-pill badge-primary badge-blink">
-                                    {{DB::table('work_flow_histories')->where('attended_by',Auth::user()->id)->where('status',0)->count()}}
-                                </span>
-                                @endif
-                            </span> </a>
+
+                @can('view my requests')
+                    <li class="{{ request()->routeIs('policies.index') ? 'active' : '' }}">
+                        <a href="{{ route('policies.index') }}"><i class="fas fa-file-invoice"></i>
+                            <span>Policies</span>
+                        </a>
                     </li>
                 @endcan
 
-
+                @can('approve requests')
+                    <li class="{{ request()->routeIs('requestapprove.index') ? 'active' : '' }}">
+                        <a href="{{ route('requestapprove.index') }}">
+                            <i class="fas fa-check"></i> <span>Requests Approval
+                                @if (DB::table('work_flow_histories')->where('attended_by', Auth::user()->id)->where('status', 0)->count() > 0)
+                                    <span class="badge badge-pill badge-primary badge-blink">
+                                        {{ DB::table('work_flow_histories')->where('attended_by', Auth::user()->id)->where('status', 0)->count() }}
+                                    </span>
+                                @endif
+                            </span>
+                        </a>
+                    </li>
+                @endcan
 
 
                 {{-- Departments --}}

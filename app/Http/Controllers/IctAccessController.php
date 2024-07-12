@@ -109,8 +109,6 @@ class IctAccessController extends Controller
 
 
                 ]);
-                // dd($ict);
-
 
                 $input = [
                     'user_id' => Auth::user()->id,
@@ -119,10 +117,7 @@ class IctAccessController extends Controller
                     'work_flow_completed' => 0
 
                 ];
-                // dd($input);
-
                 $workflow = $this->saveWorkflow($input);
-                // dd($workflow->id);
                 $input = [
                     'work_flow_id' => $workflow->id,
                     'forwarded_by' => Auth::user()->id,
@@ -151,13 +146,11 @@ class IctAccessController extends Controller
 
                 $forwardWorkflowHistory=$this->forwardWorkflowHistory($input);
 
-                // dd($input);
 
+                Alert::success('IT access form request submit successful', 'IT access Request Added');
+                // return view('myrequest.index');
+                return redirect()->route('form.index')->with('success', 'IT Access Form submitted successfully.');
 
-
-
-                // Alert::success('IT access form request submit successful', 'IT access Request Added');
-                return view('ict-access-form.index')->with('success', 'ICT Access Resource created successfully.');
             });
         } catch (\Error $e) {
             Alert::success($e);

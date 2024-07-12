@@ -3,25 +3,28 @@
 use App\Models\PrivilegeLevel;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ChangeManagementController;
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\RemarkController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DataSecurityController;
 use App\Http\Controllers\IctAccessController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HmisAccessController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\DataSecurityController;
 use App\Http\Controllers\HumanResourceController;
-use App\Http\Controllers\EmploymentTypeController;
-use App\Http\Controllers\FormController;
-use App\Http\Controllers\PrivilegeLevelController;
-use App\Http\Controllers\NhifQualificationController;
 use App\Http\Controllers\IdCardRequestController;
+use App\Http\Controllers\EmploymentTypeController;
+use App\Http\Controllers\PrivilegeLevelController;
 use App\Http\Controllers\RequestApproveController;
-use App\Http\Controllers\UserFamilyDetailsController;
-use App\Http\Controllers\UserAdditionalInfoController;
+use App\Http\Controllers\ChangeManagementController;
+use App\Http\Controllers\HslbController;
+use App\Http\Controllers\NhifQualificationController;
+// use App\Http\Controllers\UserFamilyDetailsController;
+// use App\Http\Controllers\UserAdditionalInfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,24 +48,33 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'handleRegistration'])->name('register.handleRegistration');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::resource('policies', PolicyController::class);
+Route::post('/policies/accept', [PolicyController::class, 'accept'])->name('policies.accept');
+
 Route::group(['middleware'=> 'auth'], function ()
 {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // Route::get('/next-of-kins', [AuthController::class, 'nextOfKins'])->name('auth.next_of_kins');
 Route::get('/departments', [DepartmentController::class, 'index']);
-Route::get('/next_of_kins', [UserAdditionalInfoController::class, 'next_of_kins'])->name('next_of_kins');
-Route::post('/nextOfKins', [UserAdditionalInfoController::class, 'addNextOfKins'])->name('nextOfKins.addNextOfKins');
+// Route::get('/next_of_kins', [UserAdditionalInfoController::class, 'next_of_kins'])->name('next_of_kins');
+// Route::post('/nextOfKins', [UserAdditionalInfoController::class, 'addNextOfKins'])->name('nextOfKins.addNextOfKins');
 
-Route::get('/profile', [UserAdditionalInfoController::class, 'profile'])->name('profile')->middleware('auth');
+// Route::get('/profile', [UserAdditionalInfoController::class, 'profile'])->name('profile')->middleware('auth');
+
 
 
 // Route::get('/profile', [UserFamilyDetailsController::class, 'profileFamily'])->name('profileFamily');
-Route::post('/familyData', [UserFamilyDetailsController::class, 'addFamilyData'])->name('familyData.addFamilyData');
-Route::post('/healthDetails', [UserFamilyDetailsController::class, 'addHealthData'])->name('healthDetails.addHealthData');
-Route::post('/languageData', [UserFamilyDetailsController::class, 'addLanguage'])->name('languageData.addLanguage');
-Route::post('/ccbrtRelation', [UserFamilyDetailsController::class, 'addRelation'])->name('ccbrtRelation.addRelation');
+// Route::post('/familyData', [UserFamilyDetailsController::class, 'addFamilyData'])->name('familyData.addFamilyData');
+// Route::post('/healthDetails', [UserFamilyDetailsController::class, 'addHealthData'])->name('healthDetails.addHealthData');
+// Route::post('/languageData', [UserFamilyDetailsController::class, 'addLanguage'])->name('languageData.addLanguage');
+// Route::post('/ccbrtRelation', [UserFamilyDetailsController::class, 'addRelation'])->name('ccbrtRelation.addRelation');
 
+
+Route::resource('/profile', ProfileController::class);
+Route::middleware(['auth'])->post('profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
+Route::post('picture', [ProfileController::class, 'updateProfilePicture'])->name('profile.update.picture');
+Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
 
 //ict-access controller
 Route::resource('/form', IctAccessController::class);
@@ -80,6 +92,8 @@ Route::resource('/permission',PermissionController::class);
 Route::resource('/request',RequestController::class);
 Route::resource('/requestapprove',RequestApproveController::class);
 Route::resource('/card',IdCardRequestController::class);
+Route::resource('/hslb',HslbController::class);
+Route::post('hslb/hr-confirm/{id}', [HslbController::class, 'hrConfirm'])->name('hslb.hrConfirm');
 
 Route::get('/users', [AuthController::class, 'getAllUser'])->name('users.index');
 Route::get('/users/{id}/edit', [AuthController::class, 'showEditForm'])->name('users.showEditForm');

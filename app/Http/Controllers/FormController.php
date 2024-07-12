@@ -52,7 +52,7 @@ class FormController extends Controller
         $input=[
             'work_flow_id' => $workflow->id,
             'forwarded_by' => Auth::user()->id,
-            'attended_by' => $approver->id,
+            // 'attended_by' => $approver->id,
             'status' => '0',
             'remark' => 'forwarded for approval',
             'attend_date' => Carbon::now()->format('d F Y'),
