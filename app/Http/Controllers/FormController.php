@@ -45,27 +45,57 @@ class FormController extends Controller
                 ->where('status', 0)
                 ->first();
 
+            if ($workflowHistory) {
+                // Proceed with updating the found WorkflowHistory
+                $workflowHistory->status = 1;
+                $workflowHistory->save();
+            } else {
+                // Handle case where no WorkflowHistory is found
+                dd("WorkflowHistory not found for Workflow ID {$workflow->id} and status 0");
+            }
+        } else {
+            // Handle case where no Workflow is found
+            dd("Workflow not found for access ID {$request->access_id}");
+        }
 
-        $workflowHistory= WorkflowHistory::where('work_flow_id',$workflow->id)->where('status',0)->first();
-        $tosaveHistory= WorkflowHistory::find($workflowHistory->id);
-        $tosaveHistory->status=1;
-        $tosaveHistory->save();
+        // dd(Auth::user());
+        $user = Auth::user(); // Get the authenticated user
+        // dd($user);
+        $roles = $user->getRoleNames(); // Get all roles as a collection of role names
+        //  dd($roles);
+        // get user based on roles
+        if ($roles->contains('line-manager')) {
+            $approver = User::role('hr')->first();
+        } elseif ($roles->contains('hr')) {
+            $approver = User::role('it')->first();
+        } elseif ($roles->contains('it')) {
+            $approver = User::role('admin')->first();
+        } else {
+            $approver = 'no approval';
+        }
+        //   dd( $approver);
+        //     // where('job_title', 'Human Resource')->first();
+        // dd($approver );
+        $ict = new IctAccessController();
 
+        if ($roles->contains('admin')) {
+            // dd($workflow->id);
+            $workflow = Workflow::find($workflow->id);
+            $workflow->work_flow_status = "aproved";
+            $workflow->work_flow_completed = 1;
+            $workflow->save();
+        } else {
+            $input = [
+                'work_flow_id' => $workflow->id,
+                'forwarded_by' => Auth::user()->id,
+                'attended_by' => $approver->id,
+                'status' => '0',
+                'remark' => 'forwarded for approval',
+                'attend_date' => Carbon::now()->format('d F Y'),
+                'parent_id' => $workflowHistory->id
+            ];
+            // dd($input);
 
-        $approver = User::where('job_title', 'Human Resource')->first();
-
-        $input=[
-            'work_flow_id' => $workflow->id,
-            'forwarded_by' => Auth::user()->id,
-            'attended_by' => $approver->id,
-            'status' => '0',
-            'remark' => 'forwarded for approval',
-            'attend_date' => Carbon::now()->format('d F Y'),
-            'parent_id' =>$workflowHistory->id
-        ];
-
-
-        $ict= new IctAccessController();
 
 
 
