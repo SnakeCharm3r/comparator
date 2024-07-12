@@ -29,7 +29,7 @@
                                     </a>
                                 </div>
                             </div>
-
+<!-- {{dd($form)}} -->
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <h4>My Requests</h4>
@@ -43,6 +43,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach( $form as $aform)
                                                 <tr>
                                                     <td><i class="fas fa-calendar-alt"></i> Leave Request</td>
                                                     <td>
@@ -55,7 +56,8 @@
                                                     </td>
                                                     <td>{{ date('Y-m-d H:i:s', strtotime('2024-06-27 09:00:00')) }}</td>
                                                 </tr>
-                                                <tr>
+                                                @endforeach
+                                                <!-- <tr>
                                                     <td><i class="fas fa-laptop"></i> Equipment Request</td>
                                                     <td>
                                                         <ul class="list-unstyled mb-0">
@@ -78,7 +80,7 @@
                                                         </ul>
                                                     </td>
                                                     <td>{{ date('Y-m-d H:i:s', strtotime('2024-04-02 16:45:00')) }}</td>
-                                                </tr>
+                                                </tr> -->
                                                 <!-- Additional requests can be added here -->
                                             </tbody>
                                         </table>

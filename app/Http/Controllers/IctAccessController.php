@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Gate;
 
 class IctAccessController extends Controller
 {
@@ -60,10 +61,7 @@ class IctAccessController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        // Log the request data
-        \Log::info('Request data: ', $request->all());
-
+        // Validate incoming request
         $validator = Validator::make($request->all(), [
             'remarkId' => 'required|exists:remarks,id',
             'privilegeId' => 'required|exists:privilege_levels,id',
@@ -76,20 +74,25 @@ class IctAccessController extends Controller
             'VPN' => 'required|exists:privilege_levels,id',
             'pbax' => 'required|exists:privilege_levels,id',
         ]);
-
+        //dd( $validator);
+    
         if ($validator->fails()) {
+            \Log::error('Validation failed', ['errors' => $validator->errors()]);
             return response()->json([
-                'stauss' => 400,
+                'status' => 400,
                 'errors' => $validator->errors(),
             ]);
         }
-        // Convert the hardware_request array to a string
-        $hardwareRequest = $request->input('hardware_request') ? implode(',', $request->input('hardware_request')) : null;
-
+    
+        // Start a database transaction
         try {
-
-            \DB::transaction(function () use ($request, $hardwareRequest) {
-
+            \DB::transaction(function () use ($request) {
+                // Convert hardware_request array to a comma-separated string
+                $hardwareRequest = $request->input('hardware_request') ? implode(',', $request->input('hardware_request')) : null;
+    
+                \Log::info('Hardware request processed', ['hardware_request' => $hardwareRequest]);
+    
+                // Create ICT Access Resource
                 $ict = IctAccessResource::create([
                     'remarkId' => $request->input('remarkId'),
                     'privilegeId' => $request->input('privilegeId'),
@@ -106,73 +109,106 @@ class IctAccessController extends Controller
                     'status' => $request->input('status'),
                     'physical_access' => $request->input('physical_access'),
                     'delete_status' => 0,
-
-
                 ]);
-                // dd($ict);
-
-
-                $input = [
+    
+                \Log::info('ICT Access Resource created', ['ict' => $ict]);
+    
+                // Save workflow for ICT Access Resource
+                $workflow = $this->saveWorkflow([
                     'user_id' => Auth::user()->id,
                     'ict_request_resource_id' => $ict->id,
                     'work_flow_status' => 'sent to approval',
-                    'work_flow_completed' => 0
-
-                ];
-                // dd($input);
-
-                $workflow = $this->saveWorkflow($input);
-                // dd($workflow->id);
-                $input = [
+                    'work_flow_completed' => 0,
+                ]);
+    
+                \Log::info('Workflow saved', ['workflow' => $workflow]);
+    
+                // Save initial workflow history
+                $this->saveWorkflowHistory([
                     'work_flow_id' => $workflow->id,
                     'forwarded_by' => Auth::user()->id,
                     'attended_by' => Auth::user()->id,
                     'status' => '1',
-                    'remark' => 'Ict Access Resource created',
+                    'remark' => 'ICT Access Resource created',
                     'attend_date' => Carbon::now()->format('d F Y'),
                     'parent_id' => null,
-                ];
-
-                $workflowHistory = $this->saveWorkflowHistory($input);
-
-                //find mtu wa kuapruv hapa
-
-                $approver = User::where('job_title', 'Line Manager')->first();
-
-                $input=[
+                ]);
+    
+                \Log::info('Initial workflow history saved');
+    
+                // Find the approver based on role (e.g., Line Manager)
+                $approver = $this->findLineManagerForRequesterDepartment();
+                \Log::info('Approver found', ['approver' => $approver]);
+    
+                // Forward for approval
+                $this->forwardWorkflowHistory([
                     'work_flow_id' => $workflow->id,
                     'forwarded_by' => Auth::user()->id,
                     'attended_by' => $approver->id,
                     'status' => '0',
-                    'remark' => 'forwarded for approval',
+                    'remark' => 'Forwarded for approval',
                     'attend_date' => Carbon::now()->format('d F Y'),
-                    'parent_id' =>$workflowHistory->id ,
-                ];
-
-                $forwardWorkflowHistory=$this->forwardWorkflowHistory($input);
-
-                // dd($input);
-
-
-
-
-                // Alert::success('IT access form request submit successful', 'IT access Request Added');
-                return view('ict-access-form.index')->with('success', 'ICT Access Resource created successfully.');
+                    'parent_id' => $workflow->id,
+                ]);
+    
+                \Log::info('Workflow history forwarded for approval');
+    
+                // Success alert and redirect
+                Alert::success('IT access form request submitted successfully', 'IT access Request Added');
+                return redirect()->route('form.index')->with('success', 'ICT Access Resource created successfully.');
             });
-        } catch (\Error $e) {
-            Alert::success($e);
+        } catch (\Exception $e) {
+            // Log the exact error message for better debugging
+            \Log::error('Error storing ICT Access Resource: ' . $e->getMessage(), ['exception' => $e]);
+            Alert::error('Failed to submit IT access form request', 'Error');
+            return back()->withInput()->withErrors(['error' => 'Failed to process request. Please try again.']);
         }
     }
+    
 
     public function saveWorkflow($input)
     {
         // dd($input);
         return Workflow::create($input);
     }
+
+
     public function saveWorkflowHistory($input)
     {
         return WorkFlowHistory::create($input);
     }
+
+   // Method to find Line Manager for Requester department
+public function findLineManagerForRequesterDepartment()
+{
+    try {
+        // Role name of the Line Manager
+        $approverRoleName = 'line-manager';
+
+        // Department ID of the Requester (replace with your dynamic logic)
+        $requesterDepartmentId = Auth::user()->deptId; // Adjust based on your actual department ID field
+
+        // Query to find the Line Manager with 'line-manager' role and requester's department
+        $approver = User::role($approverRoleName)
+            ->where('deptId', $requesterDepartmentId)
+            ->first();
+
+        if (!$approver) {
+            throw new \Exception('Line Manager for Requester department not found or unauthorized');
+        }
+
+        return $approver;
+    } catch (\Exception $e) {
+        // Log the error for debugging purposes
+        \Log::error('Error finding Line Manager: ' . $e->getMessage());
+
+        // Throw exception further for error handling in calling method
+        throw $e;
+    }
+}
+
+
+    
     public function forwardWorkflowHistory($input)
     {
         return WorkFlowHistory::create($input);

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Workflow;
+use Auth;
 use Illuminate\Http\Request;
 
 class RequestController extends Controller
@@ -11,8 +13,11 @@ class RequestController extends Controller
      */
     public function index()
     {
-        // dd(123);
-        return view("myrequest.index");
+        $form= Workflow::join('work_flow_histories','work_flow_histories.work_flow_id','=','workflows.id')
+        ->where('workflows.user_id',Auth::user()->id)
+        ->get();
+        // dd( $form);
+        return view("myrequest.index" ,compact('form'));
     }
 
     /**

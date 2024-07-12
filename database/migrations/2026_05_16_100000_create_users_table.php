@@ -34,7 +34,7 @@ return new class extends Migration
             $table->string('emp_id')->nullable();
             $table->bigInteger('deptId')->unsigned();
             $table->bigInteger('employment_typeId')->unsigned();
-            // $table->bigInteger('health_info_Id')->unsigned();
+            $table->bigInteger('role_id')->unsigned();
             $table->string('employee_cv')->nullable();
             $table->string('NIN')->nullable();
             $table->string('nssf_no')->nullable();
@@ -44,7 +44,7 @@ return new class extends Migration
             $table->foreign('deptId')->references('id')->on('departments');
             $table->foreign('employment_typeId')->references('id')->on('employment_types');
             $table->string('delete_status')->nullable();
-            // $table->foreign('health_info_Id')->references('id')->on('health_details');
+            $table->foreign('role_id')->references('id')->on('roles');
             $table->rememberToken();
             $table->timestamps();
         });
