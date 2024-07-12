@@ -46,9 +46,9 @@
                         <li><a href="{{ route('card.index') }}"
                                 class="{{ request()->routeIs('card.index') ? 'active' : '' }}">Id Card Request</a>
                         </li>
-                        <li><a href="{{ route('hslb.index') }}"
+                        {{-- <li><a href="{{ route('hslb.index') }}"
                                 class="{{ request()->routeIs('hslb.index') ? 'active' : '' }}">HESLB</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
 
