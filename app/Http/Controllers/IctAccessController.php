@@ -129,7 +129,7 @@ class IctAccessController extends Controller
                     'forwarded_by' => Auth::user()->id,
                     'attended_by' => Auth::user()->id,
                     'status' => '1',
-                    'remark' => 'ICT Access Resource created',
+                    'remark' => 'ICT Access Resource',
                     'attend_date' => Carbon::now()->format('d F Y'),
                     'parent_id' => null,
                 ]);

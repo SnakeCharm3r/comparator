@@ -20,12 +20,18 @@ class FormController extends Controller
     public function getform(Request $request)
     {
         $ictForm = IctAccessResource::join('users', 'users.id', '=', 'ict_access_resources.userId')
+        ->join('workflows','workflows.ict_request_resource_id','=','ict_access_resources.id')
+        ->join('work_flow_histories','work_flow_histories.work_flow_id','=','workflows.id')
             ->where('ict_access_resources.id', $request->id)
             ->first([
                 'ict_access_resources.*',
                 'users.*',
+                'workflows.*',
+                'work_flow_histories.*',
                 'ict_access_resources.id as access_id'
             ]);
+
+// dd($ictForm);
         // dd($request->id);
 
         return view('ict_resource_form', compact('ictForm'));

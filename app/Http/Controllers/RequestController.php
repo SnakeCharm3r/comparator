@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Workflow;
+use App\Models\WorkFlowHistory;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -13,11 +15,32 @@ class RequestController extends Controller
      */
     public function index()
     {
-        $form= Workflow::join('work_flow_histories','work_flow_histories.work_flow_id','=','workflows.id')
-        ->where('workflows.user_id',Auth::user()->id)
-        ->get();
-        // dd( $form);
-        return view("myrequest.index" ,compact('form'));
+        try {
+            if (!Auth::check()) {
+                return redirect()->route('login'); // Ensure the user is authenticated
+            }
+
+            $userId = Auth::user()->id;
+
+            $form = Workflow::where('user_id', $userId)->get();
+
+        // Initialize an empty array to store histories for each form
+        $histories = [];
+
+        // Fetch histories for each form
+        foreach ($form as $aform) {
+            $history = WorkFlowHistory::where('work_flow_id', $aform->id)->get();
+            $histories[$aform->id] = $history; // Store histories keyed by form ID
+        }
+
+        // Debug to ensure data is fetched correctly
+        // dd($form, $histories);
+
+        return view('myrequest.index', compact('form', 'histories'));
+
+        } catch (\Exception $e) {
+            dd($e->getMessage()); // Show error message for debugging
+        }
     }
 
     /**
