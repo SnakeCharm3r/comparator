@@ -20,22 +20,45 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
+                                    <label>Middle Name <span class="login-danger">*</span></label>
+                                    <input class="form-control" type="text" name="mname" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
                                     <label>Last Name <span class="login-danger">*</span></label>
                                     <input class="form-control" type="text" name="lname" required>
                                 </div>
                             </div>
+
+                        </div>
+                        <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Username <span class="login-danger">*</span></label>
                                     <input class="form-control" type="text" name="username" required>
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Email <span class="login-danger">*</span></label>
+                                    <input class="form-control" type="text" name="email" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label> Date of Birth <span class="login-danger">*</span></label>
+                                    <input class="form-control" type="text" name="dob" required>
+                                </div>
+                            </div>
+
+
                         </div>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Email</label>
-                                    <input class="form-control" type="email" name="email">
+                                    <label>Phone Number <span class="login-danger">*</span></label>
+                                    <input class="form-control" type="text" name="mobile" required>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -56,8 +79,6 @@
                                     </select>
                                 </div>
                             </div>
-
-
                         </div>
                         <div class="row">
                             <div class="col-md-4">
