@@ -81,124 +81,52 @@
                                         </ul>
                                         <div class="tab-content pt-3">
                                             <div class="tab-pane" id="family">
-                                                <form action="{{ route('profile.edit', $id) }}" method="POST">
-                                                    @csrf
-                                                    @method('PATCH')
-
-                                                    <div class="row">
-                                                        <!-- Next of Kin 1 -->
-                                                        <div class="col-12 col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Full Name (Next of Kin 1)</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="full_name_1"
-                                                                    value="{{ old('full_name_1', $profile->full_name_1) }}"
-                                                                    required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Relationship (Next of Kin 1)</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="relationship_1"
-                                                                    value="{{ old('relationship_1', $profile->relationship_1) }}"
-                                                                    required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12 col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Mobile (Next of Kin 1)</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="phone_number_1"
-                                                                    value="{{ old('phone_number_1', $profile->phone_number_1) }}"
-                                                                    required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Date of Birth (Next of Kin 1)</label>
-                                                                <input type="date" class="form-control" name="dob_1"
-                                                                    value="{{ old('dob_1', $profile->dob_1) }}" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12 col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Occupation (Next of Kin 1)</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="occupation_1"
-                                                                    value="{{ old('occupation_1', $profile->occupation_1) }}"
-                                                                    required>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <hr>
-                                                    <div class="row">
-                                                        <!-- Next of Kin 2 -->
-                                                        <div class="col-12 col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Full Name (Next of Kin 2)</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="full_name_2"
-                                                                    value="{{ old('full_name_2', $profile->full_name_2) }}"
-                                                                    required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Relationship (Next of Kin 2)</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="relationship_2"
-                                                                    value="{{ old('relationship_2', $profile->relationship_2) }}"
-                                                                    required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12 col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Mobile (Next of Kin 2)</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="phone_number_2"
-                                                                    value="{{ old('phone_number_2', $profile->phone_number_2) }}"
-                                                                    required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Date of Birth (Next of Kin 2)</label>
-                                                                <input type="date" class="form-control" name="dob_2"
-                                                                    value="{{ old('dob_2', $profile->dob_2) }}" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12 col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Occupation (Next of Kin 2)</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="occupation_2"
-                                                                    value="{{ old('occupation_2', $profile->occupation_2) }}"
-                                                                    required>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mt-3">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label>First Person to Contact in Case of Emergency:</label>
-                                                                <select class="form-control" name="emergency_contact"
-                                                                    required>
-                                                                    <option value="" disabled
-                                                                        {{ old('emergency_contact', $profile->emergency_contact) == '' ? 'selected' : '' }}>
-                                                                        Select Emergency Contact</option>
-                                                                    <option value="next_of_kin1"
-                                                                        {{ old('emergency_contact', $profile->emergency_contact) == 'next_of_kin1' ? 'selected' : '' }}>
-                                                                        Next of Kin 1</option>
-                                                                    <option value="next_of_kin2"
-                                                                        {{ old('emergency_contact', $profile->emergency_contact) == 'next_of_kin2' ? 'selected' : '' }}>
-                                                                        Next of Kin 2</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mt-3">
-                                                        <div class="col d-flex justify-content-end">
-                                                            <button class="btn btn-secondary me-2"
-                                                                type="button">Edit</button>
-                                                            <button class="btn btn-primary" type="submit">Save
-                                                                Changes</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-
+                                               
+                                                @if ($profile)
+                                                <!-- Display family details in a table -->
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Full Name (Next of Kin 1)</th>
+                                                            <th>Relationship (Next of Kin 1)</th>
+                                                            <th>Mobile (Next of Kin 1)</th>
+                                                            <th>Date of Birth (Next of Kin 1)</th>
+                                                            <th>Occupation (Next of Kin 1)</th>
+                                                            <th>Full Name (Next of Kin 2)</th>
+                                                            <th>Relationship (Next of Kin 2)</th>
+                                                            <th>Mobile (Next of Kin 2)</th>
+                                                            <th>Date of Birth (Next of Kin 2)</th>
+                                                            <th>Occupation (Next of Kin 2)</th>
+                                                            <th>Emergency Contact</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>{{ $profile->full_name_1 }}</td>
+                                                            <td>{{ $profile->relationship_1 }}</td>
+                                                            <td>{{ $profile->phone_number_1 }}</td>
+                                                            <td>{{ $profile->dob_1 }}</td>
+                                                            <td>{{ $profile->occupation_1 }}</td>
+                                                            <td>{{ $profile->full_name_2 }}</td>
+                                                            <td>{{ $profile->relationship_2 }}</td>
+                                                            <td>{{ $profile->phone_number_2 }}</td>
+                                                            <td>{{ $profile->dob_2 }}</td>
+                                                            <td>{{ $profile->occupation_2 }}</td>
+                                                            <td>{{ $profile->emergency_contact == 'next_of_kin1' ? 'Next of Kin 1' : 'Next of Kin 2' }}</td>
+                                                            <td>
+                                                                <a href="{{ route('profile.family') }}" class="btn btn-primary">Edit</a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            @else
+                                                <!-- If no family details exist, show a button to create them -->
+                                                <div class="alert alert-info">
+                                                    No family details found. Click the button below to add your family details.
+                                                </div>
+                                                <a href="{{ route('profile.family') }}" class="btn btn-primary">Add Family Details</a>
+                                            @endif
 
                                             </div>
                                         </div>
