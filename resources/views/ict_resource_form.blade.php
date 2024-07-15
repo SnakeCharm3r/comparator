@@ -72,7 +72,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="page-sub-header">
-                                <h3 class="page-title">IT Access Form</h3>
+                                <h3 class="page-title">IT Access Form <p>Previous Approval {{\App\Models\User::findOrFail($ictForm->forwarded_by)->fname}} &nbsp; {{\App\Models\User::findOrFail($ictForm->forwarded_by)->lname}}</p></h3>
 
                             </div>
                         </div>
@@ -83,7 +83,8 @@
                         <div class="form-header">
                             <img src="{{ asset('assets/img/logo-small.png') }}" alt="Logo">
                             <p><strong>Comprehensive Community Based Rehabilitation in Tanzania</strong></p>
-                            <h3>IT Access Form</h3>
+                            <h3>IT Access Form </h3>
+
                         </div>
                         {{-- {{dd($ictForm)}} --}}
                         <table class="table table-custom">

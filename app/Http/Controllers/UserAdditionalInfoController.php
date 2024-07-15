@@ -20,7 +20,7 @@ class UserAdditionalInfoController extends Controller
         $healthDetails = HealthDetails::where('userId', $user->id)->get();
         $languageData = LanguageKnowledge::where('userId', $user->id)->get();
         $ccbrtRelation = CcbrtRelation::where('userId', $user->id)->get();
-        return view('user_info.profile', compact('user', 
+        return view('user_info.profile', compact('user',
         'nextOfKins', 'familyData', 'healthDetails','languageData','ccbrtRelation'));
     }
 
@@ -67,9 +67,9 @@ class UserAdditionalInfoController extends Controller
             ]);
         }
 
-        $ $userId = $request->input('userId');
+         $userId = $request->input('userId');
         $familyData = $request->input('familyData');
-    
+
         foreach ($familyData as $data) {
             UserFamilyDetails::create([
                 'userId' => $userId,
