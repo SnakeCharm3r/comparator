@@ -256,12 +256,18 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col d-flex justify-content-end">
-                                                            <button class="btn btn-secondary me-2"
-                                                                type="button">Edit</button>
-                                                            <button class="btn btn-primary" type="submit">Save
-                                                                Changes</button>
+                                                            <button class="btn btn-secondary me-2" type="button"
+                                                                onclick="redirectToEditProfile({{ $user->id }})">Edit</button>
+                                                            
                                                         </div>
                                                     </div>
+
+                                                    <script>
+                                                        function redirectToEditProfile(userId) {
+                                                            window.location.href = `/profile/edit/${userId}`;
+                                                        }
+                                                    </script>
+
 
                                                 </form>
                                             </div>
@@ -348,8 +354,7 @@
                                                         <div class="col d-flex justify-content-end">
                                                             <button class="btn btn-secondary me-2"
                                                                 type="button">Edit</button>
-                                                            <button class="btn btn-primary" type="submit">Save
-                                                                Changes</button>
+                                                           
                                                         </div>
                                                     </div>
                                                 </form>
@@ -361,33 +366,68 @@
                                                         <!-- Next of Kin 1 -->
                                                         <div class="col-12 col-md-6">
                                                             <div class="form-group">
-                                                                <label>Full Name</label>
+                                                                <label>Full Name (Next of Kin 1)</label>
                                                                 <input type="text" class="form-control"
-                                                                    name="full_name" required>
+                                                                    name="full_name_1" readonly >
                                                             </div>
                                                             <div class="form-group">
-                                                                <label>Relationship</label>
+                                                                <label>Relationship (Next of Kin 1)</label>
                                                                 <input type="text" class="form-control"
-                                                                    name="relationship" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12 col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Mobile</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="phone_number" required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Date of Birth</label>
-                                                                <input type="text" class="form-control" name="DOB"
-                                                                    required>
+                                                                    name="relationship_1" readonly>
                                                             </div>
                                                         </div>
                                                         <div class="col-12 col-md-6">
                                                             <div class="form-group">
-                                                                <label>Occupation</label>
+                                                                <label>Mobile (Next of Kin 1)</label>
                                                                 <input type="text" class="form-control"
-                                                                    name="occupation" required>
+                                                                    name="phone_number_1" readonly>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Date of Birth (Next of Kin 1)</label>
+                                                                <input type="text" class="form-control" name="dob_1"
+                                                                readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Occupation (Next of Kin 1)</label>
+                                                                <input type="text" class="form-control"
+                                                                    name="occupation_1" readonly>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <!-- Next of Kin 2 -->
+                                                        <div class="col-12 col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Full Name (Next of Kin 2)</label>
+                                                                <input type="text" class="form-control"
+                                                                    name="full_name_2" readonly>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Relationship (Next of Kin 2)</label>
+                                                                <input type="text" class="form-control"
+                                                                    name="relationship_2" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Mobile (Next of Kin 2)</label>
+                                                                <input type="text" class="form-control"
+                                                                    name="phone_number_2" readonly>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Date of Birth (Next of Kin 2)</label>
+                                                                <input type="text" class="form-control" name="dob_2"
+                                                                readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Occupation (Next of Kin 2)</label>
+                                                                <input type="text" class="form-control"
+                                                                    name="occupation_2" readonly>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -395,7 +435,8 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label>First Person to Contact in Case of Emergency:</label>
-                                                                <select class="form-control" name="emergency_contact">
+                                                                <select class="form-control" name="emergency_contact"
+                                                                readonly>
                                                                     <option value="" disabled selected>Select
                                                                         Emergency Contact</option>
                                                                     <option value="next_of_kin1">Next of Kin 1</option>
@@ -408,8 +449,7 @@
                                                         <div class="col d-flex justify-content-end">
                                                             <button class="btn btn-secondary me-2"
                                                                 type="button">Edit</button>
-                                                            <button class="btn btn-primary" type="submit">Save
-                                                                Changes</button>
+                                                           
                                                         </div>
                                                     </div>
                                                 </form>
@@ -449,8 +489,7 @@
                                                         <div class="col d-flex justify-content-end">
                                                             <button class="btn btn-secondary me-2"
                                                                 type="button">Edit</button>
-                                                            <button class="btn btn-primary" type="submit">Save
-                                                                Changes</button>
+                                                           
                                                         </div>
                                                     </div>
                                                 </form>
@@ -493,8 +532,7 @@
                                                         <div class="col d-flex justify-content-end">
                                                             <button class="btn btn-secondary me-2"
                                                                 type="button">Edit</button>
-                                                            <button class="btn btn-primary" type="submit">Save
-                                                                Changes</button>
+                                                           
                                                         </div>
                                                     </div>
                                                 </form>
@@ -528,9 +566,7 @@
                                                                     <div class="col d-flex justify-content-end">
                                                                         <button class="btn btn-secondary me-2"
                                                                             type="button">Edit</button>
-                                                                        <button class="btn btn-primary"
-                                                                            type="submit">Save
-                                                                            Changes</button>
+                                                                      
                                                                     </div>
                                                                 </div>
                                                             </div>
