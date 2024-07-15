@@ -33,13 +33,12 @@ class RequestController extends Controller
             $histories[$aform->id] = $history; // Store histories keyed by form ID
         }
 
-        // Debug to ensure data is fetched correctly
         // dd($form, $histories);
 
         return view('myrequest.index', compact('form', 'histories'));
 
         } catch (\Exception $e) {
-            dd($e->getMessage()); // Show error message for debugging
+            dd($e->getMessage());
         }
     }
 
