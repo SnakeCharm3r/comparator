@@ -79,187 +79,87 @@
                                                     data-bs-toggle="tab">User Info</a></li>
                                             
                                         </ul>
-                                        <div class="tab-content pt-3">
-                                            <div class="tab-pane active" id="settings">
-                                                <form action="#" method="POST" class="form" novalidate="">
-                                                    @csrf
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <div class="form-group">
-                                                                        <label>First Name</label>
-                                                                        <input class="form-control" type="text"
-                                                                            name="first_name" placeholder="John Smith"
-                                                                            value="{{ old('first_name', $user->fname) }}"
-                                                                            readonly>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col">
-                                                                    <div class="form-group">
-                                                                        <label>Middle Name</label>
-                                                                        <input class="form-control" type="text"
-                                                                            name="middle_name" placeholder="Middle Name"
-                                                                            value="{{ old('middle_name', $user->mname) }}"readonly>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <div class="form-group">
-                                                                        <label>Last Name</label>
-                                                                        <input class="form-control" type="text"
-                                                                            name="last_name" placeholder="John Smith"
-                                                                            value="{{ old('last_name', $user->lname) }}"readonly>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="row">
-                                                                <!-- Email Section -->
-                                                                <div class="col-12 col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label>Username</label>
-                                                                        <input class="form-control" type="text"
-                                                                            name="username" placeholder="johnny.s"
-                                                                            value="{{ old('username', $user->username) }}">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-12 col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label>Email</label>
-                                                                        <input class="form-control" type="text"
-                                                                            name="email" placeholder="user@example.com"
-                                                                            value="{{ old('email', $user->email) }}"readonly>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-12 col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label>Mobile Number</label>
-                                                                        <input type="text"
-                                                                            class="form-control"readonly>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-12 col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label>Date of Birth</label>
-                                                                        <input class="form-control" type="date"
-                                                                            name="DOB"
-                                                                            value="{{ old('dob', $user->dob) }}"readonly>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-12 col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label>Place of Birth</label>
-                                                                        <input type="text" class="form-control">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-12 col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="marital-status">Marital Status:</label>
-                                                                        <select id="marital-status" class="form-control">
-                                                                            <option value="">Select Marital Status
-                                                                            </option>
-                                                                            <option value="single">Single</option>
-                                                                            <option value="married">Married</option>
-                                                                            <option value="divorced">Divorced</option>
-                                                                            <option value="widowed">Widowed</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                            <div class="row">
-                                                                <!-- Email Section -->
-                                                                <div class="col-12 col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label>Region</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="region">
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-12 col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label>District</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="district">
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-12 col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label>Street</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="street">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-12 col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label>House Number</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="house_no">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-12 col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label>Home Address</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="home_address">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-12 col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label>Domicile</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="domicile">
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-12 col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label>Religion</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="religion">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-12 col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label>Professional Reg Number</label>
-                                                                        <input type="text"
-                                                                            class="form-control"name="professional_reg_number">
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-12 col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label>National Identification Number</label>
-                                                                        <input type="text"
-                                                                            class="form-control"name="national_Identification_number">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
+                                        <form action="{{ route('profile.updateFamily', $profile->id) }}" method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                    
+                                            <div class="row">
+                                                <!-- Next of Kin 1 -->
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Full Name (Next of Kin 1)</label>
+                                                        <input type="text" class="form-control" name="full_name_1" value="{{ old('full_name_1', $profile->full_name_1) }}" required>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col d-flex justify-content-end">
-                                                            <button class="btn btn-secondary me-2" type="button"
-                                                                onclick="redirectToEditProfile({{ $user->id }})">Edit</button>
-                                                            <button class="btn btn-primary" type="submit">Save
-                                                                Changes</button>
-                                                        </div>
+                                                    <div class="form-group">
+                                                        <label>Relationship (Next of Kin 1)</label>
+                                                        <input type="text" class="form-control" name="relationship_1" value="{{ old('relationship_1', $profile->relationship_1) }}" required>
                                                     </div>
-
-                                                    <script>
-                                                        function redirectToEditProfile(userId) {
-                                                            window.location.href = `/profile/edit/${userId}`;
-                                                        }
-                                                    </script>
-                                                </form>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Mobile (Next of Kin 1)</label>
+                                                        <input type="text" class="form-control" name="phone_number_1" value="{{ old('phone_number_1', $profile->phone_number_1) }}" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Date of Birth (Next of Kin 1)</label>
+                                                        <input type="date" class="form-control" name="dob_1" value="{{ old('dob_1', $profile->dob_1) }}" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Occupation (Next of Kin 1)</label>
+                                                        <input type="text" class="form-control" name="occupation_1" value="{{ old('occupation_1', $profile->occupation_1) }}" required>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                            <hr>
+                                            <div class="row">
+                                                <!-- Next of Kin 2 -->
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Full Name (Next of Kin 2)</label>
+                                                        <input type="text" class="form-control" name="full_name_2" value="{{ old('full_name_2', $profile->full_name_2) }}" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Relationship (Next of Kin 2)</label>
+                                                        <input type="text" class="form-control" name="relationship_2" value="{{ old('relationship_2', $profile->relationship_2) }}" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Mobile (Next of Kin 2)</label>
+                                                        <input type="text" class="form-control" name="phone_number_2" value="{{ old('phone_number_2', $profile->phone_number_2) }}" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Date of Birth (Next of Kin 2)</label>
+                                                        <input type="date" class="form-control" name="dob_2" value="{{ old('dob_2', $profile->dob_2) }}" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Occupation (Next of Kin 2)</label>
+                                                        <input type="text" class="form-control" name="occupation_2" value="{{ old('occupation_2', $profile->occupation_2) }}" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>First Person to Contact in Case of Emergency:</label>
+                                                        <select class="form-control" name="emergency_contact" required>
+                                                            <option value="" disabled {{ old('emergency_contact', $profile->emergency_contact) == '' ? 'selected' : '' }}>Select Emergency Contact</option>
+                                                            <option value="next_of_kin1" {{ old('emergency_contact', $profile->emergency_contact) == 'next_of_kin1' ? 'selected' : '' }}>Next of Kin 1</option>
+                                                            <option value="next_of_kin2" {{ old('emergency_contact', $profile->emergency_contact) == 'next_of_kin2' ? 'selected' : '' }}>Next of Kin 2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col d-flex justify-content-end">
+                                                    <button class="btn btn-primary" type="submit">Save Changes</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
