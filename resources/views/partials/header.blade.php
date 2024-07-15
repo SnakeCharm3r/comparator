@@ -19,11 +19,15 @@
         <i class="fas fa-bars" style="background-color: #61ce70; padding: 12px; border-radius: 5px;"></i>
     </a>
     <ul class="nav user-menu">
-        <li class="nav-item dropdown noti-dropdown me-2">
-            <a href="#" class="dropdown-toggle nav-link header-nav-list" data-bs-toggle="dropdown">
-                <img src="{{ asset('assets/img/icons/header-icon-05.svg') }}" alt="">
-            </a>
-        </li>
+        {{-- @if (Auth::check() && !empty($user->profile_picture))
+            <li class="nav-item dropdown noti-dropdown me-2">
+                <a href="#" class="dropdown-toggle nav-link header-nav-list" data-bs-toggle="dropdown">
+                    <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture"
+                        class="img-fluid rounded-circle"
+                        style="max-width: 140px; height: 140px; border: 2px solid #ccc; padding: 5px; object-fit: cover;">
+                </a>
+            </li>
+        @endif --}}
 
         <li class="nav-item zoom-screen me-2">
             <a href="#" class="nav-link header-nav-list">
@@ -49,16 +53,17 @@
             </a>
             <div class="dropdown-menu">
                 @if (Auth::check())
-                    {{-- <div class="user-header">
+                    <div class="user-header">
                         <div class="avatar avatar-sm">
-                            <img src="{{asset('assets/img/profiles/avatar-01.jpg')}}" alt="User Image" class="avatar-img rounded-circle">
+                            <img src="{{ asset('assets/img/profiles/avatar-01.jpg') }}" alt="User Image"
+                                class="avatar-img rounded-circle">
                         </div>
                         <div class="user-text">
                             <h6>{{ Auth::user()->fname }} {{ Auth::user()->lname }}</h6>
                             <p class="text-muted mb-0">{{ Auth::user()->job_title }}</p>
                         </div>
-                    </div> --}}
-                    <a class="dropdown-item" href="{{ route('profile.index')}}">My Profile</a>
+                    </div>
+                    <a class="dropdown-item" href="{{ route('profile.index') }}">My Profile</a>
                     <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
                 @else
                     <a class="dropdown-item" href="{{ route('login') }}">Login</a>
