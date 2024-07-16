@@ -79,9 +79,12 @@
                                                     data-bs-toggle="tab">User Info</a></li>
                                             <li class="nav-item"><a href="#security" class="nav-link"
                                                     data-bs-toggle="tab">Password</a></li>
-                                            <li class="nav-item"><a href="{{ route('family-details.index') }}" class="nav-link">Family Details</a></li>
-                                            <li class="nav-item"><a href="{{ route('health-details.index') }}" class="nav-link">Health Details</a></li>
-                                            <li class="nav-item"><a href="{{ route('relation-details.index') }}" class="nav-link">CCBRT Reation</a></li>
+                                            <li class="nav-item"><a href="{{ route('family-details.index') }}"
+                                                    class="nav-link">Family Details</a></li>
+                                            <li class="nav-item"><a href="{{ route('health-details.index') }}"
+                                                    class="nav-link">Health Details</a></li>
+                                            <li class="nav-item"><a href="{{ route('relation-details.index') }}"
+                                                    class="nav-link">CCBRT Reation</a></li>
                                             <li class="nav-item"><a href="#language" class="nav-link"
                                                     data-bs-toggle="tab">Language</a></li>
                                             <li class="nav-item"><a href="#policies" class="nav-link"
@@ -357,8 +360,8 @@
                                                 </form>
                                             </div> --}}
 
-                                            <div class="tab-pane" id="family">
-                                                {{-- <div class="tab-pane" id="family">
+                                            {{-- <div class="tab-pane" id="family">
+                                                <div class="tab-pane" id="family">
                                                     <div class="row">
                                                         <!-- Family Details Table -->
                                                         <div class="col-md-8">
@@ -438,9 +441,9 @@
                                                             </form>
                                                         </div>
                                                     </div>
-                                                </div> --}}
+                                                </div>
 
-                                            </div>
+                                            </div> --}}
 
                                             {{-- <script>
                                                     $(document).ready(function() {
@@ -482,7 +485,7 @@
                                         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
                                         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
 
-                                            <div class="tab-pane" id="CCBRT_Relation">
+                                            {{-- <div class="tab-pane" id="CCBRT_Relation">
                                                 <form action="#">
                                                     <div class="row">
                                                         <div class="col-12 col-md-6">
@@ -519,7 +522,7 @@
                                                         </div>
                                                     </div>
                                                 </form>
-                                            </div>
+                                            </div> --}}
 
                                             <div class="tab-pane" id="language">
                                                 <form action="#">
