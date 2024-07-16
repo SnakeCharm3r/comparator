@@ -75,7 +75,7 @@ class IctAccessController extends Controller
             'pbax' => 'required|exists:privilege_levels,id',
         ]);
         //dd( $validator);
-    
+
         if ($validator->fails()) {
             \Log::error('Validation failed', ['errors' => $validator->errors()]);
             return response()->json([
@@ -83,15 +83,15 @@ class IctAccessController extends Controller
                 'errors' => $validator->errors(),
             ]);
         }
-    
+
         // Start a database transaction
         try {
             \DB::transaction(function () use ($request) {
                 // Convert hardware_request array to a comma-separated string
                 $hardwareRequest = $request->input('hardware_request') ? implode(',', $request->input('hardware_request')) : null;
-    
+
                 \Log::info('Hardware request processed', ['hardware_request' => $hardwareRequest]);
-    
+
                 // Create ICT Access Resource
                 $ict = IctAccessResource::create([
                     'remarkId' => $request->input('remarkId'),
@@ -110,9 +110,9 @@ class IctAccessController extends Controller
                     'physical_access' => $request->input('physical_access'),
                     'delete_status' => 0,
                 ]);
-    
+
                 \Log::info('ICT Access Resource created', ['ict' => $ict]);
-    
+
                 // Save workflow for ICT Access Resource
                 $workflow = $this->saveWorkflow([
                     'user_id' => Auth::user()->id,
@@ -120,9 +120,9 @@ class IctAccessController extends Controller
                     'work_flow_status' => 'sent to approval',
                     'work_flow_completed' => 0,
                 ]);
-    
+
                 \Log::info('Workflow saved', ['workflow' => $workflow]);
-    
+
                 // Save initial workflow history
                 $this->saveWorkflowHistory([
                     'work_flow_id' => $workflow->id,
@@ -133,13 +133,13 @@ class IctAccessController extends Controller
                     'attend_date' => Carbon::now()->format('d F Y'),
                     'parent_id' => null,
                 ]);
-    
+
                 \Log::info('Initial workflow history saved');
-    
+
                 // Find the approver based on role (e.g., Line Manager)
                 $approver = $this->findLineManagerForRequesterDepartment();
                 \Log::info('Approver found', ['approver' => $approver]);
-    
+
                 // Forward for approval
                 $this->forwardWorkflowHistory([
                     'work_flow_id' => $workflow->id,
@@ -150,12 +150,12 @@ class IctAccessController extends Controller
                     'attend_date' => Carbon::now()->format('d F Y'),
                     'parent_id' => $workflow->id,
                 ]);
-    
+
                 \Log::info('Workflow history forwarded for approval');
-    
+
                 // Success alert and redirect
                 Alert::success('IT access form request submitted successfully', 'IT access Request Added');
-                return redirect()->route('form.index')->with('success', 'ICT Access Resource created successfully.');
+                return redirect()->route('myrequest.index')->with('success', 'ICT Access Resource created successfully.');
             });
         } catch (\Exception $e) {
             // Log the exact error message for better debugging
@@ -164,7 +164,7 @@ class IctAccessController extends Controller
             return back()->withInput()->withErrors(['error' => 'Failed to process request. Please try again.']);
         }
     }
-    
+
 
     public function saveWorkflow($input)
     {
@@ -208,7 +208,7 @@ public function findLineManagerForRequesterDepartment()
 }
 
 
-    
+
     public function forwardWorkflowHistory($input)
     {
         return WorkFlowHistory::create($input);

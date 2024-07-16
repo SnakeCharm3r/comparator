@@ -21,6 +21,22 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <form action="{{ route('search.requests') }}" method="GET" class="form-inline">
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" name="query" class="form-control form-control-sm" placeholder="Search...">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-primary btn-sm">
+                                                    <i class="fas fa-search fa-xs"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            </div>
                             <div class="table-responsive">
                                 <table class="table table-hover table-bordered">
                                     <thead class="table-primary">
