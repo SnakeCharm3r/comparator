@@ -75,9 +75,21 @@
                                             </div>
                                         </div>
                                         <ul class="nav nav-tabs">
-                                            <li class="nav-item">
-                                                <a href="#family" class="nav-link active" data-bs-toggle="tab">Language</a>
-                                            </li>
+                                            <li class="nav-item"><a href="#settings" class=" nav-link"
+                                                    data-bs-toggle="tab">User Info</a></li>
+                                            <li class="nav-item"><a href="#security" class="nav-link"
+                                                    data-bs-toggle="tab">Password</a></li>
+                                            <li class="nav-item"><a href="{{ route('family-details.index') }}"
+                                                    class="nav-link">Family Details</a></li>
+                                            <li class="nav-item"><a href="{{ route('health-details.index') }}"
+                                                    class=" nav-link">Health Details</a></li>
+                                            <li class="nav-item"><a href="{{ route('relation-details.index') }}"
+                                                    class="nav-link">CCBRT Reation</a></li>
+                                            <li class="nav-item"><a href="{{ route('language_knowledge.index') }}"
+                                                    class="active nav-link">Language</a> </li>
+
+                                            <li class="nav-item"><a href="#policies" class="nav-link"
+                                                    data-bs-toggle="tab">Policies</a></li>
                                         </ul>
                                         <div class="tab-content pt-3">
                                             <div class="tab-pane active" id="family">

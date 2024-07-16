@@ -75,10 +75,21 @@
                                             </div>
                                         </div>
                                         <ul class="nav nav-tabs">
-                                            <li class="nav-item">
-                                                <a href="#family" class="nav-link active" data-bs-toggle="tab">CCBRT
-                                                    Relation</a>
-                                            </li>
+                                            <li class="nav-item"><a href="#settings" class=" nav-link"
+                                                    data-bs-toggle="tab">User Info</a></li>
+                                            <li class="nav-item"><a href="#security" class="nav-link"
+                                                    data-bs-toggle="tab">Password</a></li>
+                                            <li class="nav-item"><a href="{{ route('family-details.index') }}"
+                                                    class="active nav-link">Family Details</a></li>
+                                            <li class="nav-item"><a href="{{ route('health-details.index') }}"
+                                                    class=" nav-link">Health Details</a></li>
+                                            <li class="nav-item"><a href="{{ route('relation-details.index') }}"
+                                                    class="active nav-link">CCBRT Reation</a></li>
+                                            <li class="nav-item"><a href="{{ route('language_knowledge.index') }}"
+                                                    class="nav-link">Language</a> </li>
+
+                                            <li class="nav-item"><a href="#policies" class="nav-link"
+                                                    data-bs-toggle="tab">Policies</a></li>
                                         </ul>
                                         <div class="tab-content pt-3">
                                             <div class="tab-pane active" id="family">
@@ -111,7 +122,8 @@
                                                                                 <label>Department</label>
                                                                                 <select class="form-control"
                                                                                     name="department">
-                                                                                    <option value="">Select Department
+                                                                                    <option value="">Select
+                                                                                        Department
                                                                                     </option>
                                                                                     @foreach ($departments as $department)
                                                                                         <option
