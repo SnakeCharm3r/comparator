@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\HealthDetails;
 use App\Models\PrivilegeLevel;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HmisAccessController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\DataSecurityController;
+use App\Http\Controllers\HealthDetailsController;
 use App\Http\Controllers\HumanResourceController;
 use App\Http\Controllers\IdCardRequestController;
 use App\Http\Controllers\EmploymentTypeController;
@@ -24,6 +26,7 @@ use App\Http\Controllers\RequestApproveController;
 use App\Http\Controllers\ChangeManagementController;
 use App\Http\Controllers\NhifQualificationController;
 use App\Http\Controllers\UserFamilyDetailsController;
+
 // use App\Http\Controllers\UserFamilyDetailsController;
 // use App\Http\Controllers\UserAdditionalInfoController;
 
@@ -65,8 +68,11 @@ Route::get('/departments', [DepartmentController::class, 'index']);
 
 
 
- Route::get('/family-details', [UserFamilyDetailsController::class, 'index'])->name('index');
+Route::get('/family-details', [UserFamilyDetailsController::class, 'index'])->name('family-details.index');
 Route::post('/familyData', [UserFamilyDetailsController::class, 'addFamilyData'])->name('family-details.addFamilyData');
+Route::get('/health-details', [HealthDetailsController::class, 'index'])->name('health-details.index');
+Route::post('/health', [HealthDetailsController::class, 'addHealthData'])->name('health-details.addHealthData');
+
 // Route::post('family-details', UserFamilyDetailsController::class);
 // Route::post('/healthDetails', [UserFamilyDetailsController::class, 'addHealthData'])->name('healthDetails.addHealthData');
 // Route::post('/languageData', [UserFamilyDetailsController::class, 'addLanguage'])->name('languageData.addLanguage');

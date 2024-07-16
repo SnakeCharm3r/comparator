@@ -80,8 +80,7 @@
                                             <li class="nav-item"><a href="#security" class="nav-link"
                                                     data-bs-toggle="tab">Password</a></li>
                                             <li class="nav-item"><a href="{{ route('family-details.index') }}" class="nav-link">Family Details</a></li>
-                                            <li class="nav-item"><a href="#Health_Details" class="nav-link"
-                                                    data-bs-toggle="tab">Health Details</a></li>
+                                            <li class="nav-item"><a href="{{ route('health-details.index') }}" class="nav-link">Health Details</a></li>
                                             <li class="nav-item"><a href="#CCBRT_Relation" class="nav-link"
                                                     data-bs-toggle="tab">CCBRT Relation</a></li>
                                             <li class="nav-item"><a href="#language" class="nav-link"
