@@ -65,7 +65,7 @@ Route::get('/departments', [DepartmentController::class, 'index']);
 
 
 
- Route::get('/family-details', [UserFamilyDetailsController::class, 'index'])->name('index');
+ Route::get('/family-details', [UserFamilyDetailsController::class, 'index'])->name('family-details.index');
 Route::post('/familyData', [UserFamilyDetailsController::class, 'addFamilyData'])->name('family-details.addFamilyData');
 // Route::post('family-details', UserFamilyDetailsController::class);
 // Route::post('/healthDetails', [UserFamilyDetailsController::class, 'addHealthData'])->name('healthDetails.addHealthData');
