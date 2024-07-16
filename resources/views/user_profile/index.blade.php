@@ -85,8 +85,9 @@
                                                     class="nav-link">Health Details</a></li>
                                             <li class="nav-item"><a href="{{ route('relation-details.index') }}"
                                                     class="nav-link">CCBRT Reation</a></li>
-                                            <li class="nav-item"><a href="#language" class="nav-link"
-                                                    data-bs-toggle="tab">Language</a></li>
+                                            <li class="nav-item"><a href="{{ route('language_knowledge.index') }}" 
+                                                class="nav-link">Language</a> </li>
+                                                    
                                             <li class="nav-item"><a href="#policies" class="nav-link"
                                                     data-bs-toggle="tab">Policies</a></li>
                                         </ul>
@@ -481,10 +482,6 @@
                                                 </script>
                                             </div>
                                         </div>
-                                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                                        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-                                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
-
                                             {{-- <div class="tab-pane" id="CCBRT_Relation">
                                                 <form action="#">
                                                     <div class="row">

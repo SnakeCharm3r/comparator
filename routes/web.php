@@ -25,6 +25,7 @@ use App\Http\Controllers\EmploymentTypeController;
 use App\Http\Controllers\PrivilegeLevelController;
 use App\Http\Controllers\RequestApproveController;
 use App\Http\Controllers\ChangeManagementController;
+use App\Http\Controllers\LanguageKnowledgeController;
 use App\Http\Controllers\NhifQualificationController;
 use App\Http\Controllers\UserFamilyDetailsController;
 
@@ -75,6 +76,8 @@ Route::get('/health-details', [HealthDetailsController::class, 'index'])->name('
 Route::post('/health', [HealthDetailsController::class, 'addHealthData'])->name('health-details.addHealthData');
 Route::get('/relation-details', [CcbrtRelationController::class, 'index'])->name('relation-details.index');
 Route::post('/relation', [CcbrtRelationController::class, 'addRelationData'])->name('relation-details.addRelationData');
+Route::get('/language-knowledge', [LanguageKnowledgeController::class, 'index'])->name('language_knowledge.index');
+Route::post('/language-knowledge', [LanguageKnowledgeController::class, 'addLanguageKnowledge'])->name('language_knowledge.add');
 
 // Route::post('family-details', UserFamilyDetailsController::class);
 // Route::post('/healthDetails', [UserFamilyDetailsController::class, 'addHealthData'])->name('healthDetails.addHealthData');
