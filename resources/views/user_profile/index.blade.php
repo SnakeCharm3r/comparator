@@ -75,19 +75,18 @@
                                             </div>
                                         </div>
                                         <ul class="nav nav-tabs">
-                                            <li class="nav-item"><a href="{{ route('profile.index') }}" class="active nav-link"
-                                                    data-bs-toggle="tab">User Info</a></li>
-                                            <li class="nav-item"><a href="#security" class="nav-link"
-                                                    data-bs-toggle="tab">Password</a></li>
+                                            <li class="nav-item"><a href="{{ route('profile.index') }}"
+                                                    class="active nav-link" data-bs-toggle="tab">User Info</a></li>
+                                            <li class="nav-item"><a href="#" class="nav-link">Password</a></li>
                                             <li class="nav-item"><a href="{{ route('family-details.index') }}"
                                                     class="nav-link">Family Details</a></li>
                                             <li class="nav-item"><a href="{{ route('health-details.index') }}"
                                                     class="nav-link">Health Details</a></li>
                                             <li class="nav-item"><a href="{{ route('relation-details.index') }}"
                                                     class="nav-link">CCBRT Reation</a></li>
-                                            <li class="nav-item"><a href="{{ route('language_knowledge.index') }}" 
-                                                class="nav-link">Language</a> </li>
-                                                    
+                                            <li class="nav-item"><a href="{{ route('language_knowledge.index') }}"
+                                                    class="nav-link">Language</a> </li>
+
                                             <li class="nav-item"><a href="#policies" class="nav-link"
                                                     data-bs-toggle="tab">Policies</a></li>
                                         </ul>
@@ -564,11 +563,11 @@
                                                 </form>
                                             </div>
 
-                                            <div class="tab-pane" id="security">
+                                            {{-- <div class="tab-pane" id="security">
                                                 <!-- Password Change Section -->
                                                 <div class="row">
                                                     <div class="col-12 col-md-4">
-                                                        <div class="tab-pane" id="security">
+                                                       
                                                             <div class="col-12 mb-3">
                                                                 <div class="mb-3"><b>Change Password</b>
                                                                 </div>
@@ -596,10 +595,10 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                       
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Role;
 
+
 class AuthController extends Controller
 {
 
@@ -59,7 +60,6 @@ class AuthController extends Controller
             return redirect()->back()->withErrors(['login_error' => 'Invalid username or password'])->withInput();
         }
     }
-
 
 
 
@@ -207,6 +207,10 @@ class AuthController extends Controller
         $user_id = session('userId');
         return view('auth.next_of_kins', compact('userId'));
     }
+    public function changePass($id){
+        $user = User::findOrFail($id);
 
+        return view('password.index', compact('user'));
+    }
 
 }

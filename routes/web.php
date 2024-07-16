@@ -54,6 +54,9 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'handleRegistration'])->name('register.handleRegistration');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/password', [AuthController::class, 'changePass'])->name('password.changePass');
+Route::post('/password', [AuthController::class, 'change'])->name('change.add');
+
 Route::resource('policies', PolicyController::class);
 Route::post('/policies/accept', [PolicyController::class, 'accept'])->name('policies.accept');
 
@@ -78,6 +81,8 @@ Route::get('/relation-details', [CcbrtRelationController::class, 'index'])->name
 Route::post('/relation', [CcbrtRelationController::class, 'addRelationData'])->name('relation-details.addRelationData');
 Route::get('/language-knowledge', [LanguageKnowledgeController::class, 'index'])->name('language_knowledge.index');
 Route::post('/language-knowledge', [LanguageKnowledgeController::class, 'addLanguageKnowledge'])->name('language_knowledge.add');
+
+
 
 // Route::post('family-details', UserFamilyDetailsController::class);
 // Route::post('/healthDetails', [UserFamilyDetailsController::class, 'addHealthData'])->name('healthDetails.addHealthData');
