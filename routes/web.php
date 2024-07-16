@@ -4,6 +4,7 @@ use App\Models\PrivilegeLevel;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\HslbController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\RemarkController;
@@ -21,8 +22,8 @@ use App\Http\Controllers\EmploymentTypeController;
 use App\Http\Controllers\PrivilegeLevelController;
 use App\Http\Controllers\RequestApproveController;
 use App\Http\Controllers\ChangeManagementController;
-use App\Http\Controllers\HslbController;
 use App\Http\Controllers\NhifQualificationController;
+use App\Http\Controllers\UserFamilyDetailsController;
 // use App\Http\Controllers\UserFamilyDetailsController;
 // use App\Http\Controllers\UserAdditionalInfoController;
 
@@ -64,8 +65,9 @@ Route::get('/departments', [DepartmentController::class, 'index']);
 
 
 
-// Route::get('/profile', [UserFamilyDetailsController::class, 'profileFamily'])->name('profileFamily');
-// Route::post('/familyData', [UserFamilyDetailsController::class, 'addFamilyData'])->name('familyData.addFamilyData');
+ Route::get('/family-details', [UserFamilyDetailsController::class, 'index'])->name('index');
+Route::post('/familyData', [UserFamilyDetailsController::class, 'addFamilyData'])->name('family-details.addFamilyData');
+// Route::post('family-details', UserFamilyDetailsController::class);
 // Route::post('/healthDetails', [UserFamilyDetailsController::class, 'addHealthData'])->name('healthDetails.addHealthData');
 // Route::post('/languageData', [UserFamilyDetailsController::class, 'addLanguage'])->name('languageData.addLanguage');
 // Route::post('/ccbrtRelation', [UserFamilyDetailsController::class, 'addRelation'])->name('ccbrtRelation.addRelation');
