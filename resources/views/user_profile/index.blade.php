@@ -75,7 +75,7 @@
                                             </div>
                                         </div>
                                         <ul class="nav nav-tabs">
-                                            <li class="nav-item"><a href="#settings" class="active nav-link"
+                                            <li class="nav-item"><a href="{{ route('profile.index') }}" class="active nav-link"
                                                     data-bs-toggle="tab">User Info</a></li>
                                             <li class="nav-item"><a href="#security" class="nav-link"
                                                     data-bs-toggle="tab">Password</a></li>

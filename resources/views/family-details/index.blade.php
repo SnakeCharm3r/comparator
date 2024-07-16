@@ -74,8 +74,8 @@
                                         </div>
 
                                         <ul class="nav nav-tabs">
-                                            <li class="nav-item"><a href="#settings" class=" nav-link"
-                                                    data-bs-toggle="tab">User Info</a></li>
+                                            <li class="nav-item"><a href="{{ route('profile.index') }}"
+                                                    class="nav-link">User Info</a></li>
                                             <li class="nav-item"><a href="#security" class="nav-link"
                                                     data-bs-toggle="tab">Password</a></li>
                                             <li class="nav-item"><a href="{{ route('family-details.index') }}"
@@ -125,38 +125,46 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <h3>Add Family Details</h3>
-                                                        <form action="{{ route('family-details.addFamilyData') }}" method="POST">
+                                                        <form action="{{ route('family-details.addFamilyData') }}"
+                                                            method="POST">
                                                             @csrf
-                                                            <input type="hidden" name="userId" value="{{ $user->id }}">
+                                                            <input type="hidden" name="userId"
+                                                                value="{{ $user->id }}">
                                                             <div id="familyDataContainer">
                                                                 <div class="family-member">
                                                                     <div class="form-group">
                                                                         <label>Full Name</label>
-                                                                        <input type="text" class="form-control" name="familyData[0][full_name]" required>
+                                                                        <input type="text" class="form-control"
+                                                                            name="familyData[0][full_name]" required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label>Relationship</label>
-                                                                        <input type="text" class="form-control" name="familyData[0][relationship]" required>
+                                                                        <input type="text" class="form-control"
+                                                                            name="familyData[0][relationship]" required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label>Mobile</label>
-                                                                        <input type="text" class="form-control" name="familyData[0][phone_number]" required>
+                                                                        <input type="text" class="form-control"
+                                                                            name="familyData[0][phone_number]" required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label>Date of Birth</label>
-                                                                        <input type="date" class="form-control" name="familyData[0][DOB]" required>
+                                                                        <input type="date" class="form-control"
+                                                                            name="familyData[0][DOB]" required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label>Occupation</label>
-                                                                        <input type="text" class="form-control" name="familyData[0][occupation]">
+                                                                        <input type="text" class="form-control"
+                                                                            name="familyData[0][occupation]">
                                                                     </div>
                                                                 </div>
                                                             </div>
 
-                                                            <button type="submit" class="btn btn-primary">Add Family Data</button>
+                                                            <button type="submit" class="btn btn-primary">Add Family
+                                                                Data</button>
                                                         </form>
                                                     </div>
-                                                    
+
                                                 </div>
                                             </div>
                                             <!-- Add other tab contents here -->

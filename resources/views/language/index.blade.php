@@ -75,8 +75,8 @@
                                             </div>
                                         </div>
                                         <ul class="nav nav-tabs">
-                                            <li class="nav-item"><a href="#settings" class=" nav-link"
-                                                    data-bs-toggle="tab">User Info</a></li>
+                                            <li class="nav-item"><a href="{{ route('profile.index') }}"
+                                                class="nav-link">User Info</a></li>
                                             <li class="nav-item"><a href="#security" class="nav-link"
                                                     data-bs-toggle="tab">Password</a></li>
                                             <li class="nav-item"><a href="{{ route('family-details.index') }}"
