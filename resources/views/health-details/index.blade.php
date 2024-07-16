@@ -72,12 +72,13 @@
                                         </div>
 
                                         <ul class="nav nav-tabs">
-                                            <li class="nav-item"><a href="#health-details" class="nav-link active"
+                                            <li class="nav-item"><a href="#family" class="nav-link active"
                                                     data-bs-toggle="tab">Health Details</a></li>
                                             <!-- Add other nav items here -->
                                         </ul>
                                         <div class="tab-content pt-3">
-                                            <div class="tab-pane active" id="health-details">
+                                            <div class="tab-pane active" id="family">
+
                                                 <div class="tab-pane" id="Health_Details">
                                                     <form method="POST"
                                                         action="{{ route('health-details.addHealthData') }}">
@@ -143,7 +144,8 @@
                                                                 <div class="form-group">
                                                                     <label>Insurance Name</label>
                                                                     <input type="text" class="form-control"
-                                                                        name="insur_name" value="{{ old('insur_name') }}">
+                                                                        name="insur_name"
+                                                                        value="{{ old('insur_name') }}">
 
                                                                 </div>
                                                                 <div class="form-group">

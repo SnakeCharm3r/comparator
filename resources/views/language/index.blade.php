@@ -80,107 +80,92 @@
                                             <li class="nav-item"><a href="#security" class="nav-link"
                                                     data-bs-toggle="tab">Password</a></li>
                                             <li class="nav-item"><a href="{{ route('family-details.index') }}"
-                                                    class="active nav-link">Family Details</a></li>
+                                                    class="nav-link">Family Details</a></li>
                                             <li class="nav-item"><a href="{{ route('health-details.index') }}"
                                                     class=" nav-link">Health Details</a></li>
                                             <li class="nav-item"><a href="{{ route('relation-details.index') }}"
-                                                    class="active nav-link">CCBRT Reation</a></li>
+                                                    class="nav-link">CCBRT Reation</a></li>
                                             <li class="nav-item"><a href="{{ route('language_knowledge.index') }}"
-                                                    class="nav-link">Language</a> </li>
+                                                    class="active nav-link">Language</a> </li>
 
                                             <li class="nav-item"><a href="#policies" class="nav-link"
                                                     data-bs-toggle="tab">Policies</a></li>
                                         </ul>
                                         <div class="tab-content pt-3">
                                             <div class="tab-pane active" id="family">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <form method="POST"
-                                                                    action="{{ route('relation-details.addRelationData') }}">
-                                                                    @csrf
-                                                                    <div class="row">
-                                                                        <div class="col-12 col-md-3">
-                                                                            <div class="form-group">
-                                                                                <label>Names</label>
-                                                                                <input type="text" class="form-control"
-                                                                                    name="names"
-                                                                                    value="{{ old('names') }}">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-12 col-md-3">
-                                                                            <div class="form-group">
-                                                                                <label>Relation</label>
-                                                                                <input type="text" class="form-control"
-                                                                                    name="relation"
-                                                                                    value="{{ old('relation') }}">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-12 col-md-3">
-                                                                            <div class="form-group">
-                                                                                <label>Department</label>
-                                                                                <select class="form-control"
-                                                                                    name="department">
-                                                                                    <option value="">Select
-                                                                                        Department
-                                                                                    </option>
-                                                                                    @foreach ($departments as $department)
-                                                                                        <option
-                                                                                            value="{{ $department->id }}"
-                                                                                            {{ old('department') == $department->id ? 'selected' : '' }}>
-                                                                                            {{ $department->dept_name }}
-                                                                                        </option>
-                                                                                    @endforeach
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-12 col-md-3">
-                                                                            <div class="form-group">
-                                                                                <label>Position</label>
-                                                                                <input type="text" class="form-control"
-                                                                                    name="position"
-                                                                                    value="{{ old('position') }}">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col d-flex justify-content-end">
-                                                                            <button type="submit"
-                                                                                class="btn btn-primary">Add Relation
-                                                                                Data</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </form>
+                                                <form method="POST" action="{{ route('language_knowledge.add') }}">
+                                                    @csrf
+                                                    <input type="hidden" name="userId" value="{{ Auth::id() }}">
+                                                    <div class="row language-item">
+                                                        <div class="col-12 col-md-3">
+                                                            <div class="form-group">
+                                                                <label>Language</label>
+                                                                <input type="text" class="form-control" name="language"
+                                                                    value="{{ old('language') }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-3">
+                                                            <div class="form-group">
+                                                                <label>Speaking</label>
+                                                                <input type="text" class="form-control" name="speaking"
+                                                                    value="{{ old('speaking') }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-3">
+                                                            <div class="form-group">
+                                                                <label>Reading</label>
+                                                                <input type="text" class="form-control" name="reading"
+                                                                    value="{{ old('reading') }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-3">
+                                                            <div class="form-group">
+                                                                <label>Writing</label>
+                                                                <input type="text" class="form-control" name="writing"
+                                                                    value="{{ old('writing') }}">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+
+                                                    <div class="row">
+                                                        <div class="col d-flex justify-content-end">
+                                                            <button type="submit" class="btn btn-primary">Add Language
+                                                                Knowledge</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
                                                 <hr>
 
-                                                <h3>Existing Relations</h3>
+                                                <h3>Language Knowledge</h3>
                                                 <div class="table-responsive">
                                                     <table class="table table-striped">
                                                         <thead>
                                                             <tr>
-                                                                <th>Names</th>
-                                                                <th>Relation</th>
-                                                                <th>Department</th>
-                                                                <th>Position</th>
+                                                                <th>Language</th>
+                                                                <th>Speaking</th>
+                                                                <th>Reading</th>
+                                                                <th>Writing</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach ($relations as $relation)
+                                                            @forelse ($languageKnowledge as $knowledge)
                                                                 <tr>
-                                                                    <td>{{ $relation->names }}</td>
-                                                                    <td>{{ $relation->relation }}</td>
-                                                                    <td>{{ $relation->department }}</td>
-                                                                    <td>{{ $relation->position }}</td>
+                                                                    <td>{{ $knowledge->language }}</td>
+                                                                    <td>{{ $knowledge->speaking }}</td>
+                                                                    <td>{{ $knowledge->reading }}</td>
+                                                                    <td>{{ $knowledge->writing }}</td>
                                                                 </tr>
-                                                            @endforeach
+                                                            @empty
+                                                                <tr>
+                                                                    <td colspan="4" class="text-center">No language
+                                                                        knowledge found.</td>
+                                                                </tr>
+                                                            @endforelse
                                                         </tbody>
                                                     </table>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
