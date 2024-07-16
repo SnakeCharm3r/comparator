@@ -81,8 +81,7 @@
                                                     data-bs-toggle="tab">Password</a></li>
                                             <li class="nav-item"><a href="{{ route('family-details.index') }}" class="nav-link">Family Details</a></li>
                                             <li class="nav-item"><a href="{{ route('health-details.index') }}" class="nav-link">Health Details</a></li>
-                                            <li class="nav-item"><a href="#CCBRT_Relation" class="nav-link"
-                                                    data-bs-toggle="tab">CCBRT Relation</a></li>
+                                            <li class="nav-item"><a href="{{ route('relation-details.index') }}" class="nav-link">CCBRT Reation</a></li>
                                             <li class="nav-item"><a href="#language" class="nav-link"
                                                     data-bs-toggle="tab">Language</a></li>
                                             <li class="nav-item"><a href="#policies" class="nav-link"
@@ -306,7 +305,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="tab-pane" id="Health_Details">
+                                            {{-- <div class="tab-pane" id="Health_Details">
                                                 <form action="#">
                                                     <div class="row">
                                                         <div class="col-12 col-md-6">
@@ -356,7 +355,7 @@
                                                         </div>
                                                     </div>
                                                 </form>
-                                            </div>
+                                            </div> --}}
 
                                             <div class="tab-pane" id="family">
                                                 {{-- <div class="tab-pane" id="family">
