@@ -1,5 +1,3 @@
-<!-- resources/views/profile/show.blade.php -->
-
 @extends('layouts.template')
 
 @section('breadcrumb')
@@ -74,17 +72,17 @@
                                         </div>
 
                                         <ul class="nav nav-tabs">
-                                            <li class="nav-item"><a href="#family" class="nav-link active"
+                                            <li class="nav-item"><a href="#health-details" class="nav-link active"
                                                     data-bs-toggle="tab">Health Details</a></li>
                                             <!-- Add other nav items here -->
                                         </ul>
                                         <div class="tab-content pt-3">
-                                            <div class="tab-pane active" id="family">
-
+                                            <div class="tab-pane active" id="health-details">
                                                 <div class="tab-pane" id="Health_Details">
                                                     <form method="POST"
                                                         action="{{ route('health-details.addHealthData') }}">
                                                         @csrf
+                                                        <input type="hidden" name="userId" value="{{ Auth::id() }}">
                                                         <div class="row">
                                                             <div class="col-12 col-md-6">
                                                                 <div class="form-group">
@@ -130,7 +128,8 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Illness History</label>
-                                                                    <textarea class="form-control" name="illness_history">{{ old('illness_history') }}</textarea>
+                                                                    <textarea class="form-control"
+                                                                        name="illness_history">{{ old('illness_history') }}</textarea>
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 col-md-6">
@@ -155,7 +154,8 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Allergies</label>
-                                                                    <textarea class="form-control" name="allergies">{{ old('allergies') }}</textarea>
+                                                                    <textarea class="form-control"
+                                                                        name="allergies">{{ old('allergies') }}</textarea>
 
                                                                 </div>
                                                             </div>
@@ -214,9 +214,6 @@
                                                         </table>
                                                     </div>
                                                 </div>
-
-
-
                                             </div>
                                             <!-- Add other tab contents here -->
                                         </div>
