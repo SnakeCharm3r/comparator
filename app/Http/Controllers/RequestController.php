@@ -89,4 +89,15 @@ class RequestController extends Controller
     {
         //
     }
+
+    // Controller method (e.g., RequestsController)
+public function search(Request $request)
+{
+    $query = $request->input('query');
+
+    // Perform your query to filter requests based on the $query parameter
+    $requests = Request::where('field_to_search', 'like', '%'.$query.'%')->get();
+
+    return view('requests.index');
+}
 }
