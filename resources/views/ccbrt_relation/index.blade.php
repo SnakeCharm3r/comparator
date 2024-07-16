@@ -88,11 +88,6 @@
                                                             </div>
                                                 
                                                             <div class="card-body">
-                                                                @if (session('success'))
-                                                                    <div class="alert alert-success" role="alert">
-                                                                        {{ session('success') }}
-                                                                    </div>
-                                                                @endif
                                                 
                                                                 <form method="POST" action="{{ route('relation-details.addRelationData') }}">
                                                                     @csrf
@@ -102,21 +97,13 @@
                                                                             <div class="form-group">
                                                                                 <label>Names</label>
                                                                                 <input type="text" class="form-control" name="names" value="{{ old('names') }}">
-                                                                                @error('names')
-                                                                                    <span class="invalid-feedback" role="alert">
-                                                                                        <strong>{{ $message }}</strong>
-                                                                                    </span>
-                                                                                @enderror
+                                                                          
                                                                             </div>
                                                 
                                                                             <div class="form-group">
                                                                                 <label>Relation</label>
                                                                                 <input type="text" class="form-control" name="relation" value="{{ old('relation') }}">
-                                                                                @error('relation')
-                                                                                    <span class="invalid-feedback" role="alert">
-                                                                                        <strong>{{ $message }}</strong>
-                                                                                    </span>
-                                                                                @enderror
+                                                                               
                                                                             </div>
                                                                         </div>
                                                 
@@ -124,21 +111,13 @@
                                                                             <div class="form-group">
                                                                                 <label>Department</label>
                                                                                 <input type="text" class="form-control" name="department" value="{{ old('department') }}">
-                                                                                @error('department')
-                                                                                    <span class="invalid-feedback" role="alert">
-                                                                                        <strong>{{ $message }}</strong>
-                                                                                    </span>
-                                                                                @enderror
+                                                                         
                                                                             </div>
                                                 
                                                                             <div class="form-group">
                                                                                 <label>Position</label>
                                                                                 <input type="text" class="form-control" name="position" value="{{ old('position') }}">
-                                                                                @error('position')
-                                                                                    <span class="invalid-feedback" role="alert">
-                                                                                        <strong>{{ $message }}</strong>
-                                                                                    </span>
-                                                                                @enderror
+                                                                           
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -153,8 +132,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-
                                             </div>
                                         </div>
                                     </div>
