@@ -79,8 +79,7 @@
                                                     data-bs-toggle="tab">User Info</a></li>
                                             <li class="nav-item"><a href="#security" class="nav-link"
                                                     data-bs-toggle="tab">Password</a></li>
-                                            <li class="nav-item"><a href="#family" class="nav-link"
-                                                    data-bs-toggle="tab">Family Details</a></li>
+                                            <li class="nav-item"><a href="{{ route('family-details.index') }}" class="nav-link">Family Details</a></li>
                                             <li class="nav-item"><a href="#Health_Details" class="nav-link"
                                                     data-bs-toggle="tab">Health Details</a></li>
                                             <li class="nav-item"><a href="#CCBRT_Relation" class="nav-link"
@@ -258,7 +257,7 @@
                                                         <div class="col d-flex justify-content-end">
                                                             <button class="btn btn-secondary me-2" type="button"
                                                                 onclick="redirectToEditProfile({{ $user->id }})">Edit</button>
-                                                            
+
                                                         </div>
                                                     </div>
 
@@ -354,107 +353,136 @@
                                                         <div class="col d-flex justify-content-end">
                                                             <button class="btn btn-secondary me-2"
                                                                 type="button">Edit</button>
-                                                           
+
                                                         </div>
                                                     </div>
                                                 </form>
                                             </div>
 
                                             <div class="tab-pane" id="family">
-                                                <form action="#">
+                                                {{-- <div class="tab-pane" id="family">
                                                     <div class="row">
-                                                        <!-- Next of Kin 1 -->
-                                                        <div class="col-12 col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Full Name (Next of Kin 1)</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="full_name_1" readonly >
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Relationship (Next of Kin 1)</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="relationship_1" readonly>
-                                                            </div>
+                                                        <!-- Family Details Table -->
+                                                        <div class="col-md-8">
+                                                            <h3>Family Details</h3>
+                                                            @if (session('success'))
+                                                                <div class="alert alert-success">
+                                                                    {{ session('success') }}
+                                                                </div>
+                                                            @endif
+                                                            <table class="table table-bordered">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Full Name</th>
+                                                                        <th>Relationship</th>
+                                                                        <th>Mobile</th>
+                                                                        <th>Date of Birth</th>
+                                                                        <th>Occupation</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach ($familyData as $detail)
+                                                                        <tr>
+                                                                            <td>{{ $detail->full_name }}</td>
+                                                                            <td>{{ $detail->relationship }}</td>
+                                                                            <td>{{ $detail->phone_number }}</td>
+                                                                            <td>{{ $detail->DOB }}</td>
+                                                                            <td>{{ $detail->occupation }}</td>
+                                                                        </tr>
+                                                                    @endforeach
+                                                                </tbody>
+                                                            </table>
                                                         </div>
-                                                        <div class="col-12 col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Mobile (Next of Kin 1)</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="phone_number_1" readonly>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Date of Birth (Next of Kin 1)</label>
-                                                                <input type="text" class="form-control" name="dob_1"
-                                                                readonly>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12 col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Occupation (Next of Kin 1)</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="occupation_1" readonly>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <hr>
-                                                    <div class="row">
-                                                        <!-- Next of Kin 2 -->
-                                                        <div class="col-12 col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Full Name (Next of Kin 2)</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="full_name_2" readonly>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Relationship (Next of Kin 2)</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="relationship_2" readonly>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12 col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Mobile (Next of Kin 2)</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="phone_number_2" readonly>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Date of Birth (Next of Kin 2)</label>
-                                                                <input type="text" class="form-control" name="dob_2"
-                                                                readonly>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12 col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Occupation (Next of Kin 2)</label>
-                                                                <input type="text" class="form-control"
-                                                                    name="occupation_2" readonly>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mt-3">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label>First Person to Contact in Case of Emergency:</label>
-                                                                <select class="form-control" name="emergency_contact"
-                                                                readonly>
-                                                                    <option value="" disabled selected>Select
-                                                                        Emergency Contact</option>
-                                                                    <option value="next_of_kin1">Next of Kin 1</option>
-                                                                    <option value="next_of_kin2">Next of Kin 2</option>
-                                                                </select>
-                                                            </div>
+
+                                                        <!-- Add Family Details Form -->
+                                                        <div class="col-md-4">
+                                                            <h3>Add Family Details</h3>
+                                                            <form action="{{ route('familyData.addFamilyData') }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                <input type="hidden" name="userId"
+                                                                    value="{{ $user->id }}">
+                                                                <div id="familyDataContainer">
+                                                                    <div class="family-member">
+                                                                        <div class="form-group">
+                                                                            <label>Full Name</label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="familyData[0][full_name]" required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Relationship</label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="familyData[0][relationship]"
+                                                                                required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Mobile</label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="familyData[0][phone_number]"
+                                                                                required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Date of Birth</label>
+                                                                            <input type="date" class="form-control"
+                                                                                name="familyData[0][DOB]" required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Occupation</label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="familyData[0][occupation]">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    id="addFamilyMember">Add Another Family Member</button>
+                                                                <button type="submit" class="btn btn-primary">Add Family
+                                                                    Data</button>
+                                                            </form>
                                                         </div>
                                                     </div>
-                                                    <div class="row mt-3">
-                                                        <div class="col d-flex justify-content-end">
-                                                            <button class="btn btn-secondary me-2"
-                                                                type="button">Edit</button>
-                                                           
-                                                        </div>
-                                                    </div>
-                                                </form>
+                                                </div> --}}
+
                                             </div>
 
+                                            {{-- <script>
+                                                    $(document).ready(function() {
+                                                        let familyMemberIndex = 1;
+                                                        $('#addFamilyMember').click(function() {
+                                                            let familyMemberHtml = `
+                                                                <div class="family-member mt-3">
+                                                                    <hr>
+                                                                    <div class="form-group">
+                                                                        <label>Full Name</label>
+                                                                        <input type="text" class="form-control" name="familyData[${familyMemberIndex}][full_name]" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>Relationship</label>
+                                                                        <input type="text" class="form-control" name="familyData[${familyMemberIndex}][relationship]" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>Mobile</label>
+                                                                        <input type="text" class="form-control" name="familyData[${familyMemberIndex}][phone_number]" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>Date of Birth</label>
+                                                                        <input type="date" class="form-control" name="familyData[${familyMemberIndex}][DOB]" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>Occupation</label>
+                                                                        <input type="text" class="form-control" name="familyData[${familyMemberIndex}][occupation]">
+                                                                    </div>
+                                                                </div>
+                                                            `;
+                                                            $('#familyDataContainer').append(familyMemberHtml);
+                                                            familyMemberIndex++;
+                                                        });
+                                                    });
+                                                </script>
+                                            </div>
+                                        </div>
+                                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                                        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+                                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
 
                                             <div class="tab-pane" id="CCBRT_Relation">
                                                 <form action="#">
@@ -489,7 +517,7 @@
                                                         <div class="col d-flex justify-content-end">
                                                             <button class="btn btn-secondary me-2"
                                                                 type="button">Edit</button>
-                                                           
+
                                                         </div>
                                                     </div>
                                                 </form>
@@ -532,7 +560,7 @@
                                                         <div class="col d-flex justify-content-end">
                                                             <button class="btn btn-secondary me-2"
                                                                 type="button">Edit</button>
-                                                           
+
                                                         </div>
                                                     </div>
                                                 </form>
@@ -566,7 +594,7 @@
                                                                     <div class="col d-flex justify-content-end">
                                                                         <button class="btn btn-secondary me-2"
                                                                             type="button">Edit</button>
-                                                                      
+
                                                                     </div>
                                                                 </div>
                                                             </div>

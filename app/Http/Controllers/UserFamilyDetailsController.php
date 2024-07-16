@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\HealthDetails;
 use App\Models\UserFamilyDetails;
 use Illuminate\Http\Request;
@@ -10,20 +8,51 @@ use Illuminate\Support\Facades\Validator;
 
 class UserFamilyDetailsController extends Controller
 {
-    public function profileFamily(){
+    public function index()
+    {
         $user = Auth::user();
         $familyData = UserFamilyDetails::where('userId', $user->id)->get();
 
-        return view('user_info.profile', compact('user','familyData'));
+        return view('family-details.index', compact('user', 'familyData'));
     }
 
-    public function addFamilyData(Request $request) {
+
+    public function addFamilyData(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'userId' => 'required|exists:users,id',
-            'familyData' => 'required|array|min:2|max:5',
             'familyData.*.full_name' => 'required|string|max:255',
             'familyData.*.relationship' => 'required|string|max:255',
-
+            'familyData.*.phone_number' => 'required|string|max:15',
+            'familyData.*.occupation' => 'nullable|string|max:255',
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+         $userId =Auth::user();
+         //dd($userId);
+        foreach ($request->familyData as $data) {
+            UserFamilyDetails::create([
+                'userId' => $userId ,
+                'full_name' => $data['full_name'],
+                'relationship' => $data['relationship'],
+                'phone_number' => $data['phone_number'],
+                'DOB' => $data['DOB'],
+                'occupation' => $data['occupation'],
+            ]);
+        }
+    
+        return redirect()->route('profile.show')->with('success', 'Family details added successfully.');
+    }
+    
+    public function addHealthData(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'userId' => 'required|exists:users,id',
+            'physical_disability' => 'required',
+            'health_insurance' => 'required',
+            'allergies' => 'nullable',
         ]);
 
         if ($validator->fails()) {
@@ -33,48 +62,56 @@ class UserFamilyDetailsController extends Controller
             ]);
         }
 
-        $userId = $request->input('userId');
-        $familyData = $request->input('familyData');
+        HealthDetails::create([
+            'userId' => $request->input('userId'),
+            'physical_disability' => $request->input('physical_disability'),
+            'blood_group' => $request->input('blood_group'),
+            'illness_history' => $request->input('illness_history'),
+            'health_insurance' => $request->input('health_insurance'),
+            'insur_name' => $request->input('insur_name'),
+            'insur_no' => $request->input('insur_no'),
+            'allergies' => $request->input('allergies'),
+        ]);
 
-        foreach ($familyData as $data) {
-            UserFamilyDetails::create([
-                'userId' => $userId,
-                'full_name' => $data['full_name'],
-                'relationship' => $data['relationship'],
-                'DOB' => $data['DOB'],
-                'phone_number' => $data['phone_number'],
-                'occupation' => $data['occupation'] ?? null,
-            ]);
-        }
-
-        return redirect()->route('profile')->with('success', 'Family members added successfully');
+        return redirect()->route('profile')->with('success', 'Health details added successfully.');
     }
 
-    public function addHealthData(Request $request){
-     $validator = Validator::make($request->all(), [
-        'userId' => 'required|exists:users,id',
-        'physical_disability' => 'required',
-        'health_insurance' => 'required',
-        'allergies' => 'allergies',
-     ]);
 
-     $health = HealthDetails::create([
-       'physical_disability' => $request->input('physical_disability'),
-       'blood_group' => $request->input('blood_group'),
-       'illness_history' => $request->input('illness_history'),
-       'health_insurance' => $request->input('health_insurance'),
-       'insur_name' => $request->input('insur_name'),
-       'insur_no' => $request->input('insur_no'),
-       'allergies' => $request->input('allergies'),
-       'userId' => $request->input('userId'),
-
-     ]);
-     return redirect()->route('profile')->with('success', 'heath details added successfully.');
-
+    public function addLanguage(Request $request)
+    {
+        // Method implementation
     }
 
-    public function addLanguage(Request $request){
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'userId' => 'required|exists:users,id',
+    //         'familyData.*.full_name' => 'required|string|max:255',
+    //         'familyData.*.relationship' => 'required|string|max:255',
+    //         'familyData.*.phone_number' => 'required|string|max:15',
+    //         'familyData.*.DOB' => 'required|date',
+    //         'familyData.*.occupation' => 'nullable|string|max:255',
+    //     ]);
 
+    //     foreach ($request->familyData as $familyData) {
+    //         UserFamilyDetails::create([
+    //             'user_id' => $request->userId,
+    //             'full_name' => $familyData['full_name'],
+    //             'relationship' => $familyData['relationship'],
+    //             'phone_number' => $familyData['phone_number'],
+    //             'DOB' => $familyData['DOB'],
+    //             'occupation' => $familyData['occupation'],
+    //         ]);
+    //     }
+
+    //     return redirect()->route('profile.show', $request->userId)->with('success', 'Family details added successfully.');
+    // }
+
+    public function destroy($id)
+    {
+        $familyDetail = UserFamilyDetails::findOrFail($id);
+        $familyDetail->delete();
+
+        return redirect()->back()->with('success', 'Family detail deleted successfully.');
     }
-
 }
