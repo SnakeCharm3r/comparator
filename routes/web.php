@@ -17,6 +17,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HmisAccessController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\DataSecurityController;
+use App\Http\Controllers\CcbrtRelationController;
 use App\Http\Controllers\HealthDetailsController;
 use App\Http\Controllers\HumanResourceController;
 use App\Http\Controllers\IdCardRequestController;
@@ -72,6 +73,8 @@ Route::get('/departments', [DepartmentController::class, 'index']);
 Route::post('/familyData', [UserFamilyDetailsController::class, 'addFamilyData'])->name('family-details.addFamilyData');
 Route::get('/health-details', [HealthDetailsController::class, 'index'])->name('health-details.index');
 Route::post('/health', [HealthDetailsController::class, 'addHealthData'])->name('health-details.addHealthData');
+Route::get('/relation-details', [CcbrtRelationController::class, 'index'])->name('relation-details.index');
+Route::post('/relation', [CcbrtRelationController::class, 'addRelationData'])->name('relation-details.addRelationData');
 
 // Route::post('family-details', UserFamilyDetailsController::class);
 // Route::post('/healthDetails', [UserFamilyDetailsController::class, 'addHealthData'])->name('healthDetails.addHealthData');
