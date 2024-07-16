@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CcbrtRelation;
-use App\Models\User; // Make sure to import the User model
+use App\Models\User;
+use App\Models\Departments;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -18,10 +19,12 @@ class CcbrtRelationController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $departments = Departments::all();
+        $relations = CcbrtRelation::where('userId', $user->id)->get();
         // Fetch the authenticated user's data
         $user = User::find($user->id);
 
-        return view('ccbrt_relation.index', compact('user'));
+        return view('ccbrt_relation.index', compact('user', 'departments', 'relations'));
     }
 
     /**

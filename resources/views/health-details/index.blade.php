@@ -79,7 +79,7 @@
                                             <!-- Add other nav items here -->
                                         </ul>
                                         <div class="tab-content pt-3">
-                                            <div class="tab-pane active" id="family">
+                                            <div class="tab-pane active" id="Health_Details">
 
                                                 <div class="tab-pane" id="Health_Details">
                                                     <form method="POST"

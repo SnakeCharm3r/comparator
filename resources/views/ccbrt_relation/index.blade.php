@@ -75,62 +75,99 @@
                                             </div>
                                         </div>
                                         <ul class="nav nav-tabs">
-                                            <li class="nav-item"><a href="#family" class="nav-link"
-                                                    data-bs-toggle="tab">CCBRT Relation</a></li>
+                                            <li class="nav-item">
+                                                <a href="#family" class="nav-link active" data-bs-toggle="tab">CCBRT
+                                                    Relation</a>
+                                            </li>
                                         </ul>
                                         <div class="tab-content pt-3">
-                                            <div class="tab-pane" id="family">
-                                                <div class="row justify-content-center">
-                                                    <div class="col-md-8">
+                                            <div class="tab-pane active" id="family">
+                                                <div class="row">
+                                                    <div class="col-md-12">
                                                         <div class="card">
-                                                            <div class="card-header">
-                                                                Add CCBRT Relation
-                                                            </div>
-                                                
                                                             <div class="card-body">
-                                                
-                                                                <form method="POST" action="{{ route('relation-details.addRelationData') }}">
+                                                                <form method="POST"
+                                                                    action="{{ route('relation-details.addRelationData') }}">
                                                                     @csrf
-                                                
                                                                     <div class="row">
-                                                                        <div class="col-12 col-md-6">
+                                                                        <div class="col-12 col-md-3">
                                                                             <div class="form-group">
                                                                                 <label>Names</label>
-                                                                                <input type="text" class="form-control" name="names" value="{{ old('names') }}">
-                                                                          
-                                                                            </div>
-                                                
-                                                                            <div class="form-group">
-                                                                                <label>Relation</label>
-                                                                                <input type="text" class="form-control" name="relation" value="{{ old('relation') }}">
-                                                                               
+                                                                                <input type="text" class="form-control"
+                                                                                    name="names"
+                                                                                    value="{{ old('names') }}">
                                                                             </div>
                                                                         </div>
-                                                
-                                                                        <div class="col-12 col-md-6">
+                                                                        <div class="col-12 col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label>Relation</label>
+                                                                                <input type="text" class="form-control"
+                                                                                    name="relation"
+                                                                                    value="{{ old('relation') }}">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12 col-md-3">
                                                                             <div class="form-group">
                                                                                 <label>Department</label>
-                                                                                <input type="text" class="form-control" name="department" value="{{ old('department') }}">
-                                                                         
+                                                                                <select class="form-control"
+                                                                                    name="department">
+                                                                                    <option value="">Select Department
+                                                                                    </option>
+                                                                                    @foreach ($departments as $department)
+                                                                                        <option
+                                                                                            value="{{ $department->id }}"
+                                                                                            {{ old('department') == $department->id ? 'selected' : '' }}>
+                                                                                            {{ $department->dept_name }}
+                                                                                        </option>
+                                                                                    @endforeach
+                                                                                </select>
                                                                             </div>
-                                                
+                                                                        </div>
+                                                                        <div class="col-12 col-md-3">
                                                                             <div class="form-group">
                                                                                 <label>Position</label>
-                                                                                <input type="text" class="form-control" name="position" value="{{ old('position') }}">
-                                                                           
+                                                                                <input type="text" class="form-control"
+                                                                                    name="position"
+                                                                                    value="{{ old('position') }}">
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                
                                                                     <div class="row">
                                                                         <div class="col d-flex justify-content-end">
-                                                                            <button type="submit" class="btn btn-primary">Add Relation Data</button>
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary">Add Relation
+                                                                                Data</button>
                                                                         </div>
                                                                     </div>
                                                                 </form>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <hr>
+
+                                                <h3>Existing Relations</h3>
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Names</th>
+                                                                <th>Relation</th>
+                                                                <th>Department</th>
+                                                                <th>Position</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($relations as $relation)
+                                                                <tr>
+                                                                    <td>{{ $relation->names }}</td>
+                                                                    <td>{{ $relation->relation }}</td>
+                                                                    <td>{{ $relation->department }}</td>
+                                                                    <td>{{ $relation->position }}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
                                                 </div>
                                             </div>
                                         </div>
