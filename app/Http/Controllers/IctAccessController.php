@@ -152,10 +152,10 @@ class IctAccessController extends Controller
                 ]);
 
                 \Log::info('Workflow history forwarded for approval');
-
+                // dd(1235);
                 // Success alert and redirect
                 Alert::success('IT access form request submitted successfully', 'IT access Request Added');
-                return redirect()->route('myrequest.index')->with('success', 'ICT Access Resource created successfully.');
+                return redirect()->route('form.index')->with('success', 'ICT Access Resource created successfully.');
             });
         } catch (\Exception $e) {
             // Log the exact error message for better debugging

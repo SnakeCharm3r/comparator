@@ -83,7 +83,7 @@
                                                     class="active nav-link">Family Details</a></li>
                                             <li class="nav-item"><a href="{{ route('health-details.index') }}"
                                                     class=" nav-link">Health Details</a></li>
-                                            <li class="nav-item"><a href="{{ route('relation-details.index') }}"
+                                            <li class="nav-item"><a href="{{ route('ccbrt_relation.index') }}"
                                                     class="active nav-link">CCBRT Reation</a></li>
                                             <li class="nav-item"><a href="{{ route('language_knowledge.index') }}"
                                                     class="nav-link">Language</a> </li>
@@ -98,8 +98,9 @@
                                                         <div class="card">
                                                             <div class="card-body">
                                                                 <form method="POST"
-                                                                    action="{{ route('relation-details.addRelationData') }}">
+                                                                    action="{{ route('ccbrt_relation.addRelationData') }}">
                                                                     @csrf
+                                                                    <input type="hidden" name="userId" value="{{ Auth::id() }}">
                                                                     <div class="row">
                                                                         <div class="col-12 col-md-3">
                                                                             <div class="form-group">
