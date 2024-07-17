@@ -46,65 +46,34 @@ class UserFamilyDetailsController extends Controller
         return redirect()->route('family-details.index')->with('success', 'Family details added successfully.');
     }
 
-    public function addHealthData(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'userId' => 'required|exists:users,id',
-            'physical_disability' => 'required',
-            'health_insurance' => 'required',
-            'allergies' => 'nullable',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'status' => 400,
-                'error' => $validator->errors()
-            ]);
-        }
-
-        HealthDetails::create([
-            'userId' => $request->input('userId'),
-            'physical_disability' => $request->input('physical_disability'),
-            'blood_group' => $request->input('blood_group'),
-            'illness_history' => $request->input('illness_history'),
-            'health_insurance' => $request->input('health_insurance'),
-            'insur_name' => $request->input('insur_name'),
-            'insur_no' => $request->input('insur_no'),
-            'allergies' => $request->input('allergies'),
-        ]);
-
-        return redirect()->route('profile')->with('success', 'Health details added successfully.');
-    }
-
-
-    public function addLanguage(Request $request)
-    {
-        // Method implementation
-    }
-
-    // public function store(Request $request)
+    // public function addHealthData(Request $request)
     // {
-    //     $request->validate([
+    //     $validator = Validator::make($request->all(), [
     //         'userId' => 'required|exists:users,id',
-    //         'familyData.*.full_name' => 'required|string|max:255',
-    //         'familyData.*.relationship' => 'required|string|max:255',
-    //         'familyData.*.phone_number' => 'required|string|max:15',
-    //         'familyData.*.DOB' => 'required|date',
-    //         'familyData.*.occupation' => 'nullable|string|max:255',
+    //         'physical_disability' => 'required',
+    //         'health_insurance' => 'required',
+    //         'allergies' => 'nullable',
     //     ]);
 
-    //     foreach ($request->familyData as $familyData) {
-    //         UserFamilyDetails::create([
-    //             'user_id' => $request->userId,
-    //             'full_name' => $familyData['full_name'],
-    //             'relationship' => $familyData['relationship'],
-    //             'phone_number' => $familyData['phone_number'],
-    //             'DOB' => $familyData['DOB'],
-    //             'occupation' => $familyData['occupation'],
+    //     if ($validator->fails()) {
+    //         return response()->json([
+    //             'status' => 400,
+    //             'error' => $validator->errors()
     //         ]);
     //     }
 
-    //     return redirect()->route('profile.show', $request->userId)->with('success', 'Family details added successfully.');
+    //     HealthDetails::create([
+    //         'userId' => $request->input('userId'),
+    //         'physical_disability' => $request->input('physical_disability'),
+    //         'blood_group' => $request->input('blood_group'),
+    //         'illness_history' => $request->input('illness_history'),
+    //         'health_insurance' => $request->input('health_insurance'),
+    //         'insur_name' => $request->input('insur_name'),
+    //         'insur_no' => $request->input('insur_no'),
+    //         'allergies' => $request->input('allergies'),
+    //     ]);
+
+    //     return redirect()->route('profile')->with('success', 'Health details added successfully.');
     // }
 
     public function destroy($id)
