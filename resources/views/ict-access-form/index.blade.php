@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-sub-header">
-                            <h3 class="page-title">IT Access Form</h3>
+                            <h3 class="page-title">ICT Access Form</h3>
                         </div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                        </div>                                 
+                                        </div>
                                         <div class="form-group">
                                             <label for="openclinic_hms">PABX<span style="color: red;">*</span></label>
                                             <select class="form-control" id="pbax" name="pbax" required>

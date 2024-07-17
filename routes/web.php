@@ -53,9 +53,6 @@ Route::post('/login', [AuthController::class, 'handleLogin'])->name('login.handl
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'handleRegistration'])->name('register.handleRegistration');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
- 
-Route::get('/password', [AuthController::class, 'changePass'])->name('password.changePass');
-Route::post('/password', [AuthController::class, 'change'])->name('change.add');
 
 Route::resource('policies', PolicyController::class);
 Route::post('/policies/accept', [PolicyController::class, 'accept'])->name('policies.accept');
@@ -73,8 +70,10 @@ Route::get('/departments', [DepartmentController::class, 'index']);
 
 
 
-Route::get('/family-details', [UserFamilyDetailsController::class, 'index'])->name('family-details.index');
+ Route::get('/family-details', [UserFamilyDetailsController::class, 'index'])->name('family-details.index');
 Route::post('/familyData', [UserFamilyDetailsController::class, 'addFamilyData'])->name('family-details.addFamilyData');
+
+
 Route::get('/health-details', [HealthDetailsController::class, 'index'])->name('health-details.index');
 Route::post('/health', [HealthDetailsController::class, 'addHealthData'])->name('health-details.addHealthData');
 Route::get('/health-details/{id}/edit', 'HealthDetailsController@edit')->name('health-details.edit');
@@ -148,5 +147,3 @@ Route::put('role-permission/{roleId}/give-permission', [RoleController::class, '
 
 
 });
-
-
