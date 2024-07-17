@@ -37,7 +37,7 @@
                                                                     alt="Profile Picture" class="img-fluid rounded-circle"
                                                                     style="max-width: 140px; height: 140px; border: 2px solid #ccc; padding: 5px; object-fit: cover;">
                                                             @else
-                                                                <img src="{{ asset('assets//img/icon.png') }}"
+                                                                <img src="{{ asset('assets/img/icon.png') }}"
                                                                     alt="Default User Icon" class="img-fluid rounded-circle"
                                                                     style="max-width: 150px; height: 140px; border: 1px solid #ccc; padding: 1px; object-fit: cover;">
                                                             @endif

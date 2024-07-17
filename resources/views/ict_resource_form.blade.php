@@ -3,18 +3,25 @@
     @include('sweetalert::alert')
     <div class="page-wrapper">
         <div class="content container">
-            <div class="page-header">
+            <div class="page-header" style="padding: 20px; background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="page-sub-header">
-                            <h3 class="page-title">ICT Access Form
-                                <p>Previous Approval: {{ \App\Models\User::findOrFail($ictForm->forwarded_by)->fname }}
-                                    {{ \App\Models\User::findOrFail($ictForm->forwarded_by)->lname }}</p>
+                        <div class="page-sub-header" style="display: flex; flex-direction: column; align-items: flex-start;">
+                            <h3 class="page-title" style="font-size: 24px; font-weight: bold; margin-bottom: 5px;">
+                                ICT Access Form
                             </h3>
+                            <p class="approval-info" style="font-size: 16px; color: #6c757d;">
+                                Previous Approval:
+                                @php
+                                    $forwardedBy = \App\Models\User::findOrFail($ictForm->forwarded_by);
+                                @endphp
+                                {{ $forwardedBy->fname }} {{ $forwardedBy->lname }}
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
+
             <section>
                 <div class="form-container"
                     style="margin: 20px auto; max-width: 800px; border: 1px solid #dee2e6; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
