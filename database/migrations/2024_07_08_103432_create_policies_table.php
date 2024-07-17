@@ -18,7 +18,7 @@ class CreatePoliciesTable extends Migration
         Schema::create('policies', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('content');
+            $table->string('pdf_path');
             $table->timestamps();
         });
     }

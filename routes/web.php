@@ -53,7 +53,7 @@ Route::post('/login', [AuthController::class, 'handleLogin'])->name('login.handl
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'handleRegistration'])->name('register.handleRegistration');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
+ 
 Route::get('/password', [AuthController::class, 'changePass'])->name('password.changePass');
 Route::post('/password', [AuthController::class, 'change'])->name('change.add');
 
