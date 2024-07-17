@@ -38,7 +38,7 @@
                                 class="{{ request()->routeIs('hr.index') ? 'active' : '' }}">Human Resouce Form</a></li>
                         <li><a href="{{ route('data.index') }}"
                                 class="{{ request()->routeIs('data.index') ? 'active' : '' }}">Data Security Form
-                                Agreement</a></li>
+                            </a></li>
                         <li><a href="{{ route('change.index') }}"
                                 class="{{ request()->routeIs('change.index') ? 'active' : '' }}">Change Request
                                 Form</a>
