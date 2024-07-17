@@ -97,6 +97,7 @@
                                                     <form method="POST"
                                                         action="{{ route('health-details.addHealthData') }}">
                                                         @csrf
+                                                        <input type="hidden" name="userId" value="{{ Auth::id() }}">
                                                         <div class="row">
                                                             <div class="col-12 col-md-6">
                                                                 <div class="form-group">
