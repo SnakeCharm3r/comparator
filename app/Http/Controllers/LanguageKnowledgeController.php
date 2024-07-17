@@ -146,4 +146,8 @@ class LanguageKnowledgeController extends Controller
 
         return redirect()->route('language_knowledge.index')->with('success', 'Language knowledge deleted successfully.');
     }
+
+    public function jaribu(){
+        
+    }
 }
