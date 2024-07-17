@@ -82,7 +82,7 @@
                                                     class="active nav-link">Family Details</a></li>
                                             <li class="nav-item"><a href="{{ route('health-details.index') }}"
                                                     class=" nav-link">Health Details</a></li>
-                                            <li class="nav-item"><a href="{{ route('relation-details.index') }}"
+                                            <li class="nav-item"><a href="{{ route('ccbrt_relation.index') }}"
                                                     class="nav-link">CCBRT Reation</a></li>
                                             <li class="nav-item"><a href="{{ route('language_knowledge.index') }}"
                                                     class="nav-link">Language</a> </li>
