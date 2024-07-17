@@ -73,14 +73,22 @@ Route::get('/departments', [DepartmentController::class, 'index']);
 
 
 
-Route::get('/family-details', [UserFamilyDetailsController::class, 'index'])->name('family-details.index');
+ Route::get('/family-details', [UserFamilyDetailsController::class, 'index'])->name('family-details.index');
 Route::post('/familyData', [UserFamilyDetailsController::class, 'addFamilyData'])->name('family-details.addFamilyData');
+
+
 Route::get('/health-details', [HealthDetailsController::class, 'index'])->name('health-details.index');
 Route::post('/health', [HealthDetailsController::class, 'addHealthData'])->name('health-details.addHealthData');
+Route::get('/health-details/{id}/edit', 'HealthDetailsController@edit')->name('health-details.edit');
+Route::delete('/health-details/{id}', 'HealthDetailsController@delete')->name('health-details.delete');
+
+
+
 Route::get('/relation-details', [CcbrtRelationController::class, 'index'])->name('relation-details.index');
 Route::post('/relation', [CcbrtRelationController::class, 'addRelationData'])->name('relation-details.addRelationData');
 Route::get('/language-knowledge', [LanguageKnowledgeController::class, 'index'])->name('language_knowledge.index');
 Route::post('/language-knowledge', [LanguageKnowledgeController::class, 'addLanguageKnowledge'])->name('language_knowledge.add');
+
 
 
 

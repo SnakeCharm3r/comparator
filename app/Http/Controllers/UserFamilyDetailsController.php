@@ -16,36 +16,36 @@ class UserFamilyDetailsController extends Controller
         return view('family-details.index', compact('user', 'familyData'));
     }
 
-
     public function addFamilyData(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'userId' => 'required|exists:users,id',
             'familyData.*.full_name' => 'required|string|max:255',
             'familyData.*.relationship' => 'required|string|max:255',
-            'familyData.*.phone_number' => 'required|string|max:15',
+            'familyData.*.phone_number' => 'nullable|string|max:15',
             'familyData.*.occupation' => 'nullable|string|max:255',
+            'familyData.*.DOB' => 'nullable|date',
         ]);
-    
+
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-         $userId =Auth::user();
-         //dd($userId);
+
+        $userId = Auth::id(); // Get authenticated user's ID
+
         foreach ($request->familyData as $data) {
             UserFamilyDetails::create([
-                'userId' => $userId ,
+                'userId' => $userId,
                 'full_name' => $data['full_name'],
                 'relationship' => $data['relationship'],
                 'phone_number' => $data['phone_number'],
-                'DOB' => $data['DOB'],
                 'occupation' => $data['occupation'],
+                'DOB' => $data['DOB'],
             ]);
         }
-    
-        return redirect()->route('profile.show')->with('success', 'Family details added successfully.');
+
+        return redirect()->route('family-details.index')->with('success', 'Family details added successfully.');
     }
-    
+
     public function addHealthData(Request $request)
     {
         $validator = Validator::make($request->all(), [
