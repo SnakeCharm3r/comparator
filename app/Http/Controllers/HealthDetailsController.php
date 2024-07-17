@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use App\Models\HealthDetails;
-use Illuminate\Support\Facades\Request as FacadesRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class HealthDetailsController extends Controller
 {
@@ -19,7 +18,10 @@ class HealthDetailsController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $healthDetails = HealthDetails::where('userId', $user->id)->get();
+        $healthDetails = HealthDetails::with('user')->get();
+
+        // Fetch the authenticated user's data with profile picture
+        $user = User::find($user->id);
 
         return view('health-details.index', compact('healthDetails', 'user'));
     }
@@ -32,82 +34,21 @@ class HealthDetailsController extends Controller
      */
     public function addHealthData(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'userId' => 'required|exists:users,id',
-            'physical_disability' => 'required',
-            'health_insurance' => 'required',
-
+            'physical_disability' => 'nullable|string|max:255',
+            'blood_group' => 'nullable|string|max:10',
+            'illness_history' => 'nullable|string',
+            'health_insurance' => 'nullable|string|max:255',
+            'insur_name' => 'nullable|string|max:255',
+            'insur_no' => 'nullable|string|max:50',
+            'allergies' => 'nullable|string',
+            'delete_status' => 'nullable|boolean',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json([
-                'status' => 400,
-                'error' => $validator->errors()
-            ]);
-        }
+        $healthDetail = HealthDetails::create($request->all());
 
-        HealthDetails::create([
-            'userId' => $request->input('userId'),
-            'physical_disability' => $request->input('physical_disability'),
-            'blood_group' => $request->input('blood_group'),
-            'illness_history' => $request->input('illness_history'),
-            'health_insurance' => $request->input('health_insurance'),
-            'insur_name' => $request->input('insur_name'),
-            'insur_no' => $request->input('insur_no'),
-            'allergies' => $request->input('allergies'),
-            'delete_status' =>0,
-        ]);
-
-        return redirect()->route('health-details.index')->with('success', 'Health details added successfully.');
+        return redirect()->route('health-details.index')
+                        ->with('success', 'Health detail added successfully.');
     }
-
-    public function edit(string $id){
-        $healthData = HealthDetails::findOrFail($id);
-        return view('health-details.edit', compact('healthData'));
-    }
-
- public function updateHealthDetails(Request $request, string $id){
-
-    $validator = Validator::make($request->all(),[
-        'physical_disability' => 'required',
-        'health_insurance' => 'required',
-    ]);
-
-    if ($validator->fails()) {
-        return response()->json([
-            'status' => 400,
-            'errors' => $validator->errors(),
-        ]);
-    }
-
-    $healthData = HealthDetails::findOrFail($id);
-     $healthData->update([
-        'physical_disability' => $request->input('physical_disability'),
-        'blood_group' => $request->input('blood_group'),
-        'illness_history' => $request->input('illness_history'),
-        'health_insurance' => $request->input('health_insurance'),
-        'insur_name' => $request->input('insur_name'),
-        'insur_no' => $request->input('insur_no'),
-        'allergies' => $request->input('allergies'),
-    ]);
-    Alert::success('Health detail Updated successful','Health details updated');
-    return redirect()->route('health-details.index')->with('success', 'Department updated successfully.');
-
- }
-
- public function deleteHealthData(string $id){
-    $health = HealthDetails::find($id);
-
-    if(!$health){
-        return response()->json([
-            'status' => 400,
-            'massage' => ' Health detail not found',
-        ]);
-    }
-
-    $health->update([
-        'delete_status' => 1
-    ]);
- }
-
 }
