@@ -47,7 +47,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Date of Birth <span class="login-danger">*</span></label>
-                                    <input class="form-control" type="text" name="dob" required>
+                                    <input class="form-control" type="date" name="dob" required>
                                 </div>
                             </div>
                         </div>

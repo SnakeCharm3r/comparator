@@ -43,9 +43,8 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Request Type</th>
-                                            <th>Submitted Date</th>
                                             <th>Status</th>
-                                            <th>Approved Date</th>
+                                            <th>Submitted</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -56,7 +55,7 @@
                                                 <td>{{ $index + 1 }}</td>
                                                 @if ($pending->ict_request_resource_id)
                                                     <td>
-                                                        ICT Access Form
+                                                         ICT Access Form
                                                     </td>
                                                     <td>
                                                         <span
@@ -71,7 +70,6 @@
                                                             <i class="fas fa-eye"></i>
                                                         </button>
                                                     </td>
-                                                    <td>{{ $pending->attend_date }}</td>
                                                 @endif
                                             </tr>
                                         @endforeach
