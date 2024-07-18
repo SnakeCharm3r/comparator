@@ -28,23 +28,23 @@
                     <a href="{{ route('dashboard') }}"><i class="fas fa-tachometer-alt"></i> <span> Dashboard</span></a>
                 </li>
                 <li class="submenu {{ request()->is('form*') ? 'active' : '' }}">
-                    <a href="#"><i class="fas fa-file-alt"></i> <span> Forms</span> <span
+                    <a href="#"><i class="fas fa-file-alt"></i> <span>Request Forms</span> <span
                             class="menu-arrow"></span></a>
                     <ul style="{{ request()->is('form*') ? 'display: block;' : '' }}">
                         {{-- Always display these links --}}
                         <li><a href="{{ route('form.index') }}"
                                 class="{{ request()->routeIs('form.index') ? 'active' : '' }}">ICT Access Form</a></li>
                         <li><a href="{{ route('hr.index') }}"
-                                class="{{ request()->routeIs('hr.index') ? 'active' : '' }}">HR Clearance and Exit
-                                Form</a></li>
+                                class="{{ request()->routeIs('hr.index') ? 'active' : '' }}">Human Resouce Form</a></li>
                         <li><a href="{{ route('data.index') }}"
-                                class="{{ request()->routeIs('data.index') ? 'active' : '' }}">Data Security
-                                Agreement</a></li>
+                                class="{{ request()->routeIs('data.index') ? 'active' : '' }}">Data Security Form
+                            </a></li>
                         <li><a href="{{ route('change.index') }}"
-                                class="{{ request()->routeIs('change.index') ? 'active' : '' }}">Change Management</a>
+                                class="{{ request()->routeIs('change.index') ? 'active' : '' }}">Change Request
+                                Form</a>
                         </li>
                         <li><a href="{{ route('card.index') }}"
-                                class="{{ request()->routeIs('card.index') ? 'active' : '' }}">Id Card Request</a>
+                                class="{{ request()->routeIs('card.index') ? 'active' : '' }}">ID Card Request Form</a>
                         </li>
                         {{-- <li><a href="{{ route('hslb.index') }}"
                                 class="{{ request()->routeIs('hslb.index') ? 'active' : '' }}">HESLB</a>
@@ -56,7 +56,7 @@
                 {{-- Requests --}}
                 @can('view requests')
                     <li class="submenu {{ request()->is('requests/*') ? 'active' : '' }}">
-                        <a href="#"><i class="fas fa-tasks"></i> <span>Requests</span> <span
+                        <a href="#"><i class="fas fa-tasks"></i> <span>User Requests</span> <span
                                 class="menu-arrow"></span></a>
                         <ul style="{{ request()->is('requests/*') ? 'display: block;' : '' }}">
                             @can('view my requests')
@@ -71,7 +71,7 @@
                 @can('view my requests')
                     <li class="{{ request()->routeIs('policies.index') ? 'active' : '' }}">
                         <a href="{{ route('policies.index') }}"><i class="fas fa-file-invoice"></i>
-                            <span>Policies</span>
+                            <span>Policies and SoPs</span>
                         </a>
                     </li>
                 @endcan
@@ -79,7 +79,7 @@
                 @can('approve requests')
                     <li class="{{ request()->routeIs('requestapprove.index') ? 'active' : '' }}">
                         <a href="{{ route('requestapprove.index') }}">
-                            <i class="fas fa-check"></i> <span>Requests Approval
+                            <i class="fas fa-check"></i> <span>Approve User Requests
                                 @if (DB::table('work_flow_histories')->where('attended_by', Auth::user()->id)->where('status', 0)->count() > 0)
                                     <span class="badge badge-pill badge-primary badge-blink">
                                         {{ DB::table('work_flow_histories')->where('attended_by', Auth::user()->id)->where('status', 0)->count() }}

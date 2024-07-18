@@ -80,13 +80,10 @@ Route::post('/health', [HealthDetailsController::class, 'addHealthData'])->name(
 Route::get('/health-details/{id}/edit', 'HealthDetailsController@edit')->name('health-details.edit');
 Route::delete('/health-details/{id}', 'HealthDetailsController@delete')->name('health-details.delete');
 
-
-
 Route::get('/ccbrt_relation', [CcbrtRelationController::class, 'index'])->name('ccbrt_relation.index');
 Route::post('/relation', [CcbrtRelationController::class, 'addRelationData'])->name('ccbrt_relation.addRelationData');
 Route::get('/language-knowledge', [LanguageKnowledgeController::class, 'index'])->name('language_knowledge.index');
 Route::post('/language-knowledge', [LanguageKnowledgeController::class, 'addLanguageKnowledge'])->name('language_knowledge.add');
-
 
 // Route::post('family-details', UserFamilyDetailsController::class);
 // Route::post('/healthDetails', [UserFamilyDetailsController::class, 'addHealthData'])->name('healthDetails.addHealthData');
@@ -148,5 +145,3 @@ Route::put('role-permission/{roleId}/give-permission', [RoleController::class, '
 
 
 });
-
-

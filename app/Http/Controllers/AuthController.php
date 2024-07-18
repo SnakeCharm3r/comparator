@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Role;
 
+
 class AuthController extends Controller
 {
 
@@ -62,7 +63,6 @@ class AuthController extends Controller
 
 
 
-
     public function register() {
         $departments = Departments::all();
         $employmentTypes = EmploymentTypes::all();
@@ -77,6 +77,7 @@ class AuthController extends Controller
           'job_title' => 'required',
           'email' => 'required|email|unique:users',
           'deptId' => 'required',
+          'DOB' => 'required',
           'employment_typeId' => 'required',
           'password' => 'required|min:6',
         ]);
@@ -121,7 +122,7 @@ class AuthController extends Controller
 
         ]);
             // Example of assigning role
-            //$user->assignRole('head of hr');
+            $user->assignRole('super-admin');
             Alert::success('User Registered Successful','Please login');
          return redirect()->route('dashboard')->with(
             'success', 'User registered successfully. Please login.');
@@ -207,6 +208,10 @@ class AuthController extends Controller
         $user_id = session('userId');
         return view('auth.next_of_kins', compact('userId'));
     }
+    public function changePass($id){
+        $user = User::findOrFail($id);
 
+        return view('password.index', compact('user'));
+    }
 
 }

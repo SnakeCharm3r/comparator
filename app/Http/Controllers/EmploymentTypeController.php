@@ -56,7 +56,7 @@ class EmploymentTypeController extends Controller
          $emp = EmploymentTypes::create([
             'employment_type' => $request->input('employment_type'),
             'description' => $request->input('description'),
-            'delete_status' => 0
+            'delete_status' =>0
          ]);
          Alert::success('Employment type added successful','Employment type added');
          return redirect()->route('employment.index')->with('success', 'Employment type added successfully.');

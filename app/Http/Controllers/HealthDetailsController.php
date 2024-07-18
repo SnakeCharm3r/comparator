@@ -106,8 +106,8 @@ class HealthDetailsController extends Controller
     }
 
     $health->update([
-        'delete_status' => 1
-    ]);
- }
+        'delete_status' => 1 
+     ]);
+    }
 
 }

@@ -1,3 +1,5 @@
+<!-- resources/views/profile/show.blade.php -->
+
 @extends('layouts.template')
 
 @section('breadcrumb')
@@ -72,12 +74,24 @@
                                         </div>
 
                                         <ul class="nav nav-tabs">
-                                            <li class="nav-item"><a href="#family" class="nav-link active"
-                                                    data-bs-toggle="tab">Health Details</a></li>
-                                            <!-- Add other nav items here -->
+                                            <li class="nav-item"><a href="{{ route('profile.index') }}"
+                                                    class="nav-link">User Info</a></li>
+                                            <li class="nav-item"><a href="#security" class="nav-link"
+                                                    data-bs-toggle="tab">Password</a></li>
+                                            <li class="nav-item"><a href="{{ route('family-details.index') }}"
+                                                    class="nav-link">Family Details</a></li>
+                                            <li class="nav-item"><a href="{{ route('health-details.index') }}"
+                                                    class="active nav-link">Health Details</a></li>
+                                            <li class="nav-item"><a href="{{ route('ccbrt_relation.index') }}"
+                                                    class="nav-link">CCBRT Reation</a></li>
+                                            <li class="nav-item"><a href="{{ route('language_knowledge.index') }}"
+                                                    class="nav-link">Language</a> </li>
+
+                                            <li class="nav-item"><a href="#policies" class="nav-link"
+                                                    data-bs-toggle="tab">Policies</a></li>
                                         </ul>
                                         <div class="tab-content pt-3">
-                                            <div class="tab-pane active" id="family">
+                                            <div class="tab-pane active" id="Health_Details">
 
                                                 <div class="tab-pane" id="Health_Details">
                                                     <form method="POST"
@@ -129,8 +143,7 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Illness History</label>
-                                                                    <textarea class="form-control"
-                                                                        name="illness_history">{{ old('illness_history') }}</textarea>
+                                                                    <textarea class="form-control" name="illness_history">{{ old('illness_history') }}</textarea>
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 col-md-6">
@@ -156,8 +169,7 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Allergies</label>
-                                                                    <textarea class="form-control"
-                                                                        name="allergies">{{ old('allergies') }}</textarea>
+                                                                    <textarea class="form-control" name="allergies">{{ old('allergies') }}</textarea>
 
                                                                 </div>
                                                             </div>
@@ -216,6 +228,9 @@
                                                         </table>
                                                     </div>
                                                 </div>
+
+
+
                                             </div>
                                             <!-- Add other tab contents here -->
                                         </div>
