@@ -70,8 +70,9 @@ Route::get('/departments', [DepartmentController::class, 'index']);
 
 
 
- Route::get('/family-details', [UserFamilyDetailsController::class, 'index'])->name('family-details.index');
-Route::post('/familyData', [UserFamilyDetailsController::class, 'addFamilyData'])->name('family-details.addFamilyData');
+Route::get('/family-details', [UserFamilyDetailsController::class, 'index'])->name('family-details.index');
+Route::post('/family-details', [UserFamilyDetailsController::class, 'addFamilyData'])->name('family-details.addFamilyData');
+Route::delete('/family-details/{id}', [UserFamilyDetailsController::class, 'destroy'])->name('family-details.destroy');
 
 
 Route::get('/health-details', [HealthDetailsController::class, 'index'])->name('health-details.index');
