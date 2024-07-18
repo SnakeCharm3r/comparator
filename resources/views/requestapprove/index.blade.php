@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-sub-header">
-                            <h3 class="page-title">My Requests</h3>
+                            <h3 class="page-title">My Requests To Approve</h3>
                         </div>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <form action="{{ route('search.requests') }}" method="GET" class="form-inline">
+                                    <form action="" method="GET" class="form-inline">
                                         <div class="input-group input-group-sm">
                                             <input type="text" name="query" class="form-control form-control-sm" placeholder="Search...">
                                             <div class="input-group-append">
@@ -42,8 +42,10 @@
                                     <thead class="table-primary">
                                         <tr>
                                             <th>Request Type</th>
+                                            <th>Requester Name</th>
+                                            <th>Submitted Date</th>
                                             <th>Status</th>
-                                            <th>Submitted</th>
+                                            <th>Approved Date</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -56,11 +58,22 @@
                                                         <i class="fas fa-key"></i> ICT Access Form
                                                     </td>
                                                     <td>
-                                                        <span class=" badge text-dark {{$pending->status==1 ? 'bg-success':'bg-warning'}} font-size-11">
-                                                            {{ $pending->status==1 ? 'Approved' : 'Pending' }}
-                                                            </span>
+
                                                     </td>
                                                     <td>{{$pending->attend_date}}</td>
+                                                    <td>
+                                                        @if ($pending->status == 0) 
+                                                            <span class="badge bg-warning text-dark font-size-11">Pending</span>
+                                                        @elseif ($pending->status == 1)
+                                                            <span class="badge bg-success text-dark font-size-11">Approved</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($pending->status == 1)
+                                                            {{ \Carbon\Carbon::parse($pending->updated_at)->format('d F Y') }}
+                                                        @endif
+                                                    </td>
+
                                                     <td>
                                                         <button href="#" class="btn btn-primary btn-sm" title="View" onclick="showForm({{$pending->ict_request_resource_id}})">
                                                             <i class="fas fa-eye"></i>
