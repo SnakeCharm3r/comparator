@@ -23,7 +23,6 @@ class RequestController extends Controller
             $userId = Auth::user()->id;
 
             $form = Workflow::where('user_id', $userId)->get();
-dd($form);
         // Initialize an empty array to store histories for each form
         $histories = [];
 
