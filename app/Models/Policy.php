@@ -13,7 +13,7 @@ class Policy extends Model
 
     protected $fillable = [
         'title',
-        'content',
+        'pdf_path',
     ];
 }
 

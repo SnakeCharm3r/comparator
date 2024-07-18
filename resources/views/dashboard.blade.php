@@ -13,178 +13,185 @@
                 </div>
             </div>
             <div class="row">
+                @if (isset($showAlert) && $showAlert)
+                    <div class="alert alert-info" role="alert">
+                        Please complete your profile details including user details, family details, and health details.
+                        This is important for our records.
+                    </div>
+                @endif
 
-                <div class="col-md-3">
-                    <div class="card text-center shadow-sm">
-                        <div class="card-header bg-warning text-white">
-                            <i class="fas fa-tasks"></i> Pending Approvals
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card text-center shadow-sm">
+                            <div class="card-header bg-warning text-white">
+                                <i class="fas fa-tasks"></i> Pending Approvals
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">5</h5>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title">5</h5>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="card text-center shadow-sm">
+                            <div class="card-header bg-success text-white">
+                                <i class="fas fa-user-plus"></i> New Request This Week
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">33</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="card text-center shadow-sm">
+                            <div class="card-header bg-danger text-white">
+                                <i class="fas fa-exclamation-triangle"></i> Urgent Issues
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">2</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="card text-center shadow-sm">
+                            <div class="card-header custom-header">
+                                <i class="fas fa-users"></i> Total Registered Users
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">40</h5>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-3">
-                    <div class="card text-center shadow-sm">
-                        <div class="card-header bg-success text-white">
-                            <i class="fas fa-user-plus"></i> New Request This Week
+
+                <!-- Onboarding and Self-Service -->
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-light">
+                                <h5 class="card-title mb-0">Onboarding Checklist</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item">Fill Personal Information Form</li>
+                                    <li class="list-group-item">Submit Tax Documents</li>
+                                    <li class="list-group-item">Complete Orientation Training</li>
+                                    <li class="list-group-item">Setup Direct Deposit</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title">33</h5>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-light">
+                                <h5 class="card-title mb-0">My Profile</h5>
+                            </div>
+                            <div class="card-body">
+                                <a href="#" class="btn btn-primary">Update Profile</a>
+                                <a href="#" class="btn btn-success">Update Profile</a>
+                                <a href="#" class="btn btn-info">Update Profile</a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-3">
-                    <div class="card text-center shadow-sm">
-                        <div class="card-header bg-danger text-white">
-                            <i class="fas fa-exclamation-triangle"></i> Urgent Issues
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">2</h5>
+                <!-- CCBRT Policies -->
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-light">
+                                <h4>CCBRT Policies and SoPs</h4>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Policy / SoP Name</th>
+                                            <th>Department Name</th>
+                                            <th>Description</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Code of Conduct</td>
+                                            <td>General</td>
+                                            <td>Guidelines on acceptable behavior and workplace ethics.</td>
+                                            <td>
+                                                <a href="{{ asset('policies/code_of_conduct.pdf') }}"
+                                                    class="btn btn-primary btn-sm" target="_blank">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a href="{{ asset('policies/code_of_conduct.pdf') }}"
+                                                    class="btn btn-secondary btn-sm" download>
+                                                    <i class="fas fa-download"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Department of IT & BA</td>
+                                            <td>IT & Business Analysis</td>
+                                            <td>Details specific to IT and business analysis department.</td>
+                                            <td>
+                                                <a href="{{ asset('policies/hr_policy.pdf') }}"
+                                                    class="btn btn-primary btn-sm" target="_blank">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a href="{{ asset('policies/hr_policy.pdf') }}"
+                                                    class="btn btn-secondary btn-sm" download>
+                                                    <i class="fas fa-download"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>HR Policy</td>
+                                            <td>Human Resources</td>
+                                            <td>Details on HR practices, employee benefits, and grievance procedures.</td>
+                                            <td>
+                                                <a href="{{ asset('policies/hr_policy.pdf') }}"
+                                                    class="btn btn-primary btn-sm" target="_blank">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a href="{{ asset('policies/hr_policy.pdf') }}"
+                                                    class="btn btn-secondary btn-sm" download>
+                                                    <i class="fas fa-download"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>IT Security Policy</td>
+                                            <td>IT</td>
+                                            <td>Instructions on maintaining IT security and data protection.</td>
+                                            <td>
+                                                <a href="{{ asset('policies/it_security_policy.pdf') }}"
+                                                    class="btn btn-primary btn-sm" target="_blank">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a href="{{ asset('policies/it_security_policy.pdf') }}"
+                                                    class="btn btn-secondary btn-sm" download>
+                                                    <i class="fas fa-download"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <!-- Additional policies can be added here -->
+                                    </tbody>
+                                </table>
+
+
+
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- Key Metrics Cards -->
-                <div class="col-md-3">
-                    <div class="card text-center shadow-sm">
-                        <div class="card-header custom-header">
-                            <i class="fas fa-users"></i> Total Registered Users
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">40</h5>
-                        </div>
-                    </div>
 
-                </div>
-            </div>
-
-            <!-- Onboarding and Self-Service -->
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <div class="card shadow-sm">
-                        <div class="card-header bg-light">
-                            <h5 class="card-title mb-0">Onboarding Checklist</h5>
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-group">
-                                <li class="list-group-item">Fill Personal Information Form</li>
-                                <li class="list-group-item">Submit Tax Documents</li>
-                                <li class="list-group-item">Complete Orientation Training</li>
-                                <li class="list-group-item">Setup Direct Deposit</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card shadow-sm">
-                        <div class="card-header bg-light">
-                            <h5 class="card-title mb-0">My Profile</h5>
-                        </div>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-primary">Update Profile</a>
-                            <a href="#" class="btn btn-success">Update Profile</a>
-                            <a href="#" class="btn btn-info">Update Profile</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CCBRT Policies -->
-            <div class="row mt-4">
-                <div class="col-md-12">
-                    <div class="card shadow-sm">
-                        <div class="card-header bg-light">
-                            <h4>CCBRT Policies and SoPs</h4>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Policy / SoP Name</th>
-                                        <th>Department Name</th>
-                                        <th>Description</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Code of Conduct</td>
-                                        <td>General</td>
-                                        <td>Guidelines on acceptable behavior and workplace ethics.</td>
-                                        <td>
-                                            <a href="{{ asset('policies/code_of_conduct.pdf') }}"
-                                                class="btn btn-primary btn-sm" target="_blank">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                            <a href="{{ asset('policies/code_of_conduct.pdf') }}"
-                                                class="btn btn-secondary btn-sm" download>
-                                                <i class="fas fa-download"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Department of IT & BA</td>
-                                        <td>IT & Business Analysis</td>
-                                        <td>Details specific to IT and business analysis department.</td>
-                                        <td>
-                                            <a href="{{ asset('policies/hr_policy.pdf') }}" class="btn btn-primary btn-sm"
-                                            target="_blank">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ asset('policies/hr_policy.pdf') }}" class="btn btn-secondary btn-sm"
-                                            download>
-                                            <i class="fas fa-download"></i>
-                                        </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>HR Policy</td>
-                                        <td>Human Resources</td>
-                                        <td>Details on HR practices, employee benefits, and grievance procedures.</td>
-                                        <td>
-                                            <a href="{{ asset('policies/hr_policy.pdf') }}" class="btn btn-primary btn-sm"
-                                                target="_blank">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                            <a href="{{ asset('policies/hr_policy.pdf') }}" class="btn btn-secondary btn-sm"
-                                                download>
-                                                <i class="fas fa-download"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>IT Security Policy</td>
-                                        <td>IT</td>
-                                        <td>Instructions on maintaining IT security and data protection.</td>
-                                        <td>
-                                            <a href="{{ asset('policies/it_security_policy.pdf') }}"
-                                                class="btn btn-primary btn-sm" target="_blank">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                            <a href="{{ asset('policies/it_security_policy.pdf') }}"
-                                                class="btn btn-secondary btn-sm" download>
-                                                <i class="fas fa-download"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <!-- Additional policies can be added here -->
-                                </tbody>
-                            </table>
+                <!-- My Requests -->
 
 
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- My Requests -->
-
-
-            <!-- Announcements -->
-            {{-- <div class="row mt-4">
+                <!-- Announcements -->
+                {{-- <div class="row mt-4">
                 <div class="col-md-12">
                     <div class="card shadow-sm">
                         <div class="card-header bg-light">
@@ -202,76 +209,76 @@
                     </div>
                 </div>
             </div> --}}
+            </div>
         </div>
-    </div>
-@endsection
+    @endsection
 
-@section('content')
-@endsection
+    @section('content')
+    @endsection
 
-@section('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var ctx1 = document.getElementById('employeeDistributionChart').getContext('2d');
-            var employeeDistributionChart = new Chart(ctx1, {
-                type: 'pie',
-                data: {
-                    labels: ['IT', 'HR', 'Finance', 'Operations'],
-                    datasets: [{
-                        data: [12, 15, 8, 15],
-                        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e'],
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                    }
-                }
-            });
-
-            var ctx2 = document.getElementById('requestsOverTimeChart').getContext('2d');
-            var requestsOverTimeChart = new Chart(ctx2, {
-                type: 'line',
-                data: {
-                    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-                    datasets: [{
-                        label: 'Requests',
-                        data: [3, 7, 4, 5, 2],
-                        backgroundColor: 'rgba(78, 115, 223, 0.05)',
-                        borderColor: 'rgba(78, 115, 223, 1)',
-                        pointBackgroundColor: 'rgba(78, 115, 223, 1)',
-                        pointBorderColor: 'rgba(78, 115, 223, 1)',
-                        pointHoverBackgroundColor: 'rgba(78, 115, 223, 1)',
-                        pointHoverBorderColor: 'rgba(78, 115, 223, 1)',
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            display: false,
-                        },
+    @section('scripts')
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var ctx1 = document.getElementById('employeeDistributionChart').getContext('2d');
+                var employeeDistributionChart = new Chart(ctx1, {
+                    type: 'pie',
+                    data: {
+                        labels: ['IT', 'HR', 'Finance', 'Operations'],
+                        datasets: [{
+                            data: [12, 15, 8, 15],
+                            backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e'],
+                        }]
                     },
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Day of the Week'
-                            }
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                        }
+                    }
+                });
+
+                var ctx2 = document.getElementById('requestsOverTimeChart').getContext('2d');
+                var requestsOverTimeChart = new Chart(ctx2, {
+                    type: 'line',
+                    data: {
+                        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                        datasets: [{
+                            label: 'Requests',
+                            data: [3, 7, 4, 5, 2],
+                            backgroundColor: 'rgba(78, 115, 223, 0.05)',
+                            borderColor: 'rgba(78, 115, 223, 1)',
+                            pointBackgroundColor: 'rgba(78, 115, 223, 1)',
+                            pointBorderColor: 'rgba(78, 115, 223, 1)',
+                            pointHoverBackgroundColor: 'rgba(78, 115, 223, 1)',
+                            pointHoverBorderColor: 'rgba(78, 115, 223, 1)',
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
                         },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Number of Requests'
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Day of the Week'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Number of Requests'
+                                }
                             }
                         }
                     }
-                }
+                });
             });
-        });
-    </script>
-@endsection
+        </script>
+    @endsection

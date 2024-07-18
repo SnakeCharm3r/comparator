@@ -17,6 +17,7 @@ class UserFamilyDetailsController extends Controller
         return view('family-details.index', compact('familyData', 'user'));
     }
 
+
   // Method to store new family member
   public function addFamilyData(Request $request)
   {
@@ -52,4 +53,6 @@ class UserFamilyDetailsController extends Controller
 
         return redirect()->back()->with('success', 'Family detail deleted successfully.');
     }
+
+
 }

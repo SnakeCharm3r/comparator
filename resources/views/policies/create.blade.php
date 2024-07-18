@@ -9,20 +9,20 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">NHIF Details</h5>
+                            <h5 class="card-title mb-0">CCBRT Policies and SoPs</h5>
                         </div>
                         <br>
                         <div class="container">
-                            <form action="{{ route('policies.store') }}" method="POST" onsubmit="return submitForm()">
+                            <form action="{{ route('policies.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group mb-3">
                                     <label for="title">Title</label>
                                     <input type="text" class="form-control" id="title" name="title" required>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="content">Description</label>
-                                    <div id="editor-container" style="height: 250px;"></div>
-                                    <input type="hidden" id="content" name="content">
+                                    <label for="pdf">Upload PDF</label>
+                                    <input type="file" class="form-control" id="pdf" name="pdf"
+                                        accept="application/pdf" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Save Policy</button>
                             </form>
@@ -33,18 +33,5 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var quill = new Quill('#editor-container', {
-                theme: 'snow'
-            });
-
-            window.submitForm = function() {
-                var content = document.querySelector('input[name=content]');
-                content.value = quill.root.innerHTML;
-                return true;
-            }
-        });
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 @endsection

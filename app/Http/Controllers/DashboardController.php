@@ -41,5 +41,27 @@ class DashboardController extends Controller
 
         return view('dashboard', compact('data'));
     }
+    public function dashboard()
+    {
+        $showAlert = false;
+    
+        if (auth()->check()) {
+            $user = auth()->user();
+    
+            // Check if the session variable for first login is set
+            if (!session()->has('first_login_shown')) {
+                // Set session variable
+                session(['first_login_shown' => true]);
+                $showAlert = true;
+            }
+        }
+    
+        // Debugging statement
+        \Log::info('Show Alert: ' . ($showAlert ? 'true' : 'false'));
+    
+        return view('dashboard', compact('showAlert'));
+    }
+    
+
 
 }

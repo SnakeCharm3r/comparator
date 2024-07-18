@@ -74,7 +74,7 @@ class IctAccessController extends Controller
             'VPN' => 'required|exists:privilege_levels,id',
             'pbax' => 'required|exists:privilege_levels,id',
         ]);
-        //dd( $validator);
+        // dd( $validator);
 
         if ($validator->fails()) {
             \Log::error('Validation failed', ['errors' => $validator->errors()]);
@@ -91,7 +91,7 @@ class IctAccessController extends Controller
                 $hardwareRequest = $request->input('hardware_request') ? implode(',', $request->input('hardware_request')) : null;
 
                 \Log::info('Hardware request processed', ['hardware_request' => $hardwareRequest]);
-
+               
                 // Create ICT Access Resource
                 $ict = IctAccessResource::create([
                     'remarkId' => $request->input('remarkId'),
@@ -110,6 +110,7 @@ class IctAccessController extends Controller
                     'physical_access' => $request->input('physical_access'),
                     'delete_status' => 0,
                 ]);
+               
 
                 \Log::info('ICT Access Resource created', ['ict' => $ict]);
 
@@ -135,11 +136,12 @@ class IctAccessController extends Controller
                 ]);
 
                 \Log::info('Initial workflow history saved');
-
+                
                 // Find the approver based on role (e.g., Line Manager)
                 $approver = $this->findLineManagerForRequesterDepartment();
+                // dd($approver );
                 \Log::info('Approver found', ['approver' => $approver]);
-
+// dd($approver);
                 // Forward for approval
                 $this->forwardWorkflowHistory([
                     'work_flow_id' => $workflow->id,
@@ -150,13 +152,14 @@ class IctAccessController extends Controller
                     'attend_date' => Carbon::now()->format('d F Y'),
                     'parent_id' => $workflow->id,
                 ]);
-
+                // dd(12345);
                 \Log::info('Workflow history forwarded for approval');
-                // dd(1235);
+                
                 // Success alert and redirect
+               
                 Alert::success('IT access form request submitted successfully', 'IT access Request Added');
                 return redirect()->route('form.index')->with('success', 'ICT Access Resource created successfully.');
-            });
+            dd(1234); });
         } catch (\Exception $e) {
             // Log the exact error message for better debugging
             \Log::error('Error storing ICT Access Resource: ' . $e->getMessage(), ['exception' => $e]);
