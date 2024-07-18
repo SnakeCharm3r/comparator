@@ -57,9 +57,8 @@
                                                     <td>
                                                          ICT Access Form
                                                     </td>
-                                                    <td>
+                                                    <td>{{ $pending->fname }} {{ $pending->mname }} {{ $pending->lname }}</td>
 
-                                                    </td>
                                                     <td>{{$pending->attend_date}}</td>
                                                     <td>
                                                         @if ($pending->status == 0)
