@@ -163,7 +163,7 @@
                                                                         <label>Date of Birth</label>
                                                                         <input class="form-control" type="date"
                                                                             name="DOB"
-                                                                            value="{{ old('dob', $user->dob) }}"readonly>
+                                                                            value="{{ old('dob', $user->DOB) }}"readonly>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">

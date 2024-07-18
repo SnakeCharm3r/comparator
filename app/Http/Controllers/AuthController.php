@@ -77,6 +77,7 @@ class AuthController extends Controller
           'job_title' => 'required',
           'email' => 'required|email|unique:users',
           'deptId' => 'required',
+          'DOB' => 'required',
           'employment_typeId' => 'required',
           'password' => 'required|min:6',
         ]);

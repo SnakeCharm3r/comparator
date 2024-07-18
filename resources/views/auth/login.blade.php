@@ -75,7 +75,7 @@
                             </form>
 
                             <p class="account-subtitle">Need an account? <a href="{{ route('register') }}"
-                            style="color: #0f813c;">Sign Up</a></p>
+                                    style="color: #0f813c;">Sign Up</a></p>
                         </div>
                     </div>
                 </div>
@@ -83,22 +83,10 @@
         </div>
     </div>
 
-
-
-
     <script src="assets/js/jquery-3.6.0.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/feather.min.js"></script>
     <script src="assets/js/script.js"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("acceptAgreements").addEventListener("click", function() {
-                // Redirect to the registration page
-                window.location.href = "{{ route('register') }}";
-            });
-        });
-    </script>
 </body>
 
 </html>
