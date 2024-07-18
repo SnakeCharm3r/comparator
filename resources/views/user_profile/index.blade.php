@@ -83,6 +83,8 @@
                                         <ul class="nav nav-tabs">
                                             <li class="nav-item"><a href="{{ route('profile.index') }}"
                                                     class="active nav-link" data-bs-toggle="tab">User Info</a></li>
+                                            <li class="nav-item"><a href="#policies" class="nav-link"
+                                                    data-bs-toggle="tab">Policies</a></li>
                                             <li class="nav-item"><a href="#" class="nav-link">Password</a></li>
                                             <li class="nav-item"><a href="{{ route('family-details.index') }}"
                                                     class="nav-link">Family Details</a></li>
@@ -93,8 +95,7 @@
                                             <li class="nav-item"><a href="{{ route('language_knowledge.index') }}"
                                                     class="nav-link">Language</a> </li>
 
-                                            <li class="nav-item"><a href="#policies" class="nav-link"
-                                                    data-bs-toggle="tab">Policies</a></li>
+
                                         </ul>
                                         <div class="tab-content pt-3">
                                             <div class="tab-pane active" id="settings">
@@ -271,109 +272,50 @@
                                                         <div class="col d-flex justify-content-end">
                                                             <button class="btn btn-secondary me-2" type="button"
                                                                 onclick="redirectToEditProfile({{ $user->id }})">Edit</button>
-
+                                                            <button class="btn btn-primary" type="button"
+                                                                onclick="saveProfileChanges()">Save</button>
                                                         </div>
                                                     </div>
+
 
                                                     <script>
                                                         function redirectToEditProfile(userId) {
                                                             window.location.href = `/profile/edit/${userId}`;
                                                         }
                                                     </script>
-
-
                                                 </form>
                                             </div>
                                             <div class="tab-pane" id="policies">
                                                 <div class="row mt-4">
                                                     <div class="col-md-12">
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <h3>CCBRT Policies</h3>
-                                                                <div class="accordion" id="policyAccordion">
-                                                                    @foreach ($policies as $policy)
-                                                                        <div class="accordion-item">
-                                                                            <h2 class="accordion-header"
-                                                                                id="heading-{{ $policy->id }}">
-                                                                                <button class="accordion-button collapsed"
-                                                                                    type="button"
-                                                                                    data-bs-toggle="collapse"
-                                                                                    data-bs-target="#collapse-{{ $policy->id }}"
-                                                                                    aria-expanded="false"
-                                                                                    aria-controls="collapse-{{ $policy->id }}">
-                                                                                    {{ $policy->title }}
-                                                                                </button>
-                                                                            </h2>
-                                                                            <div id="collapse-{{ $policy->id }}"
-                                                                                class="accordion-collapse collapse"
-                                                                                aria-labelledby="heading-{{ $policy->id }}"
-                                                                                data-bs-parent="#policyAccordion">
-                                                                                <div class="accordion-body">
-                                                                                    <div>{!! $policy->content !!}</div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    @endforeach
-                                                                </div>
-
-
-                                                                <table class="table table-bordered">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>Title</th>
-                                                                            <th>Actions</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        @foreach ($policies as $policy)
-                                                                            <tr>
-                                                                                <td>{{ $policy->title }}</td>
-                                                                                <td class="text-center">
-                                                                                    <!-- View PDF Icon -->
-                                                                                    <a href="javascript:void(0);"
-                                                                                        onclick="viewPDF('{{ asset('storage/' . $policy->pdf_path) }}')">
-                                                                                        <i class="fas fa-eye text-info fs-5 me-3"
-                                                                                            title="View PDF"></i>
-                                                                                    </a>
-
-                                                                                    <!-- Edit Icon -->
-                                                                                    <a
-                                                                                        href="{{ route('policies.edit', $policy->id) }}">
-                                                                                        <i class="fas fa-edit text-primary fs-5 me-3"
-                                                                                            title="Edit"></i>
-                                                                                    </a>
-
-                                                                                    <!-- Delete Icon -->
-                                                                                    <form
-                                                                                        action="{{ route('policies.destroy', $policy->id) }}"
-                                                                                        method="POST"
-                                                                                        style="display:inline;"
-                                                                                        onsubmit="return confirm('Are you sure you want to delete this policy?');">
-                                                                                        @csrf
-                                                                                        @method('DELETE')
-                                                                                        <button type="submit"
-                                                                                            style="border: none; background: none; padding: 0;">
-                                                                                            <i class="fas fa-trash text-danger fs-5"
-                                                                                                title="Delete"></i>
-                                                                                        </button>
-                                                                                    </form>
-                                                                                </td>
-                                                                            </tr>
-                                                                        @endforeach
-                                                                    </tbody>
-                                                                </table>
-
-                                                                <script>
-                                                                    function viewPDF(url) {
-                                                                        window.open(url, '_blank');
-                                                                    }
-                                                                </script>
-
-                                                            </div>
-                                                        </div>
+                                                        <h4>CCBRT Policies</h4>
+                                                        <table class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Title</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach ($policies as $policy)
+                                                                    <tr>
+                                                                        <td>{{ $policy->title }}</td>
+                                                                        <td class="text-center" style="width: 140px;">
+                                                                            <!-- View PDF Icon -->
+                                                                            <a href="{{ asset('storage/' . $policy->pdf_path) }}"
+                                                                                target="_blank" class="btn btn-sm p-0"
+                                                                                title="View PDF">
+                                                                                <i class="fas fa-eye text-info"></i>
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>

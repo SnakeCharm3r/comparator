@@ -22,10 +22,13 @@
                                     <input type="text" class="form-control" id="title" name="title"
                                         value="{{ $policy->title }}" required>
                                 </div>
-                                <div class="form-group mb-3">
-                                    <label for="content">Description</label>
-                                    <div id="editor-container" style="height: 250px;"></div>
-                                    <input type="hidden" id="content" name="content">
+                                <div class="form-group">
+                                    <label for="pdf">PDF File</label>
+                                    <input type="file" name="pdf_path" class="form-control-file" id="pdf">
+                                    @if ($policy->pdf_path)
+                                        <small>Current file: <a href="{{ asset('storage/' . $policy->pdf_path) }}"
+                                                target="_blank">{{ $policy->pdf_path }}</a></small>
+                                    @endif
                                 </div>
                                 <div class="form-group mb-3">
                                     <button type="submit" class="btn btn-primary">Update Policy</button>

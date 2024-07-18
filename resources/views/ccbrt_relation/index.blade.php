@@ -81,7 +81,9 @@
                                         </div>
                                         <ul class="nav nav-tabs">
                                             <li class="nav-item"><a href="{{ route('profile.index') }}"
-                                                class="nav-link">User Info</a></li>
+                                                    class="nav-link">User Info</a></li>
+                                            <li class="nav-item"><a href="#policies" class="nav-link"
+                                                    data-bs-toggle="tab">Policies</a></li>
                                             <li class="nav-item"><a href="#security" class="nav-link"
                                                     data-bs-toggle="tab">Password</a></li>
                                             <li class="nav-item"><a href="{{ route('family-details.index') }}"
@@ -93,8 +95,7 @@
                                             <li class="nav-item"><a href="{{ route('language_knowledge.index') }}"
                                                     class="nav-link">Language</a> </li>
 
-                                            <li class="nav-item"><a href="#policies" class="nav-link"
-                                                    data-bs-toggle="tab">Policies</a></li>
+
                                         </ul>
                                         <div class="tab-content pt-3">
                                             <div class="tab-pane active" id="family">
@@ -105,7 +106,8 @@
                                                                 <form method="POST"
                                                                     action="{{ route('ccbrt_relation.addRelationData') }}">
                                                                     @csrf
-                                                                    <input type="hidden" name="userId" value="{{ Auth::id() }}">
+                                                                    <input type="hidden" name="userId"
+                                                                        value="{{ Auth::id() }}">
                                                                     <div class="row">
                                                                         <div class="col-12 col-md-3">
                                                                             <div class="form-group">
