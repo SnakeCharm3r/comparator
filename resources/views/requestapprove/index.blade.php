@@ -62,7 +62,7 @@
                                                     </td>
                                                     <td>{{$pending->attend_date}}</td>
                                                     <td>
-                                                        @if ($pending->status == 0) 
+                                                        @if ($pending->status == 0)
                                                             <span class="badge bg-warning text-dark font-size-11">Pending</span>
                                                         @elseif ($pending->status == 1)
                                                             <span class="badge bg-success text-dark font-size-11">Approved</span>
