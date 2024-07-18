@@ -32,9 +32,15 @@
                                                     <div class="mx-auto" style="width: 140px;">
                                                         <div class="d-flex justify-content-center align-items-center rounded"
                                                             style="height: 140px; background-color: rgb(233, 236, 239); position: relative;">
-                                                            <img src="{{ asset('storage/' . $user->profile_picture) }}"
-                                                                alt="Profile Picture" class="img-fluid rounded-circle"
-                                                                style="max-width: 140px; height: 140px; border: 2px solid #ccc; padding: 5px; object-fit: cover;">
+                                                            @if ($user->profile_picture)
+                                                                <img src="{{ asset('storage/' . $user->profile_picture) }}"
+                                                                    alt="Profile Picture" class="img-fluid rounded-circle"
+                                                                    style="max-width: 140px; height: 140px; border: 2px solid #ccc; padding: 5px; object-fit: cover;">
+                                                            @else
+                                                                <img src="{{ asset('assets/img/icon.png') }}"
+                                                                    alt="Default User Icon" class="img-fluid rounded-circle"
+                                                                    style="max-width: 150px; height: 140px; border: 1px solid #ccc; padding: 1px; object-fit: cover;">
+                                                            @endif
                                                             <form id="profilePictureForm"
                                                                 action="{{ route('profile.update.picture') }}"
                                                                 method="POST" enctype="multipart/form-data"
@@ -51,8 +57,7 @@
                                                 <div
                                                     class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                                                     <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ $user->username }}
-                                                        </h4>
+                                                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ $user->username }}</h4>
                                                         <p class="mb-0">{{ $user->email }}</p>
                                                         <p class="mb-0">{{ $user->department->name }}</p>
                                                         <div class="mt-2">
@@ -76,7 +81,9 @@
                                         </div>
                                         <ul class="nav nav-tabs">
                                             <li class="nav-item"><a href="{{ route('profile.index') }}"
-                                                class="nav-link">User Info</a></li>
+                                                    class="nav-link">User Info</a></li>
+                                            <li class="nav-item"><a href="#policies" class="nav-link"
+                                                    data-bs-toggle="tab">Policies</a></li>
                                             <li class="nav-item"><a href="#security" class="nav-link"
                                                     data-bs-toggle="tab">Password</a></li>
                                             <li class="nav-item"><a href="{{ route('family-details.index') }}"
@@ -88,8 +95,6 @@
                                             <li class="nav-item"><a href="{{ route('language_knowledge.index') }}"
                                                     class="active nav-link">Language</a> </li>
 
-                                            <li class="nav-item"><a href="#policies" class="nav-link"
-                                                    data-bs-toggle="tab">Policies</a></li>
                                         </ul>
                                         <div class="tab-content pt-3">
                                             <div class="tab-pane active" id="family">

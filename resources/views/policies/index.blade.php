@@ -24,16 +24,18 @@
                                     @foreach ($policies as $policy)
                                         <tr>
                                             <td>{{ $policy->title }}</td>
-                                            <td class="text-center">
+                                            <td class="text-center" style="width: 140px;">
                                                 <!-- View PDF Icon -->
                                                 <a href="javascript:void(0);"
-                                                    onclick="viewPDF('{{ asset('storage/' . $policy->pdf_path) }}')">
-                                                    <i class="fas fa-eye text-info fs-5 me-3" title="View PDF"></i>
+                                                    onclick="viewPDF('{{ asset('storage/' . $policy->pdf_path) }}')"
+                                                    class="btn btn-sm p-0" title="View PDF">
+                                                    <i class="fas fa-eye text-info"></i>
                                                 </a>
 
                                                 <!-- Edit Icon -->
-                                                <a href="{{ route('policies.edit', $policy->id) }}">
-                                                    <i class="fas fa-edit text-primary fs-5 me-3" title="Edit"></i>
+                                                <a href="{{ route('policies.edit', $policy->id) }}"
+                                                    class="btn btn-sm p-0 mx-1" title="Edit">
+                                                    <i class="fas fa-edit text-success"></i>
                                                 </a>
 
                                                 <!-- Delete Icon -->
@@ -42,9 +44,9 @@
                                                     onsubmit="return confirm('Are you sure you want to delete this policy?');">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit"
-                                                        style="border: none; background: none; padding: 0;">
-                                                        <i class="fas fa-trash text-danger fs-5" title="Delete"></i>
+                                                    <button type="submit" class="btn btn-sm p-0"
+                                                        style="border: none; background: none;" title="Delete">
+                                                        <i class="fas fa-trash-alt text-danger"></i>
                                                     </button>
                                                 </form>
                                             </td>
@@ -61,14 +63,14 @@
         <!-- PDF Modal -->
         <div class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="pdfModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="pdfModalLabel">PDF Viewer</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <iframe id="pdfIframe" src="" style="width: 100%; height: 500px; border: none;"></iframe>
+                        <iframe id="pdfIframe" src="" style="width: 100%; height: 80vh; border: none;"></iframe>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -88,6 +90,6 @@
     </script>
 
     <!-- Ensure correct Bootstrap and jQuery versions -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> --}}
 @endsection
