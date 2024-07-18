@@ -55,7 +55,7 @@
                                             <tr>
                                                 @if ($pending->ict_request_resource_id)
                                                     <td>
-                                                        <i class="fas fa-key"></i> ICT Access Form
+                                                         ICT Access Form
                                                     </td>
                                                     <td>
 
