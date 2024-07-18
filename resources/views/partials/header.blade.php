@@ -53,7 +53,7 @@
             </a>
             <div class="dropdown-menu">
                 @if (Auth::check())
-                    <div class="user-header">
+                    {{-- <div class="user-header">
                         <div class="avatar avatar-sm">
                             <img src="{{ asset('assets/img/profiles/avatar-01.jpg') }}" alt="User Image"
                                 class="avatar-img rounded-circle">
@@ -62,7 +62,7 @@
                             <h6>{{ Auth::user()->fname }} {{ Auth::user()->lname }}</h6>
                             <p class="text-muted mb-0">{{ Auth::user()->job_title }}</p>
                         </div>
-                    </div>
+                    </div> --}}
                     <a class="dropdown-item" href="{{ route('profile.index') }}">My Profile</a>
                     <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
                 @else
