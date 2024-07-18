@@ -167,7 +167,7 @@
                 <div class="form-check mt-3">
                     <input class="form-check-input" type="checkbox" id="acceptCheckbox">
                     <label class="form-check-label" for="acceptCheckbox">
-                        I have read and accept the User Agreements and Policies.
+                        I have read and accept the User Agreements and Policies..
                     </label>
                 </div>
             </div>
