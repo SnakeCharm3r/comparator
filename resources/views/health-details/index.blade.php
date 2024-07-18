@@ -31,9 +31,15 @@
                                                     <div class="mx-auto" style="width: 140px;">
                                                         <div class="d-flex justify-content-center align-items-center rounded"
                                                             style="height: 140px; background-color: rgb(233, 236, 239); position: relative;">
-                                                            <img src="{{ asset('storage/' . $user->profile_picture) }}"
-                                                                alt="Profile Picture" class="img-fluid rounded-circle"
-                                                                style="max-width: 140px; height: 140px; border: 2px solid #ccc; padding: 5px; object-fit: cover;">
+                                                            @if ($user->profile_picture)
+                                                                <img src="{{ asset('storage/' . $user->profile_picture) }}"
+                                                                    alt="Profile Picture" class="img-fluid rounded-circle"
+                                                                    style="max-width: 140px; height: 140px; border: 2px solid #ccc; padding: 5px; object-fit: cover;">
+                                                            @else
+                                                                <img src="{{ asset('assets/img/icon.png') }}"
+                                                                    alt="Default User Icon" class="img-fluid rounded-circle"
+                                                                    style="max-width: 150px; height: 140px; border: 1px solid #ccc; padding: 1px; object-fit: cover;">
+                                                            @endif
                                                             <form id="profilePictureForm"
                                                                 action="{{ route('profile.update.picture') }}"
                                                                 method="POST" enctype="multipart/form-data"
