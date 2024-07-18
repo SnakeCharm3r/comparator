@@ -21,12 +21,12 @@ class AuthController extends Controller
     public function login(){
         return view('auth.login');
     }
-    //get All user 
+    //get All user
     public function getAllUser(){
         $users = User::all();
         return view('role-permission/user.index', compact('users'));
     }
-    // find user by ID 
+    // find user by ID
     public function getUserById($id) {
         $user = User::find($id);
         if (!$user) {
@@ -43,7 +43,7 @@ class AuthController extends Controller
 
         return view('role-permission/user.edit', compact('user','roles', 'userRoles'));
     }
-   
+
     public function handleLogin(Request $request) {
         $validator = Validator::make($request->all(), [
             'username' => 'required',
@@ -122,7 +122,7 @@ class AuthController extends Controller
 
         ]);
             // Example of assigning role
-            $user->assignRole('super-admin');
+            $user->assignRole('requester');
             Alert::success('User Registered Successful','Please login');
          return redirect()->route('dashboard')->with(
             'success', 'User registered successfully. Please login.');
@@ -130,16 +130,6 @@ class AuthController extends Controller
 
     }
 
-
-    // public function editUserRole(Request $request, $userId)
-    // {
-    //     $request->validate([
-    //         'role' => 'required|exists:roles,name',
-    //     ]);
-    //     $user = User::findOrFail($userId);
-    //     $user->assignRole($request->role);
-    //     return redirect()->back()->with('status', 'Role assigned successfully');
-    // }
     public function editUserRole(Request $request, $userId)
     {
         $request->validate([
@@ -149,11 +139,11 @@ class AuthController extends Controller
         $user->syncRoles([$request->role]);  // Changed to syncRoles to remove any previous roles
         return redirect('role')->with('status', 'Role assigned successfully');
     }
-    
+
 //     public function editUserRole(Request $request, $id)
 // {
 //     $user = User::findOrFail($id);
-    
+
 //     $validated = $request->validate([
 //         'username' => 'required|string|max:255',
 //         'roles' => 'required|string|exists:roles,name',
