@@ -15,7 +15,7 @@ class RequestApproveController extends Controller
     public function index()
     {
         $pending= Workflow::join('work_flow_histories','work_flow_histories.work_flow_id','=','workflows.id')->where('attended_by',Auth::user()->id)->get();
-        // dd($pending);
+        //  dd($pending);
         return view("requestapprove.index" ,compact ("pending"));
     }
 

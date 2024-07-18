@@ -23,7 +23,7 @@ class RequestController extends Controller
             $userId = Auth::user()->id;
 
             $form = Workflow::where('user_id', $userId)->get();
-
+dd($form);
         // Initialize an empty array to store histories for each form
         $histories = [];
 
@@ -100,4 +100,34 @@ public function search(Request $request)
 
     return view('requests.index');
 }
+
+// public function index()
+// {
+//     try {
+//         if (!Auth::check()) {
+//             return redirect()->route('login'); // Ensure the user is authenticated
+//         }
+
+//         $userId = Auth::user()->id;
+
+//         $form = Workflow::where('user_id', $userId)->get();
+
+//     // Initialize an empty array to store histories for each form
+//     $histories = [];
+
+//     // Fetch histories for each form
+//     foreach ($form as $aform) {
+//         $history = WorkFlowHistory::where('work_flow_id', $aform->id)->get();
+//         $histories[$aform->id] = $history; // Store histories keyed by form ID
+//     }
+
+//     // dd($form, $histories);
+
+//     return view('myrequest.index', compact('form', 'histories'));
+
+//     } catch (\Exception $e) {
+//         dd($e->getMessage());
+//     }
+// }
+
 }
