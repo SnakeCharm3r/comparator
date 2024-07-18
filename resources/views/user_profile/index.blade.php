@@ -308,6 +308,60 @@
                                                                         </div>
                                                                     @endforeach
                                                                 </div>
+
+
+                                                                <table class="table table-bordered">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Title</th>
+                                                                            <th>Actions</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @foreach ($policies as $policy)
+                                                                            <tr>
+                                                                                <td>{{ $policy->title }}</td>
+                                                                                <td class="text-center">
+                                                                                    <!-- View PDF Icon -->
+                                                                                    <a href="javascript:void(0);"
+                                                                                        onclick="viewPDF('{{ asset('storage/' . $policy->pdf_path) }}')">
+                                                                                        <i class="fas fa-eye text-info fs-5 me-3"
+                                                                                            title="View PDF"></i>
+                                                                                    </a>
+
+                                                                                    <!-- Edit Icon -->
+                                                                                    <a
+                                                                                        href="{{ route('policies.edit', $policy->id) }}">
+                                                                                        <i class="fas fa-edit text-primary fs-5 me-3"
+                                                                                            title="Edit"></i>
+                                                                                    </a>
+
+                                                                                    <!-- Delete Icon -->
+                                                                                    <form
+                                                                                        action="{{ route('policies.destroy', $policy->id) }}"
+                                                                                        method="POST"
+                                                                                        style="display:inline;"
+                                                                                        onsubmit="return confirm('Are you sure you want to delete this policy?');">
+                                                                                        @csrf
+                                                                                        @method('DELETE')
+                                                                                        <button type="submit"
+                                                                                            style="border: none; background: none; padding: 0;">
+                                                                                            <i class="fas fa-trash text-danger fs-5"
+                                                                                                title="Delete"></i>
+                                                                                        </button>
+                                                                                    </form>
+                                                                                </td>
+                                                                            </tr>
+                                                                        @endforeach
+                                                                    </tbody>
+                                                                </table>
+
+                                                                <script>
+                                                                    function viewPDF(url) {
+                                                                        window.open(url, '_blank');
+                                                                    }
+                                                                </script>
+
                                                             </div>
                                                         </div>
                                                     </div>
