@@ -16,10 +16,24 @@ class RequestApproveController extends Controller
      */
     public function index()
     {
-        $pending= Workflow::join('work_flow_histories','work_flow_histories.work_flow_id','=','workflows.id')->where('attended_by',Auth::user()->id)->get();
+        $pending= Workflow::join('work_flow_histories','work_flow_histories.work_flow_id','=','workflows.id')
+        ->where('attended_by',Auth::user()->id)->get();
         //  dd($pending);
         return view("requestapprove.index" ,compact ("pending"));
     }
+
+    public function index1()
+    {
+        $pending = Workflow::join('work_flow_histories', 'work_flow_histories.work_flow_id', '=', 'workflows.id')
+                           ->join('users', 'work_flow_histories.forwarded_by', '=', 'users.id')
+                           ->where('work_flow_histories.attended_by', Auth::user()->id)
+                           ->select('workflows.*', 'work_flow_histories.forwarded_by', 'users.username')
+                           ->get();
+
+        // dd($pending);
+        return view("requestapprove.index", compact("pending"));
+    }
+
 
     /**
      * Show the form for creating a new resource.
