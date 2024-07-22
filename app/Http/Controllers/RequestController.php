@@ -25,7 +25,6 @@ class RequestController extends Controller
             $form = Workflow::where('user_id', $userId)->get();
         // Initialize an empty array to store histories for each form
         $histories = [];
-
         // Fetch histories for each form
         foreach ($form as $aform) {
             $history = WorkFlowHistory::where('work_flow_id', $aform->id)->get();
