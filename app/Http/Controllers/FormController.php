@@ -34,7 +34,7 @@ class FormController extends Controller
                 'workflows.*',
                 'work_flow_histories.*',
                 'ict_access_resources.id as access_id',
-                'privilege_levels.prv_name', // Select the privilege name
+                'privilege_levels.prv_name',
                 'nhif_qualifications.name',
                 'employment_types.employment_type',
                 'departments.dept_name',
