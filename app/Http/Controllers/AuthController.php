@@ -228,7 +228,8 @@ class AuthController extends Controller
         $user->password = Hash::make($request->new_password);
         $user->save();
 
-        return redirect()->route('home')->with('success', 'Password changed successfully.');
+        Alert::success('Password changed Successful','Please proceed');
+        return redirect()->route('user_profile.pass')->with('success', 'Password changed successfully.');
     }
 
 }

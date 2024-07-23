@@ -49,7 +49,7 @@
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">User
                                     Category</td>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->userCategory }}</td>
+                                    {{ $ictForm->prv_name }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">Starting
@@ -60,7 +60,7 @@
                             <tr>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">PABX</td>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->pabx }}</td>
+                                    {{ $ictForm->prv_name }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">Email
@@ -72,13 +72,13 @@
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
                                     Department</td>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->department }}</td>
+                                    {{ $ictForm->dept_name }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">Active
                                     Directory</td>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->active_directory }}</td>
+                                    {{ $ictForm->prv_name }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">Ending
@@ -90,30 +90,26 @@
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">Employee
                                     ID</td>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->employee_id }}</td>
+                                    {{ $ictForm->emp_id }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">Hardware
                                 </td>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    <ul style="margin: 0; padding-left: 20px;">
-                                        {{-- @foreach ($ictForm->hardware as $hardware)
-                                            <li>{{ $hardware }}</li>
-                                        @endforeach --}}
-                                    </ul>
+                                 {{$ictForm->hardware_request}}
                                 </td>
                             </tr>
                             <tr>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">First
                                     Name</td>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->first_name }}</td>
+                                    {{ $ictForm->fname }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">Last Name
                                 </td>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->last_name }}</td>
+                                    {{ $ictForm->lname }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
@@ -125,31 +121,31 @@
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">NHIF
                                     Qualification</td>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->nhif_qualification }}</td>
+                                    {{ $ictForm->name }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">HMIS
                                     Access</td>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->hmis_access }}</td>
+                                    {{ $ictForm->names }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">CCBRT
                                     Email</td>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->ccbrt_email }}</td>
+                                    {{ $ictForm->prv_name }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">SAP ERP
                                 </td>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->sap_erp }}</td>
+                                    {{ $ictForm->prv_name }}</td>
                             </tr>
                             <tr>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">Network
                                     Access VPN</td>
                                 <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->network_access_vpn }}</td>
+                                    {{ $ictForm->prv_name }}</td>
                             </tr>
                         </tbody>
                     </table>

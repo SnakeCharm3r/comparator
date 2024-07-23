@@ -20,24 +20,30 @@ class FormController extends Controller
     public function getform(Request $request)
     {
         $ictForm = IctAccessResource::join('users', 'users.id', '=', 'ict_access_resources.userId')
-        ->join('workflows','workflows.ict_request_resource_id','=','ict_access_resources.id')
-        ->join('work_flow_histories','work_flow_histories.work_flow_id','=','workflows.id')
+            ->join('workflows', 'workflows.ict_request_resource_id', '=', 'ict_access_resources.id')
+            ->join('work_flow_histories', 'work_flow_histories.work_flow_id', '=', 'workflows.id')
+            ->join('privilege_levels', 'privilege_levels.id', '=', 'ict_access_resources.privilegeId')
+            ->join('nhif_qualifications', 'nhif_qualifications.id', '=', 'ict_access_resources.nhifId')
+            ->join('employment_types', 'employment_types.id', '=', 'users.employment_typeId')
+            ->join('departments', 'departments.id', '=', 'users.deptId')
+            ->join('h_m_i_s_access_levels', 'h_m_i_s_access_levels.id', '=', 'ict_access_resources.hmisId')
             ->where('ict_access_resources.id', $request->id)
             ->first([
                 'ict_access_resources.*',
                 'users.*',
                 'workflows.*',
                 'work_flow_histories.*',
-                'ict_access_resources.id as access_id'
+                'ict_access_resources.id as access_id',
+                'privilege_levels.prv_name',
+                'nhif_qualifications.name',
+                'employment_types.employment_type',
+                'departments.dept_name',
+                'h_m_i_s_access_levels.names'
             ]);
 
-// dd($ictForm);
-        // dd($request->id);
-
         return view('ict_resource_form', compact('ictForm'));
-        // dd($ictForm);
-
     }
+
 
     public function approveForm(Request $request)
     {

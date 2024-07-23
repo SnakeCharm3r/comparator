@@ -14,20 +14,20 @@ class RequestApproveController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $pending= Workflow::join('work_flow_histories','work_flow_histories.work_flow_id','=','workflows.id')
-        ->where('attended_by',Auth::user()->id)->get();
-        //  dd($pending);
-        return view("requestapprove.index" ,compact ("pending"));
-    }
+    // public function index()
+    // {
+    //     $pending= Workflow::join('work_flow_histories','work_flow_histories.work_flow_id','=','workflows.id')
+    //     ->where('attended_by',Auth::user()->id)->get();
+    //     //  dd($pending);
+    //     return view("requestapprove.index" ,compact ("pending"));
+    // }
 
-    public function index1()
+    public function index()
     {
         $pending = Workflow::join('work_flow_histories', 'work_flow_histories.work_flow_id', '=', 'workflows.id')
                            ->join('users', 'work_flow_histories.forwarded_by', '=', 'users.id')
                            ->where('work_flow_histories.attended_by', Auth::user()->id)
-                           ->select('workflows.*', 'work_flow_histories.forwarded_by', 'users.username')
+                           ->select('workflows.*', 'work_flow_histories.*', 'users.username')
                            ->get();
 
         // dd($pending);
