@@ -77,7 +77,7 @@
                                         <ul class="nav nav-tabs">
                                             <li class="nav-item"><a href="#settings" class="active nav-link"
                                                     data-bs-toggle="tab">User Info</a></li>
-                                            
+
                                         </ul>
                                         <div class="tab-content pt-3">
                                             <div class="tab-pane active" id="settings">
@@ -91,8 +91,7 @@
                                                                         <label>First Name</label>
                                                                         <input class="form-control" type="text"
                                                                             name="first_name" placeholder="John Smith"
-                                                                            value="{{ old('first_name', $user->fname) }}"
-                                                                            readonly>
+                                                                            value="{{ old('first_name', $user->fname) }}">
                                                                     </div>
                                                                 </div>
 
@@ -101,7 +100,7 @@
                                                                         <label>Middle Name</label>
                                                                         <input class="form-control" type="text"
                                                                             name="middle_name" placeholder="Middle Name"
-                                                                            value="{{ old('middle_name', $user->mname) }}"readonly>
+                                                                            value="{{ old('middle_name', $user->mname) }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col">
@@ -109,7 +108,7 @@
                                                                         <label>Last Name</label>
                                                                         <input class="form-control" type="text"
                                                                             name="last_name" placeholder="John Smith"
-                                                                            value="{{ old('last_name', $user->lname) }}"readonly>
+                                                                            value="{{ old('last_name', $user->lname) }}">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -129,14 +128,13 @@
                                                                         <label>Email</label>
                                                                         <input class="form-control" type="text"
                                                                             name="email" placeholder="user@example.com"
-                                                                            value="{{ old('email', $user->email) }}"readonly>
+                                                                            value="{{ old('email', $user->email) }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
                                                                     <div class="form-group">
                                                                         <label>Mobile Number</label>
-                                                                        <input type="text"
-                                                                            class="form-control"readonly>
+                                                                        <input type="text" class="form-control">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -146,7 +144,7 @@
                                                                         <label>Date of Birth</label>
                                                                         <input class="form-control" type="date"
                                                                             name="DOB"
-                                                                            value="{{ old('dob', $user->dob) }}"readonly>
+                                                                            value="{{ old('dob', $user->dob) }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
@@ -245,16 +243,20 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col d-flex justify-content-end">
-                                                            <button class="btn btn-secondary me-2" type="button"
-                                                                onclick="redirectToEditProfile({{ $user->id }})">Edit</button>
-                                                            <button class="btn btn-primary" type="submit">Save
+                                                            <a href="#" class="btn btn-secondary"
+                                                                onclick="goBack()">Back</a>
+                                                            <button class="btn btn-primary ml-2" type="submit">Save
                                                                 Changes</button>
                                                         </div>
                                                     </div>
-
                                                     <script>
                                                         function redirectToEditProfile(userId) {
                                                             window.location.href = `/profile/edit/${userId}`;
+                                                        }
+                                                    </script>
+                                                    <script>
+                                                        function goBack() {
+                                                            window.history.back();
                                                         }
                                                     </script>
                                                 </form>

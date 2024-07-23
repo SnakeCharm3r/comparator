@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 
+use App\Models\Policy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +13,9 @@ class DashboardController extends Controller
     public function index()
     {
         // Logic to fetch and pass data based on roles and permissions
+        $policies = Policy::all();
         $user = Auth::user();
+       
         $data = [];
 
         if ($user->hasRole('requester')) {
@@ -39,7 +42,7 @@ class DashboardController extends Controller
             $data['admin_content'] = 'Content for super admin';
         }
 
-        return view('dashboard', compact('data'));
+        return view('dashboard', compact('data','policies'));
     }
     public function dashboard()
     {
