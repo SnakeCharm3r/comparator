@@ -204,4 +204,31 @@ class AuthController extends Controller
         return view('password.index', compact('user'));
     }
 
+
+
+    public function showChangePasswordForm()
+    {
+        return view('user_profile.pass');
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|string|min:8|different:current_password',
+            'new_password_confirmation' => 'required|string|same:new_password',
+        ]);
+
+        $user = Auth::user();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return redirect()->back()->with('error', 'The current password is incorrect.');
+        }
+
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return redirect()->route('home')->with('success', 'Password changed successfully.');
+    }
+
 }

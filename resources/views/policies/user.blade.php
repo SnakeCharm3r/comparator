@@ -1,5 +1,3 @@
-<!-- resources/views/profile/show.blade.php -->
-
 @extends('layouts.template')
 
 @section('breadcrumb')
@@ -20,13 +18,12 @@
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
             <div class="container">
                 <div class="row flex-lg-nowrap">
-
                     <div class="col">
                         <div class="row">
                             <div class="col mb-3">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="e-profile">
+                                        {{-- <div class="e-profile">
                                             <div class="row">
                                                 <div class="col-12 col-sm-auto mb-3">
                                                     <div class="mx-auto" style="width: 140px;">
@@ -78,108 +75,63 @@
                                                     }
                                                 </script>
                                             </div>
+                                        </div> --}}
 
-                                        </div>
                                         <ul class="nav nav-tabs">
                                             <li class="nav-item"><a href="{{ route('profile.index') }}"
-                                                    class="active nav-link" data-bs-toggle="tab">User Info</a></li>
+                                                    class="nav-link">User Info</a></li>
                                             <li class="nav-item"><a href="{{ route('policies.user') }}"
-                                                    class="nav-link">Policies</a></li>
+                                                    class="active nav-link">Policies</a></li>
                                             <li class="nav-item"><a href="{{ route('user_profile.pass') }}"
                                                     class="nav-link">Password</a></li>
                                             <li class="nav-item"><a href="{{ route('family-details.index') }}"
                                                     class="nav-link">Family Details</a></li>
                                             <li class="nav-item"><a href="{{ route('health-details.index') }}"
-                                                    class="nav-link">Health Details</a></li>
+                                                    class=" nav-link">Health Details</a></li>
                                             <li class="nav-item"><a href="{{ route('ccbrt_relation.index') }}"
                                                     class="nav-link">CCBRT Reation</a></li>
                                             <li class="nav-item"><a href="{{ route('language_knowledge.index') }}"
                                                     class="nav-link">Language</a> </li>
 
-
                                         </ul>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col">
-                                                <table class="table table-bordered">
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row" style="width: 200px;">User Information
-                                                            </th>
-                                                            <td><strong>Details</strong></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Names</th>
-                                                            <td>{{ $user->fname }} {{ $user->mname }}
-                                                                {{ $user->lname }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Username</th>
-                                                            <td>{{ $user->username }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Email</th>
-                                                            <td>{{ $user->email }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Date of Birth</th>
-                                                            <td>{{ $user->DOB }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Marital Status</th>
-                                                            <td>{{ $user->marital_status }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Address</th>
-                                                            <td>{{ $user->region }}, {{ $user->district }},
-                                                                {{ $user->street }}, {{ $user->house_no }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Home Address</th>
-                                                            <td>{{ $user->home_address }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Domicile</th>
-                                                            <td>{{ $user->domicile }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Religion</th>
-                                                            <td>{{ $user->religion }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Professional Reg Number</th>
-                                                            <td>{{ $user->professional_reg_number }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Identification Numbers</th>
-                                                            <td>{{ $user->national_Identification_number }},
-                                                                {{ $user->nssf_no }}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <div class="text-end">
-                                                    <button class="btn btn-secondary me-2"
-                                                        onclick="redirectToEditProfile({{ $user->id }})">Edit</button>
+                                        <div class="tab-pane">
+                                            <div class="row mt-4">
+                                                <div class="col-md-12">
+                                                    <h4>CCBRT Policies and SoPs</h4>
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Title</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($policies as $policy)
+                                                                <tr>
+                                                                    <td>{{ $policy->title }}</td>
+                                                                    <td class="text-center" style="width: 140px;">
+                                                                        <!-- View PDF Icon -->
+                                                                        <a href="{{ asset('storage/' . $policy->pdf_path) }}"
+                                                                            target="_blank" class="btn btn-sm p-0"
+                                                                            title="View PDF">
+                                                                            <i class="fas fa-eye text-info"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <script>
-                                            function redirectToEditProfile(userId) {
-                                                window.location.href = `/profile/edit/${userId}`;
-                                            }
-                                        </script>
-
-
                                     </div>
                                 </div>
                             </div>
+                            <!-- Add other content for profile page here -->
                         </div>
-                        <!-- Add other content for profile page here -->
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection
