@@ -54,7 +54,13 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'handleRegistration'])->name('register.handleRegistration');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/change-password', [AuthController::class, 'showChangePasswordForm'])->name('user_profile.pass');
+Route::put('/change-password', [AuthController::class, 'changePassword'])->name('change.password.update');
+
+
+
 Route::resource('policies', PolicyController::class);
+Route::get('/user-policies', [PolicyController::class, 'user'])->name('policies.user');
 Route::post('/policies/accept', [PolicyController::class, 'accept'])->name('policies.accept');
 
 Route::group(['middleware'=> 'auth'], function ()
