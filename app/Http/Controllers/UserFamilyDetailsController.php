@@ -46,13 +46,61 @@ class UserFamilyDetailsController extends Controller
   }
 
 
-    public function destroy($id)
+// Show form to edit a family member's details
+    public function edit($id)
     {
         $familyDetail = UserFamilyDetails::findOrFail($id);
-        $familyDetail->delete();
-
-        return redirect()->back()->with('success', 'Family detail deleted successfully.');
+        return view('family-details.edit', compact('familyDetail'));
     }
+
+    // Update family member's details
+    public function editData(Request $request, $id)
+    {
+        $request->validate([
+            'full_name' => 'required|string',
+            'relationship' => 'required|string',
+            'DOB' => 'required|date',
+            'phone_number' => 'nullable|string',
+            'occupation' => 'nullable|string',
+        ]);
+
+        $familyDetail = UserFamilyDetails::findOrFail($id);
+        $familyDetail->full_name = $request->input('full_name');
+        $familyDetail->relationship = $request->input('relationship');
+        $familyDetail->DOB = $request->input('DOB');
+        $familyDetail->phone_number = $request->input('phone_number');
+        $familyDetail->occupation = $request->input('occupation');
+        $familyDetail->save();
+
+        return redirect()->route('family-details.index')->with('success', 'Family details updated successfully.');
+    }
+
+
+    // public function destroy($id)
+    // {
+    //     $familyDetail = UserFamilyDetails::findOrFail($id);
+    //     $familyDetail->delete();
+
+    //     return redirect()->back()->with('success', 'Family detail deleted successfully.');
+    // }
+    public function deleteFamilyData(string $id){
+        $familyDetail = UserFamilyDetails::find($id);
+
+        if(!$familyDetail){
+            return response()->json([
+                'status' => 400,
+                'massage' => ' Family detail not found',
+            ]);
+        }
+
+        $familyDetail->update([
+            'delete_status' => 1
+         ]);
+         return redirect()->back()->with('success', 'Family detail deleted successfully.');
+
+        }
+
+
 
 
 }
