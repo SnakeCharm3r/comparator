@@ -20,7 +20,6 @@
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
             <div class="container">
                 <div class="row flex-lg-nowrap">
-
                     <div class="col">
                         <div class="row">
                             <div class="col mb-3">
@@ -119,8 +118,7 @@
                                                                 <div class="col-12 col-md-4">
                                                                     <div class="form-group">
                                                                         <label>Username</label>
-                                                                        <input class="form-control" type="text"
-                                                                            name="username" placeholder="johnny.s"
+                                                                        <input class="form-control" type="text"name="username" placeholder="johnny.s"
                                                                             value="{{ old('username', $user->username) }}">
                                                                     </div>
                                                                 </div>
@@ -128,8 +126,7 @@
                                                                     <div class="form-group">
                                                                         <label>Email</label>
                                                                         <input class="form-control" type="text"
-                                                                            name="email" placeholder="user@example.com"
-                                                                            value="{{ old('email', $user->email) }}"readonly>
+                                                                            name="email" placeholder="user@example.com" value="{{ old('email', $user->email) }}"readonly>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">

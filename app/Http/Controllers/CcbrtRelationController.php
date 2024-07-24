@@ -66,4 +66,15 @@ class CcbrtRelationController extends Controller
         // Redirect with success message
         return redirect()->route('ccbrt_relation.index')->with('success', 'Relation details added successfully.');
     }
+
+    public function destroy(string $id)
+{
+    $relate = CcbrtRelation::find($id);
+
+    $relate->update([
+        'delete_status' => 1
+    ]);
+
+    return redirect()->route('ccbrt_relation.index')->with('success', 'deleted successfully.');
+}
 }
