@@ -67,6 +67,19 @@ class CcbrtRelationController extends Controller
         return redirect()->route('ccbrt_relation.index')->with('success', 'Relation details added successfully.');
     }
 
+
+// Show form to edit a family member's details
+public function edit($id)
+{
+    $relate = CcbrtRelation::findOrFail($id);
+    return view('family-details.edit', compact('familyDetail'));
+}
+
+
+    public function editRelationData(Request $request,$id){
+
+    }
+
     public function destroy(string $id)
 {
     $relate = CcbrtRelation::find($id);
