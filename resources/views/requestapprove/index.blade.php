@@ -57,7 +57,9 @@
                                                     <td>
                                                          ICT Access Form
                                                     </td>
-                                                    <td>{{ $pending->username }}</td>
+                                                    <td>
+
+                                                        {{ $pending->username }}</td>
 
                                                     <td>{{$pending->attend_date}}</td>
                                                     <td>

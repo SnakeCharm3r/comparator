@@ -25,7 +25,7 @@ class RequestApproveController extends Controller
     public function index()
     {
         $pending = Workflow::join('work_flow_histories', 'work_flow_histories.work_flow_id', '=', 'workflows.id')
-                           ->join('users', 'work_flow_histories.forwarded_by', '=', 'users.id')
+                           ->join('users', 'users.id', '=', 'work_flow_histories.forwarded_by')
                            ->where('work_flow_histories.attended_by', Auth::user()->id)
                            ->select('workflows.*', 'work_flow_histories.*', 'users.username')
                            ->get();

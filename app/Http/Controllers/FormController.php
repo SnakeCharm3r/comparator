@@ -77,10 +77,10 @@ class FormController extends Controller
         //  dd($roles);
         // get user based on roles
         if ($roles->contains('line-manager')) {
-            $approver = User::role('hr')->first();
-        } elseif ($roles->contains('hr')) {
-            $approver = User::role('it')->first();
-        } elseif ($roles->contains('it')) {
+            $approver = User::role('HR')->first();
+        } elseif ($roles->contains('HR')) {
+            $approver = User::role('IT')->first();
+        } elseif ($roles->contains('IT')) {
             $approver = User::role('admin')->first();
         } else {
             $approver = 'no approval';
