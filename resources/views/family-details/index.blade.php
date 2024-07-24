@@ -16,10 +16,10 @@
             </div>
 
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-            <!-- jQuery -->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <!-- Bootstrap JS -->
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+            <!-- Include SweetAlert2 -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <div class="container">
                 <div class="row flex-lg-nowrap">
                     <div class="col">
@@ -39,18 +39,21 @@
                                             <li class="nav-item"><a href="{{ route('health-details.index') }}"
                                                     class=" nav-link">Health Details</a></li>
                                             <li class="nav-item"><a href="{{ route('ccbrt_relation.index') }}"
-                                                    class="nav-link">CCBRT Reation</a></li>
+                                                    class="nav-link">CCBRT Relation</a></li>
                                             <li class="nav-item"><a href="{{ route('language_knowledge.index') }}"
-                                                    class="nav-link">Language</a> </li>
+                                                    class="nav-link">Language</a></li>
                                         </ul>
 
                                         <div class="tab-content pt-3">
                                             <div class="tab-pane active" id="family">
-                                                <!-- Button to trigger modal -->
-                                                <button type="button" class="btn btn-primary mb-3" data-toggle="modal"
-                                                    data-target="#addFamilyModal">
-                                                    Add Family Data
-                                                </button>
+                                                <div class="row">
+                                                    <div class="col d-flex justify-content-end">
+                                                        <button type="button" class="btn btn-primary mb-3"
+                                                            data-toggle="modal" data-target="#addFamilyModal">
+                                                            Add Family Data
+                                                        </button>
+                                                    </div>
+                                                </div>
 
                                                 <!-- Modal for adding family data -->
                                                 <div class="modal fade" id="addFamilyModal" tabindex="-1" role="dialog"
@@ -137,15 +140,17 @@
                                                                     <td>{{ $detail->DOB }}</td>
                                                                     <td>{{ $detail->occupation }}</td>
                                                                     <td>
-                                                                        <form
-                                                                            action="{{ route('family-details.destroy', $detail->id) }}"
-                                                                            method="POST">
-                                                                            @csrf
-                                                                            @method('DELETE')
-                                                                            <button type="submit"
-                                                                                class="btn btn-sm btn-danger"
-                                                                                onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
-                                                                        </form>
+                                                                        <a href="{{ route('family-details.index', $detail->id) }}"
+                                                                            class="btn btn-sm p-0"
+                                                                            style="border: none; background: none;"
+                                                                            title="Edit">
+                                                                            <i class="fas fa-edit text-primary"></i>
+                                                                        </a>
+                                                                        <button type="button" class="btn btn-sm p-0"
+                                                                            style="border: none; background: none;"
+                                                                            title="Delete"onclick="confirmDelete('{{ route('family-details.destroy', $detail->id) }}')">
+                                                                            <i class="fas fa-trash-alt text-danger"></i>
+                                                                        </button>
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
@@ -154,8 +159,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
 
                                     </div>
                                 </div>
@@ -167,4 +170,25 @@
             </div>
         </div>
     </div>
+
+    <!-- SweetAlert2 Confirmation Script -->
+    <script>
+        function confirmDelete(url) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirect to the delete route
+                    window.location.href = url;
+                }
+            });
+        }
+    </script>
 @endsection

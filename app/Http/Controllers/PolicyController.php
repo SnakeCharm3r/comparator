@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Policy;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Policy;
 use Illuminate\Support\Facades\Storage;
 
 class PolicyController extends Controller
 {
     public function index()
-    {   $user = Auth::user();
+    {
         $policies = Policy::all();
-        return view('policies.index', compact('user,policies'));
+        return view('policies.index', compact('policies'));
     }
 
     public function create()
