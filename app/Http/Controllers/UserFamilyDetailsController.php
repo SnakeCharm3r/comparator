@@ -49,13 +49,15 @@ class UserFamilyDetailsController extends Controller
 // Show form to edit a family member's details
     public function edit($id)
     {
+        // dd(123);
         $familyDetail = UserFamilyDetails::findOrFail($id);
-        return view('family-details.edit', compact('familyDetail'));
+        return view('family-details.edit',compact('familyDetail'));
     }
 
     // Update family member's details
     public function editData(Request $request, $id)
     {
+
         $request->validate([
             'full_name' => 'required|string',
             'relationship' => 'required|string',
@@ -63,7 +65,7 @@ class UserFamilyDetailsController extends Controller
             'phone_number' => 'nullable|string',
             'occupation' => 'nullable|string',
         ]);
-
+        // dd(1234);
         $familyDetail = UserFamilyDetails::findOrFail($id);
         $familyDetail->full_name = $request->input('full_name');
         $familyDetail->relationship = $request->input('relationship');
@@ -93,9 +95,11 @@ class UserFamilyDetailsController extends Controller
             ]);
         }
 
-        $familyDetail->update([
-            'delete_status' => 1
-         ]);
+        // $familyDetail->update([
+        //     'delete_status' => 1
+        //  ]);
+        $familyDetail->delete();
+
          return redirect()->back()->with('success', 'Family detail deleted successfully.');
 
         }

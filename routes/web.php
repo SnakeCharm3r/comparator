@@ -80,6 +80,8 @@ Route::get('/family-details', [UserFamilyDetailsController::class, 'index'])->na
 Route::put('/family-details', [UserFamilyDetailsController::class, 'edit'])->name('family-details.edit');
 Route::post('/family-details', [UserFamilyDetailsController::class, 'addFamilyData'])->name('family-details.addFamilyData');
 Route::delete('/family-details/{id}', [UserFamilyDetailsController::class, 'destroy'])->name('family-details.destroy');
+Route::put('/family-details/{id}', [UserFamilyDetailsController::class, 'editData'])->name('family-details.editData');
+Route::get('/family-details/{id}/edit', [UserFamilyDetailsController::class, 'edit'])->name('family-details.edit');
 
 Route::get('/health-details', [HealthDetailsController::class, 'index'])->name('health-details.index');
 Route::post('/health', [HealthDetailsController::class, 'addHealthData'])->name('health-details.addHealthData');
@@ -92,6 +94,8 @@ Route::post('/relation', [CcbrtRelationController::class, 'addRelationData'])->n
 
 Route::get('/language-knowledge', [LanguageKnowledgeController::class, 'index'])->name('language_knowledge.index');
 Route::post('/language-knowledge', [LanguageKnowledgeController::class, 'addLanguageKnowledge'])->name('language_knowledge.add');
+Route::get('/language-knowledge/{id}/edit', [LanguageKnowledgeController::class, 'edit'])->name('language.edit');
+
 
 // Route::post('family-details', UserFamilyDetailsController::class);
 // Route::post('/healthDetails', [UserFamilyDetailsController::class, 'addHealthData'])->name('healthDetails.addHealthData');

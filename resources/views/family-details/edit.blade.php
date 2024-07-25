@@ -1,4 +1,3 @@
-<!-- resources/views/profile/show.blade.php -->
 
 @extends('layouts.template')
 
@@ -23,7 +22,7 @@
 
                     <div class="col">
                         <div class="row">
-                         
+
                         <p>famil details</p>
                         </div>
                     </div>
