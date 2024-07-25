@@ -1,14 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\HealthDetails;
-use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
-
 class HealthDetailsController extends Controller
 {
     /**
@@ -79,7 +76,6 @@ class HealthDetailsController extends Controller
             'errors' => $validator->errors(),
         ]);
     }
-
     $healthData = HealthDetails::findOrFail($id);
      $healthData->update([
         'physical_disability' => $request->input('physical_disability'),
@@ -96,8 +92,10 @@ class HealthDetailsController extends Controller
  }
 
  public function deleteHealthData(string $id){
-    $health = HealthDetails::find($id);
+    $health = HealthDetails::findOrFail($id);
+    $health->delete();
 
+   
     if(!$health){
         return response()->json([
             'status' => 400,
@@ -108,6 +106,10 @@ class HealthDetailsController extends Controller
     $health->update([
         'delete_status' => 1 
      ]);
+     Alert::success('Deleted', 'Health detail deleted successfully.');
+
+     return redirect()->route('health-details.index');
     }
+
 
 }

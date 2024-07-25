@@ -98,6 +98,14 @@
                             <span>Departments</span></a>
                     </li>
                 @endcan
+                {{-- Users --}}
+                {{-- @can('view users')
+                <li class="{{ request()->routeIs('viewuser.index') ? 'active' : '' }}">
+                    <a href="{{ route('viewuser.index') }}"><i class="fas fa-users"></i>
+                        <span>Users</span></a>
+                </li>
+                @endcan --}}
+
 
                 {{-- NHIF --}}
                 @can('view nhif')

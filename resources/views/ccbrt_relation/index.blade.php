@@ -139,13 +139,22 @@
                                                                                 class="text-warning" title="Edit">
                                                                                 <i class="fas fa-edit"></i>
                                                                             </a>
+
                                                                             <!-- Delete button -->
-                                                                            <a href="#"
-                                                                                class="text-danger ms-2 delete-btn"
-                                                                                data-id="{{ $relation->id }}"
-                                                                                title="Delete">
-                                                                                <i class="fas fa-trash-alt"></i>
-                                                                            </a>
+                                                                            <form
+                                                                                action="{{ route('ccbrt_relation.destroy', $relation->id) }}"
+                                                                                method="POST" style="display: inline;"
+                                                                                class="delete-form">
+                                                                                @csrf
+                                                                                @method('DELETE')
+                                                                                <button type="button"
+                                                                                    class="btn text-danger delete-btn"
+                                                                                    title="Delete">
+                                                                                    <i class="fas fa-trash-alt"
+                                                                                        style="cursor: pointer;"></i>
+                                                                                </button>
+                                                                            </form>
+
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach
@@ -168,10 +177,9 @@
                                                 // Handle delete button click
                                                 document.querySelectorAll('.delete-btn').forEach(button => {
                                                     button.addEventListener('click', function(event) {
-                                                        event.preventDefault(); // Prevent default link behavior
+                                                        event.preventDefault(); // Prevent default button behavior
 
-                                                        const id = this.getAttribute('data-id');
-                                                        const deleteUrl = `/ccbrt-relation/delete/${id}`;
+                                                        const form = this.closest('form');
 
                                                         Swal.fire({
                                                             title: 'Are you sure?',
@@ -184,8 +192,8 @@
                                                             cancelButtonText: 'No, cancel!',
                                                         }).then((result) => {
                                                             if (result.isConfirmed) {
-                                                                // Redirect to delete route
-                                                                window.location.href = deleteUrl;
+                                                                // Submit the form
+                                                                form.submit();
                                                             }
                                                         });
                                                     });
