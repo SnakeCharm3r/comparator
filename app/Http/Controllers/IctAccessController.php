@@ -158,7 +158,7 @@ class IctAccessController extends Controller
                 // Success alert and redirect
                
                 Alert::success('IT access form request submitted successfully', 'IT access Request Added');
-                return redirect()->route('form.index')->with('success', 'ICT Access Resource created successfully.');
+                return redirect()->route('request.index')->with('success', 'ICT Access Resource created successfully.');
             dd(1234); });
         } catch (\Exception $e) {
             // Log the exact error message for better debugging

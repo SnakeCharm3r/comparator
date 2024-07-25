@@ -140,7 +140,7 @@
                                                                     <td>{{ $detail->DOB }}</td>
                                                                     <td>{{ $detail->occupation }}</td>
                                                                     <td>
-                                                                        <a href="{{ route('family-details.index', $detail->id) }}"
+                                                                        <a href="{{ route('family-details.edit', $detail->id) }}"
                                                                             class="btn btn-sm p-0"
                                                                             style="border: none; background: none;"
                                                                             title="Edit">

@@ -21,7 +21,7 @@
             <div class="container">
                 <div class="row flex-lg-nowrap">
 
-                    <div class="col">
+                    {{-- <div class="col">
                         <div class="row">
                             <div class="col mb-3">
                                 <div class="card">
@@ -165,7 +165,7 @@
                             </div>
                             <!-- Add other content for profile page here -->
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
