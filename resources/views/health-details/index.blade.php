@@ -203,9 +203,23 @@
                                                                         <i class="fas fa-edit text-primary"></i>
                                                                     </a>
 
-                                                                    <form
+                                                                    {{-- <form
                                                                         action="{{ route('health-details.delete', $health->id) }}"
                                                                         method="POST" style="display:inline;">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit" class="btn btn-sm p-0"
+                                                                            style="border: none; background: none;"
+                                                                            title="Delete">
+                                                                            <i class="fas fa-trash-alt text-danger"></i>
+                                                                        </button>
+                                                                    </form> --}}
+
+
+                                                                    <form
+                                                                        action="{{ route('health-details.delete', $health->id) }}"
+                                                                        method="POST" style="display:inline;"
+                                                                        class="delete-health-form">
                                                                         @csrf
                                                                         @method('DELETE')
                                                                         <button type="submit" class="btn btn-sm p-0"

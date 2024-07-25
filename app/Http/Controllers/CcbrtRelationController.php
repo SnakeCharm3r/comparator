@@ -79,15 +79,20 @@ public function edit($id)
     public function editRelationData(Request $request,$id){
 
     }
-
     public function destroy(string $id)
-{
-    $relate = CcbrtRelation::find($id);
-
-    $relate->update([
-        'delete_status' => 1
-    ]);
-
-    return redirect()->route('ccbrt_relation.index')->with('success', 'deleted successfully.');
-}
+    {
+        $relate = CcbrtRelation::find($id);
+    
+        if (!$relate) {
+            return redirect()->route('ccbrt_relation.index')->with('error', 'Record not found.');
+        }
+    
+        $relate->delete();
+    
+        return redirect()->route('ccbrt_relation.index')->with('success', 'Record deleted successfully.');
+    }
+    
+    
+    
+    
 }
