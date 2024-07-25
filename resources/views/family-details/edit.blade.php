@@ -24,7 +24,7 @@
                     <div class="col">
                         <div class="row">
                          
-                     
+                        <p>famil details</p>
                         </div>
                     </div>
                 </div>
