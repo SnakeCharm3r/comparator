@@ -139,15 +139,15 @@ class LanguageKnowledgeController extends Controller
         if ($languageKnowledge->userId != Auth::id()) {
             return redirect()->route('language_knowledge.index')->with('error', 'Unauthorized access.');
         }
-
+        $languageKnowledge->delete();
         // Soft delete by setting delete_status to 1
-        $languageKnowledge->delete_status = 1;
-        $languageKnowledge->save();
+        // $languageKnowledge->delete_status = 1;
+        // $languageKnowledge->save();
 
         return redirect()->route('language_knowledge.index')->with('success', 'Language knowledge deleted successfully.');
     }
 
     public function jaribu(){
-        
+
     }
 }

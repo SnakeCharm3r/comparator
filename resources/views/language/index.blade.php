@@ -145,7 +145,7 @@
                                                                 <td>{{ $knowledge->writing }}</td>
                                                                 <td>
                                                                     <!-- Edit and Delete Icons -->
-                                                                    <a href="{{ route('language_knowledge.index', $knowledge->id) }}" class="text-primary" title="Edit">
+                                                                    <a href="{{ route('language_knowledge.edit', $knowledge->id) }}" class="text-primary" title="Edit">
                                                                         <i class="fa fa-edit"></i>
                                                                     </a>
                                                                     <a href="#" class="text-danger ms-2 delete-btn" data-id="{{ $knowledge->id }}" title="Delete">
@@ -181,9 +181,9 @@
             document.querySelectorAll('.delete-btn').forEach(button => {
                 button.addEventListener('click', function (event) {
                     event.preventDefault(); // Prevent default link behavior
-                    
+
                     const id = this.getAttribute('data-id');
-                    
+
                     Swal.fire({
                         title: 'Are you sure?',
                         text: "You won't be able to revert this!",
