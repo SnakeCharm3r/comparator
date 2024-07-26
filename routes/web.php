@@ -92,6 +92,7 @@ Route::get('/ccbrt_relation', [CcbrtRelationController::class, 'index'])->name('
 Route::delete('/ccbrt_relation/{id}', [CcbrtRelationController::class, 'destroy'])->name('ccbrt_relation.destroy');
 Route::post('/relation', [CcbrtRelationController::class, 'addRelationData'])->name('ccbrt_relation.addRelationData');
 Route::get('/health-details/{id}/edit', [HealthDetailsController::class, 'edit'])->name('health-details.edit');
+Route::put('/ccbrt_relation/{id}', [CcbrtRelationController::class, 'update'])->name('ccbrt_relation.update');
 
 Route::get('language-knowledge', [LanguageKnowledgeController::class, 'index'])->name('language_knowledge.index');
 Route::post('language-knowledge', [LanguageKnowledgeController::class, 'addLanguageKnowledge'])->name('language_knowledge.add');
