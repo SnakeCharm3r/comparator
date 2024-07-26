@@ -116,7 +116,65 @@
                                                     </div>
                                                 </div>
 
-                                                <hr>
+                                                <!-- Modal for editing family data -->
+                                                <div class="modal fade" id="editFamilyModal" tabindex="-1" role="dialog"
+                                                    aria-labelledby="editFamilyModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <form method="POST" id="editFamilyForm" action="">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="editFamilyModalLabel">Edit
+                                                                        Family Data</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="form-group">
+                                                                        <label>Full Name</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="edit_full_name" name="full_name"
+                                                                            value="" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>Relationship</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="edit_relationship" name="relationship"
+                                                                            value="" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>Mobile</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="edit_phone_number" name="phone_number"
+                                                                            value="">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>Date of Birth</label>
+                                                                        <input type="date" class="form-control"
+                                                                            id="edit_DOB" name="DOB" value=""
+                                                                            required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>Occupation</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="edit_occupation" name="occupation"
+                                                                            value="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-primary">Save
+                                                                        changes</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
 
                                                 <h3>Family Details</h3>
                                                 <div class="table-responsive">
@@ -140,17 +198,34 @@
                                                                     <td>{{ $detail->DOB }}</td>
                                                                     <td>{{ $detail->occupation }}</td>
                                                                     <td>
-                                                                        <a href="{{ route('family-details.edit', $detail->id) }}"
-                                                                            class="btn btn-sm p-0"
+                                                                        <button type="button"
+                                                                            class="btn btn-sm p-0 edit-family-btn"
                                                                             style="border: none; background: none;"
-                                                                            title="Edit">
+                                                                            title="Edit" data-toggle="modal"
+                                                                            data-target="#editFamilyModal"
+                                                                            data-id="{{ $detail->id }}"
+                                                                            data-full_name="{{ $detail->full_name }}"
+                                                                            data-relationship="{{ $detail->relationship }}"
+                                                                            data-phone_number="{{ $detail->phone_number }}"
+                                                                            data-dob="{{ $detail->DOB }}"
+                                                                            data-occupation="{{ $detail->occupation }}">
                                                                             <i class="fas fa-edit text-primary"></i>
-                                                                        </a>
+                                                                        </button>
                                                                         <button type="button" class="btn btn-sm p-0"
                                                                             style="border: none; background: none;"
-                                                                            title="Delete"onclick="confirmDelete('{{ route('family-details.destroy', $detail->id) }}')">
+                                                                            title="Delete"
+                                                                            onclick="confirmDelete({{ $detail->id }})">
                                                                             <i class="fas fa-trash-alt text-danger"></i>
                                                                         </button>
+
+                                                                        <!-- Add this form for delete action -->
+                                                                        <form id="delete-form-{{ $detail->id }}"
+                                                                            method="POST"
+                                                                            action="{{ route('family-details.destroy', $detail->id) }}"
+                                                                            style="display: none;">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                        </form>
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
@@ -173,7 +248,7 @@
 
     <!-- SweetAlert2 Confirmation Script -->
     <script>
-        function confirmDelete(url) {
+        function confirmDelete(id) {
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -185,10 +260,30 @@
                 cancelButtonText: 'No, cancel!',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Redirect to the delete route
-                    window.location.href = url;
+                    // Submit the delete form
+                    document.getElementById('delete-form-' + id).submit();
                 }
             });
         }
+
+        // Handle edit button click
+        $(document).on('click', '.edit-family-btn', function() {
+            var id = $(this).data('id');
+            var full_name = $(this).data('full_name');
+            var relationship = $(this).data('relationship');
+            var phone_number = $(this).data('phone_number');
+            var dob = $(this).data('dob');
+            var occupation = $(this).data('occupation');
+
+            // Set the form action to the appropriate route
+            $('#editFamilyForm').attr('action', '/family-details/' + id);
+
+            // Populate the modal with existing data
+            $('#edit_full_name').val(full_name);
+            $('#edit_relationship').val(relationship);
+            $('#edit_phone_number').val(phone_number);
+            $('#edit_DOB').val(dob);
+            $('#edit_occupation').val(occupation);
+        });
     </script>
 @endsection
