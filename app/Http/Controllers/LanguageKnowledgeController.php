@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\LanguageKnowledge;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
 class LanguageKnowledgeController extends Controller
@@ -28,17 +29,6 @@ class LanguageKnowledgeController extends Controller
         return view('language.index', compact('languageKnowledge', 'user'));
     }
 
-
-    /**
-     * Show the form for creating a new language knowledge entry.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('language_knowledge.create');
-    }
-
     /**
      * Store a newly created language knowledge in storage.
      *
@@ -48,11 +38,10 @@ class LanguageKnowledgeController extends Controller
     public function addLanguageKnowledge(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'language'=>'required',
-            'speaking'=>'required',
-            'reading'=>'required',
-            'writing'=>'required',
-            'userId'=>'required|exists:users,id',
+            'language' => 'required|string|max:255',
+            'speaking' => 'required|string|max:255',
+            'reading' => 'required|string|max:255',
+            'writing' => 'required|string|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -67,7 +56,7 @@ class LanguageKnowledgeController extends Controller
             'writing' => $request->input('writing'),
             'delete_status' => 0,
         ]);
-
+        Alert::success('Successful', 'Language knowledge added successfully');
         return redirect()->route('language_knowledge.index')->with('success', 'Language knowledge added successfully.');
     }
 
@@ -85,7 +74,7 @@ class LanguageKnowledgeController extends Controller
         if ($languageKnowledge->userId != Auth::id()) {
             return redirect()->route('language_knowledge.index')->with('error', 'Unauthorized access.');
         }
-
+        Alert::success('Successful', 'Language knowledge updated successfully');
         return view('language_knowledge.edit', compact('languageKnowledge'));
     }
 
@@ -116,12 +105,13 @@ class LanguageKnowledgeController extends Controller
             return redirect()->route('language_knowledge.index')->with('error', 'Unauthorized access.');
         }
 
-        $languageKnowledge->language = $request->input('language');
-        $languageKnowledge->speaking = $request->input('speaking');
-        $languageKnowledge->reading = $request->input('reading');
-        $languageKnowledge->writing = $request->input('writing');
-        $languageKnowledge->save();
-
+        $languageKnowledge->update([
+            'language' => $request->input('language'),
+            'speaking' => $request->input('speaking'),
+            'reading' => $request->input('reading'),
+            'writing' => $request->input('writing'),
+        ]);
+        Alert::success('Successful', 'Language knowledge updated successfully');
         return redirect()->route('language_knowledge.index')->with('success', 'Language knowledge updated successfully.');
     }
 
@@ -139,15 +129,9 @@ class LanguageKnowledgeController extends Controller
         if ($languageKnowledge->userId != Auth::id()) {
             return redirect()->route('language_knowledge.index')->with('error', 'Unauthorized access.');
         }
+
         $languageKnowledge->delete();
-        // Soft delete by setting delete_status to 1
-        // $languageKnowledge->delete_status = 1;
-        // $languageKnowledge->save();
-
+        Alert::success('Successful', 'Language knowledge deleted successfully');
         return redirect()->route('language_knowledge.index')->with('success', 'Language knowledge deleted successfully.');
-    }
-
-    public function jaribu(){
-
     }
 }

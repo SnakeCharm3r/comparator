@@ -54,42 +54,41 @@ class HealthDetailsController extends Controller
             'allergies' => $request->input('allergies'),
             'delete_status' =>0,
         ]);
-
+        Alert::success('Successful', 'Health Details added successfully');
         return redirect()->route('health-details.index')->with('success', 'Health details added successfully.');
     }
 
-    public function edit(string $id){
-        $healthData = HealthDetails::findOrFail($id);
-        return view('health-details.edit', compact('healthData'));
+    // public function edit(string $id){
+    //     $healthData = HealthDetails::findOrFail($id);
+    //     return view('health-details.edit', compact('healthData'));
+    // }
+
+    public function edit($id)
+    {
+        $healthDetail = HealthDetails::find($id);
+        return response()->json($healthDetail);
     }
+    
+    public function update(Request $request, $id)
+    {
+        $healthDetail = HealthDetails::findOrFail($id);
 
- public function updateHealthDetails(Request $request, string $id){
-
-    $validator = Validator::make($request->all(),[
-        'physical_disability' => 'required',
-        'health_insurance' => 'required',
-    ]);
-
-    if ($validator->fails()) {
-        return response()->json([
-            'status' => 400,
-            'errors' => $validator->errors(),
+        $request->validate([
+            'physical_disability' => 'nullable|string|max:255',
+            'blood_group' => 'nullable|string|max:3',
+            'illness_history' => 'nullable|string',
+            'health_insurance' => 'nullable|string',
+            'insur_name' => 'nullable|string|max:255',
+            'insur_no' => 'nullable|string|max:255',
+            'allergies' => 'nullable|string',
         ]);
-    }
-    $healthData = HealthDetails::findOrFail($id);
-     $healthData->update([
-        'physical_disability' => $request->input('physical_disability'),
-        'blood_group' => $request->input('blood_group'),
-        'illness_history' => $request->input('illness_history'),
-        'health_insurance' => $request->input('health_insurance'),
-        'insur_name' => $request->input('insur_name'),
-        'insur_no' => $request->input('insur_no'),
-        'allergies' => $request->input('allergies'),
-    ]);
-    Alert::success('Health detail Updated successful','Health details updated');
-    return redirect()->route('health-details.index')->with('success', 'Department updated successfully.');
 
- }
+        $healthDetail->update($request->all());
+        Alert::success('Successful', 'Health Details updated successfully');
+        return redirect()->route('health-details.index');
+    }
+
+    
 
  public function deleteHealthData(string $id){
     $health = HealthDetails::findOrFail($id);

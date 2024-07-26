@@ -1,5 +1,3 @@
-<!-- resources/views/profile/show.blade.php -->
-
 @extends('layouts.template')
 
 @section('breadcrumb')
@@ -37,13 +35,11 @@
                                             <li class="nav-item"><a href="{{ route('health-details.index') }}"
                                                     class="active nav-link">Health Details</a></li>
                                             <li class="nav-item"><a href="{{ route('ccbrt_relation.index') }}"
-                                                    class="nav-link">CCBRT Reation</a></li>
+                                                    class="nav-link">CCBRT Relation</a></li>
                                             <li class="nav-item"><a href="{{ route('language_knowledge.index') }}"
                                                     class="nav-link">Language</a> </li>
-
                                         </ul>
                                         <div class="mt-4">
-
                                             <div class="row">
                                                 <div class="col d-flex justify-content-end">
                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -169,6 +165,98 @@
                                                 </div>
                                             </div>
 
+                                            <!-- Modal for editing health details -->
+                                            <div class="modal fade" id="editHealthModal" tabindex="-1"
+                                                aria-labelledby="editHealthModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="editHealthModalLabel">Edit Health
+                                                                Detail</h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+
+                                                        <div class="modal-body">
+                                                            <!-- Health details form -->
+                                                            <form id="editHealthDetailsForm" method="POST">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <input type="hidden" name="userId"
+                                                                    value="{{ Auth::id() }}">
+                                                                <div class="row">
+                                                                    <div class="col-12 col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label>Physical Disability</label>
+                                                                            <input type="text" class="form-control"
+                                                                                id="edit-physical-disability"
+                                                                                name="physical_disability" value="">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Blood Group</label>
+                                                                            <select class="form-control"
+                                                                                id="edit-blood-group" name="blood_group">
+                                                                                <option value="">Select Blood Group
+                                                                                </option>
+                                                                                <option value="A+">A+</option>
+                                                                                <option value="A-">A-</option>
+                                                                                <option value="B+">B+</option>
+                                                                                <option value="B-">B-</option>
+                                                                                <option value="AB+">AB+</option>
+                                                                                <option value="AB-">AB-</option>
+                                                                                <option value="O+">O+</option>
+                                                                                <option value="O-">O-</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Illness History</label>
+                                                                            <textarea class="form-control" id="edit-illness-history" name="illness_history"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12 col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label>Health Insurance</label>
+                                                                            <select id="edit-health-insurance"
+                                                                                name="health_insurance"
+                                                                                class="form-control">
+                                                                                <option value="" disabled>Select an
+                                                                                    option</option>
+                                                                                <option value="yes">Yes</option>
+                                                                                <option value="no">No</option>
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="form-group">
+                                                                            <label>Insurance Name</label>
+                                                                            <input type="text" class="form-control"
+                                                                                id="edit-insur-name" name="insur_name"
+                                                                                value="">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Insurance Number</label>
+                                                                            <input type="text" class="form-control"
+                                                                                id="edit-insur-no" name="insur_no"
+                                                                                value="">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Allergies</label>
+                                                                            <textarea class="form-control" id="edit-allergies" name="allergies"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Close</button>
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary">Update</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <!-- Health details table (existing data) -->
                                             <div class="mt-4">
                                                 <h4>Health Details</h4>
@@ -197,36 +285,27 @@
                                                                 <td>{{ $health->insur_no }}</td>
                                                                 <td>{{ $health->allergies }}</td>
                                                                 <td>
-                                                                    <a href="{{ route('health-details.edit', $health->id) }}"
-                                                                        class="btn btn-sm p-0"style="border: none; background: none;"
-                                                                        title="Edit">
+                                                                    <button type="button" class="btn btn-sm p-0"
+                                                                        style="border: none; background: none;"
+                                                                        title="Edit"
+                                                                        onclick="editHealthDetail({{ $health }})">
                                                                         <i class="fas fa-edit text-primary"></i>
-                                                                    </a>
+                                                                    </button>
 
-                                                                    {{-- <form
+                                                                    <button type="button" class="btn btn-sm p-0"
+                                                                        style="border: none; background: none;"
+                                                                        title="Delete"
+                                                                        onclick="confirmDelete('{{ route('health-details.delete', $health->id) }}')">
+                                                                        <i class="fas fa-trash-alt text-danger"></i>
+                                                                    </button>
+
+                                                                    <!-- Add this form for delete action -->
+                                                                    <form id="delete-form-{{ $health->id }}"
+                                                                        method="POST"
                                                                         action="{{ route('health-details.delete', $health->id) }}"
-                                                                        method="POST" style="display:inline;">
+                                                                        style="display: none;">
                                                                         @csrf
                                                                         @method('DELETE')
-                                                                        <button type="submit" class="btn btn-sm p-0"
-                                                                            style="border: none; background: none;"
-                                                                            title="Delete">
-                                                                            <i class="fas fa-trash-alt text-danger"></i>
-                                                                        </button>
-                                                                    </form> --}}
-
-
-                                                                    <form
-                                                                        action="{{ route('health-details.delete', $health->id) }}"
-                                                                        method="POST" style="display:inline;"
-                                                                        class="delete-health-form">
-                                                                        @csrf
-                                                                        @method('DELETE')
-                                                                        <button type="submit" class="btn btn-sm p-0"
-                                                                            style="border: none; background: none;"
-                                                                            title="Delete">
-                                                                            <i class="fas fa-trash-alt text-danger"></i>
-                                                                        </button>
                                                                     </form>
                                                                 </td>
                                                             </tr>
@@ -235,7 +314,7 @@
                                                 </table>
                                             </div>
                                         </div>
-                                        {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+
                                         <script>
                                             $(document).ready(function() {
                                                 // Handle form submission using AJAX
@@ -254,7 +333,7 @@
                                                             $('#addHealthModal').modal('hide');
                                                             // Update table with new data
                                                             updateHealthDetailsTable(
-                                                                response); // Assuming response contains the new health detail HTML
+                                                            response); // Assuming response contains the new health detail HTML
                                                         },
                                                         error: function(xhr, status, error) {
                                                             console.error(xhr.responseText);
@@ -268,6 +347,37 @@
                                                     $('#healthDetailsTable tbody').append(newHealthDetailHtml);
                                                 }
                                             });
+
+                                            // Function to populate and show edit modal with existing data
+                                            function editHealthDetail(health) {
+                                                $('#edit-physical-disability').val(health.physical_disability);
+                                                $('#edit-blood-group').val(health.blood_group);
+                                                $('#edit-illness-history').val(health.illness_history);
+                                                $('#edit-health-insurance').val(health.health_insurance);
+                                                $('#edit-insur-name').val(health.insur_name);
+                                                $('#edit-insur-no').val(health.insur_no);
+                                                $('#edit-allergies').val(health.allergies);
+                                                $('#editHealthDetailsForm').attr('action', '/health-details/' + health.id);
+                                                $('#editHealthModal').modal('show');
+                                            }
+
+                                            // Function to handle delete confirmation
+                                            function confirmDelete(deleteUrl) {
+                                                Swal.fire({
+                                                    title: 'Are you sure?',
+                                                    text: "You won't be able to revert this!",
+                                                    icon: 'warning',
+                                                    showCancelButton: true,
+                                                    confirmButtonColor: '#3085d6',
+                                                    cancelButtonColor: '#d33',
+                                                    confirmButtonText: 'Yes, delete it!'
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        // Submit the form if user confirmed
+                                                        document.getElementById('delete-form-' + deleteUrl.split('/').pop()).submit();
+                                                    }
+                                                })
+                                            }
                                         </script>
 
                                     </div>

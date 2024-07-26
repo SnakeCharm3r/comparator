@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\UserFamilyDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
 class UserFamilyDetailsController extends Controller
@@ -41,7 +42,7 @@ class UserFamilyDetailsController extends Controller
           $familyDetail->occupation = $data['occupation'];
           $familyDetail->save();
       }
-
+      Alert::success('Successful', 'Family details added successfully');
       return redirect()->route('family-details.index')->with('success', 'Family details added successfully.');
   }
 
@@ -73,7 +74,7 @@ class UserFamilyDetailsController extends Controller
         $familyDetail->phone_number = $request->input('phone_number');
         $familyDetail->occupation = $request->input('occupation');
         $familyDetail->save();
-
+        Alert::success('Successful', 'Family details edited successfully');
         return redirect()->route('family-details.index')->with('success', 'Family details updated successfully.');
     }
 

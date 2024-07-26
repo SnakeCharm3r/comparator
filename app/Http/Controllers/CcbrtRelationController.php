@@ -75,6 +75,20 @@ public function edit($id)
     return view('family-details.edit', compact('familyDetail'));
 }
 
+public function update(Request $request, $id)
+{
+    $relation = CcbrtRelation::findOrFail($id);
+
+    $relation->update([
+        'names' => $request->names,
+        'relation' => $request->relation,
+        'department' => $request->department,
+        'position' => $request->position,
+    ]);
+    Alert::success('Successful', 'CCBRT relation updated successful');
+    return redirect()->route('ccbrt_relation.index')->with('success', 'Relation updated successfully!');
+}
+
 
     public function editRelationData(Request $request,$id){
 

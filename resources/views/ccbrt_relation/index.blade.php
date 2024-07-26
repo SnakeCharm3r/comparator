@@ -39,7 +39,7 @@
                                             <li class="nav-item"><a href="{{ route('ccbrt_relation.index') }}"
                                                     class="active nav-link">CCBRT Relation</a></li>
                                             <li class="nav-item"><a href="{{ route('language_knowledge.index') }}"
-                                                    class="nav-link">Language</a> </li>
+                                                    class="nav-link">Language</a></li>
                                         </ul>
 
                                         <!-- Button to trigger modal -->
@@ -52,7 +52,7 @@
                                             </div>
                                         </div>
 
-                                        <!-- Modal -->
+                                        <!-- Add Relation Modal -->
                                         <div class="modal fade" id="addRelationModal" tabindex="-1" role="dialog"
                                             aria-labelledby="addRelationModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -110,6 +110,64 @@
                                             </div>
                                         </div>
 
+                                        <!-- Edit Relation Modal -->
+                                        <div class="modal fade" id="editRelationModal" tabindex="-1" role="dialog"
+                                            aria-labelledby="editRelationModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="editRelationModalLabel">Edit CCbRT
+                                                            Relation Data</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form method="POST" id="editRelationForm" action="">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <input type="hidden" name="userId"
+                                                                value="{{ Auth::id() }}">
+                                                            <div class="form-group">
+                                                                <label>Names</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="edit_names" name="names" value="">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Relation</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="edit_relation" name="relation" value="">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Department</label>
+                                                                <select class="form-control" id="edit_department"
+                                                                    name="department">
+                                                                    <option value="">Select Department</option>
+                                                                    @foreach ($departments as $department)
+                                                                        <option value="{{ $department->id }}">
+                                                                            {{ $department->dept_name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Position</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="edit_position" name="position" value="">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Save
+                                                                    Changes</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <!-- Existing Relations Table -->
                                         <div class="row">
                                             <div class="card">
@@ -135,10 +193,18 @@
                                                                         <td>{{ $relation->position }}</td>
                                                                         <td>
                                                                             <!-- Edit button -->
-                                                                            <a href="{{ route('ccbrt_relation.index', $relation->id) }}"
-                                                                                class="text-warning" title="Edit">
-                                                                                <i class="fas fa-edit"></i>
-                                                                            </a>
+                                                                            <button type="button"
+                                                                                class="btn btn-sm p-0 edit-relation-btn"
+                                                                                style="border: none; background: none;"
+                                                                                title="Edit" data-bs-toggle="modal"
+                                                                                data-bs-target="#editRelationModal"
+                                                                                data-id="{{ $relation->id }}"
+                                                                                data-names="{{ $relation->names }}"
+                                                                                data-relation="{{ $relation->relation }}"
+                                                                                data-department="{{ $relation->department }}"
+                                                                                data-position="{{ $relation->position }}">
+                                                                                <i class="fas fa-edit text-warning"></i>
+                                                                            </button>
 
                                                                             <!-- Delete button -->
                                                                             <form
@@ -196,6 +262,26 @@
                                                                 form.submit();
                                                             }
                                                         });
+                                                    });
+                                                });
+
+                                                // Handle edit button click
+                                                document.querySelectorAll('.edit-relation-btn').forEach(button => {
+                                                    button.addEventListener('click', function() {
+                                                        const id = this.getAttribute('data-id');
+                                                        const names = this.getAttribute('data-names');
+                                                        const relation = this.getAttribute('data-relation');
+                                                        const department = this.getAttribute('data-department');
+                                                        const position = this.getAttribute('data-position');
+
+                                                        // Set the form action to the appropriate route
+                                                        $('#editRelationForm').attr('action', '/ccbrt_relation/' + id);
+
+                                                        // Populate the modal with existing data
+                                                        $('#edit_names').val(names);
+                                                        $('#edit_relation').val(relation);
+                                                        $('#edit_department').val(department);
+                                                        $('#edit_position').val(position);
                                                     });
                                                 });
                                             });
