@@ -26,6 +26,13 @@ class AuthController extends Controller
         $users = User::all();
         return view('role-permission/user.index', compact('users'));
     }
+
+
+    public function userDetail(){
+        $users = User::all();
+        return view('employees_details.index', compact('users'));
+    }
+
     // find user by ID
     public function getUserById($id) {
         $user = User::find($id);

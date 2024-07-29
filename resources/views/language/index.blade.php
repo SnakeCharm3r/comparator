@@ -296,12 +296,15 @@
 
                     // Set the form action URL
                     document.getElementById('editLanguageForm').action =
-                    `/language_knowledge/${id}`;
+                    `/language-knowledge/${id}`;
 
                     // Show the modal
-                    new bootstrap.Modal(document.getElementById('editLanguageModal')).show();
+                    const editModal = new bootstrap.Modal(document.getElementById(
+                        'editLanguageModal'));
+                    editModal.show();
                 });
             });
+
         });
     </script>
 @endsection
