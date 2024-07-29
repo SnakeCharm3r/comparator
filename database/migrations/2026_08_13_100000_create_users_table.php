@@ -40,6 +40,7 @@ return new class extends Migration
             $table->string('nssf_no')->nullable();
             $table->string('domicile')->nullable();
             $table->string('profile_picture')->nullable();
+            $table->text('signature')->nullable();
             $table->string('password');
             $table->foreign('deptId')->references('id')->on('departments');
             $table->foreign('employment_typeId')->references('id')->on('employment_types');

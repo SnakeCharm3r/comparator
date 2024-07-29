@@ -13,6 +13,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IctAccessController;
+use App\Http\Controllers\SignatureController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HmisAccessController;
 use App\Http\Controllers\PermissionController;
@@ -89,6 +90,7 @@ Route::put('/health-details/{id}', [HealthDetailsController::class, 'update'])->
 Route::delete('/health-details/{id}', [HealthDetailsController::class, 'deleteHealthData'])->name('health-details.delete');
 
 Route::get('/ccbrt_relation', [CcbrtRelationController::class, 'index'])->name('ccbrt_relation.index');
+Route::put('/ccbrt_relation/{id}', [CcbrtRelationController::class, 'update'])->name('ccbrt_relation.update');
 Route::delete('/ccbrt_relation/{id}', [CcbrtRelationController::class, 'destroy'])->name('ccbrt_relation.destroy');
 Route::post('/relation', [CcbrtRelationController::class, 'addRelationData'])->name('ccbrt_relation.addRelationData');
 Route::get('/health-details/{id}/edit', [HealthDetailsController::class, 'edit'])->name('health-details.edit');
@@ -101,9 +103,8 @@ Route::put('language-knowledge/{id}', [LanguageKnowledgeController::class, 'upda
 Route::delete('language-knowledge/{id}', [LanguageKnowledgeController::class, 'destroy'])->name('language_knowledge.destroy');
 
 
-
-
-
+Route::post('/signature', [SignatureController::class, 'store']);
+Route::get('/signature', [SignatureController::class, 'index'])->name('signature.index');
 
 // Route::post('family-details', UserFamilyDetailsController::class);
 // Route::post('/healthDetails', [UserFamilyDetailsController::class, 'addHealthData'])->name('healthDetails.addHealthData');
@@ -136,6 +137,8 @@ Route::resource('/hslb',HslbController::class);
 Route::post('hslb/hr-confirm/{id}', [HslbController::class, 'hrConfirm'])->name('hslb.hrConfirm');
 
 Route::get('/users', [AuthController::class, 'getAllUser'])->name('users.index');
+Route::get('/employees', [AuthController::class, 'userDetail'])->name('employee.index');
+
 Route::get('/users/{id}/edit', [AuthController::class, 'showEditForm'])->name('users.showEditForm');
 Route::post('/users/{id}/edit', [AuthController::class, 'editUserRole'])->name('users.edit');
 Route::put('/users/{id}/destroy', [AuthController::class, 'destroyUserRole'])->name('users.destroy');

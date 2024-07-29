@@ -115,6 +115,31 @@
                     </li>
                 @endcan
 
+                <li
+                    class="treeview {{ request()->routeIs('employee.index') || request()->routeIs('signature.index') || request()->routeIs('employee.details') ? 'active' : '' }}">
+                    <a href="#">
+                        <i class="fas fa-user"></i>
+                        <span>User Details</span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul
+                        style="{{ request()->routeIs('employee.index') || request()->routeIs('signature.index') || request()->routeIs('employee.details') ? 'display: block;' : '' }}">
+                        <li>
+                            <a href="{{ route('employee.index') }}"
+                                class="{{ request()->routeIs('employee.index') ? 'active' : '' }}">
+                                <span>Employee Details</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('signature.index') }}"
+                                class="{{ request()->routeIs('signature.index') ? 'active' : '' }}">
+                                <span>User Signature</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
                 {{-- HMIS --}}
                 @can('view hmis')
                     <li class="{{ request()->routeIs('hmis.index') ? 'active' : '' }}">
