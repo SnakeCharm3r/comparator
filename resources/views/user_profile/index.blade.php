@@ -125,6 +125,11 @@
                                                             <th scope="row">Date of Birth</th>
                                                             <td>{{ $user->DOB }}</td>
                                                         </tr>
+                                                      
+                                                        <tr>
+                                                            <th scope="row">District</th>
+                                                            <td>{{ $user->DOB }}</td>
+                                                        </tr>
                                                         <tr>
                                                             <th scope="row">Marital Status</th>
                                                             <td>{{ $user->marital_status }}</td>
@@ -146,6 +151,27 @@
                                                             <th scope="row">Religion</th>
                                                             <td>{{ $user->religion }}</td>
                                                         </tr>
+                                                        <tr>
+                                                            <th scope="row">Marital Status</th>
+                                                            <td>{{ $user->marital_status }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Home Address</th>
+                                                            <td>{{ $user->home_address }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">House Number</th>
+                                                            <td>{{ $user->religion }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Domicile</th>
+                                                            <td>{{ $user->religion }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Street</th>
+                                                            <td>{{ $user->religion }}</td>
+                                                        </tr>
+
                                                         <tr>
                                                             <th scope="row">Professional Reg Number</th>
                                                             <td>{{ $user->professional_reg_number }}</td>
