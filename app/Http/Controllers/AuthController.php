@@ -96,7 +96,7 @@ class AuthController extends Controller
             ]);
 
         }
-        //$dob = \DateTime::createFromFormat('d-m-Y', $request->input('DOB'))->format('Y-m-d');
+        $dob = \DateTime::createFromFormat('d-m-Y', $request->input('DOB'))->format('Y-m-d');
 
         $user = User::create([
             'fname' => $request->input('fname'),
@@ -113,7 +113,7 @@ class AuthController extends Controller
             'home_address' => $request->input('home_address'),
             'district' => $request->input('district'),
             'professional_reg_number' => $request->input('professional_reg_number'),
-            'place_of_birth' => $request->input('place_of_birth'),
+            'place_of_birth'   => $request->input('place_of_birth'),
             'house_no' => $request->input('house_no'),
             'street' => $request->input('street'),
             'deptId' => $request->input('deptId'),
@@ -123,8 +123,6 @@ class AuthController extends Controller
             'NIN' => $request->input('NIN'),
             'nssf_no' => $request->input('nssf_no'),
             'domicile' => $request->input('domicile'),
-//            'deptId' => $request->input('deptId'),
-//            'employment_typeId' => $request->input('employment_typeId'),
             'password' => Hash::make($request->input('password')),
 
         ]);
