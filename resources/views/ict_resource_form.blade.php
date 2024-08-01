@@ -1,225 +1,318 @@
 @extends('layouts.template')
+
 @section('breadcrumb')
     @include('sweetalert::alert')
     <div class="page-wrapper">
         <div class="content container">
-            <div class="page-header" style="padding: 20px; background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="page-sub-header" style="display: flex; flex-direction: column; align-items: flex-start;">
-                            <h3 class="page-title" style="font-size: 24px; font-weight: bold; margin-bottom: 5px;">
-                                ICT Access Form
-                            </h3>
-                            <p class="approval-info" style="font-size: 16px; color: #6c757d;">
-                                Previous Approval:
-                                @php
-                                    $forwardedBy = \App\Models\User::findOrFail($ictForm->forwarded_by);
-                                @endphp
-                                {{ $forwardedBy->fname }} {{ $forwardedBy->lname }}
-                            </p>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Page Header -->
+                            <div class="page-header"
+                                style="padding: 5px; background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;">
+                                <div class="row">
+
+                                    <div class="page-sub-header"
+                                        style="display: flex; flex-direction: column; align-items: flex-start;">
+                                        <!-- Previous Approval Section -->
+                                        <p style="font-size: 14px; color: #6c757d;">
+                                            <strong>Previous Approval:</strong>
+                                            @php
+                                                $forwardedBy = \App\Models\User::findOrFail($ictForm->forwarded_by);
+                                            @endphp
+                                            {{ $forwardedBy->fname }} {{ $forwardedBy->lname }}
+                                        </p>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- ICT Access Form Details Table -->
+                            <div class="form-container"
+                                style="margin: 10px auto; max-width: 95%; border: 0.5px solid #dee2e6; padding: 3px; border-radius: 3px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);">
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <tr>
+                                        <td colspan="2"
+                                            style="border: 1px solid #000; text-align: left; background-color: #e9ecef; padding: 6px; font-weight: bold;">
+                                            ICT Access Form
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="3"
+                                            style="border: 1px solid #000; text-align: center; vertical-align: middle;">
+                                            <img src="{{ asset('assets/img/logo-small.png') }}" alt="Logo"
+                                                style="max-width: 100px;">
+                                        </td>
+                                        <td style="border: 1px solid #000; text-align: center; padding: 6px;">Document No:
+                                            01</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000; text-align: center; padding: 6px;">Version: 6.1
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000; text-align: center; padding: 6px;">Relevant area:
+                                            IT & all other
+                                            departments</td>
+                                    </tr>
+
+                                    <!-- Personal Details Section -->
+                                    <tr>
+                                        <td colspan="2"
+                                            style="border: 1px solid #000; text-align: left; background-color: #d4edda; padding: 6px; font-weight: bold;">
+                                            Personal Details
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            <strong>First Name:</strong> {{ $ictForm->fname }}
+                                        </td>
+                                        <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            <strong>Middle Name:</strong> {{ $ictForm->mname }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            <strong>Last Name:</strong> {{ $ictForm->lname }}
+                                        </td>
+                                        <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            <strong>Employee ID:</strong> {{ $ictForm->emp_id }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            <strong>Department:</strong> {{ $ictForm->dept_name }}
+                                        </td>
+                                        <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            <strong>Mobile Number:</strong> {{ $ictForm->mobile }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            <strong>Starting Date:</strong> {{ $ictForm->starting_date }}
+                                        </td>
+                                        <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            <strong>End Date:</strong> {{ $ictForm->end_date }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            <strong>User Category:</strong> {{ $ictForm->prv_name }}
+                                        </td>
+                                        <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            <strong>Employment Type:</strong> {{ $ictForm->employment_type }}
+                                        </td>
+                                    </tr>
+                                    <!-- IT Assets and Access Section -->
+                                    <tr>
+                                        <td colspan="2"
+                                            style="border: 1px solid #000; text-align: left; background-color: #d4edda; padding: 6px; font-weight: bold;">
+                                            IT Assets Requested "Hardware" and Software/Logical Access
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            <strong>Hardware:</strong> {{ $ictForm->hardware_request }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            <strong>Active Directory:</strong> {{ $ictForm->prv_name }}
+                                        </td>
+                                        <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            <strong>Email:</strong> {{ $ictForm->email }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            <strong>OpenClinic HMS:</strong> {{ $ictForm->names }}
+                                        </td>
+                                        <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            <strong>Aruti HR MIS:</strong> {{ $ictForm->aruti_hr_mis }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            <strong>SAP ERP:</strong> {{ $ictForm->prv_name }}
+                                        </td>
+                                        <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            <strong>Network Access (VPN):</strong> {{ $ictForm->prv_name }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            <strong>Call Manager - PABX:</strong> {{ $ictForm->prv_name }}
+                                        </td>
+                                        <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            <strong>NHIF Qualifications:</strong> {{ $ictForm->name }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            <strong>Network Directory Access:</strong> {{ $ictForm->physical_access }}
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <!-- Disclaimer and Declaration Section -->
+                                <table style="width: 100%; border-collapse: collapse; margin-top: 5px;">
+                                    <tr>
+                                        <td colspan="3"
+                                            style="border: 1px solid #000; text-align: center; background-color: #d4edda; padding: 6px; font-weight: bold;">
+                                            Disclaimer on personal assets
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3"
+                                            style="border: 1px solid #000; text-align: left; background-color: #f8f9fa; padding: 6px; color: #ff0000;">
+                                            Requester accepts full accountability for the personal assets and any impact
+                                            they may cause to CCBRT Infrastructure and understands that CCBRT will not be
+                                            held liable for anything that may happen to them.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3"
+                                            style="border: 1px solid #000; text-align: center; background-color: #d4edda; padding: 6px; font-weight: bold;">
+                                            Requester Declaration
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3"
+                                            style="border: 1px solid #000; text-align: left; background-color: #f8f9fa; padding: 6px; color: #ff0000;">
+                                            I hereby acknowledge the completion of this form and accept accountabilities of
+                                            the above requested CCBRT resources. In the event the CCBRT asset(s) is lost
+                                            under my care I shall provide CCBRT with the asset or reimburse equivalent cost
+                                            of purchase unless decided otherwise by CCBRT management.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th style="border: 1px solid #000; text-align: left; padding: 6px;">Details:</th>
+                                        <th style="border: 1px solid #000; text-align: left; padding: 6px;">Signature:</th>
+                                        <th style="border: 1px solid #000; text-align: left; padding: 6px;">Date:</th>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000; padding: 6px;">Requester:
+                                            {{ $ictForm->fname }} {{ $ictForm->lname }}</td>
+                                        <td style="border: 1px solid #000; padding: 6px;"></td>
+                                        <td style="border: 1px solid #000; padding: 6px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000; padding: 6px;">Line Manager Name:</td>
+                                        <td style="border: 1px solid #000; padding: 6px;"></td>
+                                        <td style="border: 1px solid #000; padding: 6px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000; padding: 6px;">IT Officer Name:</td>
+                                        <td style="border: 1px solid #000; padding: 6px;"></td>
+                                        <td style="border: 1px solid #000; padding: 6px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000; padding: 6px;">HR Officer Name:</td>
+                                        <td style="border: 1px solid #000; padding: 6px;"></td>
+                                        <td style="border: 1px solid #000; padding: 6px;"></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="buttons-container"
+                                style="margin-top: 15px; display: flex; justify-content: flex-end; gap: 10px; padding-right: 3%; /* Adjust this percentage as needed */">
+                                <button type="button" class="btn btn-success"
+                                    onclick="approveForm('{{ $ictForm->id }}')">Approve</button>
+                                <button type="button" class="btn btn-danger"
+                                    onclick="window.location.href = '/requestapprove'">Reject</button>
+                                <button type="button" class="btn btn-primary" onclick="generatePDF()">Download</button>
+                            </div>
+
+
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <section>
-                <div class="form-container"
-                    style="margin: 20px auto; max-width: 800px; border: 1px solid #dee2e6; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-                    <div class="form-header" style="text-align: center; margin-bottom: 20px;">
-                        <img src="{{ asset('assets/img/logo-small.png') }}" alt="Logo"
-                            style="max-width: 120px; margin-bottom: 10px;">
-                        <p><strong>Comprehensive Community Based Rehabilitation in Tanzania</strong></p>
-                        <h3 style="font-size: 1.5rem; font-weight: bold;">ICT Access Form</h3>
-                    </div>
-                    <table class="table-custom" style="width: 100%; border-collapse: collapse;">
-                        <tbody>
-                            <tr>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">Username
-                                </td>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->username }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">Mobile
-                                    Number</td>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->mobile }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">User
-                                    Category</td>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->prv_name }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">Starting
-                                    Date</td>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->starting_date }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">PABX</td>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->prv_name }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">Email
-                                </td>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->email }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    Department</td>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->dept_name }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">Active
-                                    Directory</td>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->prv_name }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">Ending
-                                    Date</td>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->ending_date }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">Employee
-                                    ID</td>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->emp_id }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">Hardware
-                                </td>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                 {{$ictForm->hardware_request}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">First
-                                    Name</td>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->fname }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">Last Name
-                                </td>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->lname }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    Employment Type</td>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->employment_type }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">NHIF
-                                    Qualification</td>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->name }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">HMIS
-                                    Access</td>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->names }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">CCBRT
-                                    Email</td>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->prv_name }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">SAP ERP
-                                </td>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->prv_name }}</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">Network
-                                    Access VPN</td>
-                                <td style="width: 50%; border: 1px solid #dee2e6; padding: 8px; text-align: left;">
-                                    {{ $ictForm->prv_name }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    {{-- <div class="footer" style="text-align: center; margin-top: 20px; font-size: 0.9rem; color: #6c757d;">
-                        <p><strong>Organization Name</strong></p>
-                        <p>Address: 123 Main Street, City, Country</p>
-                        <p class="contact-info" style="margin-top: 10px;">Phone: (123) 456-7890 | Email:
-                            contact@organization.com</p>
-                    </div> --}}
-                </div>
-                <div class="buttons-container" style="text-align: right; margin-top: 20px;">
-                    <button type="button" class="btn btn-primary" style="margin-left: 5px;"
-                        onclick="approveForm({{ $ictForm->access_id }})">Approve</button>
-                    <button type="button" class="btn btn-primary" style="margin-left: 5px;">Edit</button>
-                    <button type="button" class="btn btn-primary" style="margin-left: 5px;"
-                        onclick="generatePDF()">Download PDF</button>
-                </div>
-            </section>
-        </div>
-    </div>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+                    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+                    <script>
+                        function generatePDF() {
+                            const element = document.querySelector('.form-container');
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+                            // Ensure the element is at the top of the page
+                            window.scrollTo(0, 0);
 
-    <script>
-        function generatePDF() {
-            const element = document.querySelector('.form-container');
-            html2pdf().from(element).save('Official_Document.pdf');
-        }
+                            // Options for html2pdf
+                            const options = {
+                                margin: [2, 1, 1, 2], // Adjust margins to fit content better
+                                filename: 'ICT Access Form.pdf',
+                                image: {
+                                    type: 'jpeg',
+                                    quality: 0.98
+                                },
+                                html2canvas: {
+                                    scale: 2,
+                                    scrollX: 0,
+                                    scrollY: 0
+                                },
+                                jsPDF: {
+                                    unit: 'mm',
+                                    format: 'a4',
+                                    orientation: 'portrait',
+                                    putOnlyUsedFonts: true,
+                                    compress: true
+                                }
+                            };
 
-        function approveForm(access_id) {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+                            html2pdf().from(element).set(options).save();
+                        }
 
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "Do you really want to approve this form?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, approve it!',
-                cancelButtonText: 'No, cancel!',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        method: 'POST',
-                        url: '/approve_form',
-                        data: {
-                            access_id: access_id
-                        },
-                        success: function(response) {
-                            Swal.fire({
-                                title: 'Approved!',
-                                text: 'Form has been approved.',
-                                icon: 'success',
-                                confirmButtonText: 'OK'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    window.location.href = '/requestapprove';
+                        function approveForm(access_id) {
+                            $.ajaxSetup({
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                                 }
                             });
-                        },
-                        error: function(xhr, status, error) {
-                            console.error('Error:', error);
-                            Swal.fire('Error!', 'Failed to approve form.', 'error');
+
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                text: "Do you really want to approve this form?",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonText: 'Yes, approve it!',
+                                cancelButtonText: 'No, cancel!',
+                                reverseButtons: true
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    $.ajax({
+                                        method: 'POST',
+                                        url: '/approve_form',
+                                        data: {
+                                            access_id: access_id
+                                        },
+                                        success: function(response) {
+                                            Swal.fire({
+                                                title: 'Approved!',
+                                                text: 'Form has been approved.',
+                                                icon: 'success',
+                                                confirmButtonText: 'OK'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    window.location.href = '/requestapprove';
+                                                }
+                                            });
+                                        },
+                                        error: function(xhr, status, error) {
+                                            console.error('Error:', error);
+                                            Swal.fire('Error!', 'Failed to approve form.', 'error');
+                                        }
+                                    });
+                                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                                    Swal.fire('Cancelled', 'The form was not approved :)', 'error');
+                                }
+                            });
                         }
-                    });
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    Swal.fire('Cancelled', 'The form was not approved :)', 'error');
-                }
-            });
-        }
-    </script>
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
