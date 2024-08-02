@@ -69,7 +69,8 @@ class RequestController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $request = Workflow::findOrFail($id);
+        return view('myrequest.edit', compact('request'));
     }
 
     /**
@@ -77,7 +78,9 @@ class RequestController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $requestData = Workflow::findOrFail($id);
+        $requestData->update($request->all());
+        return redirect()->route('request.index')->with('success', 'Request updated successfully');
     }
 
     /**
@@ -85,47 +88,20 @@ class RequestController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $request = Workflow::findOrFail($id);
+        $request->delete();
+        return redirect()->route('request.index')->with('success', 'Request deleted successfully');
     }
 
-    // Controller method (e.g., RequestsController)
-public function search(Request $request)
-{
-    $query = $request->input('query');
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
 
-    // Perform your query to filter requests based on the $query parameter
-    $requests = Request::where('field_to_search', 'like', '%'.$query.'%')->get();
+        // Perform your query to filter requests based on the $query parameter
+        $requests = Workflow::where('field_to_search', 'like', '%'.$query.'%')->get();
 
-    return view('requests.index');
-}
+        return view('requests.index', compact('requests'));
+    }
 
-// public function index()
-// {
-//     try {
-//         if (!Auth::check()) {
-//             return redirect()->route('login'); // Ensure the user is authenticated
-//         }
-
-//         $userId = Auth::user()->id;
-
-//         $form = Workflow::where('user_id', $userId)->get();
-
-//     // Initialize an empty array to store histories for each form
-//     $histories = [];
-
-//     // Fetch histories for each form
-//     foreach ($form as $aform) {
-//         $history = WorkFlowHistory::where('work_flow_id', $aform->id)->get();
-//         $histories[$aform->id] = $history; // Store histories keyed by form ID
-//     }
-
-//     // dd($form, $histories);
-
-//     return view('myrequest.index', compact('form', 'histories'));
-
-//     } catch (\Exception $e) {
-//         dd($e->getMessage());
-//     }
-// }
 
 }

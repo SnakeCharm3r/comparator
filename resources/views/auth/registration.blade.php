@@ -1,5 +1,6 @@
 @include('includes.head')
 @include('sweetalert::alert')
+
 <div class="main-wrapper login-body">
     <div class="login-wrapper">
         <div class="container">
@@ -113,7 +114,6 @@
                                     <button class="btn btn-primary btn-block" type="button" id="openAgreementsModal"
                                         style="background-color: #0f813c; color: white;">Sign Up</button>
                                 </div>
-
                                 <div class="text-center">
                                     <span>Already registered?</span> <a href="{{ route('login') }}"
                                         style="color: #0f813c;">Login here</a>
@@ -167,13 +167,34 @@
                 <div class="form-check mt-3">
                     <input class="form-check-input" type="checkbox" id="acceptCheckbox">
                     <label class="form-check-label" for="acceptCheckbox">
-                        I have read and accept the User Agreements and Policies..
+                        I have read and accept the User Agreements and Policies.
                     </label>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="acceptAgreements" disabled>I Accept</button>
+                <button type="button" class="btn btn-primary" id="acceptAgreements" disabled>Next</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Signature Modal -->
+<div class="modal fade" id="signatureModal" tabindex="-1" aria-labelledby="signatureModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="signatureModalLabel">Provide Your Signature</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <canvas id="signaturePad" style="border:1px solid #000;"></canvas>
+                <button type="button" class="btn btn-secondary" id="clearSignature">Clear</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="submitSignature">Submit</button>
             </div>
         </div>
     </div>
@@ -198,11 +219,17 @@
 
     document.getElementById('acceptAgreements').addEventListener('click', function() {
         document.getElementById('userAgreementsModal').querySelector('.btn-close').click();
+        var modal = new bootstrap.Modal(document.getElementById('signatureModal'));
+        modal.show();
+    });
+
+    document.getElementById('submitSignature').addEventListener('click', function() {
+        document.getElementById('signatureModal').querySelector('.btn-close').click();
         document.getElementById('registrationForm').submit();
     });
 
     function validateAge() {
-        const dob = document.querySelector('input[name="dob"]').value;
+        const dob = document.querySelector('input[name="DOB"]').value;
         const dobDate = new Date(dob);
         const today = new Date();
         const age = today.getFullYear() - dobDate.getFullYear();
@@ -216,4 +243,34 @@
         }
         return true;
     }
+
+   // Signature Pad
+const canvas = document.getElementById('signaturePad');
+const signaturePad = canvas.getContext('2d');
+let drawing = false;
+
+// Set the pen color to blue
+signaturePad.strokeStyle = 'blue';
+
+canvas.addEventListener('mousedown', function(e) {
+    drawing = true;
+    signaturePad.beginPath();
+    signaturePad.moveTo(e.offsetX, e.offsetY);
+});
+
+canvas.addEventListener('mousemove', function(e) {
+    if (drawing) {
+        signaturePad.lineTo(e.offsetX, e.offsetY);
+        signaturePad.stroke();
+    }
+});
+
+canvas.addEventListener('mouseup', function() {
+    drawing = false;
+});
+
+document.getElementById('clearSignature').addEventListener('click', function() {
+    signaturePad.clearRect(0, 0, canvas.width, canvas.height);
+});
+
 </script>

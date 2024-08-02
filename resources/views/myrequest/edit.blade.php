@@ -1,25 +1,31 @@
 @extends('layouts.template')
-@include('sweetalert::alert')
-@section('breadcrumb')
+
+@section('content')
     <div class="page-wrapper">
         <div class="content container-fluid">
-            <div class="page-header">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="page-sub-header">
-                            <h3 class="page-title">Edit NHIF</h3>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>Edit Request</h4>
+                            <form action="{{ route('request.update', $request->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <!-- Add your form fields here -->
+                                <div class="form-group">
+                                    <label for="request_type">Request Type</label>
+                                    <input type="text" name="request_type" value="{{ $request->request_type }}" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="status">Status</label>
+                                    <input type="text" name="status" value="{{ $request->status }}" class="form-control">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Update Request</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-
-          
-
-            <p>Edit</p>
-
         </div>
     </div>
-@endsection
-
-@section('content')
 @endsection

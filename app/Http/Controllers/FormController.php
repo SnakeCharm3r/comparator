@@ -19,6 +19,7 @@ class FormController extends Controller
 {
     public function getform(Request $request)
     {
+        $user = Auth::user();
         $ictForm = IctAccessResource::join('users', 'users.id', '=', 'ict_access_resources.userId')
             ->join('workflows', 'workflows.ict_request_resource_id', '=', 'ict_access_resources.id')
             ->join('work_flow_histories', 'work_flow_histories.work_flow_id', '=', 'workflows.id')
@@ -41,7 +42,7 @@ class FormController extends Controller
                 'h_m_i_s_access_levels.names'
             ]);
 
-        return view('ict_resource_form', compact('ictForm'));
+        return view('ict_resource_form', compact('ictForm','user'));
     }
 
 

@@ -56,6 +56,23 @@
                                 <th>Job Title</th>
                                 <th>Professional No</th>
                                 <th>Phone Number</th>
+                                <th>CCBRT Code</th>
+                                <th>Appointed Date</th>
+                                <th>Gender Type</th>
+                                <th>Birth Date</th>
+                                <th>Marital Status</th>
+                                <th>Birth Ward</th>
+                                <th>Birth State</th>
+                                <th>Birth Country</th>
+                                <th>Nationality</th>
+                                <th>Languages</th>
+                                <th>Present Address</th>
+                                <th>Emer. Con. names</th>
+                                <th>Emer. Con. Address</th>
+                                <th>Emer. Con. State</th>
+                                <th>Emer. Con. Mobile</th>
+                                <th>Emer. Con. Email</th>
+
 
                             </tr>
                         </thead>
@@ -67,7 +84,24 @@
                                     <td>{{ $user->department->dept_name }}</td>
                                     <td>{{ $user->job_title }}</td>
                                     <td>{{ $user->professional_reg_number }}</td>
+                                    <td>{{ $user->ccbrt_Code }}</td>
+                                    <td>{{ $user->appointed_date }}</td>
                                     <td>{{ $user->mobile }}</td>
+                                    <td>{{ $user->gender }}</td>
+                                    <td>{{ $user->DOB }}</td>
+                                    <td>{{ $user->marital_status }}</td>
+                                    <td>{{ $user->birth_ward }}</td>
+                                    <td>{{ $user->birth_state }}</td>
+                                    <td>{{ $user->birth_country }}</td>
+                                    <td>{{ $user->nationality }}</td>
+                                    <td>{{ $user->language }}</td>
+                                    <td>{{ $user->present_address }}</td>
+                                    <td>{{ $user->full_name }}</td>
+                                    <td>{{ $user->Emer_c_address }}</td>
+                                    <td>{{ $user->Emer_c_state }}</td>
+                                    <td>{{ $user->phone_number }}</td>
+                                    <td>{{ $user->Emer_c_email }}</td>
+
 
                                     {{-- <td>{{ $user->start_date->format('Y-m-d') }}</td> --}}
                                 </tr>
@@ -81,6 +115,23 @@
                                 <th>Job Title</th>
                                 <th>Professional No</th>
                                 <th>Phone Number</th>
+                                <th>CCBRT Code</th>
+                                <th>Appointed Date</th>
+                                <th>Gender Type</th>
+                                <th>Birth Date</th>
+                                <th>Marital Status</th>
+                                <th>Birth Ward</th>
+                                <th>Birth State</th>
+                                <th>Birth Country</th>
+                                <th>Nationality</th>
+                                <th>Languages</th>
+                                <th>Present Address</th>
+
+                                <th>Emer. Con. names</th>
+                                <th>Emer. Con. Address</th>
+                                <th>Emer. Con. State</th>
+                                <th>Emer. Con. Mobile</th>
+                                <th>Emer. Con. Email</th>
                             </tr>
                         </tfoot>
                     </table>

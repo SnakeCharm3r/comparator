@@ -103,6 +103,7 @@ Route::delete('language-knowledge/{id}', [LanguageKnowledgeController::class, 'd
 
 
 Route::post('/signature', [SignatureController::class, 'store']);
+Route::post('/save-signature', [SignatureController::class, 'store'])->name('signature.store');
 Route::get('/signature', [SignatureController::class, 'index'])->name('signature.index');
 
 // Route::post('family-details', UserFamilyDetailsController::class);

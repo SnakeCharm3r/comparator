@@ -11,14 +11,6 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            {{-- <div class="row position-relative">
-                                <div class="col-md-12">
-                                    <a href="{{ route('request.create') }}"
-                                        class="btn btn-primary position-absolute top-0 end-0 mt-2 me-2 create-btn">
-                                        <i class="fas fa-plus"></i>
-                                    </a>
-                                </div>
-                            </div> --}}
                             <div class="row mt-4">
                                 <div class="col-md-12">
                                     <h4>My Requests</h4>
@@ -32,6 +24,7 @@
                                                     <th>Status</th>
                                                     <th>Submitted</th>
                                                     <th>Approved Date</th>
+                                                    <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -88,6 +81,19 @@
                                                                 <td>{!! $detail['status'] !!}</td>
                                                                 <td rowspan="{{ count($approvalDetails) }}">
                                                                     {{ $aform->created_at }}</td>
+                                                                <td rowspan="{{ count($approvalDetails) }}"></td>
+                                                                <td rowspan="{{ count($approvalDetails) }}">
+                                                                    <a href="{{ route('request.edit', $aform->id) }}"
+                                                                        class="btn btn-rounded btn-outline-info">Modify</a>
+                                                                    <form
+                                                                        action="{{ route('request.destroy', $aform->id) }}"
+                                                                        method="POST" style="display:inline-block;">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit"
+                                                                            class="btn btn-rounded btn-outline-danger">Revoke</button>
+                                                                    </form>
+                                                                </td>
                                                             @else
                                                                 <td>{{ $detail['role'] }}</td>
                                                                 <td>{!! $detail['status'] !!}</td>
@@ -129,4 +135,7 @@
             /* Dark border to create a strong line */
         }
     </style>
+    <script>
+        new DataTable('#example');
+    </script>
 @endpush

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Storage;
 
 
 class AuthController extends Controller
@@ -24,12 +25,18 @@ class AuthController extends Controller
     //get All user
     public function getAllUser(){
         $users = User::all();
+        
         return view('role-permission/user.index', compact('users'));
     }
 
 
     public function userDetail(){
-        $users = User::all();
+
+            $users = User::select('users.*', 'language_knowledge.language')
+            ->leftJoin('language_knowledge', 'users.id', '=', 'language_knowledge.userId')
+            ->get();
+
+            // dd($users);
         return view('employees_details.index', compact('users'));
     }
 
@@ -87,6 +94,7 @@ class AuthController extends Controller
           'DOB' => 'required',
           'employment_typeId' => 'required',
           'password' => 'required|min:6',
+        //   'signature' => 'required|string',
         ]);
 
         if($validator->fails()) {
@@ -96,6 +104,7 @@ class AuthController extends Controller
             ]);
 
         }
+        
         //$dob = \DateTime::createFromFormat('d-m-Y', $request->input('DOB'))->format('Y-m-d');
 
         $user = User::create([
@@ -135,7 +144,7 @@ class AuthController extends Controller
             'success', 'User registered successfully. Please login.');
 
 
-    }
+}
 
     public function editUserRole(Request $request, $userId)
     {
