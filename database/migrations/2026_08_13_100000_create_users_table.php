@@ -45,7 +45,6 @@ return new class extends Migration
             $table->foreign('deptId')->references('id')->on('departments');
             $table->foreign('employment_typeId')->references('id')->on('employment_types');
             $table->string('delete_status')->nullable();
-            $table->foreign('role_id')->references('id')->on('roles');
             $table->rememberToken();
             $table->timestamps();
         });

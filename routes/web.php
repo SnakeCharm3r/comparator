@@ -94,6 +94,7 @@ Route::put('/ccbrt_relation/{id}', [CcbrtRelationController::class, 'update'])->
 Route::delete('/ccbrt_relation/{id}', [CcbrtRelationController::class, 'destroy'])->name('ccbrt_relation.destroy');
 Route::post('/relation', [CcbrtRelationController::class, 'addRelationData'])->name('ccbrt_relation.addRelationData');
 Route::get('/health-details/{id}/edit', [HealthDetailsController::class, 'edit'])->name('health-details.edit');
+Route::put('/ccbrt_relation/{id}', [CcbrtRelationController::class, 'update'])->name('ccbrt_relation.update');
 
 Route::get('language-knowledge', [LanguageKnowledgeController::class, 'index'])->name('language_knowledge.index');
 Route::post('language-knowledge', [LanguageKnowledgeController::class, 'addLanguageKnowledge'])->name('language_knowledge.add');
@@ -116,6 +117,7 @@ Route::resource('/profile', ProfileController::class);
 Route::middleware(['auth'])->post('profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
 Route::post('picture', [ProfileController::class, 'updateProfilePicture'])->name('profile.update.picture');
 Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
 
 //ict-access controller
 Route::resource('/form', IctAccessController::class);
