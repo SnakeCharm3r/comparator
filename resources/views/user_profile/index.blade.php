@@ -125,7 +125,7 @@
                                                             <th scope="row">Date of Birth</th>
                                                             <td>{{ $user->DOB }}</td>
                                                         </tr>
-                                                      
+
                                                         <tr>
                                                             <th scope="row">District</th>
                                                             <td>{{ $user->DOB }}</td>
@@ -161,15 +161,15 @@
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">House Number</th>
-                                                            <td>{{ $user->religion }}</td>
+                                                            <td>{{ $user->house_no }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <th scope="row">Domicile</th>
-                                                            <td>{{ $user->religion }}</td>
+                                                            <th scope="row">Region</th>
+                                                            <td>{{ $user->region }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">Street</th>
-                                                            <td>{{ $user->religion }}</td>
+                                                            <td>{{ $user->street }}</td>
                                                         </tr>
 
                                                         <tr>

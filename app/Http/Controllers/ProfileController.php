@@ -99,11 +99,8 @@ public function update(Request $request, string $id)
     $validator = Validator::make($request->all(), [
         'fname' => 'required',
         'lname' => 'required',
-        'job_title' => 'required',
-        'email' => 'required|email|unique:users,email,' . $id,
-        'deptId' => 'required',
+        'email' => 'required|email|:users,email',
         'DOB' => 'required',
-        'employment_typeId' => 'required',
     ]);
 
     if ($validator->fails()) {
@@ -127,16 +124,17 @@ public function update(Request $request, string $id)
     $user->email = $request->input('email');
     $user->religion = $request->input('religion');
     $user->mobile = $request->input('mobile');
-    $user->job_title = $request->input('job_title');
+    // $user->job_title = $request->input('job_title');
     $user->home_address = $request->input('home_address');
     $user->district = $request->input('district');
+    $user->region = $request->input('region');
     $user->professional_reg_number = $request->input('professional_reg_number');
     $user->place_of_birth = $request->input('place_of_birth');
     $user->house_no = $request->input('house_no');
     $user->street = $request->input('street');
-    $user->deptId = $request->input('deptId');
-    $user->employment_typeId = $request->input('employment_typeId');
-    $user->health_info_Id = $request->input('health_info_Id');
+    // $user->deptId = $request->input('deptId');
+    // $user->employment_typeId = $request->input('employment_typeId');
+    // $user->health_info_Id = $request->input('health_info_Id');
     $user->employee_cv = $request->input('employee_cv');
     $user->NIN = $request->input('NIN');
     $user->nssf_no = $request->input('nssf_no');
@@ -146,7 +144,7 @@ public function update(Request $request, string $id)
     $user->save();
 
     // Redirect or respond with success message
-    return redirect()->route('user_profile.edit', ['id' => $id])->with('success', 'User updated successfully.');
+    return redirect()->route('profile.index')->with('success', 'User updated successfully.');
 }
 
 
