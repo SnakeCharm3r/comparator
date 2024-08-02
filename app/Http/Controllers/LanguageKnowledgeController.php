@@ -87,23 +87,21 @@ class LanguageKnowledgeController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $validator = Validator::make($request->all(), [
             'language' => 'required|string|max:255',
             'speaking' => 'required|string|max:255',
             'reading' => 'required|string|max:255',
             'writing' => 'required|string|max:255',
         ]);
-
+        //dd(1234);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
+
         $languageKnowledge = LanguageKnowledge::findOrFail($id);
 
-        // Check if the authenticated user owns this language knowledge
-        if ($languageKnowledge->userId != Auth::id()) {
-            return redirect()->route('language_knowledge.index')->with('error', 'Unauthorized access.');
-        }
 
         $languageKnowledge->update([
             'language' => $request->input('language'),

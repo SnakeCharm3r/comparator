@@ -96,14 +96,15 @@ class AuthController extends Controller
             ]);
 
         }
-        //$dob = \DateTime::createFromFormat('d-m-Y', $request->input('DOB'))->format('Y-m-d');
+        $dob = \DateTime::createFromFormat('d-m-Y', $request->input('DOB'))->format('Y-m-d');
 
         $user = User::create([
             'fname' => $request->input('fname'),
             'mname' => $request->input('mname'),
             'lname' => $request->input('lname'),
             'username' => $request->input('username'),
-            'DOB' => $request->input('DOB'),
+            // 'DOB' => $request->input('DOB'),
+            // 'DOB' => $request->input('DOB'),
             'gender' => $request->input('gender'),
             'marital_status' => $request->input('marital_status'),
             'email' => $request->input('email'),
@@ -112,19 +113,18 @@ class AuthController extends Controller
             'job_title' => $request->input('job_title'),
             'home_address' => $request->input('home_address'),
             'district' => $request->input('district'),
+            'region' => $request->input('region'),
             'professional_reg_number' => $request->input('professional_reg_number'),
-            'place_of_birth' => $request->input('place_of_birth'),
+            'place_of_birth'   => $request->input('place_of_birth'),
             'house_no' => $request->input('house_no'),
             'street' => $request->input('street'),
             'deptId' => $request->input('deptId'),
             'employment_typeId' => $request->input('employment_typeId'),
-            'health_info_Id' => $request->input('health_info_Id'),
+            // 'health_info_Id' => $request->input('health_info_Id'),
             'employee_cv' => $request->input('employee_cv'),
             'NIN' => $request->input('NIN'),
             'nssf_no' => $request->input('nssf_no'),
             'domicile' => $request->input('domicile'),
-//            'deptId' => $request->input('deptId'),
-//            'employment_typeId' => $request->input('employment_typeId'),
             'password' => Hash::make($request->input('password')),
 
         ]);

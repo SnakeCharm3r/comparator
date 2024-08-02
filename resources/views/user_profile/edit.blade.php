@@ -1,5 +1,3 @@
-<!-- resources/views/profile/show.blade.php -->
-
 @extends('layouts.template')
 
 @section('breadcrumb')
@@ -20,7 +18,6 @@
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
             <div class="container">
                 <div class="row flex-lg-nowrap">
-
                     <div class="col">
                         <div class="row">
                             <div class="col mb-3">
@@ -77,12 +74,15 @@
                                         <ul class="nav nav-tabs">
                                             <li class="nav-item"><a href="#settings" class="active nav-link"
                                                     data-bs-toggle="tab">User Info</a></li>
-
                                         </ul>
                                         <div class="tab-content pt-3">
                                             <div class="tab-pane active" id="settings">
-                                                <form action="#" method="POST" class="form" novalidate="">
+                                                <form action="{{ route('profile.update', $user->id) }}" method="POST" class="form" novalidate="">
                                                     @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="deptId" value="{{ $user->deptId }}">
+                                                    <input type="hidden" name="employment_typeId" value="{{ $user->employment_typeId }}">
+                                                    <input type="hidden" name="job_title" value="{{ $user->job_title }}">
                                                     <div class="row">
                                                         <div class="col">
                                                             <div class="row">
@@ -90,31 +90,29 @@
                                                                     <div class="form-group">
                                                                         <label>First Name</label>
                                                                         <input class="form-control" type="text"
-                                                                            name="first_name" placeholder="John Smith"
-                                                                            value="{{ old('first_name', $user->fname) }}">
+                                                                            name="fname" placeholder="John Smith"
+                                                                            value="{{ old('fname', $user->fname) }}">
                                                                     </div>
                                                                 </div>
-
                                                                 <div class="col">
                                                                     <div class="form-group">
                                                                         <label>Middle Name</label>
                                                                         <input class="form-control" type="text"
-                                                                            name="middle_name" placeholder="Middle Name"
-                                                                            value="{{ old('middle_name', $user->mname) }}">
+                                                                            name="mname" placeholder="Middle Name"
+                                                                            value="{{ old('mname', $user->mname) }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col">
                                                                     <div class="form-group">
                                                                         <label>Last Name</label>
                                                                         <input class="form-control" type="text"
-                                                                            name="last_name" placeholder="John Smith"
-                                                                            value="{{ old('last_name', $user->lname) }}">
+                                                                            name="lname" placeholder="John Smith"
+                                                                            value="{{ old('lname', $user->lname) }}">
                                                                     </div>
                                                                 </div>
                                                             </div>
 
                                                             <div class="row">
-                                                                <!-- Email Section -->
                                                                 <div class="col-12 col-md-4">
                                                                     <div class="form-group">
                                                                         <label>Username</label>
@@ -134,7 +132,9 @@
                                                                 <div class="col-12 col-md-4">
                                                                     <div class="form-group">
                                                                         <label>Mobile Number</label>
-                                                                        <input type="text" class="form-control">
+                                                                        <input class="form-control" type="text"
+                                                                            name="mobile" placeholder="123-456-7890"
+                                                                            value="{{ old('mobile', $user->mobile) }}">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -144,101 +144,124 @@
                                                                         <label>Date of Birth</label>
                                                                         <input class="form-control" type="date"
                                                                             name="DOB"
-                                                                            value="{{ old('dob', $user->dob) }}">
+                                                                            value="{{ old('DOB', $user->DOB) }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
                                                                     <div class="form-group">
                                                                         <label>Place of Birth</label>
-                                                                        <input type="text" class="form-control">
+                                                                        <input class="form-control" type="text"
+                                                                            name="place_of_birth"
+                                                                            value="{{ old('place_of_birth', $user->place_of_birth) }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="marital-status">Marital Status:</label>
-                                                                        <select id="marital-status" class="form-control">
+                                                                        <select id="marital-status" class="form-control"
+                                                                            name="marital_status">
                                                                             <option value="">Select Marital Status
                                                                             </option>
-                                                                            <option value="single">Single</option>
-                                                                            <option value="married">Married</option>
-                                                                            <option value="divorced">Divorced</option>
-                                                                            <option value="widowed">Widowed</option>
+                                                                            <option value="single" {{ old('marital_status', $user->marital_status) == 'single' ? 'selected' : '' }}>Single</option>
+                                                                            <option value="married" {{ old('marital_status', $user->marital_status) == 'married' ? 'selected' : '' }}>Married</option>
+                                                                            <option value="divorced" {{ old('marital_status', $user->marital_status) == 'divorced' ? 'selected' : '' }}>Divorced</option>
+                                                                            <option value="widowed" {{ old('marital_status', $user->marital_status) == 'widowed' ? 'selected' : '' }}>Widowed</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
-
                                                             </div>
                                                             <div class="row">
-                                                                <!-- Email Section -->
                                                                 <div class="col-12 col-md-4">
                                                                     <div class="form-group">
                                                                         <label>Region</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="region">
+                                                                        <input class="form-control" type="text"
+                                                                            name="region" placeholder="Region"
+                                                                            value="{{ old('region', $user->region) }}">
                                                                     </div>
                                                                 </div>
-
                                                                 <div class="col-12 col-md-4">
                                                                     <div class="form-group">
                                                                         <label>District</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="district">
+                                                                        <input class="form-control" type="text"
+                                                                            name="district" placeholder="District"
+                                                                            value="{{ old('district', $user->district) }}">
                                                                     </div>
                                                                 </div>
-
                                                                 <div class="col-12 col-md-4">
                                                                     <div class="form-group">
                                                                         <label>Street</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="street">
+                                                                        <input class="form-control" type="text"
+                                                                            name="street" placeholder="Street"
+                                                                            value="{{ old('street', $user->street) }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
                                                                     <div class="form-group">
                                                                         <label>House Number</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="house_no">
+                                                                        <input class="form-control" type="text"
+                                                                            name="house_no" placeholder="House Number"
+                                                                            value="{{ old('house_no', $user->house_no) }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
                                                                     <div class="form-group">
                                                                         <label>Home Address</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="home_address">
+                                                                        <input class="form-control" type="text"
+                                                                            name="home_address" placeholder="Home Address"
+                                                                            value="{{ old('home_address', $user->home_address) }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
                                                                     <div class="form-group">
                                                                         <label>Domicile</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="domicile">
+                                                                        <input class="form-control" type="text"
+                                                                            name="domicile" placeholder="Domicile"
+                                                                            value="{{ old('domicile', $user->domicile) }}">
                                                                     </div>
                                                                 </div>
-
                                                                 <div class="col-12 col-md-4">
                                                                     <div class="form-group">
                                                                         <label>Religion</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="religion">
+                                                                        <input class="form-control" type="text"
+                                                                            name="religion" placeholder="Religion"
+                                                                            value="{{ old('religion', $user->religion) }}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
                                                                     <div class="form-group">
                                                                         <label>Professional Reg Number</label>
-                                                                        <input type="text"
-                                                                            class="form-control"name="professional_reg_number">
+                                                                        <input class="form-control" type="text"
+                                                                            name="professional_reg_number"
+                                                                            placeholder="Professional Reg Number"
+                                                                            value="{{ old('professional_reg_number', $user->professional_reg_number) }}">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label>National Identification Number</label>
+                                                                        <input class="form-control" type="text"
+                                                                            name="NIN" placeholder="NIN"
+                                                                            value="{{ old('NIN', $user->NIN) }}">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label>NSSF Number</label>
+                                                                        <input class="form-control" type="text"
+                                                                            name="nssf_no" placeholder="NSSF Number"
+                                                                            value="{{ old('nssf_no', $user->nssf_no) }}">
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="col-12 col-md-4">
                                                                     <div class="form-group">
-                                                                        <label>National Identification Number</label>
-                                                                        <input type="text"
-                                                                            class="form-control"name="national_Identification_number">
+                                                                        <label>Employee CV</label>
+                                                                        <input class="form-control" type="text"
+                                                                            name="employee_cv" placeholder="Employee CV"
+                                                                            value="{{ old('employee_cv', $user->employee_cv) }}">
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                         </div>
                                                     </div>
                                                     <div class="row">

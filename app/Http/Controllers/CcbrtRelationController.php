@@ -96,17 +96,17 @@ public function update(Request $request, $id)
     public function destroy(string $id)
     {
         $relate = CcbrtRelation::find($id);
-    
+
         if (!$relate) {
             return redirect()->route('ccbrt_relation.index')->with('error', 'Record not found.');
         }
-    
+
         $relate->delete();
-    
+
         return redirect()->route('ccbrt_relation.index')->with('success', 'Record deleted successfully.');
     }
-    
-    
-    
-    
+
+
+
+
 }
