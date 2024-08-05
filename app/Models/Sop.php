@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sop extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'description', 'deptId'];
-
+    protected $fillable = ['deptId','title', 'pdf_path'];
     public function department()
     {
         return $this->belongsTo(Departments::class);

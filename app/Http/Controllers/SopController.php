@@ -13,7 +13,8 @@ class SopController extends Controller
      */
     public function index()
     {
-        $sops = Sop::all();
+
+         $sops = SOP::with('department')->get();  
         return view('sops.index', compact('sops'));
     }
 
@@ -28,21 +29,26 @@ class SopController extends Controller
      */
     public function store(Request $request)
     {
-       
         $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'deptId' => 'nullable|integer|',
+            'deptId' => 'required|integer',
+            'pdf' => 'required|file|mimes:pdf|max:2048',
         ]);
-
-        Sop::create([
-            'title' => $request->input('title'),
-            'description' => $request->input('description'),
-            'dept_name' => $request->input('dept_name'),
-        ]); dd(123);
-
-        return redirect()->route('sops.index')->with('success', 'SOP created successfully.');   
-     }
+    
+        // Handle the file upload
+        if ($request->hasFile('pdf')) {
+            $pdfPath = $request->file('pdf')->store('pdfs', 'public');
+        }
+    
+        // Create the SOP record
+        $sop = new Sop();
+        $sop->title = $request->title;
+        $sop->deptId = $request->deptId;
+        $sop->pdf_path = $pdfPath; // Save the file path
+        $sop->save();
+    
+        return redirect()->route('sops.index')->with('success', 'SOP created successfully.');
+    }
 
     /**
      * Display the specified resource.
@@ -65,15 +71,25 @@ class SopController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'department_id' => 'required|exists:departments,id',
+            'deptId' => 'required|exists:departments,id',
+            'pdf_path' => 'nullable|file|mimes:pdf|max:10240',
         ]);
 
-      
+        $sop = SOP::findOrFail($id);
+        $sop->title = $request->input('title');
+        $sop->deptId = $request->input('deptId');
+
+        if ($request->hasFile('pdf_path')) {
+            // Handle PDF upload
+            $pdfPath = $request->file('pdf_path')->store('pdfs', 'public');
+            $sop->pdf_path = $pdfPath;
+        }
+
+        $sop->save();
 
         return redirect()->route('sops.index')->with('success', 'SOP updated successfully.');
     }
