@@ -6,15 +6,21 @@ use Illuminate\Http\Request;
 use App\Models\Sop;
 use App\Models\User;
 use App\Models\Departments;
+use Illuminate\Support\Facades\DB;
+
 class SopController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
+  
 
-         $sops = SOP::with('department')->get();  
+    public function index(){
+        $sops = DB::table('sops')->join('departments',
+        'sops.deptId', '=', 'departments.id')
+        ->select(
+            'sops.*', 'departments.dept_name'
+        )->get();
         return view('sops.index', compact('sops'));
     }
 
@@ -34,19 +40,19 @@ class SopController extends Controller
             'deptId' => 'required|integer',
             'pdf' => 'required|file|mimes:pdf|max:2048',
         ]);
-    
+
         // Handle the file upload
         if ($request->hasFile('pdf')) {
             $pdfPath = $request->file('pdf')->store('pdfs', 'public');
         }
-    
+
         // Create the SOP record
         $sop = new Sop();
         $sop->title = $request->title;
         $sop->deptId = $request->deptId;
         $sop->pdf_path = $pdfPath; // Save the file path
         $sop->save();
-    
+
         return redirect()->route('sops.index')->with('success', 'SOP created successfully.');
     }
 
@@ -99,6 +105,6 @@ class SopController extends Controller
      */
     public function destroy(string $id)
     {
-        return redirect()->route('sops.index')->with('success', 'SOP deleted successfully.');   
+        return redirect()->route('sops.index')->with('success', 'SOP deleted successfully.');
      }
 }
