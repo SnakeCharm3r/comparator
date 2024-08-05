@@ -34,6 +34,12 @@
                         {{-- Always display these links --}}
                         <li><a href="{{ route('form.index') }}"
                                 class="{{ request()->routeIs('form.index') ? 'active' : '' }}">ICT Access Form</a></li>
+
+                        <li><a href="{{ route('clearance.index') }}"
+                                class="{{ request()->routeIs('clearance.*') ? 'active' : '' }}">
+                                Clearance Forms
+                            </a></li>
+
                         <li><a href="{{ route('hr.index') }}"
                                 class="{{ request()->routeIs('hr.index') ? 'active' : '' }}">Human Resouce Form</a></li>
                         <li><a href="{{ route('data.index') }}"
@@ -68,13 +74,31 @@
                 @endcan
 
 
-                @can('view my requests')
-                    <li class="{{ request()->routeIs('policies.index') ? 'active' : '' }}">
-                        <a href="{{ route('policies.index') }}"><i class="fas fa-file-invoice"></i>
-                            <span>Policies and SoPs</span>
-                        </a>
-                    </li>
-                @endcan
+                {{-- Policies and SoPs --}}
+                <li
+                    class="treeview {{ request()->routeIs('policies.index') || request()->routeIs('sops.index') ? 'active' : '' }}">
+                    <a href="#">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>Policies and SoPs</span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul
+                        style="{{ request()->routeIs('policies.index') || request()->routeIs('sops.index') ? 'display: block;' : '' }}">
+                        <li>
+                            <a href="{{ route('policies.index') }}"
+                                class="{{ request()->routeIs('policies.index') ? 'active' : '' }}">
+                                <span>Policies</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('sops.index') }}"
+                                class="{{ request()->routeIs('sops.index') ? 'active' : '' }}">
+                                <span>SoPs</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
 
                 @can('approve requests')
                     <li class="{{ request()->routeIs('requestapprove.index') ? 'active' : '' }}">

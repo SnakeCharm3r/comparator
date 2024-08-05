@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Departments;
-use App\Models\EmploymentTypes;
 use App\Models\User;
-use App\Models\UserAdditionalInfo;
-use App\Models\UserFamilyDetails;
+use App\Models\Policy;
+use App\Models\Departments;
 use Illuminate\Http\Request;
+use App\Models\EmploymentTypes;
+use App\Models\UserFamilyDetails;
+use App\Models\UserAdditionalInfo;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use RealRashid\SweetAlert\Facades\Alert;
-use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 
 class AuthController extends Controller
@@ -29,6 +30,49 @@ class AuthController extends Controller
         return view('role-permission/user.index', compact('users'));
     }
 
+    public function employee($id)
+    {
+        $user = User::findOrFail($id);
+        $policies = Policy::all();
+        return view('employees_details.show', compact('user','policies'));
+    }
+
+    public function changedept($id)
+{
+    // Fetch the user by ID
+    $user = User::findOrFail($id);
+    $policies = Policy::all();
+    // Pass the user to the view
+    return view('employees_details.show', compact('user','policies'));
+}
+
+
+public function update(Request $request, $id)
+{
+    // Validate the incoming data
+    $request->validate([
+        'department' => 'required|string|max:255',
+        'job_title' => 'required|string|max:255',
+        'ccb_code' => 'required|string|max:255',
+        'professional_reg_number' => 'required|string|max:255',
+        'nssf_no' => 'required|string|max:255',
+    ]);
+
+    // Find the user by ID
+    $user = User::findOrFail($id);
+   
+    // Update the user details
+    $user->update([
+        'department' => $request->input('department'),
+        'job_title' => $request->input('job_title'),
+        'ccb_code' => $request->input('ccb_code'),
+        'professional_reg_number' => $request->input('professional_reg_number'),
+        'nssf_no' => $request->input('nssf_no'),
+    ]);
+
+    // Redirect with a success message
+    return redirect()->route('employees_details.show', $id)->with('success', 'User details updated successfully.');
+}
 
     public function userDetail(){
 
@@ -104,14 +148,14 @@ class AuthController extends Controller
             ]);
 
         }
-        $dob = \DateTime::createFromFormat('d-m-Y', $request->input('DOB'))->format('Y-m-d');
+        // $dob = \DateTime::createFromFormat('d-m-Y', $request->input('DOB'))->format('Y-m-d');
 
         $user = User::create([
             'fname' => $request->input('fname'),
             'mname' => $request->input('mname'),
             'lname' => $request->input('lname'),
             'username' => $request->input('username'),
-            // 'DOB' => $request->input('DOB'),
+            'DOB' => $request->input('DOB'),
             // 'DOB' => $request->input('DOB'),
             'gender' => $request->input('gender'),
             'marital_status' => $request->input('marital_status'),
@@ -141,8 +185,6 @@ class AuthController extends Controller
             Alert::success('User Registered Successful','Please login');
          return redirect()->route('dashboard')->with(
             'success', 'User registered successfully. Please login.');
-
-
 }
 
     public function editUserRole(Request $request, $userId)
@@ -155,23 +197,7 @@ class AuthController extends Controller
         return redirect('role')->with('status', 'Role assigned successfully');
     }
 
-//     public function editUserRole(Request $request, $id)
-// {
-//     $user = User::findOrFail($id);
 
-//     $validated = $request->validate([
-//         'username' => 'required|string|max:255',
-//         'roles' => 'required|string|exists:roles,name',
-//     ]);
-
-//     $user->username = $request->input('username');
-//     $user->save();
-
-//     // Assuming user roles are stored in a many-to-many relationship
-//     $user->roles()->sync([$request->input('roles')]);
-
-//     return redirect()->route('users.index')->with('success', 'User role updated successfully.');
-// }
 
     // Remove Role from User
     public function removeRole(Request $request, $userId)

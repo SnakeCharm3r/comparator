@@ -227,41 +227,138 @@
                 <div class="row mt-4">
                     <div class="col-md-12">
                         <div class="card shadow-sm">
-                            <div class="card-header bg-light">
-                                <h4>CCBRT Policies and SoPs</h4>
+                            <div class="tab-pane">
+                                <div class="row mt-4">
+                                    <div class="col-md-12">
+                                        <h4 style="margin-left: 10px;">CCBRT Policies</h4>
+                                        <div id="policy-container">
+                                            <!-- Display only one policy at a time -->
+                                            @if ($policies->isNotEmpty())
+                                                <div class="policy-item">
+                                                    <table class="table table-bordered">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <img src="{{ asset('assets/img/ccbrt.JPG') }}"
+                                                                        alt="CCBRT Logo" style="height: 50px;">
+                                                                    <strong
+                                                                        id="policy-title">{{ $policies[0]->title }}</strong>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    {!! $policies[0]->content !!}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="mt-4">
+                                                        <p style="margin-left: 20px;">
+                                                            <strong>Names:</strong>
+                                                            <span style="text-decoration: underline; margin-right: 20px;">
+                                                                {{ $user->fname }} {{ $user->lname }}
+                                                            </span>
+                                                            <strong>Signature:</strong>
+                                                            @if ($user->signature)
+                                                                <img src="data:image/png;base64,{{ $user->signature }}"
+                                                                    alt="User Signature"
+                                                                    style="max-width: 40%; height: auto; margin-right: 20px;">
+                                                            @else
+                                                                <span
+                                                                    style="text-decoration: underline; margin-right: 20px;">______________________________</span>
+                                                            @endif
+                                                            <strong>Date:</strong>
+                                                            <span style="text-decoration: underline;">
+                                                                {{ $user->created_at->format('d-m-Y') }}
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="mt-4">
+                                            <button id="prev-policy" class="btn btn-primary" disabled>Back</button>
+                                            <button id="next-policy" class="btn btn-primary"
+                                                {{ $policies->count() > 1 ? '' : 'disabled' }}>Next</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Title</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($policies as $policy)
-                                            <tr>
-                                                <td>{{ $policy->title }}</td>
-                                                <td class="text-center" style="width: 140px;">
-                                                    <!-- View and Download Buttons -->
-                                                    <a href="{{ asset('storage/' . $policy->pdf_path) }}" target="_blank"
-                                                        class="btn btn-primary btn-sm mr-1" title="View PDF">
-                                                        <i class="fas fa-eye"></i> View
-                                                    </a>
-                                                    <a href="{{ asset('storage/' . $policy->pdf_path) }}"
-                                                        class="btn btn-secondary btn-sm" download title="Download PDF">
-                                                        <i class="fas fa-download"></i> Download
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
 
-                            </div>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    let currentPolicyIndex = 0;
+                                    const policies = @json($policies);
+                                    const totalPolicies = policies.length;
+                                    const prevButton = document.getElementById('prev-policy');
+                                    const nextButton = document.getElementById('next-policy');
+                                    const policyContainer = document.getElementById('policy-container');
+
+                                    function updatePolicy() {
+                                        if (totalPolicies > 0) {
+                                            const policy = policies[currentPolicyIndex];
+                                            policyContainer.innerHTML = `
+                                                <table class="table table-bordered">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td colspan="2">
+                                                                <img src="{{ asset('assets/img/ccbrt.JPG') }}" alt="CCBRT Logo" style="height: 50px;">
+                                                                <strong>${currentPolicyIndex + 1}. ${policy.title}</strong>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">
+                                                                ${policy.content}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div class="mt-4">
+                                                    <p>
+                                                        <strong>Names:</strong>
+                                                        <span style="text-decoration: underline; margin-right: 20px;">
+                                                            {{ $user->fname }} {{ $user->lname }}
+                                                        </span>
+                                                        <strong>Signature:</strong>
+                                                        @if ($user->signature)
+                                                            <img src="data:image/png;base64,{{ $user->signature }}" alt="User Signature" style="max-width: 40%; height: auto; margin-right: 20px;">
+                                                        @else
+                                                            <span style="text-decoration: underline; margin-right: 20px;">______________________________</span>
+                                                        @endif
+                                                        <strong>Date:</strong>
+                                                        <span style="text-decoration: underline;">
+                                                            {{ $user->created_at->format('d-m-Y') }}
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                            `;
+
+                                            prevButton.disabled = currentPolicyIndex === 0;
+                                            nextButton.disabled = currentPolicyIndex === totalPolicies - 1;
+                                        }
+                                    }
+
+                                    prevButton.addEventListener('click', function() {
+                                        if (currentPolicyIndex > 0) {
+                                            currentPolicyIndex--;
+                                            updatePolicy();
+                                        }
+                                    });
+
+                                    nextButton.addEventListener('click', function() {
+                                        if (currentPolicyIndex < totalPolicies - 1) {
+                                            currentPolicyIndex++;
+                                            updatePolicy();
+                                        }
+                                    });
+
+                                    updatePolicy(); // Initialize with the first policy
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>
+
 
 
             </div>

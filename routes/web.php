@@ -3,6 +3,7 @@
 use App\Models\HealthDetails;
 use App\Models\PrivilegeLevel;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SopController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\HslbController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\HmisAccessController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\DataSecurityController;
 use App\Http\Controllers\CcbrtRelationController;
+use App\Http\Controllers\ClearanceFormController;
 use App\Http\Controllers\HealthDetailsController;
 use App\Http\Controllers\HumanResourceController;
 use App\Http\Controllers\IdCardRequestController;
@@ -58,11 +60,13 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/change-password', [AuthController::class, 'showChangePasswordForm'])->name('user_profile.pass');
 Route::put('/change-password', [AuthController::class, 'changePassword'])->name('change.password.update');
 
-
+Route::resource('clearance', ClearanceFormController::class);
 
 Route::resource('policies', PolicyController::class);
 Route::get('/user-policies', [PolicyController::class, 'user'])->name('policies.user');
 Route::post('/policies/accept', [PolicyController::class, 'accept'])->name('policies.accept');
+
+Route::resource('sops', SopController::class);
 
 Route::group(['middleware'=> 'auth'], function ()
 {
@@ -140,6 +144,11 @@ Route::post('hslb/hr-confirm/{id}', [HslbController::class, 'hrConfirm'])->name(
 
 Route::get('/users', [AuthController::class, 'getAllUser'])->name('users.index');
 Route::get('/employees', [AuthController::class, 'userDetail'])->name('employee.index');
+
+//for user deatils
+Route::get('/employee/{id}', [AuthController::class, 'employee'])->name('employees_details.show');
+Route::get('/employee/{id}/edit', [AuthController::class, 'changedept'])->name('employees_details.edit');
+Route::put('/employee/{id}', [AuthController::class, 'update'])->name('employees_details.update');
 
 Route::get('/users/{id}/edit', [AuthController::class, 'showEditForm'])->name('users.showEditForm');
 Route::post('/users/{id}/edit', [AuthController::class, 'editUserRole'])->name('users.edit');

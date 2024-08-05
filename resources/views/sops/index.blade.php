@@ -7,8 +7,8 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{ route('policies.create') }}" class="btn btn-primary float-right">
-                                <i class="fas fa-plus me-2"></i> Create Policy
+                            <a href="{{ route('sops.create') }}" class="btn btn-primary float-right">
+                                <i class="fas fa-plus me-2"></i> Create SOP
                             </a>
                         </div>
                         <div class="card-body">
@@ -16,35 +16,31 @@
                                 <thead>
                                     <tr>
                                         <th>Title</th>
+                                        <th>Department</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($policies as $policy)
+                                    @foreach ($sops as $sop)
                                         <tr>
-                                            <td>{{ $policy->title }}</td>
+                                            <td>{{ $sop->title }}</td>
+                                            <td>{{ $sop->department->name }}</td>
                                             <td class="text-center" style="width: 140px;">
                                                 <!-- View Description Icon -->
-                                                <a href="javascript:void(0);"
-                                                    onclick="viewDescription('{{ $policy->title }}', '{{ $policy->content }}')"
-                                                    class="btn btn-sm p-0" title="View Description">
+                                                <a href="javascript:void(0);" onclick="viewDescription('{{ $sop->title }}', '{{ $sop->description }}')" class="btn btn-sm p-0" title="View Description">
                                                     <i class="fas fa-eye text-info"></i>
                                                 </a>
 
                                                 <!-- Edit Icon -->
-                                                <a href="{{ route('policies.edit', $policy->id) }}"
-                                                    class="btn btn-sm p-0 mx-1" title="Edit">
+                                                <a href="{{ route('sops.edit', $sop->id) }}" class="btn btn-sm p-0 mx-1" title="Edit">
                                                     <i class="fas fa-edit text-success"></i>
                                                 </a>
 
                                                 <!-- Delete Icon -->
-                                                <form action="{{ route('policies.destroy', $policy->id) }}" method="POST"
-                                                    style="display:inline;"
-                                                    onsubmit="return confirm('Are you sure you want to delete this policy?');">
+                                                <form action="{{ route('sops.destroy', $sop->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this SOP?');">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm p-0"
-                                                        style="border: none; background: none;" title="Delete">
+                                                    <button type="submit" class="btn btn-sm p-0" style="border: none; background: none;" title="Delete">
                                                         <i class="fas fa-trash-alt text-danger"></i>
                                                     </button>
                                                 </form>
@@ -60,16 +56,15 @@
         </div>
 
         <!-- Description Modal -->
-        <div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="descriptionModalLabel">Policy Description</h5>
+                        <h5 class="modal-title" id="descriptionModalLabel">SOP Description</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" id="descriptionContent">
-                        <!-- Policy title and content will be loaded here -->
+                        <!-- SOP title and content will be loaded here -->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -23,60 +23,6 @@
                             <div class="col mb-3">
                                 <div class="card">
                                     <div class="card-body">
-                                        {{-- <div class="e-profile">
-                                            <div class="row">
-                                                <div class="col-12 col-sm-auto mb-3">
-                                                    <div class="mx-auto" style="width: 140px;">
-                                                        <div class="d-flex justify-content-center align-items-center rounded"
-                                                            style="height: 140px; background-color: rgb(233, 236, 239); position: relative;">
-                                                            @if ($user->profile_picture)
-                                                                <img src="{{ asset('storage/' . $user->profile_picture) }}"
-                                                                    alt="Profile Picture" class="img-fluid rounded-circle"
-                                                                    style="max-width: 140px; height: 140px; border: 2px solid #ccc; padding: 5px; object-fit: cover;">
-                                                            @else
-                                                                <img src="{{ asset('assets/img/icon.png') }}"
-                                                                    alt="Default User Icon" class="img-fluid rounded-circle"
-                                                                    style="max-width: 150px; height: 140px; border: 1px solid #ccc; padding: 1px; object-fit: cover;">
-                                                            @endif
-                                                            <form id="profilePictureForm"
-                                                                action="{{ route('profile.update.picture') }}"
-                                                                method="POST" enctype="multipart/form-data"
-                                                                style="display: none;">
-                                                                @csrf
-                                                                <input type="file" class="form-control"
-                                                                    id="profile_picture" name="profile_picture"
-                                                                    accept="image/*"
-                                                                    onchange="handleProfilePictureChange(this)">
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                                                    <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ $user->username }}</h4>
-                                                        <p class="mb-0">{{ $user->email }}</p>
-                                                        <p class="mb-0">{{ $user->department->name }}</p>
-                                                        <div class="mt-2">
-                                                            <button class="btn btn-primary" type="button"
-                                                                onclick="document.getElementById('profile_picture').click()">
-                                                                <i class="fa fa-fw fa-camera"></i>
-                                                                <span>Change Photo</span>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-sm-right ml-auto">
-                                                        <div class="text-muted"><small>Joined 09 July 2024</small></div>
-                                                    </div>
-                                                </div>
-                                                <script>
-                                                    function handleProfilePictureChange(input) {
-                                                        document.getElementById('profilePictureForm').submit();
-                                                    }
-                                                </script>
-                                            </div>
-                                        </div> --}}
-
                                         <ul class="nav nav-tabs">
                                             <li class="nav-item"><a href="{{ route('profile.index') }}"
                                                     class="nav-link">User Info</a></li>
@@ -97,37 +43,140 @@
                                         <div class="tab-pane">
                                             <div class="row mt-4">
                                                 <div class="col-md-12">
-                                                    <h4>CCBRT Policies and SoPs</h4>
-                                                    <table class="table table-bordered">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Title</th>
-                                                                <th>Action</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @foreach ($policies as $policy)
-                                                                <tr>
-                                                                    <td>{{ $policy->title }}</td>
-                                                                    <td class="text-center" style="width: 140px;">
-                                                                        <!-- View PDF Icon -->
-                                                                        <a href="{{ asset('storage/' . $policy->pdf_path) }}"
-                                                                            target="_blank" class="btn btn-sm p-0"
-                                                                            title="View PDF">
-                                                                            <i class="fas fa-eye text-info"></i>
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>
-                                                            @endforeach
-                                                        </tbody>
-                                                    </table>
+                                                    <h4>CCBRT Policies</h4>
+                                                    <div id="policy-container">
+                                                        <!-- Display only one policy at a time -->
+                                                        @if ($policies->isNotEmpty())
+                                                            <div class="policy-item">
+                                                                <table class="table table-bordered">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td colspan="2">
+                                                                                <img src="{{ asset('assets/img/ccbrt.JPG') }}"
+                                                                                    alt="CCBRT Logo" style="height: 50px;">
+                                                                                <strong
+                                                                                    id="policy-title">{{ $policies[0]->title }}</strong>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td colspan="2">
+                                                                                {!! $policies[0]->content !!}
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <div class="mt-4">
+                                                                    <p>
+                                                                        <strong>Names:</strong>
+                                                                        <span
+                                                                            style="text-decoration: underline; margin-right: 20px;">
+                                                                            {{ $user->fname }} {{ $user->lname }}
+                                                                        </span>
+                                                                        <strong>Signature:</strong>
+                                                                        @if ($user->signature)
+                                                                            <img src="data:image/png;base64,{{ $user->signature }}"
+                                                                                alt="User Signature"
+                                                                                style="max-width: 40%; height: auto; margin-right: 20px;">
+                                                                        @else
+                                                                            <span
+                                                                                style="text-decoration: underline; margin-right: 20px;">______________________________</span>
+                                                                        @endif
+                                                                        <strong>Date:</strong>
+                                                                        <span style="text-decoration: underline;">
+                                                                            {{ $user->created_at->format('d-m-Y') }}
+                                                                        </span>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                    <div class="mt-4">
+                                                        <button id="prev-policy" class="btn btn-primary"
+                                                            disabled>Back</button>
+                                                        <button id="next-policy" class="btn btn-primary"
+                                                            {{ $policies->count() > 1 ? '' : 'disabled' }}>Next</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <script>
+                                            document.addEventListener('DOMContentLoaded', function() {
+                                                let currentPolicyIndex = 0;
+                                                const policies = @json($policies);
+                                                const totalPolicies = policies.length;
+                                                const prevButton = document.getElementById('prev-policy');
+                                                const nextButton = document.getElementById('next-policy');
+                                                const policyContainer = document.getElementById('policy-container');
+
+                                                function updatePolicy() {
+                                                    if (totalPolicies > 0) {
+                                                        const policy = policies[currentPolicyIndex];
+                                                        policyContainer.innerHTML = `
+                                                            <table class="table table-bordered">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td colspan="2">
+                                                                            <img src="{{ asset('assets/img/ccbrt.JPG') }}" alt="CCBRT Logo" style="height: 50px;">
+                                                                            <strong>${currentPolicyIndex + 1}. ${policy.title}</strong>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td colspan="2">
+                                                                            ${policy.content}
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <div class="mt-4">
+                                                                <p>
+                                                                    <strong>Names:</strong>
+                                                                    <span style="text-decoration: underline; margin-right: 20px;">
+                                                                        {{ $user->fname }} {{ $user->lname }}
+                                                                    </span>
+                                                                    <strong>Signature:</strong>
+                                                                    @if ($user->signature)
+                                                                        <img src="data:image/png;base64,{{ $user->signature }}" alt="User Signature" style="max-width: 40%; height: auto; margin-right: 20px;">
+                                                                    @else
+                                                                        <span style="text-decoration: underline; margin-right: 20px;">______________________________</span>
+                                                                    @endif
+                                                                    <strong>Date:</strong>
+                                                                    <span style="text-decoration: underline;">
+                                                                        {{ $user->created_at->format('d-m-Y') }}
+                                                                    </span>
+                                                                </p>
+                                                            </div>
+                                                        `;
+
+                                                        prevButton.disabled = currentPolicyIndex === 0;
+                                                        nextButton.disabled = currentPolicyIndex === totalPolicies - 1;
+                                                    }
+                                                }
+
+                                                prevButton.addEventListener('click', function() {
+                                                    if (currentPolicyIndex > 0) {
+                                                        currentPolicyIndex--;
+                                                        updatePolicy();
+                                                    }
+                                                });
+
+                                                nextButton.addEventListener('click', function() {
+                                                    if (currentPolicyIndex < totalPolicies - 1) {
+                                                        currentPolicyIndex++;
+                                                        updatePolicy();
+                                                    }
+                                                });
+
+                                                updatePolicy(); // Initialize with the first policy
+                                            });
+                                        </script>
+
+
+
                                     </div>
                                 </div>
                             </div>
-                            <!-- Add other content for profile page here -->
+
                         </div>
                     </div>
                 </div>

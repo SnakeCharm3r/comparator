@@ -42,7 +42,7 @@ class DashboardController extends Controller
             $data['admin_content'] = 'Content for super admin';
         }
 
-        return view('dashboard', compact('data','policies'));
+        return view('dashboard', compact('data','policies','user'));
     }
     public function dashboard()
     {

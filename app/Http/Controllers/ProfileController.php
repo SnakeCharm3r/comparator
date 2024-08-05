@@ -17,9 +17,6 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
 
     {

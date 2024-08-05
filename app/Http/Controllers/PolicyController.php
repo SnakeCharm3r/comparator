@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Policy;
+use Illuminate\Support\Facades\Auth;
 
 class PolicyController extends Controller
 {
@@ -13,6 +12,12 @@ class PolicyController extends Controller
         return view('policies.index', compact('policies'));
     }
 
+    public function user()
+    {
+        $policies = Policy::all();
+        $user = auth()->user();
+        return view('policies.user', ['policies' => $policies,'user' => $user]);
+    }
     public function create()
     {
         return view('policies.create');
@@ -22,7 +27,7 @@ class PolicyController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required|string',
+            'content' => 'required|string|max:20000',
         ]);
 
         Policy::create($request->all());
