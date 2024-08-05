@@ -13,7 +13,7 @@
                         </div>
                         <br>
                         <div class="container">
-                            <form action="{{ route('sops.store') }}" method="POST" onsubmit="return submitForm()">
+                            <form action="{{ route('sops.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group mb-3">
                                     <label for="title">Title</label>
@@ -23,14 +23,15 @@
                                     <label for="department">Department</label>
                                     <select class="form-control" name="deptId" required>
                                         @foreach ($departments as $department)
-                                            <option value="{{ $department->dept_name }}">{{ $department->dept_name }}</option>
+                                            <option value="{{ $department->id }}">{{ $department->dept_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+
                                 <div class="form-group mb-3">
-                                    <label for="description">Description</label>
-                                    <div id="editor-container" style="height: 250px;"></div>
-                                    <input type="hidden" id="description" name="description">
+                                    <label for="pdf">Upload PDF</label>
+                                    <input type="file" class="form-control" id="pdf" name="pdf"
+                                        accept="application/pdf" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Save SOP</button>
                             </form>

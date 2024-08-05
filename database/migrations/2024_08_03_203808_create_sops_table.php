@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('deptId');
             $table->string('title');
-            $table->text('description')->nullable();
+            $table->string('pdf_path')->nullable();
             $table->foreign('deptId')->references('id')->on('departments')->onDelete('cascade');
             $table->timestamps();
         });

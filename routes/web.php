@@ -1,5 +1,4 @@
 <?php
-
 use App\Models\HealthDetails;
 use App\Models\PrivilegeLevel;
 use Illuminate\Support\Facades\Route;
@@ -34,7 +33,6 @@ use App\Http\Controllers\UserFamilyDetailsController;
 
 // use App\Http\Controllers\UserFamilyDetailsController;
 // use App\Http\Controllers\UserAdditionalInfoController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,11 +43,9 @@ use App\Http\Controllers\UserFamilyDetailsController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
     return view('auth.login');
 });
-
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'handleLogin'])->name('login.handleLogin');
