@@ -16,12 +16,16 @@
             </div>
             <style>
                 #signature-pad {
-                    border: 1px solid hsl(0, 0%, 0%);
+                    border: 2px solid hsl(0, 0%, 0%);
                     border-radius: 5px;
-                    width: 100%;
-                    height: 500px;
+                    max-width: 100%;
+                    height: 60px;
+                    margin: 0 auto;
+                    display: block;
                 }
             </style>
+
+
             <div class="container mt-5">
                 <h2>Capture Signature</h2>
                 <div class="row">
@@ -29,17 +33,25 @@
                         <canvas id="signature-pad" class="signature-pad"></canvas>
                     </div>
                     <div class="col-md-12 mt-3">
-                        <button id="clear" class="btn btn-danger">Clear</button>
-                        <button id="save" class="btn btn-primary">Save</button>
+                        <form id="signature-form" action="{{ route('signature.store') }}" method="POST">
+                            @csrf
+                            <input type="hidden" id="signature-input" name="signature">
+                            <button type="button" id="clear" class="btn btn-danger">Clear</button>
+                            <button type="submit" id="save" class="btn btn-primary">Save</button>
+                        </form>
                     </div>
                 </div>
             </div>
             <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
             <script>
-                const canvas = document.getElementById('signature-pad');
-                const signaturePad = new SignaturePad(canvas);
                 const clearButton = document.getElementById('clear');
                 const saveButton = document.getElementById('save');
+                const signatureForm = document.getElementById('signature-form');
+                const signatureInput = document.getElementById('signature-input');
+                const canvas = document.getElementById('signature-pad');
+                const signaturePad = new SignaturePad(canvas, {
+                    penColor: 'rgb(0, 0, 255)' // Set pen color
+                });
 
                 // Resize canvas to fit its container
                 function resizeCanvas() {
@@ -63,26 +75,70 @@
                         return;
                     }
 
-                    const dataURL = signaturePad.toDataURL();
+                    // Get the signature as a data URL
+                    const dataURL = signaturePad.toDataURL('image/png');
 
-                    fetch('/save-signature', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        },
-                        body: JSON.stringify({
-                            signature: dataURL
-                        })
-                    }).then(response => {
-                        if (response.ok) {
-                            alert('Signature saved successfully.');
-                        } else {
-                            alert('Failed to save signature.');
+                    // Create an offscreen canvas to crop the image
+                    const img = new Image();
+                    img.src = dataURL;
+                    img.onload = function() {
+                        const imgWidth = img.width;
+                        const imgHeight = img.height;
+                        const offscreenCanvas = document.createElement('canvas');
+                        const offscreenCtx = offscreenCanvas.getContext('2d');
+
+                        offscreenCanvas.width = imgWidth;
+                        offscreenCanvas.height = imgHeight;
+                        offscreenCtx.drawImage(img, 0, 0);
+
+                        // Determine the bounding box of the signature
+                        const boundingBox = {
+                            left: imgWidth,
+                            top: imgHeight,
+                            right: 0,
+                            bottom: 0
+                        };
+
+                        const imgData = offscreenCtx.getImageData(0, 0, imgWidth, imgHeight);
+                        const data = imgData.data;
+
+                        for (let y = 0; y < imgHeight; y++) {
+                            for (let x = 0; x < imgWidth; x++) {
+                                const index = (y * imgWidth + x) * 4;
+                                if (data[index + 3] > 0) {
+                                    boundingBox.left = Math.min(boundingBox.left, x);
+                                    boundingBox.top = Math.min(boundingBox.top, y);
+                                    boundingBox.right = Math.max(boundingBox.right, x);
+                                    boundingBox.bottom = Math.max(boundingBox.bottom, y);
+                                }
+                            }
                         }
-                    }).catch(error => {
-                        console.error('Error:', error);
-                    });
+
+                        // Crop the image to the bounding box
+                        const {
+                            left,
+                            top,
+                            right,
+                            bottom
+                        } = boundingBox;
+                        const width = right - left;
+                        const height = bottom - top;
+
+                        const croppedCanvas = document.createElement('canvas');
+                        const croppedCtx = croppedCanvas.getContext('2d');
+                        croppedCanvas.width = width;
+                        croppedCanvas.height = height;
+                        croppedCtx.drawImage(
+                            img,
+                            left, top, width, height, // Source rectangle
+                            0, 0, width, height // Destination rectangle
+                        );
+
+                        const croppedDataURL = croppedCanvas.toDataURL('image/png');
+                        signatureInput.value = croppedDataURL;
+                        // Submit the form
+                        signatureForm.submit();
+                    };
                 });
 
                 // Add touch event support for mobile devices
@@ -109,6 +165,8 @@
                     canvas.dispatchEvent(mouseEvent);
                 }, false);
             </script>
+
+
         </div>
     </div>
 @endsection

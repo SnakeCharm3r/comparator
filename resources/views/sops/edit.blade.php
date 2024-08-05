@@ -9,28 +9,36 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">Edit Policy</h5>
+                            <h5 class="card-title mb-0">Edit SOP</h5>
                         </div>
                         <br>
                         <div class="container">
-                            <form action="{{ route('policies.update', $policy->id) }}" method="POST"
+                            <form action="{{ route('sops.update', $sop->id) }}" method="POST"
                                 onsubmit="return submitForm()">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group mb-3">
                                     <label for="title">Title</label>
                                     <input type="text" class="form-control" id="title" name="title"
-                                        value="{{ $policy->title }}" required>
+                                        value="{{ $sop->title }}" required>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="content">Description</label>
+                                    <label for="department">Department</label>
+                                    <select class="form-control" id="department" name="department_id" required>
+                                        @foreach ($departments as $department)
+                                            <option value="{{ $department->id }}"
+                                                {{ $department->id == $sop->department_id ? 'selected' : '' }}>
+                                                {{ $department->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="description">Description</label>
                                     <div id="editor-container" style="height: 250px;"></div>
-                                    <input type="hidden" id="content" name="content">
+                                    <input type="hidden" id="description" name="description">
                                 </div>
-                                <div class="form-group mb-3">
-                                    <button type="submit" class="btn btn-primary">Update Policy</button>
-                                    <a href="{{ route('policies.index') }}" class="btn btn-secondary">Back</a>
-                                </div>
+                                <button type="submit" class="btn btn-primary">Update SOP</button>
                             </form>
                         </div>
                     </div>
@@ -44,14 +52,11 @@
             var quill = new Quill('#editor-container', {
                 theme: 'snow'
             });
-
-            // Load the existing content into the editor
-            var existingContent = {!! json_encode($policy->content) !!};
-            quill.root.innerHTML = existingContent;
+            quill.root.innerHTML = @json($sop->description);
 
             window.submitForm = function() {
-                var content = document.querySelector('input[name=content]');
-                content.value = quill.root.innerHTML;
+                var description = document.querySelector('input[name=description]');
+                description.value = quill.root.innerHTML;
                 return true;
             }
         });

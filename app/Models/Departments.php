@@ -20,5 +20,8 @@ class Departments extends Model
     public function user() {
         return $this->hasMany(User::class, 'deptId');
     }
-
+    public function sops()
+    {
+        return $this->hasMany(Sop::class, 'deptId');
+    }
 }

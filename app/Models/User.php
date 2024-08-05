@@ -89,7 +89,7 @@ class User extends Authenticatable
     }
 
     public function language() {
-        return $this->hasMany(LanguageKnowledge::class);
+        return $this->hasMany(LanguageKnowledge::class, '');
     }
     public function relation() {
         return $this->hasMany(CcbrtRelation::class);
