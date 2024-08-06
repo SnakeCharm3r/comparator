@@ -114,31 +114,6 @@
                     </li>
                 @endcan
 
-
-                {{-- Departments --}}
-                @can('view departments')
-                    <li class="{{ request()->routeIs('department.index') ? 'active' : '' }}">
-                        <a href="{{ route('department.index') }}"><i class="fas fa-building"></i>
-                            <span>Departments</span></a>
-                    </li>
-                @endcan
-                {{-- Users --}}
-                {{-- @can('view users')
-                <li class="{{ request()->routeIs('viewuser.index') ? 'active' : '' }}">
-                    <a href="{{ route('viewuser.index') }}"><i class="fas fa-users"></i>
-                        <span>Users</span></a>
-                </li>
-                @endcan --}}
-
-
-                {{-- NHIF --}}
-                @can('view nhif')
-                    <li class="{{ request()->routeIs('nhif.index') ? 'active' : '' }}">
-                        <a href="{{ route('nhif.index') }}"><i class="fas fa-medkit"></i> <span>NHIF
-                                Qualifications</span></a>
-                    </li>
-                @endcan
-
                 <li
                     class="treeview {{ request()->routeIs('employee.index') || request()->routeIs('signature.index') || request()->routeIs('employee.details') ? 'active' : '' }}">
                     <a href="#">
@@ -162,37 +137,67 @@
                         </li>
                     </ul>
                 </li>
+                <!-- Category Management -->
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fas fa-tasks"></i>
+                        <span>Manage Category</span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul
+                        style="{{ request()->routeIs('department.index') || request()->routeIs('nhif.index') || request()->routeIs('hmis.index') || request()->routeIs('remark.index') || request()->routeIs('privilege.index') || request()->routeIs('employment.index') ? 'display: block;' : '' }}">
 
+                        @can('view departments')
+                            <li class="{{ request()->routeIs('department.index') ? 'active' : '' }}">
+                                <a href="{{ route('department.index') }}">
+                                    <span>Departments</span>
+                                </a>
+                            </li>
+                        @endcan
 
-                {{-- HMIS --}}
-                @can('view hmis')
-                    <li class="{{ request()->routeIs('hmis.index') ? 'active' : '' }}">
-                        <a href="{{ route('hmis.index') }}"><i class="fas fa-user-md"></i> <span>HMIS Access</span></a>
-                    </li>
-                @endcan
+                        @can('view nhif')
+                            <li class="{{ request()->routeIs('nhif.index') ? 'active' : '' }}">
+                                <a href="{{ route('nhif.index') }}">
+                                    <span>NHIF Qualifications</span>
+                                </a>
+                            </li>
+                        @endcan
 
-                {{-- Remarks --}}
-                @can('view remarks')
-                    <li class="{{ request()->routeIs('remark.index') ? 'active' : '' }}">
-                        <a href="{{ route('remark.index') }}"><i class="fas fa-comments"></i> <span>Remark</span></a>
-                    </li>
-                @endcan
+                        @can('view hmis')
+                            <li class="{{ request()->routeIs('hmis.index') ? 'active' : '' }}">
+                                <a href="{{ route('hmis.index') }}">
+                                    <span>HMIS Access</span>
+                                </a>
+                            </li>
+                        @endcan
 
-                {{-- User Category --}}
-                @can('view user category')
-                    <li class="{{ request()->routeIs('privilege.index') ? 'active' : '' }}">
-                        <a href="{{ route('privilege.index') }}"><i class="fas fa-user-shield"></i> <span>User
-                                Category</span></a>
-                    </li>
-                @endcan
+                        @can('view remarks')
+                            <li class="{{ request()->routeIs('remark.index') ? 'active' : '' }}">
+                                <a href="{{ route('remark.index') }}">
+                                    <span>Remark</span>
+                                </a>
+                            </li>
+                        @endcan
 
-                {{-- Employment Type --}}
-                @can('view employment type')
-                    <li class="{{ request()->routeIs('employment.index') ? 'active' : '' }}">
-                        <a href="{{ route('employment.index') }}"><i class="fas fa-briefcase"></i> <span>Employment
-                                Type</span></a>
-                    </li>
-                @endcan
+                        @can('view user category')
+                            <li class="{{ request()->routeIs('privilege.index') ? 'active' : '' }}">
+                                <a href="{{ route('privilege.index') }}">
+                                    <span>User Category</span>
+                                </a>
+                            </li>
+                        @endcan
+
+                        @can('view employment type')
+                            <li class="{{ request()->routeIs('employment.index') ? 'active' : '' }}">
+                                <a href="{{ route('employment.index') }}">
+                                    <span>Employment Type</span>
+                                </a>
+                            </li>
+                        @endcan
+
+                    </ul>
+                </li>
+
 
                 {{-- User Management --}}
                 @role('super-admin|admin|it')
