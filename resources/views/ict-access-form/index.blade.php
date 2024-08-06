@@ -86,9 +86,10 @@
                                             <select class="form-control" id="pbax" name="pbax" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
-                                                    <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
-                                                    </option>
-                                                @endforeach
+                                                @if ($privilege->prv_name === 'user' || $privilege->prv_name === 'admin')
+                                                    <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}</option>
+                                                @endif
+                                            @endforeach
                                             </select>
                                         </div>
 
@@ -119,9 +120,10 @@
                                             <select class="form-control" id="privilegeId" name="active_drt" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
-                                                    <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
-                                                    </option>
-                                                @endforeach
+                                                @if ($privilege->prv_name === 'user' || $privilege->prv_name === 'admin')
+                                                    <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}</option>
+                                                @endif
+                                            @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -200,10 +202,13 @@
                                             <select class="form-control" id="privilegeId" name="privilegeId" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
-                                                    <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
-                                                    </option>
+                                                    @if ($privilege->prv_name === 'user' || $privilege->prv_name === 'admin')
+                                                        <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}</option>
+                                                    @endif
                                                 @endforeach
                                             </select>
+                                        </div>
+
                                         </div>
                                         <div class="form-group">
                                             <label for="openclinic_hms">SAP ERP<span style="color: red;">*</span></label>
@@ -220,9 +225,10 @@
                                             <select class="form-control" id="VPN" name="VPN" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
-                                                    <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
-                                                    </option>
-                                                @endforeach
+                                                @if ($privilege->prv_name === 'user' || $privilege->prv_name === 'admin')
+                                                    <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}</option>
+                                                @endif
+                                            @endforeach
                                             </select>
                                         </div>
 
