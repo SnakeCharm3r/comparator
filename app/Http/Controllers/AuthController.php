@@ -22,6 +22,7 @@ class AuthController extends Controller
 
     public function login(){
         return view('auth.login');
+        
     }
     //get All user
     public function getAllUser(){
@@ -32,6 +33,7 @@ class AuthController extends Controller
 
     public function employee($id)
     {
+        
         $user = User::findOrFail($id);
         $policies = Policy::all();
         return view('employees_details.show', compact('user','policies'));
@@ -40,8 +42,9 @@ class AuthController extends Controller
     public function changedept($id)
 {
     // Fetch the user by ID
+
     $user = User::findOrFail($id);
-    $policies = Policy::all();
+$policies = Policy::all();
     // Pass the user to the view
     return view('employees_details.show', compact('user','policies'));
 }
@@ -122,12 +125,13 @@ public function update(Request $request, $id)
 
 
     public function register() {
+        $policies = Policy::all();
         $departments = Departments::all();
         $employmentTypes = EmploymentTypes::all();
 
-        return view('auth.registration', compact('departments', 'employmentTypes'));
+        return view('auth.registration', compact('departments', 'employmentTypes','policies'));
     }
-
+ 
     public function handleRegistration(Request $request){
         $validator = Validator::make($request->all(), [
           'fname' => 'required',
