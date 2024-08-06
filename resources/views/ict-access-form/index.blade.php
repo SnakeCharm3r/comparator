@@ -86,7 +86,7 @@
                                             <select class="form-control" id="pbax" name="pbax" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
-                                                @if ($privilege->prv_name === 'user' || $privilege->prv_name === 'admin')
+                                                @if ($privilege->prv_name === 'User' || $privilege->prv_name === 'Admin')
                                                     <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}</option>
                                                 @endif
                                             @endforeach
@@ -120,7 +120,7 @@
                                             <select class="form-control" id="privilegeId" name="active_drt" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
-                                                @if ($privilege->prv_name === 'user' || $privilege->prv_name === 'admin')
+                                                @if ($privilege->prv_name === 'User' || $privilege->prv_name === 'Admin')
                                                     <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}</option>
                                                 @endif
                                             @endforeach
@@ -202,7 +202,7 @@
                                             <select class="form-control" id="privilegeId" name="privilegeId" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
-                                                    @if ($privilege->prv_name === 'user' || $privilege->prv_name === 'admin')
+                                                    @if ($privilege->prv_name === 'User' || $privilege->prv_name === 'Admin')
                                                         <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}</option>
                                                     @endif
                                                 @endforeach
@@ -225,7 +225,7 @@
                                             <select class="form-control" id="VPN" name="VPN" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
-                                                @if ($privilege->prv_name === 'user' || $privilege->prv_name === 'admin')
+                                                @if ($privilege->prv_name === 'User' || $privilege->prv_name === 'Admin')
                                                     <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}</option>
                                                 @endif
                                             @endforeach
