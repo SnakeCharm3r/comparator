@@ -54,23 +54,23 @@
                                 <th>User Name</th>
                                 <th>Department</th>
                                 <th>Job Title</th>
-                                <th>Professional No</th>
-                                <th>Appointend Date</th>
+                                {{-- <th>Professional No</th> --}}
+                                {{-- <th>Appointend Date</th> --}}
                                 <th>CCBRT Code</th>
                                 <th>Phone Number</th>
-                                <th>Gender</th>
+                                {{-- <th>Gender</th> --}}
                                 <th>Birth Date</th>
-                                <th>Marital Status</th>
+                                {{-- <th>Marital Status</th> --}}
                                 {{-- <th>Birth Ward</th> --}}
                                 {{-- <th>Birth State</th> --}}
                                 {{-- <th>Birth Country</th> --}}
-                                <th>Nationality</th>
-                                <th>Languages</th>
+                                {{-- <th>Nationality</th> --}}
+                                {{-- <th>Languages</th> --}}
                                 {{-- <th>Present Address</th> --}}
                                 {{-- <th>Emer. Con. names</th> --}}
                                 {{-- <th>Emer. Con. Address</th>
                                 <th>Emer. Con. State</th> --}}
-                                <th>Emergency Mobile</th>
+                                {{-- <th>Emergency Mobile</th> --}}
                                 <th>Actions</th>
                                 {{-- <th>Emer. Con. Email</th> --}}
 
@@ -84,30 +84,32 @@
                                     <td>{{ $user->fname }} {{ $user->lname }}</td>
                                     <td>{{ $user->department->dept_name }}</td>
                                     <td>{{ $user->job_title }}</td>
-                                    <td>{{ $user->professional_reg_number }}</td>
+                                    {{-- <td>{{ $user->professional_reg_number }}</td> --}}
                                     <td>{{ $user->ccbrt_Code }}</td>
-                                    <td>{{ $user->appointed_date }}</td>
+                                    {{-- <td>{{ $user->appointed_date }}</td> --}}
                                     <td>{{ $user->mobile }}</td>
-                                    <td>{{ $user->gender }}</td>
+                                    {{-- <td>{{ $user->gender }}</td> --}}
                                     <td>{{ \Carbon\Carbon::parse($user->DOB)->format('d-m-Y') }}</td>
-                                    <td>{{ $user->marital_status }}</td>
+                                    {{-- <td>{{ $user->marital_status }}</td> --}}
                                     {{-- <td>{{ $user->birth_ward }}</td> --}}
                                     {{-- <td>{{ $user->birth_state }}</td> --}}
                                     {{-- <td>{{ $user->birth_country }}</td> --}}
-                                    <td>{{ $user->nationality }}</td>
-                                    <td>{{ $user->language }}</td>
+                                    {{-- <td>{{ $user->nationality }}</td> --}}
+                                    {{-- <td>{{ $user->language }}</td> --}}
                                     {{-- <td>{{ $user->present_address }}</td> --}}
                                     {{-- <td>{{ $user->full_name }}</td> --}}
                                     {{-- <td>{{ $user->Emer_c_address }}</td>
                                     <td>{{ $user->Emer_c_state }}</td> --}}
-                                    <td>{{ $user->phone_number }}</td>
+                                    {{-- <td>{{ $user->phone_number }}</td> --}}
                                     <td class="text-center" style="width: 100px;">
                                         <!-- View Icon -->
 
                                         <a href="{{ route('employees_details.edit', ['id' => $user->id]) }}"
-                                            class="btn btn-sm p-0" title="View Details">
-                                            <i class="fas fa-eye text-success" aria-hidden="true"></i></i> View
+                                            class="btn btn-sm btn-outline-success d-flex align-items-center"
+                                            title="View Details">
+                                            <i class="fas fa-eye mr-2" aria-hidden="true"></i> View
                                         </a>
+
 
 
                                     </td>
@@ -124,24 +126,24 @@
                                 <th>User Name</th>
                                 <th>Department</th>
                                 <th>Job Title</th>
-                                <th>Professional No</th>
-                                <th>Appointed Date</th>
+                                {{-- <th>Professional No</th> --}}
+                                {{-- <th>Appointed Date</th> --}}
                                 <th>CCBRT Code</th>
                                 <th>Phone Number</th>
-                                <th>Gender</th>
+                                {{-- <th>Gender</th> --}}
                                 <th>Birth Date</th>
-                                <th>Marital Status</th>
+                                {{-- <th>Marital Status</th> --}}
                                 {{-- <th>Birth Ward</th> --}}
                                 {{-- <th>Birth State</th> --}}
                                 {{-- <th>Birth Country</th> --}}
-                                <th>Nationality</th>
-                                <th>Languages</th>
+                                {{-- <th>Nationality</th> --}}
+                                {{-- <th>Languages</th> --}}
                                 {{-- <th>Present Address</th> --}}
 
                                 {{-- <th>Emer. Con. names</th> --}}
                                 {{-- <th>Emer. Con. Address</th>
                                 <th>Emer. Con. State</th> --}}
-                                <th>Emergency Mobile</th>
+                                {{-- <th>Emergency Mobile</th> --}}
                                 <th>Actions</th>
                                 {{-- <th>Emer. Con. Email</th> --}}
                             </tr>
