@@ -46,18 +46,20 @@
                                     @foreach ($departments as $department)
                                         <tr>
                                             <td>{{ $department->dept_name }}</td>
-                                            <td>{{ $department->headOfDepartment ? $department->headOfDepartment->fname . ' ' . $department->headOfDepartment->lname : 'N/A' }}
-                                            </td>
+                                            <td>{{ $department->head_of_department ?? 'N/A' }}</td>
                                             <td>{{ $department->description }}</td>
                                             <td>
-                                                <a href="{{ route('department.edit', $department->id) }}"
-                                                    class="btn btn-sm edit-btn" data-id="{{ $department->id }}"><i
-                                                        class="fas fa-edit"></i></a>
+                                                <a href="{{ route('department.edit', $department->dept_id) }}"
+                                                    class="btn btn-sm edit-btn" data-id="{{ $department->dept_id }}">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
                                                 <button
-                                                    onclick="deleteConfirmation('{{ route('department.destroy', $department->id) }}')"
-                                                    class="btn btn-sm btn-delete"><i class="fas fa-trash-alt"></i></button>
-                                                <form id="delete-form-{{ $department->id }}"
-                                                    action="{{ route('department.destroy', $department->id) }}"
+                                                    onclick="deleteConfirmation('{{ route('department.destroy', $department->dept_id) }}')"
+                                                    class="btn btn-sm btn-delete">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                                <form id="delete-form-{{ $department->dept_id }}"
+                                                    action="{{ route('department.destroy', $department->dept_id) }}"
                                                     method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
@@ -71,7 +73,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 

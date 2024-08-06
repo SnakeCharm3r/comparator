@@ -41,6 +41,7 @@ class IctAccessController extends Controller
         ));
     }
 
+
     /**
      * Show the form for creating a new resource.
      */
@@ -91,7 +92,7 @@ class IctAccessController extends Controller
                 $hardwareRequest = $request->input('hardware_request') ? implode(',', $request->input('hardware_request')) : null;
 
                 \Log::info('Hardware request processed', ['hardware_request' => $hardwareRequest]);
-               
+
                 // Create ICT Access Resource
                 $ict = IctAccessResource::create([
                     'remarkId' => $request->input('remarkId'),
@@ -110,7 +111,7 @@ class IctAccessController extends Controller
                     'physical_access' => $request->input('physical_access'),
                     'delete_status' => 0,
                 ]);
-               
+
 
                 \Log::info('ICT Access Resource created', ['ict' => $ict]);
 
@@ -136,7 +137,7 @@ class IctAccessController extends Controller
                 ]);
 
                 \Log::info('Initial workflow history saved');
-                
+
                 // Find the approver based on role (e.g., Line Manager)
                 $approver = $this->findLineManagerForRequesterDepartment();
                 // dd($approver );
@@ -154,9 +155,9 @@ class IctAccessController extends Controller
                 ]);
                 // dd(12345);
                 \Log::info('Workflow history forwarded for approval');
-                
+
                 // Success alert and redirect
-               
+
                 Alert::success('IT access form request submitted successfully', 'IT access Request Added');
                 return redirect()->route('request.index')->with('success', 'ICT Access Resource created successfully.');
             dd(1234); });
