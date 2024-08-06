@@ -33,6 +33,7 @@ class AuthController extends Controller
 
     public function employee($id)
     {
+        
         $user = User::findOrFail($id);
         $policies = Policy::all();
         return view('employees_details.show', compact('user','policies'));
@@ -41,10 +42,11 @@ class AuthController extends Controller
     public function changedept($id)
 {
     // Fetch the user by ID
-    $user = User::findOrFail($id);
 
+    $user = User::findOrFail($id);
+$policies = Policy::all();
     // Pass the user to the view
-    return view('employees_details.show', compact('user'));
+    return view('employees_details.show', compact('user','policies'));
 }
 
 
