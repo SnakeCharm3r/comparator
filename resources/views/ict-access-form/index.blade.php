@@ -40,23 +40,49 @@
                                         <div class="form-group">
                                             <label for="openclinic_hms">User Category<span
                                                     class="text-danger">*</span></label>
-                                            <select class="form-control" id="privilegeId" name="privilegeId" required>
+                                            <select class="form-control" id="privilegeId" name="sap" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
-                                                    <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}</option>
+                                                    @if (
+                                                        $privilege->prv_name === 'User' ||
+                                                            $privilege->prv_name === 'Admin' ||
+                                                            $privilege->prv_name === 'Finance' ||
+                                                            $privilege->prv_name === 'Payroll Accountant' ||
+                                                            $privilege->prv_name === 'CFO' ||
+                                                            $privilege->prv_name === 'HR' ||
+                                                            $privilege->prv_name === 'HR Manager' ||
+                                                            $privilege->prv_name === 'HR Biodata' ||
+                                                            $privilege->prv_name === 'Director of HR COO')
+                                                        <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
+                                                        </option>
+                                                    @endif
                                                 @endforeach
                                             </select>
+
                                         </div>
 
                                         <div class="form-group">
                                             <label for="openclinic_hms">Aruti HR MIS<span
                                                     class="text-danger">*</span></label>
-                                            <select class="form-control" id="aruti" name="aruti" required>
+                                            <select class="form-control" id="privilegeId" name="sap" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
-                                                    <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}</option>
+                                                    @if (
+                                                        $privilege->prv_name === 'User' ||
+                                                            $privilege->prv_name === 'Admin' ||
+                                                            $privilege->prv_name === 'Finance' ||
+                                                            $privilege->prv_name === 'Payroll Accountant' ||
+                                                            $privilege->prv_name === 'CFO' ||
+                                                            $privilege->prv_name === 'HR' ||
+                                                            $privilege->prv_name === 'HR Manager' ||
+                                                            $privilege->prv_name === 'HR Biodata' ||
+                                                            $privilege->prv_name === 'Director of HR COO')
+                                                        <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
+                                                        </option>
+                                                    @endif
                                                 @endforeach
                                             </select>
+
                                         </div>
 
                                         <div class="form-group">
@@ -66,13 +92,26 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="remark">Remark<span class="text-danger">*</span></label>
-                                            <select class="form-control" id="remark" name="remarkId" required>
+                                            <label for="openclinic_hms">SAP ERP<span class="text-danger">*</span></label>
+                                            <select class="form-control" id="privilegeId" name="sap" required>
                                                 <option value="">Select an option</option>
-                                                @foreach ($rmk as $remark)
-                                                    <option value="{{ $remark->id }}">{{ $remark->rmk_name }}</option>
+                                                @foreach ($privileges as $privilege)
+                                                    @if (
+                                                        $privilege->prv_name === 'User' ||
+                                                            $privilege->prv_name === 'Admin' ||
+                                                            $privilege->prv_name === 'Finance' ||
+                                                            $privilege->prv_name === 'Payroll Accountant' ||
+                                                            $privilege->prv_name === 'CFO' ||
+                                                            $privilege->prv_name === 'HR' ||
+                                                            $privilege->prv_name === 'HR Manager' ||
+                                                            $privilege->prv_name === 'HR Biodata' ||
+                                                            $privilege->prv_name === 'Director of HR COO')
+                                                        <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
+                                                        </option>
+                                                    @endif
                                                 @endforeach
                                             </select>
+
                                         </div>
 
                                         <div class="form-group">
@@ -243,22 +282,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Additional Fields -->
-                                <div class="form-group">
-                                    <label for="openclinic_hms">SAP ERP<span class="text-danger">*</span></label>
-                                    <select class="form-control" id="privilegeId" name="sap" required>
-                                        <option value="">Select an option</option>
-                                        @foreach ($privileges as $privilege)
-                                            <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-
-
-
-
 
 
                                 <button type="submit" class="btn btn-primary mt-3"
