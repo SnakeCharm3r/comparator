@@ -22,18 +22,18 @@ class AuthController extends Controller
 
     public function login(){
         return view('auth.login');
-        
+
     }
     //get All user
     public function getAllUser(){
         $users = User::all();
-        
+
         return view('role-permission/user.index', compact('users'));
     }
 
     public function employee($id)
     {
-        
+
         $user = User::findOrFail($id);
         $policies = Policy::all();
         return view('employees_details.show', compact('user','policies'));
@@ -63,7 +63,7 @@ public function update(Request $request, $id)
 
     // Find the user by ID
     $user = User::findOrFail($id);
-   
+
     // Update the user details
     $user->update([
         'department' => $request->input('department'),
@@ -96,15 +96,6 @@ public function update(Request $request, $id)
         return view('user.show', compact('user'));
     }
 
-    //Function shows edit user form
-    public function showEditForm($id){
-        $user = User::findOrFail($id);
-        $roles = Role::get();
-        $userRoles = $user->roles->pluck('name')->toArray(); // Get user roles
-
-        return view('role-permission/user.edit', compact('user','roles', 'userRoles'));
-    }
-
     public function handleLogin(Request $request) {
         $validator = Validator::make($request->all(), [
             'username' => 'required',
@@ -131,7 +122,7 @@ public function update(Request $request, $id)
 
         return view('auth.registration', compact('departments', 'employmentTypes','policies'));
     }
- 
+
     public function handleRegistration(Request $request){
         $validator = Validator::make($request->all(), [
           'fname' => 'required',
@@ -191,29 +182,25 @@ public function update(Request $request, $id)
             'success', 'User registered successfully. Please login.');
 }
 
+   //Function shows edit user form
+   public function showEditForm($id){
+    $user = User::findOrFail($id);
+    $roles = Role::get();
+    $userRoles = $user->roles->pluck('name')->toArray(); // Get user roles
+
+    return view('role-permission/user.edit', compact('user','roles', 'userRoles'));
+}
+
+//This for user role assigment
     public function editUserRole(Request $request, $userId)
-    {
+     {
         $request->validate([
-            'role' => 'required|exists:roles,name',
+            'roles' => 'required|array',
+            'roles.*' => 'required|exists:roles,name',
         ]);
         $user = User::findOrFail($userId);
-        $user->syncRoles([$request->role]);  // Changed to syncRoles to remove any previous roles
+        $user->syncRoles([$request->roles]);  // Changed to syncRoles to remove any previous roles
         return redirect('role')->with('status', 'Role assigned successfully');
-    }
-
-
-
-    // Remove Role from User
-    public function removeRole(Request $request, $userId)
-    {
-        $request->validate([
-            'role' => 'required|exists:roles,name',
-        ]);
-
-        $user = User::findOrFail($userId);
-        $user->removeRole($request->role);
-
-        return redirect()->back()->with('status', 'Role removed successfully');
     }
 
     // Show Assign Role Form
@@ -231,6 +218,19 @@ public function update(Request $request, $id)
         $user = User::findOrFail($userId);
 
         return view('user.remove-role', compact('user'));
+    }
+
+    // Remove Role from User
+    public function removeRole(Request $request, $userId)
+    {
+        $request->validate([
+            'role' => 'required|exists:roles,name',
+        ]);
+
+        $user = User::findOrFail($userId);
+        $user->removeRole($request->role);
+
+        return redirect()->back()->with('status', 'Role removed successfully');
     }
 
     public function logout() {

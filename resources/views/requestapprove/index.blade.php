@@ -42,7 +42,7 @@
                                             <td>{{ $i }}</td>
                                             @if ($pending->ict_request_resource_id)
                                                 <td>ICT Access Form</td>
-                                                <td>{{ $pending->username }}</td>
+                                                <td>{{ $pending->requester_name  }}</td>
                                                 <td>{{ $pending->attend_date }}</td>
                                                 <td>
                                                     @if ($pending->status == 0)

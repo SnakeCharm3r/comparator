@@ -14,18 +14,22 @@ class RequestApproveController extends Controller
     /**
      * Display a listing of the resource.
      */
-    // public function index()
-    // {
-    //     $pending= Workflow::join('work_flow_histories','work_flow_histories.work_flow_id','=','workflows.id')
-    //     ->where('attended_by',Auth::user()->id)->get();
-    //     //  dd($pending);
-    //     return view("requestapprove.index" ,compact ("pending"));
-    // }
-
     public function index()
     {
         $pending = Workflow::join('work_flow_histories', 'work_flow_histories.work_flow_id', '=', 'workflows.id')
-                           ->join('users', 'users.id', '=', 'work_flow_histories.forwarded_by')
+                            ->join('users as requesters', 'requesters.id', '=', 'workflows.user_id') // Alias `users` as `requesters`
+                            ->where('work_flow_histories.attended_by', Auth::user()->id)
+                            ->select('workflows.*', 'work_flow_histories.*', 'requesters.username as requester_name') // Select with alias
+                            ->get();
+// dd($pending);
+        return view("requestapprove.index", compact("pending"));
+    }
+
+    //hii haitumiki ipo for ref
+    public function indexOld()
+    {
+        $pending = Workflow::join('work_flow_histories', 'work_flow_histories.work_flow_id', '=', 'workflows.id')
+                            ->join('users', 'users.id', '=', 'work_flow_histories.forwarded_by')
                            ->where('work_flow_histories.attended_by', Auth::user()->id)
                            ->select('workflows.*', 'work_flow_histories.*', 'users.username')
                            ->get();
