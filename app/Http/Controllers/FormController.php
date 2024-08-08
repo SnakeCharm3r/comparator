@@ -20,18 +20,20 @@ class FormController extends Controller
     public function getform(Request $request)
     {
         $user = Auth::user();
-        $ictForm = IctAccessResource::join('users', 'users.id', '=', 'ict_access_resources.userId')
+        $ictForm = IctAccessResource::join('users as user_resource', 'user_resource.id', '=', 'ict_access_resources.userId')
             ->join('workflows', 'workflows.ict_request_resource_id', '=', 'ict_access_resources.id')
             ->join('work_flow_histories', 'work_flow_histories.work_flow_id', '=', 'workflows.id')
             ->join('privilege_levels', 'privilege_levels.id', '=', 'ict_access_resources.privilegeId')
+            ->join('users as user_forwarded', 'user_forwarded.id', '=', 'work_flow_histories.forwarded_by')
             ->join('nhif_qualifications', 'nhif_qualifications.id', '=', 'ict_access_resources.nhifId')
-            ->join('employment_types', 'employment_types.id', '=', 'users.employment_typeId')
-            ->join('departments', 'departments.id', '=', 'users.deptId')
+            ->join('employment_types', 'employment_types.id', '=', 'user_resource.employment_typeId')
+            ->join('departments', 'departments.id', '=', 'user_resource.deptId')
             ->join('h_m_i_s_access_levels', 'h_m_i_s_access_levels.id', '=', 'ict_access_resources.hmisId')
             ->where('ict_access_resources.id', $request->id)
+            ->where('work_flow_histories.attended_by', $user->id)
             ->first([
                 'ict_access_resources.*',
-                'users.*',
+                'user_resource.*',
                 'workflows.*',
                 'work_flow_histories.*',
                 'ict_access_resources.id as access_id',
@@ -42,8 +44,9 @@ class FormController extends Controller
                 'h_m_i_s_access_levels.names'
             ]);
 
-        return view('ict_resource_form', compact('ictForm','user'));
+        return view('ict_resource_form', compact('ictForm', 'user'));
     }
+
 
 
     public function approveForm(Request $request)

@@ -156,19 +156,8 @@ Route::post('roles/permissions', [PermissionController::class, 'updateRolePermis
 Route::get('role/{roleId}/permissions', [PermissionController::class, 'getRolePermissions']);
 
 Route::post('/approve_form', [FormController::class, 'approveForm'])->name('approve_form');
-
-
+Route::get('/approver_form', [FormController::class, 'getApprover'])->name('approver_form');
 Route::get('/show_form/{id}', [FormController::class, 'getForm']);
-
-
-// Route::get('/requests/search', 'RequestsController@search')->name('search.requests');
-
-
-
-// Route::get('/user', [AuthController::class, 'getAllUser'])->name('users');
-// Route::get('/users/create', [AuthController::class, 'create'])->name('users.create');
-// Route::get('/user', [AuthController::class, 'assignRole'])->name('role-permission-user.assignRole');
-// Route::get('/user', [AuthController::class, 'assignPermission'])->name('role-permission-user.assignPermission');
 
 Route::get('role-permission/{roleId}/give-permission', [RoleController::class, 'addPermissionToRole']);
 Route::put('role-permission/{roleId}/give-permission', [RoleController::class, 'givePermissionToRole']);
