@@ -62,28 +62,17 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="openclinic_hms">Aruti HR MIS<span
-                                                    class="text-danger">*</span></label>
-                                            <select class="form-control" id="privilegeId" name="sap" required>
+                                            <label for="openclinic_hms">Aruti HR MIS<span class="text-danger">*</span></label>
+                                            <select class="form-control" id="privilegeId" name="aruti" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
-                                                    @if (
-                                                        $privilege->prv_name === 'User' ||
-                                                            $privilege->prv_name === 'Admin' ||
-                                                            $privilege->prv_name === 'Finance' ||
-                                                            $privilege->prv_name === 'Payroll Accountant' ||
-                                                            $privilege->prv_name === 'CFO' ||
-                                                            $privilege->prv_name === 'HR' ||
-                                                            $privilege->prv_name === 'HR Manager' ||
-                                                            $privilege->prv_name === 'HR Biodata' ||
-                                                            $privilege->prv_name === 'Director of HR COO')
-                                                        <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
-                                                        </option>
+                                                    @if (in_array($privilege->prv_name, ['User', 'Admin', 'Finance', 'Payroll Accountant', 'CFO', 'HR', 'HR Manager', 'HR Biodata', 'Director of HR COO']))
+                                                        <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}</option>
                                                     @endif
                                                 @endforeach
                                             </select>
-
                                         </div>
+                                        
 
                                         <div class="form-group">
                                             <label for="starting_date">Starting Date</label>
@@ -117,6 +106,18 @@
                                         <div class="form-group">
                                             <label for="openclinic_hms">PABX<span class="text-danger">*</span></label>
                                             <select class="form-control" id="pbax" name="pbax" required>
+                                                <option value="">Select an option</option>
+                                                @foreach ($privileges as $privilege)
+                                                    @if ($privilege->prv_name === 'User' || $privilege->prv_name === 'Admin')
+                                                        <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
+                                                        </option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="openclinic_hms">Network Access VPN</label>
+                                            <select class="form-control" id="VPN" name="VPN" required>
                                                 <option value="">Select an option</option>
                                                 @foreach ($privileges as $privilege)
                                                     @if ($privilege->prv_name === 'User' || $privilege->prv_name === 'Admin')
@@ -255,31 +256,26 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="network_folder_access">Network Folder Access</label>
-                                            <select class="form-control" id="network_folder_access"
-                                                name="network_folder_access" required>
+                                            <label for="network_folder">Network Folder</label>
+                                            <input type="text" class="form-control"
+                                                name="network_folder" placeholder="e.g., HR_Documents" required>
+                                        </div>
 
-                                                <option value="">Select an option</option>
-                                                @foreach ($privileges as $privilege)
-                                                    @if ($privilege->prv_name === 'Read' || $privilege->prv_name === 'Write' || $privilege->prv_name === 'Execute')
-                                                        <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
-                                                        </option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                        </div>
                                         <div class="form-group">
-                                            <label for="openclinic_hms">Network Access VPN</label>
-                                            <select class="form-control" id="VPN" name="VPN" required>
-                                                <option value="">Select an option</option>
+                                            <label>Network Folder Access</label>
+                                            <div class="d-flex">
                                                 @foreach ($privileges as $privilege)
-                                                    @if ($privilege->prv_name === 'User' || $privilege->prv_name === 'Admin')
-                                                        <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
-                                                        </option>
+                                                    @if (in_array($privilege->prv_name, ['Read', 'Write', 'Execute']))
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="folder_privilege" id="privilege_{{ $privilege->id }}"value="{{ $privilege->id }}" required>
+                                                            <label class="form-check-label" for="privilege_{{ $privilege->id }}">{{ $privilege->prv_name }}</label>
+                                                        </div>
                                                     @endif
                                                 @endforeach
-                                            </select>
+                                            </div>
                                         </div>
+
+
                                     </div>
                                 </div>
 

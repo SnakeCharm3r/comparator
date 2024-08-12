@@ -10,7 +10,7 @@ class IctAccessResource extends Model
     use HasFactory;
      protected $fillable = [
 
-    'remarkId',
+   //  'remarkId',
     'privilegeId',
     'email',
     'userId',
@@ -19,6 +19,8 @@ class IctAccessResource extends Model
     'sap',
     'nhifId',
     'hardware_request',
+    'network_folder',
+    'folder_privilege',
     'active_drt',
     'VPN',
     'pbax',
@@ -31,9 +33,9 @@ class IctAccessResource extends Model
         return $this->belongsTo(User::class, 'userId');
      }
 
-     public function remark(){
-        return $this->belongsTo(Remark::class, 'remarkId');
-     }
+   //   public function remark(){
+   //      return $this->belongsTo(Remark::class, 'remarkId');
+   //   }
 
      public function privi(){
         return $this->belongsTo(PrivilegeLevel::class, 'privilegeId');
