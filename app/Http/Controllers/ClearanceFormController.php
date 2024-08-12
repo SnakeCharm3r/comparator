@@ -5,6 +5,8 @@ use App\Models\ClearanceForm;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 class ClearanceFormController extends Controller
 {
     /**
@@ -26,7 +28,9 @@ class ClearanceFormController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        // Validate the incoming request data
+        $validator =Validator::make($request->all(), [
+            'date' => 'required|date',
             'id_card' => 'nullable|boolean',
             'name_tag' => 'nullable|boolean',
             'nhif_cards' => 'nullable|boolean',
@@ -52,9 +56,17 @@ class ClearanceFormController extends Controller
             'sap_account_disabled' => 'nullable|boolean',
             'aruti_account_disabled' => 'nullable|boolean',
         ]);
-
+        if($validator->fails()){
+            return response()->json([
+                'status' => 400,
+                'error' => $validator->errors()
+            ]);
+        }
+dd($validator);
+        // Create a new clearance form record
         $clearanceForm = new ClearanceForm([
             'userId' => Auth::id(),
+            'date' => $request->input('date'),
             'id_card' => $request->input('id_card', false),
             'name_tag' => $request->input('name_tag', false),
             'nhif_cards' => $request->input('nhif_cards', false),
@@ -81,10 +93,13 @@ class ClearanceFormController extends Controller
             'aruti_account_disabled' => $request->input('aruti_account_disabled', false),
         ]);
 
+        // Save the record to the database
         $clearanceForm->save();
 
+        // Redirect back with a success message
         return redirect()->route('clearance.index')->with('success', 'Clearance form submitted successfully.');
     }
+
     /**
      * Display the specified resource.
      */

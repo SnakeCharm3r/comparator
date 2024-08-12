@@ -32,13 +32,11 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                            <tr>
                                                 <td rowspan="3"
                                                     style="border: 1px solid #000; text-align: center; vertical-align: middle;">
                                                     <img src="{{ asset('assets/img/logo-small.png') }}" alt="Logo"
                                                         style="max-width: 100px;">
                                                 </td>
-
                                             </tr>
                                             <tr>
                                                 <td style="border: 1px solid #000; text-align: center; padding: 6px;">
@@ -46,29 +44,28 @@
                                             </tr>
                                             <tr>
                                                 <td style="border: 1px solid #000; text-align: center; padding: 6px;">
-                                                    Relevant
-                                                    area: IT & all other departments</td>
+                                                    Relevant area: IT & all other departments</td>
                                             </tr>
                                             <tr>
                                                 <td style="border: 1px solid #000; text-align: left; padding: 6px;">
                                                     <label for="first_name"><strong>First Name:</strong></label>
-                                                    {{ $user->fname }}
+                                                    {{ Auth::user()->fname }}
 
                                                 </td>
                                                 <td style="border: 1px solid #000; text-align: left; padding: 6px;">
                                                     <label for="last_name"><strong>Last Name:</strong></label>
-                                                    {{ $user->lname }}
+                                                    {{ Auth::user()->lname }}
 
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td style="border: 1px solid #000; text-align: left; padding: 6px;">
                                                     <label for="job_title"><strong>Job Title:</strong></label>
-                                                    {{ $user->job_title }}
+                                                    {{ Auth::user()->job_title }}
                                                 </td>
                                                 <td style="border: 1px solid #000; text-align: left; padding: 6px;">
                                                     <label for="department"><strong>Department:</strong></label>
-                                                    {{ $user->department->dept_name }}
+                                                    {{ Auth::user()->department->dept_name }}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -78,9 +75,7 @@
                                                     <input type="date" name="date" class="form-control" required
                                                         style="width: 160px;">
                                                 </td>
-
                                             </tr>
-
                                             <tr>
                                                 <td colspan="2"
                                                     style="border: 1px solid #000; text-align: left; background-color: #d4edda; padding: 6px; font-weight: bold;">
@@ -188,94 +183,79 @@
                                             <tr>
                                                 <td colspan="2"
                                                     style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                    <label for="other_items">Any other items issued?</label>
-                                                    <input type="text" name="other_items" id="other_items"
-                                                        class="form-control">
+                                                    <label for="other_items">Other Items (please specify)</label>
+                                                    <textarea name="other_items" id="other_items" rows="3"
+                                                        style="width: 100%;" placeholder="List other items here..."></textarea>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2"
                                                     style="border: 1px solid #000; text-align: left; background-color: #d1ecf1; padding: 6px; font-weight: bold;">
-                                                    ICT Checklist
+                                                    IT to Confirm
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                    <label for="laptop_returned">Laptop/iPad & Accessories & gate pass
-                                                        Returned?</label>
+                                                    <label for="laptop_returned">Laptop Returned?</label>
                                                     <input type="checkbox" name="laptop_returned" id="laptop_returned">
                                                 </td>
                                                 <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                    <label for="access_card_returned">Access Card MW & Private Clinic
-                                                        Returned?</label>
+                                                    <label for="access_card_returned">Access Card Returned?</label>
                                                     <input type="checkbox" name="access_card_returned"
                                                         id="access_card_returned">
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                                <td colspan="2"
+                                                    style="border: 1px solid #000; text-align: left; padding: 6px;">
                                                     <label for="domain_account_disabled">Domain Account Disabled?</label>
                                                     <input type="checkbox" name="domain_account_disabled"
                                                         id="domain_account_disabled">
                                                 </td>
-                                                <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"
+                                                    style="border: 1px solid #000; text-align: left; padding: 6px;">
                                                     <label for="email_account_disabled">Email Account Disabled?</label>
                                                     <input type="checkbox" name="email_account_disabled"
                                                         id="email_account_disabled">
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                    <label for="telephone_pin_disabled">Telephone Pin Code
-                                                        Disabled?</label>
+                                                <td colspan="2"
+                                                    style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                                    <label for="telephone_pin_disabled">Telephone PIN Disabled?</label>
                                                     <input type="checkbox" name="telephone_pin_disabled"
                                                         id="telephone_pin_disabled">
                                                 </td>
-                                                <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                    <label for="openclinic_account_disabled">OpenClinic Account
-                                                        Disabled?</label>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"
+                                                    style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                                    <label for="openclinic_account_disabled">OpenClinic Account Disabled?</label>
                                                     <input type="checkbox" name="openclinic_account_disabled"
                                                         id="openclinic_account_disabled">
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                                <td colspan="2"
+                                                    style="border: 1px solid #000; text-align: left; padding: 6px;">
                                                     <label for="sap_account_disabled">SAP Account Disabled?</label>
                                                     <input type="checkbox" name="sap_account_disabled"
                                                         id="sap_account_disabled">
                                                 </td>
-                                                <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"
+                                                    style="border: 1px solid #000; text-align: left; padding: 6px;">
                                                     <label for="aruti_account_disabled">Aruti Account Disabled?</label>
                                                     <input type="checkbox" name="aruti_account_disabled"
                                                         id="aruti_account_disabled">
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="2"
-                                                    style="border: 1px solid #000; text-align: left; background-color: #e9ecef; padding: 6px; font-weight: bold;">
-                                                    Declaration
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2"
-                                                    style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                    <div style="display: flex; align-items: flex-start;">
-                                                        <input type="checkbox" name="declaration" id="declaration"
-                                                            style="margin-right: 10px;">
-                                                        <label for="declaration" style="margin: 0; line-height: 1.5;">
-                                                            To the best of my knowledge, I have returned all items in my
-                                                            possession belonging to CCBRT. I understand that failure to
-                                                            return items issued could affect sums of money due to me as my
-                                                            final salary.
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
                                                 <td colspan="2" style="text-align: center; padding: 10px;">
-                                                    <button type="submit" class="btn btn-primary">Submit Clearance
-                                                        Form</button>
+                                                    <button type="submit" class="btn btn-primary">Submit Clearance Form</button>
                                                 </td>
                                             </tr>
                                         </tbody>
