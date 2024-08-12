@@ -34,7 +34,10 @@ class DepartmentController extends Controller
                 DB::raw('CONCAT(users.fname, " ", users.lname) as head_of_department')
             )
             ->where('departments.delete_status', 0)
-            ->where('roles.name', 'line-manager')
+            ->where(function($query) {
+                $query->whereNull('roles.name')
+                      ->orWhere('roles.name', 'line-manager');
+            })
             ->get();
 
         return view('department.index', compact('departments'));

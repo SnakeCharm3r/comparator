@@ -135,7 +135,6 @@ public function update(Request $request, $id)
           'password' => 'required|min:6',
         //   'signature' => 'required|string',
         ]);
-
         if($validator->fails()) {
             return response()->json([
                 'status' => 400,
