@@ -51,7 +51,7 @@ class IctAccessController extends Controller
         $user = Auth::user()->load('department', 'employmentType');
         $qualifications = NhifQualification::where('delete_status', 0)->get();
         $privileges = PrivilegeLevel::where('delete_status', 0)->get();
-        $rmk = Remark::where('delete_status', 0)->get();
+        // $rmk = Remark::where('delete_status', 0)->get();
         $hmis = HMISAccessLevel::where('delete_status', 0)->get();
 
         return view('ict-access-form.create', compact('qualifications', 'privileges', 'rmk', 'hmis', 'user'));
@@ -64,7 +64,7 @@ class IctAccessController extends Controller
     {
         // Validate incoming request
         $validator = Validator::make($request->all(), [
-            'remarkId' => 'required|exists:remarks,id',
+            // 'remarkId' => 'required|exists:remarks,id',
             'privilegeId' => 'required|exists:privilege_levels,id',
             'userId' => 'required|exists:users,id',
             'hmisId' => 'required|exists:h_m_i_s_access_levels,id',
@@ -95,7 +95,7 @@ class IctAccessController extends Controller
 
                 // Create ICT Access Resource
                 $ict = IctAccessResource::create([
-                    'remarkId' => $request->input('remarkId'),
+                    // 'remarkId' => $request->input('remarkId'),
                     'privilegeId' => $request->input('privilegeId'),
                     'email' => $request->input('email'),
                     'userId' => $request->input('userId'),
@@ -104,6 +104,8 @@ class IctAccessController extends Controller
                     'sap' => $request->input('sap'),
                     'nhifId' => $request->input('nhifId'),
                     'hardware_request' => $hardwareRequest,
+                    'network_folder' => $request->input('network_folder'),
+                    'folder_privilege' => $request->input('folder_privilege'),
                     'active_drt' => $request->input('active_drt'),
                     'VPN' => $request->input('VPN'),
                     'pbax' => $request->input('pbax'),
