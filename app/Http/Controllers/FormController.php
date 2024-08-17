@@ -11,29 +11,26 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Http\Controllers\IctAccessController;
 
-
-
-
-
 class FormController extends Controller
 {
     public function getform(Request $request)
     {
         $user = Auth::user();
-        $ictForm = IctAccessResource::join('users as user_resource', 'user_resource.id', '=', 'ict_access_resources.userId')
+
+            $ictForm = IctAccessResource::join('users', 'users.id', '=', 'ict_access_resources.userId')
             ->join('workflows', 'workflows.ict_request_resource_id', '=', 'ict_access_resources.id')
             ->join('work_flow_histories', 'work_flow_histories.work_flow_id', '=', 'workflows.id')
             ->join('privilege_levels', 'privilege_levels.id', '=', 'ict_access_resources.privilegeId')
             ->join('users as user_forwarded', 'user_forwarded.id', '=', 'work_flow_histories.forwarded_by')
             ->join('nhif_qualifications', 'nhif_qualifications.id', '=', 'ict_access_resources.nhifId')
-            ->join('employment_types', 'employment_types.id', '=', 'user_resource.employment_typeId')
-            ->join('departments', 'departments.id', '=', 'user_resource.deptId')
+            ->join('employment_types', 'employment_types.id', '=', 'users.employment_typeId')
+            ->join('departments', 'departments.id', '=', 'users.deptId')
             ->join('h_m_i_s_access_levels', 'h_m_i_s_access_levels.id', '=', 'ict_access_resources.hmisId')
             ->where('ict_access_resources.id', $request->id)
             ->where('work_flow_histories.attended_by', $user->id)
             ->first([
                 'ict_access_resources.*',
-                'user_resource.*',
+                'users.*',
                 'workflows.*',
                 'work_flow_histories.*',
                 'ict_access_resources.id as access_id',
@@ -43,17 +40,19 @@ class FormController extends Controller
                 'departments.dept_name',
                 'h_m_i_s_access_levels.names'
             ]);
+// dd($ictForm);
+        // dd($request->id);
 
-        return view('ict_resource_form', compact('ictForm', 'user'));
+        return view('ict_resource_form', compact('ictForm','user'));
+        // dd($ictForm);
+
     }
-
-
 
     public function approveForm(Request $request)
     {
-        // dd($request->access_id);
+        //  dd($request->access_id);
         $workflow = Workflow::where('ict_request_resource_id', $request->access_id)->first();
-        // dd($workflow);
+        //  dd($workflow);
 
         if ($workflow) {
             // Attempting to find the corresponding WorkflowHistory
@@ -70,21 +69,25 @@ class FormController extends Controller
                 dd("WorkflowHistory not found for Workflow ID {$workflow->id} and status 0");
             }
         } else {
+
             // Handle case where no Workflow is found
             dd("Workflow not found for access ID {$request->access_id}");
         }
 
         // dd(Auth::user());
         $user = Auth::user(); // Get the authenticated user
-        // dd($user);
-        $roles = $user->getRoleNames(); // Get all roles as a collection of role names
-        //  dd($roles);
+       // dd($user);
+
+        $roles = $user->getRoleNames()->first(); // Get all roles as a collection of role names
+          //dd($roles);
         // get user based on roles
-        if ($roles->contains('line-manager')) {
-            $approver = User::role('HR')->first();
-        } elseif ($roles->contains('HR')) {
-            $approver = User::role('IT')->first();
-        } elseif ($roles->contains('IT')) {
+        if ($roles == 'line-manager') {
+            // dd(123);
+
+            $approver = User::role('hr')->first();
+        } elseif ($roles == 'hr') {
+            $approver = User::role('it')->first();
+        } elseif ($roles == 'it') {
             $approver = User::role('admin')->first();
         } else {
             $approver = 'no approval';
@@ -93,7 +96,7 @@ class FormController extends Controller
         // dd($approver );
         $ict = new IctAccessController();
 
-        if ($roles->contains('admin')) {
+        if ($roles == 'admin') {
             // dd($workflow->id);
             $workflow = Workflow::find($workflow->id);
             $workflow->work_flow_status = "aproved";
@@ -119,4 +122,7 @@ class FormController extends Controller
 
         // dd($workflowHistory);
 }
+
+
+
 }
