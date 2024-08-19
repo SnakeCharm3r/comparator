@@ -161,9 +161,9 @@ class IctAccessController extends Controller
 
                 Alert::success('IT access form request submitted successfully', 'IT access Request Added');
                 return redirect()->route('request.index')->with('success', 'ICT Access Resource created successfully.');
-            dd(1234); });
+            });
         } catch (\Exception $e) {
-            dd($e);
+        
             // Log the exact error message for better debugging
             \Log::error('Error storing ICT Access Resource: ' . $e->getMessage(), ['exception' => $e]);
             Alert::error('Failed to submit IT access form request', 'Error');
