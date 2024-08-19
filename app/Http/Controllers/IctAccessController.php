@@ -95,7 +95,6 @@ class IctAccessController extends Controller
 
                 // Create ICT Access Resource
                 $ict = IctAccessResource::create([
-                    // 'remarkId' => $request->input('remarkId'),
                     'privilegeId' => $request->input('privilegeId'),
                     'email' => $request->input('email'),
                     'userId' => $request->input('userId'),
@@ -105,7 +104,7 @@ class IctAccessController extends Controller
                     'nhifId' => $request->input('nhifId'),
                     'hardware_request' => $hardwareRequest,
                     'network_folder' => $request->input('network_folder'),
-                    'folder_privilege' => $request->input('folder_privilege'),
+                    'folder_ privilege' => $request->input('folder_privilege'),
                     'active_drt' => $request->input('active_drt'),
                     'VPN' => $request->input('VPN'),
                     'pbax' => $request->input('pbax'),
@@ -164,6 +163,7 @@ class IctAccessController extends Controller
                 return redirect()->route('request.index')->with('success', 'ICT Access Resource created successfully.');
             dd(1234); });
         } catch (\Exception $e) {
+            dd($e);
             // Log the exact error message for better debugging
             \Log::error('Error storing ICT Access Resource: ' . $e->getMessage(), ['exception' => $e]);
             Alert::error('Failed to submit IT access form request', 'Error');
