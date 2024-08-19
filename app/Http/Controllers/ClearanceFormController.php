@@ -16,8 +16,8 @@ class ClearanceFormController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $forms = ClearanceForm::with('user')->get();
-        return view('clearance.index', compact('forms', 'user'));
+        // $forms = ClearanceForm::with('user')->get();
+        return view('clearance.index', compact( 'user'));
     }
 
     /**
@@ -28,79 +28,53 @@ class ClearanceFormController extends Controller
         return view('clearance.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        // Validate the form data
+        $request->validate([
             'date' => 'required|date',
-            'id_card' => 'nullable|boolean',
-            'name_tag' => 'nullable|boolean',
-            'nhif_cards' => 'nullable|boolean',
-            'bonding_agreement' => 'nullable|boolean',
-            'work_permit' => 'nullable|boolean',
-            'residence_permit' => 'nullable|boolean',
-            'changing_room_keys' => 'nullable|boolean',
-            'office_keys' => 'nullable|boolean',
-            'mobile_phone' => 'nullable|boolean',
-            'camera' => 'nullable|boolean',
-            'uniforms' => 'nullable|boolean',
-            'car_keys' => 'nullable|boolean',
-            'other_items' => 'nullable|string',
-            'repaid_advance' => 'nullable|boolean',
-            'informed_finance' => 'nullable|boolean',
-            'repaid_imprest' => 'nullable|boolean',
-            'laptop_returned' => 'nullable|boolean',
-            'access_card_returned' => 'nullable|boolean',
-            'domain_account_disabled' => 'nullable|boolean',
-            'email_account_disabled' => 'nullable|boolean',
-            'telephone_pin_disabled' => 'nullable|boolean',
-            'openclinic_account_disabled' => 'nullable|boolean',
-            'sap_account_disabled' => 'nullable|boolean',
-            'aruti_account_disabled' => 'nullable|boolean',
+            'signature' => 'required|string',
+            'declaration_date' => 'required|date',
         ]);
-    
-        if ($validator->fails()) {
-            return response()->json([
-                'status' => 400,
-                'error' => $validator->errors()
-            ]);
-        }
 
-        $clearanceForm = new ClearanceForm([
-            'userId' => Auth::id(), // Ensure the user_id is set
-            'date' => $request->input('date'),
-            'id_card' => $request->input('id_card', false),
-            'name_tag' => $request->input('name_tag', false),
-            'nhif_cards' => $request->input('nhif_cards', false),
-            'bonding_agreement' => $request->input('bonding_agreement', false),
-            'work_permit' => $request->input('work_permit', false),
-            'residence_permit' => $request->input('residence_permit', false),
-            'changing_room_keys' => $request->input('changing_room_keys', false),
-            'office_keys' => $request->input('office_keys', false),
-            'mobile_phone' => $request->input('mobile_phone', false),
-            'camera' => $request->input('camera', false),
-            'uniforms' => $request->input('uniforms', false),
-            'car_keys' => $request->input('car_keys', false),
-            'other_items' => $request->input('other_items', ''),
-            'repaid_advance' => $request->input('repaid_advance', false),
-            'informed_finance' => $request->input('informed_finance', false),
-            'repaid_imprest' => $request->input('repaid_imprest', false),
-            'laptop_returned' => $request->input('laptop_returned', false),
-            'access_card_returned' => $request->input('access_card_returned', false),
-            'domain_account_disabled' => $request->input('domain_account_disabled', false),
-            'email_account_disabled' => $request->input('email_account_disabled', false),
-            'telephone_pin_disabled' => $request->input('telephone_pin_disabled', false),
-            'openclinic_account_disabled' => $request->input('openclinic_account_disabled', false),
-            'sap_account_disabled' => $request->input('sap_account_disabled', false),
-            'aruti_account_disabled' => $request->input('aruti_account_disabled', false),
-        ]);
-        //dd($clearanceForm);
-        $clearanceForm->save();
-        Alert::success('Exist Form Submitted Successfully', 'Exist Form Request Added');
-        return redirect()->route('clearance.index')->with('success', 'Clearance form submitted successfully.');
+        // Create a new Clearance record
+        $clearance = new ClearanceForm();
+        $clearance->userId = $request->input('userId');
+        $clearance->date = $request->input('date');
+        $clearance->ccbrt_id_card = $request->input('ccbrt_id_card', 'N/A');
+        $clearance->ccbrt_name_tag = $request->input('ccbrt_name_tag', 'N/A');
+        $clearance->nhif_cards = $request->input('nhif_cards', 'N/A');
+        $clearance->work_permit_cancelled = $request->input('work_permit_cancelled', 'N/A');
+        $clearance->residence_permit_cancelled = $request->input('residence_permit_cancelled', 'N/A');
+        $clearance->repaid_salary_advance = $request->input('repaid_salary_advance', 'N/A');
+        $clearance->loan_balances_informed = $request->input('loan_balances_informed', 'N/A');
+        $clearance->repaid_outstanding_imprest = $request->input('repaid_outstanding_imprest', 'N/A');
+        $clearance->changing_room_keys = $request->input('changing_room_keys', 'N/A');
+        $clearance->office_keys = $request->input('office_keys', 'N/A');
+        $clearance->mobile_phone = $request->input('mobile_phone', 'N/A');
+        $clearance->camera = $request->input('camera', 'N/A');
+        $clearance->ccbrt_uniforms = $request->input('ccbrt_uniforms', 'N/A');
+        $clearance->office_car_keys = $request->input('office_car_keys', 'N/A');
+        $clearance->other_items = $request->input('other_items');
+        $clearance->laptop_returned = $request->input('laptop_returned', 'No');
+        $clearance->access_card_returned = $request->input('access_card_returned', 'No');
+        $clearance->domain_account_disabled = $request->input('domain_account_disabled', 'No');
+        $clearance->email_account_disabled = $request->input('email_account_disabled', 'No');
+        $clearance->telephone_pin_disabled = $request->input('telephone_pin_disabled', 'No');
+        $clearance->openclinic_account_disabled = $request->input('openclinic_account_disabled', 'No');
+        $clearance->sap_account_disabled = $request->input('sap_account_disabled', 'No');
+        $clearance->aruti_account_disabled = $request->input('aruti_account_disabled', 'No');
+        $clearance->signature = $request->input('signature');
+        $clearance->declaration_date = $request->input('declaration_date');
+
+        // Save the clearance record to the database
+        $clearance->save();
+
+        Alert::success('Exist Form Submitted Successfully', 'Exist Form Request Successfully');
+        return redirect()->route('clearance.index')->with('success', 'Clearance form submitted successfully!');
     }
+
+    
     
 
     /**
@@ -122,42 +96,7 @@ class ClearanceFormController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ClearanceForm $clearanceForm)
-    {
-        $request->validate([
-            'date' => 'required|date',
-            'id_card' => 'nullable|boolean',
-            'name_tag' => 'nullable|boolean',
-            'nhif_cards' => 'nullable|boolean',
-            'bonding_agreement' => 'nullable|boolean',
-            'work_permit' => 'nullable|boolean',
-            'residence_permit' => 'nullable|boolean',
-            'changing_room_keys' => 'nullable|boolean',
-            'office_keys' => 'nullable|boolean',
-            'mobile_phone' => 'nullable|boolean',
-            'camera' => 'nullable|boolean',
-            'uniforms' => 'nullable|boolean',
-            'car_keys' => 'nullable|boolean',
-            'other_items' => 'nullable|string',
-            'repaid_advance' => 'nullable|boolean',
-            'informed_finance' => 'nullable|boolean',
-            'repaid_imprest' => 'nullable|boolean',
-            'laptop_returned' => 'nullable|boolean',
-            'access_card_returned' => 'nullable|boolean',
-            'domain_account_disabled' => 'nullable|boolean',
-            'email_account_disabled' => 'nullable|boolean',
-            'telephone_pin_disabled' => 'nullable|boolean',
-            'openclinic_account_disabled' => 'nullable|boolean',
-            'sap_account_disabled' => 'nullable|boolean',
-            'aruti_account_disabled' => 'nullable|boolean',
-        ]);
-
-        // Update the clearance form record
-        $clearanceForm->update($request->all());
-
-        // Redirect back with a success message
-        return redirect()->route('clearance.index')->with('success', 'Form updated successfully.');
-    }
+ 
 
     /**
      * Remove the specified resource from storage.

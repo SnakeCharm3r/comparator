@@ -6,54 +6,45 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
-    public function up(): void
+    public function up()
     {
         Schema::create('clearance_forms', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('userId'); // Reference to the users table
+            $table->bigInteger('userId')->unsigned();
             $table->date('date');
-            
-            // Define boolean fields with default values
-            $table->boolean('id_card')->default(false);
-            $table->boolean('name_tag')->default(false);
-            $table->boolean('nhif_cards')->default(false);
-            $table->boolean('bonding_agreement')->default(false);
-            $table->boolean('work_permit')->default(false);
-            $table->boolean('residence_permit')->default(false);
-            
-            $table->boolean('changing_room_keys')->default(false);
-            $table->boolean('office_keys')->default(false);
-            $table->boolean('mobile_phone')->default(false);
-            $table->boolean('camera')->default(false);
-            $table->boolean('uniforms')->default(false);
-            $table->boolean('car_keys')->default(false);
-            $table->text('other_items')->nullable(); // Allows null values
-            
-            $table->boolean('repaid_advance')->default(false);
-            $table->boolean('informed_finance')->default(false);
-            $table->boolean('repaid_imprest')->default(false);
-            
-            $table->boolean('laptop_returned')->default(false);
-            $table->boolean('access_card_returned')->default(false);
-            $table->boolean('domain_account_disabled')->default(false);
-            $table->boolean('email_account_disabled')->default(false);
-            $table->boolean('telephone_pin_disabled')->default(false);
-            $table->boolean('openclinic_account_disabled')->default(false);
-            $table->boolean('sap_account_disabled')->default(false);
-            $table->boolean('aruti_account_disabled')->default(false);
-
-            // Foreign key constraint
-            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
+            $table->string('ccbrt_id_card')->default('N/A');
+            $table->string('ccbrt_name_tag')->default('N/A');
+            $table->string('nhif_cards')->default('N/A');
+            $table->string('work_permit_cancelled')->default('N/A');
+            $table->string('residence_permit_cancelled')->default('N/A');
+            $table->string('repaid_salary_advance')->default('N/A');
+            $table->string('loan_balances_informed')->default('N/A');
+            $table->string('repaid_outstanding_imprest')->default('N/A');
+            $table->string('changing_room_keys')->default('N/A');
+            $table->string('office_keys')->default('N/A');
+            $table->string('mobile_phone')->default('N/A');
+            $table->string('camera')->default('N/A');
+            $table->string('ccbrt_uniforms')->default('N/A');
+            $table->string('office_car_keys')->default('N/A');
+            $table->string('other_items')->nullable();
+            $table->string('laptop_returned')->default('No');
+            $table->string('access_card_returned')->default('No');
+            $table->string('domain_account_disabled')->default('No');
+            $table->string('email_account_disabled')->default('No');
+            $table->string('telephone_pin_disabled')->default('No');
+            $table->string('openclinic_account_disabled')->default('No');
+            $table->string('sap_account_disabled')->default('No');
+            $table->string('aruti_account_disabled')->default('No');
+            $table->foreign('userId')->references('id')->on('users');
+            $table->string('signature');
+            $table->date('declaration_date');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('clearance_forms');
     }
 };
+

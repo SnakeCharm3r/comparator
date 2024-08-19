@@ -9,6 +9,7 @@ use App\Http\Controllers\HslbController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\RemarkController;
+use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\DashboardController;
@@ -137,6 +138,8 @@ Route::post('hslb/hr-confirm/{id}', [HslbController::class, 'hrConfirm'])->name(
 Route::get('/users', [AuthController::class, 'getAllUser'])->name('users.index');
 Route::get('/employees', [AuthController::class, 'userDetail'])->name('employee.index');
 Route::put('/employee/{id}', [AuthController::class, 'update'])->name('employee.update');
+
+Route::resource('vendors', VendorController::class);
 
 //for user deatils
 Route::get('/employee/{id}', [AuthController::class, 'employee'])->name('employees_details.show');
