@@ -26,18 +26,18 @@ return new class extends Migration
             $table->string('sap')->nullable();
             $table->text('hardware_request')->nullable();
             $table->string('network_folder')->nullable();
-            $table->string('folder_privilege')->nullable();
+            $table->unsignedBigInteger('folder_privilege')->nullable();
             $table->string('status')->nullable();
             $table->string('physical_access')->nullable();
             $table->tinyInteger('delete_status')->default(0);
-            // $table->foreign('remarkId')->references('id')->on('remarks')->onDelete('cascade');
+            $table->foreign('folder_privilege')->references('id')->on('privilege_levels')->onDelete('cascade');
             $table->foreign('privilegeId')->references('id')->on('privilege_levels')->onDelete('cascade');
             $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('hmisId')->references('id')->on('h_m_i_s_access_levels')->onDelete('cascade');
             $table->foreign('nhifId')->references('id')->on('nhif_qualifications')->onDelete('cascade');
             $table->timestamps();
 
-           
+
         });
     }
     /**
