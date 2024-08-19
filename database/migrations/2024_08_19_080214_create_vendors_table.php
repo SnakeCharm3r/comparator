@@ -20,7 +20,7 @@ class CreateVendorsTable extends Migration
             $table->string('contract_type')->nullable();
             $table->string('internal_approval_1')->nullable();
             $table->string('internal_approval_2')->nullable();
-            $table->string('status')->nullable();
+            $table->enum('status', ['active', 'inactive'])->default('inactive');
             $table->decimal('contract_total_value', 15, 2)->nullable();
             $table->date('termination_date')->nullable();
             $table->date('give_notice_date')->nullable();
@@ -29,7 +29,7 @@ class CreateVendorsTable extends Migration
             $table->integer('duration_years')->nullable();
             $table->string('services_satisfaction')->nullable();
             $table->integer('grace_period_to_new_contract')->nullable();
-            $table->string('goods_services')->nullable();
+            $table->string('services')->nullable();
             $table->string('category')->nullable();
             $table->string('review_interval')->nullable();
             $table->integer('likelihood_rating')->nullable();
