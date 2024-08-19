@@ -40,8 +40,8 @@
                                 Clearance Forms
                             </a></li>
 
-                        <li><a href="{{ route('hr.index') }}"
-                                class="{{ request()->routeIs('hr.index') ? 'active' : '' }}">Human Resouce Form</a></li>
+                        {{-- <li><a href="{{ route('hr.index') }}"
+                                class="{{ request()->routeIs('hr.index') ? 'active' : '' }}">Human Resouce Form</a></li> --}}
                         <li><a href="{{ route('data.index') }}"
                                 class="{{ request()->routeIs('data.index') ? 'active' : '' }}">Data Security Form
                             </a></li>
@@ -115,14 +115,14 @@
                 @endcan
 
                 <li
-                    class="treeview {{ request()->routeIs('employee.index') || request()->routeIs('signature.index') || request()->routeIs('employee.details') ? 'active' : '' }}">
+                    class="treeview {{ request()->routeIs('employee.index', 'signature.index', 'employee.details', 'users.signatures') ? 'active' : '' }}">
                     <a href="#">
                         <i class="fas fa-user"></i>
                         <span>User Details</span>
                         <span class="menu-arrow"></span>
                     </a>
                     <ul
-                        style="{{ request()->routeIs('employee.index') || request()->routeIs('signature.index') || request()->routeIs('employee.details') ? 'display: block;' : '' }}">
+                        style="{{ request()->routeIs('employee.index', 'signature.index', 'employee.details', 'users.signatures') ? 'display: block;' : '' }}">
                         <li>
                             <a href="{{ route('employee.index') }}"
                                 class="{{ request()->routeIs('employee.index') ? 'active' : '' }}">
@@ -132,11 +132,18 @@
                         <li>
                             <a href="{{ route('signature.index') }}"
                                 class="{{ request()->routeIs('signature.index') ? 'active' : '' }}">
-                                <span>User Signature</span>
+                                <span>Create Signature</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('users.signatures') }}"
+                                class="{{ request()->routeIs('users.signatures') ? 'active' : '' }}">
+                                <span>Users Signatures</span>
                             </a>
                         </li>
                     </ul>
                 </li>
+
                 <!-- Category Management -->
                 <li class="treeview">
                     <a href="#">

@@ -100,6 +100,21 @@ class SopController extends Controller
         return redirect()->route('sops.index')->with('success', 'SOP updated successfully.');
     }
 
+    public function sops()
+    {
+        $user = auth()->user();
+        $sops = DB::table('sops')
+            ->join('departments', 'sops.deptId', '=', 'departments.id')
+            ->where('departments.id', $user->deptId) // Filter by user's department
+            ->select('sops.*', 'departments.dept_name')
+            ->get();
+    
+        return view('sops.show', compact('sops'));
+    }
+    
+    
+
+
     /**
      * Remove the specified resource from storage.
      */

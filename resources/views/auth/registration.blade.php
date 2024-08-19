@@ -1,6 +1,8 @@
 @include('includes.head')
 @include('sweetalert::alert')
 
+
+
 <div class="main-wrapper login-body">
     <div class="login-wrapper">
         <div class="container">
@@ -11,7 +13,7 @@
                         <p class="account-subtitle">Enter details to create your account</p>
                     </div>
                     <form id="registrationForm" action="{{ route('register.handleRegistration') }}" method="POST"
-                        onsubmit="return validateAge()">
+                        onsubmit="return validatePassword()">
                         @csrf
                         <div class="row">
                             <div class="col-md-4">
@@ -63,9 +65,19 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Password <span class="login-danger">*</span></label>
-                                    <input class="form-control pass-input" type="password" name="password" required>
+                                    <input class="form-control pass-input" type="password" name="password"
+                                        id="password" required>
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Confirm Password <span class="login-danger">*</span></label>
+                                    <input class="form-control pass-input" type="password" name="password_confirmation"
+                                        id="password_confirmation" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Department <span class="login-danger">*</span></label>
@@ -77,8 +89,6 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Job Title</label>
@@ -97,6 +107,8 @@
                                     </select>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Professional Number</label>
@@ -134,17 +146,16 @@
 <!-- User Agreements Modal -->
 <div class="modal fade" id="userAgreementsModal" tabindex="-1" aria-labelledby="userAgreementsModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog" style="max-width: 80%;">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="userAgreementsModalLabel">User Agreements and Policies</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
                 <div class="card shadow-sm">
                     <div class="tab-pane">
-                        <div id="policy-container">
+                        <div id="policy-container" class="table-responsive">
                             <!-- Display only one policy at a time -->
                             @if ($policies->isNotEmpty())
                                 <div class="policy-item">
@@ -153,7 +164,7 @@
                                             <tr>
                                                 <td colspan="2">
                                                     <img src="{{ asset('assets/img/ccbrt.JPG') }}" alt="CCBRT Logo"
-                                                        style="height: 50px;">
+                                                        class="img-fluid" style="max-height: 50px;">
                                                     <strong id="policy-title">{{ $policies[0]->title }}</strong>
                                                 </td>
                                             </tr>
@@ -167,104 +178,55 @@
                                 </div>
                             @endif
                         </div>
-                        <div class="mt-4">
+                        <div class="d-flex justify-content-between mt-4">
                             <button id="prev-policy" class="btn btn-primary" disabled>Back</button>
                             <button id="next-policy" class="btn btn-primary"
                                 {{ $policies->count() > 1 ? '' : 'disabled' }}>Next</button>
                         </div>
                     </div>
-
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            let currentPolicyIndex = 0;
-                            const policies = @json($policies);
-                            const totalPolicies = policies.length;
-                            const prevButton = document.getElementById('prev-policy');
-                            const nextButton = document.getElementById('next-policy');
-                            const policyContainer = document.getElementById('policy-container');
-
-                            function updatePolicy() {
-                                if (totalPolicies > 0) {
-                                    const policy = policies[currentPolicyIndex];
-                                    policyContainer.innerHTML = `
-                                                <table class="table table-bordered">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td colspan="2">
-                                                                <img src="{{ asset('assets/img/ccbrt.JPG') }}" alt="CCBRT Logo" style="height: 50px;">
-                                                                <strong>${currentPolicyIndex + 1}. ${policy.title}</strong>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td colspan="2">
-                                                                ${policy.content}
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                       
-                                            `;
-
-                                    prevButton.disabled = currentPolicyIndex === 0;
-                                    nextButton.disabled = currentPolicyIndex === totalPolicies - 1;
-                                }
-                            }
-
-                            prevButton.addEventListener('click', function() {
-                                if (currentPolicyIndex > 0) {
-                                    currentPolicyIndex--;
-                                    updatePolicy();
-                                }
-                            });
-
-                            nextButton.addEventListener('click', function() {
-                                if (currentPolicyIndex < totalPolicies - 1) {
-                                    currentPolicyIndex++;
-                                    updatePolicy();
-                                }
-                            });
-
-                            updatePolicy(); // Initialize with the first policy
-                        });
-                    </script>
-                </div>
-
-
-                <div class="form-check mt-3">
-                    <input class="form-check-input" type="checkbox" id="acceptCheckbox">
-                    <label class="form-check-label" for="acceptCheckbox">
-                        I have read and accept the User Agreements and Policies.
-                    </label>
+                    <div class="form-check mt-3">
+                        <input class="form-check-input" type="checkbox" id="acceptCheckbox">
+                        <label class="form-check-label" for="acceptCheckbox">
+                            I have read and accept the User Agreements and Policies.
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="acceptAgreements" disabled>Next</button>
+                <button type="button" class="btn btn-primary" id="acceptAgreements" disabled>Submit</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Signature Modal -->
-<div class="modal fade" id="signatureModal" tabindex="-1" aria-labelledby="signatureModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="signatureModalLabel">Provide Your Signature</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <canvas id="signaturePad" style="border:1px solid #000;"></canvas>
-                <button type="button" class="btn btn-secondary" id="clearSignature">Clear</button>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="submitSignature">Submit</button>
-            </div>
-        </div>
-    </div>
-</div>
+
+<style>
+    @media (max-width: 768px) {
+        .modal-dialog {
+            max-width: 95%;
+            margin: 1.75rem auto;
+        }
+
+        .modal-body {
+            padding: 10px;
+        }
+
+        .modal-footer {
+            padding: 10px;
+        }
+
+        #policy-container table {
+            font-size: 14px;
+        }
+
+        .btn {
+            font-size: 14px;
+            padding: 8px 12px;
+        }
+    }
+</style>
+
 
 @include('includes.scripts')
 
@@ -283,59 +245,87 @@
         document.getElementById('acceptAgreements').disabled = !this.checked;
     });
 
-    document.getElementById('acceptAgreements').addEventListener('click', function() {
-        document.getElementById('userAgreementsModal').querySelector('.btn-close').click();
-        var modal = new bootstrap.Modal(document.getElementById('signatureModal'));
-        modal.show();
+    document.addEventListener("DOMContentLoaded", function() {
+        var policies = @json($policies); // Convert Laravel policies collection to JavaScript array
+        var currentPolicyIndex = 0;
+
+        function updatePolicyDisplay() {
+            if (policies.length > 0) {
+                var policy = policies[currentPolicyIndex];
+                document.getElementById('policy-title').textContent = policy.title;
+                document.querySelector('#policy-container tbody').innerHTML = `
+                <tr>
+                    <td colspan="2">
+                        <img src="{{ asset('assets/img/ccbrt.JPG') }}" alt="CCBRT Logo" style="height: 50px;">
+                        <strong id="policy-title">${policy.title}</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">${policy.content}</td>
+                </tr>
+            `;
+            }
+
+            // Disable/enable buttons based on the current policy index
+            document.getElementById('prev-policy').disabled = currentPolicyIndex === 0;
+            document.getElementById('next-policy').disabled = currentPolicyIndex === policies.length - 1;
+        }
+
+        document.getElementById('next-policy').addEventListener('click', function() {
+            if (currentPolicyIndex < policies.length - 1) {
+                currentPolicyIndex++;
+                updatePolicyDisplay();
+            }
+        });
+
+        document.getElementById('prev-policy').addEventListener('click', function() {
+            if (currentPolicyIndex > 0) {
+                currentPolicyIndex--;
+                updatePolicyDisplay();
+            }
+        });
+
+        // Initial display
+        updatePolicyDisplay();
     });
 
-    document.getElementById('submitSignature').addEventListener('click', function() {
-        document.getElementById('signatureModal').querySelector('.btn-close').click();
-        document.getElementById('registrationForm').submit();
+    document.getElementById('acceptAgreements').addEventListener('click', function() {
+        if (document.getElementById('acceptCheckbox').checked) {
+            document.getElementById('userAgreementsModal').querySelector('.btn-close').click();
+            document.getElementById('registrationForm').submit();
+        } else {
+            alert('You must accept the User Agreements and Policies to register.');
+        }
     });
+
+    function validatePassword() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("password_confirmation").value;
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match. Please try again.");
+            return false;
+        }
+
+        return validateAge();
+    }
 
     function validateAge() {
         const dob = document.querySelector('input[name="DOB"]').value;
         const dobDate = new Date(dob);
         const today = new Date();
-        const age = today.getFullYear() - dobDate.getFullYear();
+        let age = today.getFullYear() - dobDate.getFullYear();
         const monthDifference = today.getMonth() - dobDate.getMonth();
+
         if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < dobDate.getDate())) {
             age--;
         }
+
         if (age < 18) {
             alert("You must be at least 18 years old to register.");
             return false;
         }
+
         return true;
     }
-
-    // Signature Pad
-    const canvas = document.getElementById('signaturePad');
-    const signaturePad = canvas.getContext('2d');
-    let drawing = false;
-
-    // Set the pen color to blue
-    signaturePad.strokeStyle = 'blue';
-
-    canvas.addEventListener('mousedown', function(e) {
-        drawing = true;
-        signaturePad.beginPath();
-        signaturePad.moveTo(e.offsetX, e.offsetY);
-    });
-
-    canvas.addEventListener('mousemove', function(e) {
-        if (drawing) {
-            signaturePad.lineTo(e.offsetX, e.offsetY);
-            signaturePad.stroke();
-        }
-    });
-
-    canvas.addEventListener('mouseup', function() {
-        drawing = false;
-    });
-
-    document.getElementById('clearSignature').addEventListener('click', function() {
-        signaturePad.clearRect(0, 0, canvas.width, canvas.height);
-    });
 </script>

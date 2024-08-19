@@ -38,8 +38,13 @@
         <li class="nav-item dropdown has-arrow new-user-menus">
             <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                 <span class="user-img">
-                    <img class="rounded-circle" src="{{ asset('assets/img/profiles/avatar-01.jpg') }}" width="31"
-                        alt="Soeng Souy">
+                    @if (auth()->user()->profile_picture)
+                        <img class="rounded-circle" src="{{ asset('storage/' . auth()->user()->profile_picture) }}"
+                            width="31" alt="Soeng Souy">
+                    @else
+                        <img class="rounded-circle" src="{{ asset('assets/img/icon.png') }}" alt="Default User Icon"
+                            style="max-width: 160px; height: 38px; padding: 1px; object-fit: cover;">
+                    @endif
                     <div class="user-text">
                         @if (Auth::check())
                             <h6>{{ Auth::user()->fname }} {{ Auth::user()->lname }}</h6>

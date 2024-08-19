@@ -39,7 +39,7 @@
                                                             @else
                                                                 <img src="{{ asset('assets/img/icon.png') }}"
                                                                     alt="Default User Icon" class="img-fluid rounded-circle"
-                                                                    style="max-width: 150px; height: 140px; border: 1px solid #ccc; padding: 1px; object-fit: cover;">
+                                                                    style="max-width: 160px; height: 140px; #ccc; padding: 1px; object-fit: cover;">
                                                             @endif
                                                             <form id="profilePictureForm"
                                                                 action="{{ route('profile.update.picture') }}"

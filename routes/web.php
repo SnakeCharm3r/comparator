@@ -53,6 +53,7 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'handleRegistration'])->name('register.handleRegistration');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+
 Route::get('/change-password', [AuthController::class, 'showChangePasswordForm'])->name('user_profile.pass');
 Route::put('/change-password', [AuthController::class, 'changePassword'])->name('change.password.update');
 
@@ -61,20 +62,16 @@ Route::resource('clearance', ClearanceFormController::class);
 Route::resource('policies', PolicyController::class);
 Route::get('/user-policies', [PolicyController::class, 'user'])->name('policies.user');
 Route::post('/policies/accept', [PolicyController::class, 'accept'])->name('policies.accept');
+Route::get('/download-policy', [PolicyController::class, 'downloadPolicy'])->name('download.policy');
 
 Route::resource('sops', SopController::class);
+Route::get('/sop', [SopController::class, 'sops'])->name('sops.show');
 
 Route::group(['middleware'=> 'auth'], function ()
 {
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-// Route::get('/next-of-kins', [AuthController::class, 'nextOfKins'])->name('auth.next_of_kins');
 Route::get('/departments', [DepartmentController::class, 'index']);
-// Route::get('/next_of_kins', [UserAdditionalInfoController::class, 'next_of_kins'])->name('next_of_kins');
-// Route::post('/nextOfKins', [UserAdditionalInfoController::class, 'addNextOfKins'])->name('nextOfKins.addNextOfKins');
-
-// Route::get('/profile', [UserAdditionalInfoController::class, 'profile'])->name('profile')->middleware('auth');
-
 
 
 Route::get('/family-details', [UserFamilyDetailsController::class, 'index'])->name('family-details.index');
@@ -107,10 +104,9 @@ Route::post('/signature', [SignatureController::class, 'store']);
 Route::post('/save-signature', [SignatureController::class, 'store'])->name('signature.store');
 Route::get('/signature', [SignatureController::class, 'index'])->name('signature.index');
 
-// Route::post('family-details', UserFamilyDetailsController::class);
-// Route::post('/healthDetails', [UserFamilyDetailsController::class, 'addHealthData'])->name('healthDetails.addHealthData');
-// Route::post('/languageData', [UserFamilyDetailsController::class, 'addLanguage'])->name('languageData.addLanguage');
-// Route::post('/ccbrtRelation', [UserFamilyDetailsController::class, 'addRelation'])->name('ccbrtRelation.addRelation');
+Route::get('/signature/{id}/edit', [SignatureController::class, 'edit'])->name('signature.edit');
+Route::delete('/signature/{id}', [SignatureController::class, 'destroy'])->name('signature.destroy');
+Route::get('/all-users-signatures', [SignatureController::class, 'showUsersWithSignatures'])->name('users.signatures');
 
 
 Route::resource('/profile', ProfileController::class);
@@ -140,6 +136,7 @@ Route::post('hslb/hr-confirm/{id}', [HslbController::class, 'hrConfirm'])->name(
 
 Route::get('/users', [AuthController::class, 'getAllUser'])->name('users.index');
 Route::get('/employees', [AuthController::class, 'userDetail'])->name('employee.index');
+Route::put('/employee/{id}', [AuthController::class, 'update'])->name('employee.update');
 
 //for user deatils
 Route::get('/employee/{id}', [AuthController::class, 'employee'])->name('employees_details.show');

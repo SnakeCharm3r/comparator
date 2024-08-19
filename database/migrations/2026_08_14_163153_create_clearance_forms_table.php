@@ -6,15 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('clearance_forms', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('userId');
+            $table->unsignedBigInteger('userId'); // Reference to the users table
+            $table->date('date');
             
+            // Define boolean fields with default values
             $table->boolean('id_card')->default(false);
             $table->boolean('name_tag')->default(false);
             $table->boolean('nhif_cards')->default(false);
@@ -28,7 +28,7 @@ return new class extends Migration
             $table->boolean('camera')->default(false);
             $table->boolean('uniforms')->default(false);
             $table->boolean('car_keys')->default(false);
-            $table->text('other_items')->nullable();
+            $table->text('other_items')->nullable(); // Allows null values
             
             $table->boolean('repaid_advance')->default(false);
             $table->boolean('informed_finance')->default(false);
@@ -42,8 +42,9 @@ return new class extends Migration
             $table->boolean('openclinic_account_disabled')->default(false);
             $table->boolean('sap_account_disabled')->default(false);
             $table->boolean('aruti_account_disabled')->default(false);
+
+            // Foreign key constraint
             $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
-            
             $table->timestamps();
         });
     }

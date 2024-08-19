@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Policy;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 use Illuminate\Support\Facades\Auth;
 
 class PolicyController extends Controller
@@ -68,4 +70,31 @@ class PolicyController extends Controller
         $request->user()->update(['accepted_policies' => true]);
         return redirect()->route('home');
     }
+
+
+
+    public function downloadPolicy(Request $request)
+    {
+        // Validate the request
+        $request->validate([
+            'policy_id' => 'required|integer|exists:policies,id',
+        ]);
+    
+        // Find the policy
+        $policy = Policy::findOrFail($request->input('policy_id'));
+    
+        // Get the authenticated user
+        $user = auth()->user();
+    
+        // Generate PDF
+        $pdf = PDF::loadView('pdf.index', [
+            'policy' => $policy,
+            'user' => $user,
+        ]);
+    
+        // Download PDF
+        return $pdf->download($policy->title . '.pdf');
+    }
+    
+    
 }

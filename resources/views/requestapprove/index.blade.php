@@ -42,7 +42,7 @@
                                             <td>{{ $i }}</td>
                                             @if ($pending->ict_request_resource_id)
                                                 <td>ICT Access Form</td>
-                                                <td>{{ $pending->requester_name  }}</td>
+                                                <td>{{ $pending->requester_name }}</td>
                                                 <td>{{ $pending->attend_date }}</td>
                                                 <td>
                                                     @if ($pending->status == 0)
@@ -79,8 +79,6 @@
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.datatables.net/2.1.2/js/jquery.dataTables.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function() {

@@ -31,7 +31,7 @@
                                                     @if ($user->profile_picture)
                                                         <img src="{{ asset('storage/' . $user->profile_picture) }}"
                                                             alt="Profile Picture" class="img-fluid rounded-circle"
-                                                            style="max-width: 140px; height: 140px; border: 2px solid #ccc; padding: 5px; object-fit: cover;">
+                                                            style="max-width: 140px; height: 140px; padding: 5px; object-fit: cover;">
                                                         <a href="{{ asset('storage/' . $user->profile_picture) }}" download
                                                             class="btn btn-primary"
                                                             style="position: absolute; bottom: 10px; right: 10px; padding: 5px 10px;">
@@ -40,7 +40,7 @@
                                                     @else
                                                         <img src="{{ asset('assets/img/icon.png') }}"
                                                             alt="Default User Icon" class="img-fluid rounded-circle"
-                                                            style="max-width: 140px; height: 140px; border: 1px solid #ccc; padding: 1px; object-fit: cover;">
+                                                            style="max-width: 140px; height: 140px; padding: 1px; object-fit: cover;">
                                                     @endif
                                                 </div>
 
@@ -54,8 +54,7 @@
                                         </div>
                                     </div>
                                     <ul class="nav nav-tabs">
-                                        <li class="nav-item"><a href="{{ route('profile.index') }}"
-                                                class="active nav-link">User Info</a></li>
+                                        <li class="nav-item"><a href="#" class="active nav-link">User Info</a></li>
                                     </ul>
                                     <br>
                                     <div class="row">
@@ -88,6 +87,7 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
+
                                             <!-- Edit Modal -->
                                             <div class="modal fade" id="editModal" tabindex="-1"
                                                 aria-labelledby="editModalLabel" aria-hidden="true">
@@ -107,7 +107,7 @@
                                                                     <label for="dept_name"
                                                                         class="form-label">Department</label>
                                                                     <input type="text" class="form-control"
-                                                                        id="dept_name" name="dept_name">
+                                                                        id="dept_name" name="department">
                                                                 </div>
                                                                 <div class="mb-3">
                                                                     <label for="job_title" class="form-label">Job
@@ -142,6 +142,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+
                                             <!-- Include Bootstrap JS and Popper.js -->
                                             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
                                             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
@@ -151,15 +153,21 @@
                                                     fetch(`/employee/${userId}`)
                                                         .then(response => response.json())
                                                         .then(data => {
-                                                            // Populate the form fields with user data
-                                                            document.getElementById('dept_name').value = data.department.dept_name;
+                                                            console.log('Fetched user data:', data); // For debugging
+
+                                                            // Populate the form with fetched data
+                                                            document.getElementById('dept_name').value = data.department;
                                                             document.getElementById('job_title').value = data.job_title;
                                                             document.getElementById('ccb_code').value = data.ccb_code;
                                                             document.getElementById('professional_reg_number').value = data.professional_reg_number;
                                                             document.getElementById('nssf_no').value = data.nssf_no;
 
-                                                            // Set form action URL
+                                                            // Set the form action to the correct URL
                                                             document.getElementById('editForm').action = `/employee/${userId}`;
+
+                                                            // Show the modal
+                                                            var editModal = new bootstrap.Modal(document.getElementById('editModal'));
+                                                            editModal.show();
                                                         })
                                                         .catch(error => console.error('Error fetching user data:', error));
                                                 }
@@ -228,98 +236,73 @@
                                                                     disabled>Back</button>
                                                                 <button id="next-policy" class="btn btn-primary"
                                                                     {{ $policies->count() > 1 ? '' : 'disabled' }}>Next</button>
-                                                                <button id="download-policy" class="btn btn-success"
-                                                                    onclick="downloadPolicy()"
-                                                                    {{ $policies->isEmpty() ? 'disabled' : '' }}
+
+                                                                <!-- Form to handle the download -->
+                                                                <form method="GET"
+                                                                    action="{{ route('download.policy') }}"
                                                                     style="float: right;">
-                                                                    <i class="fas fa-download"></i>
-                                                                </button>
-
-
+                                                                    <input type="hidden" name="policy_id"
+                                                                        value="{{ $policies[0]->id }}">
+                                                                    <button type="submit" class="btn btn-success"
+                                                                        {{ $policies->isEmpty() ? 'disabled' : '' }}>
+                                                                        <i class="fas fa-download"></i>
+                                                                    </button>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <script>
-                                                    document.addEventListener('DOMContentLoaded', function() {
-                                                        let currentPolicyIndex = 0;
-                                                        const policies = @json($policies);
-                                                        const totalPolicies = policies.length;
-                                                        const prevButton = document.getElementById('prev-policy');
-                                                        const nextButton = document.getElementById('next-policy');
-                                                        const downloadButton = document.getElementById('download-policy');
-                                                        const policyContainer = document.getElementById('policy-container');
-
-                                                        function updatePolicy() {
-                                                            if (totalPolicies > 0) {
-                                                                const policy = policies[currentPolicyIndex];
-                                                                policyContainer.innerHTML = `
-                                                                    <table class="table table-bordered">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td colspan="2">
-                                                                                    <img src="{{ asset('assets/img/ccbrt.JPG') }}" alt="CCBRT Logo" style="height: 50px;">
-                                                                                    <strong>${currentPolicyIndex + 1}. ${policy.title}</strong>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td colspan="2">
-                                                                                    ${policy.content}
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                    <div class="mt-4">
-                                                                        <p>
-                                                                            <strong>Names:</strong>
-                                                                            <span style="text-decoration: underline; margin-right: 20px;">
-                                                                                {{ $user->fname }} {{ $user->lname }}
-                                                                            </span>
-                                                                            <strong>Signature:</strong>
-                                                                            @if ($user->signature)
-                                                                                <img src="data:image/png;base64,{{ $user->signature }}" alt="User Signature" style="max-width: 40%; height: auto; margin-right: 20px;">
-                                                                            @else
-                                                                                <span style="text-decoration: underline; margin-right: 20px;">______________________________</span>
-                                                                            @endif
-                                                                            <strong>Date:</strong>
-                                                                            <span style="text-decoration: underline;">
-                                                                                {{ $user->created_at->format('d-m-Y') }}
-                                                                            </span>
-                                                                        </p>
-                                                                    </div>
-                                                                `;
-
-                                                                prevButton.disabled = currentPolicyIndex === 0;
-                                                                nextButton.disabled = currentPolicyIndex === totalPolicies - 1;
-                                                            }
-                                                        }
-
-                                                        function downloadPolicy() {
-                                                            const policy = policies[currentPolicyIndex];
-                                                            const url = `{{ url('/download-policy') }}?policy_id=${policy.id}`;
-                                                            window.location.href = url;
-                                                        }
-
-                                                        prevButton.addEventListener('click', function() {
-                                                            if (currentPolicyIndex > 0) {
-                                                                currentPolicyIndex--;
-                                                                updatePolicy();
-                                                            }
-                                                        });
-
-                                                        nextButton.addEventListener('click', function() {
-                                                            if (currentPolicyIndex < totalPolicies - 1) {
-                                                                currentPolicyIndex++;
-                                                                updatePolicy();
-                                                            }
-                                                        });
-
-                                                        updatePolicy(); // Initialize with the first policy
-                                                    });
-                                                </script>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            let currentPolicyIndex = 0;
+                                            const policies = @json($policies); // Pass PHP variable to JavaScript
+                                            const totalPolicies = policies.length;
+
+                                            function updatePolicy(index) {
+                                                if (totalPolicies > 0) {
+                                                    document.getElementById('policy-title').textContent = policies[index].title;
+                                                    document.querySelector('#policy-container table tbody').innerHTML = `
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            <img src="{{ asset('assets/img/ccbrt.JPG') }}" alt="CCBRT Logo" style="height: 50px;">
+                                                            <strong id="policy-title">${policies[index].title}</strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">${policies[index].content}</td>
+                                                    </tr>
+                                                `;
+                                                    document.querySelector('input[name="policy_id"]').value = policies[index].id;
+
+                                                    document.getElementById('prev-policy').disabled = (index === 0);
+                                                    document.getElementById('next-policy').disabled = (index === totalPolicies - 1);
+                                                }
+                                            }
+
+                                            document.getElementById('prev-policy').addEventListener('click', function() {
+                                                if (currentPolicyIndex > 0) {
+                                                    currentPolicyIndex--;
+                                                    updatePolicy(currentPolicyIndex);
+                                                }
+                                            });
+
+                                            document.getElementById('next-policy').addEventListener('click', function() {
+                                                if (currentPolicyIndex < totalPolicies - 1) {
+                                                    currentPolicyIndex++;
+                                                    updatePolicy(currentPolicyIndex);
+                                                }
+                                            });
+
+                                            // Initialize the display with the first policy
+                                            updatePolicy(currentPolicyIndex);
+                                        });
+                                    </script>
+
+
 
                                 </div>
                             </div>

@@ -5,6 +5,8 @@ use App\Models\User;
 
 use App\Models\Policy;
 use Illuminate\Http\Request;
+use App\Models\HealthDetails;
+use App\Models\LanguageKnowledge;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -15,6 +17,19 @@ class DashboardController extends Controller
         // Logic to fetch and pass data based on roles and permissions
         $policies = Policy::all();
         $user = Auth::user();
+        $totalUsers = \App\Models\User::count();
+        $healthDetails = HealthDetails::join('users', 'health_details.userId', '=', 'users.id')
+        ->where('health_details.userId', Auth::user()->id)
+        ->select('health_details.*', 'users.*')
+        ->get();
+
+        $languageData = LanguageKnowledge::join('users', 'language_knowledge.userId', '=', 'users.id')
+        ->where('language_knowledge.userId', Auth::user()->id)
+        ->select('language_knowledge.*', 'users.*')
+        ->get();
+    
+
+
        
         $data = [];
 
@@ -42,8 +57,9 @@ class DashboardController extends Controller
             $data['admin_content'] = 'Content for super admin';
         }
 
-        return view('dashboard', compact('data','policies','user'));
+        return view('dashboard', compact('data','policies','user','healthDetails','languageData','totalUsers'));
     }
+    
     public function dashboard()
     {
         $showAlert = false;
@@ -58,12 +74,16 @@ class DashboardController extends Controller
                 $showAlert = true;
             }
         }
+
+        // Check if the signature is empty
+        $signature = !empty($user->signature);
     
         // Debugging statement
         \Log::info('Show Alert: ' . ($showAlert ? 'true' : 'false'));
     
-        return view('dashboard', compact('showAlert'));
+        return view('dashboard', compact('showAlert','hasSignature'));
     }
+    
     
 
 
