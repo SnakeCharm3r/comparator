@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\ClearanceForm;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
 class ClearanceFormController extends Controller
@@ -13,9 +14,10 @@ class ClearanceFormController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   $user = Auth::user();
+    {
+        $user = Auth::user();
         $forms = ClearanceForm::with('user')->get();
-        return view('clearance.index', compact('forms','user'));
+        return view('clearance.index', compact('forms', 'user'));
     }
 
     /**
@@ -26,10 +28,12 @@ class ClearanceFormController extends Controller
         return view('clearance.create');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
-        // Validate the incoming request data
-        $validator =Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'date' => 'required|date',
             'id_card' => 'nullable|boolean',
             'name_tag' => 'nullable|boolean',
@@ -56,16 +60,16 @@ class ClearanceFormController extends Controller
             'sap_account_disabled' => 'nullable|boolean',
             'aruti_account_disabled' => 'nullable|boolean',
         ]);
-        if($validator->fails()){
+    
+        if ($validator->fails()) {
             return response()->json([
                 'status' => 400,
                 'error' => $validator->errors()
             ]);
         }
-dd($validator);
-        // Create a new clearance form record
+
         $clearanceForm = new ClearanceForm([
-            'userId' => Auth::id(),
+            'userId' => Auth::id(), // Ensure the user_id is set
             'date' => $request->input('date'),
             'id_card' => $request->input('id_card', false),
             'name_tag' => $request->input('name_tag', false),
@@ -92,13 +96,12 @@ dd($validator);
             'sap_account_disabled' => $request->input('sap_account_disabled', false),
             'aruti_account_disabled' => $request->input('aruti_account_disabled', false),
         ]);
-
-        // Save the record to the database
+        //dd($clearanceForm);
         $clearanceForm->save();
-
-        // Redirect back with a success message
+        Alert::success('Exist Form Submitted Successfully', 'Exist Form Request Added');
         return redirect()->route('clearance.index')->with('success', 'Clearance form submitted successfully.');
     }
+    
 
     /**
      * Display the specified resource.
@@ -108,30 +111,62 @@ dd($validator);
         return view('clearance.show', compact('clearanceForm'));
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     */
     public function edit(ClearanceForm $clearanceForm)
     {
-        $users = User::all();
-        return view('clearance.edit', compact('clearanceForm', 'users'));
+        return view('clearance.edit', compact('clearanceForm'));
     }
 
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, ClearanceForm $clearanceForm)
     {
         $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'staff_signature' => 'required|string|max:255',
-            'staff_signature_date' => 'required|date',
-            // Add validation for other fields as needed
+            'date' => 'required|date',
+            'id_card' => 'nullable|boolean',
+            'name_tag' => 'nullable|boolean',
+            'nhif_cards' => 'nullable|boolean',
+            'bonding_agreement' => 'nullable|boolean',
+            'work_permit' => 'nullable|boolean',
+            'residence_permit' => 'nullable|boolean',
+            'changing_room_keys' => 'nullable|boolean',
+            'office_keys' => 'nullable|boolean',
+            'mobile_phone' => 'nullable|boolean',
+            'camera' => 'nullable|boolean',
+            'uniforms' => 'nullable|boolean',
+            'car_keys' => 'nullable|boolean',
+            'other_items' => 'nullable|string',
+            'repaid_advance' => 'nullable|boolean',
+            'informed_finance' => 'nullable|boolean',
+            'repaid_imprest' => 'nullable|boolean',
+            'laptop_returned' => 'nullable|boolean',
+            'access_card_returned' => 'nullable|boolean',
+            'domain_account_disabled' => 'nullable|boolean',
+            'email_account_disabled' => 'nullable|boolean',
+            'telephone_pin_disabled' => 'nullable|boolean',
+            'openclinic_account_disabled' => 'nullable|boolean',
+            'sap_account_disabled' => 'nullable|boolean',
+            'aruti_account_disabled' => 'nullable|boolean',
         ]);
 
+        // Update the clearance form record
         $clearanceForm->update($request->all());
 
+        // Redirect back with a success message
         return redirect()->route('clearance.index')->with('success', 'Form updated successfully.');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy(ClearanceForm $clearanceForm)
     {
         $clearanceForm->delete();
 
+        // Redirect back with a success message
         return redirect()->route('clearance.index')->with('success', 'Form deleted successfully.');
     }
 }

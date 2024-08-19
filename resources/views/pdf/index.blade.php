@@ -1,65 +1,52 @@
-@extends('layouts.template')
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
 
-@section('breadcrumb')
-    @include('sweetalert::alert')
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-    <div class="page-wrapper">
-        <div class="content container-fluid">
-            <div class="page-header">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="page-sub-header">
-                            <h3 class="page-title">Download Policy</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    .content {
+        margin: 20px 0;
+    }
 
-            <style>
-                body {
-                    font-family: Arial, sans-serif;
-                }
+    .signature {
+        margin-top: 30px;
+    }
+</style>
 
-                .header {
-                    text-align: center;
-                    margin-bottom: 20px;
-                }
+<div class="header">
+    {{-- <img src="{{ asset('assets/img/ccbrt.JPG') }}" alt="CCBRT Logo" style="height: 50px;"> --}}
+    <h2>{{ $policy->title }}</h2>
+</div>
 
-                .content {
-                    margin: 20px 0;
-                }
+<div class="content">
+    {!! $policy->content !!}
+</div>
 
-                .signature {
-                    margin-top: 30px;
-                }
-            </style>
-
-            <div class="header">
-                <img src="{{ asset('assets/img/ccbrt.JPG') }}" alt="CCBRT Logo" style="height: 50px;">
-                <h2>{{ $policy->title }}</h2>
-            </div>
-            <div class="content">
-                {!! $policy->content !!}
-            </div>
-            <div class="signature">
-                {{-- <p><strong>Names:</strong> {{ $user->fname }} {{ $user->lname }}</p> --}}
-                <p><strong>Signature:</strong></p>
-                {{-- @if ($user->signature)
-        <img src="data:image/png;base64,{{ $user->signature }}" alt="User Signature" style="max-width: 40%; height: auto;">
+<div class="signature">
+    <p><strong>Names:</strong> {{ $user->fname }} {{ $user->lname }}</p>
+    <p><strong>Signature:</strong></p>
+    @if ($user->signature)
+        {{-- <img src="data:image/png;base64,{{ $user->signature }}" alt="User Signature" style="max-width: 40%; height: auto;"> --}}
     @else
         <p>______________________________</p>
     @endif
-    <p><strong>Date:</strong> {{ now()->format('d-m-Y') }}</p> --}}
-            </div>
+    <p><strong>Date:</strong> {{ now()->format('d-m-Y') }}</p>
+</div>
 
-            <script>
-                function downloadPolicy() {
-                    const policy = policies[currentPolicyIndex];
-                    const url = `{{ route('download.policy') }}?policy_id=${policy.id}`;
-                    window.location.href = url;
-                }
-            </script>
+</div>
 
-        </div>
-    </div>
-@endsection
+<script>
+    function downloadPolicy() {
+        const policy = policies[currentPolicyIndex];
+        const url = `{{ route('download.policy') }}?policy_id=${policy.id}`;
+        window.location.href = url;
+    }
+</script>
+
+{{-- </div>
+    </div> --}}
+{{-- @endsection --}}

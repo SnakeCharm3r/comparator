@@ -15,33 +15,62 @@
                 </div>
             </div>
             <style>
-                #signature-pad {
-                    border: 2px solid hsl(0, 0%, 0%);
-                    border-radius: 5px;
-                    max-width: 100%;
-                    height: 60px;
+                .signature-container {
+                    max-width: 600px;
                     margin: 0 auto;
-                    display: block;
+                }
+
+                #signature-pad {
+                    border: 2px solid #ccc;
+                    border-radius: 10px;
+                    width: 100%;
+                    height: 200px;
+                    margin-top: 10px;
+                }
+
+                .signature-actions {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 20px;
+                }
+
+                .signature-actions button {
+                    width: 48%;
+                }
+
+                .signature-title {
+                    font-size: 18px;
+                    margin-bottom: 5px;
+                    color: #333;
+                    text-align: center;
+                }
+
+                .signature-note {
+                    text-align: center;
+                    font-size: 14px;
+                    color: #666;
+                    margin-bottom: 15px;
                 }
             </style>
 
-
-            <div class="container mt-5">
-                <h2>Capture Signature</h2>
+            <div class="container signature-container mt-5">
+                <h2 class="signature-title">Please Sign Below</h2>
+                <p class="signature-note">Use your mouse or touch screen to provide your signature.</p>
                 <div class="row">
                     <div class="col-md-12">
                         <canvas id="signature-pad" class="signature-pad"></canvas>
                     </div>
-                    <div class="col-md-12 mt-3">
-                        <form id="signature-form" action="{{ route('signature.store') }}" method="POST">
-                            @csrf
-                            <input type="hidden" id="signature-input" name="signature">
-                            <button type="button" id="clear" class="btn btn-danger">Clear</button>
-                            <button type="submit" id="save" class="btn btn-primary">Save</button>
-                        </form>
+                    <div class="col-md-12 signature-actions">
+                        <button type="button" id="clear" class="btn btn-outline-danger">Clear</button>
+                        <button type="submit" id="save" class="btn btn-primary">Save Signature</button>
                     </div>
                 </div>
+                <form id="signature-form" action="{{ route('signature.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" id="signature-input" name="signature">
+                </form>
             </div>
+
             <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
             <script>
                 const clearButton = document.getElementById('clear');
@@ -50,9 +79,9 @@
                 const signatureInput = document.getElementById('signature-input');
                 const canvas = document.getElementById('signature-pad');
                 const signaturePad = new SignaturePad(canvas, {
-                    penColor: 'rgb(0, 0, 255)' // Set pen color
+                    penColor: 'rgb(0, 0, 255)' // Set pen color to blue
                 });
-
+            
                 // Resize canvas to fit its container
                 function resizeCanvas() {
                     const ratio = Math.max(window.devicePixelRatio || 1, 1);
@@ -61,24 +90,21 @@
                     canvas.getContext('2d').scale(ratio, ratio);
                     signaturePad.clear(); // otherwise isEmpty() might return incorrect value
                 }
-
+            
                 window.addEventListener('resize', resizeCanvas);
                 resizeCanvas();
-
+            
                 clearButton.addEventListener('click', () => {
                     signaturePad.clear();
                 });
-
+            
                 saveButton.addEventListener('click', () => {
                     if (signaturePad.isEmpty()) {
                         alert('Please provide a signature first.');
                         return;
                     }
-
-                    // Get the signature as a data URL
+            
                     const dataURL = signaturePad.toDataURL('image/png');
-
-                    // Create an offscreen canvas to crop the image
                     const img = new Image();
                     img.src = dataURL;
                     img.onload = function() {
@@ -86,22 +112,21 @@
                         const imgHeight = img.height;
                         const offscreenCanvas = document.createElement('canvas');
                         const offscreenCtx = offscreenCanvas.getContext('2d');
-
+            
                         offscreenCanvas.width = imgWidth;
                         offscreenCanvas.height = imgHeight;
                         offscreenCtx.drawImage(img, 0, 0);
-
-                        // Determine the bounding box of the signature
+            
                         const boundingBox = {
                             left: imgWidth,
                             top: imgHeight,
                             right: 0,
                             bottom: 0
                         };
-
+            
                         const imgData = offscreenCtx.getImageData(0, 0, imgWidth, imgHeight);
                         const data = imgData.data;
-
+            
                         for (let y = 0; y < imgHeight; y++) {
                             for (let x = 0; x < imgWidth; x++) {
                                 const index = (y * imgWidth + x) * 4;
@@ -113,8 +138,7 @@
                                 }
                             }
                         }
-
-                        // Crop the image to the bounding box
+            
                         const {
                             left,
                             top,
@@ -123,7 +147,7 @@
                         } = boundingBox;
                         const width = right - left;
                         const height = bottom - top;
-
+            
                         const croppedCanvas = document.createElement('canvas');
                         const croppedCtx = croppedCanvas.getContext('2d');
                         croppedCanvas.width = width;
@@ -133,14 +157,13 @@
                             left, top, width, height, // Source rectangle
                             0, 0, width, height // Destination rectangle
                         );
-
+            
                         const croppedDataURL = croppedCanvas.toDataURL('image/png');
                         signatureInput.value = croppedDataURL;
-                        // Submit the form
                         signatureForm.submit();
                     };
                 });
-
+            
                 // Add touch event support for mobile devices
                 canvas.addEventListener('touchstart', (event) => {
                     const touch = event.touches[0];
@@ -150,7 +173,7 @@
                     });
                     canvas.dispatchEvent(mouseEvent);
                 }, false);
-
+            
                 canvas.addEventListener('touchmove', (event) => {
                     const touch = event.touches[0];
                     const mouseEvent = new MouseEvent('mousemove', {
@@ -159,14 +182,13 @@
                     });
                     canvas.dispatchEvent(mouseEvent);
                 }, false);
-
+            
                 canvas.addEventListener('touchend', (event) => {
                     const mouseEvent = new MouseEvent('mouseup', {});
                     canvas.dispatchEvent(mouseEvent);
                 }, false);
             </script>
-
-
+            
         </div>
     </div>
 @endsection

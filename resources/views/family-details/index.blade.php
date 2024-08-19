@@ -104,6 +104,15 @@
                                                                             name="familyData[0][occupation]"
                                                                             value="{{ old('familyData.0.occupation') }}">
                                                                     </div>
+
+
+                                                                    <div class="form-group">
+                                                                        <label>Next of Kin</label>
+                                                                        <input type="checkbox"
+                                                                            name="familyData[0][next_of_kin]" value="1"
+                                                                            {{ old('familyData.0.next_of_kin') ? 'checked' : '' }}>
+                                                                    </div>
+
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary"
@@ -117,8 +126,9 @@
                                                 </div>
 
                                                 <!-- Modal for editing family data -->
-                                                <div class="modal fade" id="editFamilyModal" tabindex="-1" role="dialog"
-                                                    aria-labelledby="editFamilyModalLabel" aria-hidden="true">
+                                                <div class="modal fade" id="editFamilyModal" tabindex="-1"
+                                                    role="dialog" aria-labelledby="editFamilyModalLabel"
+                                                    aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <form method="POST" id="editFamilyForm" action="">
@@ -163,6 +173,14 @@
                                                                             id="edit_occupation" name="occupation"
                                                                             value="">
                                                                     </div>
+
+                                                                    <div class="form-group">
+                                                                        <label>Next of Kin</label>
+                                                                        <input type="checkbox"
+                                                                            name="familyData[0][next_of_kin]" value="1"
+                                                                            {{ old('familyData.0.next_of_kin') ? 'checked' : '' }}>
+                                                                    </div>
+
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary"
@@ -186,6 +204,7 @@
                                                                 <th>Mobile</th>
                                                                 <th>Date of Birth</th>
                                                                 <th>Occupation</th>
+                                                                <th>Next of Kin</th>
                                                                 <th>Action</th>
                                                             </tr>
                                                         </thead>
@@ -197,6 +216,7 @@
                                                                     <td>{{ $detail->phone_number }}</td>
                                                                     <td>{{ $detail->DOB }}</td>
                                                                     <td>{{ $detail->occupation }}</td>
+                                                                    <td>{{ $detail->next_of_kin ? 'Yes' : 'No' }}</td>
                                                                     <td>
                                                                         <button type="button"
                                                                             class="btn btn-sm p-0 edit-family-btn"
@@ -208,6 +228,7 @@
                                                                             data-relationship="{{ $detail->relationship }}"
                                                                             data-phone_number="{{ $detail->phone_number }}"
                                                                             data-dob="{{ $detail->DOB }}"
+                                                                            data-next_of_kin="{{ $detail->next_of_kin }}"
                                                                             data-occupation="{{ $detail->occupation }}">
                                                                             <i class="fas fa-edit text-primary"></i>
                                                                         </button>
@@ -273,6 +294,7 @@
             var relationship = $(this).data('relationship');
             var phone_number = $(this).data('phone_number');
             var dob = $(this).data('dob');
+            var next_of_kin = $(this).data('next_of_kin');
             var occupation = $(this).data('occupation');
 
             // Set the form action to the appropriate route
@@ -283,6 +305,7 @@
             $('#edit_relationship').val(relationship);
             $('#edit_phone_number').val(phone_number);
             $('#edit_DOB').val(dob);
+            $('#edit_next_of_kin').val(next_of_kin);
             $('#edit_occupation').val(occupation);
         });
     </script>

@@ -128,7 +128,7 @@ class PrivilegeLevelController extends Controller
     $priv->update([
         'delete_status' => 1
     ]);
-
+    Alert::success('Delete successful','Delete successful');
     return redirect()->route('privilege.index')->with('success', 'Privilege deleted successfully.');
     }
 }

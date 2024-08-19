@@ -28,6 +28,8 @@ class UserFamilyDetailsController extends Controller
           'familyData.*.DOB' => 'required|date',
           'familyData.*.phone_number' => 'nullable|string',
           'familyData.*.occupation' => 'nullable|string',
+          'familyData.*.next_of_kin' => 'nullable|boolean', 
+          
       ]);
 
       $user = Auth::user();
@@ -40,6 +42,7 @@ class UserFamilyDetailsController extends Controller
           $familyDetail->DOB = $data['DOB'];
           $familyDetail->phone_number = $data['phone_number'];
           $familyDetail->occupation = $data['occupation'];
+          $familyDetail->next_of_kin = isset($data['next_of_kin']) ? (bool) $data['next_of_kin'] : false;
           $familyDetail->save();
       }
       Alert::success('Successful', 'Family details added successfully');
@@ -65,6 +68,7 @@ class UserFamilyDetailsController extends Controller
             'DOB' => 'required|date',
             'phone_number' => 'nullable|string',
             'occupation' => 'nullable|string',
+            'next_of_kin' => 'nullable|boolean',
         ]);
         // dd(1234);
         $familyDetail = UserFamilyDetails::findOrFail($id);
@@ -73,6 +77,7 @@ class UserFamilyDetailsController extends Controller
         $familyDetail->DOB = $request->input('DOB');
         $familyDetail->phone_number = $request->input('phone_number');
         $familyDetail->occupation = $request->input('occupation');
+        $familyDetail->next_of_kin = (bool) $request->input('next_of_kin');
         $familyDetail->save();
         Alert::success('Successful', 'Family details edited successfully');
         return redirect()->route('family-details.index')->with('success', 'Family details updated successfully.');

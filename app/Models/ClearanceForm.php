@@ -11,6 +11,7 @@ class ClearanceForm extends Model
 
     protected $fillable = [
         'userId', 
+        'date', 
         'id_card', 
         'name_tag', 
         'nhif_cards', 
@@ -34,12 +35,12 @@ class ClearanceForm extends Model
         'telephone_pin_disabled', 
         'openclinic_account_disabled', 
         'sap_account_disabled', 
-        'aruti_account_disabled', 
+        'aruti_account_disabled',
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'userId');
     }
 }
 

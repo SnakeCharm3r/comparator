@@ -92,6 +92,7 @@
                                                                         </option>
                                                                     @endforeach
                                                                 </select>
+
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Position</label>
@@ -189,7 +190,7 @@
                                                                     <tr>
                                                                         <td>{{ $relation->names }}</td>
                                                                         <td>{{ $relation->relation }}</td>
-                                                                        <td>{{ $relation->department}}</td>
+                                                                        <td>{{ $relation->department }}</td>
                                                                         <td>{{ $relation->position }}</td>
                                                                         <td>
                                                                             <!-- Edit button -->

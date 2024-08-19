@@ -50,6 +50,36 @@ $policies = Policy::all();
 }
 
 
+// public function update(Request $request, $id)
+// {
+//     // Validate the incoming data
+//     $request->validate([
+//         'department' => 'required|string|max:255',
+//         'job_title' => 'required|string|max:255',
+//         'ccb_code' => 'required|string|max:255',
+//         'professional_reg_number' => 'required|string|max:255',
+//         'nssf_no' => 'required|string|max:255',
+//     ]);
+
+//     // Find the user by ID
+//     $user = User::findOrFail($id);
+
+//     // Update the user details
+//     $user->update([
+//         'department' => $request->input('department'),
+//         'job_title' => $request->input('job_title'),
+//         'ccb_code' => $request->input('ccb_code'),
+//         'professional_reg_number' => $request->input('professional_reg_number'),
+//         'nssf_no' => $request->input('nssf_no'),
+//     ]);
+
+//     // Redirect with a success message
+//     return redirect()->route('employees_details.show', $id)->with('success', 'User details updated successfully.');
+// }
+
+
+
+
 public function update(Request $request, $id)
 {
     // Validate the incoming data
@@ -73,9 +103,13 @@ public function update(Request $request, $id)
         'nssf_no' => $request->input('nssf_no'),
     ]);
 
-    // Redirect with a success message
-    return redirect()->route('employees_details.show', $id)->with('success', 'User details updated successfully.');
+    // Return a JSON response for AJAX
+    return response()->json([
+        'success' => true,
+        'message' => 'User details updated successfully.',
+    ]);
 }
+
 
     public function userDetail(){
 
@@ -86,6 +120,10 @@ public function update(Request $request, $id)
             // dd($users);
         return view('employees_details.index', compact('users'));
     }
+
+
+
+
 
     // find user by ID
     public function getUserById($id) {
@@ -176,9 +214,9 @@ public function update(Request $request, $id)
         ]);
             // Example of assigning role
             $user->assignRole('requester');
-            Alert::success('User Registered Successful','Please login');
-         return redirect()->route('dashboard')->with(
-            'success', 'User registered successfully. Please login.');
+            Auth::login($user);
+            Alert::success('User Registered Successful','Please Provide Your Signature');
+         return redirect()->route('dashboard');
 }
 
    //Function shows edit user form
