@@ -144,6 +144,26 @@
                     </ul>
                 </li>
 
+
+                <li
+                    class="treeview {{ request()->routeIs('vendors.index') || request()->routeIs('vendors.create') || request()->routeIs('vendors.show') || request()->routeIs('vendors.edit') ? 'active' : '' }}">
+                    <a href="#">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Vendor Management</span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul
+                        style="{{ request()->routeIs('vendors.index') || request()->routeIs('vendors.create') || request()->routeIs('vendors.show') || request()->routeIs('vendors.edit') ? 'display: block;' : '' }}">
+                        <li>
+                            <a href="{{ route('vendors.index') }}"
+                                class="{{ request()->routeIs('vendors.index') ? 'active' : '' }}">
+                                <span>Vendor List</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
                 <!-- Category Management -->
                 <li class="treeview">
                     <a href="#">
