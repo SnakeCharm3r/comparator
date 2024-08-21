@@ -63,243 +63,301 @@
                                 <h4 class="section-title mb-4"
                                     style="background-color: #e9ecef; padding: 10px; border-radius: 3px;">Section II A:
                                     Collect the Following Items by Last Day of Work</h4>
-                                <div class="row mb-4">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label><strong>CCBRT Identification Card</strong></label>
-                                            <div>
+                                <table class="table mb-4">
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>CCBRT Identification Card</strong></td>
+                                            <td>
                                                 <label class="mr-4">
                                                     <input type="radio" name="ccbrt_id_card" value="Yes"> Yes
                                                 </label>
                                                 <label>
                                                     <input type="radio" name="ccbrt_id_card" value="N/A"> N/A
                                                 </label>
-                                            </div>
-
-                                        </div>
-                                        <div class="form-group">
-                                            <label><strong>CCBRT Name Tag</strong></label>
-                                            <div>
-                                                <label class="mr-4"><input type="radio" name="ccbrt_name_tag"
-                                                        value="Yes"> Yes</label>
-                                                <label><input type="radio" name="ccbrt_name_tag" value="N/A">
-                                                    N/A</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><strong>NHIF Cards (Including dependents’ cards)</strong></label>
-                                            <div>
-                                                <label class="mr-4"><input type="radio" name="nhif_cards"
-                                                        value="Yes"> Yes</label>
-                                                <label><input type="radio" name="nhif_cards" value="N/A"> N/A</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><strong>Work Permit Cancelled (for non-Tanzanian)</strong></label>
-                                            <div>
-                                                <label class="mr-4"><input type="radio" name="work_permit_cancelled"
-                                                        value="Yes"> Yes</label>
-                                                <label><input type="radio" name="work_permit_cancelled" value="N/A">
-                                                    N/A</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><strong>Residence Permit Cancelled (for non-Tanzanian)</strong></label>
-                                            <div>
-                                                <label class="mr-4"><input type="radio"
-                                                        name="residence_permit_cancelled" value="Yes"> Yes</label>
-                                                <label><input type="radio" name="residence_permit_cancelled"
-                                                        value="N/A"> N/A</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>CCBRT Name Tag</strong></td>
+                                            <td>
+                                                <label class="mr-4">
+                                                    <input type="radio" name="ccbrt_name_tag" value="Yes"> Yes
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="ccbrt_name_tag" value="N/A"> N/A
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>NHIF Cards (Including dependents’ cards)</strong></td>
+                                            <td>
+                                                <label class="mr-4">
+                                                    <input type="radio" name="nhif_cards" value="Yes"> Yes
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="nhif_cards" value="N/A"> N/A
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Work Permit Cancelled (for non-Tanzanian)</strong></td>
+                                            <td>
+                                                <label class="mr-4">
+                                                    <input type="radio" name="work_permit_cancelled" value="Yes"> Yes
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="work_permit_cancelled" value="N/A"> N/A
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Residence Permit Cancelled (for non-Tanzanian)</strong></td>
+                                            <td>
+                                                <label class="mr-4">
+                                                    <input type="radio" name="residence_permit_cancelled" value="Yes">
+                                                    Yes
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="residence_permit_cancelled" value="N/A">
+                                                    N/A
+                                                </label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
                                 <!-- Section II B: Finance Confirmation -->
                                 <h4 class="section-title mb-4"
                                     style="background-color: #e9ecef; padding: 10px; border-radius: 3px;">Section II B:
                                     Finance to Confirm</h4>
-                                <div class="row mb-4">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label><strong>Repaid advance on Salary?</strong></label>
-                                            <div>
-                                                <label class="mr-4"><input type="radio" name="repaid_salary_advance"
-                                                        value="Yes"> Yes</label>
-                                                <label><input type="radio" name="repaid_salary_advance" value="N/A">
-                                                    N/A</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><strong>Staff informed Finance of outstanding loan
-                                                    balances?</strong></label>
-                                            <div>
-                                                <label class="mr-4"><input type="radio" name="loan_balances_informed"
-                                                        value="Yes"> Yes</label>
-                                                <label><input type="radio" name="loan_balances_informed"
-                                                        value="N/A"> N/A</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><strong>Repaid any outstanding imprest?</strong></label>
-                                            <div>
-                                                <label class="mr-4"><input type="radio"
-                                                        name="repaid_outstanding_imprest" value="Yes"> Yes</label>
-                                                <label><input type="radio" name="repaid_outstanding_imprest"
-                                                        value="N/A"> N/A</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <table class="table mb-4">
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Repaid advance on Salary?</strong></td>
+                                            <td>
+                                                <label class="mr-4">
+                                                    <input type="radio" name="repaid_salary_advance" value="Yes"> Yes
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="repaid_salary_advance" value="N/A"> N/A
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Staff informed Finance of outstanding loan balances?</strong></td>
+                                            <td>
+                                                <label class="mr-4">
+                                                    <input type="radio" name="loan_balances_informed" value="Yes">
+                                                    Yes
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="loan_balances_informed" value="N/A">
+                                                    N/A
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Repaid any outstanding imprest?</strong></td>
+                                            <td>
+                                                <label class="mr-4">
+                                                    <input type="radio" name="repaid_outstanding_imprest"
+                                                        value="Yes"> Yes
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="repaid_outstanding_imprest"
+                                                        value="N/A"> N/A
+                                                </label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
                                 <!-- Section II C: Items Collection -->
                                 <h4 class="section-title mb-4"
                                     style="background-color: #e9ecef; padding: 10px; border-radius: 3px;">Section II C:
                                     Collect the Following Items by Last Day of Work</h4>
-                                <div class="row mb-4">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label><strong>Changing Room Keys</strong></label>
-                                            <div>
-                                                <label class="mr-4"><input type="radio" name="changing_room_keys"
-                                                        value="Yes"> Yes</label>
-                                                <label><input type="radio" name="changing_room_keys" value="N/A">
-                                                    N/A</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><strong>Office Keys</strong></label>
-                                            <div>
-                                                <label class="mr-4"><input type="radio" name="office_keys"
-                                                        value="Yes"> Yes</label>
-                                                <label><input type="radio" name="office_keys" value="N/A">
-                                                    N/A</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><strong>Mobile Phone</strong></label>
-                                            <div>
-                                                <label class="mr-4"><input type="radio" name="mobile_phone"
-                                                        value="Yes"> Yes</label>
-                                                <label><input type="radio" name="mobile_phone" value="N/A">
-                                                    N/A</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><strong>Camera</strong></label>
-                                            <div>
-                                                <label class="mr-4"><input type="radio" name="camera"
-                                                        value="Yes"> Yes</label>
-                                                <label><input type="radio" name="camera" value="N/A"> N/A</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><strong>CCBRT Uniforms</strong></label>
-                                            <div>
-                                                <label class="mr-4"><input type="radio" name="ccbrt_uniforms"
-                                                        value="Yes"> Yes</label>
-                                                <label><input type="radio" name="ccbrt_uniforms" value="N/A">
-                                                    N/A</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><strong>Office Car Keys</strong></label>
-                                            <div>
-                                                <label class="mr-4"><input type="radio" name="office_car_keys"
-                                                        value="Yes"> Yes</label>
-                                                <label><input type="radio" name="office_car_keys" value="N/A">
-                                                    N/A</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><strong>Any other CCBRT items given (Please specify)</strong></label>
-                                            <div>
+                                <table class="table mb-4">
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Changing Room Keys</strong></td>
+                                            <td>
+                                                <label class="mr-4">
+                                                    <input type="radio" name="changing_room_keys" value="Yes"> Yes
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="changing_room_keys" value="N/A"> N/A
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Office Keys</strong></td>
+                                            <td>
+                                                <label class="mr-4">
+                                                    <input type="radio" name="office_keys" value="Yes"> Yes
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="office_keys" value="N/A"> N/A
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Mobile Phone</strong></td>
+                                            <td>
+                                                <label class="mr-4">
+                                                    <input type="radio" name="mobile_phone" value="Yes"> Yes
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="mobile_phone" value="N/A"> N/A
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Camera</strong></td>
+                                            <td>
+                                                <label class="mr-4">
+                                                    <input type="radio" name="camera" value="Yes"> Yes
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="camera" value="N/A"> N/A
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>CCBRT Uniforms</strong></td>
+                                            <td>
+                                                <label class="mr-4">
+                                                    <input type="radio" name="ccbrt_uniforms" value="Yes"> Yes
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="ccbrt_uniforms" value="N/A"> N/A
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Office Car Keys</strong></td>
+                                            <td>
+                                                <label class="mr-4">
+                                                    <input type="radio" name="office_car_keys" value="Yes"> Yes
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="office_car_keys" value="N/A"> N/A
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Any other CCBRT items given (Please specify)</strong></td>
+                                            <td>
                                                 <input type="text" class="form-control" name="other_items">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
                                 <!-- Section III: ICT Checklist -->
                                 <h4 class="section-title mb-4"
                                     style="background-color: #e9ecef; padding: 10px; border-radius: 3px;">Section III: ICT
                                     Checklist</h4>
-                                <div class="row mb-4">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label><strong>Laptop/iPad & Accessories & Gate Pass Returned?</strong></label>
-                                            <div>
-                                                <label class="mr-4"><input type="radio" name="laptop_returned"
-                                                        value="Yes"> Yes</label>
-                                                <label><input type="radio" name="laptop_returned" value="No">
-                                                    No</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><strong>Access Card MW & Private Clinic Returned?</strong></label>
-                                            <div>
-                                                <label class="mr-4"><input type="radio" name="access_card_returned"
-                                                        value="Yes"> Yes</label>
-                                                <label><input type="radio" name="access_card_returned" value="No">
-                                                    No</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><strong>Domain Account Disabled?</strong></label>
-                                            <div>
-                                                <label class="mr-4"><input type="radio"
-                                                        name="domain_account_disabled" value="Yes"> Yes</label>
-                                                <label><input type="radio" name="domain_account_disabled"
-                                                        value="No"> No</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><strong>Email Account Disabled?</strong></label>
-                                            <div>
-                                                <label class="mr-4"><input type="radio" name="email_account_disabled"
-                                                        value="Yes"> Yes</label>
-                                                <label><input type="radio" name="email_account_disabled"
-                                                        value="No"> No</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><strong>Telephone Pin Code Disabled?</strong></label>
-                                            <div>
-                                                <label class="mr-4"><input type="radio" name="telephone_pin_disabled"
-                                                        value="Yes"> Yes</label>
-                                                <label><input type="radio" name="telephone_pin_disabled"
-                                                        value="No"> No</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><strong>OpenClinic Account Disabled?</strong></label>
-                                            <div>
-                                                <label class="mr-4"><input type="radio"
-                                                        name="openclinic_account_disabled" value="Yes"> Yes</label>
-                                                <label><input type="radio" name="openclinic_account_disabled"
-                                                        value="No"> No</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><strong>SAP Account Disabled?</strong></label>
-                                            <div>
-                                                <label class="mr-4"><input type="radio" name="sap_account_disabled"
-                                                        value="Yes"> Yes</label>
-                                                <label><input type="radio" name="sap_account_disabled" value="No">
-                                                    No</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><strong>Aruti Account Disabled?</strong></label>
-                                            <div>
-                                                <label class="mr-4"><input type="radio" name="aruti_account_disabled"
-                                                        value="Yes"> Yes</label>
-                                                <label><input type="radio" name="aruti_account_disabled"
-                                                        value="No"> No</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <table class="table mb-4">
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Laptop/iPad & Accessories & Gate Pass Returned?</strong></td>
+                                            <td>
+                                                <label class="mr-4">
+                                                    <input type="radio" name="laptop_returned" value="Yes"> Yes
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="laptop_returned" value="No"> No
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Access Card MW & Private Clinic Returned?</strong></td>
+                                            <td>
+                                                <label class="mr-4">
+                                                    <input type="radio" name="access_card_returned" value="Yes"> Yes
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="access_card_returned" value="No"> No
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Domain Account Disabled?</strong></td>
+                                            <td>
+                                                <label class="mr-4">
+                                                    <input type="radio" name="domain_account_disabled" value="Yes">
+                                                    Yes
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="domain_account_disabled" value="No">
+                                                    No
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Email Account Disabled?</strong></td>
+                                            <td>
+                                                <label class="mr-4">
+                                                    <input type="radio" name="email_account_disabled" value="Yes">
+                                                    Yes
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="email_account_disabled" value="No">
+                                                    No
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Telephone Pin Code Disabled?</strong></td>
+                                            <td>
+                                                <label class="mr-4">
+                                                    <input type="radio" name="telephone_pin_disabled" value="Yes">
+                                                    Yes
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="telephone_pin_disabled" value="No">
+                                                    No
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>OpenClinic Account Disabled?</strong></td>
+                                            <td>
+                                                <label class="mr-4">
+                                                    <input type="radio" name="openclinic_account_disabled"
+                                                        value="Yes"> Yes
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="openclinic_account_disabled"
+                                                        value="No"> No
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>SAP Account Disabled?</strong></td>
+                                            <td>
+                                                <label class="mr-4">
+                                                    <input type="radio" name="sap_account_disabled" value="Yes"> Yes
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="sap_account_disabled" value="No"> No
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Aruti Account Disabled?</strong></td>
+                                            <td>
+                                                <label class="mr-4">
+                                                    <input type="radio" name="aruti_account_disabled" value="Yes">
+                                                    Yes
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="aruti_account_disabled" value="No">
+                                                    No
+                                                </label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
                                 <!-- Section IV: Declaration -->
                                 <h4 class="section-title mb-4"
@@ -312,16 +370,7 @@
                                             <p>To the best of my knowledge, I have returned all items in my possession
                                                 belonging to CCBRT. I understand that failure to return items issued, could
                                                 affect sums of money due to me as my final salary.</p>
-                                            <div>
-                                                <label for="signature"><strong>Signature:</strong></label>
-                                                <input type="text" class="form-control" id="signature"
-                                                    name="signature" required>
-                                            </div>
-                                            <div>
-                                                <label for="declaration_date"><strong>Date:</strong></label>
-                                                <input type="date" class="form-control" id="declaration_date"
-                                                    name="declaration_date" required>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -348,6 +397,10 @@
         .section-title {
             font-size: 1.25rem;
             font-weight: bold;
+        }
+
+        .table td {
+            vertical-align: middle;
         }
     </style>
 @endsection

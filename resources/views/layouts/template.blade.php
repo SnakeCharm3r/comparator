@@ -3,7 +3,8 @@
 @include('includes.head')
 
 <body class="hold-transition skin-blue sidebar-mini">
-    <div class="main-wrapper slide-nav">
+    {{-- <div class="main-wrapper slide-nav"> --}}
+    <div class="main-wrapper">
         @include('sweetalert::alert')
         @include('partials.header')
         @include('partials.sidebar')
@@ -18,6 +19,7 @@
         </div>
         @include('partials.footer')
     </div>
+
     @include('includes.scripts')
 
 </body>

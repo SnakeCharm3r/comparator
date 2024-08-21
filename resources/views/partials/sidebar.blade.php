@@ -149,7 +149,7 @@
                     class="treeview {{ request()->routeIs('vendors.index') || request()->routeIs('vendors.create') || request()->routeIs('vendors.show') || request()->routeIs('vendors.edit') ? 'active' : '' }}">
                     <a href="#">
                         <i class="fas fa-briefcase"></i>
-                        <span>Vendor Management</span>
+                        <span>Vendor Contracts</span>
                         <span class="menu-arrow"></span>
                     </a>
                     <ul
