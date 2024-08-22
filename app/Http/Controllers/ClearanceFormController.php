@@ -37,8 +37,8 @@ class ClearanceFormController extends Controller
         // Validate the form data
         $request->validate([
             'date' => 'required|date',
-            'signature' => 'required|string',
-            'declaration_date' => 'required|date',
+
+
         ]);
       try {
         // Create a new Clearance record
@@ -72,16 +72,16 @@ class ClearanceFormController extends Controller
         // Save the clearance record to the database
         $clearance->save();
 
-        $clearWorkFlow = $this->saveClearanceWorkflow([
+        $workflow = $this->saveClearanceWorkflow([
             'user_id' => Auth::user()->id,
             'requested_resource_id' => $clearance->id,
             'work_flow_status' => 'sent to approval',
             'work_flow_completed' => 0,
         ]);
-        // dd($clearWorkFlow);
+        // dd($workflow);
 
         $this->saveClearanceWorkflowHistory([
-             'work_flow_id' => $clearWorkFlow->id,
+             'work_flow_id' => $workflow->id,
              'forwarded_by' => Auth::user()->id,
              'attended_by' => Auth::user()->id,
              'status' => '1',
@@ -92,14 +92,14 @@ class ClearanceFormController extends Controller
      $approver = $this->findLineManagerForRequesterDepartment();
 
      // Forward for approval
-     $this->forwardWorkflowHistory([
-        'work_flow_id' => $clearWorkFlow->id,
+     $this->forwardClearanceWorkflowHistory([
+        'work_flow_id' => $workflow->id,
         'forwarded_by' => Auth::user()->id,
         'attended_by' => $approver->id,
         'status' => '0',
         'remark' => 'Forwarded for approval',
         'attend_date' => Carbon::now()->format('d F Y'),
-        'parent_id' => $clearWorkFlow->id,
+        'parent_id' => $workflow->id,
       ]);
 
         Alert::success('Exist Form Submitted Successfully', 'Exist Form Request Successfully');
