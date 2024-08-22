@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Clearance_work_flow;
+use App\Models\Clearance_work_flow_history;
 use App\Models\ClearanceForm;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -33,10 +37,10 @@ class ClearanceFormController extends Controller
         // Validate the form data
         $request->validate([
             'date' => 'required|date',
-            'signature' => 'required|string',
-            'declaration_date' => 'required|date',
-        ]);
 
+
+        ]);
+      try {
         // Create a new Clearance record
         $clearance = new ClearanceForm();
         $clearance->userId = $request->input('userId');
@@ -64,18 +68,93 @@ class ClearanceFormController extends Controller
         $clearance->openclinic_account_disabled = $request->input('openclinic_account_disabled', 'No');
         $clearance->sap_account_disabled = $request->input('sap_account_disabled', 'No');
         $clearance->aruti_account_disabled = $request->input('aruti_account_disabled', 'No');
-        $clearance->signature = $request->input('signature');
-        $clearance->declaration_date = $request->input('declaration_date');
 
         // Save the clearance record to the database
         $clearance->save();
 
+        $clearWorkFlow = $this->saveClearanceWorkflow([
+            'user_id' => Auth::user()->id,
+            'requested_resource_id' => $clearance->id,
+            'work_flow_status' => 'sent to approval',
+            'work_flow_completed' => 0,
+        ]);
+        // dd($clearWorkFlow);
+
+        $this->saveClearanceWorkflowHistory([
+             'work_flow_id' => $clearWorkFlow->id,
+             'forwarded_by' => Auth::user()->id,
+             'attended_by' => Auth::user()->id,
+             'status' => '1',
+             'remark' => 'ICT Access Resource',
+             'attend_date' => Carbon::now()->format('d F Y'),
+             'parent_id' => null,
+        ]);
+     $approver = $this->findLineManagerForRequesterDepartment();
+
+     // Forward for approval
+     $this->forwardWorkflowHistory([
+        'work_flow_id' => $clearWorkFlow->id,
+        'forwarded_by' => Auth::user()->id,
+        'attended_by' => $approver->id,
+        'status' => '0',
+        'remark' => 'Forwarded for approval',
+        'attend_date' => Carbon::now()->format('d F Y'),
+        'parent_id' => $clearWorkFlow->id,
+      ]);
+
         Alert::success('Exist Form Submitted Successfully', 'Exist Form Request Successfully');
         return redirect()->route('clearance.index')->with('success', 'Clearance form submitted successfully!');
+     }catch(\Exception $e){
+      \Log::error('Error storing clearance request form: ' . $e->getMessage(), ['exception' => $e]);
+
+      Alert::error('Failed to submit exit form request', 'Error');
+      return back()->withInput()->withErrors(['error' => 'Failed to process request. Please try again.']);
+
+      }
+
     }
 
-    
-    
+    public function saveClearanceWorkflow($input)
+    {
+        // dd($input);
+        return Clearance_work_flow::create($input);
+    }
+
+
+    public function saveClearanceWorkflowHistory($input)
+    {
+        return Clearance_work_flow_history::create($input);
+    }
+
+       // Method to find Line Manager for Requester department
+ public function findLineManagerForRequesterDepartment()
+ {
+    try {
+        // Role name of the Line Manager
+        $approverRoleName = 'line-manager';
+
+        // Department ID of the Requester (replace with your dynamic logic)
+        $requesterDepartmentId = Auth::user()->deptId; // Adjust based on your actual department ID field
+
+        // Query to find the Line Manager with 'line-manager' role and requester's department
+        $approver = User::role($approverRoleName)
+            ->where('deptId', $requesterDepartmentId)
+            ->first();
+
+        if (!$approver) {
+            throw new \Exception('Line Manager for Requester department not found or unauthorized');
+        }
+
+        return $approver;
+    } catch (\Exception $e) {
+        // Log the error for debugging purposes
+        \Log::error('Error finding Line Manager: ' . $e->getMessage());
+
+        // Throw exception further for error handling in calling method
+        throw $e;
+    }
+}
+
 
     /**
      * Display the specified resource.
@@ -96,7 +175,7 @@ class ClearanceFormController extends Controller
     /**
      * Update the specified resource in storage.
      */
- 
+
 
     /**
      * Remove the specified resource from storage.

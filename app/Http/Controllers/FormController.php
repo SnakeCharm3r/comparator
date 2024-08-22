@@ -10,6 +10,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Http\Controllers\IctAccessController;
+use App\Models\Clearance_work_flow;
+use App\Models\Clearance_work_flow_history;
+use App\Models\ClearanceForm;
 
 class FormController extends Controller
 {
@@ -93,6 +96,16 @@ class FormController extends Controller
             $approver = 'no approval';
         }
 
+        // if ($roles->contains('line-manager')) {
+        //     $approver = User::role('hr')->first();
+        // } elseif ($roles->contains('hr')) {
+        //     $approver = User::role('it')->first();
+        // } elseif ($roles->contains('it')) {
+        //     $approver = User::role('admin')->first();
+        // } else {
+        //     $approver = 'no approval';
+        // }
+
         // dd($approver );
         $ict = new IctAccessController();
 
@@ -123,6 +136,75 @@ class FormController extends Controller
         // dd($workflowHistory);
 }
 
+public function getClearance(Request $request){
+$user = Auth::user();
+$clear = ClearanceForm::join('users', 'users.id', '=', 'clearance_forms.userId')
+        ->join('clearance_work_flows','clearance_work_flows.requested_resource_id','=','clearance_forms.id')
+        ->join('clearance_work_flow_histories','clearance_work_flow_histories.work_flow_id','=','clearance_work_flows.id')
+            ->where('clearance_forms.id', $request->id)
+            ->first([
+                'clearance_forms.*',
+                'users.*',
+                'clearance_work_flows.*',
+                'clearance_work_flow_histories.*',
+                'clearance_forms.id as access_id']);
+        return view('clearance_forms', compact('clear','user'));
+
+}
+
+public function approveClearanceForm(Request $request){
+    $clearWorkFlow= Clearance_work_flow::where('requested_resource_id', $request->access_id)->first();
+
+      if($clearWorkFlow){
+        //find the corresponding work flow history
+         $clearWorkFlowHistory = Clearance_work_flow_history::where('work_flow_id', $clearWorkFlow->id)
+         ->where('status', 0)->first();
+
+         if($clearWorkFlowHistory){
+            $clearWorkFlowHistory->status = 1;
+            $clearWorkFlowHistory->save();
+         }else{
+            dd("Clearance Workflow History not found for Workflow ID {$clearWorkFlow->id} and status 0");
+
+         }
+      }
+      else{
+        dd("Clearance Workflow not found for access ID {$request->access_id}");
+
+      }
+
+      $user = Auth::user();
+      $roles = $user->getRoleNmae()->first();
+      if ($roles->contains('line-manager')) {
+        $approver = User::role('finance officer')->first();
+    } elseif ($roles->contains('finance officer')) {
+        $approver = User::role('it')->first();
+    } elseif ($roles->contains('it')) {
+        $approver = User::role('hr')->first();
+    }
+    else {
+        $approver = 'no approval';
+    }
+         $clear = new ClearanceFormController();
+
+         if($roles->contains('it')){
+            $clearWorkFlow = Clearance_work_flow::find($clearWorkFlow->id);
+            $clearWorkFlow->work_flow_status = 'approved';
+            $clearWorkFlow->work_flow_completed = 1;
+            $clearWorkFlow->save();
+         } else{
+            $input = [
+                'work_flow_id' => $clearWorkFlow->id,
+                'forwarded_by' => Auth::user()->id,
+                'attended_by' => $approver->id,
+                'status' => '0',
+                'remark' => 'forwarded for approval',
+                'attend_date' => Carbon::now()->format('d F Y'),
+                'parent_id' => $clearWorkFlowHistory->id
+            ];
+            $clearWorkFlowHistory = $clear->saveClearanceWorkflowHistory($input);
+         }
+}
 
 
 }
