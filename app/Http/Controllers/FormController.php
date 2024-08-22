@@ -174,7 +174,7 @@ public function approveClearanceForm(Request $request){
       }
 
       $user = Auth::user();
-      $roles = $user->getRoleNmae()->first();
+      $roles = $user->getRoleNames()->first();
       if ($roles->contains('line-manager')) {
         $approver = User::role('finance officer')->first();
     } elseif ($roles->contains('finance officer')) {
