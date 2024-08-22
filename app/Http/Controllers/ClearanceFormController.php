@@ -85,7 +85,7 @@ class ClearanceFormController extends Controller
              'forwarded_by' => Auth::user()->id,
              'attended_by' => Auth::user()->id,
              'status' => '1',
-             'remark' => 'ICT Access Resource',
+             'remark' => 'Clearance Form',
              'attend_date' => Carbon::now()->format('d F Y'),
              'parent_id' => null,
         ]);
