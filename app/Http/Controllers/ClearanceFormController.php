@@ -33,8 +33,6 @@ class ClearanceFormController extends Controller
         // Validate the form data
         $request->validate([
             'date' => 'required|date',
-            'signature' => 'required|string',
-            'declaration_date' => 'required|date',
         ]);
 
         // Create a new Clearance record
@@ -64,8 +62,6 @@ class ClearanceFormController extends Controller
         $clearance->openclinic_account_disabled = $request->input('openclinic_account_disabled', 'No');
         $clearance->sap_account_disabled = $request->input('sap_account_disabled', 'No');
         $clearance->aruti_account_disabled = $request->input('aruti_account_disabled', 'No');
-        $clearance->signature = $request->input('signature');
-        $clearance->declaration_date = $request->input('declaration_date');
 
         // Save the clearance record to the database
         $clearance->save();

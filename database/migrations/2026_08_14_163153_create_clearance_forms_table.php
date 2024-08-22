@@ -36,8 +36,6 @@ return new class extends Migration
             $table->string('sap_account_disabled')->default('No');
             $table->string('aruti_account_disabled')->default('No');
             $table->foreign('userId')->references('id')->on('users');
-            $table->string('signature');
-            $table->date('declaration_date');
             $table->timestamps();
         });
     }
