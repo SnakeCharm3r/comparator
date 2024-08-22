@@ -35,8 +35,6 @@ class ClearanceForm extends Model
         'openclinic_account_disabled',
         'sap_account_disabled',
         'aruti_account_disabled',
-        'signature',
-        'declaration_date'
     ];
 
     public function user()

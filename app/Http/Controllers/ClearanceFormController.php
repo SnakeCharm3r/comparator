@@ -37,8 +37,8 @@ class ClearanceFormController extends Controller
         // Validate the form data
         $request->validate([
             'date' => 'required|date',
-
-
+            'signature' => 'required|string',
+            'declaration_date' => 'required|date',
         ]);
       try {
         // Create a new Clearance record

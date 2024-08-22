@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 
@@ -20,12 +20,13 @@ class VendorController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
+        // Validate the request
+        $validatedData = $request->validate([
+            'business_owner' => 'required|string|max:255',
             'contact_person' => 'required|string|max:255',
-            'phone' => 'required|string|max:15',
-            'email' => 'required|string|email|max:255|unique:vendors',
-            'address' => 'required|string|max:255',
+            'telephone_number' => 'required|string|max:15',
+            'email_address' => 'required|string|email|max:255|unique:vendors',
+            'physical_address' => 'required|string|max:255',
             'contract_file' => 'nullable|file|mimes:pdf,doc,docx',
             // Additional validations
             'contract_total_value' => 'nullable|numeric',
@@ -36,16 +37,19 @@ class VendorController extends Controller
             // other fields...
         ]);
     
-        $vendor = new Vendor($request->all());
-    
+        // Handle file upload
         if ($request->hasFile('contract_file')) {
-            $vendor->contract_file = $request->file('contract_file')->store('contracts');
+            $validatedData['contract_file'] = $request->file('contract_file')->store('contracts');
         }
     
-        $vendor->save();
+        // Create a new vendor
+        $vendor = Vendor::create($validatedData);
     
+        // Redirect with success message
+        Alert::success('Vendor Added successfully', 'Vendor Added');
         return redirect()->route('vendors.index')->with('success', 'Vendor created successfully.');
     }
+    
 
     public function show(Vendor $vendor)
     {
