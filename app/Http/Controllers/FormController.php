@@ -153,18 +153,18 @@ $clear = ClearanceForm::join('users', 'users.id', '=', 'clearance_forms.userId')
 }
 
 public function approveClearanceForm(Request $request){
-    $clearWorkFlow= Clearance_work_flow::where('requested_resource_id', $request->access_id)->first();
+    $workflow= Clearance_work_flow::where('requested_resource_id', $request->access_id)->first();
 
-      if($clearWorkFlow){
+      if($workflow){
         //find the corresponding work flow history
-         $clearWorkFlowHistory = Clearance_work_flow_history::where('work_flow_id', $clearWorkFlow->id)
+         $workflowHistory = Clearance_work_flow_history::where('work_flow_id', $workflow->id)
          ->where('status', 0)->first();
 
-         if($clearWorkFlowHistory){
-            $clearWorkFlowHistory->status = 1;
-            $clearWorkFlowHistory->save();
+         if($workflowHistory){
+            $workflowHistory->status = 1;
+            $workflowHistory->save();
          }else{
-            dd("Clearance Workflow History not found for Workflow ID {$clearWorkFlow->id} and status 0");
+            dd("Clearance Workflow History not found for Workflow ID {$workflow->id} and status 0");
 
          }
       }
@@ -188,21 +188,21 @@ public function approveClearanceForm(Request $request){
          $clear = new ClearanceFormController();
 
          if($roles->contains('it')){
-            $clearWorkFlow = Clearance_work_flow::find($clearWorkFlow->id);
-            $clearWorkFlow->work_flow_status = 'approved';
-            $clearWorkFlow->work_flow_completed = 1;
-            $clearWorkFlow->save();
+            $workflow = Clearance_work_flow::find($workflow->id);
+            $workflow->work_flow_status = 'approved';
+            $workflow->work_flow_completed = 1;
+            $workflow->save();
          } else{
             $input = [
-                'work_flow_id' => $clearWorkFlow->id,
+                'work_flow_id' => $workflow->id,
                 'forwarded_by' => Auth::user()->id,
                 'attended_by' => $approver->id,
                 'status' => '0',
                 'remark' => 'forwarded for approval',
                 'attend_date' => Carbon::now()->format('d F Y'),
-                'parent_id' => $clearWorkFlowHistory->id
+                'parent_id' => $workflowHistory->id
             ];
-            $clearWorkFlowHistory = $clear->saveClearanceWorkflowHistory($input);
+            $workflowHistory = $clear->saveClearanceWorkflowHistory($input);
          }
 }
 

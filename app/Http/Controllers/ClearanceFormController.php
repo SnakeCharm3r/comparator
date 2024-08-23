@@ -105,7 +105,7 @@ class ClearanceFormController extends Controller
         Alert::success('Exist Form Submitted Successfully', 'Exist Form Request Successfully');
         return redirect()->route('clearance.index')->with('success', 'Clearance form submitted successfully!');
      }catch(\Exception $e){
-      \Log::error('Error storing clearance request form: ' . $e->getMessage(), ['exception' => $e]);
+     dd('Error storing clearance request form: ' . $e->getMessage(), ['exception' => $e]);
 
       Alert::error('Failed to submit exit form request', 'Error');
       return back()->withInput()->withErrors(['error' => 'Failed to process request. Please try again.']);
@@ -153,6 +153,10 @@ class ClearanceFormController extends Controller
         // Throw exception further for error handling in calling method
         throw $e;
     }
+}
+
+public function forwardClearanceWorkflowHistory ($input){
+    return Clearance_work_flow_history::create($input);
 }
 
 
