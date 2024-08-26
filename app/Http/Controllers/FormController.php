@@ -148,7 +148,7 @@ $clear = ClearanceForm::join('users', 'users.id', '=', 'clearance_forms.userId')
                 'clearance_work_flows.*',
                 'clearance_work_flow_histories.*',
                 'clearance_forms.id as access_id']);
-        return view('clearance_forms', compact('clear','user'));
+        return view('clearance.index', compact('clear','user'));
 
 }
 
