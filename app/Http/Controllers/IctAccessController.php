@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ApprovalRequestNotification;
 use App\Models\IctAccessResource;
 use App\Models\WorkFlowHistory;
 use App\Models\HMISAccessLevel;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 
 class IctAccessController extends Controller
 {
@@ -141,6 +143,24 @@ class IctAccessController extends Controller
 
                 // Find the approver based on role (e.g., Line Manager)
                 $approver = $this->findLineManagerForRequesterDepartment();
+                // Send notification email to approver
+$requestDetails = [
+    'attended_by' => $approver->id,
+    'requestId' => $ict->id,
+    'requestDate' => Carbon::now()->format('d F Y'),
+];
+ //dd($requestDetails );
+if ($approver) {
+    $mail = new ApprovalRequestNotification();
+    $mail->approver = $approver;
+    $mail->requestDetails = $requestDetails;
+//dd($approver);
+    Mail::to($approver->email)->send($mail);
+} else {
+    // Handle the case where approver is null
+    throw new \Exception('Approver not found');
+}
+// Mail::to($approver->email)->send(new ApprovalRequestNotification($approver, $requestDetails));
                 // dd($approver );
                 \Log::info('Approver found', ['approver' => $approver]);
 // dd($approver);
@@ -163,7 +183,7 @@ class IctAccessController extends Controller
                 return redirect()->route('request.index')->with('success', 'ICT Access Resource created successfully.');
             });
         } catch (\Exception $e) {
-
+          
             // Log the exact error message for better debugging
             \Log::error('Error storing ICT Access Resource: ' . $e->getMessage(), ['exception' => $e]);
             Alert::error('Failed to submit IT access form request', 'Error');

@@ -240,14 +240,14 @@
                                 </table>
                             </div>
 
-                           
+
                             <!-- Action Buttons -->
                             <div class="buttons-container"
                                 style="margin-top: 15px; display: flex; justify-content: flex-end; gap: 10px; padding-right: 3%;">
                                 <button type="button" class="btn btn-success"
                                     onclick="approveForm('{{ $ictForm->access_id }}')">Approve</button>
                                 <button type="button" class="btn btn-danger"
-                                    onclick="window.location.href = '/requestapprove'">Reject</button>
+                                    onclick="rejectForm('{{$ictForm->access_id}}')">Reject</button>
                                 <button type="button" class="btn btn-primary" onclick="generatePDF()">Download</button>
                             </div>
 
@@ -333,6 +333,61 @@
                                 }
                             });
                         }
+
+
+
+    function rejectForm(access_id) {
+        Swal.fire({
+
+            text: "Please provide a reason for rejection:",
+            input: 'textarea',
+            inputPlaceholder: 'Enter your reason here...',
+            showCancelButton: true,
+            confirmButtonText: 'Reject',
+            cancelButtonText: 'Cancel',
+            reverseButtons: true,
+            inputValidator: (value) => {
+                if (!value) {
+                    return 'You need to provide a reason!'
+                }
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const reason = result.value;
+
+                $.ajax({
+                    method: 'POST',
+                    url: '/reject_form',
+                    data: {
+                        access_id: access_id,
+                        reason: reason
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        Swal.fire({
+                            title: 'Rejected!',
+                            text: 'Form has been rejected.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = '/requestapprove';
+                            }
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                        Swal.fire('Error!', 'Failed to reject form.', 'error');
+                    }
+                });
+            }
+        });
+    }
+
+
+
                     </script>
 
                 </div>
