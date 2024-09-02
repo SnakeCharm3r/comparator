@@ -158,6 +158,7 @@ Route::get('role/{roleId}/permissions', [PermissionController::class, 'getRolePe
 Route::post('/approve_form', [FormController::class, 'approveForm'])->name('approve_form');
 Route::get('/approver_form', [FormController::class, 'getApprover'])->name('approver_form');
 Route::get('/show_form/{id}', [FormController::class, 'getForm']);
+Route::post('/reject_form', [FormController::class, 'rejectForm']);
 
 // Route::post('/approve_form', [FormController::class, 'approveClearanceForm'])->name('approve_form');
 // Route::get('/approver_form', [FormController::class, 'getApprover'])->name('approver_form');
