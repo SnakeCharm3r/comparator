@@ -178,14 +178,14 @@
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">Identification Numbers</th>
-                                                            <td>{{ $user->national_Identification_number }},
+                                                            <td>{{ $user->national_Identification_number }}
                                                                 {{ $user->nssf_no }}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                                 <div class="text-end">
                                                     <button class="btn btn-secondary me-2"
-                                                        onclick="redirectToEditProfile({{ $user->id }})">Edit</button>
+                                                        onclick="redirectToEditProfile({{ $user->id }})">Update</button>
                                                 </div>
                                             </div>
                                         </div>

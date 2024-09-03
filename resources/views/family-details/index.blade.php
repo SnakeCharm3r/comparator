@@ -56,7 +56,7 @@
                                                 </div>
 
                                                 <!-- Modal for adding family data -->
-                                                <div class="modal fade" id="addFamilyModal" tabindex="-1" role="dialog"
+                                                {{-- <div class="modal fade" id="addFamilyModal" tabindex="-1" role="dialog"
                                                     aria-labelledby="addFamilyModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
@@ -92,12 +92,7 @@
                                                                             name="familyData[0][phone_number]"
                                                                             value="{{ old('familyData.0.phone_number') }}">
                                                                     </div>
-                                                                    <div class="form-group">
-                                                                        <label>Date of Birth</label>
-                                                                        <input type="date" class="form-control"
-                                                                            name="familyData[0][DOB]"
-                                                                            value="{{ old('familyData.0.DOB') }}" required>
-                                                                    </div>
+                                                            
                                                                     <div class="form-group">
                                                                         <label>Occupation</label>
                                                                         <input type="text" class="form-control"
@@ -123,7 +118,81 @@
                                                             </form>
                                                         </div>
                                                     </div>
+                                                </div> --}}
+                                                <div class="modal fade" id="addFamilyModal" tabindex="-1" role="dialog"
+                                                    aria-labelledby="addFamilyModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <form method="POST"
+                                                                action="{{ route('family-details.addFamilyData') }}">
+                                                                @csrf
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="addFamilyModalLabel">Add
+                                                                        Family Data</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="form-group">
+                                                                        <label for="fullName">Full Name</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="fullName" name="familyData[0][full_name]"
+                                                                            value="{{ old('familyData.0.full_name') }}"
+                                                                            placeholder="John Doe" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="relationship">Relationship</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="relationship"
+                                                                            name="familyData[0][relationship]"
+                                                                            value="{{ old('familyData.0.relationship') }}"
+                                                                            placeholder="Brother" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="phoneNumber">Mobile</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="phoneNumber"
+                                                                            name="familyData[0][phone_number]"
+                                                                            value="{{ old('familyData.0.phone_number') }}"
+                                                                            placeholder="0699 990 002">
+                                                                    </div>
+                                                                    {{-- <div class="form-group">
+                                                                        <label for="dob">Date of Birth</label>
+                                                                        <input type="date" class="form-control" id="dob" name="familyData[0][DOB]" 
+                                                                               value="{{ old('familyData.0.DOB') }}" required>
+                                                                    </div> --}}
+                                                                    <div class="form-group">
+                                                                        <label for="occupation">Occupation</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="occupation" name="familyData[0][occupation]"
+                                                                            value="{{ old('familyData.0.occupation') }}"
+                                                                            placeholder="Doctor">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="nextOfKin">Next of Kin</label>
+                                                                        <input type="checkbox" id="nextOfKin"
+                                                                            name="familyData[0][next_of_kin]"
+                                                                            value="1"
+                                                                            {{ old('familyData.0.next_of_kin') ? 'checked' : '' }}>
+                                                                        <small class="form-text text-muted">Check if this person is your Next of Kin.</small>
+                                                                    </div>
+                                                                    
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-primary">Save
+                                                                        changes</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
                                                 </div>
+
+
 
                                                 <!-- Modal for editing family data -->
                                                 <div class="modal fade" id="editFamilyModal" tabindex="-1"
@@ -161,12 +230,12 @@
                                                                             id="edit_phone_number" name="phone_number"
                                                                             value="">
                                                                     </div>
-                                                                    <div class="form-group">
+                                                                    {{-- <div class="form-group">
                                                                         <label>Date of Birth</label>
                                                                         <input type="date" class="form-control"
                                                                             id="edit_DOB" name="DOB" value=""
                                                                             required>
-                                                                    </div>
+                                                                    </div> --}}
                                                                     <div class="form-group">
                                                                         <label>Occupation</label>
                                                                         <input type="text" class="form-control"
@@ -177,7 +246,8 @@
                                                                     <div class="form-group">
                                                                         <label>Next of Kin</label>
                                                                         <input type="checkbox"
-                                                                            name="familyData[0][next_of_kin]" value="1"
+                                                                            name="familyData[0][next_of_kin]"
+                                                                            value="1"
                                                                             {{ old('familyData.0.next_of_kin') ? 'checked' : '' }}>
                                                                     </div>
 
@@ -202,7 +272,7 @@
                                                                 <th>Full Name</th>
                                                                 <th>Relationship</th>
                                                                 <th>Mobile</th>
-                                                                <th>Date of Birth</th>
+                                                                {{-- <th>Date of Birth</th> --}}
                                                                 <th>Occupation</th>
                                                                 <th>Next of Kin</th>
                                                                 <th>Action</th>
@@ -214,7 +284,7 @@
                                                                     <td>{{ $detail->full_name }}</td>
                                                                     <td>{{ $detail->relationship }}</td>
                                                                     <td>{{ $detail->phone_number }}</td>
-                                                                    <td>{{ $detail->DOB }}</td>
+                                                                    {{-- <td>{{ $detail->DOB }}</td> --}}
                                                                     <td>{{ $detail->occupation }}</td>
                                                                     <td>{{ $detail->next_of_kin ? 'Yes' : 'No' }}</td>
                                                                     <td>
@@ -227,7 +297,7 @@
                                                                             data-full_name="{{ $detail->full_name }}"
                                                                             data-relationship="{{ $detail->relationship }}"
                                                                             data-phone_number="{{ $detail->phone_number }}"
-                                                                            data-dob="{{ $detail->DOB }}"
+                                                                            {{-- data-dob="{{ $detail->DOB }}" --}}
                                                                             data-next_of_kin="{{ $detail->next_of_kin }}"
                                                                             data-occupation="{{ $detail->occupation }}">
                                                                             <i class="fas fa-edit text-primary"></i>

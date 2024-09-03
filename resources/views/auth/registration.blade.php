@@ -1,8 +1,6 @@
 @include('includes.head')
 @include('sweetalert::alert')
 
-
-
 <div class="main-wrapper login-body">
     <div class="login-wrapper">
         <div class="container">
@@ -10,12 +8,12 @@
                 <div class="col-md-12">
                     <div class="signup-container">
                         <h1>Register</h1>
-                        <p class="account-subtitle">Enter details to create your account</p>
+                        {{-- <p class="account-subtitle">Enter details to create your account</p> --}}
                     </div>
                     <form id="registrationForm" action="{{ route('register.handleRegistration') }}" method="POST"
                         onsubmit="return validatePassword()">
                         @csrf
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>First Name <span class="login-danger">*</span></label>
@@ -34,34 +32,102 @@
                                     <input class="form-control" type="text" name="lname" required>
                                 </div>
                             </div>
+                        </div> --}}
+                        <!-- Instruction Text -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <small class="form-text text-muted">
+                                        Please fill in your names as they appear in your National Identification Number
+                                        (NIN).
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Fields -->
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="fname">First Name <span class="login-danger">*</span></label>
+                                    <input class="form-control" id="fname" type="text" name="fname" required
+                                        placeholder="e.g., John" aria-describedby="nameHelp">
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="mname">Middle Name <span class="login-danger">*</span></label>
+                                    <input class="form-control" id="mname" type="text" name="mname" required
+                                        placeholder="e.g., Juma" aria-describedby="nameHelp">
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="lname">Last Name <span class="login-danger">*</span></label>
+                                    <input class="form-control" id="lname" type="text" name="lname" required
+                                        placeholder="e.g., Doe" aria-describedby="nameHelp">
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="username">Username <span class="login-danger">*</span></label>
+                                    <input class="form-control" id="username" type="text" name="username" required
+                                        placeholder="e.g., Juma">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Personal Email Account<span class="login-danger">*</span></label>
+                                    <input class="form-control" type="text" name="email" required
+                                        placeholder="e.g., abc@gmail.com">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="dob">Date of Birth <span class="login-danger">*</span></label>
+                                    <input class="form-control" id="dob" type="date" name="DOB" required>
+                                </div>
+                            </div>
+
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    var today = new Date();
+                                    var minDate = new Date();
+
+                                    minDate.setFullYear(today.getFullYear() - 18);
+                                    minDate.setMonth(today.getMonth());
+                                    minDate.setDate(today.getDate());
+
+                                    var yyyy = minDate.getFullYear();
+                                    var mm = ('0' + (minDate.getMonth() + 1)).slice(-2);
+                                    var dd = ('0' + minDate.getDate()).slice(-2);
+                                    var minDateString = yyyy + '-' + mm + '-' + dd;
+
+                                    document.getElementById('dob').setAttribute('max', minDateString);
+                                });
+                            </script>
+
+
                         </div>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Username <span class="login-danger">*</span></label>
-                                    <input class="form-control" type="text" name="username" required>
+                                    <label for="phone">Phone Number <span class="login-danger">*</span></label>
+                                    <input class="form-control" id="phone" type="tel" name="mobile" required
+                                        placeholder="e.g., 0699 990 002" pattern="[+]?[0-9]{10,15}"
+                                        title="Phone number should be between 10 to 15 digits and may start with a '+'.">
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Email <span class="login-danger">*</span></label>
-                                    <input class="form-control" type="text" name="email" required>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Date of Birth <span class="login-danger">*</span></label>
-                                    <input class="form-control" type="date" name="DOB" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Phone Number <span class="login-danger">*</span></label>
-                                    <input class="form-control" type="text" name="mobile" required>
-                                </div>
-                            </div>
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Password <span class="login-danger">*</span></label>
@@ -82,7 +148,7 @@
                                 <div class="form-group">
                                     <label>Department <span class="login-danger">*</span></label>
                                     <select class="form-control" name="deptId" required>
-                                        <option value="">Select Department</option>
+                                        <option value="">-----Select-----</option>
                                         @foreach ($departments as $department)
                                             <option value="{{ $department->id }}">{{ $department->dept_name }}</option>
                                         @endforeach
@@ -91,15 +157,17 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Job Title</label>
-                                    <input class="form-control" type="text" name="job_title">
+                                    <label for="job_title">Job Title</label>
+                                    <input class="form-control" id="job_title" type="text" name="job_title"
+                                        placeholder="e.g., Doctor">
                                 </div>
                             </div>
+
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Employment Type <span class="login-danger">*</span></label>
+                                    <label>Employment Type<span class="login-danger">*</span></label>
                                     <select class="form-control" name="employment_typeId" required>
-                                        <option value="">Select Employment Type</option>
+                                        <option value="">-----Select-----</option>
                                         @foreach ($employmentTypes as $employmentType)
                                             <option value="{{ $employmentType->id }}">
                                                 {{ $employmentType->employment_type }}</option>
