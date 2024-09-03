@@ -77,9 +77,10 @@
                                                                 <div class="row language-item">
                                                                     <div class="col-12 col-md-3">
                                                                         <div class="form-group">
-                                                                            <label>Language</label>
+                                                                            <label for="languageInput">Language</label>
                                                                             <input type="text" class="form-control"
-                                                                                id="languageInput" name="language">
+                                                                                id="languageInput" name="language"
+                                                                                placeholder="e.g., English">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-12 col-md-3">
