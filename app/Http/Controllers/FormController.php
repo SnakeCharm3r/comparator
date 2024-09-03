@@ -260,6 +260,7 @@ $user = Auth::user();
 $clear = ClearanceForm::join('users', 'users.id', '=', 'clearance_forms.userId')
         ->join('clearance_work_flows','clearance_work_flows.requested_resource_id','=','clearance_forms.id')
         ->join('clearance_work_flow_histories','clearance_work_flow_histories.work_flow_id','=','clearance_work_flows.id')
+        ->join('users as user_forwarded', 'user_forwarded.id', '=', 'clearance_work_flow_histories.forwarded_by')
             ->where('clearance_forms.id', $request->id)
             ->first([
                 'clearance_forms.*',

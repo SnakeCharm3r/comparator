@@ -7,10 +7,22 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="page-header mb-4"
-                            style="padding: 15px; background-color: #f8f9fa; border-bottom: 2px solid #dee2e6;">
-                            <h3 class="page-title mb-0">Employee Exit Review & Approval</h3>
-                        </div>
+                        <div class="page-header"
+                                style="padding: 5px; background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;">
+                                <div class="row">
+                                    <div class="page-sub-header"
+                                        style="display: flex; flex-direction: column; align-items: flex-start;">
+                                        <!-- Previous Approval Section -->
+                                        <p style="font-size: 14px; color: #6c757d;">
+                                            <strong>Previous Approval:</strong>
+                                            @php
+                                                $forwardedBy = \App\Models\User::find($clear->forwarded_by);
+                                            @endphp
+                                            {{ $forwardedBy ? $forwardedBy->fname . ' ' . $forwardedBy->lname : 'N/A' }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
 
                         <div class="form-container p-4 border rounded shadow-sm">
                             <!-- Section I: Staff Details -->
