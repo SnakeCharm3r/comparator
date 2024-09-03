@@ -45,28 +45,29 @@
                                         </ul>
                                         <div class="tab-content pt-3">
 
-                                            <!-- Button to trigger add language modal -->
+                                            <!-- Button to trigger modal -->
                                             <div class="row">
                                                 <div class="col d-flex justify-content-end">
-                                                    <button type="button" class="btn btn-primary mb-3"
-                                                        data-bs-toggle="modal" data-bs-target="#addLanguageModal">
+                                                    <button type="button" id="addLanguageBtn" class="btn btn-primary mb-3">
                                                         Add Language
                                                     </button>
                                                 </div>
                                             </div>
 
-                                            <!-- Modal for adding language knowledge -->
-                                            <div class="modal fade" id="addLanguageModal" tabindex="-1" role="dialog"
-                                                aria-labelledby="addLanguageModalLabel" aria-hidden="true">
+                                            <!-- Modal for creating/editing language knowledge -->
+                                            <div class="modal fade" id="languageModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="languageModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
-                                                        <form method="POST" action="{{ route('language_knowledge.add') }}">
+                                                        <form id="languageForm" method="POST">
                                                             @csrf
-                                                            <input type="hidden" name="userId"
-                                                                value="{{ Auth::id() }}">
+                                                            @method('POST')
+                                                            <input type="hidden" id="languageId" name="id">
+                                                            <input type="hidden" id="formMode" name="formMode"
+                                                                value="create">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="addLanguageModalLabel">Add
-                                                                    Language</h5>
+                                                                <h5 class="modal-title" id="languageModalLabel">Add Language
+                                                                </h5>
                                                                 <button type="button" class="btn-close"
                                                                     data-bs-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
@@ -78,32 +79,47 @@
                                                                         <div class="form-group">
                                                                             <label>Language</label>
                                                                             <input type="text" class="form-control"
-                                                                                name="language"
-                                                                                value="{{ old('language') }}">
+                                                                                id="languageInput" name="language">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-12 col-md-3">
                                                                         <div class="form-group">
                                                                             <label>Speaking</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="speaking"
-                                                                                value="{{ old('speaking') }}">
+                                                                            <select class="form-control" id="speakingInput"
+                                                                                name="speaking">
+                                                                                <option value="" disabled selected>
+                                                                                    Select proficiency</option>
+                                                                                <option value="Very Good">Very Good</option>
+                                                                                <option value="Good">Good</option>
+                                                                                <option value="Fair">Fair</option>
+                                                                            </select>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-12 col-md-3">
                                                                         <div class="form-group">
                                                                             <label>Reading</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="reading"
-                                                                                value="{{ old('reading') }}">
+                                                                            <select class="form-control" id="readingInput"
+                                                                                name="reading">
+                                                                                <option value="" disabled selected>
+                                                                                    Select proficiency</option>
+                                                                                <option value="Very Good">Very Good</option>
+                                                                                <option value="Good">Good</option>
+                                                                                <option value="Fair">Fair</option>
+                                                                            </select>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-12 col-md-3">
                                                                         <div class="form-group">
                                                                             <label>Writing</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="writing"
-                                                                                value="{{ old('writing') }}">
+                                                                            <select class="form-control" id="writingInput"
+                                                                                name="writing">
+                                                                                <option value="" disabled selected>
+                                                                                    Select proficiency</option>
+                                                                                <option value="Very Good">Very Good
+                                                                                </option>
+                                                                                <option value="Good">Good</option>
+                                                                                <option value="Fair">Fair</option>
+                                                                            </select>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -111,68 +127,8 @@
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
                                                                     data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-primary">Add
-                                                                    Language</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Modal for editing language knowledge -->
-                                            <div class="modal fade" id="editLanguageModal" tabindex="-1" role="dialog"
-                                                aria-labelledby="editLanguageModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <form id="editLanguageForm" method="POST">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <input type="hidden" id="editLanguageId" name="id">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="editLanguageModalLabel">Edit
-                                                                    Language</h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <div class="row language-item">
-                                                                    <div class="col-12 col-md-3">
-                                                                        <div class="form-group">
-                                                                            <label>Language</label>
-                                                                            <input type="text" class="form-control"
-                                                                                id="editLanguage" name="language">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-12 col-md-3">
-                                                                        <div class="form-group">
-                                                                            <label>Speaking</label>
-                                                                            <input type="text" class="form-control"
-                                                                                id="editSpeaking" name="speaking">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-12 col-md-3">
-                                                                        <div class="form-group">
-                                                                            <label>Reading</label>
-                                                                            <input type="text" class="form-control"
-                                                                                id="editReading" name="reading">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-12 col-md-3">
-                                                                        <div class="form-group">
-                                                                            <label>Writing</label>
-                                                                            <input type="text" class="form-control"
-                                                                                id="editWriting" name="writing">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-primary">Update
-                                                                    Language</button>
+                                                                <button type="submit" class="btn btn-primary"
+                                                                    id="saveButton">Add Language</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -253,6 +209,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const languageModal = new bootstrap.Modal(document.getElementById('languageModal'));
+
             // Handle delete button click
             document.querySelectorAll('.delete-btn').forEach(button => {
                 button.addEventListener('click', function(event) {
@@ -287,24 +245,40 @@
                     const reading = this.getAttribute('data-reading');
                     const writing = this.getAttribute('data-writing');
 
-                    // Populate the modal fields
-                    document.getElementById('editLanguageId').value = id;
-                    document.getElementById('editLanguage').value = language;
-                    document.getElementById('editSpeaking').value = speaking;
-                    document.getElementById('editReading').value = reading;
-                    document.getElementById('editWriting').value = writing;
+                    // Set form to edit mode
+                    document.getElementById('languageId').value = id;
+                    document.getElementById('formMode').value = 'edit';
+                    document.getElementById('languageInput').value = language;
+                    document.getElementById('speakingInput').value = speaking;
+                    document.getElementById('readingInput').value = reading;
+                    document.getElementById('writingInput').value = writing;
 
-                    // Set the form action URL
-                    document.getElementById('editLanguageForm').action =
-                    `/language-knowledge/${id}`;
+                    // Update button text
+                    document.getElementById('saveButton').textContent = 'Update Language';
+                    document.getElementById('languageForm').action = `/language-knowledge/${id}`;
 
                     // Show the modal
-                    const editModal = new bootstrap.Modal(document.getElementById(
-                        'editLanguageModal'));
-                    editModal.show();
+                    languageModal.show();
                 });
             });
 
+            // Handle add button click
+            document.getElementById('addLanguageBtn').addEventListener('click', function() {
+                // Reset form to create mode
+                document.getElementById('languageId').value = '';
+                document.getElementById('formMode').value = 'create';
+                document.getElementById('languageInput').value = '';
+                document.getElementById('speakingInput').value = '';
+                document.getElementById('readingInput').value = '';
+                document.getElementById('writingInput').value = '';
+
+                // Update button text
+                document.getElementById('saveButton').textContent = 'Add Language';
+                document.getElementById('languageForm').action = '{{ route('language_knowledge.add') }}';
+
+                // Show the modal
+                languageModal.show();
+            });
         });
     </script>
 @endsection

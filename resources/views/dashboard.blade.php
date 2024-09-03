@@ -110,11 +110,6 @@
                         </div>
                     </div>
                 @endif
-
-
-
-
-
                 <br><br>
                 <div class="row">
                     <div class="col-md-3 col-sm-6 col-12 mb-3">
@@ -141,15 +136,14 @@
 
                     <div class="col-md-3 col-sm-6 col-12 mb-3">
                         <div class="card text-center shadow-sm">
-                            <div class="card-header bg-danger text-white">
-                                <i class="fas fa-exclamation-triangle"></i> Urgent Issues
+                            <div class="card-header text-warning ">
+                                <i class="fas fa-exclamation-triangle"></i> Urgent Announcement
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">2</h5>
                             </div>
                         </div>
                     </div>
-
                     <div class="col-md-3 col-sm-6 col-12 mb-3">
                         <div class="card text-center shadow-sm">
                             <div class="card-header custom-header">
@@ -160,7 +154,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="row mt-4">
                     <div class="col-md-6 col-12">
@@ -200,7 +193,6 @@
                         </div>
                     </div>
                 </div>
-
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                 <div class="col-12 col-lg-12 col-xl-12 d-flex">
                     <div class="card flex-fill comman-shadow">
@@ -218,8 +210,6 @@
                         </div>
                     </div>
                 </div>
-
-
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         var ctx = document.getElementById('formRequestsLineChart').getContext('2d');
@@ -275,13 +265,6 @@
                         });
                     });
                 </script>
-
-
-
-
-
-
-
             </div>
         </div>
     </div>
