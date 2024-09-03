@@ -191,4 +191,40 @@ public function forwardClearanceWorkflowHistory ($input){
         // Redirect back with a success message
         return redirect()->route('clearance.index')->with('success', 'Form deleted successfully.');
     }
+
+    //start of exit approve
+    public function approveForm($id)
+    {
+        $form = ClearanceForm::findOrFail($id);
+        $form->status = 'approved';
+        $form->save();
+
+        return redirect()->route('exit_forms.approvers')->with('success', 'Form approved successfully.');
+    }
+    public function getForm($id)
+    {
+        $form = ClearanceForm::findOrFail($id);
+        return view('exit_forms.show', compact('form'));
+    }
+
+    public function getApprover()
+    {
+        $forms = ClearanceForm::where('status', 'pending')->get();
+        return view('exit_forms.approvers', compact('forms'));
+    }
+
+    public function rejectForm(Request $request, $id)
+    {
+        $form = ClearanceForm::findOrFail($id);
+        $form->status = 'rejected';
+        $form->rejection_reason = $request->input('reason');
+        $form->save();
+
+        return redirect()->route('exit_forms.approvers')->with('error', 'Form rejected.');
+    }
+
+
+
+
+
 }

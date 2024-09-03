@@ -160,6 +160,13 @@ Route::get('/approver_form', [FormController::class, 'getApprover'])->name('appr
 Route::get('/show_form/{id}', [FormController::class, 'getForm']);
 Route::post('/reject_form', [FormController::class, 'rejectForm']);
 
+
+Route::post('/exit_forms/{id}/approve', [ClearanceFormController::class, 'approveForm'])->name('exit_forms.approve');
+Route::get('/exit_forms/approvers', [ClearanceFormController::class, 'getApprover'])->name('exit_forms.approvers');
+Route::get('/exit_forms/{id}', [ClearanceFormController::class, 'getForm'])->name('exit_forms.show');
+Route::post('/exit_forms/{id}/reject', [ClearanceFormController::class, 'rejectForm'])->name('exit_forms.reject');
+
+
 // Route::post('/approve_form', [FormController::class, 'approveClearanceForm'])->name('approve_form');
 // Route::get('/approver_form', [FormController::class, 'getApprover'])->name('approver_form');
 // Route::get('/show_form/{id}', [FormController::class, 'getClearance']);
