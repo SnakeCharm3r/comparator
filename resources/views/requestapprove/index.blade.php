@@ -37,33 +37,58 @@
                                 </thead>
                                 <tbody>
                                     <?php $i = 1; ?>
-                                    @foreach ($pending as $pending)
+                                    @foreach ($pending as $pendingRequest)
                                         <tr>
                                             <td>{{ $i }}</td>
-                                            @if ($pending->ict_request_resource_id)
-                                                <td>ICT Access Form</td>
-                                                <td>{{ $pending->requester_name }}</td>
-                                                <td>{{ $pending->attend_date }}</td>
-                                                <td>
-                                                    @if ($pending->status == 0)
-                                                        <span class="badge bg-warning text-dark font-size-11">Pending</span>
-                                                    @elseif ($pending->status == 1)
-                                                        <span
-                                                            class="badge bg-success text-dark font-size-11">Approved</span>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if ($pending->status == 1)
-                                                        {{ \Carbon\Carbon::parse($pending->updated_at)->format('d F Y') }}
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    <button href="#" class="btn btn-primary btn-sm" title="View"
-                                                        onclick="showForm({{ $pending->ict_request_resource_id }})">
-                                                        <i class="fas fa-eye"></i>
-                                                    </button>
-                                                </td>
-                                            @endif
+                                            <td>ICT Access Form</td>
+                                            <td>{{ $pendingRequest->requester_name }}</td>
+                                            <td>{{ $pendingRequest->attend_date }}</td>
+                                            <td>
+                                                @if ($pendingRequest->status == 0)
+                                                    <span class="badge bg-warning text-dark font-size-11">Pending</span>
+                                                @elseif ($pendingRequest->status == 1)
+                                                    <span class="badge bg-success text-dark font-size-11">Approved</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($pendingRequest->status == 1)
+                                                    {{ \Carbon\Carbon::parse($pendingRequest->updated_at)->format('d F Y') }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <button href="#" class="btn btn-primary btn-sm" title="View"
+                                                    onclick="showForm({{ $pendingRequest->ict_request_resource_id }})">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <?php $i++; ?>
+                                    @endforeach
+
+                                    @foreach ($clear as $clearRequest)
+                                        <tr>
+                                            <td>{{ $i }}</td>
+                                            <td>Clearance Form</td>
+                                            <td>{{ $clearRequest->requester_name }}</td>
+                                            <td>{{ $clearRequest->attend_date }}</td>
+                                            <td>
+                                                @if ($clearRequest->status == 0)
+                                                    <span class="badge bg-warning text-dark font-size-11">Pending</span>
+                                                @elseif ($clearRequest->status == 1)
+                                                    <span class="badge bg-success text-dark font-size-11">Approved</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($clearRequest->status == 1)
+                                                    {{ \Carbon\Carbon::parse($clearRequest->updated_at)->format('d F Y') }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <button href="#" class="btn btn-primary btn-sm" title="View"
+                                                    onclick="showForm({{ $clearRequest->requested_resource_id }})">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </td>
                                         </tr>
                                         <?php $i++; ?>
                                     @endforeach
@@ -86,7 +111,7 @@
     });
 
     function showForm(id) {
-        var url = '/show_form/' + id;
+        var url = '/exit_forms/' + id;
         window.location.href = url;
     }
 </script>
