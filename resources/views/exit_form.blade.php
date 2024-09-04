@@ -16,7 +16,7 @@
                                         <p style="font-size: 14px; color: #6c757d;">
                                             <strong>Previous Approval:</strong>
                                             @php
-                                                $forwardedBy = \App\Models\User::find($clear->forwarded_by);
+                                                $forwardedBy = \App\Models\User::find($clearance->forwarded_by);
                                             @endphp
                                             {{ $forwardedBy ? $forwardedBy->fname . ' ' . $forwardedBy->lname : 'N/A' }}
                                         </p>
@@ -210,19 +210,15 @@
                                 </div>
                             </div>
 
-                            <!-- Approval & Rejection Buttons -->
-                            <div class="d-flex justify-content-end">
-                                <form action="{{ route('clearance.approve', $clearance->id) }}" method="POST">
-                                    @csrf
-                                    @method('POST')
-                                    <button type="submit" class="btn btn-success mr-2">Approve</button>
-                                </form>
-                                <form action="{{ route('clearance.reject', $clearance->id) }}" method="POST">
-                                    @csrf
-                                    @method('POST')
-                                    <button type="submit" class="btn btn-danger">Reject</button>
-                                </form>
-                            </div>
+                              <!-- Action Buttons -->
+                              <div class="buttons-container"
+                              style="margin-top: 15px; display: flex; justify-content: flex-end; gap: 10px; padding-right: 3%;">
+                              <button type="button" class="btn btn-success"
+                                  onclick="approveForm('{{ $clearance->access_id }}')">Approve</button>
+                              <button type="button" class="btn btn-danger"
+                                  onclick="rejectForm('{{$clearance->access_id}}')">Reject</button>
+                              <button type="button" class="btn btn-primary" onclick="generatePDF()">Download</button>
+                          </div>
 
                         </div>
 
@@ -231,6 +227,106 @@
             </div>
         </div>
     </div>
+
+    <script>
+                          function approveForm(access_id) {
+                            $.ajaxSetup({
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                }
+                            });
+
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                text: "Do you want to approve this form?",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonText: 'Yes, approve it!',
+                                cancelButtonText: 'No, cancel!',
+                                reverseButtons: true
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    $.ajax({
+                                        method: 'POST',
+                                        url: '/approve_form',
+                                        data: {
+                                            access_id: access_id
+                                        },
+                                        success: function(response) {
+                                            Swal.fire({
+                                                title: 'Approved!',
+                                                text: 'Form has been approved.',
+                                                icon: 'success',
+                                                confirmButtonText: 'OK'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    window.location.href = '/requestapprove';
+                                                }
+                                            });
+                                        },
+                                        error: function(xhr, status, error) {
+                                            console.error('Error:', error);
+                                            Swal.fire('Error!', 'Failed to approve form.', 'error');
+                                        }
+                                    });
+                                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                                    Swal.fire('Cancelled', 'The form was not approved :)', 'error');
+                                }
+                            });
+                        }
+
+
+
+    function rejectForm(access_id) {
+        Swal.fire({
+
+            text: "Please provide a reason for rejection:",
+            input: 'textarea',
+            inputPlaceholder: 'Enter your reason here...',
+            showCancelButton: true,
+            confirmButtonText: 'Reject',
+            cancelButtonText: 'Cancel',
+            reverseButtons: true,
+            inputValidator: (value) => {
+                if (!value) {
+                    return 'You need to provide a reason!'
+                }
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const reason = result.value;
+
+                $.ajax({
+                    method: 'POST',
+                    url: '/reject_form',
+                    data: {
+                        access_id: access_id,
+                        reason: reason
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        Swal.fire({
+                            title: 'Rejected!',
+                            text: 'Form has been rejected.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = '/requestapprove';
+                            }
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                        Swal.fire('Error!', 'Failed to reject form.', 'error');
+                    }
+                });
+            }
+        });
+    }
+        </script>
 @endsection
 
 @section('styles')

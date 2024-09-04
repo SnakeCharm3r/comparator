@@ -257,7 +257,7 @@ public function rejectForm(Request $request) {
 
 public function getClearance(Request $request){
 $user = Auth::user();
-$clear = ClearanceForm::join('users', 'users.id', '=', 'clearance_forms.userId')
+$clearance = ClearanceForm::join('users', 'users.id', '=', 'clearance_forms.userId')
         ->join('clearance_work_flows','clearance_work_flows.requested_resource_id','=','clearance_forms.id')
         ->join('clearance_work_flow_histories','clearance_work_flow_histories.work_flow_id','=','clearance_work_flows.id')
         ->join('users as user_forwarded', 'user_forwarded.id', '=', 'clearance_work_flow_histories.forwarded_by')
@@ -268,7 +268,7 @@ $clear = ClearanceForm::join('users', 'users.id', '=', 'clearance_forms.userId')
                 'clearance_work_flows.*',
                 'clearance_work_flow_histories.*',
                 'clearance_forms.id as access_id']);
-        return view('clearance.index', compact('clear','user'));
+        return view('exit_form', compact('clearance','user'));
 
 }
 

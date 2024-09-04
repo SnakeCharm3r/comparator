@@ -57,7 +57,7 @@
                                             </td>
                                             <td>
                                                 <button href="#" class="btn btn-primary btn-sm" title="View"
-                                                    onclick="showForm({{ $pendingRequest->ict_request_resource_id }})">
+                                                    onclick="showForm('ict', {{ $pendingRequest->ict_request_resource_id }})">
                                                     <i class="fas fa-eye"></i>
                                                 </button>
                                             </td>
@@ -85,7 +85,7 @@
                                             </td>
                                             <td>
                                                 <button href="#" class="btn btn-primary btn-sm" title="View"
-                                                    onclick="showForm({{ $clearRequest->requested_resource_id }})">
+                                                    onclick="showForm('clearance', {{ $clearRequest->requested_resource_id }})">
                                                     <i class="fas fa-eye"></i>
                                                 </button>
                                             </td>
@@ -110,8 +110,13 @@
         $('#example').DataTable();
     });
 
-    function showForm(id) {
-        var url = '/exit_forms/' + id;
+    function showForm(type, id) {
+        var url = '';
+        if (type === 'ict') {
+            url = '/show_form/' + id;
+        } else if (type === 'clearance') {
+            url = '/clearance_forms/' + id;
+        }
         window.location.href = url;
     }
 </script>
