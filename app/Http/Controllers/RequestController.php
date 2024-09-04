@@ -67,11 +67,28 @@ class RequestController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        $request = Workflow::findOrFail($id);
-        return view('myrequest.edit', compact('request'));
+    // public function edit(string $id)
+    // {
+    //     $request = Workflow::findOrFail($id);
+    //     return view('myrequest.edit', compact('request'));
+    // }
+
+    public function edit($id)
+{
+
+    $request = Request::findOrFail($id);
+
+    switch ($request->form_type) {
+        case 'form_type_1':
+            return view('myrequest.edit_form_type_1', compact('request'));
+        case 'form_type_2':
+            return view('myrequest.edit_form_type_2', compact('request'));
+        // Add more cases as needed for different form types
+        default:
+            abort(404); // Handle unknown form types
     }
+}
+
 
     /**
      * Update the specified resource in storage.
