@@ -214,7 +214,7 @@
                               <div class="buttons-container"
                               style="margin-top: 15px; display: flex; justify-content: flex-end; gap: 10px; padding-right: 3%;">
                               <button type="button" class="btn btn-success"
-                                  onclick="approveForm('{{ $clearance->access_id }}')">Approve</button>
+                                  onclick="approveClearanceForm('{{ $clearance->access_id }}')">Approve</button>
                               <button type="button" class="btn btn-danger"
                                   onclick="rejectForm('{{$clearance->access_id}}')">Reject</button>
                               <button type="button" class="btn btn-primary" onclick="generatePDF()">Download</button>
@@ -229,7 +229,7 @@
     </div>
 
     <script>
-                          function approveForm(access_id) {
+                          function approveClearanceForm(access_id) {
                             $.ajaxSetup({
                                 headers: {
                                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -248,7 +248,7 @@
                                 if (result.isConfirmed) {
                                     $.ajax({
                                         method: 'POST',
-                                        url: '/approve_form',
+                                        url: '/approve_clearform',
                                         data: {
                                             access_id: access_id
                                         },
