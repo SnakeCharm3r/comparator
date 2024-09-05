@@ -30,17 +30,16 @@
                                             </thead>
                                             <tbody>
                                                 @php
-                                                    $previousRequestId = null;
+                                                    $previousRequestId = null; // Initialize the variable here
                                                     $counter = 1; // Initialize counter for numbering
                                                 @endphp
 
+                                                {{-- Display ICT Forms --}}
                                                 @foreach ($form as $aform)
                                                     @php
                                                         $approvalDetails = [];
                                                         foreach ($histories[$aform->id] as $ahistory) {
-                                                            $roles = \App\Models\User::findOrFail(
-                                                                $ahistory->attended_by,
-                                                            )->roles;
+                                                            $roles = \App\Models\User::findOrFail($ahistory->attended_by)->roles;
                                                             foreach ($roles as $role) {
                                                                 if ($role->name != 'requester') {
                                                                     $rang = 'warning'; // Default value
@@ -69,48 +68,120 @@
                                                         }
                                                     @endphp
 
-@foreach ($approvalDetails as $detail)
-<tr class="{{ $aform->id !== $previousRequestId ? 'request-row' : '' }}">
-    @if ($loop->first)
-        <td rowspan="{{ count($approvalDetails) }}">
-            {{ $counter++ }} <!-- Display the counter value -->
-        </td>
-        <td rowspan="{{ count($approvalDetails) }}">
-            @if ($aform->ict_request_resource_id)
-                ICT Access Form
-            @endif
-        </td>
-    @endif
-    <td>{{ $detail['role'] }}</td>
-    <td>{!! $detail['status'] !!}</td>
-    <td>
-        {{-- Only display the rejection reason if the status is Rejected --}}
-        @if ($detail['status'] == "<span class='badge bg-danger'>Rejected</span>")
-            {{ $detail['rejectionReason'] }}
-        @endif
-    </td>
-    @if ($loop->first)
-        <td rowspan="{{ count($approvalDetails) }}">
-            {{ $aform->created_at }}
-        </td>
-        <td rowspan="{{ count($approvalDetails) }}"></td>
-        <td rowspan="{{ count($approvalDetails) }}">
-            <a href="{{ route('request.edit', $aform->id) }}" class="btn btn-rounded btn-outline-info">Modify</a>
-            <form action="{{ route('request.destroy', $aform->id) }}" method="POST" style="display:inline-block;">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-rounded btn-outline-danger">Revoke</button>
-            </form>
-        </td>
-    @endif
-</tr>
+                                                    @foreach ($approvalDetails as $detail)
+                                                        <tr class="{{ $aform->id !== $previousRequestId ? 'request-row' : '' }}">
+                                                            @if ($loop->first)
+                                                                <td rowspan="{{ count($approvalDetails) }}">
+                                                                    {{ $counter++ }} <!-- Display the counter value -->
+                                                                </td>
+                                                                <td rowspan="{{ count($approvalDetails) }}">
+                                                                    ICT Access Form
+                                                                </td>
+                                                            @endif
+                                                            <td>{{ $detail['role'] }}</td>
+                                                            <td>{!! $detail['status'] !!}</td>
+                                                            <td>
+                                                                {{-- Only display the rejection reason if the status is Rejected --}}
+                                                                @if ($detail['status'] == "<span class='badge bg-danger'>Rejected</span>")
+                                                                    {{ $detail['rejectionReason'] }}
+                                                                @endif
+                                                            </td>
+                                                            @if ($loop->first)
+                                                                <td rowspan="{{ count($approvalDetails) }}">
+                                                                    {{ $aform->created_at }}
+                                                                </td>
+                                                                <td rowspan="{{ count($approvalDetails) }}"></td>
+                                                                <td rowspan="{{ count($approvalDetails) }}">
+                                                                    <a href="{{ route('request.edit', $aform->id) }}" class="btn btn-rounded btn-outline-info">Modify</a>
+                                                                    <form action="{{ route('request.destroy', $aform->id) }}" method="POST" style="display:inline-block;">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit" class="btn btn-rounded btn-outline-danger">Revoke</button>
+                                                                    </form>
+                                                                </td>
+                                                            @endif
+                                                        </tr>
 
-@php
-    $previousRequestId = $aform->id;
-@endphp
-@endforeach
-
+                                                        @php
+                                                            $previousRequestId = $aform->id; // Update the variable after each iteration
+                                                        @endphp
+                                                    @endforeach
                                                 @endforeach
+
+                                                {{-- Display Clearance Forms --}}
+                                                @foreach ($clearForm as $exit)
+                                                    @php
+                                                        $clearApprovalDetails = [];
+                                                        foreach ($clearHistories[$exit->id] as $clearHistory) {
+                                                            $roles = \App\Models\User::findOrFail($clearHistory->attended_by)->roles;
+                                                            foreach ($roles as $role) {
+                                                                if ($role->name != 'requester') {
+                                                                    $rang = 'warning'; // Default value
+                                                                    $neno = 'Pending'; // Default value
+                                                                    $rejectionReason = ''; // Default value for rejection reason
+
+                                                                    if ($clearHistory->status == 0) {
+                                                                        $rang = 'warning';
+                                                                        $neno = 'Pending';
+                                                                    } elseif ($clearHistory->status == 1) {
+                                                                        $rang = 'success';
+                                                                        $neno = 'Approved';
+                                                                    } else {
+                                                                        $rang = 'danger';
+                                                                        $neno = 'Rejected';
+                                                                        $rejectionReason = $clearHistory->rejection_reason; // Fetch rejection reason
+                                                                    }
+
+                                                                    $clearApprovalDetails[] = [
+                                                                        'role' => $role->name,
+                                                                        'status' => "<span class='badge bg-{$rang}'>{$neno}</span>",
+                                                                        'rejectionReason' => $rejectionReason,
+                                                                    ];
+                                                                }
+                                                            }
+                                                        }
+                                                    @endphp
+
+                                                    @foreach ($clearApprovalDetails as $detail)
+                                                        <tr class="{{ $exit->id !== $previousRequestId ? 'request-row' : '' }}">
+                                                            @if ($loop->first)
+                                                                <td rowspan="{{ count($clearApprovalDetails) }}">
+                                                                    {{ $counter++ }} <!-- Display the counter value -->
+                                                                </td>
+                                                                <td rowspan="{{ count($clearApprovalDetails) }}">
+                                                                    Clearance Form
+                                                                </td>
+                                                            @endif
+                                                            <td>{{ $detail['role'] }}</td>
+                                                            <td>{!! $detail['status'] !!}</td>
+                                                            <td>
+                                                                {{-- Only display the rejection reason if the status is Rejected --}}
+                                                                @if ($detail['status'] == "<span class='badge bg-danger'>Rejected</span>")
+                                                                    {{ $detail['rejectionReason'] }}
+                                                                @endif
+                                                            </td>
+                                                            @if ($loop->first)
+                                                                <td rowspan="{{ count($clearApprovalDetails) }}">
+                                                                    {{ $exit->created_at }}
+                                                                </td>
+                                                                <td rowspan="{{ count($clearApprovalDetails) }}"></td>
+                                                                <td rowspan="{{ count($clearApprovalDetails) }}">
+                                                                    <a href="{{ route('clearance.edit', $exit->id) }}" class="btn btn-rounded btn-outline-info">Modify</a>
+                                                                    <form action="{{ route('request.destroy', $exit->id) }}" method="POST" style="display:inline-block;">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit" class="btn btn-rounded btn-outline-danger">Revoke</button>
+                                                                    </form>
+                                                                </td>
+                                                            @endif
+                                                        </tr>
+
+                                                        @php
+                                                            $previousRequestId = $exit->id; // Update the variable after each iteration
+                                                        @endphp
+                                                    @endforeach
+                                                @endforeach
+
                                             </tbody>
                                         </table>
                                     </div>

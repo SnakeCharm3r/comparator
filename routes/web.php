@@ -161,11 +161,19 @@ Route::get('/show_form/{id}', [FormController::class, 'getForm']);
 Route::post('/reject_form', [FormController::class, 'rejectForm']);
 
 
-Route::post('/exit_forms/{id}/approve', [ClearanceFormController::class, 'approveForm'])->name('exit_forms.approve');
+Route::post('/approve_clearform', [FormController::class, 'approveClearanceForm'])->name('approve_clearform');
 Route::get('/exit_forms/approvers', [ClearanceFormController::class, 'getApprover'])->name('exit_forms.approvers');
 Route::get('/exit_forms/{id}', [FormController::class, 'getClearance']);
 Route::post('/exit_forms/{id}/reject', [ClearanceFormController::class, 'rejectForm'])->name('exit_forms.reject');
 
+// // Route for ICT Access Forms View
+// Route::get('/ict_forms/{id}', [RequestApproveController::class, 'showICTForm'])->name('requestapprove.index');
+
+// Route for Clearance Forms View
+Route::get('/clearance_forms/{id}', [FormController::class, 'getClearance']);
+
+//Get Clearance in my request view
+Route::get('/clearance/edit/{id}', [RequestController::class, 'editClearance'])->name('clearance.edit');
 
 // Route::post('/approve_form', [FormController::class, 'approveClearanceForm'])->name('approve_form');
 // Route::get('/approver_form', [FormController::class, 'getApprover'])->name('approver_form');

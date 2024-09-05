@@ -35,6 +35,22 @@ class RequestApproveController extends Controller
         return view("requestapprove.index", compact("pending", "clear"));
     }
 
+
+
+public function showICTForm($id)
+{
+    $ictRequest = Workflow::findOrFail($id);
+    // Return a view with the ICT request details
+    return view('ict_resource_form', compact('ictRequest'));
+}
+
+public function showClearanceForm($id)
+{
+    $clearanceRequest = Clearance_work_flow::findOrFail($id);
+    // Return a view with the Clearance request details
+    return view('requestapprove.show_clearance_form', compact('clearanceRequest'));
+}
+
     //hii haitumiki ipo for ref
     public function indexOld()
     {
