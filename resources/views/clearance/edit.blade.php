@@ -68,70 +68,23 @@
                                     <tbody>
                                         <tr>
                                             <td><strong>CCBRT Identification Card</strong></td>
-                                            <td>
-                                                <label class="mr-4">
-                                                    <input type="radio" name="ccbrt_id_card" value="Yes"
-                                                        {{ $clearform->ccbrt_id_card == 'Yes' ? 'checked' : '' }}> Yes
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="ccbrt_id_card" value="N/A"
-                                                        {{ $clearform->ccbrt_id_card == 'N/A' ? 'checked' : '' }}> N/A
-                                                </label>
-                                            </td>
+                                            <td>{{ $clearance->ccbrt_id_card }}</td>
                                         </tr>
                                         <tr>
                                             <td><strong>CCBRT Name Tag</strong></td>
-                                            <td>
-                                                <label class="mr-4">
-                                                    <input type="radio" name="ccbrt_name_tag" value="Yes"
-                                                        {{ $clearform->ccbrt_name_tag == 'Yes' ? 'checked' : '' }}> Yes
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="ccbrt_name_tag" value="N/A"
-                                                        {{ $clearform->ccbrt_name_tag == 'N/A' ? 'checked' : '' }}> N/A
-                                                </label>
-                                            </td>
+                                            <td>{{ $clearance->ccbrt_name_tag }}</td>
                                         </tr>
                                         <tr>
                                             <td><strong>NHIF Cards (Including dependents’ cards)</strong></td>
-                                            <td>
-                                                <label class="mr-4">
-                                                    <input type="radio" name="nhif_cards" value="Yes"
-                                                        {{ $clearform->nhif_cards == 'Yes' ? 'checked' : '' }}> Yes
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="nhif_cards" value="N/A"
-                                                        {{ $clearform->nhif_cards == 'N/A' ? 'checked' : '' }}> N/A
-                                                </label>
-                                            </td>
+                                            <td>{{ $clearance->nhif_cards }}</td>
                                         </tr>
                                         <tr>
                                             <td><strong>Work Permit Cancelled (for non-Tanzanian)</strong></td>
-                                            <td>
-                                                <label class="mr-4">
-                                                    <input type="radio" name="work_permit_cancelled" value="Yes"
-                                                        {{ $clearform->work_permit_cancelled == 'Yes' ? 'checked' : '' }}> Yes
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="work_permit_cancelled" value="N/A"
-                                                        {{ $clearform->work_permit_cancelled == 'N/A' ? 'checked' : '' }}> N/A
-                                                </label>
-                                            </td>
+                                            <td>{{ $clearance->work_permit_cancelled }}</td>
                                         </tr>
                                         <tr>
                                             <td><strong>Residence Permit Cancelled (for non-Tanzanian)</strong></td>
-                                            <td>
-                                                <label class="mr-4">
-                                                    <input type="radio" name="residence_permit_cancelled" value="Yes"
-                                                        {{ $clearform->residence_permit_cancelled == 'Yes' ? 'checked' : '' }}>
-                                                    Yes
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="residence_permit_cancelled" value="N/A"
-                                                        {{ $clearform->residence_permit_cancelled == 'N/A' ? 'checked' : '' }}>
-                                                    N/A
-                                                </label>
-                                            </td>
+                                            <td>{{ $clearance->residence_permit_cancelled }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -402,21 +355,6 @@
                                 </table>
 
                                 <!-- Section IV: Declaration -->
-                                <h4 class="section-title mb-4"
-                                    style="background-color: #e9ecef; padding: 10px; border-radius: 3px;">Section IV:
-                                    Declaration</h4>
-                                <div class="row mb-4">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label><strong>Staff Declaration:</strong></label>
-                                            <p>To the best of my knowledge, I have returned all items in my possession
-                                                belonging to CCBRT. I understand that failure to return items issued, could
-                                                affect sums of money due to me as my final salary.</p>
-
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </form>
                         </div>

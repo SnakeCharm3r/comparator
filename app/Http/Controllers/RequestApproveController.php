@@ -15,25 +15,49 @@ class RequestApproveController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // public function index()
+    // {
+    //     // Fetch ICT Access Requests
+    //     $pending = Workflow::join('work_flow_histories', 'work_flow_histories.work_flow_id', '=', 'workflows.id')
+    //                         ->join('users as requesters', 'requesters.id', '=', 'workflows.user_id')
+    //                         ->where('work_flow_histories.attended_by', Auth::user()->id)
+    //                         ->select('workflows.*', 'work_flow_histories.*', 'requesters.username as requester_name')
+    //                         ->get();
+
+    //     // Fetch Clearance Requests
+    //     $clear = Clearance_work_flow::join('clearance_work_flow_histories', 'clearance_work_flow_histories.work_flow_id', '=', 'clearance_work_flows.id')
+    //                                 ->join('users as requesters', 'requesters.id', '=', 'clearance_work_flows.user_id')
+    //                                 ->where('clearance_work_flow_histories.attended_by', Auth::user()->id)
+    //                                 ->select('clearance_work_flows.*', 'clearance_work_flow_histories.*', 'requesters.username as requester_name')
+    //                                 ->get();
+
+    //     // Pass both datasets to the view
+    //     return view("requestapprove.index", compact("pending", "clear"));
+    // }
+
+
     public function index()
-    {
-        // Fetch ICT Access Requests
-        $pending = Workflow::join('work_flow_histories', 'work_flow_histories.work_flow_id', '=', 'workflows.id')
-                            ->join('users as requesters', 'requesters.id', '=', 'workflows.user_id')
-                            ->where('work_flow_histories.attended_by', Auth::user()->id)
-                            ->select('workflows.*', 'work_flow_histories.*', 'requesters.username as requester_name')
-                            ->get();
+{
+    // Fetch ICT Access Requests and sort by created_at or updated_at in descending order
+    $pending = Workflow::join('work_flow_histories', 'work_flow_histories.work_flow_id', '=', 'workflows.id')
+                        ->join('users as requesters', 'requesters.id', '=', 'workflows.user_id')
+                        ->where('work_flow_histories.attended_by', Auth::user()->id)
+                        ->select('workflows.*', 'work_flow_histories.*', 'requesters.username as requester_name')
+                        ->orderBy('workflows.created_at', 'desc') // Sort by created_at date
+                        ->get();
 
-        // Fetch Clearance Requests
-        $clear = Clearance_work_flow::join('clearance_work_flow_histories', 'clearance_work_flow_histories.work_flow_id', '=', 'clearance_work_flows.id')
-                                    ->join('users as requesters', 'requesters.id', '=', 'clearance_work_flows.user_id')
-                                    ->where('clearance_work_flow_histories.attended_by', Auth::user()->id)
-                                    ->select('clearance_work_flows.*', 'clearance_work_flow_histories.*', 'requesters.username as requester_name')
-                                    ->get();
+    // Fetch Clearance Requests and sort by created_at or updated_at in descending order
+    $clear = Clearance_work_flow::join('clearance_work_flow_histories', 'clearance_work_flow_histories.work_flow_id', '=', 'clearance_work_flows.id')
+                                ->join('users as requesters', 'requesters.id', '=', 'clearance_work_flows.user_id')
+                                ->where('clearance_work_flow_histories.attended_by', Auth::user()->id)
+                                ->select('clearance_work_flows.*', 'clearance_work_flow_histories.*', 'requesters.username as requester_name')
+                                ->orderBy('clearance_work_flows.created_at', 'desc') // Sort by created_at date
+                                ->get();
 
-        // Pass both datasets to the view
-        return view("requestapprove.index", compact("pending", "clear"));
-    }
+    // Pass both datasets to the view
+    return view("requestapprove.index", compact("pending", "clear"));
+}
+
 
 
 

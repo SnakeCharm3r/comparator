@@ -39,7 +39,9 @@
                                                     @php
                                                         $approvalDetails = [];
                                                         foreach ($histories[$aform->id] as $ahistory) {
-                                                            $roles = \App\Models\User::findOrFail($ahistory->attended_by)->roles;
+                                                            $roles = \App\Models\User::findOrFail(
+                                                                $ahistory->attended_by,
+                                                            )->roles;
                                                             foreach ($roles as $role) {
                                                                 if ($role->name != 'requester') {
                                                                     $rang = 'warning'; // Default value
@@ -69,7 +71,8 @@
                                                     @endphp
 
                                                     @foreach ($approvalDetails as $detail)
-                                                        <tr class="{{ $aform->id !== $previousRequestId ? 'request-row' : '' }}">
+                                                        <tr
+                                                            class="{{ $aform->id !== $previousRequestId ? 'request-row' : '' }}">
                                                             @if ($loop->first)
                                                                 <td rowspan="{{ count($approvalDetails) }}">
                                                                     {{ $counter++ }} <!-- Display the counter value -->
@@ -92,12 +95,13 @@
                                                                 </td>
                                                                 <td rowspan="{{ count($approvalDetails) }}"></td>
                                                                 <td rowspan="{{ count($approvalDetails) }}">
-                                                                    <a href="{{ route('request.edit', $aform->id) }}" class="btn btn-rounded btn-outline-info">Modify</a>
-                                                                    <form action="{{ route('request.destroy', $aform->id) }}" method="POST" style="display:inline-block;">
+                                                                    <a href="{{ route('request.edit', $aform->id) }}"
+                                                                        class="btn btn-rounded btn-outline-info">Modify</a>
+                                                                    {{-- <form action="{{ route('request.destroy', $aform->id) }}" method="POST" style="display:inline-block;">
                                                                         @csrf
                                                                         @method('DELETE')
                                                                         <button type="submit" class="btn btn-rounded btn-outline-danger">Revoke</button>
-                                                                    </form>
+                                                                    </form> --}}
                                                                 </td>
                                                             @endif
                                                         </tr>
@@ -113,7 +117,9 @@
                                                     @php
                                                         $clearApprovalDetails = [];
                                                         foreach ($clearHistories[$exit->id] as $clearHistory) {
-                                                            $roles = \App\Models\User::findOrFail($clearHistory->attended_by)->roles;
+                                                            $roles = \App\Models\User::findOrFail(
+                                                                $clearHistory->attended_by,
+                                                            )->roles;
                                                             foreach ($roles as $role) {
                                                                 if ($role->name != 'requester') {
                                                                     $rang = 'warning'; // Default value
@@ -129,7 +135,8 @@
                                                                     } else {
                                                                         $rang = 'danger';
                                                                         $neno = 'Rejected';
-                                                                        $rejectionReason = $clearHistory->rejection_reason; // Fetch rejection reason
+                                                                        $rejectionReason =
+                                                                            $clearHistory->rejection_reason; // Fetch rejection reason
                                                                     }
 
                                                                     $clearApprovalDetails[] = [
@@ -143,7 +150,8 @@
                                                     @endphp
 
                                                     @foreach ($clearApprovalDetails as $detail)
-                                                        <tr class="{{ $exit->id !== $previousRequestId ? 'request-row' : '' }}">
+                                                        <tr
+                                                            class="{{ $exit->id !== $previousRequestId ? 'request-row' : '' }}">
                                                             @if ($loop->first)
                                                                 <td rowspan="{{ count($clearApprovalDetails) }}">
                                                                     {{ $counter++ }} <!-- Display the counter value -->
@@ -166,11 +174,15 @@
                                                                 </td>
                                                                 <td rowspan="{{ count($clearApprovalDetails) }}"></td>
                                                                 <td rowspan="{{ count($clearApprovalDetails) }}">
-                                                                    <a href="{{ route('clearance.edit', $exit->id) }}" class="btn btn-rounded btn-outline-info">Modify</a>
-                                                                    <form action="{{ route('request.destroy', $exit->id) }}" method="POST" style="display:inline-block;">
+                                                                    <a href="{{ route('clearance.edit', $exit->id) }}"
+                                                                        class="btn btn-rounded btn-outline-info">Modify</a>
+                                                                    <form
+                                                                        action="{{ route('request.destroy', $exit->id) }}"
+                                                                        method="POST" style="display:inline-block;">
                                                                         @csrf
                                                                         @method('DELETE')
-                                                                        <button type="submit" class="btn btn-rounded btn-outline-danger">Revoke</button>
+                                                                        {{-- <button type="submit"
+                                                                            class="btn btn-rounded btn-outline-danger">Revoke</button> --}}
                                                                     </form>
                                                                 </td>
                                                             @endif

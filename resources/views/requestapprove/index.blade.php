@@ -104,10 +104,15 @@
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.datatables.net/2.1.2/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/2.1.2/js/dataTables.bootstrap5.min.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#example').DataTable();
+        $('#example').DataTable({
+            "order": [
+                [3, 'desc']
+            ] // Optionally set default column ordering, here assuming date is in the 4th column
+        });
     });
 
     function showForm(type, id) {

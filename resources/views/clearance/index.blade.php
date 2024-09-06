@@ -67,60 +67,23 @@
                                     <tbody>
                                         <tr>
                                             <td><strong>CCBRT Identification Card</strong></td>
-                                            <td>
-                                                <label class="mr-4">
-                                                    <input type="radio" name="ccbrt_id_card" value="Yes"> Yes
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="ccbrt_id_card" value="N/A"> N/A
-                                                </label>
-                                            </td>
+                                            <td>{{ $clearance->ccbrt_id_card }}</td>
                                         </tr>
                                         <tr>
                                             <td><strong>CCBRT Name Tag</strong></td>
-                                            <td>
-                                                <label class="mr-4">
-                                                    <input type="radio" name="ccbrt_name_tag" value="Yes"> Yes
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="ccbrt_name_tag" value="N/A"> N/A
-                                                </label>
-                                            </td>
+                                            <td>{{ $clearance->ccbrt_name_tag }}</td>
                                         </tr>
                                         <tr>
                                             <td><strong>NHIF Cards (Including dependents’ cards)</strong></td>
-                                            <td>
-                                                <label class="mr-4">
-                                                    <input type="radio" name="nhif_cards" value="Yes"> Yes
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="nhif_cards" value="N/A"> N/A
-                                                </label>
-                                            </td>
+                                            <td>{{ $clearance->nhif_cards }}</td>
                                         </tr>
                                         <tr>
                                             <td><strong>Work Permit Cancelled (for non-Tanzanian)</strong></td>
-                                            <td>
-                                                <label class="mr-4">
-                                                    <input type="radio" name="work_permit_cancelled" value="Yes"> Yes
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="work_permit_cancelled" value="N/A"> N/A
-                                                </label>
-                                            </td>
+                                            <td>{{ $clearance->work_permit_cancelled }}</td>
                                         </tr>
                                         <tr>
                                             <td><strong>Residence Permit Cancelled (for non-Tanzanian)</strong></td>
-                                            <td>
-                                                <label class="mr-4">
-                                                    <input type="radio" name="residence_permit_cancelled" value="Yes">
-                                                    Yes
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="residence_permit_cancelled" value="N/A">
-                                                    N/A
-                                                </label>
-                                            </td>
+                                            <td>{{ $clearance->residence_permit_cancelled }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
