@@ -30,8 +30,11 @@
                             <div style="text-align: center;">
                                 <img src="assets/img/ccbrt.jpg" alt="CCBRT eDOCS Logo" style="max-width: 150px;">
                             </div>
-                            <h1 style="text-align: center; font-family: 'Roboto', sans-serif; font-size: medium">CCBRT
-                                eDOCS</h1><br>
+                            <h1
+                                style="text-align: center; font-family: 'Roboto', sans-serif; font-size: medium; color: #0f813c;">
+                                CCBRT eDOCS
+                            </h1>
+                            <br>
                             @if ($errors->has('login_error'))
                                 <div class="alert alert-danger">
                                     {{ $errors->first('login_error') }}

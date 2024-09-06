@@ -8,32 +8,11 @@
                 <div class="col-md-12">
                     <div class="signup-container">
                         <h1>Register</h1>
-                        {{-- <p class="account-subtitle">Enter details to create your account</p> --}}
                     </div>
                     <form id="registrationForm" action="{{ route('register.handleRegistration') }}" method="POST"
                         onsubmit="return validatePassword()">
                         @csrf
-                        {{-- <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>First Name <span class="login-danger">*</span></label>
-                                    <input class="form-control" type="text" name="fname" required>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Middle Name <span class="login-danger">*</span></label>
-                                    <input class="form-control" type="text" name="mname" required>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Last Name <span class="login-danger">*</span></label>
-                                    <input class="form-control" type="text" name="lname" required>
-                                </div>
-                            </div>
-                        </div> --}}
-                        <!-- Instruction Text -->
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -72,8 +51,6 @@
                                 </div>
                             </div>
                         </div>
-
-
 
                         <div class="row">
                             <div class="col-md-4">
@@ -115,7 +92,6 @@
                                     document.getElementById('dob').setAttribute('max', minDateString);
                                 });
                             </script>
-
 
                         </div>
                         <div class="row">
@@ -365,6 +341,7 @@
             alert('You must accept the User Agreements and Policies to register.');
         }
     });
+
 
     function validatePassword() {
         var password = document.getElementById("password").value;

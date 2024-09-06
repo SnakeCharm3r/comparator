@@ -47,27 +47,66 @@ class RequestController extends Controller
         }
     }
 
-    public function index()
+//     public function index()
+// {
+//     try {
+//         if (!Auth::check()) {
+//             return redirect()->route('login'); // Ensure the user is authenticated
+//         }
+
+//         $userId = Auth::user()->id;
+
+//         // Fetch Workflow Forms
+//         $form = Workflow::where('user_id', $userId)->get();
+//         $histories = [];
+//         foreach ($form as $aform) {
+//             $history = WorkFlowHistory::where('work_flow_id', $aform->id)->get();
+//             $histories[$aform->id] = $history;
+//         }
+
+//         // Fetch Clearance Forms
+//         $clearForm = Clearance_work_flow::where('user_id', $userId)->get();
+//         $clearHistories = [];
+//         foreach($clearForm as $exit) {
+//             $clearHistory = Clearance_work_flow_history::where('work_flow_id', $exit->id)->get();
+//             $clearHistories[$exit->id] = $clearHistory;
+//         }
+
+//         // Pass both forms and histories to the view
+//         return view('myrequest.index', compact('form', 'histories', 'clearForm', 'clearHistories'));
+
+//     } catch (\Exception $e) {
+//         dd($e->getMessage());
+//     }
+// }
+
+public function index()
 {
     try {
         if (!Auth::check()) {
-            return redirect()->route('login'); // Ensure the user is authenticated
+            return redirect()->route('login');
         }
 
         $userId = Auth::user()->id;
 
-        // Fetch Workflow Forms
-        $form = Workflow::where('user_id', $userId)->get();
+        // Fetch and sort Workflow Forms
+        $form = Workflow::where('user_id', $userId)
+                        ->orderBy('created_at', 'desc') // Sort by creation date descending
+                        ->get();
+                        
         $histories = [];
         foreach ($form as $aform) {
             $history = WorkFlowHistory::where('work_flow_id', $aform->id)->get();
             $histories[$aform->id] = $history;
         }
 
-        // Fetch Clearance Forms
-        $clearForm = Clearance_work_flow::where('user_id', $userId)->get();
+        // Fetch and sort Clearance Forms
+        $clearForm = Clearance_work_flow::where('user_id', $userId)
+                                        ->orderBy('created_at', 'desc') // Sort by creation date descending
+                                        ->get();
+                                        
         $clearHistories = [];
-        foreach($clearForm as $exit) {
+        foreach ($clearForm as $exit) {
             $clearHistory = Clearance_work_flow_history::where('work_flow_id', $exit->id)->get();
             $clearHistories[$exit->id] = $clearHistory;
         }
@@ -79,6 +118,7 @@ class RequestController extends Controller
         dd($e->getMessage());
     }
 }
+
 
     public function getClear(){
         try{
