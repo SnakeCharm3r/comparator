@@ -212,11 +212,11 @@ public function update(Request $request, $id)
             'password' => Hash::make($request->input('password')),
 
         ]);
-            // Example of assigning role
             $user->assignRole('requester');
             Auth::login($user);
             Alert::success('User Registered Successful','Please Provide Your Signature');
-         return redirect()->route('dashboard');
+        return redirect()->route('login');
+
 }
 
    //Function shows edit user form

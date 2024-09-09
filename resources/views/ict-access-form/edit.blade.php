@@ -34,7 +34,8 @@
                                                 <option value="">---Select an option---</option>
                                                 @foreach ($privileges as $privilege)
                                                     @if (in_array($privilege->prv_name, ['User', 'Administrator', 'Super Administrator', 'HR Officer', 'HR Manager']))
-                                                        <option value="{{ $privilege->id }}" {{ $form->aruti == $privilege->id ? 'selected' : '' }}>
+                                                        <option value="{{ $privilege->id }}"
+                                                            {{ $form->aruti == $privilege->id ? 'selected' : '' }}>
                                                             {{ $privilege->prv_name }}
                                                         </option>
                                                     @endif
@@ -47,8 +48,19 @@
                                             <select class="form-control" id="sap" name="sap" required>
                                                 <option value="">---Select an option---</option>
                                                 @foreach ($privileges as $privilege)
-                                                    @if (in_array($privilege->prv_name, ['User', 'Administrator', 'Finance', 'Payroll Accountant', 'CFO', 'HR', 'HR Manager', 'HR Biodata', 'Director of HR COO']))
-                                                        <option value="{{ $privilege->id }}" {{ $form->sap == $privilege->id ? 'selected' : '' }}>
+                                                    @if (in_array($privilege->prv_name, [
+                                                            'User',
+                                                            'Administrator',
+                                                            'Finance',
+                                                            'Payroll Accountant',
+                                                            'CFO',
+                                                            'HR',
+                                                            'HR Manager',
+                                                            'HR Biodata',
+                                                            'Director of HR COO',
+                                                        ]))
+                                                        <option value="{{ $privilege->id }}"
+                                                            {{ $form->sap == $privilege->id ? 'selected' : '' }}>
                                                             {{ $privilege->prv_name }}
                                                         </option>
                                                     @endif
@@ -62,7 +74,8 @@
                                                 <option value="">---Select an option---</option>
                                                 @foreach ($privileges as $privilege)
                                                     @if (in_array($privilege->prv_name, ['User', 'Administrator']))
-                                                        <option value="{{ $privilege->id }}" {{ $form->pbax == $privilege->id ? 'selected' : '' }}>
+                                                        <option value="{{ $privilege->id }}"
+                                                            {{ $form->pbax == $privilege->id ? 'selected' : '' }}>
                                                             {{ $privilege->prv_name }}
                                                         </option>
                                                     @endif
@@ -75,7 +88,8 @@
                                             <select class="form-control" id="hmisId" name="hmisId" required>
                                                 <option value="">---Select an option---</option>
                                                 @foreach ($hmis as $hmi)
-                                                    <option value="{{ $hmi->id }}" {{ $form->hmisId == $hmi->id ? 'selected' : '' }}>
+                                                    <option value="{{ $hmi->id }}"
+                                                        {{ $form->hmisId == $hmi->id ? 'selected' : '' }}>
                                                         {{ $hmi->names }}
                                                     </option>
                                                 @endforeach
@@ -86,12 +100,14 @@
                                     <!-- Column 2 -->
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="active_drt">Active Directory<span class="text-danger">*</span></label>
+                                            <label for="active_drt">Active Directory<span
+                                                    class="text-danger">*</span></label>
                                             <select class="form-control" id="active_drt" name="active_drt" required>
                                                 <option value="">---Select an option---</option>
                                                 @foreach ($privileges as $privilege)
                                                     @if (in_array($privilege->prv_name, ['User', 'Administrator']))
-                                                        <option value="{{ $privilege->id }}" {{ $form->active_drt == $privilege->id ? 'selected' : '' }}>
+                                                        <option value="{{ $privilege->id }}"
+                                                            {{ $form->active_drt == $privilege->id ? 'selected' : '' }}>
                                                             {{ $privilege->prv_name }}
                                                         </option>
                                                     @endif
@@ -105,13 +121,17 @@
                                                 <div class="col-md-6">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox" class="hardware-checkbox" name="hardware_request[]" value="Laptop computer" {{ in_array('Laptop computer', $form->hardware_request ?? []) ? 'checked' : '' }}>
+                                                            <input type="checkbox" class="hardware-checkbox"
+                                                                name="hardware_request[]" value="Laptop computer"
+                                                                {{ in_array('Laptop computer', $form->hardware_request ?? []) ? 'checked' : '' }}>
                                                             Laptop computer
                                                         </label>
                                                     </div>
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox" class="hardware-checkbox" name="hardware_request[]" value="Desktop computer" {{ in_array('Desktop computer', $form->hardware_request ?? []) ? 'checked' : '' }}>
+                                                            <input type="checkbox" class="hardware-checkbox"
+                                                                name="hardware_request[]" value="Desktop computer"
+                                                                {{ in_array('Desktop computer', $form->hardware_request ?? []) ? 'checked' : '' }}>
                                                             Desktop computer
                                                         </label>
                                                     </div>
@@ -119,13 +139,17 @@
                                                 <div class="col-md-6">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox" class="hardware-checkbox" name="hardware_request[]" value="Telephone" {{ in_array('Telephone', $form->hardware_request ?? []) ? 'checked' : '' }}>
+                                                            <input type="checkbox" class="hardware-checkbox"
+                                                                name="hardware_request[]" value="Telephone"
+                                                                {{ in_array('Telephone', $form->hardware_request ?? []) ? 'checked' : '' }}>
                                                             Telephone
                                                         </label>
                                                     </div>
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox" class="hardware-checkbox" name="hardware_request[]" value="External Drive" {{ in_array('External Drive', $form->hardware_request ?? []) ? 'checked' : '' }}>
+                                                            <input type="checkbox" class="hardware-checkbox"
+                                                                name="hardware_request[]" value="External Drive"
+                                                                {{ in_array('External Drive', $form->hardware_request ?? []) ? 'checked' : '' }}>
                                                             External Drive
                                                         </label>
                                                     </div>
@@ -135,7 +159,9 @@
 
                                         <div class="form-group">
                                             <label for="network_folder">Network Folder</label>
-                                            <input type="text" class="form-control" name="network_folder" value="{{ old('network_folder', $form->network_folder) }}" placeholder="e.g., HR_Documents" required>
+                                            <input type="text" class="form-control" name="network_folder"
+                                                value="{{ old('network_folder', $form->network_folder) }}"
+                                                placeholder="e.g., HR_Documents" required>
                                         </div>
 
                                         <div class="form-group">
@@ -144,8 +170,13 @@
                                                 @foreach ($privileges as $privilege)
                                                     @if (in_array($privilege->prv_name, ['Read', 'Write', 'Full Access']))
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="folder_privilege" id="privilege_{{ $privilege->id }}" value="{{ $privilege->id }}" {{ $form->folder_privilege == $privilege->id ? 'checked' : '' }} required>
-                                                            <label class="form-check-label" for="privilege_{{ $privilege->id }}">{{ $privilege->prv_name }}</label>
+                                                            <input class="form-check-input" type="radio"
+                                                                name="folder_privilege" id="privilege_{{ $privilege->id }}"
+                                                                value="{{ $privilege->id }}"
+                                                                {{ $form->folder_privilege == $privilege->id ? 'checked' : '' }}
+                                                                required>
+                                                            <label class="form-check-label"
+                                                                for="privilege_{{ $privilege->id }}">{{ $privilege->prv_name }}</label>
                                                         </div>
                                                     @endif
                                                 @endforeach
@@ -160,7 +191,8 @@
                                             <select class="form-control" id="nhifId" name="nhifId" required>
                                                 <option value="">---Select an option---</option>
                                                 @foreach ($qualifications as $qualification)
-                                                    <option value="{{ $qualification->id }}" {{ $form->nhifId == $qualification->id ? 'selected' : '' }}>
+                                                    <option value="{{ $qualification->id }}"
+                                                        {{ $form->nhifId == $qualification->id ? 'selected' : '' }}>
                                                         {{ $qualification->name }}
                                                     </option>
                                                 @endforeach
@@ -173,7 +205,8 @@
                                                 <option value="">---Select an option---</option>
                                                 @foreach ($privileges as $privilege)
                                                     @if (in_array($privilege->prv_name, ['User', 'Administrator']))
-                                                        <option value="{{ $privilege->id }}" {{ $form->VPN == $privilege->id ? 'selected' : '' }}>
+                                                        <option value="{{ $privilege->id }}"
+                                                            {{ $form->VPN == $privilege->id ? 'selected' : '' }}>
                                                             {{ $privilege->prv_name }}
                                                         </option>
                                                     @endif
@@ -187,7 +220,8 @@
                                                 <option value="">---Select an option---</option>
                                                 @foreach ($privileges as $privilege)
                                                     @if (in_array($privilege->prv_name, ['User', 'Administrator']))
-                                                        <option value="{{ $privilege->id }}" {{ $form->privilegeId == $privilege->id ? 'selected' : '' }}>
+                                                        <option value="{{ $privilege->id }}"
+                                                            {{ $form->privilegeId == $privilege->id ? 'selected' : '' }}>
                                                             {{ $privilege->prv_name }}
                                                         </option>
                                                     @endif
@@ -196,7 +230,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary mt-3" style="background-color: #00d084; border-color: #00d084;">Update</button>
+                                <button type="submit" class="btn btn-primary mt-3"
+                                    style="background-color: #00d084; border-color: #00d084;">Update</button>
                             </form>
                         </div>
                     </div>
@@ -205,7 +240,4 @@
 
         </div>
     </div>
-@endsection
-
-@section('content')
 @endsection

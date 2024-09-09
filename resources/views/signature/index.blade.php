@@ -81,7 +81,7 @@
                 const signaturePad = new SignaturePad(canvas, {
                     penColor: 'rgb(0, 0, 255)' // Set pen color to blue
                 });
-            
+
                 // Resize canvas to fit its container
                 function resizeCanvas() {
                     const ratio = Math.max(window.devicePixelRatio || 1, 1);
@@ -90,20 +90,20 @@
                     canvas.getContext('2d').scale(ratio, ratio);
                     signaturePad.clear(); // otherwise isEmpty() might return incorrect value
                 }
-            
+
                 window.addEventListener('resize', resizeCanvas);
                 resizeCanvas();
-            
+
                 clearButton.addEventListener('click', () => {
                     signaturePad.clear();
                 });
-            
+
                 saveButton.addEventListener('click', () => {
                     if (signaturePad.isEmpty()) {
                         alert('Please provide a signature first.');
                         return;
                     }
-            
+
                     const dataURL = signaturePad.toDataURL('image/png');
                     const img = new Image();
                     img.src = dataURL;
@@ -112,21 +112,21 @@
                         const imgHeight = img.height;
                         const offscreenCanvas = document.createElement('canvas');
                         const offscreenCtx = offscreenCanvas.getContext('2d');
-            
+
                         offscreenCanvas.width = imgWidth;
                         offscreenCanvas.height = imgHeight;
                         offscreenCtx.drawImage(img, 0, 0);
-            
+
                         const boundingBox = {
                             left: imgWidth,
                             top: imgHeight,
                             right: 0,
                             bottom: 0
                         };
-            
+
                         const imgData = offscreenCtx.getImageData(0, 0, imgWidth, imgHeight);
                         const data = imgData.data;
-            
+
                         for (let y = 0; y < imgHeight; y++) {
                             for (let x = 0; x < imgWidth; x++) {
                                 const index = (y * imgWidth + x) * 4;
@@ -138,7 +138,7 @@
                                 }
                             }
                         }
-            
+
                         const {
                             left,
                             top,
@@ -147,7 +147,7 @@
                         } = boundingBox;
                         const width = right - left;
                         const height = bottom - top;
-            
+
                         const croppedCanvas = document.createElement('canvas');
                         const croppedCtx = croppedCanvas.getContext('2d');
                         croppedCanvas.width = width;
@@ -157,13 +157,13 @@
                             left, top, width, height, // Source rectangle
                             0, 0, width, height // Destination rectangle
                         );
-            
+
                         const croppedDataURL = croppedCanvas.toDataURL('image/png');
                         signatureInput.value = croppedDataURL;
                         signatureForm.submit();
                     };
                 });
-            
+
                 // Add touch event support for mobile devices
                 canvas.addEventListener('touchstart', (event) => {
                     const touch = event.touches[0];
@@ -173,7 +173,7 @@
                     });
                     canvas.dispatchEvent(mouseEvent);
                 }, false);
-            
+
                 canvas.addEventListener('touchmove', (event) => {
                     const touch = event.touches[0];
                     const mouseEvent = new MouseEvent('mousemove', {
@@ -182,13 +182,13 @@
                     });
                     canvas.dispatchEvent(mouseEvent);
                 }, false);
-            
+
                 canvas.addEventListener('touchend', (event) => {
                     const mouseEvent = new MouseEvent('mouseup', {});
                     canvas.dispatchEvent(mouseEvent);
                 }, false);
             </script>
-            
+
         </div>
     </div>
 @endsection

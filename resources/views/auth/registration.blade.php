@@ -273,7 +273,6 @@
 
 
 @include('includes.scripts')
-
 <script>
     document.getElementById('openAgreementsModal').addEventListener('click', function() {
         var form = document.getElementById('registrationForm');

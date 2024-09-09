@@ -166,18 +166,12 @@ Route::get('/exit_forms/approvers', [ClearanceFormController::class, 'getApprove
 Route::get('/exit_forms/{id}', [FormController::class, 'getClearance']);
 Route::post('/exit_forms/{id}/reject', [ClearanceFormController::class, 'rejectForm'])->name('exit_forms.reject');
 
-// // Route for ICT Access Forms View
-// Route::get('/ict_forms/{id}', [RequestApproveController::class, 'showICTForm'])->name('requestapprove.index');
-
 // Route for Clearance Forms View
 Route::get('/clearance_forms/{id}', [FormController::class, 'getClearance']);
 
 //Get Clearance in my request view
 Route::get('/clearance/edit/{id}', [RequestController::class, 'editClearance'])->name('clearance.edit');
-
-// Route::post('/approve_form', [FormController::class, 'approveClearanceForm'])->name('approve_form');
-// Route::get('/approver_form', [FormController::class, 'getApprover'])->name('approver_form');
-// Route::get('/show_form/{id}', [FormController::class, 'getClearance']);
+Route::put('/clearance/update/{id}', [RequestController::class, 'update'])->name('clearance.update');
 
 Route::get('role-permission/{roleId}/give-permission', [RoleController::class, 'addPermissionToRole']);
 Route::put('role-permission/{roleId}/give-permission', [RoleController::class, 'givePermissionToRole']);
