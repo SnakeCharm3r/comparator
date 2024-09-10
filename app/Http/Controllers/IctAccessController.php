@@ -59,14 +59,10 @@ class IctAccessController extends Controller
         return view('ict-access-form.create', compact('qualifications', 'privileges', 'rmk', 'hmis', 'user'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         // Validate incoming request
         $validator = Validator::make($request->all(), [
-            // 'remarkId' => 'required|exists:remarks,id',
             'privilegeId' => 'required|exists:privilege_levels,id',
             'userId' => 'required|exists:users,id',
             'hmisId' => 'required|exists:h_m_i_s_access_levels,id',
@@ -144,26 +140,26 @@ class IctAccessController extends Controller
                 // Find the approver based on role (e.g., Line Manager)
                 $approver = $this->findLineManagerForRequesterDepartment();
                 // Send notification email to approver
-$requestDetails = [
-    'attended_by' => $approver->id,
-    'requestId' => $ict->id,
-    'requestDate' => Carbon::now()->format('d F Y'),
-];
- //dd($requestDetails );
-if ($approver) {
-    $mail = new ApprovalRequestNotification();
-    $mail->approver = $approver;
-    $mail->requestDetails = $requestDetails;
-//dd($approver);
-    Mail::to($approver->email)->send($mail);
-} else {
-    // Handle the case where approver is null
-    throw new \Exception('Approver not found');
-}
-// Mail::to($approver->email)->send(new ApprovalRequestNotification($approver, $requestDetails));
-                // dd($approver );
-                \Log::info('Approver found', ['approver' => $approver]);
-// dd($approver);
+                    $requestDetails = [
+                        'attended_by' => $approver->id,
+                        'requestId' => $ict->id,
+                        'requestDate' => Carbon::now()->format('d F Y'),
+                    ];
+                    //dd($requestDetails );
+                    if ($approver) {
+                        $mail = new ApprovalRequestNotification();
+                        $mail->approver = $approver;
+                        $mail->requestDetails = $requestDetails;
+                    //dd($approver);
+                        Mail::to($approver->email)->send($mail);
+                    } else {
+                        // Handle the case where approver is null
+                        throw new \Exception('Approver not found');
+                    }
+                    // Mail::to($approver->email)->send(new ApprovalRequestNotification($approver, $requestDetails));
+                                    // dd($approver );
+                                    \Log::info('Approver found', ['approver' => $approver]);
+                    // dd($approver);
                 // Forward for approval
                 $this->forwardWorkflowHistory([
                     'work_flow_id' => $workflow->id,

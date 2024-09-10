@@ -19,7 +19,7 @@
 
 <body>
     <div class="main-wrapper login-body">
-        <div class="login-wrapper">
+        <div class="login-wrapper" style="background-color: #eff8f3;">
             <div class="container">
                 <div class="loginbox">
                     <div class="login-left">
@@ -46,16 +46,17 @@
                                 <div class="form-group">
                                     <label for="username">Username <span class="login-danger">*</span></label>
                                     <input id="username" class="form-control" type="text" name="username"
-                                        value="{{ old('username') }}" required>
+                                        value="{{ old('username') }}" placeholder="Fisrt Name.Last Name" required>
                                     <span class="profile-views"><i class="fas fa-user-circle"></i></span>
                                     @error('username')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+
                                 <div class="form-group">
                                     <label for="password">Password <span class="login-danger">*</span></label>
                                     <input id="password" class="form-control pass-input" type="password"
-                                        name="password" required>
+                                        name="password" placeholder="*************" required>
                                     <span class="profile-views feather-eye toggle-password"></span>
                                     @error('password')
                                         <div class="text-danger">{{ $message }}</div>

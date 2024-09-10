@@ -18,6 +18,7 @@ use App\Http\Controllers\SignatureController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HmisAccessController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\DataSecurityController;
 use App\Http\Controllers\CcbrtRelationController;
 use App\Http\Controllers\ClearanceFormController;
@@ -161,23 +162,25 @@ Route::get('/show_form/{id}', [FormController::class, 'getForm']);
 Route::post('/reject_form', [FormController::class, 'rejectForm']);
 
 
+Route::get('/announcements', [AnnouncementController::class, 'index'])->name('announcements.index');
+Route::get('/announcements/create', [AnnouncementController::class, 'create'])->name('announcements.create');
+Route::post('/announcements', [AnnouncementController::class, 'store'])->name('announcements.store');
+Route::get('/announcements/{id}/edit', [AnnouncementController::class, 'edit'])->name('announcements.edit');
+Route::put('/announcements/{id}', [AnnouncementController::class, 'update'])->name('announcements.update');
+Route::delete('/announcements/{id}', [AnnouncementController::class, 'destroy'])->name('announcements.destroy');
+
+
 Route::post('/approve_clearform', [FormController::class, 'approveClearanceForm'])->name('approve_clearform');
 Route::get('/exit_forms/approvers', [ClearanceFormController::class, 'getApprover'])->name('exit_forms.approvers');
 Route::get('/exit_forms/{id}', [FormController::class, 'getClearance']);
 Route::post('/exit_forms/{id}/reject', [ClearanceFormController::class, 'rejectForm'])->name('exit_forms.reject');
-
-// // Route for ICT Access Forms View
-// Route::get('/ict_forms/{id}', [RequestApproveController::class, 'showICTForm'])->name('requestapprove.index');
 
 // Route for Clearance Forms View
 Route::get('/clearance_forms/{id}', [FormController::class, 'getClearance']);
 
 //Get Clearance in my request view
 Route::get('/clearance/edit/{id}', [RequestController::class, 'editClearance'])->name('clearance.edit');
-
-// Route::post('/approve_form', [FormController::class, 'approveClearanceForm'])->name('approve_form');
-// Route::get('/approver_form', [FormController::class, 'getApprover'])->name('approver_form');
-// Route::get('/show_form/{id}', [FormController::class, 'getClearance']);
+Route::put('/clearance/update/{id}', [RequestController::class, 'update'])->name('clearance.update');
 
 Route::get('role-permission/{roleId}/give-permission', [RoleController::class, 'addPermissionToRole']);
 Route::put('role-permission/{roleId}/give-permission', [RoleController::class, 'givePermissionToRole']);

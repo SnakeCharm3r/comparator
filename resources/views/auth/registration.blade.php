@@ -1,7 +1,7 @@
 @include('includes.head')
 @include('sweetalert::alert')
 
-<div class="main-wrapper login-body">
+{{-- <div class="main-wrapper login-body">
     <div class="login-wrapper">
         <div class="container">
             <div class="loginbox row">
@@ -63,11 +63,15 @@
 
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Personal Email Account<span class="login-danger">*</span></label>
-                                    <input class="form-control" type="text" name="email" required
-                                        placeholder="e.g., abc@gmail.com">
+                                    <label for="email">Personal Email Account<span
+                                            class="login-danger">*</span></label>
+                                    <input class="form-control" type="email" name="email" required
+                                        placeholder="e.g., abc@gmail.com"
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                        title="Please enter a valid email address in the format: abc@example.com">
                                 </div>
                             </div>
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="dob">Date of Birth <span class="login-danger">*</span></label>
@@ -185,7 +189,186 @@
             </div>
         </div>
     </div>
+</div> --}}
+
+<div class="main-wrapper login-body" style="background-color: hsl(0, 0%, 100%);">
+
+    <div class="login-wrapper" style="background-color: #eff8f3;">
+        <div class="container">
+            <div class="loginbox row justify-content-center">
+                <div class="col-md-10">
+                    <div class="signup-container text-center">
+                        <h1 style="font-size: 2rem; color: #333;">Register Your Account</h1>
+                    </div>
+
+                    <form id="registrationForm" action="{{ route('register.handleRegistration') }}" method="POST"
+                        onsubmit="return validatePassword()">
+                        @csrf
+
+                        <div class="alert alert-info" role="alert" style="background-color: #eaf3fc; color: #0f813c;">
+                            Please fill in your names as they appear on your National Identification Number (NIN).
+                        </div>
+
+                        <!-- Name Fields -->
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="fname">First Name <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="fname" type="text" name="fname" required
+                                        placeholder="e.g., John" aria-describedby="nameHelp"
+                                        style="border-color: #ced4da;">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="mname">Middle Name <span class="text-danger"></span></label>
+                                    <input class="form-control" id="mname" type="text" name="mname" required
+                                        placeholder="e.g., Juma" aria-describedby="nameHelp"
+                                        style="border-color: #ced4da;">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="lname">Last Name <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="lname" type="text" name="lname" required
+                                        placeholder="e.g., Doe" aria-describedby="nameHelp"
+                                        style="border-color: #ced4da;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Information -->
+                        <div class="row">
+                            {{-- <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="username">Username <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="username" type="text" name="username" required
+                                        placeholder="e.g., Juma.Doe" style="border-color: #ced4da;">
+                                </div>
+                            </div> --}}
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Professional Number</label>
+                                    <input class="form-control" type="text" name="professional_reg_number"
+                                        placeholder="e.g., 12345678" style="border-color: #ced4da;">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="email">Email <span class="text-danger"></span></label>
+                                    <input class="form-control" type="email" name="email" required
+                                        placeholder="e.g., abc@gmail.com"
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                        title="Please enter a valid email address." style="border-color: #ced4da;">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="dob">Date of Birth <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="dob" type="date" name="DOB" required
+                                        style="border-color: #ced4da;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                var today = new Date();
+                                var minDate = new Date(today.setFullYear(today.getFullYear() - 18));
+                                var minDateString = minDate.toISOString().split('T')[0];
+                                document.getElementById('dob').setAttribute('max', minDateString);
+                            });
+                        </script>
+
+                        <!-- More Fields -->
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="phone">Phone Number <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="phone" type="tel" name="mobile" required
+                                        placeholder="e.g., 0699 990 002" pattern="[+]?[0-9]{10,15}"
+                                        title="Phone number should be between 10 to 15 digits and may start with a '+'."
+                                        style="border-color: #ced4da;">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Password <span class="text-danger">*</span></label>
+                                    <input class="form-control pass-input" type="password" name="password"
+                                        id="password" required style="border-color: #ced4da;">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Confirm Password <span class="text-danger">*</span></label>
+                                    <input class="form-control pass-input" type="password"
+                                        name="password_confirmation" id="password_confirmation" required
+                                        style="border-color: #ced4da;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Department and Job Details -->
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Department <span class="text-danger">*</span></label>
+                                    <select class="form-control" name="deptId" required
+                                        style="border-color: #ced4da;">
+                                        <option value="">-----Select-----</option>
+                                        @foreach ($departments as $department)
+                                            <option value="{{ $department->id }}">{{ $department->dept_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="job_title">Job Title</label>
+                                    <input class="form-control" id="job_title" type="text" name="job_title"
+                                        placeholder="e.g., Doctor" style="border-color: #ced4da;">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Employment Type <span class="text-danger">*</span></label>
+                                    <select class="form-control" name="employment_typeId" required
+                                        style="border-color: #ced4da;">
+                                        <option value="">-----Select-----</option>
+                                        @foreach ($employmentTypes as $employmentType)
+                                            <option value="{{ $employmentType->id }}">
+                                                {{ $employmentType->employment_type }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional Information -->
+
+
+
+
+                        <!-- Agreements and Submission -->
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <p style="color: #666;">By clicking Sign Up, you agree to our
+                                    <a href="path_to_terms" style="color: #0f813c;">Terms</a> and
+                                    <a href="path_to_privacy_policy" style="color: #0f813c;">Privacy Policy</a>.
+                                </p>
+                                <button class="btn btn-primary" type="button" id="openAgreementsModal"
+                                    style="background-color: #0f813c; border-color: #0f813c;">Sign Up</button>
+                                <p style="color: #666;">Already registered? <a href="{{ route('login') }}"
+                                        style="color: #0f813c;">Login here</a></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 <!-- User Agreements Modal -->
 <div class="modal fade" id="userAgreementsModal" tabindex="-1" aria-labelledby="userAgreementsModalLabel"
@@ -273,7 +456,6 @@
 
 
 @include('includes.scripts')
-
 <script>
     document.getElementById('openAgreementsModal').addEventListener('click', function() {
         var form = document.getElementById('registrationForm');

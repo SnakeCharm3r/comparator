@@ -21,7 +21,8 @@ class ClearanceFormController extends Controller
     {
         $user = Auth::user();
         // $forms = ClearanceForm::with('user')->get();
-        return view('clearance.index', compact( 'user'));
+        $clearance = ClearanceForm::where('userId', $user->id)->first();
+        return view('clearance.index', compact( 'user', 'clearance'));
     }
 
     /**
