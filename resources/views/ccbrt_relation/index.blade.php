@@ -47,7 +47,7 @@
                                             <div class="col d-flex justify-content-end">
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                     data-bs-target="#addRelationModal">
-                                                    Add CCbRT Relation
+                                                    Add CCBRT Relation
                                                 </button>
                                             </div>
                                         </div>
@@ -115,7 +115,7 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="addRelationModalLabel">Add CCbRT
+                                                        <h5 class="modal-title" id="addRelationModalLabel">Add CCBRT
                                                             Relation Data</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close">

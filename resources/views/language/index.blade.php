@@ -91,8 +91,11 @@
                                                                                 <option value="" disabled selected>
                                                                                     Select proficiency</option>
                                                                                 <option value="Very Good">Very Good</option>
+                                                                                <option value="Native">Native</option>
                                                                                 <option value="Good">Good</option>
                                                                                 <option value="Fair">Fair</option>
+                                                                                
+
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -103,9 +106,10 @@
                                                                                 name="reading">
                                                                                 <option value="" disabled selected>
                                                                                     Select proficiency</option>
-                                                                                <option value="Very Good">Very Good</option>
-                                                                                <option value="Good">Good</option>
-                                                                                <option value="Fair">Fair</option>
+                                                                                    <option value="Very Good">Very Good</option>
+                                                                                    <option value="Native">Native</option>
+                                                                                    <option value="Good">Good</option>
+                                                                                    <option value="Fair">Fair</option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -116,10 +120,10 @@
                                                                                 name="writing">
                                                                                 <option value="" disabled selected>
                                                                                     Select proficiency</option>
-                                                                                <option value="Very Good">Very Good
-                                                                                </option>
-                                                                                <option value="Good">Good</option>
-                                                                                <option value="Fair">Fair</option>
+                                                                                    <option value="Very Good">Very Good</option>
+                                                                                    <option value="Native">Native</option>
+                                                                                    <option value="Good">Good</option>
+                                                                                    <option value="Fair">Fair</option>
                                                                             </select>
                                                                         </div>
                                                                     </div>

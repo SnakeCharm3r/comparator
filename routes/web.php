@@ -18,6 +18,7 @@ use App\Http\Controllers\SignatureController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HmisAccessController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\DataSecurityController;
 use App\Http\Controllers\CcbrtRelationController;
 use App\Http\Controllers\ClearanceFormController;
@@ -159,6 +160,14 @@ Route::post('/approve_form', [FormController::class, 'approveForm'])->name('appr
 Route::get('/approver_form', [FormController::class, 'getApprover'])->name('approver_form');
 Route::get('/show_form/{id}', [FormController::class, 'getForm']);
 Route::post('/reject_form', [FormController::class, 'rejectForm']);
+
+
+Route::get('/announcements', [AnnouncementController::class, 'index'])->name('announcements.index');
+Route::get('/announcements/create', [AnnouncementController::class, 'create'])->name('announcements.create');
+Route::post('/announcements', [AnnouncementController::class, 'store'])->name('announcements.store');
+Route::get('/announcements/{id}/edit', [AnnouncementController::class, 'edit'])->name('announcements.edit');
+Route::put('/announcements/{id}', [AnnouncementController::class, 'update'])->name('announcements.update');
+Route::delete('/announcements/{id}', [AnnouncementController::class, 'destroy'])->name('announcements.destroy');
 
 
 Route::post('/approve_clearform', [FormController::class, 'approveClearanceForm'])->name('approve_clearform');

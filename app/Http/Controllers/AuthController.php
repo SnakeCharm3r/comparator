@@ -134,23 +134,42 @@ public function update(Request $request, $id)
         return view('user.show', compact('user'));
     }
 
+    // public function handleLogin(Request $request) {
+    //     $validator = Validator::make($request->all(), [
+    //         'username' => 'required',
+    //         'password' => 'required'
+    //     ]);
+
+    //     if ($validator->fails()) {
+    //         return redirect()->back()->withErrors($validator)->withInput();
+    //     }
+
+    //     if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
+    //         return redirect()->route('dashboard')->with('success', 'Logged in successfully.');
+    //     } else {
+    //         return redirect()->back()->withErrors(['login_error' => 'Invalid username or password'])->withInput();
+    //     }
+    // }
     public function handleLogin(Request $request) {
+        // Validate the username and password
         $validator = Validator::make($request->all(), [
-            'username' => 'required',
+            'username' => 'required',  // Use the provided username field
             'password' => 'required'
         ]);
-
+    
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
+    
+        // Attempt to authenticate using the provided username and password
         if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
             return redirect()->route('dashboard')->with('success', 'Logged in successfully.');
         } else {
             return redirect()->back()->withErrors(['login_error' => 'Invalid username or password'])->withInput();
         }
     }
-
+    
+    
 
 
     public function register() {
@@ -181,12 +200,13 @@ public function update(Request $request, $id)
 
         }
         // $dob = \DateTime::createFromFormat('d-m-Y', $request->input('DOB'))->format('Y-m-d');
-
+        $username = strtolower($request->input('fname')) . '.' . strtolower($request->input('lname'));
         $user = User::create([
             'fname' => $request->input('fname'),
             'mname' => $request->input('mname'),
             'lname' => $request->input('lname'),
-            'username' => $request->input('username'),
+            // 'username' => $request->input('username'),
+            'username' => $username,
             'DOB' => $request->input('DOB'),
             // 'DOB' => $request->input('DOB'),
             'gender' => $request->input('gender'),

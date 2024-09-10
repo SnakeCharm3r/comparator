@@ -18,7 +18,7 @@
                             </div>
 
                             {{-- Announcement Creation Form --}}
-                            <form action="{{ route('announcements.store') }}" method="POST" onsubmit="submitForm()">
+                            <form action="{{ route('announcements.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <label for="title">Title</label>
@@ -26,10 +26,10 @@
                                         placeholder="Enter the title of the announcement">
                                 </div>
 
-                                <div class="form-group mb-3">
+                                <div class="form-group">
                                     <label for="content">Content</label>
-                                    <div id="editor-container" style="height: 250px;"></div>
-                                    <input type="hidden" id="content" name="content">
+                                    <textarea name="content" id="content" class="form-control" rows="5" required
+                                        placeholder="Enter the announcement content"></textarea>
                                 </div>
 
                                 <div class="text-right">
@@ -45,33 +45,15 @@
 @endsection
 
 @section('scripts')
-    {{-- Include Quill Editor CDN --}}
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-
+    {{-- WYSIWYG Editor (TinyMCE / Quill / CKEditor) --}}
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
-        // Initialize Quill Editor
-        var quill = new Quill('#editor-container', {
-            theme: 'snow',  // "snow" is the default theme that includes a toolbar
-            modules: {
-                toolbar: [
-                    [{ 'font': [] }, { 'size': [] }],  // Font and size options
-                    ['bold', 'italic', 'underline', 'strike'],  // Bold, italic, underline, strikethrough
-                    [{ 'color': [] }, { 'background': [] }],  // Font color and background color
-                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],  // Ordered and bullet lists
-                    [{ 'align': [] }],  // Alignment options
-                    ['link', 'image'],  // Insert link and image
-                    ['clean']  // Remove formatting
-                ]
-            },
-            placeholder: 'Write your announcement here...',
-            theme: 'snow'
+        tinymce.init({
+            selector: 'textarea#content',
+            menubar: false,
+            plugins: 'link lists code',
+            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
+            branding: false
         });
-
-        // Submit Form and Copy HTML Content to Hidden Input Field
-        function submitForm() {
-            var content = document.querySelector('input[name=content]');
-            content.value = quill.root.innerHTML;  // Get the HTML content from the editor
-        }
     </script>
 @endsection

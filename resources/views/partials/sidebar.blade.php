@@ -74,6 +74,19 @@
                 @endcan
 
 
+                <li class="submenu {{ request()->is('announcements/*') ? 'active' : '' }}">
+                    <a href="#"><i class="fas fa-bullhorn"></i> <span>Announcements</span> <span
+                            class="menu-arrow"></span></a>
+                    <ul style="{{ request()->is('announcements/*') ? 'display: block;' : '' }}">
+                        <li><a href="{{ route('announcements.index') }}"
+                                class="{{ request()->routeIs('announcements.index') ? 'active' : '' }}">All
+                                Announcements</a></li>
+                    </ul>
+                </li>
+
+
+
+
                 {{-- Policies and SoPs --}}
                 <li
                     class="treeview {{ request()->routeIs('policies.index') || request()->routeIs('sops.index') ? 'active' : '' }}">
