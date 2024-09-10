@@ -8,14 +8,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="page-header"
-                                style="padding: 15px; background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <h1>Create Announcement</h1>
-                                    </div>
-                                </div>
-                            </div>
+
 
                             {{-- Announcement Creation Form --}}
                             <form action="{{ route('announcements.store') }}" method="POST">
