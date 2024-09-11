@@ -135,6 +135,7 @@ Route::resource('/card',IdCardRequestController::class);
 Route::resource('/hslb',HslbController::class);
 Route::post('hslb/hr-confirm/{id}', [HslbController::class, 'hrConfirm'])->name('hslb.hrConfirm');
 
+
 Route::get('/users', [AuthController::class, 'getAllUser'])->name('users.index');
 Route::get('/employees', [AuthController::class, 'userDetail'])->name('employee.index');
 Route::put('/employee/{id}', [AuthController::class, 'update'])->name('employee.update');
