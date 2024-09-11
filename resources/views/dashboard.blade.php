@@ -134,7 +134,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-sm-6 col-12 mb-3">
+                    {{-- <div class="col-md-3 col-sm-6 col-12 mb-3">
                         <div class="card text-center shadow-sm">
                             <div class="card-header text-warning ">
                                 <i class="fas fa-exclamation-triangle"></i> Urgent Announcement
@@ -143,7 +143,24 @@
                                 <h5 class="card-title">2</h5>
                             </div>
                         </div>
+                    </div> --}}
+
+                    <div class="col-md-3 col-sm-6 col-12 mb-3">
+                        <div class="card text-center shadow-sm">
+                            <a href="{{ route('announcements.index') }}" class="text-decoration-none text-warning">
+                                <div class="card-header">
+                                    <i class="fas fa-exclamation-triangle"></i> Urgent Announcement
+                                </div>
+                            </a>
+                            <div class="card-body">
+                                <a href="{{ route('announcements.index') }}" class="card-title text-decoration-none">
+                                    {{ $announcements->count() }}
+                                </a>
+                            </div>
+                        </div>
                     </div>
+
+
                     <div class="col-md-3 col-sm-6 col-12 mb-3">
                         <div class="card text-center shadow-sm">
                             <div class="card-header custom-header">

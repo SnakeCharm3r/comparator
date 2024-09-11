@@ -7,6 +7,7 @@ use App\Models\Policy;
 use Illuminate\Http\Request;
 use App\Models\HealthDetails;
 use App\Models\LanguageKnowledge;
+use App\Models\Announcement;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -16,6 +17,7 @@ class DashboardController extends Controller
     {
         // Logic to fetch and pass data based on roles and permissions
         $policies = Policy::all();
+        $announcements = Announcement::with('user')->latest()->get();
         $user = Auth::user();
         $totalUsers = \App\Models\User::count();
         $healthDetails = HealthDetails::join('users', 'health_details.userId', '=', 'users.id')
@@ -57,7 +59,7 @@ class DashboardController extends Controller
             $data['admin_content'] = 'Content for super admin';
         }
 
-        return view('dashboard', compact('data','policies','user','healthDetails','languageData','totalUsers'));
+        return view('dashboard', compact('data','policies','user','healthDetails','languageData','totalUsers','announcements'));
     }
     
     public function dashboard()

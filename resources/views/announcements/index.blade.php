@@ -43,7 +43,6 @@
                                             {{ $announcement->created_at->format('M d, Y') }}
                                         </small>
                                         <div class="mt-3">
-                                            <!-- Edit Announcement Button -->
                                             <a href="{{ route('announcements.edit', $announcement->id) }}"
                                                 class="btn btn-warning">
                                                 <i class="fas fa-pencil-alt"></i> Edit

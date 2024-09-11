@@ -136,8 +136,8 @@
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">Address</th>
-                                                            <td>{{ $user->region }}, {{ $user->district }},
-                                                                {{ $user->street }}, {{ $user->house_no }}</td>
+                                                            <td>{{ $user->region }} {{ $user->district }}
+                                                                {{ $user->street }} {{ $user->house_no }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">Home Address</th>
