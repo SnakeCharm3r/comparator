@@ -1,9 +1,10 @@
 <p>Dear, {{ $approver->fname }}</p>
 <p>You have a new request awaiting your approval.</p>
 <p>Request Details:</p>
+{{-- {{dd($requestDetails)}} --}}
 <ul>
-    <li>Requested By : {{ $requestDetails['attended_by'] }}</li>
-    <li>Requested Form : {{ $requestDetails['requestId'] }}</li>
+    <li>Requester Name : {{$requestDetails ['forwarded_by']}}
+,    <li>Requested Form : {{ $requestDetails['request'] }}</li>
     <li>Date of Request: {{ $requestDetails['requestDate'] }}</li>
 </ul>
 <p>Please log in to e-Docs system to approve the request .</p>
