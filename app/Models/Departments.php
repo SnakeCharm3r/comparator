@@ -13,7 +13,6 @@ class Departments extends Model
     protected $fillable = [
     'dept_name',
     'description',
-    'delete_status',
     ];
 
     public function user() {
