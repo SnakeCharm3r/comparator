@@ -44,16 +44,13 @@ class IctAccessController extends Controller
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     */
+   
     public function create()
     {
 
         $user = Auth::user()->load('department', 'employmentType');
         $qualifications = NhifQualification::where('delete_status', 0)->get();
         $privileges = PrivilegeLevel::where('delete_status', 0)->get();
-        // $rmk = Remark::where('delete_status', 0)->get();
         $hmis = HMISAccessLevel::where('delete_status', 0)->get();
 
         return view('ict-access-form.create', compact('qualifications', 'privileges', 'rmk', 'hmis', 'user'));

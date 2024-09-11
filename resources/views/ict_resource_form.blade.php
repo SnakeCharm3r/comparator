@@ -336,7 +336,7 @@
 
                             Swal.fire({
                                 title: 'Are you sure?',
-                                text: "Do you really want to approve this form?",
+                                text: "You won't be able to revert this!",
                                 icon: 'warning',
                                 showCancelButton: true,
                                 confirmButtonText: 'Yes, approve it!',
