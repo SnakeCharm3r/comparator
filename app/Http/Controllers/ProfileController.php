@@ -38,15 +38,12 @@ class ProfileController extends Controller
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $filePath = 'profile_pictures/' . $filename;
 
-            // Store the file in the public disk
             Storage::disk('public')->put($filePath, file_get_contents($file));
 
-            // Delete the old profile picture if it exists
             if ($user->profile_picture) {
                 Storage::disk('public')->delete($user->profile_picture);
             }
 
-            // Update the user profile picture path
             $user->profile_picture = $filePath;
             $user->save();
         }
@@ -54,17 +51,11 @@ class ProfileController extends Controller
         return back()->with('success', 'Profile picture updated successfully.');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //
@@ -144,11 +135,6 @@ public function update(Request $request, string $id)
     return redirect()->route('profile.index')->with('success', 'User updated successfully.');
 }
 
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //

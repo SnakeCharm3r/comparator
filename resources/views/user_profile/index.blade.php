@@ -68,9 +68,15 @@
                                                             </button>
                                                         </div>
                                                     </div>
-                                                    <div class="text-sm-right ml-auto">
+                                                    {{-- <div class="text-sm-right ml-auto">
                                                         <div class="text-muted"><small>Joined 09 July 2024</small></div>
+                                                    </div> --}}
+                                                    <div class="text-sm-right ml-auto">
+                                                        <div class="text-muted">
+                                                            <small>Joined {{ $user->created_at->format('d F Y') }}</small>
+                                                        </div>
                                                     </div>
+                                                    
                                                 </div>
                                                 <script>
                                                     function handleProfilePictureChange(input) {

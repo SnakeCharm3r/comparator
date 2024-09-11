@@ -16,25 +16,14 @@ class SopController extends Controller
      */
 
 
-    // public function index(){
-    //     $sops = DB::table('sops')->join('departments',
-    //     'sops.deptId', '=', 'departments.id')
-    //     ->select(
-    //         'sops.*', 'departments.dept_name'
-    //     )->get();
-    //     return view('sops.index', compact('sops'));
-    // }
-
-    public function index()
-{
-    $sops = DB::table('sops')
-        ->join('departments', 'sops.deptId', '=', 'departments.id')
-        ->select('sops.*', 'departments.dept_name')
-        ->paginate(15); // Adjust the number of items per page
-
-    return view('sops.index', compact('sops'));
-}
-
+    public function index(){
+        $sops = DB::table('sops')->join('departments',
+        'sops.deptId', '=', 'departments.id')
+        ->select(
+            'sops.*', 'departments.dept_name'
+        )->get();
+        return view('sops.index', compact('sops'));
+    }
 
     public function create()
     {
@@ -42,14 +31,15 @@ class SopController extends Controller
         return view('sops.create', compact('departments'));
     }
 
-
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
-
+       
         $request->validate([
             'title' => 'required|string|max:255',
-            'deptIds' => 'required|array',
-            'deptIds.*' => 'integer', // Ensure each item in the array is an integer
+            'deptId' => 'required|integer',
             'pdf' => 'required|file|mimes:pdf|max:2048',
         ]);
 
@@ -57,10 +47,10 @@ class SopController extends Controller
         if ($request->hasFile('pdf')) {
             $pdfPath = $request->file('pdf')->store('pdfs', 'public');
         }
-
+    
         // Get selected department IDs
         $selectedDeptIds = $request->input('deptIds');
-
+    
         // If "All" is selected, fetch all departments
         if (in_array('all', $selectedDeptIds)) {
             $departments = Departments::all();
@@ -69,7 +59,7 @@ class SopController extends Controller
             // Fetch departments based on selected IDs
             $departments = Departments::whereIn('id', $selectedDeptIds)->get();
         }
-
+    
         // Create the SOP record for each selected department
         foreach ($departments as $department) {
             $sop = new Sop();
@@ -78,18 +68,21 @@ class SopController extends Controller
             $sop->pdf_path = $pdfPath; // Save the file path
             $sop->save();
         }
-
+    
         return redirect()->route('sops.index')->with('success', 'SOP created successfully.');
     }
-
+    
 
 
 
     public function show(string $id)
     {
-
+        
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     */
     public function edit(string $id)
     {
         $sop = SOP::findOrFail($id);
