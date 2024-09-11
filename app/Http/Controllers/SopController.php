@@ -7,13 +7,14 @@ use App\Models\Sop;
 use App\Models\User;
 use App\Models\Departments;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class SopController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-  
+
 
     public function index(){
         $sops = DB::table('sops')->join('departments',
@@ -35,6 +36,7 @@ class SopController extends Controller
      */
     public function store(Request $request)
     {
+       
         $request->validate([
             'title' => 'required|string|max:255',
             'deptId' => 'required|integer',
@@ -45,23 +47,37 @@ class SopController extends Controller
         if ($request->hasFile('pdf')) {
             $pdfPath = $request->file('pdf')->store('pdfs', 'public');
         }
-
-        // Create the SOP record
-        $sop = new Sop();
-        $sop->title = $request->title;
-        $sop->deptId = $request->deptId;
-        $sop->pdf_path = $pdfPath; // Save the file path
-        $sop->save();
-
+    
+        // Get selected department IDs
+        $selectedDeptIds = $request->input('deptIds');
+    
+        // If "All" is selected, fetch all departments
+        if (in_array('all', $selectedDeptIds)) {
+            $departments = Departments::all();
+            $selectedDeptIds = $departments->pluck('id')->toArray(); // Use all department IDs
+        } else {
+            // Fetch departments based on selected IDs
+            $departments = Departments::whereIn('id', $selectedDeptIds)->get();
+        }
+    
+        // Create the SOP record for each selected department
+        foreach ($departments as $department) {
+            $sop = new Sop();
+            $sop->title = $request->title;
+            $sop->deptId = $department->id;
+            $sop->pdf_path = $pdfPath; // Save the file path
+            $sop->save();
+        }
+    
         return redirect()->route('sops.index')->with('success', 'SOP created successfully.');
     }
+    
 
-    /**
-     * Display the specified resource.
-     */
+
+
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
@@ -108,11 +124,11 @@ class SopController extends Controller
             ->where('departments.id', $user->deptId) // Filter by user's department
             ->select('sops.*', 'departments.dept_name')
             ->get();
-    
+
         return view('sops.show', compact('sops'));
     }
-    
-    
+
+
 
 
     /**
@@ -120,6 +136,15 @@ class SopController extends Controller
      */
     public function destroy(string $id)
     {
+        $sop = Sop::findOrFail($id);
+
+        if ($sop->pdf_path && Storage::exists('public/' . $sop->pdf_path)) {
+            Storage::delete('public/' . $sop->pdf_path);
+        }
+
+        $sop->delete();
+
         return redirect()->route('sops.index')->with('success', 'SOP deleted successfully.');
-     }
+    }
+
 }
