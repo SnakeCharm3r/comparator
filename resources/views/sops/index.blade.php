@@ -30,25 +30,25 @@
                                                 <!-- View PDF Icon -->
                                                 @if ($sop->pdf_path)
                                                     <a href="{{ asset('storage/' . $sop->pdf_path) }}" target="_blank"
-                                                       class="btn btn-warning btn-sm mx-1" title="View PDF">
+                                                        class="btn btn-warning btn-sm mx-1" title="View PDF">
                                                         <i class="fas fa-file-pdf"></i>
                                                     </a>
                                                 @endif
 
                                                 <!-- Edit Icon -->
                                                 <a href="{{ route('sops.edit', $sop->id) }}"
-                                                   class="btn btn-success btn-sm mx-1" title="Edit">
+                                                    class="btn btn-success btn-sm mx-1" title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
 
                                                 <!-- Delete Icon -->
                                                 <form action="{{ route('sops.destroy', $sop->id) }}" method="POST"
-                                                      style="display:inline;"
-                                                      onsubmit="return confirm('Are you sure you want to delete this SOP?');">
+                                                    style="display:inline;"
+                                                    onsubmit="return confirm('Are you sure you want to delete this SOP?');">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm mx-1"
-                                                            title="Delete">
+                                                        title="Delete">
                                                         <i class="fas fa-trash-alt"></i>
                                                     </button>
                                                 </form>

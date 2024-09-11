@@ -19,13 +19,33 @@
                                     <label for="title">Title</label>
                                     <input type="text" class="form-control" id="title" name="title" required>
                                 </div>
+
                                 <div class="form-group mb-3">
-                                    <label for="department">Department</label>
-                                    <select class="form-control" name="deptId" required>
-                                        @foreach ($departments as $department)
-                                            <option value="{{ $department->id }}">{{ $department->dept_name }}</option>
-                                        @endforeach
-                                    </select>
+                                    <label>Department</label><br>
+                                    <div>
+                                        <input type="checkbox" id="select-all" />
+                                        <label for="select-all">Select All</label>
+                                    </div>
+                                    <div class="row" id="departments">
+                                        @php
+                                            $columns = 3; // Number of columns you want
+                                            $departmentsPerColumn = ceil(count($departments) / $columns);
+                                        @endphp
+
+                                        @for ($i = 0; $i < $columns; $i++)
+                                            <div class="col-md-4">
+                                                @foreach ($departments->slice($i * $departmentsPerColumn, $departmentsPerColumn) as $department)
+                                                    <div class="form-check">
+                                                        <input type="checkbox" class="form-check-input dept-checkbox"
+                                                            id="dept-{{ $department->id }}" name="deptIds[]"
+                                                            value="{{ $department->id }}">
+                                                        <label class="form-check-label"
+                                                            for="dept-{{ $department->id }}">{{ $department->dept_name }}</label>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        @endfor
+                                    </div>
                                 </div>
 
                                 <div class="form-group mb-3">
@@ -44,6 +64,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Initialize Quill editor
             var quill = new Quill('#editor-container', {
                 theme: 'snow'
             });
@@ -53,6 +74,14 @@
                 description.value = quill.root.innerHTML;
                 return true;
             }
+
+            // Handle select all checkbox
+            document.getElementById('select-all').addEventListener('change', function() {
+                var checkboxes = document.querySelectorAll('.dept-checkbox');
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = this.checked;
+                });
+            });
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

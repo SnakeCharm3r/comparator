@@ -15,33 +15,31 @@ class DepartmentController extends Controller
      */
     public function index1()
     {
-        $departments = Departments::where('delete_status', 0)->get();
+        $departments = Departments::all();
         return view('department.index', compact('departments'));
 
     }
 
     public function index()
-    {
-        $departments = DB::table('departments')
-            ->leftJoin('users', 'departments.id', '=', 'users.deptId')
-            ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
-            ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
-            ->select(
-                'departments.id as dept_id',
-                'departments.dept_name',
-                'departments.description',
-                'departments.delete_status',
-                DB::raw('CONCAT(users.fname, " ", users.lname) as head_of_department')
-            )
-            ->where('departments.delete_status', 0)
-            ->where(function($query) {
-                $query->whereNull('roles.name')
-                      ->orWhere('roles.name', 'line-manager');
-            })
-            ->get();
+{
+    $departments = DB::table('departments')
+        ->leftJoin('users', 'departments.id', '=', 'users.deptId')
+        ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+        ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
+        ->select(
+            'departments.id as dept_id',
+            'departments.dept_name',
+            'departments.description',
+            DB::raw('CONCAT(users.fname, " ", users.lname) as head_of_department')
+        )
+        ->where(function($query) {
+            $query->whereNull('roles.name')
+                  ->orWhere('roles.name', 'line-manager');
+        })
+        ->get();
 
-        return view('department.index', compact('departments'));
-    }
+    return view('department.index', compact('departments'));
+}
 
     // public function index1(){
     //     $sops = DB::table('sops')->join('departments',
@@ -88,40 +86,27 @@ class DepartmentController extends Controller
         $dept = Departments::create([
             'dept_name' => $request->input('dept_name'),
             'description' => $request->input('description'),
-            'delete_status' => 0,
         ]);
         Alert::success('Department added successful','Department Added');
         return redirect()->route('department.index')->with('success', 'Department added successfully.');
 
 
 
-//        return response()->json([
-//            'status' => 200,
-//            'message' => 'department is added successfull',
-//            'data' => $dept
-//        ]);
+
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $department = Departments::findOrFail($id);
         return view('department.edit', compact('department'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, string $id)
     {
         $validator = Validator::make($request->all(), [
@@ -151,9 +136,7 @@ class DepartmentController extends Controller
         return redirect()->route('department.index')->with('success', 'Department updated successfully.');
     }
 
-    /**
- * Remove the specified resource from storage.
- */
+
 public function destroy(string $id)
 {
     $dept = Departments::find($id);
@@ -172,23 +155,5 @@ public function destroy(string $id)
     return redirect()->route('department.index')->with('success', 'Department deleted successfully.');
 }
 
-
-    // public function softDelete(Request $request)
-    // {
-    //     $dept = Departments::find($request->id);
-
-    //     if (!$dept) {
-    //         return response()->json([
-    //             'status' => 404,
-    //             'message' => 'Department not found',
-    //         ]);
-    //     }
-
-    //     $dept->update([
-    //         'delete_status' => 1
-    //     ]);
-
-    //     return redirect()->route('department.index')->with('success', 'Department deleted successfully.');
-    // }
 
 }
