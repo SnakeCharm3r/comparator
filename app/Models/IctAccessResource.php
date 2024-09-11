@@ -33,10 +33,6 @@ class IctAccessResource extends Model
         return $this->belongsTo(User::class, 'userId');
      }
 
-   //   public function remark(){
-   //      return $this->belongsTo(Remark::class, 'remarkId');
-   //   }
-
      public function privi(){
         return $this->belongsTo(PrivilegeLevel::class, 'privilegeId');
      }
