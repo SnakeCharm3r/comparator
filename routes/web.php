@@ -57,6 +57,10 @@ Route::post('/register', [AuthController::class, 'handleRegistration'])->name('r
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
+//route for job title based dept id
+Route::get('/job-titles/{departmentId}', [AuthController::class, 'getJobTitles']);
+Route::get('/departments', [DepartmentController::class, 'index']);
+
 Route::get('/change-password', [AuthController::class, 'showChangePasswordForm'])->name('user_profile.pass');
 Route::put('/change-password', [AuthController::class, 'changePassword'])->name('change.password.update');
 
@@ -74,7 +78,6 @@ Route::group(['middleware'=> 'auth'], function ()
 {
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/departments', [DepartmentController::class, 'index']);
 
 
 Route::get('/family-details', [UserFamilyDetailsController::class, 'index'])->name('family-details.index');
