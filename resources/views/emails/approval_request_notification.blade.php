@@ -73,7 +73,7 @@
         <p><strong>Request Details:</strong></p>
         <ul>
             <li><strong>Requester Name:</strong> {{ $requestDetails['forwarded_by'] }}</li>
-            <li><strong>Requested Form:</strong> {{ $formType }}</li>
+            <li><strong>Requested Form:</strong> {{ $requestDetails ['request']}}</li>
             <li><strong>Date of Request:</strong> {{ $requestDetails['requestDate'] }}</li>
         </ul>
 

@@ -179,7 +179,7 @@ $forwadUser=User::join('workflows','workflows.user_id','=','users.id')
         // Send notification to the next approver
         $requestDetails = [
             'forwarded_by' => $forwadUser->username,
-            'request' => "ICT Access Form",
+            'request' => "IT Access Form",
             'requestDate' => Carbon::now()->format('d F Y'),
         ];
 

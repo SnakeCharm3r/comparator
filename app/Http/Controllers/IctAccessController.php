@@ -44,7 +44,7 @@ class IctAccessController extends Controller
     }
 
 
-   
+
     public function create()
     {
 
@@ -141,7 +141,7 @@ class IctAccessController extends Controller
                 // Send notification email to approver
                     $requestDetails = [
                         'forwarded_by' => $user->username,
-                        'request' => "User Access Form",
+                        'request' => "IT Access Form",
                         'requestDate' => Carbon::now()->format('d F Y'),
                     ];
 

@@ -15,7 +15,6 @@ class ApprovalRequestNotification extends Mailable
 
     public $approver;
     public $requestDetails;
-    public $formType;
 
 
     public function envelope(): Envelope
@@ -32,11 +31,10 @@ class ApprovalRequestNotification extends Mailable
             with: [
                 'approver' => $this->approver,
                 'requestDetails' => $this->requestDetails,
-                'formType' => $this->formType,
             ]
         );
     }
-    
+
 
     /**
      * Get the attachments for the message.
