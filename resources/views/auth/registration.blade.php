@@ -206,7 +206,7 @@
                         @csrf
 
                         <div class="alert alert-info" role="alert" style="background-color: #eaf3fc; color: #0f813c;">
-                            Please fill in your names as they appear on your National Identification Number (NIN).
+                            Please fill in your names as they appear on your National Identification Number (NIDA).
                         </div>
 
                         <!-- Name Fields -->
@@ -286,11 +286,41 @@
                                 <div class="form-group">
                                     <label for="phone">Phone Number <span class="text-danger">*</span></label>
                                     <input class="form-control" id="phone" type="tel" name="mobile" required
-                                        placeholder="e.g., 0699 990 002" pattern="[+]?[0-9]{10,15}"
-                                        title="Phone number should be between 10 to 15 digits and may start with a '+'."
-                                        style="border-color: #ced4da;">
+                                        placeholder="e.g., 699 990 002" style="border-color: #ced4da;">
+                                    <input type="hidden" id="country_code" name="country_code">
                                 </div>
                             </div>
+
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    var input = document.querySelector("#phone");
+                                    var countryCodeInput = document.querySelector("#country_code");
+
+                                    var iti = intlTelInput(input, {
+                                        initialCountry: "tz", // Set Tanzania as the default country
+                                        nationalMode: true, // Allows the user to enter national format
+                                        autoPlaceholder: "polite", // Provides a placeholder based on country
+                                        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js" // Utility script for formatting and validation
+                                    });
+
+                                    // Set the hidden input with the country code whenever the user changes the phone number or the country
+                                    input.addEventListener('change', function() {
+                                        countryCodeInput.value = iti.getSelectedCountryData().dialCode;
+                                    });
+
+                                    // Also set the hidden input when the page loads
+                                    countryCodeInput.value = iti.getSelectedCountryData().dialCode;
+                                });
+                            </script>
+
+
+                            <!-- Include the CSS file for intl-tel-input -->
+                            <link rel="stylesheet"
+                                href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
+                            <!-- Include the JS files for intl-tel-input -->
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Password <span class="text-danger">*</span></label>
@@ -315,7 +345,7 @@
                                     <label>Department <span class="text-danger">*</span></label>
                                     <select class="form-control" name="deptId" required
                                         style="border-color: #ced4da;">
-                                        <option value="">-----Select-----</option>
+                                        <option value="">---Select---</option>
                                         @foreach ($departments as $department)
                                             <option value="{{ $department->id }}">{{ $department->dept_name }}</option>
                                         @endforeach
@@ -334,7 +364,7 @@
                                     <label>Employment Type <span class="text-danger">*</span></label>
                                     <select class="form-control" name="employment_typeId" required
                                         style="border-color: #ced4da;">
-                                        <option value="">-----Select-----</option>
+                                        <option value="">---Select---</option>
                                         @foreach ($employmentTypes as $employmentType)
                                             <option value="{{ $employmentType->id }}">
                                                 {{ $employmentType->employment_type }}</option>
