@@ -4,7 +4,7 @@
 {{-- {{dd($requestDetails)}} --}}
 <ul>
     <li>Requester Name : {{$requestDetails ['forwarded_by']}}
-,    <li>Requested Form : {{ $requestDetails['request'] }}</li>
+    <li>Requested Form : {{ $requestDetails['request'] }}</li>
     <li>Date of Request: {{ $requestDetails['requestDate'] }}</li>
 </ul>
 <p>Please log in to e-Docs system to approve the request .</p>
