@@ -182,16 +182,18 @@ public function update(Request $request, $id)
 
     public function handleRegistration(Request $request){
         $validator = Validator::make($request->all(), [
-          'fname' => 'required',
-          'lname' => 'required',
-          'job_title' => 'required',
-          'email' => 'required|email|unique:users',
-          'deptId' => 'required',
-          'DOB' => 'required',
-          'employment_typeId' => 'required',
-          'password' => 'required|min:6',
-        //   'signature' => 'required|string',
+            'fname' => 'required',
+            'lname' => 'required',
+            'job_title' => 'required',
+            'email' => 'required|email|unique:users',
+            'deptId' => 'required',
+            'DOB' => 'required',
+            'employment_typeId' => 'required',
+            'password' => 'required|min:6',
+            'mobile' => 'required',  // Ensure mobile number is required
+            'country_code' => 'required',  // Ensure country_code is required
         ]);
+        
         if($validator->fails()) {
             return response()->json([
                 'status' => 400,
@@ -201,6 +203,9 @@ public function update(Request $request, $id)
         }
         // $dob = \DateTime::createFromFormat('d-m-Y', $request->input('DOB'))->format('Y-m-d');
         $username = strtolower($request->input('fname')) . '.' . strtolower($request->input('lname'));
+        $countryCode = $request->input('country_code');
+$mobile = $request->input('mobile');
+$phoneNumber = $countryCode . $mobile; 
         $user = User::create([
             'fname' => $request->input('fname'),
             'mname' => $request->input('mname'),
@@ -213,7 +218,7 @@ public function update(Request $request, $id)
             'marital_status' => $request->input('marital_status'),
             'email' => $request->input('email'),
             'religion' => $request->input('religion'),
-            'mobile' => $request->input('mobile'),
+            'mobile' => $phoneNumber,
             'job_title' => $request->input('job_title'),
             'home_address' => $request->input('home_address'),
             'district' => $request->input('district'),

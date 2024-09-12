@@ -12,6 +12,7 @@ use App\Http\Controllers\RemarkController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
+use App\Http\Controllers\JobTitleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IctAccessController;
 use App\Http\Controllers\SignatureController;
@@ -101,6 +102,7 @@ Route::get('language-knowledge/{id}/edit', [LanguageKnowledgeController::class, 
 Route::put('language-knowledge/{id}', [LanguageKnowledgeController::class, 'update'])->name('language_knowledge.update');
 Route::delete('language-knowledge/{id}', [LanguageKnowledgeController::class, 'destroy'])->name('language_knowledge.destroy');
 
+Route::resource('job-titles', JobTitleController::class);
 
 Route::post('/signature', [SignatureController::class, 'store']);
 Route::post('/save-signature', [SignatureController::class, 'store'])->name('signature.store');
@@ -109,7 +111,6 @@ Route::get('/signature', [SignatureController::class, 'index'])->name('signature
 Route::get('/signature/{id}/edit', [SignatureController::class, 'edit'])->name('signature.edit');
 Route::delete('/signature/{id}', [SignatureController::class, 'destroy'])->name('signature.destroy');
 Route::get('/all-users-signatures', [SignatureController::class, 'showUsersWithSignatures'])->name('users.signatures');
-
 
 Route::resource('/profile', ProfileController::class);
 Route::middleware(['auth'])->post('profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
