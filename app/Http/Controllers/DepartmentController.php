@@ -41,18 +41,6 @@ class DepartmentController extends Controller
     return view('department.index', compact('departments'));
 }
 
-    // public function index1(){
-    //     $sops = DB::table('sops')->join('departments',
-    //     'sops.deptId', '=', 'departments.id')
-    //     ->select(
-    //         'sops.*', 'departments.dept_name'
-    //     )->get();
-    //     return view('sops.index', compact('sops'));
-    // }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('department.create');
