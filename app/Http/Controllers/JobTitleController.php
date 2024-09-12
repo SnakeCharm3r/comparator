@@ -25,8 +25,8 @@ class JobTitleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
-            'department_id' => 'required|exists:departments,id',
+            'job_title' => 'required|string|max:255',
+            'deptId' => 'required|exists:departments,id',
         ]);
 
         JobTitle::create($request->all());
