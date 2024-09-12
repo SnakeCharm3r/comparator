@@ -1,6 +1,4 @@
-@extends('layouts.template')
-
-@section('breadcrumb')
+<?php $__env->startSection('breadcrumb'); ?>
     <div class="page-wrapper">
         <div class="content container">
             <div class="row">
@@ -9,56 +7,57 @@
                         <!-- Create Announcement Button -->
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h1 class="h4 mb-0">Announcements</h1>
-                            <a href="{{ route('announcements.create') }}" class="btn btn-primary">
+                            <a href="<?php echo e(route('announcements.create')); ?>" class="btn btn-primary">
                                 <i class="fas fa-plus"></i> Add Announcement
                             </a>
                         </div>
 
                         <!-- Announcements List -->
-                        @if ($announcements->isEmpty())
+                        <?php if($announcements->isEmpty()): ?>
                             <div class="card-body text-center">
                                 <p class="lead">No announcements available.</p>
                             </div>
-                        @else
+                        <?php else: ?>
                             <div class="list-group">
-                                @foreach ($announcements as $announcement)
+                                <?php $__currentLoopData = $announcements; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $announcement): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <div class="list-group-item list-group-item-action">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <h5 class="mb-1">{{ $announcement->title }}</h5>
+                                            <h5 class="mb-1"><?php echo e($announcement->title); ?></h5>
                                             <button class="btn btn-info btn-sm" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapse{{ $announcement->id }}" aria-expanded="false"
-                                                aria-controls="collapse{{ $announcement->id }}">
+                                                data-bs-target="#collapse<?php echo e($announcement->id); ?>" aria-expanded="false"
+                                                aria-controls="collapse<?php echo e($announcement->id); ?>">
                                                 <i class="fas fa-eye"></i> View
                                             </button>
                                         </div>
 
                                         <!-- Collapsible Section -->
-                                        <div id="collapse{{ $announcement->id }}" class="collapse mt-3">
+                                        <div id="collapse<?php echo e($announcement->id); ?>" class="collapse mt-3">
                                             <div class="card p-3">
-                                                <p class="mb-2">{{ $announcement->content }}</p>
+                                                <p class="mb-2"><?php echo e($announcement->content); ?></p>
                                                 <small class="text-muted">
-                                                    By {{ $announcement->user->name ?? 'Unknown' }} on
-                                                    {{ $announcement->created_at->format('M d, Y') }}
+                                                    By <?php echo e($announcement->user->name ?? 'Unknown'); ?> on
+                                                    <?php echo e($announcement->created_at->format('M d, Y')); ?>
+
                                                 </small>
                                                 <div class="mt-3">
-                                                    @if ($announcement->pdf_path)
+                                                    <?php if($announcement->pdf_path): ?>
                                                         <!-- Link to view or download PDF -->
-                                                        <a href="{{ Storage::url($announcement->pdf_path) }}"
+                                                        <a href="<?php echo e(Storage::url($announcement->pdf_path)); ?>"
                                                             class="btn btn-success" target="_blank">
                                                             <i class="fas fa-file-pdf"></i> View PDF
                                                         </a>
-                                                    @endif
+                                                    <?php endif; ?>
 
-                                                    <a href="{{ route('announcements.edit', $announcement->id) }}"
+                                                    <a href="<?php echo e(route('announcements.edit', $announcement->id)); ?>"
                                                         class="btn btn-warning ml-2">
                                                         <i class="fas fa-pencil-alt"></i> Edit
                                                     </a>
 
                                                     <!-- Delete Announcement Form -->
-                                                    <form action="{{ route('announcements.destroy', $announcement->id) }}"
+                                                    <form action="<?php echo e(route('announcements.destroy', $announcement->id)); ?>"
                                                         method="POST" class="d-inline ml-2">
-                                                        @csrf
-                                                        @method('DELETE')
+                                                        <?php echo csrf_field(); ?>
+                                                        <?php echo method_field('DELETE'); ?>
                                                         <button type="submit" class="btn btn-danger"
                                                             onclick="return confirm('Are you sure you want to delete this announcement?')">
                                                             <i class="fas fa-trash-alt"></i> Delete
@@ -68,12 +67,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </div>
-                        @endif
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Projects\E-docs\resources\views/announcements/index.blade.php ENDPATH**/ ?>

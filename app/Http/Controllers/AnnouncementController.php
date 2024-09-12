@@ -14,24 +14,27 @@ class AnnouncementController extends Controller
         return view('announcements.create');
     }
 
-    // Method to store announcement
     public function store(Request $request)
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required|string',
+            'pdf' => 'nullable|file|mimes:pdf|max:2048', // Validate PDF files
         ]);
 
-        Announcement::create([
-            'title' => $request->title,
-            'content' => $request->content,
-            'userId' => auth()->user()->id, // User creating the announcement
-        ]);
+        $announcement = new Announcement();
+        $announcement->title = $request->input('title');
+        $announcement->userId = auth()->id(); // Set the user ID from the authenticated user
 
-        return redirect()->route('announcements.index')->with('success', 'Announcement created successfully!');
+        if ($request->hasFile('pdf')) {
+            $pdfPath = $request->file('pdf')->store('pdfs', 'public');
+            $announcement->pdf_path = $pdfPath;
+        }
+
+        $announcement->save();
+
+        return redirect()->route('announcements.index')->with('success', 'Announcement created successfully.');
     }
 
-    // Method to list announcements
     public function index()
     {
         $announcements = Announcement::with('user')->latest()->get();
