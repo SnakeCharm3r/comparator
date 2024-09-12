@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class JobTitle extends Model
 {
-    use HasFactory;
+     // Fillable attributes to allow mass assignment
+     protected $fillable = ['job_title', 'department_id'];
+
+     public function department()
+     {
+         return $this->belongsTo(Departments::class, 'deptId');
+     }
 }
