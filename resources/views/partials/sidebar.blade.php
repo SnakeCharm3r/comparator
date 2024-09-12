@@ -194,18 +194,11 @@
                                 </a>
                             </li>
                         @endcan
-                        
-
-                     
                         <li class="{{ request()->routeIs('job-titles.index') ? 'active' : '' }}">
-                            <a href="{{ route('job-titles.index') }}">
+                            <a href="{{ route('job_titles.index') }}">
                                 <span>Job Titles</span>
                             </a>
                         </li>
-          
-
-
-
                         @can('view nhif')
                             <li class="{{ request()->routeIs('nhif.index') ? 'active' : '' }}">
                                 <a href="{{ route('nhif.index') }}">

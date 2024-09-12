@@ -102,7 +102,7 @@ Route::get('language-knowledge/{id}/edit', [LanguageKnowledgeController::class, 
 Route::put('language-knowledge/{id}', [LanguageKnowledgeController::class, 'update'])->name('language_knowledge.update');
 Route::delete('language-knowledge/{id}', [LanguageKnowledgeController::class, 'destroy'])->name('language_knowledge.destroy');
 
-Route::resource('job-titles', JobTitleController::class);
+Route::resource('job_titles', JobTitleController::class);
 
 Route::post('/signature', [SignatureController::class, 'store']);
 Route::post('/save-signature', [SignatureController::class, 'store'])->name('signature.store');

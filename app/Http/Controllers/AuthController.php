@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Policy;
+use App\Models\JobTitle;
 use App\Models\Departments;
 use Illuminate\Http\Request;
 use App\Models\EmploymentTypes;
@@ -176,8 +177,9 @@ public function update(Request $request, $id)
         $policies = Policy::all();
         $departments = Departments::all();
         $employmentTypes = EmploymentTypes::all();
+        $jobTitles = JobTitle::all();
 
-        return view('auth.registration', compact('departments', 'employmentTypes','policies'));
+        return view('auth.registration', compact('departments', 'employmentTypes','policies','jobTitles'));
     }
 
     public function handleRegistration(Request $request){

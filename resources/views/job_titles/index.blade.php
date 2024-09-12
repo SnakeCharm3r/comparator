@@ -8,7 +8,7 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h3 class="card-title mb-0">Job Titles</h3>
-                            <a href="{{ route('job-titles.create') }}" class="btn btn-primary">Add Job Title</a>
+                            <a href="{{ route('job_titles.create') }}" class="btn btn-primary">Add Job Title</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -28,9 +28,9 @@
                                                 <td>{{ $jobTitle->job_title }}</td>
                                                 <td>{{ $jobTitle->department->dept_name }}</td>
                                                 <td>
-                                                    <a href="{{ route('job-titles.edit', $jobTitle) }}"
+                                                    <a href="{{ route('job_titles.edit', $jobTitle) }}"
                                                         class="btn btn-warning btn-sm">Edit</a>
-                                                    <form action="{{ route('job-titles.destroy', $jobTitle) }}"
+                                                    <form action="{{ route('job_titles.destroy', $jobTitle) }}"
                                                         method="POST" style="display:inline;">
                                                         @csrf
                                                         @method('DELETE')
