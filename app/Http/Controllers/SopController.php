@@ -36,7 +36,6 @@ class SopController extends Controller
      */
     public function store(Request $request)
     {
-       
         $request->validate([
             'title' => 'required|string|max:255',
             'deptId' => 'required|integer',
@@ -47,28 +46,14 @@ class SopController extends Controller
         if ($request->hasFile('pdf')) {
             $pdfPath = $request->file('pdf')->store('pdfs', 'public');
         }
-    
-        // Get selected department IDs
-        $selectedDeptIds = $request->input('deptIds');
-    
-        // If "All" is selected, fetch all departments
-        if (in_array('all', $selectedDeptIds)) {
-            $departments = Departments::all();
-            $selectedDeptIds = $departments->pluck('id')->toArray(); // Use all department IDs
-        } else {
-            // Fetch departments based on selected IDs
-            $departments = Departments::whereIn('id', $selectedDeptIds)->get();
-        }
-    
-        // Create the SOP record for each selected department
-        foreach ($departments as $department) {
-            $sop = new Sop();
-            $sop->title = $request->title;
-            $sop->deptId = $department->id;
-            $sop->pdf_path = $pdfPath; // Save the file path
-            $sop->save();
-        }
-    
+
+        // Create the SOP record
+        $sop = new Sop();
+        $sop->title = $request->title;
+        $sop->deptId = $request->deptId;
+        $sop->pdf_path = $pdfPath; // Save the file path
+        $sop->save();
+
         return redirect()->route('sops.index')->with('success', 'SOP created successfully.');
     }
     
