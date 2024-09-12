@@ -51,36 +51,6 @@ $policies = Policy::all();
 }
 
 
-// public function update(Request $request, $id)
-// {
-//     // Validate the incoming data
-//     $request->validate([
-//         'department' => 'required|string|max:255',
-//         'job_title' => 'required|string|max:255',
-//         'ccb_code' => 'required|string|max:255',
-//         'professional_reg_number' => 'required|string|max:255',
-//         'nssf_no' => 'required|string|max:255',
-//     ]);
-
-//     // Find the user by ID
-//     $user = User::findOrFail($id);
-
-//     // Update the user details
-//     $user->update([
-//         'department' => $request->input('department'),
-//         'job_title' => $request->input('job_title'),
-//         'ccb_code' => $request->input('ccb_code'),
-//         'professional_reg_number' => $request->input('professional_reg_number'),
-//         'nssf_no' => $request->input('nssf_no'),
-//     ]);
-
-//     // Redirect with a success message
-//     return redirect()->route('employees_details.show', $id)->with('success', 'User details updated successfully.');
-// }
-
-
-
-
 public function update(Request $request, $id)
 {
     // Validate the incoming data
@@ -135,33 +105,17 @@ public function update(Request $request, $id)
         return view('user.show', compact('user'));
     }
 
-    // public function handleLogin(Request $request) {
-    //     $validator = Validator::make($request->all(), [
-    //         'username' => 'required',
-    //         'password' => 'required'
-    //     ]);
-
-    //     if ($validator->fails()) {
-    //         return redirect()->back()->withErrors($validator)->withInput();
-    //     }
-
-    //     if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
-    //         return redirect()->route('dashboard')->with('success', 'Logged in successfully.');
-    //     } else {
-    //         return redirect()->back()->withErrors(['login_error' => 'Invalid username or password'])->withInput();
-    //     }
-    // }
     public function handleLogin(Request $request) {
         // Validate the username and password
         $validator = Validator::make($request->all(), [
             'username' => 'required',  // Use the provided username field
             'password' => 'required'
         ]);
-    
+
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-    
+
         // Attempt to authenticate using the provided username and password
         if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
             return redirect()->route('dashboard')->with('success', 'Logged in successfully.');
@@ -169,17 +123,21 @@ public function update(Request $request, $id)
             return redirect()->back()->withErrors(['login_error' => 'Invalid username or password'])->withInput();
         }
     }
-    
-    
+
+public function getJobTitles($deptId){
+    $jobTitles = JobTitle::where('deptId', $deptId)->get();
+    return response()->json($jobTitles);
+
+}
 
 
     public function register() {
         $policies = Policy::all();
         $departments = Departments::all();
         $employmentTypes = EmploymentTypes::all();
-        $jobTitles = JobTitle::all();
+        // $jobTitles = JobTitle::all();
 
-        return view('auth.registration', compact('departments', 'employmentTypes','policies','jobTitles'));
+        return view('auth.registration', compact('departments', 'employmentTypes','policies'));
     }
 
     public function handleRegistration(Request $request){
@@ -195,7 +153,7 @@ public function update(Request $request, $id)
             'mobile' => 'required',  // Ensure mobile number is required
             'country_code' => 'required',  // Ensure country_code is required
         ]);
-        
+
         if($validator->fails()) {
             return response()->json([
                 'status' => 400,
@@ -206,8 +164,8 @@ public function update(Request $request, $id)
         // $dob = \DateTime::createFromFormat('d-m-Y', $request->input('DOB'))->format('Y-m-d');
         $username = strtolower($request->input('fname')) . '.' . strtolower($request->input('lname'));
         $countryCode = $request->input('country_code');
-$mobile = $request->input('mobile');
-$phoneNumber = $countryCode . $mobile; 
+       $mobile = $request->input('mobile');
+       $phoneNumber = $countryCode . $mobile;
         $user = User::create([
             'fname' => $request->input('fname'),
             'mname' => $request->input('mname'),
