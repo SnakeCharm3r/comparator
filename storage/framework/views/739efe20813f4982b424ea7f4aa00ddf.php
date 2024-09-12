@@ -1,16 +1,16 @@
-@extends('layouts.template')
 
-@section('breadcrumb')
-    @include('sweetalert::alert')
+
+<?php $__env->startSection('breadcrumb'); ?>
+    <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div class="page-wrapper">
         <div class="content container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            {{-- Announcement Creation Form --}}
-                            <form action="{{ route('announcements.store') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
+                            
+                            <form action="<?php echo e(route('announcements.store')); ?>" method="POST" enctype="multipart/form-data">
+                                <?php echo csrf_field(); ?>
                                 <div class="form-group">
                                     <label for="title">Title</label>
                                     <input type="text" name="title" id="title" class="form-control" required
@@ -32,10 +32,10 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('scripts')
-    {{-- WYSIWYG Editor (TinyMCE) --}}
+<?php $__env->startSection('scripts'); ?>
+    
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
@@ -46,4 +46,6 @@
             branding: false
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Projects\E-docs\resources\views/announcements/create.blade.php ENDPATH**/ ?>

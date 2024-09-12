@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('announcements', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('content');
+            $table->string('pdf_path')->nullable();
             $table->unsignedBigInteger('userId');
             $table->timestamps();
 

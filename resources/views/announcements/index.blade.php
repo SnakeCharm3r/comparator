@@ -20,48 +20,56 @@
                                 <p class="lead">No announcements available.</p>
                             </div>
                         @else
-                            @foreach ($announcements as $announcement)
-                                <div class="card-header">
-                                    <h1 class="h4 mb-0 d-flex justify-content-between align-items-center">
-                                        {{ $announcement->title }}
+                            <div class="list-group">
+                                @foreach ($announcements as $announcement)
+                                    <div class="list-group-item list-group-item-action">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h5 class="mb-1">{{ $announcement->title }}</h5>
+                                            <button class="btn btn-info btn-sm" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapse{{ $announcement->id }}" aria-expanded="false"
+                                                aria-controls="collapse{{ $announcement->id }}">
+                                                <i class="fas fa-eye"></i> View
+                                            </button>
+                                        </div>
 
-                                        <!-- Toggle Button -->
-                                        <button class="btn btn-info btn-sm" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapse{{ $announcement->id }}" aria-expanded="false"
-                                            aria-controls="collapse{{ $announcement->id }}">
-                                            <i class="fas fa-eye"></i> View
-                                        </button>
-                                    </h1>
-                                </div>
+                                        <!-- Collapsible Section -->
+                                        <div id="collapse{{ $announcement->id }}" class="collapse mt-3">
+                                            <div class="card p-3">
+                                                <p class="mb-2">{{ $announcement->content }}</p>
+                                                <small class="text-muted">
+                                                    By {{ $announcement->user->name ?? 'Unknown' }} on
+                                                    {{ $announcement->created_at->format('M d, Y') }}
+                                                </small>
+                                                <div class="mt-3">
+                                                    @if ($announcement->pdf_path)
+                                                        <!-- Link to view or download PDF -->
+                                                        <a href="{{ Storage::url($announcement->pdf_path) }}"
+                                                            class="btn btn-success" target="_blank">
+                                                            <i class="fas fa-file-pdf"></i> View PDF
+                                                        </a>
+                                                    @endif
 
-                                <!-- Collapsible Section -->
-                                <div id="collapse{{ $announcement->id }}" class="collapse">
-                                    <div class="card-body">
-                                        <p>{{ $announcement->content }}</p>
-                                        <small class="text-muted">
-                                            By {{ $announcement->user->name ?? 'Unknown' }} on
-                                            {{ $announcement->created_at->format('M d, Y') }}
-                                        </small>
-                                        <div class="mt-3">
-                                            <a href="{{ route('announcements.edit', $announcement->id) }}"
-                                                class="btn btn-warning">
-                                                <i class="fas fa-pencil-alt"></i> Edit
-                                            </a>
+                                                    <a href="{{ route('announcements.edit', $announcement->id) }}"
+                                                        class="btn btn-warning ml-2">
+                                                        <i class="fas fa-pencil-alt"></i> Edit
+                                                    </a>
 
-                                            <!-- Delete Announcement Form -->
-                                            <form action="{{ route('announcements.destroy', $announcement->id) }}"
-                                                method="POST" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger"
-                                                    onclick="return confirm('Are you sure you want to delete this announcement?')">
-                                                    <i class="fas fa-trash-alt"></i> Delete
-                                                </button>
-                                            </form>
+                                                    <!-- Delete Announcement Form -->
+                                                    <form action="{{ route('announcements.destroy', $announcement->id) }}"
+                                                        method="POST" class="d-inline ml-2">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger"
+                                                            onclick="return confirm('Are you sure you want to delete this announcement?')">
+                                                            <i class="fas fa-trash-alt"></i> Delete
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         @endif
                     </div>
                 </div>
