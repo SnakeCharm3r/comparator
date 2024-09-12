@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class JobTitle extends Model
 {
      // Fillable attributes to allow mass assignment
-     protected $fillable = ['job_title', 'department_id'];
+     protected $fillable = ['job_title', 'deptId'];
 
      public function department()
      {

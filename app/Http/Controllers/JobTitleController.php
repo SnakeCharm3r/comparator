@@ -19,7 +19,8 @@ class JobTitleController extends Controller
     public function create()
     {
         $departments = Departments::all();
-        return view('job_titles.create', compact('departments'));
+        $jobTitles = JobTitle::all();
+        return view('job_titles.create', compact('departments','jobTitles'));
     }
 
     public function store(Request $request)
@@ -42,13 +43,19 @@ class JobTitleController extends Controller
     public function update(Request $request, JobTitle $jobTitle)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
-            'department_id' => 'required|exists:departments,id',
+            'job_title' => 'required|string|max:255',
+            'deptId' => 'required|exists:departments,id',
         ]);
-
-        $jobTitle->update($request->all());
+    
+        // Update the job title
+        $jobTitle->update([
+            'job_title' => $request->job_title,
+            'deptId' => $request->deptId,
+        ]);
+    
         return redirect()->route('job_titles.index')->with('success', 'Job Title updated successfully.');
     }
+    
 
     public function destroy(JobTitle $jobTitle)
     {

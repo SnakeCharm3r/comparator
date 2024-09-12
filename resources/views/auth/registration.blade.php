@@ -343,22 +343,47 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Department <span class="text-danger">*</span></label>
-                                    <select class="form-control" name="deptId" required
-                                        style="border-color: #ced4da;">
-                                        <option value="">---Select---</option>
+                                    <select class="form-control" name="deptId" id="deptId" required style="border-color: #ced4da;">
+                                        <option value="">---Select Department---</option>
                                         @foreach ($departments as $department)
                                             <option value="{{ $department->id }}">{{ $department->dept_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
+                            
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="job_title">Job Title</label>
-                                    <input class="form-control" id="job_title" type="text" name="job_title"
-                                        placeholder="e.g., Doctor" style="border-color: #ced4da;">
+                                    <select class="form-control" id="job_title" name="job_title" style="border-color: #ced4da;">
+                                        <option value="">---Select Job Title---</option>
+                                    </select>
                                 </div>
                             </div>
+                            
+                            <!-- Preload all job titles as a JSON object -->
+                            <script>
+                                var jobTitles = @json($jobTitles);
+                                
+                                $(document).ready(function () {
+                                    $('#deptId').on('change', function () {
+                                        var departmentId = $(this).val();
+                                        $('#job_title').empty();
+                                        $('#job_title').append('<option value="">---Select Job Title---</option>');
+                            
+                                        if (departmentId) {
+                                            var filteredJobTitles = jobTitles.filter(function (job) {
+                                                return job.deptId == departmentId;
+                                            });
+                            
+                                            filteredJobTitles.forEach(function (job) {
+                                                $('#job_title').append('<option value="' + job.id + '">' + job.job_title + '</option>');
+                                            });
+                                        }
+                                    });
+                                });
+                            </script>
+                            
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Employment Type <span class="text-danger">*</span></label>
