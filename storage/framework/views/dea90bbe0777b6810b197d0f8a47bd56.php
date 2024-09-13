@@ -1,8 +1,6 @@
 <?php echo $__env->make('includes.head', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-
-
 <div class="main-wrapper login-body" style="background-color: hsl(0, 0%, 100%);">
 
     <div class="login-wrapper" style="background-color: #eff8f3;">
@@ -51,7 +49,7 @@
 
                         <!-- Contact Information -->
                         <div class="row">
-                            
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Professional Number</label>
@@ -104,20 +102,32 @@
 
                                     var iti = intlTelInput(input, {
                                         initialCountry: "tz", // Set Tanzania as the default country
-                                        nationalMode: true, // Allows the user to enter national format
+                                        nationalMode: false, // Allows the user to enter the full international format
                                         autoPlaceholder: "polite", // Provides a placeholder based on country
                                         utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js" // Utility script for formatting and validation
                                     });
 
-                                    // Set the hidden input with the country code whenever the user changes the phone number or the country
-                                    input.addEventListener('change', function() {
-                                        countryCodeInput.value = iti.getSelectedCountryData().dialCode;
-                                    });
+                                    // Set the hidden input with the country code when the user changes the phone number or country
+                                    function updateCountryCode() {
+                                        var selectedCountryCode = iti.getSelectedCountryData().dialCode;
+                                        countryCodeInput.value = selectedCountryCode;
 
-                                    // Also set the hidden input when the page loads
-                                    countryCodeInput.value = iti.getSelectedCountryData().dialCode;
+                                        // Automatically update the phone input with the country code if it's not already there
+                                        if (!input.value.startsWith("+" + selectedCountryCode)) {
+                                            input.value = "+" + selectedCountryCode + " " + input.value.replace(/^(\+\d+\s*)?/, '');
+                                        }
+                                    }
+
+                                    // Event listeners
+                                    input.addEventListener('countrychange', updateCountryCode); // Update when the country is changed
+                                    input.addEventListener('change', updateCountryCode); // Update when the phone input is changed
+                                    input.addEventListener('keyup', updateCountryCode); // Update on keyup in case of manual changes
+
+                                    // Set the hidden input and phone input when the page loads
+                                    updateCountryCode();
                                 });
                             </script>
+
 
 
                             <!-- Include the CSS file for intl-tel-input -->
@@ -131,15 +141,16 @@
                                 <div class="form-group">
                                     <label>Password <span class="text-danger">*</span></label>
                                     <input class="form-control pass-input" type="password" name="password"
-                                        id="password" required style="border-color: #ced4da;">
+                                        placeholder="*********" id="password" required
+                                        style="border-color: #ced4da;">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Confirm Password <span class="text-danger">*</span></label>
                                     <input class="form-control pass-input" type="password"
-                                        name="password_confirmation" id="password_confirmation" required
-                                        style="border-color: #ced4da;">
+                                        name="password_confirmation" placeholder="*********"
+                                        id="password_confirmation" required style="border-color: #ced4da;">
                                 </div>
                             </div>
                         </div>
@@ -149,7 +160,8 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Department <span class="text-danger">*</span></label>
-                                    <select class="form-control" name="deptId" id="deptId" required style="border-color: #ced4da;">
+                                    <select class="form-control" name="deptId" id="deptId" required
+                                        style="border-color: #ced4da;">
                                         <option value="">---Select Department---</option>
                                         <?php $__currentLoopData = $departments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $department): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e($department->id); ?>"><?php echo e($department->dept_name); ?></option>
@@ -157,45 +169,22 @@
                                     </select>
                                 </div>
                             </div>
-                            
+
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="job_title">Job Title</label>
-                                    <select class="form-control" id="job_title" name="job_title" style="border-color: #ced4da;">
+                                    <select class="form-control" id="job_title" name="job_title"
+                                        style="border-color: #ced4da;">
                                         <option value="">---Select Job Title---</option>
                                     </select>
                                 </div>
                             </div>
-                            
-                            <!-- Preload all job titles as a JSON object -->
-                            <script>
-                                var jobTitles = <?php echo json_encode($jobTitles, 15, 512) ?>;
-                                
-                                $(document).ready(function () {
-                                    $('#deptId').on('change', function () {
-                                        var departmentId = $(this).val();
-                                        $('#job_title').empty();
-                                        $('#job_title').append('<option value="">---Select Job Title---</option>');
-                            
-                                        if (departmentId) {
-                                            var filteredJobTitles = jobTitles.filter(function (job) {
-                                                return job.deptId == departmentId;
-                                            });
-                            
-                                            filteredJobTitles.forEach(function (job) {
-                                                $('#job_title').append('<option value="' + job.id + '">' + job.job_title + '</option>');
-                                            });
-                                        }
-                                    });
-                                });
-                            </script>
-                            
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Employment Type <span class="text-danger">*</span></label>
-                                    <select class="form-control" name="employment_typeId" required
-                                        style="border-color: #ced4da;">
-                                        <option value="">---Select---</option>
+                                    <label>Employment Type<span class="login-danger">*</span></label>
+                                    <select class="form-control" name="employment_typeId" required>
+                                        <option value="">-----Select-----</option>
                                         <?php $__currentLoopData = $employmentTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employmentType): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e($employmentType->id); ?>">
                                                 <?php echo e($employmentType->employment_type); ?></option>
@@ -203,31 +192,67 @@
                                     </select>
                                 </div>
                             </div>
+
+
                         </div>
-
-                        <!-- Additional Information -->
-
-
-
-
-                        <!-- Agreements and Submission -->
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <p style="color: #666;">By clicking Sign Up, you agree to our
-                                    <a href="path_to_terms" style="color: #0f813c;">Terms</a> and
-                                    <a href="path_to_privacy_policy" style="color: #0f813c;">Privacy Policy</a>.
-                                </p>
-                                <button class="btn btn-primary" type="button" id="openAgreementsModal"
-                                    style="background-color: #0f813c; border-color: #0f813c;">Sign Up</button>
-                                <p style="color: #666;">Already registered? <a href="<?php echo e(route('login')); ?>"
-                                        style="color: #0f813c;">Login here</a></p>
-                            </div>
-                        </div>
-                    </form>
                 </div>
+
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script>
+                    $(document).ready(function() {
+                        $('#deptId').change(function() {
+                            var deptId = $(this).val();
+                            var jobTitleSelect = $('#job_title');
+
+                            // Clear existing options
+                            jobTitleSelect.empty();
+                            jobTitleSelect.append('<option value="">---Select Job Title---</option>');
+
+                            if (deptId) {
+                                $.ajax({
+                                    url: '/job-titles/' + deptId,
+                                    method: 'GET',
+                                    success: function(data) {
+
+                                        console.log(data);
+                                        // Populate job title dropdown
+                                        $.each(data, function(index, jobTitle) {
+                                            jobTitleSelect.append('<option value="' + jobTitle.id +
+                                                '">' + jobTitle.job_title + '</option>');
+                                        });
+                                    },
+                                    error: function() {
+                                        // Handle errors
+                                        alert('Failed to fetch job titles.');
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                <!-- Additional Information -->
+
+
+
+
+                <!-- Agreements and Submission -->
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p style="color: #666;">By clicking Sign Up, you agree to our
+                            <a href="path_to_terms" style="color: #0f813c;">Terms</a> and
+                            <a href="path_to_privacy_policy" style="color: #0f813c;">Privacy Policy</a>.
+                        </p>
+                        <button class="btn btn-primary" type="button" id="openAgreementsModal"
+                            style="background-color: #0f813c; border-color: #0f813c;">Sign Up</button>
+                        <p style="color: #666;">Already registered? <a href="<?php echo e(route('login')); ?>"
+                                style="color: #0f813c;">Login here</a></p>
+                    </div>
+                </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 
