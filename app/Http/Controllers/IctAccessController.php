@@ -44,16 +44,13 @@ class IctAccessController extends Controller
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
 
         $user = Auth::user()->load('department', 'employmentType');
         $qualifications = NhifQualification::where('delete_status', 0)->get();
         $privileges = PrivilegeLevel::where('delete_status', 0)->get();
-        // $rmk = Remark::where('delete_status', 0)->get();
         $hmis = HMISAccessLevel::where('delete_status', 0)->get();
 
         return view('ict-access-form.create', compact('qualifications', 'privileges', 'rmk', 'hmis', 'user'));
@@ -139,13 +136,16 @@ class IctAccessController extends Controller
 
                 // Find the approver based on role (e.g., Line Manager)
                 $approver = $this->findLineManagerForRequesterDepartment();
+                $user = Auth::user();
+
                 // Send notification email to approver
                     $requestDetails = [
-                        'attended_by' => $approver->id,
-                        'requestId' => $ict->id,
+                        'forwarded_by' => $user->username,
+                        'request' => "IT Access Form",
                         'requestDate' => Carbon::now()->format('d F Y'),
                     ];
-                    //dd($requestDetails );
+
+//  dd($requestDetails );
                     if ($approver) {
                         $mail = new ApprovalRequestNotification();
                         $mail->approver = $approver;
@@ -171,15 +171,17 @@ class IctAccessController extends Controller
                     'parent_id' => $workflow->id,
                 ]);
                 // dd(12345);
-                \Log::info('Workflow history forwarded for approval');
 
                 // Success alert and redirect
 
                 Alert::success('IT access form request submitted successfully', 'IT access Request Added');
-                return redirect()->route('request.index')->with('success', 'ICT Access Resource created successfully.');
+
+                // Redirect to the view route
+                return redirect()->route('form.index'); // Make sure you have a named route 'ict-access-form.index'
+
             });
         } catch (\Exception $e) {
-          
+
             // Log the exact error message for better debugging
             \Log::error('Error storing ICT Access Resource: ' . $e->getMessage(), ['exception' => $e]);
             Alert::error('Failed to submit IT access form request', 'Error');

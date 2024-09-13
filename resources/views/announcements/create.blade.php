@@ -8,10 +8,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-
-
                             {{-- Announcement Creation Form --}}
-                            <form action="{{ route('announcements.store') }}" method="POST">
+                            <form action="{{ route('announcements.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <label for="title">Title</label>
@@ -20,9 +18,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="content">Content</label>
-                                    <textarea name="content" id="content" class="form-control" rows="5" required
-                                        placeholder="Enter the announcement content"></textarea>
+                                    <label for="pdf">Upload PDF</label>
+                                    <input type="file" name="pdf" id="pdf" class="form-control" accept=".pdf">
                                 </div>
 
                                 <div class="text-right">
@@ -38,7 +35,7 @@
 @endsection
 
 @section('scripts')
-    {{-- WYSIWYG Editor (TinyMCE / Quill / CKEditor) --}}
+    {{-- WYSIWYG Editor (TinyMCE) --}}
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         tinymce.init({

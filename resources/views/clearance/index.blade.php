@@ -63,7 +63,7 @@
                                 <h4 class="section-title mb-4"
                                     style="background-color: #e9ecef; padding: 10px; border-radius: 3px;">Section II A:
                                     Collect the Following Items by Last Day of Work</h4>
-                                <table class="table mb-4">
+                                {{-- <table class="table mb-4">
                                     <tbody>
                                         <tr>
                                             <td><strong>CCBRT Identification Card</strong></td>
@@ -84,6 +84,40 @@
                                         <tr>
                                             <td><strong>Residence Permit Cancelled (for non-Tanzanian)</strong></td>
                                             <td>{{ $clearance->residence_permit_cancelled }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table> --}}
+                                <table class="table mb-4">
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>CCBRT Identification Card</strong></td>
+                                            <td>
+                                                <input type="text" name="ccbrt_id_card" value="{{ old('ccbrt_id_card') }}" class="form-control">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>CCBRT Name Tag</strong></td>
+                                            <td>
+                                                <input type="text" name="ccbrt_name_tag" value="{{ old('ccbrt_name_tag') }}" class="form-control">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>NHIF Cards (Including dependents’ cards)</strong></td>
+                                            <td>
+                                                <input type="text" name="nhif_cards" value="{{ old('nhif_cards') }}" class="form-control">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Work Permit Cancelled (for non-Tanzanian)</strong></td>
+                                            <td>
+                                                <input type="checkbox" name="work_permit_cancelled" value="1" {{ old('work_permit_cancelled') ? 'checked' : '' }}>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Residence Permit Cancelled (for non-Tanzanian)</strong></td>
+                                            <td>
+                                                <input type="checkbox" name="residence_permit_cancelled" value="1" {{ old('residence_permit_cancelled') ? 'checked' : '' }}>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>

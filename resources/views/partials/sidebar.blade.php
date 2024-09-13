@@ -42,13 +42,13 @@
 
                         {{-- <li><a href="{{ route('hr.index') }}"
                                 class="{{ request()->routeIs('hr.index') ? 'active' : '' }}">Human Resouce Form</a></li> --}}
-                        <li><a href="{{ route('data.index') }}"
+                        {{-- <li><a href="{{ route('data.index') }}"
                                 class="{{ request()->routeIs('data.index') ? 'active' : '' }}">Data Security Form
-                            </a></li>
-                        <li><a href="{{ route('change.index') }}"
+                            </a></li> --}}
+                        {{-- <li><a href="{{ route('change.index') }}"
                                 class="{{ request()->routeIs('change.index') ? 'active' : '' }}">Change Request
                                 Form</a>
-                        </li>
+                        </li> --}}
                         <li><a href="{{ route('card.index') }}"
                                 class="{{ request()->routeIs('card.index') ? 'active' : '' }}">ID Card Request Form</a>
                         </li>
@@ -194,7 +194,11 @@
                                 </a>
                             </li>
                         @endcan
-
+                        <li class="{{ request()->routeIs('job-titles.index') ? 'active' : '' }}">
+                            <a href="{{ route('job_titles.index') }}">
+                                <span>Job Titles</span>
+                            </a>
+                        </li>
                         @can('view nhif')
                             <li class="{{ request()->routeIs('nhif.index') ? 'active' : '' }}">
                                 <a href="{{ route('nhif.index') }}">

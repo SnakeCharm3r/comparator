@@ -63,7 +63,7 @@ public function index()
         $form = Workflow::where('user_id', $userId)
                         ->orderBy('created_at', 'desc') // Sort by creation date descending
                         ->get();
-                        
+
         $histories = [];
         foreach ($form as $aform) {
             $history = WorkFlowHistory::where('work_flow_id', $aform->id)->get();
@@ -74,7 +74,7 @@ public function index()
         $clearForm = Clearance_work_flow::where('user_id', $userId)
                                         ->orderBy('created_at', 'desc') // Sort by creation date descending
                                         ->get();
-                                        
+
         $clearHistories = [];
         foreach ($clearForm as $exit) {
             $clearHistory = Clearance_work_flow_history::where('work_flow_id', $exit->id)->get();

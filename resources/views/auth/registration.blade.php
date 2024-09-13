@@ -1,196 +1,6 @@
 @include('includes.head')
 @include('sweetalert::alert')
 
-{{-- <div class="main-wrapper login-body">
-    <div class="login-wrapper">
-        <div class="container">
-            <div class="loginbox row">
-                <div class="col-md-12">
-                    <div class="signup-container">
-                        <h1>Register</h1>
-                    </div>
-                    <form id="registrationForm" action="{{ route('register.handleRegistration') }}" method="POST"
-                        onsubmit="return validatePassword()">
-                        @csrf
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <small class="form-text text-muted">
-                                        Please fill in your names as they appear in your National Identification Number
-                                        (NIN).
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Form Fields -->
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="fname">First Name <span class="login-danger">*</span></label>
-                                    <input class="form-control" id="fname" type="text" name="fname" required
-                                        placeholder="e.g., John" aria-describedby="nameHelp">
-
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="mname">Middle Name <span class="login-danger">*</span></label>
-                                    <input class="form-control" id="mname" type="text" name="mname" required
-                                        placeholder="e.g., Juma" aria-describedby="nameHelp">
-
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="lname">Last Name <span class="login-danger">*</span></label>
-                                    <input class="form-control" id="lname" type="text" name="lname" required
-                                        placeholder="e.g., Doe" aria-describedby="nameHelp">
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="username">Username <span class="login-danger">*</span></label>
-                                    <input class="form-control" id="username" type="text" name="username" required
-                                        placeholder="e.g., Juma">
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="email">Personal Email Account<span
-                                            class="login-danger">*</span></label>
-                                    <input class="form-control" type="email" name="email" required
-                                        placeholder="e.g., abc@gmail.com"
-                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                                        title="Please enter a valid email address in the format: abc@example.com">
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="dob">Date of Birth <span class="login-danger">*</span></label>
-                                    <input class="form-control" id="dob" type="date" name="DOB" required>
-                                </div>
-                            </div>
-
-                            <script>
-                                document.addEventListener("DOMContentLoaded", function() {
-                                    var today = new Date();
-                                    var minDate = new Date();
-
-                                    minDate.setFullYear(today.getFullYear() - 18);
-                                    minDate.setMonth(today.getMonth());
-                                    minDate.setDate(today.getDate());
-
-                                    var yyyy = minDate.getFullYear();
-                                    var mm = ('0' + (minDate.getMonth() + 1)).slice(-2);
-                                    var dd = ('0' + minDate.getDate()).slice(-2);
-                                    var minDateString = yyyy + '-' + mm + '-' + dd;
-
-                                    document.getElementById('dob').setAttribute('max', minDateString);
-                                });
-                            </script>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="phone">Phone Number <span class="login-danger">*</span></label>
-                                    <input class="form-control" id="phone" type="tel" name="mobile" required
-                                        placeholder="e.g., 0699 990 002" pattern="[+]?[0-9]{10,15}"
-                                        title="Phone number should be between 10 to 15 digits and may start with a '+'.">
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Password <span class="login-danger">*</span></label>
-                                    <input class="form-control pass-input" type="password" name="password"
-                                        id="password" required>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Confirm Password <span class="login-danger">*</span></label>
-                                    <input class="form-control pass-input" type="password" name="password_confirmation"
-                                        id="password_confirmation" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Department <span class="login-danger">*</span></label>
-                                    <select class="form-control" name="deptId" required>
-                                        <option value="">-----Select-----</option>
-                                        @foreach ($departments as $department)
-                                            <option value="{{ $department->id }}">{{ $department->dept_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="job_title">Job Title</label>
-                                    <input class="form-control" id="job_title" type="text" name="job_title"
-                                        placeholder="e.g., Doctor">
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Employment Type<span class="login-danger">*</span></label>
-                                    <select class="form-control" name="employment_typeId" required>
-                                        <option value="">-----Select-----</option>
-                                        @foreach ($employmentTypes as $employmentType)
-                                            <option value="{{ $employmentType->id }}">
-                                                {{ $employmentType->employment_type }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Professional Number</label>
-                                    <input class="form-control" type="text" name="professional_reg_number">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="text-center">
-                                    <p>By clicking Sign Up, you agree to our <a href="path_to_terms">Terms</a>, <a
-                                            href="path_to_privacy_policy">Privacy Policy</a>.</p>
-                                </div>
-                                <div class="form-group text-center">
-                                    <button class="btn btn-primary btn-block" type="button" id="openAgreementsModal"
-                                        style="background-color: #0f813c; color: white;">Sign Up</button>
-                                </div>
-                                <div class="text-center">
-                                    <span>Already registered?</span> <a href="{{ route('login') }}"
-                                        style="color: #0f813c;">Login here</a>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <div class="login-or">
-                        <span class="or-line"></span>
-                        <span class="span-or">or</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
-
 <div class="main-wrapper login-body" style="background-color: hsl(0, 0%, 100%);">
 
     <div class="login-wrapper" style="background-color: #eff8f3;">
@@ -206,7 +16,7 @@
                         @csrf
 
                         <div class="alert alert-info" role="alert" style="background-color: #eaf3fc; color: #0f813c;">
-                            Please fill in your names as they appear on your National Identification Number (NIN).
+                            Please fill in your names as they appear on your National Identification Number (NIDA).
                         </div>
 
                         <!-- Name Fields -->
@@ -239,13 +49,7 @@
 
                         <!-- Contact Information -->
                         <div class="row">
-                            {{-- <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="username">Username <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="username" type="text" name="username" required
-                                        placeholder="e.g., Juma.Doe" style="border-color: #ced4da;">
-                                </div>
-                            </div> --}}
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Professional Number</label>
@@ -286,11 +90,41 @@
                                 <div class="form-group">
                                     <label for="phone">Phone Number <span class="text-danger">*</span></label>
                                     <input class="form-control" id="phone" type="tel" name="mobile" required
-                                        placeholder="e.g., 0699 990 002" pattern="[+]?[0-9]{10,15}"
-                                        title="Phone number should be between 10 to 15 digits and may start with a '+'."
-                                        style="border-color: #ced4da;">
+                                        placeholder="e.g., 699 990 002" style="border-color: #ced4da;">
+                                    <input type="hidden" id="country_code" name="country_code">
                                 </div>
                             </div>
+
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    var input = document.querySelector("#phone");
+                                    var countryCodeInput = document.querySelector("#country_code");
+
+                                    var iti = intlTelInput(input, {
+                                        initialCountry: "tz", // Set Tanzania as the default country
+                                        nationalMode: true, // Allows the user to enter national format
+                                        autoPlaceholder: "polite", // Provides a placeholder based on country
+                                        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js" // Utility script for formatting and validation
+                                    });
+
+                                    // Set the hidden input with the country code whenever the user changes the phone number or the country
+                                    input.addEventListener('change', function() {
+                                        countryCodeInput.value = iti.getSelectedCountryData().dialCode;
+                                    });
+
+                                    // Also set the hidden input when the page loads
+                                    countryCodeInput.value = iti.getSelectedCountryData().dialCode;
+                                });
+                            </script>
+
+
+                            <!-- Include the CSS file for intl-tel-input -->
+                            <link rel="stylesheet"
+                                href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
+                            <!-- Include the JS files for intl-tel-input -->
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Password <span class="text-danger">*</span></label>
@@ -313,37 +147,62 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Department <span class="text-danger">*</span></label>
-                                    <select class="form-control" name="deptId" required
-                                        style="border-color: #ced4da;">
-                                        <option value="">-----Select-----</option>
+                                    <select class="form-control" name="deptId" id="deptId" required style="border-color: #ced4da;">
+                                        <option value="">---Select Department---</option>
                                         @foreach ($departments as $department)
                                             <option value="{{ $department->id }}">{{ $department->dept_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
+
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="job_title">Job Title</label>
-                                    <input class="form-control" id="job_title" type="text" name="job_title"
-                                        placeholder="e.g., Doctor" style="border-color: #ced4da;">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Employment Type <span class="text-danger">*</span></label>
-                                    <select class="form-control" name="employment_typeId" required
-                                        style="border-color: #ced4da;">
-                                        <option value="">-----Select-----</option>
-                                        @foreach ($employmentTypes as $employmentType)
-                                            <option value="{{ $employmentType->id }}">
-                                                {{ $employmentType->employment_type }}</option>
-                                        @endforeach
+                                    <select class="form-control" id="job_title" name="job_title" style="border-color: #ced4da;">
+                                        <option value="">---Select Job Title---</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
+                        </div>
 
+                        <script
+                        src="https://code.jquery.com/jquery-3.6.0.min.js">
+                    </script>
+<script>
+
+$(document).ready(function() {
+    $('#deptId').change(function() {
+        var deptId = $(this).val();
+        var jobTitleSelect = $('#job_title');
+
+        // Clear existing options
+        jobTitleSelect.empty();
+        jobTitleSelect.append('<option value="">---Select Job Title---</option>');
+
+        if (deptId) {
+            $.ajax({
+                url: '/job-titles/' + deptId,
+                method: 'GET',
+                success: function(data) {
+
+                    console.log(data);
+                    // Populate job title dropdown
+                    $.each(data, function(index, jobTitle) {
+                        jobTitleSelect.append('<option value="' + jobTitle.id + '">' + jobTitle.job_title + '</option>');
+                    });
+                },
+                error: function() {
+                    // Handle errors
+                    alert('Failed to fetch job titles.');
+                }
+            });
+        }
+    });
+});
+</script>
                         <!-- Additional Information -->
 
 

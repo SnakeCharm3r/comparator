@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Announcement extends Model
 {
-    protected $fillable = ['title', 'content', 'userId'];
+    protected $fillable = ['title', 'pdf_path', 'userId'];
 
     public function user()
     {

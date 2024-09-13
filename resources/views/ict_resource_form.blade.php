@@ -214,28 +214,67 @@
                                                     No signature available
                                                 @endif
                                             </td>
-                                            <td style="border: 1px solid #000; padding: 8px;">
 
+                                            <td style="border: 1px solid #000; padding: 8px;">
+                                                @if ($ictForm->status == 1)
+                                                {{ \Carbon\Carbon::parse($ictForm->updated_at)->format('d F Y') }}
+                                            @endif
                                             </td>
                                         </tr>
 
 
 
                                         <tr>
-                                            <td style="border: 1px solid #000; padding: 6px;">Line Manager Name:</td>
-                                            <td style="border: 1px solid #000; padding: 6px;"></td>
-                                            <td style="border: 1px solid #000; padding: 6px;"></td>
+                                            <td style="border: 1px solid #000; padding: 6px;">Line Manager Name: {{ $lineManager->username ?? 'Not Available' }}</td>
+                                            <td style="border: 1px solid #000; padding: 1px;">
+                                                @if ($lineManager->signature)
+                                                    <img src="data:image/png;base64,{{ $lineManager->signature }}"
+                                                        alt="Line Manager Signature" style="max-width: 40%; height: 5%;">
+                                                @else
+                                                    No signature available
+                                                @endif
+                                            </td>
+                                            <td style="border: 1px solid #000; padding: 6px;">
+                                                @if ($ictForm->status == 1)
+                                                    {{ \Carbon\Carbon::parse($ictForm->updated_at)->format('d F Y') }}
+                                                @endif
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td style="border: 1px solid #000; padding: 6px;">IT Officer Name:</td>
-                                            <td style="border: 1px solid #000; padding: 6px;"></td>
-                                            <td style="border: 1px solid #000; padding: 6px;"></td>
+                                            <td style="border: 1px solid #000; padding: 6px;">IT Officer Name: {{ $itOfficer->fname ?? 'Not Available' }}</td>
+                                            <td style="border: 1px solid #000; padding: 1px;">
+                                                @if ($itOfficer->signature)
+                                                    <img src="data:image/png;base64,{{ $itOfficer->signature }}"
+                                                        alt="IT Officer Signature" style="max-width: 40%; height: 5%;">
+                                                @else
+                                                    No signature available
+                                                @endif
+                                            </td>
+                                            <td style="border: 1px solid #000; padding: 6px;">
+                                                @if ($ictForm->status == 1)
+                                                    {{ \Carbon\Carbon::parse($ictForm->updated_at)->format('d F Y') }}
+                                                @endif
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td style="border: 1px solid #000; padding: 6px;">HR Officer Name:</td>
-                                            <td style="border: 1px solid #000; padding: 6px;"></td>
-                                            <td style="border: 1px solid #000; padding: 6px;"></td>
+                                            <td style="border: 1px solid #000; padding: 6px;">HR Officer Name: {{ $hrOfficer->fname ?? 'Not Available' }}</td>
+                                            <td style="border: 1px solid #000; padding: 1px;">
+                                                @if ($hrOfficer->signature)
+                                                    <img src="data:image/png;base64,{{ $hrOfficer->signature }}"
+                                                        alt="HR Officer Signature" style="max-width: 40%; height: 5%;">
+                                                @else
+                                                    No signature available
+                                                @endif
+                                            </td>
+                                            <td style="border: 1px solid #000; padding: 6px;">
+                                                @if ($ictForm->status == 1)
+                                                    {{ \Carbon\Carbon::parse($ictForm->updated_at)->format('d F Y') }}
+                                                @endif
+                                            </td>
                                         </tr>
+
+
+
                                     </tbody>
                                 </table>
                             </div>
@@ -297,7 +336,7 @@
 
                             Swal.fire({
                                 title: 'Are you sure?',
-                                text: "Do you really want to approve this form?",
+                                text: "You won't be able to revert this!",
                                 icon: 'warning',
                                 showCancelButton: true,
                                 confirmButtonText: 'Yes, approve it!',
