@@ -16,6 +16,7 @@ class UserFamilyDetails extends Model
         'DOB',
         'phone_number',
         'occupation',
+        'next_of_kin',
         'delete_status'
     ];
 

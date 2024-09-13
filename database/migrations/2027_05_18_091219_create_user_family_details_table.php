@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('occupation')->nullable();
             $table->date('DOB');
             $table->string('phone_number')->nullable();
+            $table->boolean('next_of_kin')->default(false);
             $table->string('delete_status')->nullable();
             $table->foreign('userId')->references('id')->on('users');
             $table->timestamps();

@@ -2,30 +2,130 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Departments;
-use App\Models\EmploymentTypes;
 use App\Models\User;
-use App\Models\UserAdditionalInfo;
-use App\Models\UserFamilyDetails;
+use App\Models\Policy;
+use App\Models\Departments;
 use Illuminate\Http\Request;
+use App\Models\EmploymentTypes;
+use App\Models\UserFamilyDetails;
+use App\Models\UserAdditionalInfo;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
-use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Validator;
+
 
 class AuthController extends Controller
 {
 
     public function login(){
         return view('auth.login');
+
     }
-    //get All user 
+    //get All user
     public function getAllUser(){
         $users = User::all();
+
         return view('role-permission/user.index', compact('users'));
     }
-    // find user by ID 
+
+    public function employee($id)
+    {
+
+        $user = User::findOrFail($id);
+        $policies = Policy::all();
+        return view('employees_details.show', compact('user','policies'));
+    }
+
+    public function changedept($id)
+{
+    // Fetch the user by ID
+
+    $user = User::findOrFail($id);
+$policies = Policy::all();
+    // Pass the user to the view
+    return view('employees_details.show', compact('user','policies'));
+}
+
+
+// public function update(Request $request, $id)
+// {
+//     // Validate the incoming data
+//     $request->validate([
+//         'department' => 'required|string|max:255',
+//         'job_title' => 'required|string|max:255',
+//         'ccb_code' => 'required|string|max:255',
+//         'professional_reg_number' => 'required|string|max:255',
+//         'nssf_no' => 'required|string|max:255',
+//     ]);
+
+//     // Find the user by ID
+//     $user = User::findOrFail($id);
+
+//     // Update the user details
+//     $user->update([
+//         'department' => $request->input('department'),
+//         'job_title' => $request->input('job_title'),
+//         'ccb_code' => $request->input('ccb_code'),
+//         'professional_reg_number' => $request->input('professional_reg_number'),
+//         'nssf_no' => $request->input('nssf_no'),
+//     ]);
+
+//     // Redirect with a success message
+//     return redirect()->route('employees_details.show', $id)->with('success', 'User details updated successfully.');
+// }
+
+
+
+
+public function update(Request $request, $id)
+{
+    // Validate the incoming data
+    $request->validate([
+        'department' => 'required|string|max:255',
+        'job_title' => 'required|string|max:255',
+        'ccb_code' => 'required|string|max:255',
+        'professional_reg_number' => 'required|string|max:255',
+        'nssf_no' => 'required|string|max:255',
+    ]);
+
+    // Find the user by ID
+    $user = User::findOrFail($id);
+
+    // Update the user details
+    $user->update([
+        'department' => $request->input('department'),
+        'job_title' => $request->input('job_title'),
+        'ccb_code' => $request->input('ccb_code'),
+        'professional_reg_number' => $request->input('professional_reg_number'),
+        'nssf_no' => $request->input('nssf_no'),
+    ]);
+
+    // Return a JSON response for AJAX
+    return response()->json([
+        'success' => true,
+        'message' => 'User details updated successfully.',
+    ]);
+}
+
+
+    public function userDetail(){
+
+            $users = User::select('users.*', 'language_knowledge.language')
+            ->leftJoin('language_knowledge', 'users.id', '=', 'language_knowledge.userId')
+            ->get();
+
+            // dd($users);
+        return view('employees_details.index', compact('users'));
+    }
+
+
+
+
+
+    // find user by ID
     public function getUserById($id) {
         $user = User::find($id);
         if (!$user) {
@@ -34,40 +134,50 @@ class AuthController extends Controller
         return view('user.show', compact('user'));
     }
 
-    //Function shows edit user form
-    public function showEditForm($id){
-        $user = User::findOrFail($id);
-        $roles = Role::get();
-        $userRoles = $user->roles->pluck('name')->toArray(); // Get user roles
+    // public function handleLogin(Request $request) {
+    //     $validator = Validator::make($request->all(), [
+    //         'username' => 'required',
+    //         'password' => 'required'
+    //     ]);
 
-        return view('role-permission/user.edit', compact('user','roles', 'userRoles'));
-    }
-   
+    //     if ($validator->fails()) {
+    //         return redirect()->back()->withErrors($validator)->withInput();
+    //     }
+
+    //     if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
+    //         return redirect()->route('dashboard')->with('success', 'Logged in successfully.');
+    //     } else {
+    //         return redirect()->back()->withErrors(['login_error' => 'Invalid username or password'])->withInput();
+    //     }
+    // }
     public function handleLogin(Request $request) {
+        // Validate the username and password
         $validator = Validator::make($request->all(), [
-            'username' => 'required',
+            'username' => 'required',  // Use the provided username field
             'password' => 'required'
         ]);
-
+    
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
+    
+        // Attempt to authenticate using the provided username and password
         if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
             return redirect()->route('dashboard')->with('success', 'Logged in successfully.');
         } else {
             return redirect()->back()->withErrors(['login_error' => 'Invalid username or password'])->withInput();
         }
     }
-
-
+    
+    
 
 
     public function register() {
+        $policies = Policy::all();
         $departments = Departments::all();
         $employmentTypes = EmploymentTypes::all();
 
-        return view('auth.registration', compact('departments', 'employmentTypes'));
+        return view('auth.registration', compact('departments', 'employmentTypes','policies'));
     }
 
     public function handleRegistration(Request $request){
@@ -77,10 +187,11 @@ class AuthController extends Controller
           'job_title' => 'required',
           'email' => 'required|email|unique:users',
           'deptId' => 'required',
+          'DOB' => 'required',
           'employment_typeId' => 'required',
           'password' => 'required|min:6',
+        //   'signature' => 'required|string',
         ]);
-
         if($validator->fails()) {
             return response()->json([
                 'status' => 400,
@@ -88,14 +199,16 @@ class AuthController extends Controller
             ]);
 
         }
-        //$dob = \DateTime::createFromFormat('d-m-Y', $request->input('DOB'))->format('Y-m-d');
-
+        // $dob = \DateTime::createFromFormat('d-m-Y', $request->input('DOB'))->format('Y-m-d');
+        $username = strtolower($request->input('fname')) . '.' . strtolower($request->input('lname'));
         $user = User::create([
             'fname' => $request->input('fname'),
             'mname' => $request->input('mname'),
             'lname' => $request->input('lname'),
-            'username' => $request->input('username'),
+            // 'username' => $request->input('username'),
+            'username' => $username,
             'DOB' => $request->input('DOB'),
+            // 'DOB' => $request->input('DOB'),
             'gender' => $request->input('gender'),
             'marital_status' => $request->input('marital_status'),
             'email' => $request->input('email'),
@@ -104,80 +217,47 @@ class AuthController extends Controller
             'job_title' => $request->input('job_title'),
             'home_address' => $request->input('home_address'),
             'district' => $request->input('district'),
+            'region' => $request->input('region'),
             'professional_reg_number' => $request->input('professional_reg_number'),
-            'place_of_birth' => $request->input('place_of_birth'),
+            'place_of_birth'   => $request->input('place_of_birth'),
             'house_no' => $request->input('house_no'),
             'street' => $request->input('street'),
             'deptId' => $request->input('deptId'),
             'employment_typeId' => $request->input('employment_typeId'),
-            'health_info_Id' => $request->input('health_info_Id'),
+            // 'health_info_Id' => $request->input('health_info_Id'),
             'employee_cv' => $request->input('employee_cv'),
             'NIN' => $request->input('NIN'),
             'nssf_no' => $request->input('nssf_no'),
             'domicile' => $request->input('domicile'),
-//            'deptId' => $request->input('deptId'),
-//            'employment_typeId' => $request->input('employment_typeId'),
             'password' => Hash::make($request->input('password')),
 
         ]);
-            // Example of assigning role
-            // $user->assignRole('head of hr');
-            Alert::success('User Registered Successful','Please login');
-         return redirect()->route('login')->with(
-            'success', 'User registered successfully. Please login.');
+            $user->assignRole('requester');
+            Auth::login($user);
+            Alert::success('User Registered Successful','Please Provide Your Signature');
+        return redirect()->route('login');
 
+}
 
-    }
+   //Function shows edit user form
+   public function showEditForm($id){
+    $user = User::findOrFail($id);
+    $roles = Role::get();
+    $userRoles = $user->roles->pluck('name')->toArray(); // Get user roles
 
+    return view('role-permission/user.edit', compact('user','roles', 'userRoles'));
+}
 
-    // public function editUserRole(Request $request, $userId)
-    // {
-    //     $request->validate([
-    //         'role' => 'required|exists:roles,name',
-    //     ]);
-    //     $user = User::findOrFail($userId);
-    //     $user->assignRole($request->role);
-    //     return redirect()->back()->with('status', 'Role assigned successfully');
-    // }
+//This for user role assigment
     public function editUserRole(Request $request, $userId)
-    {
+     {
         $request->validate([
-            'role' => 'required|exists:roles,name',
+            'roles' => 'required|array',
+            'roles.*' => 'required|exists:roles,name',
         ]);
         $user = User::findOrFail($userId);
-        $user->syncRoles([$request->role]);  // Changed to syncRoles to remove any previous roles
+        $user->syncRoles([$request->roles]);  // Changed to syncRoles to remove any previous roles
         return redirect('role')->with('status', 'Role assigned successfully');
-    }
-    
-//     public function editUserRole(Request $request, $id)
-// {
-//     $user = User::findOrFail($id);
-    
-//     $validated = $request->validate([
-//         'username' => 'required|string|max:255',
-//         'roles' => 'required|string|exists:roles,name',
-//     ]);
-
-//     $user->username = $request->input('username');
-//     $user->save();
-
-//     // Assuming user roles are stored in a many-to-many relationship
-//     $user->roles()->sync([$request->input('roles')]);
-
-//     return redirect()->route('users.index')->with('success', 'User role updated successfully.');
-// }
-
-    // Remove Role from User
-    public function removeRole(Request $request, $userId)
-    {
-        $request->validate([
-            'role' => 'required|exists:roles,name',
-        ]);
-
-        $user = User::findOrFail($userId);
-        $user->removeRole($request->role);
-
-        return redirect()->back()->with('status', 'Role removed successfully');
     }
 
     // Show Assign Role Form
@@ -197,6 +277,19 @@ class AuthController extends Controller
         return view('user.remove-role', compact('user'));
     }
 
+    // Remove Role from User
+    public function removeRole(Request $request, $userId)
+    {
+        $request->validate([
+            'role' => 'required|exists:roles,name',
+        ]);
+
+        $user = User::findOrFail($userId);
+        $user->removeRole($request->role);
+
+        return redirect()->back()->with('status', 'Role removed successfully');
+    }
+
     public function logout() {
         Auth::logout();
         return redirect()->route('login');
@@ -207,6 +300,38 @@ class AuthController extends Controller
         $user_id = session('userId');
         return view('auth.next_of_kins', compact('userId'));
     }
+    public function changePass($id){
+        $user = User::findOrFail($id);
 
+        return view('password.index', compact('user'));
+    }
+
+
+
+    public function showChangePasswordForm()
+    {
+        return view('user_profile.pass');
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|string|min:8|different:current_password',
+            'new_password_confirmation' => 'required|string|same:new_password',
+        ]);
+
+        $user = Auth::user();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return redirect()->back()->with('error', 'The current password is incorrect.');
+        }
+
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        Alert::success('Password changed Successful','Please proceed');
+        return redirect()->route('user_profile.pass')->with('success', 'Password changed successfully.');
+    }
 
 }

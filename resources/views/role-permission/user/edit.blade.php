@@ -37,14 +37,12 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="roles">Roles</label>
-                                        @foreach ($roles as $role)
-                                            <div class="form-check">
-                                                <input type="radio" name="role" id="role-{{ $role->name }}" value="{{ $role->name }}"
-                                                    class="form-check-input" 
-                                                    {{ !empty($userRoles) && $role->name == $userRoles[0] ? 'checked' : '' }}>
-                                                <label for="role-{{ $role->name }}" class="form-check-label">{{ $role->name }}</label>
-                                            </div>
-                                        @endforeach
+                                        @foreach($roles as $role)
+                                        <label>
+                                            <input type="checkbox" name="roles[]" value="{{ $role->name }}" {{ $user->hasRole($role->name) ? 'checked' : '' }}>
+                                            {{ $role->name }}
+                                        </label><br>
+                                    @endforeach
                                         @error('role')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror

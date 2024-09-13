@@ -12,13 +12,14 @@ class Departments extends Model
 
     protected $fillable = [
     'dept_name',
-    'hod',
     'description',
-    'delete_status',
     ];
 
     public function user() {
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class, 'deptId');
     }
-
+    public function sops()
+    {
+        return $this->hasMany(Sop::class, 'deptId');
+    }
 }
