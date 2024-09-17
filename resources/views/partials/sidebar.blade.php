@@ -49,9 +49,9 @@
                                 class="{{ request()->routeIs('change.index') ? 'active' : '' }}">Change Request
                                 Form</a>
                         </li> --}}
-                        <li><a href="{{ route('card.index') }}"
+                        {{-- <li><a href="{{ route('card.index') }}"
                                 class="{{ request()->routeIs('card.index') ? 'active' : '' }}">ID Card Request Form</a>
-                        </li>
+                        </li> --}}
                         {{-- <li><a href="{{ route('hslb.index') }}"
                                 class="{{ request()->routeIs('hslb.index') ? 'active' : '' }}">HESLB</a>
                         </li> --}}
@@ -215,13 +215,13 @@
                             </li>
                         @endcan
 
-                        @can('view remarks')
+                        {{-- @can('view remarks')
                             <li class="{{ request()->routeIs('remark.index') ? 'active' : '' }}">
                                 <a href="{{ route('remark.index') }}">
                                     <span>Remark</span>
                                 </a>
                             </li>
-                        @endcan
+                        @endcan --}}
 
                         @can('view user category')
                             <li class="{{ request()->routeIs('privilege.index') ? 'active' : '' }}">
