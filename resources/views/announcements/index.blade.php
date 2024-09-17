@@ -89,10 +89,15 @@
                         <!-- Create Announcement Button -->
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h1 class="h4 mb-0">Announcements</h1>
-                            <a href="{{ route('announcements.create') }}" class="btn btn-primary">
-                                <i class="fas fa-plus"></i> Add Announcement
-                            </a>
+                            @role('super-admin|admin|hr')
+                            @can('create-announcement')
+                                <a href="{{ route('announcements.create') }}" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i> Add Announcement
+                                </a>
+                                @endcan
+                                @endrole
                         </div>
+
 
                         <!-- Announcements List -->
                         @if ($announcements->isEmpty())
@@ -118,7 +123,7 @@
                                             <div class="accordion-body">
                                                 <p class="mb-2">{{ $announcement->content }}</p>
                                                 <small class="text-muted">
-                                                    By {{ $announcement->user->name ?? 'Unknown' }} on
+                                                    By {{ $announcement->user->username ?? 'Unknown' }} on
                                                     {{ $announcement->created_at->format('M d, Y') }}
                                                 </small>
                                                 <div class="mt-3">
@@ -130,21 +135,25 @@
                                                         </a>
                                                     @endif
 
-                                                    <a href="{{ route('announcements.edit', $announcement->id) }}"
-                                                        class="btn btn-warning ml-2">
-                                                        <i class="fas fa-pencil-alt"></i> Edit
-                                                    </a>
+                                                    @can('edit-announcement')
+                                                        <a href="{{ route('announcements.edit', $announcement->id) }}"
+                                                            class="btn btn-warning ml-2">
+                                                            <i class="fas fa-pencil-alt"></i> Edit
+                                                        </a>
+                                                    @endcan
 
-                                                    <!-- Delete Announcement Form -->
-                                                    <form action="{{ route('announcements.destroy', $announcement->id) }}"
-                                                        method="POST" class="d-inline ml-2">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger"
-                                                            onclick="return confirm('Are you sure you want to delete this announcement?')">
-                                                            <i class="fas fa-trash-alt"></i> Delete
-                                                        </button>
-                                                    </form>
+                                                    @can('delete-announcement')
+                                                        <!-- Delete Announcement Form -->
+                                                        <form action="{{ route('announcements.destroy', $announcement->id) }}"
+                                                            method="POST" class="d-inline ml-2">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger"
+                                                                onclick="return confirm('Are you sure you want to delete this announcement?')">
+                                                                <i class="fas fa-trash-alt"></i> Delete
+                                                            </button>
+                                                        </form>
+                                                    @endcan
                                                 </div>
                                             </div>
                                         </div>
@@ -152,6 +161,7 @@
                                 @endforeach
                             </div>
                         @endif
+
                     </div>
                 </div>
             </div>

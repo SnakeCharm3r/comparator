@@ -11,7 +11,6 @@
                         </div>
                         <br>
                         <div class="container">
-                            
                             <form action="<?php echo e(route('sops.store')); ?>" method="POST" enctype="multipart/form-data">
                                 <?php echo csrf_field(); ?>
                                 <div class="form-group mb-3">
