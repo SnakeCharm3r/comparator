@@ -11,11 +11,6 @@ use Illuminate\Support\Facades\Storage;
 
 class SopController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-
-
     public function index(){
         $sops = DB::table('sops')->join('departments',
         'sops.deptId', '=', 'departments.id')
@@ -31,34 +26,41 @@ class SopController extends Controller
         return view('sops.create', compact('departments'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'deptId' => 'required|integer',
-            'pdf' => 'required|file|mimes:pdf|max:2048',
-        ]);
 
-        // Handle the file upload
-        if ($request->hasFile('pdf')) {
-            $pdfPath = $request->file('pdf')->store('pdfs', 'public');
-        }
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'title' => 'required|string|max:255',
+        'deptId' => 'required',
+        'pdf' => 'required|mimes:pdf|max:10000',
+    ]);
 
-        // Create the SOP record
-        $sop = new Sop();
-        $sop->title = $request->title;
-        $sop->deptId = $request->deptId;
-        $sop->pdf_path = $pdfPath; // Save the file path
-        $sop->save();
-
-        return redirect()->route('sops.index')->with('success', 'SOP created successfully.');
+    // Handle file upload
+    if ($request->hasFile('pdf')) {
+        $pdfPath = $request->file('pdf')->store('sops', 'public');
     }
-    
 
+    if ($request->deptId === 'all') {
+        // Logic to associate SOP with all departments
+        $departments = Departments::all();
+        foreach ($departments as $department) {
+            Sop::create([
+                'title' => $request->title,
+                'deptId' => $department->id,
+                'pdf_path' => $pdfPath,
+            ]);
+        }
+    } else {
+        // Logic to associate SOP with a single department
+        Sop::create([
+            'title' => $request->title,
+            'deptId' => $request->deptId,
+            'pdf_path' => $pdfPath,
+        ]);
+    }
 
+    return redirect()->route('sops.index')->with('success', 'SOP saved successfully.');
+}
 
     public function show(string $id)
     {
@@ -75,9 +77,6 @@ class SopController extends Controller
         return view('sops.edit', compact('sop', 'departments'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -113,12 +112,6 @@ class SopController extends Controller
         return view('sops.show', compact('sops'));
     }
 
-
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $sop = Sop::findOrFail($id);

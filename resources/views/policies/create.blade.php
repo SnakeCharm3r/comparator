@@ -1,39 +1,33 @@
-@extends('layouts.template')
+{{-- @extends('layouts.template')
 
-@section('breadcrumb')
-    @include('sweetalert::alert')
+@section('content')
+    <!-- Include Quill's CSS -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
     <div class="page-wrapper">
-        <div class="content container">
+        <div class="content container-fluid">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     <div class="card">
-                        <div class="card-body">
-                            <div class="page-header"
-                                style="padding: 15px; background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <h1>Create Announcement</h1>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {{-- Announcement Creation Form --}}
-                            <form action="{{ route('announcements.store') }}" method="POST" onsubmit="submitForm()">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Create Policy</h5>
+                        </div>
+                        <br>
+                        <div class="container">
+                            <form action="{{ route('policies.store') }}" method="POST" onsubmit="return submitForm()">
                                 @csrf
-                                <div class="form-group">
-                                    <label for="title">Title</label>
-                                    <input type="text" name="title" id="title" class="form-control" required
-                                        placeholder="Enter the title of the announcement">
-                                </div>
-
                                 <div class="form-group mb-3">
-                                    <label for="content">Content</label>
+                                    <label for="title">Title</label>
+                                    <input type="text" class="form-control" id="title" name="title" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="content">Description</label>
                                     <div id="editor-container" style="height: 250px;"></div>
                                     <input type="hidden" id="content" name="content">
                                 </div>
-
-                                <div class="text-right">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="form-group mb-3">
+                                    <button type="submit" class="btn btn-primary">Create Policy</button>
+                                    <a href="{{ route('policies.index') }}" class="btn btn-secondary">Back</a>
                                 </div>
                             </form>
                         </div>
@@ -42,36 +36,183 @@
             </div>
         </div>
     </div>
-@endsection
 
-@section('scripts')
-    {{-- Include Quill Editor CDN --}}
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <!-- Include Quill and Bootstrap JS -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Initialize Quill Editor
-        var quill = new Quill('#editor-container', {
-            theme: 'snow',  // "snow" is the default theme that includes a toolbar
-            modules: {
-                toolbar: [
-                    [{ 'font': [] }, { 'size': [] }],  // Font and size options
-                    ['bold', 'italic', 'underline', 'strike'],  // Bold, italic, underline, strikethrough
-                    [{ 'color': [] }, { 'background': [] }],  // Font color and background color
-                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],  // Ordered and bullet lists
-                    [{ 'align': [] }],  // Alignment options
-                    ['link', 'image'],  // Insert link and image
-                    ['clean']  // Remove formatting
-                ]
-            },
-            placeholder: 'Write your announcement here...',
-            theme: 'snow'
-        });
+        document.addEventListener("DOMContentLoaded", function() {
+            var toolbarOptions = [
+                ['undo', 'redo'], // Undo/Redo
+                [{
+                    'header': [1, 2, 3, false]
+                }], // Header options
+                [{
+                    'size': ['small', false, 'large', 'huge']
+                }], // Custom font sizes
+                ['bold', 'italic'], // Bold and Italic
+                [{
+                    'align': []
+                }], // Text alignment
+                [{
+                    'list': 'ordered'
+                }, {
+                    'list': 'bullet'
+                }], // Lists
+                [{
+                    'indent': '-1'
+                }, {
+                    'indent': '+1'
+                }], // Indent/outdent
+                [{
+                    'script': 'sub'
+                }, {
+                    'script': 'super'
+                }], // Superscript/Subscript
+                ['link', 'image'], // Link and image
+                [{
+                    'color': []
+                }, {
+                    'background': []
+                }], // Color and background
+                ['clean'], // Clear formatting
+                ['more'] // "..." for more options (custom implementation)
+            ];
 
-        // Submit Form and Copy HTML Content to Hidden Input Field
-        function submitForm() {
-            var content = document.querySelector('input[name=content]');
-            content.value = quill.root.innerHTML;  // Get the HTML content from the editor
-        }
+            var quill = new Quill('#editor-container', {
+                theme: 'snow',
+                modules: {
+                    toolbar: toolbarOptions
+                }
+            });
+
+            window.submitForm = function() {
+                var content = document.querySelector('input[name=content]');
+                content.value = quill.root.innerHTML;
+                return true;
+            }
+        });
     </script>
+
+    <style>
+        .ql-more-options {
+            display: none;
+        }
+
+        .ql-more {
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+@endsection --}}
+@extends('layouts.template')
+
+@section('content')
+    <!-- Include Quill's CSS -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Create Policy</h5>
+                        </div>
+                        <br>
+                        <div class="container">
+                            <form action="{{ route('policies.store') }}" method="POST" onsubmit="return submitForm()">
+                                @csrf
+                                <div class="form-group mb-3">
+                                    <label for="title">Title</label>
+                                    <input type="text" class="form-control" id="title" name="title" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="content">Description</label>
+                                    <div id="editor-container" style="height: 250px;"></div>
+                                    <input type="hidden" id="content" name="content">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <button type="submit" class="btn btn-primary">Create Policy</button>
+                                    <a href="{{ route('policies.index') }}" class="btn btn-secondary">Back</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Quill and Bootstrap JS -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var toolbarOptions = [
+                ['undo', 'redo'], // Undo/Redo
+                [{
+                    'header': [1, 2, 3, false]
+                }], // Header options
+                [{
+                    'size': ['small', false, 'large', 'huge']
+                }], // Custom font sizes
+                ['bold', 'italic'], // Bold and Italic
+                [{
+                    'align': []
+                }], // Text alignment
+                [{
+                    'list': 'ordered'
+                }, {
+                    'list': 'bullet'
+                }], // Lists
+                [{
+                    'indent': '-1'
+                }, {
+                    'indent': '+1'
+                }], // Indent/outdent
+                [{
+                    'script': 'sub'
+                }, {
+                    'script': 'super'
+                }], // Superscript/Subscript
+                ['link', 'image'], // Link and image
+                [{
+                    'color': []
+                }, {
+                    'background': []
+                }], // Color and background
+                ['clean'], // Clear formatting
+                ['more'] // "..." for more options (custom implementation)
+            ];
+
+            var quill = new Quill('#editor-container', {
+                theme: 'snow',
+                modules: {
+                    toolbar: toolbarOptions
+                }
+            });
+
+            // Function to handle form submission
+            window.submitForm = function() {
+                var content = document.querySelector('input[name=content]');
+                // Extracting and storing the Quill editor's HTML content
+                content.value = quill.root.innerHTML;
+                return true;
+            }
+        });
+    </script>
+
+    <style>
+        .ql-more-options {
+            display: none;
+        }
+
+        .ql-more {
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
 @endsection

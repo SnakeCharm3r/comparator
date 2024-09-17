@@ -144,21 +144,49 @@
                             </div>
                         </div>
                     </div> --}}
-
                     <div class="col-md-3 col-sm-6 col-12 mb-3">
                         <div class="card text-center shadow-sm">
+                            <!-- Link to the Announcements page -->
                             <a href="{{ route('announcements.index') }}" class="text-decoration-none text-warning">
                                 <div class="card-header">
-                                    <i class="fas fa-exclamation-triangle"></i> Urgent Announcement
+                                    <i class="fas fa-exclamation-triangle"></i> Announcement
                                 </div>
                             </a>
+
+                            <!-- Body of the card showing the total count and new announcements -->
                             <div class="card-body">
-                                <a href="{{ route('announcements.index') }}" class="card-title text-decoration-none">
-                                    {{ $announcements->count() }}
-                                </a>
+                                {{-- <a href="{{ route('announcements.index') }}" class="card-title text-decoration-none">
+                                    Total: {{ $announcements->count() }}
+                                </a> --}}
+
+                                <!-- Fetch the count of new announcements using Eloquent within the Blade template -->
+                                @php
+                                    $userLastViewed = auth()->user()->last_viewed_announcement;
+                                    // Handle the null case by assuming no announcements have been viewed
+                                    $newAnnouncementsCount = \App\Models\Announcement::when($userLastViewed, function (
+                                        $query,
+                                        $userLastViewed,
+                                    ) {
+                                        return $query->where('created_at', '>', $userLastViewed);
+                                    })->count();
+                                @endphp
+
+                                @if ($newAnnouncementsCount > 0)
+                                    <div class="mt-2">
+                                        <span class="badge bg-warning text-dark d-flex align-items-center">
+                                            <strong>{{ $newAnnouncementsCount }}</strong>
+                                            <a href="{{ route('announcements.index') }}"
+                                                class="ms-1 text-decoration-none text-dark">
+                                                New
+                                            </a>
+                                        </span>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
+
+
 
 
                     <div class="col-md-3 col-sm-6 col-12 mb-3">
@@ -210,7 +238,7 @@
                         </div>
                     </div>
                 </div>
-                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                 <div class="col-12 col-lg-12 col-xl-12 d-flex">
                     <div class="card flex-fill comman-shadow">
                         <div class="card-header d-flex align-items-center">
@@ -281,7 +309,7 @@
                             }
                         });
                     });
-                </script>
+                </script> --}}
             </div>
         </div>
     </div>
