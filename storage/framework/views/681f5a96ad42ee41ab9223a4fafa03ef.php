@@ -78,13 +78,22 @@
     </div>
 
     <script>
+        // function viewDescription(title, content) {
+        //     // Set the title and content in the modal
+        //     document.getElementById('descriptionContent').innerHTML = '<h5>' + title + '</h5><p>' + content + '</p>';
+        //     // Show the modal
+        //     var descriptionModal = new bootstrap.Modal(document.getElementById('descriptionModal'));
+        //     descriptionModal.show();
+        // }
         function viewDescription(title, content) {
-            // Set the title and content in the modal
-            document.getElementById('descriptionContent').innerHTML = '<h5>' + title + '</h5><p>' + content + '</p>';
-            // Show the modal
-            var descriptionModal = new bootstrap.Modal(document.getElementById('descriptionModal'));
-            descriptionModal.show();
-        }
+    // Set the title and content in the modal, allowing the content to be rendered as HTML
+    document.getElementById('descriptionContent').innerHTML = '<h5>' + title + '</h5>' + content;
+    
+    // Show the modal
+    var descriptionModal = new bootstrap.Modal(document.getElementById('descriptionModal'));
+    descriptionModal.show();
+}
+
     </script>
 <?php $__env->stopSection(); ?>
 

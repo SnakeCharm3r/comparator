@@ -43,9 +43,7 @@
                         
                         
                         
-                        <li><a href="<?php echo e(route('card.index')); ?>"
-                                class="<?php echo e(request()->routeIs('card.index') ? 'active' : ''); ?>">ID Card Request Form</a>
-                        </li>
+                        
                         
                     </ul>
                 </li>
@@ -208,13 +206,7 @@
                             </li>
                         <?php endif; ?>
 
-                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view remarks')): ?>
-                            <li class="<?php echo e(request()->routeIs('remark.index') ? 'active' : ''); ?>">
-                                <a href="<?php echo e(route('remark.index')); ?>">
-                                    <span>Remark</span>
-                                </a>
-                            </li>
-                        <?php endif; ?>
+                        
 
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view user category')): ?>
                             <li class="<?php echo e(request()->routeIs('privilege.index') ? 'active' : ''); ?>">

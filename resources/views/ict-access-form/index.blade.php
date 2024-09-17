@@ -29,7 +29,7 @@
                                             <label for="openclinic_hms">Aruti HR MIS<span
                                                     class="text-danger">*</span></label>
                                             <select class="form-control" id="privilegeId" name="aruti" required>
-                                                <option value="">---Select an option---</option>
+                                                <option value="" disabled selected> ---Select an option---</option>
                                                 @foreach ($privileges as $privilege)
                                                     @if (in_array($privilege->prv_name, ['User', 'Administrator', 'Super Administrator', 'HR Officer', 'HR Manager']))
                                                         <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
@@ -43,7 +43,7 @@
                                         <div class="form-group">
                                             <label for="openclinic_hms">SAP ERP<span class="text-danger">*</span></label>
                                             <select class="form-control" id="privilegeId" name="sap" required>
-                                                <option value="">---Select an option---</option>
+                                                <option value="" disabled selected> ---Select an option---</option>
                                                 @foreach ($privileges as $privilege)
                                                     @if (
                                                         $privilege->prv_name === 'User' ||
@@ -66,7 +66,7 @@
                                         <div class="form-group">
                                             <label for="openclinic_hms">PABX<span class="text-danger">*</span></label>
                                             <select class="form-control" id="pbax" name="pbax" required>
-                                                <option value="">---Select an option---</option>
+                                                <option value="" disabled selected>---Select an option---</option>
                                                 @foreach ($privileges as $privilege)
                                                     @if ($privilege->prv_name === 'User' || $privilege->prv_name === 'Administrator')
                                                         <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
@@ -79,7 +79,7 @@
                                         <div class="form-group">
                                             <label for="openclinic_hms">OpenClinic HMIS Access</label>
                                             <select class="form-control" id="hmisId" name="hmisId" required>
-                                                <option value="">---Select an option---</option>
+                                                <option value="" disabled selected> ---Select an option---</option>
                                                 @foreach ($hmis as $hmi)
                                                     <option value="{{ $hmi->id }}">{{ $hmi->names }}</option>
                                                 @endforeach
@@ -93,7 +93,7 @@
                                             <label for="openclinic_hms">Active Directory<span
                                                     class="text-danger">*</span></label>
                                             <select class="form-control" id="privilegeId" name="active_drt" required>
-                                                <option value="">---Select an option---</option>
+                                                <option value="" disabled selected> ---Select an option---</option>
                                                 @foreach ($privileges as $privilege)
                                                     @if ($privilege->prv_name === 'User' || $privilege->prv_name === 'Administrator')
                                                         <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
@@ -162,7 +162,7 @@
                                         <div class="form-group">
                                             <label for="openclinic_hms">NHIF Qualification</label>
                                             <select class="form-control" id="nhifId" name="nhifId" required>
-                                                <option value="">---Select an option---</option>
+                                                <option value="" disabled selected> ---Select an option---</option>
                                                 @foreach ($qualifications as $qualification)
                                                     <option value="{{ $qualification->id }}">{{ $qualification->name }}
                                                     </option>
@@ -173,7 +173,7 @@
                                         <div class="form-group">
                                             <label for="openclinic_hms">Network Access VPN</label>
                                             <select class="form-control" id="VPN" name="VPN" required>
-                                                <option value="">---Select an option---</option>
+                                                <option value="" disabled selected> ---Select an option---</option>
                                                 @foreach ($privileges as $privilege)
                                                     @if ($privilege->prv_name === 'User' || $privilege->prv_name === 'Administrator')
                                                         <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
@@ -186,7 +186,7 @@
                                         <div class="form-group">
                                             <label for="openclinic_hms">CCBRT Email</label>
                                             <select class="form-control" id="privilegeId" name="privilegeId" required>
-                                                <option value="">---Select an option---</option>
+                                                <option value="" disabled selected> ---Select an option---</option>
                                                 @foreach ($privileges as $privilege)
                                                     @if ($privilege->prv_name === 'User' || $privilege->prv_name === 'Administrator')
                                                         <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}

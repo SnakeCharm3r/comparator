@@ -8,7 +8,7 @@
             <div class="loginbox row justify-content-center">
                 <div class="col-md-10">
                     <div class="signup-container text-center">
-                        <h1 style="font-size: 2rem; color: #333;">Register Your Account</h1>
+                        <h1 style="font-size: 2rem; color: #0f813c;">Register Your Account</h1>
                     </div>
 
                     <form id="registrationForm" action="{{ route('register.handleRegistration') }}" method="POST"
@@ -73,16 +73,30 @@
                                         style="border-color: #ced4da;">
                                 </div>
                             </div>
+
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    var dobInput = document.getElementById('dob');
+
+                                    var today = new Date();
+                                    var minDate = new Date(today.setFullYear(today.getFullYear() - 18));
+                                    var minDateString = minDate.toISOString().split('T')[0];
+
+                                    dobInput.setAttribute('max', minDateString);
+
+                                    dobInput.addEventListener('change', function() {
+                                        var selectedDate = new Date(dobInput.value);
+                                        if (selectedDate > minDate) {
+                                            alert("You must be at least 18 years old!");
+                                            dobInput.value = ""; // Clear the invalid date
+                                        }
+                                    });
+                                });
+                            </script>
+
                         </div>
 
-                        <script>
-                            document.addEventListener("DOMContentLoaded", function() {
-                                var today = new Date();
-                                var minDate = new Date(today.setFullYear(today.getFullYear() - 18));
-                                var minDateString = minDate.toISOString().split('T')[0];
-                                document.getElementById('dob').setAttribute('max', minDateString);
-                            });
-                        </script>
+
 
                         <!-- More Fields -->
                         <div class="row">
@@ -107,7 +121,6 @@
                                         utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js" // Utility script for formatting and validation
                                     });
 
-                                    // Set the hidden input with the country code when the user changes the phone number or country
                                     function updateCountryCode() {
                                         var selectedCountryCode = iti.getSelectedCountryData().dialCode;
                                         countryCodeInput.value = selectedCountryCode;
@@ -123,14 +136,10 @@
                                     input.addEventListener('change', updateCountryCode); // Update when the phone input is changed
                                     input.addEventListener('keyup', updateCountryCode); // Update on keyup in case of manual changes
 
-                                    // Set the hidden input and phone input when the page loads
                                     updateCountryCode();
                                 });
                             </script>
 
-
-
-                            <!-- Include the CSS file for intl-tel-input -->
                             <link rel="stylesheet"
                                 href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
                             <!-- Include the JS files for intl-tel-input -->
@@ -184,7 +193,7 @@
                                 <div class="form-group">
                                     <label>Employment Type<span class="login-danger">*</span></label>
                                     <select class="form-control" name="employment_typeId" required>
-                                        <option value="">-----Select-----</option>
+                                        <option value="">----Select Employment Type----</option>
                                         @foreach ($employmentTypes as $employmentType)
                                             <option value="{{ $employmentType->id }}">
                                                 {{ $employmentType->employment_type }}</option>
@@ -206,7 +215,7 @@
 
                             // Clear existing options
                             jobTitleSelect.empty();
-                            jobTitleSelect.append('<option value="">---Select Job Title---</option>');
+                            jobTitleSelect.append();
 
                             if (deptId) {
                                 $.ajax({
@@ -231,9 +240,6 @@
                     });
                 </script>
                 <!-- Additional Information -->
-
-
-
 
                 <!-- Agreements and Submission -->
                 <div class="row">
