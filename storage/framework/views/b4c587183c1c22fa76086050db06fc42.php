@@ -1,5 +1,5 @@
 <?php $__env->startSection('breadcrumb'); ?>
- <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div class="page-wrapper">
         <div class="content container-fluid">
             <div class="page-header">
@@ -16,15 +16,18 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="row position-relative">
-                                <div class="col-md-12">
-                                    <a href="<?php echo e(route('employment.create')); ?>"
-                                        class="btn btn-primary position-absolute top-0 end-0 mt-2 me-2"
-                                        style="background-color: #61ce70; border-color: #61ce70;">
-                                        <i class="fas fa-plus"></i>
-                                    </a>
+                            <?php if(auth()->user()->hasRole('hr')): ?>
+                                <div class="row position-relative">
+                                    <div class="col-md-12">
+                                        <a href="<?php echo e(route('employment.create')); ?>"
+                                            class="btn btn-primary position-absolute top-0 end-0 mt-2 me-2"
+                                            style="background-color: #61ce70; border-color: #61ce70;">
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            <?php endif; ?>
+
                             <table class="table table-striped">
                                 <thead>
                                     <tr>

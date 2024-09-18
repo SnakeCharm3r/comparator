@@ -37,7 +37,7 @@ class RoleController extends Controller
         Role::create([
             'name' => $request->name
         ]);
-
+      
         return redirect('role')->with('status', 'Role Created Successfully');
     }
 
@@ -96,17 +96,16 @@ class RoleController extends Controller
 
         $role = Role::findOrFail($roleId);
         $role->syncPermissions($request->permission);
-
+      
         return redirect()->back()->with('status', 'Permissions added to role');
     }
 
-    // Function shows edit user form
     public function showEditForm($id)
     {
         $user = User::findOrFail($id);
         $roles = Role::all(); // Fetch all roles
         $userRoles = $user->roles->pluck('name')->toArray(); // Get roles assigned to the user
-
+        
         return view('role-permission.user.edit', compact('user', 'roles', 'userRoles'));
     }
     

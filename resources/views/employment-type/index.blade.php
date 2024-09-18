@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('breadcrumb')
- @include('sweetalert::alert')
+    @include('sweetalert::alert')
     <div class="page-wrapper">
         <div class="content container-fluid">
             <div class="page-header">
@@ -17,15 +17,18 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="row position-relative">
-                                <div class="col-md-12">
-                                    <a href="{{ route('employment.create') }}"
-                                        class="btn btn-primary position-absolute top-0 end-0 mt-2 me-2"
-                                        style="background-color: #61ce70; border-color: #61ce70;">
-                                        <i class="fas fa-plus"></i>
-                                    </a>
+                            @if (auth()->user()->hasRole('hr'))
+                                <div class="row position-relative">
+                                    <div class="col-md-12">
+                                        <a href="{{ route('employment.create') }}"
+                                            class="btn btn-primary position-absolute top-0 end-0 mt-2 me-2"
+                                            style="background-color: #61ce70; border-color: #61ce70;">
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
+
                             <table class="table table-striped">
                                 <thead>
                                     <tr>

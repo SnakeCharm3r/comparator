@@ -1,10 +1,8 @@
-@extends('layouts.template')
+<?php $__env->startSection('breadcrumb'); ?>
+    <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php $__env->stopSection(); ?>
 
-@section('breadcrumb')
-    @include('sweetalert::alert')
-@endsection
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="page-wrapper">
         <div class="content container-fluid">
             <div class="page-header">
@@ -22,20 +20,20 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row position-relative">
-                                @php
+                                <?php
                                 $user = auth()->user();
                                 $roles = ['hr', 'admin', 'super-admin'];
-                            @endphp
+                            ?>
                             
-                            @if ($user && $user->hasAnyRole($roles))
+                            <?php if($user && $user->hasAnyRole($roles)): ?>
                                 <div class="col-md-12">
-                                    <a href="{{ route('department.create') }}"
+                                    <a href="<?php echo e(route('department.create')); ?>"
                                         class="btn btn-primary position-absolute top-0 end-0 mt-2 me-2"
                                         style="background-color: #61ce70; border-color: #61ce70;">
                                         <i class="fas fa-plus"></i>
                                     </a>
                                 </div>
-                            @endif
+                            <?php endif; ?>
                             
                             </div>
                             <table class="table table-striped">
@@ -48,20 +46,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($departments as $department)
+                                    <?php $__currentLoopData = $departments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $department): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
-                                            <td>{{ $department->dept_name }}</td>
-                                            <td>{{ $department->head_of_department ?? 'N/A' }}</td>
-                                            <td>{{ $department->description }}</td>
+                                            <td><?php echo e($department->dept_name); ?></td>
+                                            <td><?php echo e($department->head_of_department ?? 'N/A'); ?></td>
+                                            <td><?php echo e($department->description); ?></td>
                                             <td>
-                                                <a href="{{ route('department.edit', $department->dept_id) }}"
-                                                    class="btn btn-sm edit-btn" data-id="{{ $department->dept_id }}">
+                                                <a href="<?php echo e(route('department.edit', $department->dept_id)); ?>"
+                                                    class="btn btn-sm edit-btn" data-id="<?php echo e($department->dept_id); ?>">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <form action="{{ route('department.destroy', $department->dept_id) }}"
+                                                <form action="<?php echo e(route('department.destroy', $department->dept_id)); ?>"
                                                     method="POST" style="display:inline-block;">
-                                                    @csrf
-                                                    @method('DELETE')
+                                                    <?php echo csrf_field(); ?>
+                                                    <?php echo method_field('DELETE'); ?>
                                                     <button type="submit" class="btn btn-sm btn-delete"
                                                         onclick="return confirm('Are you sure you want to delete this department?');">
                                                         <i class="fas fa-trash-alt"></i>
@@ -69,7 +67,7 @@
                                                 </form>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
                             </table>
                         </div>
@@ -78,4 +76,6 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Projects\E-docs\resources\views/department/index.blade.php ENDPATH**/ ?>

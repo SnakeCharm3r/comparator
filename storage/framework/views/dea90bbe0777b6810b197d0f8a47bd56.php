@@ -193,7 +193,7 @@
                                 <div class="form-group">
                                     <label>Employment Type<span class="login-danger">*</span></label>
                                     <select class="form-control" name="employment_typeId" required>
-                                        <option value="">----Select Employment Type----</option>
+                                        <option value="">----Select----</option>
                                         <?php $__currentLoopData = $employmentTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employmentType): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e($employmentType->id); ?>">
                                                 <?php echo e($employmentType->employment_type); ?></option>
