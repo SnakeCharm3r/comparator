@@ -2,21 +2,51 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Sop;
 use App\Models\User;
 use App\Models\Departments;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class SopController extends Controller
 {
-    public function index(){
-        $sops = DB::table('sops')->join('departments',
-        'sops.deptId', '=', 'departments.id')
-        ->select(
-            'sops.*', 'departments.dept_name'
-        )->get();
+    // public function index(){
+    //     $sops = DB::table('sops')->join('departments',
+    //     'sops.deptId', '=', 'departments.id')
+    //     ->select(
+    //         'sops.*', 'departments.dept_name'
+    //     )->get();
+    //     return view('sops.index', compact('sops'));
+    // }
+    // public function index()
+    // {
+    //     // Get the logged-in user's department ID
+    //     $userDepartmentId = Auth::user()->deptId;
+
+    //     // Fetch SOPs that belong to the logged-in user's department
+    //     $sops = Sop::where('deptId', $userDepartmentId)->get();
+
+    //     // Pass the SOPs to the view
+    //     return view('sops.index', compact('sops'));
+    // }
+
+    public function index()
+    {
+        $user = Auth::user();
+
+        // Check if the user has one of the specified roles
+        if ($user->hasAnyRole(['admin', 'line-manager', 'super-admin'])) {
+            // If the user has one of the specified roles, get all SOPs
+            $sops = Sop::all();
+        } else {
+            // If not, get only SOPs for the user's department
+            $userDepartmentId = $user->deptId; // Update 'department_id' based on your actual field name
+            $sops = Sop::where('deptId', $userDepartmentId)->get();
+        }
+
+        // Pass the SOPs to the view
         return view('sops.index', compact('sops'));
     }
 

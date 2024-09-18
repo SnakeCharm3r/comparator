@@ -19,25 +19,27 @@
                                     <label for="title">Title</label>
                                     <input type="text" class="form-control" id="title" name="title" required>
                                 </div>
-                            
+
                                 <div class="form-group mb-3">
                                     <label for="department">Department</label>
                                     <select class="form-control" name="deptId" required>
-                                        <option value="all">All Departments</option> <!-- Option for all departments -->
+                                        <option value="" disabled selected> ---Select Department---</option>
+                                        <option value="all">All Department</option> <!-- Option for all departments -->
                                         @foreach ($departments as $department)
                                             <option value="{{ $department->id }}">{{ $department->dept_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                            
+
                                 <div class="form-group mb-3">
                                     <label for="pdf">Upload PDF</label>
-                                    <input type="file" class="form-control" id="pdf" name="pdf" accept="application/pdf" required>
+                                    <input type="file" class="form-control" id="pdf" name="pdf"
+                                        accept="application/pdf" required>
                                 </div>
-                            
+
                                 <button type="submit" class="btn btn-primary">Save SOP</button>
                             </form>
-                            
+
 
                         </div>
                     </div>

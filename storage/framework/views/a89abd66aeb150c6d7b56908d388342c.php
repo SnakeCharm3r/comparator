@@ -6,7 +6,9 @@
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h3 class="card-title mb-0">Job Titles</h3>
-                            <a href="<?php echo e(route('job_titles.create')); ?>" class="btn btn-primary">Add Job Title</a>
+                            <?php if(auth()->user()->hasRole('hr')): ?>
+                                <a href="<?php echo e(route('job_titles.create')); ?>" class="btn btn-primary">Add Job Title</a>
+                            <?php endif; ?>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -16,7 +18,9 @@
                                             <th>ID</th>
                                             <th>Title</th>
                                             <th>Department</th>
-                                            <th>Actions</th>
+                                            <?php if(auth()->user()->hasRole('hr')): ?>
+                                                <th>Actions</th>
+                                            <?php endif; ?>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -25,16 +29,19 @@
                                                 <td><?php echo e($jobTitle->id); ?></td>
                                                 <td><?php echo e($jobTitle->job_title); ?></td>
                                                 <td><?php echo e($jobTitle->department->dept_name); ?></td>
-                                                <td>
-                                                    <a href="<?php echo e(route('job_titles.edit', $jobTitle)); ?>"
-                                                        class="btn btn-warning btn-sm">Edit</a>
-                                                    <form action="<?php echo e(route('job_titles.destroy', $jobTitle)); ?>"
-                                                        method="POST" style="display:inline;">
-                                                        <?php echo csrf_field(); ?>
-                                                        <?php echo method_field('DELETE'); ?>
-                                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                                    </form>
-                                                </td>
+                                                <?php if(auth()->user()->hasRole('hr')): ?>
+                                                    <td>
+                                                        <a href="<?php echo e(route('job_titles.edit', $jobTitle)); ?>"
+                                                            class="btn btn-warning btn-sm">Edit</a>
+                                                        <form action="<?php echo e(route('job_titles.destroy', $jobTitle)); ?>"
+                                                            method="POST" style="display:inline;">
+                                                            <?php echo csrf_field(); ?>
+                                                            <?php echo method_field('DELETE'); ?>
+                                                            <button type="submit"
+                                                                class="btn btn-danger btn-sm">Delete</button>
+                                                        </form>
+                                                    </td>
+                                                <?php endif; ?>
                                             </tr>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </tbody>

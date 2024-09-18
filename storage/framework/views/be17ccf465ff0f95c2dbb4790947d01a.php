@@ -20,8 +20,11 @@
 
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <a href="<?php echo e(route('vendors.create')); ?>" class="btn btn-primary ml-auto">Add Vendor</a>
+                    <?php if(auth()->user()->hasAnyRole(['hr', 'super-admin', 'admin'])): ?>
+                        <a href="<?php echo e(route('vendors.create')); ?>" class="btn btn-primary ml-auto">Add Vendor</a>
+                    <?php endif; ?>
                 </div>
+                
 
 
                 <div class="card card-body p-3">
@@ -55,7 +58,7 @@
                                                 title="View">
                                                 <i class="fas fa-eye"></i>
                                             </a>
-
+                                            <?php if(auth()->user()->hasAnyRole(['hr', 'super-admin', 'admin'])): ?>
                                             <!-- Edit Icon -->
                                             <a href="<?php echo e(route('vendors.edit', $vendor->id)); ?>"
                                                 class="btn btn-warning btn-sm" title="Edit">
@@ -72,6 +75,7 @@
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>
+                                            <?php endif; ?>
                                         </td>
 
                                     </tr>

@@ -193,7 +193,7 @@
                                 <div class="form-group">
                                     <label>Employment Type<span class="login-danger">*</span></label>
                                     <select class="form-control" name="employment_typeId" required>
-                                        <option value="">----Select Employment Type----</option>
+                                        <option value="">----Select----</option>
                                         @foreach ($employmentTypes as $employmentType)
                                             <option value="{{ $employmentType->id }}">
                                                 {{ $employmentType->employment_type }}</option>
