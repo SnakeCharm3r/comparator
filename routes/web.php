@@ -59,8 +59,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::group(['middleware'=> 'auth','profile.complete'], function ()
-{
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+{});
 
 //route for job title based dept id
 
