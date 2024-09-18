@@ -63,6 +63,15 @@ Route::group(['middleware'=> 'auth','profile.complete'], function ()
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 //route for job title based dept id
+
+
+
+
+Route::group(['middleware'=> 'auth'], function ()
+{
+Route::resource('sops', SopController::class);
+Route::get('/sop', [SopController::class, 'sops'])->name('sops.show');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/job-titles/{departmentId}', [AuthController::class, 'getJobTitles']);
 Route::get('/departments', [DepartmentController::class, 'index']);
 
@@ -76,8 +85,6 @@ Route::get('/user-policies', [PolicyController::class, 'user'])->name('policies.
 Route::post('/policies/accept', [PolicyController::class, 'accept'])->name('policies.accept');
 Route::get('/download-policy', [PolicyController::class, 'downloadPolicy'])->name('download.policy');
 
-Route::resource('sops', SopController::class);
-Route::get('/sop', [SopController::class, 'sops'])->name('sops.show');
 
 
 Route::get('/family-details', [UserFamilyDetailsController::class, 'index'])->name('family-details.index');
