@@ -16,6 +16,7 @@ class Sop extends Model
 
     public function departments()
     {
-        return $this->belongsTo(Departments::class);
+        // return $this->belongsTo(Departments::class);
+        return $this->belongsTo(Departments::class, 'deptId');
     }
 }
