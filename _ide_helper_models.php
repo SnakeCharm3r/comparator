@@ -15,6 +15,30 @@ namespace App\Models{
 /**
  * 
  *
+ * @property int $id
+ * @property string $title
+ * @property string $pdf_path
+ * @property int $userId
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement wherePdfPath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereUserId($value)
+ */
+	class Announcement extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
  * @property-read \App\Models\IctAccessResource|null $ictAccessResource
  * @method static \Illuminate\Database\Eloquent\Builder|Approval newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Approval newQuery()
@@ -413,6 +437,28 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property int $deptId
+ * @property string $job_title
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Departments $department
+ * @method static \Illuminate\Database\Eloquent\Builder|JobTitle newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|JobTitle newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|JobTitle query()
+ * @method static \Illuminate\Database\Eloquent\Builder|JobTitle whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|JobTitle whereDeptId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|JobTitle whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|JobTitle whereJobTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|JobTitle whereUpdatedAt($value)
+ */
+	class JobTitle extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property int $userId
  * @property string $language
  * @property string $speaking
@@ -620,6 +666,7 @@ namespace App\Models{
  * @property string|null $domicile
  * @property mixed $password
  * @property string|null $signature
+ * @property string|null $profile_picture
  * @property string|null $delete_status
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -676,6 +723,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePlaceOfBirth($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereProfessionalRegNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereProfilePicture($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRegion($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereReligion($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
@@ -843,6 +891,7 @@ namespace App\Models{
  * @property int|null $forwarded_by
  * @property int|null $attended_by
  * @property string|null $status
+ * @property string|null $rejection_reason
  * @property string|null $remark
  * @property string|null $attend_date
  * @property int|null $parent_id
@@ -857,6 +906,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|WorkFlowHistory whereForwardedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|WorkFlowHistory whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|WorkFlowHistory whereParentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|WorkFlowHistory whereRejectionReason($value)
  * @method static \Illuminate\Database\Eloquent\Builder|WorkFlowHistory whereRemark($value)
  * @method static \Illuminate\Database\Eloquent\Builder|WorkFlowHistory whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|WorkFlowHistory whereUpdatedAt($value)
