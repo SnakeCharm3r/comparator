@@ -618,7 +618,7 @@ namespace App\Models{
  * @property string|null $pdf_path
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Departments|null $departments
+ * @property-read \App\Models\Departments $departments
  * @method static \Illuminate\Database\Eloquent\Builder|Sop newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Sop newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Sop query()
@@ -671,26 +671,26 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CcbrtRelation> $ccbrtRelation
+ * @property-read int|null $ccbrt_relation_count
  * @property-read \App\Models\Departments $department
  * @property-read \App\Models\EmploymentTypes $employmentType
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserFamilyDetails> $familyData
- * @property-read int|null $family_data_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\HealthDetails> $healthInfo
- * @property-read int|null $health_info_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\LanguageKnowledge> $language
- * @property-read int|null $language_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserAdditionalInfo> $nextOfKins
- * @property-read int|null $next_of_kins_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\HealthDetails> $healthDetails
+ * @property-read int|null $health_details_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\LanguageKnowledge> $languageKnowledge
+ * @property-read int|null $language_knowledge_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Permission> $permissions
  * @property-read int|null $permissions_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CcbrtRelation> $relation
- * @property-read int|null $relation_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Role> $roles
  * @property-read int|null $roles_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserAdditionalInfo> $userAdditionalInfo
+ * @property-read int|null $user_additional_info_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserFamilyDetails> $userFamilyDetails
+ * @property-read int|null $user_family_details_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()

@@ -75,23 +75,24 @@ class User extends Authenticatable
     public function employmentType() {
         return $this->belongsTo(EmploymentTypes::class, 'employment_typeId');
     }
-
-    public function healthInfo() {
-        return $this->hasMany(HealthDetails::class, 'userId');
+    
+    public function healthDetails() {
+        return $this->hasMany(HealthDetails::class, 'userId'); // Adjust if necessary
     }
 
-    public function nextOfKins() {
+    public function userAdditionalInfo() {
         return $this->hasMany(UserAdditionalInfo::class, 'userId');
     }
 
-    public function familyData() {
+    public function userFamilyDetails() {
         return $this->hasMany(UserFamilyDetails::class, 'userId');
     }
 
-    public function language() {
+    public function languageKnowledge() {
         return $this->hasMany(LanguageKnowledge::class, 'userId');
     }
-    public function relation() {
+
+    public function ccbrtRelation() {
         return $this->hasMany(CcbrtRelation::class, 'userId');
     }
 

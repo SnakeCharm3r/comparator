@@ -67,6 +67,8 @@ class ProfileController extends Controller
     public function show(string $id)
     {
         //
+        $user = Auth::user();
+
     }
 
     /**
