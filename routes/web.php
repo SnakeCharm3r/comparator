@@ -65,14 +65,15 @@ Route::group(['middleware'=> 'auth','profile.complete'], function ()
 
 
 
+Route::get('/job-titles/{departmentId}', [AuthController::class, 'getJobTitles']);
+Route::get('/departments', [DepartmentController::class, 'index']);
 
 Route::group(['middleware'=> 'auth'], function ()
 {
 Route::resource('sops', SopController::class);
 Route::get('/sop', [SopController::class, 'sops'])->name('sops.show');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/job-titles/{departmentId}', [AuthController::class, 'getJobTitles']);
-Route::get('/departments', [DepartmentController::class, 'index']);
+
 
 Route::get('/change-password', [AuthController::class, 'showChangePasswordForm'])->name('user_profile.pass');
 Route::put('/change-password', [AuthController::class, 'changePassword'])->name('change.password.update');
