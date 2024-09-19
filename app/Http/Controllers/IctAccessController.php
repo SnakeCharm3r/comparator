@@ -27,37 +27,50 @@ class IctAccessController extends Controller
      */
     public function index()
     {
+        // Load the authenticated user with their related models
         $user = Auth::user()->load('department', 'employmentType');
+
+        // Fetch the necessary resources
         $qualifications = NhifQualification::where('delete_status', 0)->get();
         $privileges = PrivilegeLevel::where('delete_status', 0)->get();
         $rmk = Remark::where('delete_status', 0)->get();
         $hmis = HMISAccessLevel::where('delete_status', 0)->get();
         $ictAccessResources = IctAccessResource::where('delete_status', 0)->get();
 
-        $profileComplete = $user->healthDetails()->exists() &&
-        $user->userAdditionalInfo()->exists() &&
-        $user->userFamilyDetails()->exists() &&
-        $user->languageKnowledge()->exists() &&
-        $user->ccbrtRelation()->exists();
+         // Check if the user's profile is complete
+         $profileComplete = $user->healthDetails()->exists() &&
+            $user->userFamilyDetails()->exists() &&
+            $user->languageKnowledge()->exists() &&
+            $user->ccbrtRelation()->exists();
 
-        // dd($profileComplete);
-    // If not complete, redirect to the profile edit page
-    if (!$profileComplete) {
-        return view('user_profile.index')->with([
-            'user' => $user,
-            'message' => 'Please complete your profile before proceeding.',
-        ]);
-       }
+        // Debugging output to check profile completeness
+        // dd([
+        //     'healthDetails' => $user->healthDetails()->exists(),
+        //     'userFamilyDetails' => $user->userFamilyDetails()->exists(),
+        //     'languageKnowledge' => $user->languageKnowledge()->exists(),
+        //     'ccbrtRelation' => $user->ccbrtRelation()->exists(),
+        // ]);
 
-        return view('ict-access-form.index', compact(
-            'user',
-            'qualifications',
-            'privileges',
-            'rmk',
-            'hmis',
-            'ictAccessResources'
-        ));
+
+        // If the profile is not complete, redirect to the profile edit page
+         if (!$profileComplete) {
+            return view('user_profile.index')->with([
+                'user' => $user,
+                'message' => 'Please complete your profile before proceeding.',
+            ]);
+         } else {
+            // If the profile is complete, show the ICT access form
+            return view('ict-access-form.index', compact(
+                'user',
+                'qualifications',
+                'privileges',
+                'rmk',
+                'hmis',
+                'ictAccessResources'
+            ));
+        }
     }
+
 
 
 
