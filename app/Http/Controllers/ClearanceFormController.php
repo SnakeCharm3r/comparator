@@ -22,8 +22,36 @@ class ClearanceFormController extends Controller
         $user = Auth::user();
         // $forms = ClearanceForm::with('user')->get();
         $clearance = ClearanceForm::where('userId', $user->id)->first();
+
+   // Check if the user's profile is complete
+   $profileComplete = $user->healthDetails()->exists() &&
+   $user->userFamilyDetails()->exists() &&
+   $user->languageKnowledge()->exists() &&
+   $user->ccbrtRelation()->exists();
+
+// Debugging output to check profile completeness
+// dd([
+//     'healthDetails' => $user->healthDetails()->exists(),
+//     'userFamilyDetails' => $user->userFamilyDetails()->exists(),
+//     'languageKnowledge' => $user->languageKnowledge()->exists(),
+//     'ccbrtRelation' => $user->ccbrtRelation()->exists(),
+// ]);
+
+
+// If the profile is not complete, redirect to the profile edit page
+if (!$profileComplete) {
+   return view('user_profile.index')->with([
+       'user' => $user,
+       'message' => 'Please complete your profile before proceeding.',
+   ]);
+}else {
+
+
+
         return view('clearance.index', compact( 'user', 'clearance'));
     }
+
+}
 
     /**
      * Show the form for creating a new resource.
