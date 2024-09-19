@@ -57,6 +57,10 @@ Route::post('/register', [AuthController::class, 'handleRegistration'])->name('r
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
+
+Route::group(['middleware'=> 'auth','profile.complete'], function ()
+{});
+
 //route for job title based dept id
 
 

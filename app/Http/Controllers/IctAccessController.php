@@ -6,6 +6,7 @@ use App\Mail\ApprovalRequestNotification;
 use App\Models\IctAccessResource;
 use App\Models\WorkFlowHistory;
 use App\Models\HMISAccessLevel;
+use App\Models\HealthDetails;
 use App\Models\NhifQualification;
 use App\Models\PrivilegeLevel;
 use App\Models\Remark;
@@ -32,6 +33,21 @@ class IctAccessController extends Controller
         $rmk = Remark::where('delete_status', 0)->get();
         $hmis = HMISAccessLevel::where('delete_status', 0)->get();
         $ictAccessResources = IctAccessResource::where('delete_status', 0)->get();
+
+        $profileComplete = $user->healthDetails()->exists() &&
+        $user->userAdditionalInfo()->exists() &&
+        $user->userFamilyDetails()->exists() &&
+        $user->languageKnowledge()->exists() &&
+        $user->ccbrtRelation()->exists();
+
+        // dd($profileComplete);
+    // If not complete, redirect to the profile edit page
+    if (!$profileComplete) {
+        return view('user_profile.index')->with([
+            'user' => $user,
+            'message' => 'Please complete your profile before proceeding.',
+        ]);
+       }
 
         return view('ict-access-form.index', compact(
             'user',

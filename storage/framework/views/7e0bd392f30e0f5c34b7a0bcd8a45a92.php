@@ -74,7 +74,7 @@
                                                             <small>Joined <?php echo e($user->created_at->format('d F Y')); ?></small>
                                                         </div>
                                                     </div>
-                                                    
+
                                                 </div>
                                                 <script>
                                                     function handleProfilePictureChange(input) {
