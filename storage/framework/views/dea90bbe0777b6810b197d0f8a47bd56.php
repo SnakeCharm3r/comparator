@@ -349,7 +349,6 @@
 
 
 <?php echo $__env->make('includes.scripts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
 <script>
     document.getElementById('openAgreementsModal').addEventListener('click', function() {
         var form = document.getElementById('registrationForm');
@@ -361,15 +360,19 @@
         }
     });
 
-    document.addEventListener("DOMContentLoaded", function() {
-    var policies = <?php echo json_encode($policies, 15, 512) ?>; // Convert Laravel policies collection to JavaScript array
-    var currentPolicyIndex = 0;
+    document.getElementById('acceptCheckbox').addEventListener('change', function() {
+        document.getElementById('acceptAgreements').disabled = !this.checked;
+    });
 
-    function updatePolicyDisplay() {
-        if (policies.length > 0) {
-            var policy = policies[currentPolicyIndex];
-            document.getElementById('policy-title').textContent = policy.title;
-            document.querySelector('#policy-container tbody').innerHTML = `
+    document.addEventListener("DOMContentLoaded", function() {
+        var policies = <?php echo json_encode($policies, 15, 512) ?>; // Convert Laravel policies collection to JavaScript array
+        var currentPolicyIndex = 0;
+
+        function updatePolicyDisplay() {
+            if (policies.length > 0) {
+                var policy = policies[currentPolicyIndex];
+                document.getElementById('policy-title').textContent = policy.title;
+                document.querySelector('#policy-container tbody').innerHTML = `
                 <tr>
                     <td colspan="2">
                         <img src="<?php echo e(asset('assets/img/ccbrt.JPG')); ?>" alt="CCBRT Logo" style="height: 50px;">
@@ -380,47 +383,71 @@
                     <td colspan="2">${policy.content}</td>
                 </tr>
             `;
+            }
+
+            // Disable/enable buttons based on the current policy index
+            document.getElementById('prev-policy').disabled = currentPolicyIndex === 0;
+            document.getElementById('next-policy').disabled = currentPolicyIndex === policies.length - 1;
         }
 
-        // Disable/enable buttons based on the current policy index
-        document.getElementById('prev-policy').disabled = currentPolicyIndex === 0;
-        document.getElementById('next-policy').disabled = currentPolicyIndex === policies.length - 1;
+        document.getElementById('next-policy').addEventListener('click', function() {
+            if (currentPolicyIndex < policies.length - 1) {
+                currentPolicyIndex++;
+                updatePolicyDisplay();
+            }
+        });
 
-        // If it's the last policy, enable the checkbox and accept button
-        if (currentPolicyIndex === policies.length - 1) {
-            document.getElementById('acceptCheckbox').disabled = false;
-        }
-    }
+        document.getElementById('prev-policy').addEventListener('click', function() {
+            if (currentPolicyIndex > 0) {
+                currentPolicyIndex--;
+                updatePolicyDisplay();
+            }
+        });
 
-    document.getElementById('next-policy').addEventListener('click', function() {
-        if (currentPolicyIndex < policies.length - 1) {
-            currentPolicyIndex++;
-            updatePolicyDisplay();
+        // Initial display
+        updatePolicyDisplay();
+    });
+
+    document.getElementById('acceptAgreements').addEventListener('click', function() {
+        if (document.getElementById('acceptCheckbox').checked) {
+            document.getElementById('userAgreementsModal').querySelector('.btn-close').click();
+            document.getElementById('registrationForm').submit();
+        } else {
+            alert('You must accept the User Agreements and Policies to register.');
         }
     });
 
-    document.getElementById('prev-policy').addEventListener('click', function() {
-        if (currentPolicyIndex > 0) {
-            currentPolicyIndex--;
-            updatePolicyDisplay();
+
+    function validatePassword() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("password_confirmation").value;
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match. Please try again.");
+            return false;
         }
-    });
 
-    // Initially disable the checkbox until the user sees all policies
-    document.getElementById('acceptCheckbox').disabled = true;
-
-    // Initial display
-    updatePolicyDisplay();
-});
-
-document.getElementById('acceptAgreements').addEventListener('click', function() {
-    if (document.getElementById('acceptCheckbox').checked) {
-        document.getElementById('userAgreementsModal').querySelector('.btn-close').click();
-        document.getElementById('registrationForm').submit();
-    } else {
-        alert('You must accept the User Agreements and Policies to register.');
+        return validateAge();
     }
-});
 
+    function validateAge() {
+        const dob = document.querySelector('input[name="DOB"]').value;
+        const dobDate = new Date(dob);
+        const today = new Date();
+        let age = today.getFullYear() - dobDate.getFullYear();
+        const monthDifference = today.getMonth() - dobDate.getMonth();
+
+        if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < dobDate.getDate())) {
+            age--;
+        }
+
+        if (age < 18) {
+            alert("You must be at least 18 years old to register.");
+            return false;
+        }
+
+        return true;
+    }
 </script>
+
 <?php /**PATH D:\Projects\E-docs\resources\views/auth/registration.blade.php ENDPATH**/ ?>

@@ -348,7 +348,7 @@
 
 
 @include('includes.scripts')
-{{-- <script>
+<script>
     document.getElementById('openAgreementsModal').addEventListener('click', function() {
         var form = document.getElementById('registrationForm');
         if (form.checkValidity()) {
@@ -447,8 +447,8 @@
 
         return true;
     }
-</script> --}}
-<script>
+</script>
+{{-- <script>
     document.getElementById('openAgreementsModal').addEventListener('click', function() {
         var form = document.getElementById('registrationForm');
         if (form.checkValidity()) {
@@ -520,4 +520,4 @@ document.getElementById('acceptAgreements').addEventListener('click', function()
     }
 });
 
-</script>
+</script> --}}
