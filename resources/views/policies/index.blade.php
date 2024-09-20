@@ -1,4 +1,4 @@
-{{-- @extends('layouts.template')
+@extends('layouts.template')
 
 @section('content')
     <div class="page-wrapper">
@@ -94,68 +94,4 @@
             descriptionModal.show();
         }
     </script>
-@endsection --}}
-@extends('layouts.template')
-
-@section('content')
-    <div class="page-wrapper">
-        <div class="content container-fluid">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">All Policies</h4>
-                            @role('hr|admin|super-admin')
-                                <a href="{{ route('policies.create') }}" class="btn btn-primary float-right">
-                                    <i class="fas fa-plus me-2"></i> Create Policy
-                                </a>
-                            @endrole
-                        </div>
-                        <div class="card-body">
-                            @foreach ($policies as $policy)
-                                <div class="policy-item mb-4">
-                                    <h5>{{ $policy->title }}</h5>
-
-                                    <div class="policy-content">
-                                        {!! $policy->content !!}
-                                    </div>
-
-                                    @role('hr|admin|super-admin')
-                                        <a href="{{ route('policies.edit', $policy->id) }}" class="btn btn-success btn-sm">
-                                            <i class="fas fa-edit"></i> Edit
-                                        </a>
-                                        <form action="{{ route('policies.destroy', $policy->id) }}" method="POST"
-                                            class="d-inline"
-                                            onsubmit="return confirm('Are you sure you want to delete this policy?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash-alt"></i> Delete
-                                            </button>
-                                        </form>
-                                    @endrole
-                                </div>
-                                <hr>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <style>
-        .policy-content ul {
-            list-style-type: disc;
-            padding-left: 20px;
-        }
-
-        .policy-content ol {
-            list-style-type: decimal;
-            padding-left: 20px;
-        }
-
-        .policy-content p {
-            margin-bottom: 1rem;
-        }
-    </style>
 @endsection

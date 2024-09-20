@@ -50,11 +50,8 @@ class UserFamilyDetailsController extends Controller
          return redirect()->route('family-details.index')->with('success', 'Family details added successfully.');
   }
 
-
-// Show form to edit a family member's details
     public function edit($id)
     {
-        // dd(123);
         $familyDetail = UserFamilyDetails::findOrFail($id);
         return view('family-details.edit',compact('familyDetail'));
     }

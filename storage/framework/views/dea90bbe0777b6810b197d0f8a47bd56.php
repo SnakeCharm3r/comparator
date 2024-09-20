@@ -449,4 +449,5 @@
         return true;
     }
 </script>
+
 <?php /**PATH D:\Projects\E-docs\resources\views/auth/registration.blade.php ENDPATH**/ ?>
