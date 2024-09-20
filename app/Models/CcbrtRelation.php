@@ -20,4 +20,8 @@ class CcbrtRelation extends Model
     public function user(){
         return $this->belongsTo(User::class, 'userId');
     }
+
+    public function department(){
+        return $this->belongsTo(Departments::class, 'department');
+    }
 }

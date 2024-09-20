@@ -17,16 +17,34 @@ class CcbrtRelationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $user = Auth::user();
-        $departments = Departments::all();
-        $relations = CcbrtRelation::where('userId', $user->id)->get();
-        // Fetch the authenticated user's data
-        $user = User::find($user->id);
+    // public function index()
+    // {
+    //     $user = Auth::user();
+    //     $departments = Departments::all();
+    //     $relations = CcbrtRelation::where('userId', $user->id)->get();
+    //     // Fetch the authenticated user's data
+    //     $user = User::find($user->id);
 
-        return view('ccbrt_relation.index', compact('user', 'departments', 'relations'));
-    }
+    //     return view('ccbrt_relation.index', compact('user', 'departments', 'relations'));
+    // }
+
+    public function index()
+{
+    $user = Auth::user();
+    $departments = Departments::all()->keyBy('id'); // Use keyBy to access department by ID
+    $relations = CcbrtRelation::where('userId', $user->id)->get();
+
+    // Fetch the authenticated user's data
+    $user = User::find($user->id);
+
+    // Map relations to include department names
+    $relations = $relations->map(function ($relation) use ($departments) {
+        $relation->department_name = $departments->get($relation->department)->dept_name ?? 'Unknown';
+        return $relation;
+    });
+
+    return view('ccbrt_relation.index', compact('user', 'departments', 'relations'));
+}
 
     /**
      * Store newly created CCBRT relation data in storage.

@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\UserFamilyDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
@@ -22,31 +23,31 @@ class UserFamilyDetailsController extends Controller
   // Method to store new family member
   public function addFamilyData(Request $request)
   {
-      $request->validate([
-          'familyData.*.full_name' => 'required|string',
-          'familyData.*.relationship' => 'required|string',
-          'familyData.*.DOB' => 'required|date',
-          'familyData.*.phone_number' => 'nullable|string',
-          'familyData.*.occupation' => 'nullable|string',
-          'familyData.*.next_of_kin' => 'nullable|boolean', 
-          
-      ]);
+    // dd($request);
+    $request->validate([
+        //   'familyData.*.full_name' => 'required|string',
+        //   'familyData.*.relationship' => 'required|string',
+        //   'familyData.*.phone_number' => 'nullable|string',
+        //   'familyData.*.occupation' => 'nullable|string',
+        //   'familyData.*.next_of_kin' => 'nullable|boolean',
 
-      $user = Auth::user();
+          ]);
 
-      foreach ($request->familyData as $data) {
+          Log::info('Received request', $request->all());
+
+         $user = Auth::user();
+         foreach ($request->familyData as $data) {
           $familyDetail = new UserFamilyDetails();
           $familyDetail->userId = $user->id;
           $familyDetail->full_name = $data['full_name'];
           $familyDetail->relationship = $data['relationship'];
-          $familyDetail->DOB = $data['DOB'];
           $familyDetail->phone_number = $data['phone_number'];
           $familyDetail->occupation = $data['occupation'];
           $familyDetail->next_of_kin = isset($data['next_of_kin']) ? (bool) $data['next_of_kin'] : false;
           $familyDetail->save();
-      }
-      Alert::success('Successful', 'Family details added successfully');
-      return redirect()->route('family-details.index')->with('success', 'Family details added successfully.');
+           }
+          Alert::success('Successful', 'Family details added successfully');
+         return redirect()->route('family-details.index')->with('success', 'Family details added successfully.');
   }
 
 
