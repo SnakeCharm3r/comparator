@@ -22,9 +22,7 @@ use Illuminate\Support\Facades\Mail;
 
 class IctAccessController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         // Load the authenticated user with their related models
@@ -82,7 +80,7 @@ class IctAccessController extends Controller
         $privileges = PrivilegeLevel::where('delete_status', 0)->get();
         $hmis = HMISAccessLevel::where('delete_status', 0)->get();
 
-        return view('ict-access-form.create', compact('qualifications', 'privileges', 'rmk', 'hmis', 'user'));
+        return view('ict-access-form.index', compact('qualifications', 'privileges', 'rmk', 'hmis', 'user'));
     }
 
     public function store(Request $request)
@@ -174,7 +172,6 @@ class IctAccessController extends Controller
                         'requestDate' => Carbon::now()->format('d F Y'),
                     ];
 
-//  dd($requestDetails );
                     if ($approver) {
                         $mail = new ApprovalRequestNotification();
                         $mail->approver = $approver;
@@ -200,15 +197,13 @@ class IctAccessController extends Controller
                     'parent_id' => $workflow->id,
                 ]);
                 // dd(12345);
-
-                // Success alert and redirect
-
-                Alert::success('IT access form request submitted successfully', 'IT access Request Added');
-
-                // Redirect to the view route
-                return redirect()->route('form.index'); // Make sure you have a named route 'ict-access-form.index'
+               
 
             });
+
+            Alert::success('IT access form request submitted successfully', 'IT access Request Added');
+                return redirect()->route('request.index')->with('success', 'IT access form request submitted successfully');
+
         } catch (\Exception $e) {
 
             // Log the exact error message for better debugging

@@ -218,7 +218,4 @@
     </div>
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('content'); ?>
-<?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('layouts.template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Projects\E-docs\resources\views/ict-access-form/index.blade.php ENDPATH**/ ?>
