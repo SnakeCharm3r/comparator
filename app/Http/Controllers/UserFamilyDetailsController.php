@@ -22,6 +22,7 @@ class UserFamilyDetailsController extends Controller
   // Method to store new family member
   public function addFamilyData(Request $request)
   {
+
       $request->validate([
           'familyData.*.full_name' => 'required|string',
           'familyData.*.relationship' => 'required|string',
@@ -29,7 +30,6 @@ class UserFamilyDetailsController extends Controller
           'familyData.*.phone_number' => 'nullable|string',
           'familyData.*.occupation' => 'nullable|string',
           'familyData.*.next_of_kin' => 'nullable|boolean', 
-          
       ]);
 
       $user = Auth::user();
@@ -49,11 +49,8 @@ class UserFamilyDetailsController extends Controller
       return redirect()->route('family-details.index')->with('success', 'Family details added successfully.');
   }
 
-
-// Show form to edit a family member's details
     public function edit($id)
     {
-        // dd(123);
         $familyDetail = UserFamilyDetails::findOrFail($id);
         return view('family-details.edit',compact('familyDetail'));
     }

@@ -211,6 +211,3 @@
     </div>
     </div>
 @endsection
-
-@section('content')
-@endsection

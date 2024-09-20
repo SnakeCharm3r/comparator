@@ -59,7 +59,6 @@ class UserAdditionalInfoController extends Controller
         'familyData.*.full_name' => 'required|string|max:255',
         'familyData.*.relationship' => 'required|string|max:255',
         ]);
-
         if($validator->fails()){
             return response()->json([
                 'status' => 400,

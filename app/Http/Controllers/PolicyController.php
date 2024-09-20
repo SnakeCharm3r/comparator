@@ -41,7 +41,7 @@ class PolicyController extends Controller
     // dd($request->all()); // This will dump the request data and halt the process
     $request->validate([
         'title' => 'required|string|max:255',
-        'content' => 'required|string|max:20000',
+        'content' => 'required|string|max:2000000',
     ]);
 
     Policy::create($request->all());
