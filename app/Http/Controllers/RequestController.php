@@ -17,6 +17,8 @@ use App\Models\Clearance_work_flow;
 use App\Models\Clearance_work_flow_history;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Request as FacadesRequest;
+use Illuminate\Support\Facades\Validator;
 
 class RequestController extends Controller
 {
@@ -138,24 +140,16 @@ public function index()
     /**
      * Show the form for editing the specified resource.
      */
-    // public function edit(string $id)
-    // {
-    //     $user = Auth::user();
-    //     $qualifications = NhifQualification::where('delete_status', 0)->get();
-    //     $privileges = PrivilegeLevel::where('delete_status', 0)->get();
-    //     $hmis = HMISAccessLevel::where('delete_status', 0)->get();
-    //     $form = Workflow::findOrFail($id);
-    //     return view('ict-access-form.edit', compact('form', 'user','qualifications','privileges','hmis'));
-    // }
 
     public function edit(string $id)
 {
+
     $user = Auth::user();
     $qualifications = NhifQualification::where('delete_status', 0)->get();
     $privileges = PrivilegeLevel::where('delete_status', 0)->get();
     $hmis = HMISAccessLevel::where('delete_status', 0)->get();
     $form = Workflow::findOrFail($id);
-    
+
     try {
         $clearform = IctAccessResource::findOrFail($id);
     } catch (ModelNotFoundException $e) {
@@ -165,6 +159,18 @@ public function index()
     return view('ict-access-form.edit', compact('form', 'user', 'qualifications', 'privileges', 'hmis'));
 }
 
+public function updateIctForm(Request $request, string $id){
+  $validate = Validator::make($request->all(), [
+           'privilegeId' => 'required|exists:privilege_levels,id',
+            'hmisId' => 'required|exists:h_m_i_s_access_levels,id',
+            'aruti' => 'required|exists:privilege_levels,id',
+            'sap' => 'required|exists:privilege_levels,id',
+            'nhifId' => 'required|exists:nhif_qualifications,id',
+            'active_drt' => 'required|exists:privilege_levels,id',
+            'VPN' => 'required|exists:privilege_levels,id',
+            'pbax' => 'required|exists:privilege_levels,id',
+  ]);
+}
 
     public function editClearance(string $id)
     {
@@ -172,31 +178,15 @@ public function index()
         $qualifications = NhifQualification::where('delete_status', 0)->get();
         $privileges = PrivilegeLevel::where('delete_status', 0)->get();
         $hmis = HMISAccessLevel::where('delete_status', 0)->get();
-    
+
         try {
             $clearform = ClearanceForm::findOrFail($id);
         } catch (ModelNotFoundException $e) {
             return redirect()->route('some.error.route')->with('error', 'Clearance form not found.');
         }
-    
+
         return view('clearance.edit', compact('clearform', 'user', 'qualifications', 'privileges', 'hmis'));
     }
-    
-
-    // public function update(Request $request, string $id)
-    // {
-    //     $requestData = Workflow::findOrFail($id);
-    //     $requestData->update($request->all());
-    //     return redirect()->route('request.index')->with('success', 'Request updated successfully');
-    // }
-
-    // public function destroy(string $id)
-    // {
-    //     $request = Workflow::findOrFail($id);
-    //     $request->delete();
-    //     return redirect()->route('request.index')->with('success', 'Request deleted successfully');
-    // }
-
 
     public function update(Request $request, string $id)
     {
@@ -227,7 +217,7 @@ public function index()
             'sap_account_disabled' => 'required|boolean',
             'aruti_account_disabled' => 'required|boolean',
         ]);
-       
+
         $clearform = ClearanceForm::findOrFail($id);
         $clearform->update($validatedData);
 

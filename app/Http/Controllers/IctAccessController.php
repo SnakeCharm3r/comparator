@@ -43,15 +43,6 @@ class IctAccessController extends Controller
             $user->languageKnowledge()->exists() &&
             $user->ccbrtRelation()->exists();
 
-        // Debugging output to check profile completeness
-        // dd([
-        //     'healthDetails' => $user->healthDetails()->exists(),
-        //     'userFamilyDetails' => $user->userFamilyDetails()->exists(),
-        //     'languageKnowledge' => $user->languageKnowledge()->exists(),
-        //     'ccbrtRelation' => $user->ccbrtRelation()->exists(),
-        // ]);
-
-
         // If the profile is not complete, redirect to the profile edit page
          if (!$profileComplete) {
             return view('user_profile.index')->with([
@@ -70,9 +61,6 @@ class IctAccessController extends Controller
             ));
         }
     }
-
-
-
 
     public function create()
     {
@@ -260,8 +248,6 @@ public function findLineManagerForRequesterDepartment()
     }
 }
 
-
-
     public function forwardWorkflowHistory($input)
     {
         return WorkFlowHistory::create($input);
@@ -281,11 +267,13 @@ public function findLineManagerForRequesterDepartment()
      */
     public function edit(string $id)
     {
+        dd(123);
         $ictAccessResource = IctAccessResource::findOrFail($id);
         $qualifications = NhifQualification::where('delete_status', 0)->get();
         $privileges = PrivilegeLevel::where('delete_status', 0)->get();
         $rmk = Remark::where('delete_status', 0)->get();
         $hmis = HMISAccessLevel::where('delete_status', 0)->get();
+
 
         return view('ict-access-form.edit', compact('ictAccessResource', 'qualifications', 'privileges', 'rmk', 'hmis'));
     }
