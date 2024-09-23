@@ -150,7 +150,7 @@ public function getJobTitles($deptId){
             'deptId' => 'required',
             'DOB' => 'required',
             'employment_typeId' => 'required',
-            'password' => 'required|min:6',
+            'password' => 'required|confirmed|min:6',
             'mobile' => 'required',  // Ensure mobile number is required
             'country_code' => 'required',  // Ensure country_code is required
         ]);

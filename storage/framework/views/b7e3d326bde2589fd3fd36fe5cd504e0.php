@@ -153,7 +153,21 @@
             <p>Dear User,</p>
 
             <p>To reset your password, please fill out the form below:</p>
+            <?php if(session('status')): ?>
+            <div class="alert alert-success">
+                <?php echo e(session('status')); ?>
 
+            </div>
+        <?php endif; ?>
+
+      
+        <?php if($errors->any()): ?>
+            <div class="alert alert-danger">
+                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <p><?php echo e($error); ?></p>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </div>
+        <?php endif; ?>
             <form action="<?php echo e(route('password.update')); ?>" method="POST">
                 <?php echo csrf_field(); ?>
                 <input type="hidden" name="token" value="<?php echo e($token); ?>">
