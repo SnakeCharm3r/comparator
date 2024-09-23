@@ -161,10 +161,7 @@
                                                             <th scope="row">Marital Status</th>
                                                             <td><?php echo e($user->marital_status); ?></td>
                                                         </tr>
-                                                        <tr>
-                                                            <th scope="row">Home Address</th>
-                                                            <td><?php echo e($user->home_address); ?></td>
-                                                        </tr>
+                                                        
                                                         <tr>
                                                             <th scope="row">House Number</th>
                                                             <td><?php echo e($user->house_no); ?></td>
