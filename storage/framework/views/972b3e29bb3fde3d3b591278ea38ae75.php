@@ -27,7 +27,7 @@
                             Password</h1>
 
                         <!-- Reset Password Form -->
-                        <form action="<?php echo e(route('password.forget.submit')); ?>" method="POST">
+                        <form action="<?php echo e(route('password.forgetPassChange')); ?>" method="POST">
                             <?php echo csrf_field(); ?>
                             <div class="form-group">
                                 <label>Enter your registered email address <span class="login-danger">*</span></label>

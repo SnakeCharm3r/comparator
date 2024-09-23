@@ -13,6 +13,7 @@ use App\Models\UserAdditionalInfo;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
@@ -310,6 +311,41 @@ public function getJobTitles($deptId){
         return view('auth.forget'); // Assuming you have a view file for this
     }
 
+    public function forgetPassChange(Request $request){
+        $this->validate($request, [
+            'email' => 'required|email|exists:users,email',
+        ]);
 
+        $res = Password::sendResetLink($request->only('email'));
+
+        return $res === Password::RESET_LINK_SENT
+        ? back()->with('status', trans($res)) : back()
+        ->withErrors(['email' => trans($res)]);
+    }
+
+    public function showResetPasswordForm($token){
+        return view('auth.reset', ['token' => $token]);
+    }
+
+    public function resetPassword(Request $request){
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|confirmed|min:6',
+            'token' => 'required',
+        ]);
+        //Attempt to reset password
+        $res = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function($user, $password) {
+                $user->password = bcrypt($password);
+                $user->save();
+            }
+        );
+
+        // Check the response and return appropriate message
+    return $res === Password::PASSWORD_RESET
+    ? redirect()->route('login')->with('status', trans($res))
+    : back()->withErrors(['email' => trans($res)]);
+    }
 
 }
