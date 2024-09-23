@@ -1,6 +1,8 @@
 @extends('layouts.template')
+
 @section('breadcrumb')
     @include('sweetalert::alert')
+
     <div class="page-wrapper">
         <div class="content container-fluid">
             <div class="row">
@@ -13,16 +15,6 @@
             <div class="row">
                 <div class="card mt-3">
                     <div class="card-body">
-                        {{-- <div class="row position-relative">
-                            <div class="col-md-12">
-                                <a href="{{ route('users.create') }}"
-                                    class="btn btn-primary position-absolute top-0 end-0 mt-2 me-2"
-                                    style="background-color: #61ce70; border-color: #61ce70;">
-                                    <i class="fas fa-plus"></i>
-                                </a>
-                            </div>
-                        </div> --}}
-
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
@@ -54,37 +46,45 @@
                                                 title="Edit">
                                                 <i class="fas fa-edit text-success"></i>
                                             </a>
-                                            <a href="{{ route('users.destroy', $user->id) }}"
+                                            <button onclick="deleteConfirmation('{{ $user->id }}')"
                                                 class="btn btn-sm delete-btn mx-2" title="Delete">
                                                 <i class="fas fa-trash-alt text-danger"></i>
-                                            </a>
+                                            </button>
+                                            <form id="delete-form-{{ $user->id }}"
+                                                action="{{ route('users.destroy', $user->id) }}" method="POST"
+                                                style="display: none;">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
                                         </td>
-
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
         </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
-            function deleteConfirmation(urlToRedirect) {
-                swal({
-                        title: "Are you sure to delete?",
-                        text: "You will not be able to revert this!",
-                        icon: "warning",
-                        buttons: ["Cancel", "Delete"],
-                        dangerMode: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            document.getElementById('delete-form-' + urlToRedirect.split('/').pop()).submit();
-                        } else {
-                            swal("Role is safe!");
-                        }
-                    });
+            function deleteConfirmation(userId) {
+                Swal.fire({
+                    title: "Are you sure to delete?",
+                    text: "This action cannot be undone!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#61ce70",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Delete",
+                    cancelButtonText: "Cancel"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('delete-form-' + userId).submit();
+                    } else {
+                        Swal.fire("User is safe!");
+                    }
+                });
             }
         </script>
     @endsection

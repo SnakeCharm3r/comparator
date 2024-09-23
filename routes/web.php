@@ -149,6 +149,7 @@ Route::post('hslb/hr-confirm/{id}', [HslbController::class, 'hrConfirm'])->name(
 
 
 Route::get('/users', [AuthController::class, 'getAllUser'])->name('users.index');
+Route::delete('/users/{id}', [AuthController::class, 'destroy'])->name('users.destroy');
 Route::get('/employees', [AuthController::class, 'userDetail'])->name('employee.index');
 Route::put('/employee/{id}', [AuthController::class, 'update'])->name('employee.update');
 
@@ -167,6 +168,7 @@ Route::post('users/{id}/role', [AuthController::class, 'editUserRole'])->name('u
 Route::delete('/permission/{id}', 'PermissionController@destroy')->name('permission.delete');
 Route::post('roles/permissions', [PermissionController::class, 'updateRolePermissions'])->name('role.updatePermissions');
 Route::get('role/{roleId}/permissions', [PermissionController::class, 'getRolePermissions']);
+
 
 Route::post('/approve_form', [FormController::class, 'approveForm'])->name('approve_form');
 Route::get('/approver_form', [FormController::class, 'getApprover'])->name('approver_form');

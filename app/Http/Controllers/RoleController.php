@@ -7,6 +7,8 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class RoleController extends Controller
 {
@@ -67,10 +69,15 @@ class RoleController extends Controller
 
     public function destroy($roleId)
     {
-        $role = Role::find($roleId);
-        $role->delete();
-        return redirect('role')->with('status', 'Role Deleted Successfully');
+        try {
+            $role = Role::findOrFail($roleId);
+            $role->delete();
+            return redirect('role')->with('status', 'Role Deleted Successfully');
+        } catch (\Exception $e) {
+            return redirect('role')->with('error', 'Failed to delete the role.');
+        }
     }
+    
 
     public function addPermissionToRole($roleId)
     {

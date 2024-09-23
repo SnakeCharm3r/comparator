@@ -222,7 +222,7 @@ public function getJobTitles($deptId){
         ]);
         $user = User::findOrFail($userId);
         $user->syncRoles([$request->roles]);  // Changed to syncRoles to remove any previous roles
-        return redirect('role')->with('status', 'Role assigned successfully');
+        return redirect('users')->with('status', 'Role assigned successfully');
     }
 
     // Show Assign Role Form
@@ -254,6 +254,19 @@ public function getJobTitles($deptId){
 
         return redirect()->back()->with('status', 'Role removed successfully');
     }
+
+        public function destroy($id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return redirect()->route('users.index')->with('error', 'User not found.');
+        }
+
+        $user->delete();
+        return redirect()->route('users.index')->with('status', 'User deleted successfully.');
+    }
+
 
     public function logout() {
         Auth::logout();
