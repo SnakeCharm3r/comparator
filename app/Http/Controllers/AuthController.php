@@ -274,12 +274,6 @@ public function getJobTitles($deptId){
         return redirect()->route('login');
     }
 
-    public function nextOfKins()
-    {
-        $user_id = session('userId');
-        return view('auth.next_of_kins', compact('userId'));
-    }
-
     public function showChangePasswordForm()
     {
         return view('user_profile.pass');
