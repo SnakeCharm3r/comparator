@@ -56,7 +56,9 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'handleRegistration'])->name('register.handleRegistration');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-
+//forget password
+Route::get('password/forget', [AuthController::class, 'showForgetPasswordForm'])->name('password.forget');
+Route::post('password/forget', [AuthController::class, 'submitForgetPasswordForm'])->name('password.forget.submit');
 
 Route::group(['middleware'=> 'auth','profile.complete'], function ()
 {});
