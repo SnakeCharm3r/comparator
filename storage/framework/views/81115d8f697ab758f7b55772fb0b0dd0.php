@@ -19,7 +19,7 @@
 
 <body>
     <div class="main-wrapper login-body">
-        <div class="login-wrapper">
+        <div class="login-wrapper" style="background-color: #eff8f3;">
             <div class="container">
                 <div class="loginbox">
                     <div class="login-left">
@@ -30,8 +30,11 @@
                             <div style="text-align: center;">
                                 <img src="assets/img/ccbrt.jpg" alt="CCBRT eDOCS Logo" style="max-width: 150px;">
                             </div>
-                            <h1 style="text-align: center; font-family: 'Roboto', sans-serif; font-size: medium">CCBRT
-                                eDOCS</h1><br>
+                            <h1
+                                style="text-align: center; font-family: 'Roboto', sans-serif; font-size: medium; color: #0f813c;">
+                                CCBRT eDOCS
+                            </h1>
+                            <br>
                             <?php if($errors->has('login_error')): ?>
                                 <div class="alert alert-danger">
                                     <?php echo e($errors->first('login_error')); ?>
@@ -44,7 +47,7 @@
                                 <div class="form-group">
                                     <label for="username">Username <span class="login-danger">*</span></label>
                                     <input id="username" class="form-control" type="text" name="username"
-                                        value="<?php echo e(old('username')); ?>" required>
+                                        value="<?php echo e(old('username')); ?>" placeholder="Fisrt Name.Last Name" required>
                                     <span class="profile-views"><i class="fas fa-user-circle"></i></span>
                                     <?php $__errorArgs = ['username'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -57,10 +60,11 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
+
                                 <div class="form-group">
                                     <label for="password">Password <span class="login-danger">*</span></label>
                                     <input id="password" class="form-control pass-input" type="password"
-                                        name="password" required>
+                                        name="password" placeholder="*************" required>
                                     <span class="profile-views feather-eye toggle-password"></span>
                                     <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');

@@ -1,147 +1,233 @@
 <?php echo $__env->make('includes.head', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
+<div class="main-wrapper login-body" style="background-color: hsl(0, 0%, 100%);">
 
-
-<div class="main-wrapper login-body">
-    <div class="login-wrapper">
+    <div class="login-wrapper" style="background-color: #eff8f3;">
         <div class="container">
-            <div class="loginbox row">
-                <div class="col-md-12">
-                    <div class="signup-container">
-                        <h1>Register</h1>
-                        <p class="account-subtitle">Enter details to create your account</p>
+            <div class="loginbox row justify-content-center">
+                <div class="col-md-10">
+                    <div class="signup-container text-center">
+                        <h1 style="font-size: 2rem; color: #333;">Register Your Account</h1>
                     </div>
+
                     <form id="registrationForm" action="<?php echo e(route('register.handleRegistration')); ?>" method="POST"
                         onsubmit="return validatePassword()">
                         <?php echo csrf_field(); ?>
+
+                        <div class="alert alert-info" role="alert" style="background-color: #eaf3fc; color: #0f813c;">
+                            Please fill in your names as they appear on your National Identification Number (NIDA).
+                        </div>
+
+                        <!-- Name Fields -->
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>First Name <span class="login-danger">*</span></label>
-                                    <input class="form-control" type="text" name="fname" required>
+                                    <label for="fname">First Name <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="fname" type="text" name="fname" required
+                                        placeholder="e.g., John" aria-describedby="nameHelp"
+                                        style="border-color: #ced4da;">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Middle Name <span class="login-danger">*</span></label>
-                                    <input class="form-control" type="text" name="mname" required>
+                                    <label for="mname">Middle Name <span class="text-danger"></span></label>
+                                    <input class="form-control" id="mname" type="text" name="mname" required
+                                        placeholder="e.g., Juma" aria-describedby="nameHelp"
+                                        style="border-color: #ced4da;">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Last Name <span class="login-danger">*</span></label>
-                                    <input class="form-control" type="text" name="lname" required>
+                                    <label for="lname">Last Name <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="lname" type="text" name="lname" required
+                                        placeholder="e.g., Doe" aria-describedby="nameHelp"
+                                        style="border-color: #ced4da;">
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Contact Information -->
                         <div class="row">
+
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Username <span class="login-danger">*</span></label>
-                                    <input class="form-control" type="text" name="username" required>
+                                    <label>Professional Number</label>
+                                    <input class="form-control" type="text" name="professional_reg_number"
+                                        placeholder="e.g., 12345678" style="border-color: #ced4da;">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Email <span class="login-danger">*</span></label>
-                                    <input class="form-control" type="text" name="email" required>
+                                    <label for="email">Email <span class="text-danger"></span></label>
+                                    <input class="form-control" type="email" name="email" required
+                                        placeholder="e.g., abc@gmail.com"
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                        title="Please enter a valid email address." style="border-color: #ced4da;">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Date of Birth <span class="login-danger">*</span></label>
-                                    <input class="form-control" type="date" name="DOB" required>
+                                    <label for="dob">Date of Birth <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="dob" type="date" name="DOB" required
+                                        style="border-color: #ced4da;">
                                 </div>
                             </div>
                         </div>
+
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                var today = new Date();
+                                var minDate = new Date(today.setFullYear(today.getFullYear() - 18));
+                                var minDateString = minDate.toISOString().split('T')[0];
+                                document.getElementById('dob').setAttribute('max', minDateString);
+                            });
+                        </script>
+
+                        <!-- More Fields -->
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Phone Number <span class="login-danger">*</span></label>
-                                    <input class="form-control" type="text" name="mobile" required>
+                                    <label for="phone">Phone Number <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="phone" type="tel" name="mobile" required
+                                        placeholder="e.g., 699 990 002" style="border-color: #ced4da;">
+                                    <input type="hidden" id="country_code" name="country_code">
                                 </div>
                             </div>
+
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    var input = document.querySelector("#phone");
+                                    var countryCodeInput = document.querySelector("#country_code");
+
+                                    var iti = intlTelInput(input, {
+                                        initialCountry: "tz", // Set Tanzania as the default country
+                                        nationalMode: true, // Allows the user to enter national format
+                                        autoPlaceholder: "polite", // Provides a placeholder based on country
+                                        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js" // Utility script for formatting and validation
+                                    });
+
+                                    // Set the hidden input with the country code whenever the user changes the phone number or the country
+                                    input.addEventListener('change', function() {
+                                        countryCodeInput.value = iti.getSelectedCountryData().dialCode;
+                                    });
+
+                                    // Also set the hidden input when the page loads
+                                    countryCodeInput.value = iti.getSelectedCountryData().dialCode;
+                                });
+                            </script>
+
+
+                            <!-- Include the CSS file for intl-tel-input -->
+                            <link rel="stylesheet"
+                                href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
+                            <!-- Include the JS files for intl-tel-input -->
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
+
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Password <span class="login-danger">*</span></label>
+                                    <label>Password <span class="text-danger">*</span></label>
                                     <input class="form-control pass-input" type="password" name="password"
-                                        id="password" required>
+                                        id="password" required style="border-color: #ced4da;">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Confirm Password <span class="login-danger">*</span></label>
-                                    <input class="form-control pass-input" type="password" name="password_confirmation"
-                                        id="password_confirmation" required>
+                                    <label>Confirm Password <span class="text-danger">*</span></label>
+                                    <input class="form-control pass-input" type="password"
+                                        name="password_confirmation" id="password_confirmation" required
+                                        style="border-color: #ced4da;">
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Department and Job Details -->
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Department <span class="login-danger">*</span></label>
-                                    <select class="form-control" name="deptId" required>
-                                        <option value="">Select Department</option>
+                                    <label>Department <span class="text-danger">*</span></label>
+                                    <select class="form-control" name="deptId" id="deptId" required style="border-color: #ced4da;">
+                                        <option value="">---Select Department---</option>
                                         <?php $__currentLoopData = $departments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $department): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e($department->id); ?>"><?php echo e($department->dept_name); ?></option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
                             </div>
+
+
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Job Title</label>
-                                    <input class="form-control" type="text" name="job_title">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Employment Type <span class="login-danger">*</span></label>
-                                    <select class="form-control" name="employment_typeId" required>
-                                        <option value="">Select Employment Type</option>
-                                        <?php $__currentLoopData = $employmentTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employmentType): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($employmentType->id); ?>">
-                                                <?php echo e($employmentType->employment_type); ?></option>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    <label for="job_title">Job Title</label>
+                                    <select class="form-control" id="job_title" name="job_title" style="border-color: #ced4da;">
+                                        <option value="">---Select Job Title---</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Professional Number</label>
-                                    <input class="form-control" type="text" name="professional_reg_number">
-                                </div>
-                            </div>
                         </div>
+
+                        <script
+                        src="https://code.jquery.com/jquery-3.6.0.min.js">
+                    </script>
+<script>
+
+$(document).ready(function() {
+    $('#deptId').change(function() {
+        var deptId = $(this).val();
+        var jobTitleSelect = $('#job_title');
+
+        // Clear existing options
+        jobTitleSelect.empty();
+        jobTitleSelect.append('<option value="">---Select Job Title---</option>');
+
+        if (deptId) {
+            $.ajax({
+                url: '/job-titles/' + deptId,
+                method: 'GET',
+                success: function(data) {
+
+                    console.log(data);
+                    // Populate job title dropdown
+                    $.each(data, function(index, jobTitle) {
+                        jobTitleSelect.append('<option value="' + jobTitle.id + '">' + jobTitle.job_title + '</option>');
+                    });
+                },
+                error: function() {
+                    // Handle errors
+                    alert('Failed to fetch job titles.');
+                }
+            });
+        }
+    });
+});
+</script>
+                        <!-- Additional Information -->
+
+
+
+
+                        <!-- Agreements and Submission -->
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="text-center">
-                                    <p>By clicking Sign Up, you agree to our <a href="path_to_terms">Terms</a>, <a
-                                            href="path_to_privacy_policy">Privacy Policy</a>.</p>
-                                </div>
-                                <div class="form-group text-center">
-                                    <button class="btn btn-primary btn-block" type="button" id="openAgreementsModal"
-                                        style="background-color: #0f813c; color: white;">Sign Up</button>
-                                </div>
-                                <div class="text-center">
-                                    <span>Already registered?</span> <a href="<?php echo e(route('login')); ?>"
-                                        style="color: #0f813c;">Login here</a>
-                                </div>
+                            <div class="col-md-12 text-center">
+                                <p style="color: #666;">By clicking Sign Up, you agree to our
+                                    <a href="path_to_terms" style="color: #0f813c;">Terms</a> and
+                                    <a href="path_to_privacy_policy" style="color: #0f813c;">Privacy Policy</a>.
+                                </p>
+                                <button class="btn btn-primary" type="button" id="openAgreementsModal"
+                                    style="background-color: #0f813c; border-color: #0f813c;">Sign Up</button>
+                                <p style="color: #666;">Already registered? <a href="<?php echo e(route('login')); ?>"
+                                        style="color: #0f813c;">Login here</a></p>
                             </div>
                         </div>
                     </form>
-                    <div class="login-or">
-                        <span class="or-line"></span>
-                        <span class="span-or">or</span>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- User Agreements Modal -->
 <div class="modal fade" id="userAgreementsModal" tabindex="-1" aria-labelledby="userAgreementsModalLabel"
@@ -230,7 +316,6 @@
 
 
 <?php echo $__env->make('includes.scripts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
 <script>
     document.getElementById('openAgreementsModal').addEventListener('click', function() {
         var form = document.getElementById('registrationForm');
@@ -298,6 +383,7 @@
             alert('You must accept the User Agreements and Policies to register.');
         }
     });
+
 
     function validatePassword() {
         var password = document.getElementById("password").value;
