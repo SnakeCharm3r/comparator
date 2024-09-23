@@ -195,7 +195,7 @@ class IctAccessController extends Controller
         } catch (\Exception $e) {
 
             // Log the exact error message for better debugging
-            \Log::error('Error storing ICT Access Resource: ' . $e->getMessage(), ['exception' => $e]);
+            \Log::error('Error storing IT Access Resource: ' . $e->getMessage(), ['exception' => $e]);
             Alert::error('Failed to submit IT access form request', 'Error');
             return back()->withInput()->withErrors(['error' => 'Failed to process request. Please try again.']);
         }
