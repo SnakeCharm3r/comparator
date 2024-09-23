@@ -278,13 +278,6 @@ public function getJobTitles($deptId){
         $user_id = session('userId');
         return view('auth.next_of_kins', compact('userId'));
     }
-    public function changePass($id){
-        $user = User::findOrFail($id);
-
-        return view('password.index', compact('user'));
-    }
-
-
 
     public function showChangePasswordForm()
     {
@@ -317,6 +310,6 @@ public function getJobTitles($deptId){
         return view('auth.forget'); // Assuming you have a view file for this
     }
 
-    
+
 
 }
