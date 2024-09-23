@@ -161,10 +161,10 @@
                                                             <th scope="row">Marital Status</th>
                                                             <td>{{ $user->marital_status }}</td>
                                                         </tr>
-                                                        <tr>
+                                                        {{-- <tr>
                                                             <th scope="row">Home Address</th>
                                                             <td>{{ $user->home_address }}</td>
-                                                        </tr>
+                                                        </tr> --}}
                                                         <tr>
                                                             <th scope="row">House Number</th>
                                                             <td>{{ $user->house_no }}</td>
