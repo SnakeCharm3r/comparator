@@ -151,12 +151,14 @@ public function index()
     $form = Workflow::findOrFail($id);
 
     try {
-        $clearform = IctAccessResource::findOrFail($id);
+        $ictForm = IctAccessResource::findOrFail($id);
+        $ictForm->hardware_request = explode(',', $ictForm->hardware_request);
+
     } catch (ModelNotFoundException $e) {
         return redirect()->route('some.error.route')->with('error', 'Clearance form not found.');
     }
 
-    return view('ict-access-form.edit', compact('form', 'user', 'qualifications', 'privileges', 'hmis'));
+    return view('ict-access-form.edit', compact('ictForm','form', 'user', 'qualifications', 'privileges', 'hmis'));
 }
 
 public function updateIctForm(Request $request, string $id){
