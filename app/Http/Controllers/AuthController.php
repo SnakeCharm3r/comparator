@@ -150,7 +150,7 @@ public function getJobTitles($deptId){
             'deptId' => 'required',
             'DOB' => 'required',
             'employment_typeId' => 'required',
-            'password' => 'required|min:6',
+            'password' => 'required|confirmed|min:6',
             'mobile' => 'required',  // Ensure mobile number is required
             'country_code' => 'required',  // Ensure country_code is required
         ]);
@@ -272,12 +272,6 @@ public function getJobTitles($deptId){
     public function logout() {
         Auth::logout();
         return redirect()->route('login');
-    }
-
-    public function nextOfKins()
-    {
-        $user_id = session('userId');
-        return view('auth.next_of_kins', compact('userId'));
     }
 
     public function showChangePasswordForm()

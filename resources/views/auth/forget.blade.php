@@ -26,6 +26,23 @@
                         <h1 style=" font-family: 'Roboto', sans-serif; font-size: large; color: #0f813c;">Reset
                             Password</h1>
 
+
+                        <!-- Display Success Message -->
+                        @if(session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    <!-- Display Error Messages -->
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            @foreach($errors->all() as $error)
+                                <p>{{ $error }}</p>
+                            @endforeach
+                        </div>
+                    @endif
+
                         <!-- Reset Password Form -->
                         <form action="{{ route('password.forgetPassChange') }}" method="POST">
                             @csrf
