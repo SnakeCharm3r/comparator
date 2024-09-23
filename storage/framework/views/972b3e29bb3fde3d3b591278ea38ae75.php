@@ -53,7 +53,6 @@
     </div>
 </div>
 
-<!-- Scripts -->
 <script src="<?php echo e(asset('assets/js/jquery-3.6.0.min.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/js/feather.min.js')); ?>"></script>
