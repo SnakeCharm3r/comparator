@@ -49,3 +49,391 @@
 #46 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #47 {main}
 "} 
+[2024-09-23 08:13:54] local.ERROR: Route [your.route] not defined. {"view":{"view":"D:\\Projects\\E-docs\\resources\\views\\user_profile\\edit.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-739908255 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1536</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-739908255\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","user":"<pre class=sf-dump id=sf-dump-2060399522 data-indent-pad=\"  \"><span class=sf-dump-note>App\\Models\\User</span> {<a class=sf-dump-ref>#1572</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">connection</span>: \"<span class=sf-dump-str title=\"5 characters\">mysql</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">table</span>: \"<span class=sf-dump-str title=\"5 characters\">users</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">primaryKey</span>: \"<span class=sf-dump-str title=\"2 characters\">id</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">keyType</span>: \"<span class=sf-dump-str title=\"3 characters\">int</span>\"
+  +<span class=sf-dump-public title=\"Public property\">incrementing</span>: <span class=sf-dump-const>true</span>
+  #<span class=sf-dump-protected title=\"Protected property\">with</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">withCount</span>: []
+  +<span class=sf-dump-public title=\"Public property\">preventsLazyLoading</span>: <span class=sf-dump-const>false</span>
+  #<span class=sf-dump-protected title=\"Protected property\">perPage</span>: <span class=sf-dump-num>15</span>
+  +<span class=sf-dump-public title=\"Public property\">exists</span>: <span class=sf-dump-const>true</span>
+  +<span class=sf-dump-public title=\"Public property\">wasRecentlyCreated</span>: <span class=sf-dump-const>false</span>
+  #<span class=sf-dump-protected title=\"Protected property\">escapeWhenCastingToString</span>: <span class=sf-dump-const>false</span>
+  #<span class=sf-dump-protected title=\"Protected property\">attributes</span>: <span class=sf-dump-note>array:35</span> [<samp data-depth=2 class=sf-dump-compact>
+    \"<span class=sf-dump-key>id</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>fname</span>\" => \"<span class=sf-dump-str title=\"9 characters\">Cleophace</span>\"
+    \"<span class=sf-dump-key>mname</span>\" => \"<span class=sf-dump-str title=\"8 characters\">Kajetani</span>\"
+    \"<span class=sf-dump-key>lname</span>\" => \"<span class=sf-dump-str title=\"5 characters\">Mtani</span>\"
+    \"<span class=sf-dump-key>DOB</span>\" => \"<span class=sf-dump-str title=\"10 characters\">1996-12-27</span>\"
+    \"<span class=sf-dump-key>username</span>\" => \"<span class=sf-dump-str title=\"9 characters\">Cleophace</span>\"
+    \"<span class=sf-dump-key>gender</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>marital_status</span>\" => \"<span class=sf-dump-str title=\"6 characters\">Single</span>\"
+    \"<span class=sf-dump-key>email</span>\" => \"<span class=sf-dump-str title=\"22 characters\">cleokajetani@gmail.com</span>\"
+    \"<span class=sf-dump-key>email_verified_at</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>religion</span>\" => \"<span class=sf-dump-str title=\"6 characters\">Mwanza</span>\"
+    \"<span class=sf-dump-key>mobile</span>\" => \"<span class=sf-dump-str title=\"10 characters\">0745892170</span>\"
+    \"<span class=sf-dump-key>job_title</span>\" => \"<span class=sf-dump-str title=\"18 characters\">Software Developer</span>\"
+    \"<span class=sf-dump-key>home_address</span>\" => \"<span class=sf-dump-str title=\"2 characters\">UK</span>\"
+    \"<span class=sf-dump-key>district</span>\" => \"<span class=sf-dump-str title=\"7 characters\">Ukerewe</span>\"
+    \"<span class=sf-dump-key>region</span>\" => \"<span class=sf-dump-str title=\"6 characters\">Mwanza</span>\"
+    \"<span class=sf-dump-key>professional_reg_number</span>\" => \"<span class=sf-dump-str title=\"8 characters\">12345678</span>\"
+    \"<span class=sf-dump-key>place_of_birth</span>\" => \"<span class=sf-dump-str title=\"6 characters\">Mwanza</span>\"
+    \"<span class=sf-dump-key>house_no</span>\" => \"<span class=sf-dump-str title=\"5 characters\">12334</span>\"
+    \"<span class=sf-dump-key>street</span>\" => \"<span class=sf-dump-str title=\"7 characters\">Majengo</span>\"
+    \"<span class=sf-dump-key>emp_id</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>deptId</span>\" => <span class=sf-dump-num>6</span>
+    \"<span class=sf-dump-key>employment_typeId</span>\" => <span class=sf-dump-num>4</span>
+    \"<span class=sf-dump-key>role_id</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>employee_cv</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>NIN</span>\" => \"<span class=sf-dump-str title=\"10 characters\">1234567890</span>\"
+    \"<span class=sf-dump-key>nssf_no</span>\" => \"<span class=sf-dump-str title=\"5 characters\">12345</span>\"
+    \"<span class=sf-dump-key>domicile</span>\" => \"<span class=sf-dump-str title=\"2 characters\">No</span>\"
+    \"<span class=sf-dump-key>profile_picture</span>\" => \"<span class=sf-dump-str title=\"31 characters\">profile_pictures/1727078012.jpg</span>\"
+    \"<span class=sf-dump-key>signature</span>\" => \"<span class=sf-dump-str title=\"6844 characters\">iVBORw0KGgoAAAANSUhEUgAAAR4AAABACAYAAADMOhjlAAAAAXNSR0IArs4c6QAAE8ZJREFUeF7tnQf07FQRxr9rb9jF3rCgWBArFuxgx95QAbErNuwVG1gQBVFULICCXY+KYFfsYu+9ooK9YW9jfvefPC53b7LJbpLd/e+dcziP815yyyQ7mTvzzTdOg4ldQ9L2ks4g6XuStpV0RUl/kHQRSZcvp+bfTpb0U8kdPthy8sBZA1kDS6MB1+9K7LqSdinGfMaM4/5V0nGSvhXcf1Lxd9eWtJ/kfjzjuPm2rIGsgSXSQE+Gx54n6SqSbj3w3naV3DHt5rCrSbqDpO9Ler/kftvuvnxV1kDWwNAamNPwGJ7NPpK2Gnqh5fjHS+4m9XPZ/UuP667RNb/YMD46UHKhNzXSsvM0WQNZA6EGZjQ8dmNJ/LfviOr8p6Q9JfemyTnt1ZL2KONJ05b02dIIHSA5jnZZsgayBkbTgJ1d0l4zGB7bThI/dOI5fUtdjOcUSe+V3B8TRue8ZXD6TB0XQ0D7qvkI1lFr+fKsgZk0YNtIun3pIGzf0fB4o/PNlvN+StKHTj0ibclqlUcdd5jkj2oEj8lyzZjVso+W3lfLZZ3msudJ7kmz3JjvyRrIGpimAbtAkSi6W/Ebf+DGR/5U6Wp4yCpdqmG630h6rqQjJff7acua/9/tfqX3NetQf9lI6zu8nyxZA1kDvWjAdpL0EEn3jIb7m6TXkaHuYHjsLYW3Ewdtw3GfKblZ0+gzbteaDOFby7T8ZYvM1r0aJvi8pJ0Kz4cYUpasgayBmTRgl5S0t6RblBnucJT3lQ7CcZL7O//Q0vDYfSW9tmY9xxfjYHT4c0TxAW6OWSm5m+QwPKXYbcv14/ql5NmSe/qIi89TZQ1sEg142Mrukh4dbejXkg6V9ArJ/SrebAvD43/gh0m6XEJTC/BythgTvKtUVq1mTYa3htdWJ1eQ3Hc3yduQt5E1MLAGjGMUJ4nbRBO9qqhSeKPk6pwCf3kbw1MXvJ2CqZl3397gYVheLLl3T47mA9MdDA8j2Dsk3bFmZQdJLrba824i3581sMk0YI+U9ABJVwo29ktJGJzXSe4HbTY8xfDU/rj/KLnztJlgtmu8+/bl4N6HSO4Vpx3LcO+OTIz/psJziYNa5WV2MUngeC6auO9HkrvMbOvNd2UNbGYN2DUlPa0E554l2CkZakIUVAaQqGktDYanMYYy8BHLKIsgLlPJ9yRHkWkgdo8Nl25CXiq5h9drwHYtUnt4PqdPXHNhyWG9s2QNZA3IOAHwO7xppAyCxc+S3GdmVVKT4XmxpEclBh7Y6DCjfUES1e1NhqfO43ma5J7TrBD7tqQrJK65meQ+Mqsy831ZA6uvAdu6AOQ+qMxQ8f+VwCrBceoIyfH7mUtqDI9dXdIJiRKEtxa1TgCCBhb7+eRxyEVr9WfNgxILeYTkDplieA6W9IjENfeX3GsG3lwePmtgCTVgt5J0nwT25hOSXrSRQXZ/6mvhdYYn9jiYD8Ty3sOnzWuPeJGnZQSWU7ihe6bruUKVGeAmUn2xPF9yT+xLuXmcrIHl1oCnsbm3pDsVae8LRWuFG+s1kqMCoXdJGB7bQdKXEjONcMRiVk8ghuFLSOj12FE1wMCdJVeVatQozJ4gCSqPWD5epAFv1LuW84CRBoyX/OUlbQlFv68c/oOWH8KGBoysLoZm5+IZXDDQCsFh4CZUHXx8aG2lDM+xCV4d6qiaSiV6XKcxTx3h14Mkary8Aomow2gYCyUQcPA0iBFYBkF5xsRFl5bcT3rcUB5qiwaMrOFTS8DZ6QLFUPzL379TclCYZOlVAwYGj6QK2d4wdsosZI+fWWam/tHrtA2DxXGTOI1d3XpNyX1xnEXZzSV9sGauMsZU65WhuK0k95/pa7UXSnpM4rqRPLvpK9wcVxj8ScQOcOtTAf1wmxzn3zZ+6c3m0PTkLmzH0sjfRVKI2se4wzDxaskRTx1dYsNDARcvSSW24RK7h423skaE8cmFx3MRyd5cVr3Gy+oAarRbblBtTEiHMcbTyurN5LMjry+xH12XH5W8dL19na/3WLW9CrYHypzCUwoFmpDhHS25ty9aQ4HhMY4d0IOeM1gUnsO2kvvReAs1gIKk81ICXw8e0adrUNePldyB7ddqGNaExBm09iPmK9GAr04GK3X+GfVxiuTC93DGYdbpNruZJByEGJlPGpzYDd5NTex0fD2Fhid1xFlAlmcq1QWBrxsmVPWvIlO1dbeUX5LLB9KxS41D6zH+Ax9+Rv/F/Y4kmOamCbG0b0Rg0eoeMqgvmzbAev+71zWxMcqLIoAt/FZkpfSyZXyXQ8ODpwB/ciX/3TiXO2gjRhR7cJnx6DrnwQVDYQrw2DCO7Skp1VLnJovJsnjiJArvSPeDowLB/ZvFrKWr+r2nAxvkV4uvKz+IJiGwD8iTOry/F4BR0LFkGcP6Hxgnh24eMMsml+Aeu3hpcCDYioWMdFU3xfFqKSU0PASPAQ5WQqD23OPz1BiMgPsH60B5Z2uhvcu1LVA7dSzvnqZS7wuiyag9ZhIABFMxMt9RpSmD3A18E9kPYmAJChQjS4WhbDIWXynHOFZy/z7tM03WBV4pk/OHWrI7l9UEN0j8HojPHio5PlhLL6XhsXOUjfZovlcJSMW4RmOEDRkeCJ5IJZ8sjENK0eFaErVcbZdq4BfiY8F9C/jAEW1H6O86I4bVZGQXkHEzkKuh/g8rGBsTMTjjK0uXj5T8b4OXRY9vJti3EwsDy9e8EgKhANzWWIwOLnjAVIRDahcLJT4UUdMYc2WkMjx0aIh/aDTQ4/w4shi4AtL6lUBvSmVsE47otZLjuhkkGWBexA/8+kXgHCM7TUaCNvjs4kMTfNYck6hpCwoEa5kCqr08WnKp8pZorwZzwHWCv1zjDKMHWRIs5iOcOrrygeYjgM5WTirDk+Lcua3kABOOKEnw4KVLoCAdRuvkAZIDlzCDTBSkMkYAVJxhyJluMb5cDT3Dtgz6ScmRNRpYknoJ5+S4RdkJPNugkOswOng5B7RbrGHowoDyFyUHJcOaia8K52MbU89g9F9adtXtrW5qEcqtDE8KBXyO8ftO2WOLY0/4kn5fcmWPdcMjAOb9uOg4QmbkyrOvdRk8HqNFc+psjhcaHjurd+RdkqNL6kBij5f0/BaDczRsyl5RXAjEoQa2EM+QrNO7jeSaPjotlrkql/iMLnG0mC/qz+XzIIGyKXrBOckwPuT6zxU8np8XVdrhWXukJ2d8RcNaKTg/IpZBv15AjtSZ/HCj17qbA+qdTKmPeNTy+wEiEMexeMHwIgh+x6lSnscNhirgk+rwTZ1eAzyhi3dPThjp9TC7tcmPWwaxFh+XJ0fxLZQNV3HVtSXRU67T81iqizE8BKzi2ibARgSzRhTD8AFgDAPc1xoe9GSvLPv+hHsd8ahl+5UvXazrkknR7l4YoET3VMi128RNuj7CJD1sFf/bpeyBNm1QqGqfLLm2PdiC8ZLZrctKjo/MJhKfEidoTEr8fNHGIKMDbnBUN1za6qgHw0P6M47ldEQA97FhTx79hmAkzrDnb1d3Nc/8xo/kdtEII+F4ao0Ky9lVcsdIRodUvJ/QIPPvA+Bc/FHnXRF6HZB4dSRv6uxRqXDOriPJ49aIH4J53qU29/o2MC8pPVxwT6FQQ0WogaCxbwOzWQXDg4vHVzeURQSWYxf705IjrjOwGDSO9AIK5Xrz0Dq2W7BtX7bnSXFXg6nC2ytjIxOZvmqKy/RXzuJ/8AR3495p3y34jYLAcS17IwacL3TQVqidJiavmvBCa1L4s46/iPsMJgUCwymICg0lySKvDVIbw5M6aozc6sVXMMeUo2+WHLzKA4txzIzwEUPXahl1SIDpyNil5JaSo6CvlNpKegB7t28fvK1TZW3qnBsiYjVvoAg+w1hHeQk/pg/0i66eMLQ/k9wlBn4RBhreWDc6ir1q5qMjAzHMd8wXpxxo6QMOi+EhfkAcIZTzjVffURtc3aHI3PDjHFgmAIsnSS7VhaLHdRjNEakeTgktQsBVBeKZ4iiMTcmc/d+3tBHCoMSyj+Tg3k4IscF2rUy6K86+vpGpDGXoj0H3VTbf4T8uVOfjTZ85upaia+ogS26pvude/vEwPAQOoxfdF0lSZDaCGEHs+AH8WHLbjDA59UUJDNOQL7knw6KIMo7ZsF2OmzcuumT8bnLvxsta5yE9QXIv6K4vXyOFe5/yJkaiuk0atRjPw0UjASe7azHxrCDdOloSFQGhUPe4r+RSdCx9TLwyY2B4wGvgOodyDcml6E973piPc8DpGmJBoOJ4Yjd6i3mWNbrhiUtCwsU3xJaMjFJw/DrNnokFbS85PIWWYrQAIr4Xc+1W9y+QE8cXm3IEDoOvI0IcWqpw4jK7cFnsulv0YaGcgSYEdc9v1glX9j4MT6pCe4SXzvh6f66Gs2UnybUpH+hB8WMaHju3JFKlsevNPlpU1xveCd5ASuDKTYENg2v9D5ogJ6na1NGKa0tEch9B4nkez8QR+PcbtJ3LSktrMCMA/ot5hMjUkpXr1PBuHs2twr0YHuD3MbnzkySXIkPvaU++KhwWwRi/wPgcQ7abP2DadqmjGp66XmCkUdkzCNUG8RXgNDFMtRjCU4Ti8iOSI+hbisdpUWjJ1xiSqJACM54L0N/D+slMtdV/3XW+8SKp/VCOKTxx/n5JxKfGyVJR3pA6Bh9SxEpTbZSWZP2LWwaGh+rX+IX/cOFxQAw2gBhN3km5nrVm8D2K+A4l/iOJfaAsxajmg/8mbGTW4zoMLumUXjvQcBjpd8jwQ6R5uMaKsoIUeN0xKrUn3oGHj6v7RiPLewmRVZze33Hx1A92lTI5gFFJdaRlY5SLUKcGr1WWSAMVMOxnUQXsiZLDmvcoPntFhmTvhodFl8K6bE+PawmHSuFShgguG3QXqTob4jMXk9xJ7TeYTAi0v33ySj4E+4+TReyyzCSYEKNLoJmj14jij8lACGgkGVbQx2sA+AocYiWrxsdSaGV4qAmJvvJ9/vg88Td8LDEfbLhPCgHvKrmRWdMmkMsDVUT7DBK4m1g4GnH07CAebk/WsaEFdevhljxoa/AFx15Pi3hY6/1PudCokwNrQ1o8RhqH98I5BCcRiZFNVVfVlybDcSrDQyqWqu9Q7i05UoJzilH8+J6GowHj41LDsTtHseesyxwrxmOAyFLdOmYkHfOBZmAQbbiNY+XwoSFW9DHJvXNWzY1330TRKkhfGCcHrNT2GVcaP1LKM02I0YF5wkhmaaGByvDQDYDAYigEnMEbQBYdBCtbjOovMWIMpGzrsjDVQM8oaoHIBixIJpDbQ3k8iX7w4phFBfccTex8USVB5bCiO6VL6EPwKokBEcMb+agyz+P1MZWvRSM8TnL0RutZvDdJ4SYhAY5XTcIzPXIjhZ6zVl0eRMi5nHJpvQUpAX7QM8ADE3Hl+kvItlBsynGCoDFeThsA4AKq4GP1jOHxGEWBGOFYvim5CKHb5fFV13qULG1pORJUTI3go3hmnyiIwz48y6jLdc9EEoD0NJzM0KX2JB4rBaHcNEoY+Ks4JdB8cECvq6dtLeEwoeHhHN3GVYS6gq8maU0qpxHOt2FL2mlbxVXeU3JklBYs8xgegp8h8bkPhiJ4iPwwSGHzdxGn0JYtH1h8KSE/yzJVA0YjAgK2YdtpPA6gH0dNvb3xAoNUjSxUHTK8uhvkMXQfqQYB8y1hze6OO4mmKFD7Vgl1Sk+RHEC6JZCuRy1vXAiSE1+pUtpVe+e4L/W0/RFMf9u0i/K/VxowfvCpQDwfw2eXTetaJidsuxIPRfFm2F0lpW7mfWFGHvf3JiayIkkipj5mJF38qOUAp4XbaePxeGNDkJH/wJf0IcR1oLX4Zx+DrccYHgxJ3666Thx43nw8IQ0DUPnrkrcYhk3uIa51rTIeNq2POyoFZsI7S1fULD1qoCYda6CWae4XurWzTMv5lwpz6pPeMluQepZpu9wzAc0HJ0I2A6AfQUbc+WkN6rpMyLWgtneXHN1Ps3TSgEGVAlIYj2Uo4ZhMlhemgJYe1FBL2ZzjNuBAPPMdrYL5ygPRjyttY40QhKY1DVXUHD1of3LCYlLkXR7WhOHBGFSxqy4DtbkWI0yAfkGN+doscRWu8ZknMlrEGeEs7ktAGdNHbLeidxhxyCwDaaAlAM3zIVPvQ/BthxK4xo+I4wJ/4tZ+ania0iG0kETHzjsRrn3FLMgRk+pkqD+gK83gsnm1u+V+o04KPNK8JS58KMGsHZ6fT28Pp3GgloZnnMUsZpZG3uPUksA7wVVDmQGGF4g8LXh4ebc6Nctl2/RHS7oYzazGrL52jYQFRiiuDK/bArGgL5Q4NYzNSNxTq6HRMVa55obHaBYH/UaKpiLWP9zMgClBYWdZWg0Yz3LH8pnyZwzz4GPxoYLlkVhelgVpYI0Nj8+QEIcCtV0nIKohMIcbN0vWQNZATxpYU8Pj6UfpilCXGeEYdWi/BOY9PbE8TNbAJtDAGhoeT08JcXpVWhA/RgpVzy454gBZsgayBgbQwJoZHg8R+Pb0OrI+KUEGeGp5yKyBFdfAuhkeeHFr2rVseZKQch+y4s81Lz9rYKk1sEaGxzMAAoFvInMageR+qd+HvLisgVE0sE6GhwzV0xu0uuRMfKO8D3mSrIFRNLAmhsfzBUFVUVdciFE6PmexRnnn8iRZA71w9q6AGi3FsFituycyrhVQQ15i1sCSaGCdPB4qjuOWOlQeH5CLNpfkbczLWBsNrInh4XkabWWhtayMz3GSo8dXlqyBrIGRNfB/J1JwAI5bHN0AAAAASUVORK5CYII=</span>\"
+    \"<span class=sf-dump-key>password</span>\" => \"<span class=sf-dump-str title=\"60 characters\">$2y$12$mrfrsPwFUR2G9/iQ64By6.WDQrdyT2nXWeqrZd6OgP5ST4v15smae</span>\"
+    \"<span class=sf-dump-key>delete_status</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>remember_token</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>created_at</span>\" => \"<span class=sf-dump-str title=\"19 characters\">2024-08-27 09:22:50</span>\"
+    \"<span class=sf-dump-key>updated_at</span>\" => \"<span class=sf-dump-str title=\"19 characters\">2024-09-23 07:53:32</span>\"
+  </samp>]
+  #<span class=sf-dump-protected title=\"Protected property\">original</span>: <span class=sf-dump-note>array:35</span> [<samp data-depth=2 class=sf-dump-compact>
+    \"<span class=sf-dump-key>id</span>\" => <span class=sf-dump-num>1</span>
+    \"<span class=sf-dump-key>fname</span>\" => \"<span class=sf-dump-str title=\"9 characters\">Cleophace</span>\"
+    \"<span class=sf-dump-key>mname</span>\" => \"<span class=sf-dump-str title=\"8 characters\">Kajetani</span>\"
+    \"<span class=sf-dump-key>lname</span>\" => \"<span class=sf-dump-str title=\"5 characters\">Mtani</span>\"
+    \"<span class=sf-dump-key>DOB</span>\" => \"<span class=sf-dump-str title=\"10 characters\">1996-12-27</span>\"
+    \"<span class=sf-dump-key>username</span>\" => \"<span class=sf-dump-str title=\"9 characters\">Cleophace</span>\"
+    \"<span class=sf-dump-key>gender</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>marital_status</span>\" => \"<span class=sf-dump-str title=\"6 characters\">Single</span>\"
+    \"<span class=sf-dump-key>email</span>\" => \"<span class=sf-dump-str title=\"22 characters\">cleokajetani@gmail.com</span>\"
+    \"<span class=sf-dump-key>email_verified_at</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>religion</span>\" => \"<span class=sf-dump-str title=\"6 characters\">Mwanza</span>\"
+    \"<span class=sf-dump-key>mobile</span>\" => \"<span class=sf-dump-str title=\"10 characters\">0745892170</span>\"
+    \"<span class=sf-dump-key>job_title</span>\" => \"<span class=sf-dump-str title=\"18 characters\">Software Developer</span>\"
+    \"<span class=sf-dump-key>home_address</span>\" => \"<span class=sf-dump-str title=\"2 characters\">UK</span>\"
+    \"<span class=sf-dump-key>district</span>\" => \"<span class=sf-dump-str title=\"7 characters\">Ukerewe</span>\"
+    \"<span class=sf-dump-key>region</span>\" => \"<span class=sf-dump-str title=\"6 characters\">Mwanza</span>\"
+    \"<span class=sf-dump-key>professional_reg_number</span>\" => \"<span class=sf-dump-str title=\"8 characters\">12345678</span>\"
+    \"<span class=sf-dump-key>place_of_birth</span>\" => \"<span class=sf-dump-str title=\"6 characters\">Mwanza</span>\"
+    \"<span class=sf-dump-key>house_no</span>\" => \"<span class=sf-dump-str title=\"5 characters\">12334</span>\"
+    \"<span class=sf-dump-key>street</span>\" => \"<span class=sf-dump-str title=\"7 characters\">Majengo</span>\"
+    \"<span class=sf-dump-key>emp_id</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>deptId</span>\" => <span class=sf-dump-num>6</span>
+    \"<span class=sf-dump-key>employment_typeId</span>\" => <span class=sf-dump-num>4</span>
+    \"<span class=sf-dump-key>role_id</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>employee_cv</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>NIN</span>\" => \"<span class=sf-dump-str title=\"10 characters\">1234567890</span>\"
+    \"<span class=sf-dump-key>nssf_no</span>\" => \"<span class=sf-dump-str title=\"5 characters\">12345</span>\"
+    \"<span class=sf-dump-key>domicile</span>\" => \"<span class=sf-dump-str title=\"2 characters\">No</span>\"
+    \"<span class=sf-dump-key>profile_picture</span>\" => \"<span class=sf-dump-str title=\"31 characters\">profile_pictures/1727078012.jpg</span>\"
+    \"<span class=sf-dump-key>signature</span>\" => \"<span class=sf-dump-str title=\"6844 characters\">iVBORw0KGgoAAAANSUhEUgAAAR4AAABACAYAAADMOhjlAAAAAXNSR0IArs4c6QAAE8ZJREFUeF7tnQf07FQRxr9rb9jF3rCgWBArFuxgx95QAbErNuwVG1gQBVFULICCXY+KYFfsYu+9ooK9YW9jfvefPC53b7LJbpLd/e+dcziP815yyyQ7mTvzzTdOg4ldQ9L2ks4g6XuStpV0RUl/kHQRSZcvp+bfTpb0U8kdPthy8sBZA1kDS6MB1+9K7LqSdinGfMaM4/5V0nGSvhXcf1Lxd9eWtJ/kfjzjuPm2rIGsgSXSQE+Gx54n6SqSbj3w3naV3DHt5rCrSbqDpO9Ler/kftvuvnxV1kDWwNAamNPwGJ7NPpK2Gnqh5fjHS+4m9XPZ/UuP667RNb/YMD46UHKhNzXSsvM0WQNZA6EGZjQ8dmNJ/LfviOr8p6Q9JfemyTnt1ZL2KONJ05b02dIIHSA5jnZZsgayBkbTgJ1d0l4zGB7bThI/dOI5fUtdjOcUSe+V3B8TRue8ZXD6TB0XQ0D7qvkI1lFr+fKsgZk0YNtIun3pIGzf0fB4o/PNlvN+StKHTj0ibclqlUcdd5jkj2oEj8lyzZjVso+W3lfLZZ3msudJ7kmz3JjvyRrIGpimAbtAkSi6W/Ebf+DGR/5U6Wp4yCpdqmG630h6rqQjJff7acua/9/tfqX3NetQf9lI6zu8nyxZA1kDvWjAdpL0EEn3jIb7m6TXkaHuYHjsLYW3Ewdtw3GfKblZ0+gzbteaDOFby7T8ZYvM1r0aJvi8pJ0Kz4cYUpasgayBmTRgl5S0t6RblBnucJT3lQ7CcZL7O//Q0vDYfSW9tmY9xxfjYHT4c0TxAW6OWSm5m+QwPKXYbcv14/ql5NmSe/qIi89TZQ1sEg142Mrukh4dbejXkg6V9ArJ/SrebAvD43/gh0m6XEJTC/BythgTvKtUVq1mTYa3htdWJ1eQ3Hc3yduQt5E1MLAGjGMUJ4nbRBO9qqhSeKPk6pwCf3kbw1MXvJ2CqZl3397gYVheLLl3T47mA9MdDA8j2Dsk3bFmZQdJLrba824i3581sMk0YI+U9ABJVwo29ktJGJzXSe4HbTY8xfDU/rj/KLnztJlgtmu8+/bl4N6HSO4Vpx3LcO+OTIz/psJziYNa5WV2MUngeC6auO9HkrvMbOvNd2UNbGYN2DUlPa0E554l2CkZakIUVAaQqGktDYanMYYy8BHLKIsgLlPJ9yRHkWkgdo8Nl25CXiq5h9drwHYtUnt4PqdPXHNhyWG9s2QNZA3IOAHwO7xppAyCxc+S3GdmVVKT4XmxpEclBh7Y6DCjfUES1e1NhqfO43ma5J7TrBD7tqQrJK65meQ+Mqsy831ZA6uvAdu6AOQ+qMxQ8f+VwCrBceoIyfH7mUtqDI9dXdIJiRKEtxa1TgCCBhb7+eRxyEVr9WfNgxILeYTkDplieA6W9IjENfeX3GsG3lwePmtgCTVgt5J0nwT25hOSXrSRQXZ/6mvhdYYn9jiYD8Ty3sOnzWuPeJGnZQSWU7ihe6bruUKVGeAmUn2xPF9yT+xLuXmcrIHl1oCnsbm3pDsVae8LRWuFG+s1kqMCoXdJGB7bQdKXEjONcMRiVk8ghuFLSOj12FE1wMCdJVeVatQozJ4gCSqPWD5epAFv1LuW84CRBoyX/OUlbQlFv68c/oOWH8KGBoysLoZm5+IZXDDQCsFh4CZUHXx8aG2lDM+xCV4d6qiaSiV6XKcxTx3h14Mkary8Aomow2gYCyUQcPA0iBFYBkF5xsRFl5bcT3rcUB5qiwaMrOFTS8DZ6QLFUPzL379TclCYZOlVAwYGj6QK2d4wdsosZI+fWWam/tHrtA2DxXGTOI1d3XpNyX1xnEXZzSV9sGauMsZU65WhuK0k95/pa7UXSnpM4rqRPLvpK9wcVxj8ScQOcOtTAf1wmxzn3zZ+6c3m0PTkLmzH0sjfRVKI2se4wzDxaskRTx1dYsNDARcvSSW24RK7h423skaE8cmFx3MRyd5cVr3Gy+oAarRbblBtTEiHMcbTyurN5LMjry+xH12XH5W8dL19na/3WLW9CrYHypzCUwoFmpDhHS25ty9aQ4HhMY4d0IOeM1gUnsO2kvvReAs1gIKk81ICXw8e0adrUNePldyB7ddqGNaExBm09iPmK9GAr04GK3X+GfVxiuTC93DGYdbpNruZJByEGJlPGpzYDd5NTex0fD2Fhid1xFlAlmcq1QWBrxsmVPWvIlO1dbeUX5LLB9KxS41D6zH+Ax9+Rv/F/Y4kmOamCbG0b0Rg0eoeMqgvmzbAev+71zWxMcqLIoAt/FZkpfSyZXyXQ8ODpwB/ciX/3TiXO2gjRhR7cJnx6DrnwQVDYQrw2DCO7Skp1VLnJovJsnjiJArvSPeDowLB/ZvFrKWr+r2nAxvkV4uvKz+IJiGwD8iTOry/F4BR0LFkGcP6Hxgnh24eMMsml+Aeu3hpcCDYioWMdFU3xfFqKSU0PASPAQ5WQqD23OPz1BiMgPsH60B5Z2uhvcu1LVA7dSzvnqZS7wuiyag9ZhIABFMxMt9RpSmD3A18E9kPYmAJChQjS4WhbDIWXynHOFZy/z7tM03WBV4pk/OHWrI7l9UEN0j8HojPHio5PlhLL6XhsXOUjfZovlcJSMW4RmOEDRkeCJ5IJZ8sjENK0eFaErVcbZdq4BfiY8F9C/jAEW1H6O86I4bVZGQXkHEzkKuh/g8rGBsTMTjjK0uXj5T8b4OXRY9vJti3EwsDy9e8EgKhANzWWIwOLnjAVIRDahcLJT4UUdMYc2WkMjx0aIh/aDTQ4/w4shi4AtL6lUBvSmVsE47otZLjuhkkGWBexA/8+kXgHCM7TUaCNvjs4kMTfNYck6hpCwoEa5kCqr08WnKp8pZorwZzwHWCv1zjDKMHWRIs5iOcOrrygeYjgM5WTirDk+Lcua3kABOOKEnw4KVLoCAdRuvkAZIDlzCDTBSkMkYAVJxhyJluMb5cDT3Dtgz6ScmRNRpYknoJ5+S4RdkJPNugkOswOng5B7RbrGHowoDyFyUHJcOaia8K52MbU89g9F9adtXtrW5qEcqtDE8KBXyO8ftO2WOLY0/4kn5fcmWPdcMjAOb9uOg4QmbkyrOvdRk8HqNFc+psjhcaHjurd+RdkqNL6kBij5f0/BaDczRsyl5RXAjEoQa2EM+QrNO7jeSaPjotlrkql/iMLnG0mC/qz+XzIIGyKXrBOckwPuT6zxU8np8XVdrhWXukJ2d8RcNaKTg/IpZBv15AjtSZ/HCj17qbA+qdTKmPeNTy+wEiEMexeMHwIgh+x6lSnscNhirgk+rwTZ1eAzyhi3dPThjp9TC7tcmPWwaxFh+XJ0fxLZQNV3HVtSXRU67T81iqizE8BKzi2ibARgSzRhTD8AFgDAPc1xoe9GSvLPv+hHsd8ahl+5UvXazrkknR7l4YoET3VMi128RNuj7CJD1sFf/bpeyBNm1QqGqfLLm2PdiC8ZLZrctKjo/MJhKfEidoTEr8fNHGIKMDbnBUN1za6qgHw0P6M47ldEQA97FhTx79hmAkzrDnb1d3Nc/8xo/kdtEII+F4ao0Ky9lVcsdIRodUvJ/QIPPvA+Bc/FHnXRF6HZB4dSRv6uxRqXDOriPJ49aIH4J53qU29/o2MC8pPVxwT6FQQ0WogaCxbwOzWQXDg4vHVzeURQSWYxf705IjrjOwGDSO9AIK5Xrz0Dq2W7BtX7bnSXFXg6nC2ytjIxOZvmqKy/RXzuJ/8AR3495p3y34jYLAcS17IwacL3TQVqidJiavmvBCa1L4s46/iPsMJgUCwymICg0lySKvDVIbw5M6aozc6sVXMMeUo2+WHLzKA4txzIzwEUPXahl1SIDpyNil5JaSo6CvlNpKegB7t28fvK1TZW3qnBsiYjVvoAg+w1hHeQk/pg/0i66eMLQ/k9wlBn4RBhreWDc6ir1q5qMjAzHMd8wXpxxo6QMOi+EhfkAcIZTzjVffURtc3aHI3PDjHFgmAIsnSS7VhaLHdRjNEakeTgktQsBVBeKZ4iiMTcmc/d+3tBHCoMSyj+Tg3k4IscF2rUy6K86+vpGpDGXoj0H3VTbf4T8uVOfjTZ85upaia+ogS26pvude/vEwPAQOoxfdF0lSZDaCGEHs+AH8WHLbjDA59UUJDNOQL7knw6KIMo7ZsF2OmzcuumT8bnLvxsta5yE9QXIv6K4vXyOFe5/yJkaiuk0atRjPw0UjASe7azHxrCDdOloSFQGhUPe4r+RSdCx9TLwyY2B4wGvgOodyDcml6E973piPc8DpGmJBoOJ4Yjd6i3mWNbrhiUtCwsU3xJaMjFJw/DrNnokFbS85PIWWYrQAIr4Xc+1W9y+QE8cXm3IEDoOvI0IcWqpw4jK7cFnsulv0YaGcgSYEdc9v1glX9j4MT6pCe4SXzvh6f66Gs2UnybUpH+hB8WMaHju3JFKlsevNPlpU1xveCd5ASuDKTYENg2v9D5ogJ6na1NGKa0tEch9B4nkez8QR+PcbtJ3LSktrMCMA/ot5hMjUkpXr1PBuHs2twr0YHuD3MbnzkySXIkPvaU++KhwWwRi/wPgcQ7abP2DadqmjGp66XmCkUdkzCNUG8RXgNDFMtRjCU4Ti8iOSI+hbisdpUWjJ1xiSqJACM54L0N/D+slMtdV/3XW+8SKp/VCOKTxx/n5JxKfGyVJR3pA6Bh9SxEpTbZSWZP2LWwaGh+rX+IX/cOFxQAw2gBhN3km5nrVm8D2K+A4l/iOJfaAsxajmg/8mbGTW4zoMLumUXjvQcBjpd8jwQ6R5uMaKsoIUeN0xKrUn3oGHj6v7RiPLewmRVZze33Hx1A92lTI5gFFJdaRlY5SLUKcGr1WWSAMVMOxnUQXsiZLDmvcoPntFhmTvhodFl8K6bE+PawmHSuFShgguG3QXqTob4jMXk9xJ7TeYTAi0v33ySj4E+4+TReyyzCSYEKNLoJmj14jij8lACGgkGVbQx2sA+AocYiWrxsdSaGV4qAmJvvJ9/vg88Td8LDEfbLhPCgHvKrmRWdMmkMsDVUT7DBK4m1g4GnH07CAebk/WsaEFdevhljxoa/AFx15Pi3hY6/1PudCokwNrQ1o8RhqH98I5BCcRiZFNVVfVlybDcSrDQyqWqu9Q7i05UoJzilH8+J6GowHj41LDsTtHseesyxwrxmOAyFLdOmYkHfOBZmAQbbiNY+XwoSFW9DHJvXNWzY1330TRKkhfGCcHrNT2GVcaP1LKM02I0YF5wkhmaaGByvDQDYDAYigEnMEbQBYdBCtbjOovMWIMpGzrsjDVQM8oaoHIBixIJpDbQ3k8iX7w4phFBfccTex8USVB5bCiO6VL6EPwKokBEcMb+agyz+P1MZWvRSM8TnL0RutZvDdJ4SYhAY5XTcIzPXIjhZ6zVl0eRMi5nHJpvQUpAX7QM8ADE3Hl+kvItlBsynGCoDFeThsA4AKq4GP1jOHxGEWBGOFYvim5CKHb5fFV13qULG1pORJUTI3go3hmnyiIwz48y6jLdc9EEoD0NJzM0KX2JB4rBaHcNEoY+Ks4JdB8cECvq6dtLeEwoeHhHN3GVYS6gq8maU0qpxHOt2FL2mlbxVXeU3JklBYs8xgegp8h8bkPhiJ4iPwwSGHzdxGn0JYtH1h8KSE/yzJVA0YjAgK2YdtpPA6gH0dNvb3xAoNUjSxUHTK8uhvkMXQfqQYB8y1hze6OO4mmKFD7Vgl1Sk+RHEC6JZCuRy1vXAiSE1+pUtpVe+e4L/W0/RFMf9u0i/K/VxowfvCpQDwfw2eXTetaJidsuxIPRfFm2F0lpW7mfWFGHvf3JiayIkkipj5mJF38qOUAp4XbaePxeGNDkJH/wJf0IcR1oLX4Zx+DrccYHgxJ3666Thx43nw8IQ0DUPnrkrcYhk3uIa51rTIeNq2POyoFZsI7S1fULD1qoCYda6CWae4XurWzTMv5lwpz6pPeMluQepZpu9wzAc0HJ0I2A6AfQUbc+WkN6rpMyLWgtneXHN1Ps3TSgEGVAlIYj2Uo4ZhMlhemgJYe1FBL2ZzjNuBAPPMdrYL5ygPRjyttY40QhKY1DVXUHD1of3LCYlLkXR7WhOHBGFSxqy4DtbkWI0yAfkGN+doscRWu8ZknMlrEGeEs7ktAGdNHbLeidxhxyCwDaaAlAM3zIVPvQ/BthxK4xo+I4wJ/4tZ+ania0iG0kETHzjsRrn3FLMgRk+pkqD+gK83gsnm1u+V+o04KPNK8JS58KMGsHZ6fT28Pp3GgloZnnMUsZpZG3uPUksA7wVVDmQGGF4g8LXh4ebc6Nctl2/RHS7oYzazGrL52jYQFRiiuDK/bArGgL5Q4NYzNSNxTq6HRMVa55obHaBYH/UaKpiLWP9zMgClBYWdZWg0Yz3LH8pnyZwzz4GPxoYLlkVhelgVpYI0Nj8+QEIcCtV0nIKohMIcbN0vWQNZATxpYU8Pj6UfpilCXGeEYdWi/BOY9PbE8TNbAJtDAGhoeT08JcXpVWhA/RgpVzy454gBZsgayBgbQwJoZHg8R+Pb0OrI+KUEGeGp5yKyBFdfAuhkeeHFr2rVseZKQch+y4s81Lz9rYKk1sEaGxzMAAoFvInMageR+qd+HvLisgVE0sE6GhwzV0xu0uuRMfKO8D3mSrIFRNLAmhsfzBUFVUVdciFE6PmexRnnn8iRZA71w9q6AGi3FsFituycyrhVQQ15i1sCSaGCdPB4qjuOWOlQeH5CLNpfkbczLWBsNrInh4XkabWWhtayMz3GSo8dXlqyBrIGRNfB/J1JwAI5bHN0AAAAASUVORK5CYII=</span>\"
+    \"<span class=sf-dump-key>password</span>\" => \"<span class=sf-dump-str title=\"60 characters\">$2y$12$mrfrsPwFUR2G9/iQ64By6.WDQrdyT2nXWeqrZd6OgP5ST4v15smae</span>\"
+    \"<span class=sf-dump-key>delete_status</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>remember_token</span>\" => <span class=sf-dump-const>null</span>
+    \"<span class=sf-dump-key>created_at</span>\" => \"<span class=sf-dump-str title=\"19 characters\">2024-08-27 09:22:50</span>\"
+    \"<span class=sf-dump-key>updated_at</span>\" => \"<span class=sf-dump-str title=\"19 characters\">2024-09-23 07:53:32</span>\"
+  </samp>]
+  #<span class=sf-dump-protected title=\"Protected property\">changes</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">casts</span>: <span class=sf-dump-note>array:2</span> [<samp data-depth=2 class=sf-dump-compact>
+    \"<span class=sf-dump-key>email_verified_at</span>\" => \"<span class=sf-dump-str title=\"8 characters\">datetime</span>\"
+    \"<span class=sf-dump-key>password</span>\" => \"<span class=sf-dump-str title=\"6 characters\">hashed</span>\"
+  </samp>]
+  #<span class=sf-dump-protected title=\"Protected property\">classCastCache</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">attributeCastCache</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">dateFormat</span>: <span class=sf-dump-const>null</span>
+  #<span class=sf-dump-protected title=\"Protected property\">appends</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">dispatchesEvents</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">observables</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">relations</span>: <span class=sf-dump-note>array:1</span> [<samp data-depth=2 class=sf-dump-compact>
+    \"<span class=sf-dump-key>department</span>\" => <span class=sf-dump-note title=\"App\\Models\\Departments
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">App\\Models</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Departments</span> {<a class=sf-dump-ref>#1620</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">connection</span>: \"<span class=sf-dump-str title=\"5 characters\">mysql</span>\"
+      #<span class=sf-dump-protected title=\"Protected property\">table</span>: \"<span class=sf-dump-str title=\"11 characters\">departments</span>\"
+      #<span class=sf-dump-protected title=\"Protected property\">primaryKey</span>: \"<span class=sf-dump-str title=\"2 characters\">id</span>\"
+      #<span class=sf-dump-protected title=\"Protected property\">keyType</span>: \"<span class=sf-dump-str title=\"3 characters\">int</span>\"
+      +<span class=sf-dump-public title=\"Public property\">incrementing</span>: <span class=sf-dump-const>true</span>
+      #<span class=sf-dump-protected title=\"Protected property\">with</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">withCount</span>: []
+      +<span class=sf-dump-public title=\"Public property\">preventsLazyLoading</span>: <span class=sf-dump-const>false</span>
+      #<span class=sf-dump-protected title=\"Protected property\">perPage</span>: <span class=sf-dump-num>15</span>
+      +<span class=sf-dump-public title=\"Public property\">exists</span>: <span class=sf-dump-const>true</span>
+      +<span class=sf-dump-public title=\"Public property\">wasRecentlyCreated</span>: <span class=sf-dump-const>false</span>
+      #<span class=sf-dump-protected title=\"Protected property\">escapeWhenCastingToString</span>: <span class=sf-dump-const>false</span>
+      #<span class=sf-dump-protected title=\"Protected property\">attributes</span>: <span class=sf-dump-note>array:5</span> [ &#8230;5]
+      #<span class=sf-dump-protected title=\"Protected property\">original</span>: <span class=sf-dump-note>array:5</span> [ &#8230;5]
+      #<span class=sf-dump-protected title=\"Protected property\">changes</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">casts</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">classCastCache</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">attributeCastCache</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">dateFormat</span>: <span class=sf-dump-const>null</span>
+      #<span class=sf-dump-protected title=\"Protected property\">appends</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">dispatchesEvents</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">observables</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">relations</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">touches</span>: []
+      +<span class=sf-dump-public title=\"Public property\">timestamps</span>: <span class=sf-dump-const>true</span>
+      +<span class=sf-dump-public title=\"Public property\">usesUniqueIds</span>: <span class=sf-dump-const>false</span>
+      #<span class=sf-dump-protected title=\"Protected property\">hidden</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">visible</span>: []
+      #<span class=sf-dump-protected title=\"Protected property\">fillable</span>: <span class=sf-dump-note>array:2</span> [ &#8230;2]
+      #<span class=sf-dump-protected title=\"Protected property\">guarded</span>: <span class=sf-dump-note>array:1</span> [ &#8230;1]
+    </samp>}
+  </samp>]
+  #<span class=sf-dump-protected title=\"Protected property\">touches</span>: []
+  +<span class=sf-dump-public title=\"Public property\">timestamps</span>: <span class=sf-dump-const>true</span>
+  +<span class=sf-dump-public title=\"Public property\">usesUniqueIds</span>: <span class=sf-dump-const>false</span>
+  #<span class=sf-dump-protected title=\"Protected property\">hidden</span>: <span class=sf-dump-note>array:2</span> [<samp data-depth=2 class=sf-dump-compact>
+    <span class=sf-dump-index>0</span> => \"<span class=sf-dump-str title=\"8 characters\">password</span>\"
+    <span class=sf-dump-index>1</span> => \"<span class=sf-dump-str title=\"14 characters\">remember_token</span>\"
+  </samp>]
+  #<span class=sf-dump-protected title=\"Protected property\">visible</span>: []
+  #<span class=sf-dump-protected title=\"Protected property\">fillable</span>: <span class=sf-dump-note>array:26</span> [<samp data-depth=2 class=sf-dump-compact>
+    <span class=sf-dump-index>0</span> => \"<span class=sf-dump-str title=\"5 characters\">fname</span>\"
+    <span class=sf-dump-index>1</span> => \"<span class=sf-dump-str title=\"5 characters\">mname</span>\"
+    <span class=sf-dump-index>2</span> => \"<span class=sf-dump-str title=\"5 characters\">lname</span>\"
+    <span class=sf-dump-index>3</span> => \"<span class=sf-dump-str title=\"5 characters\">email</span>\"
+    <span class=sf-dump-index>4</span> => \"<span class=sf-dump-str title=\"8 characters\">username</span>\"
+    <span class=sf-dump-index>5</span> => \"<span class=sf-dump-str title=\"3 characters\">DOB</span>\"
+    <span class=sf-dump-index>6</span> => \"<span class=sf-dump-str title=\"6 characters\">gender</span>\"
+    <span class=sf-dump-index>7</span> => \"<span class=sf-dump-str title=\"14 characters\">marital_status</span>\"
+    <span class=sf-dump-index>8</span> => \"<span class=sf-dump-str title=\"8 characters\">religion</span>\"
+    <span class=sf-dump-index>9</span> => \"<span class=sf-dump-str title=\"6 characters\">mobile</span>\"
+    <span class=sf-dump-index>10</span> => \"<span class=sf-dump-str title=\"9 characters\">job_title</span>\"
+    <span class=sf-dump-index>11</span> => \"<span class=sf-dump-str title=\"12 characters\">home_address</span>\"
+    <span class=sf-dump-index>12</span> => \"<span class=sf-dump-str title=\"8 characters\">district</span>\"
+    <span class=sf-dump-index>13</span> => \"<span class=sf-dump-str title=\"23 characters\">professional_reg_number</span>\"
+    <span class=sf-dump-index>14</span> => \"<span class=sf-dump-str title=\"14 characters\">place_of_birth</span>\"
+    <span class=sf-dump-index>15</span> => \"<span class=sf-dump-str title=\"8 characters\">house_no</span>\"
+    <span class=sf-dump-index>16</span> => \"<span class=sf-dump-str title=\"6 characters\">street</span>\"
+    <span class=sf-dump-index>17</span> => \"<span class=sf-dump-str title=\"6 characters\">emp_id</span>\"
+    <span class=sf-dump-index>18</span> => \"<span class=sf-dump-str title=\"11 characters\">employee_cv</span>\"
+    <span class=sf-dump-index>19</span> => \"<span class=sf-dump-str title=\"3 characters\">NIN</span>\"
+    <span class=sf-dump-index>20</span> => \"<span class=sf-dump-str title=\"7 characters\">nssf_no</span>\"
+    <span class=sf-dump-index>21</span> => \"<span class=sf-dump-str title=\"8 characters\">domicile</span>\"
+    <span class=sf-dump-index>22</span> => \"<span class=sf-dump-str title=\"6 characters\">deptId</span>\"
+    <span class=sf-dump-index>23</span> => \"<span class=sf-dump-str title=\"17 characters\">employment_typeId</span>\"
+    <span class=sf-dump-index>24</span> => \"<span class=sf-dump-str title=\"8 characters\">password</span>\"
+    <span class=sf-dump-index>25</span> => \"<span class=sf-dump-str title=\"13 characters\">delete_status</span>\"
+  </samp>]
+  #<span class=sf-dump-protected title=\"Protected property\">guarded</span>: <span class=sf-dump-note>array:1</span> [<samp data-depth=2 class=sf-dump-compact>
+    <span class=sf-dump-index>0</span> => \"<span class=sf-dump-str>*</span>\"
+  </samp>]
+  #<span class=sf-dump-protected title=\"Protected property\">rememberTokenName</span>: \"<span class=sf-dump-str title=\"14 characters\">remember_token</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">accessToken</span>: <span class=sf-dump-const>null</span>
+  -<span class=sf-dump-private title=\"Private property defined in class:&#10;`App\\Models\\User`\">roleClass</span>: <span class=sf-dump-const>null</span>
+  -<span class=sf-dump-private title=\"Private property defined in class:&#10;`App\\Models\\User`\">permissionClass</span>: <span class=sf-dump-const>null</span>
+  -<span class=sf-dump-private title=\"Private property defined in class:&#10;`App\\Models\\User`\">wildcardClass</span>: <span class=sf-dump-const>null</span>
+  -<span class=sf-dump-private title=\"Private property defined in class:&#10;`App\\Models\\User`\">wildcardPermissionsIndex</span>: <span class=sf-dump-const title=\"Uninitialized property\">? array</span>
+</samp>}
+</pre><script>Sfdump(\"sf-dump-2060399522\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+"}},"userId":1,"exception":"[object] (Spatie\\LaravelIgnition\\Exceptions\\ViewException(code: 0): Route [your.route] not defined. at D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\UrlGenerator.php:477)
+[stacktrace]
+#0 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(811): Illuminate\\Routing\\UrlGenerator->route('your.route', Array, true)
+#1 D:\\Projects\\E-docs\\resources\\views\\user_profile\\edit.blade.php(257): route('your.route')
+#2 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(123): require('D:\\\\Projects\\\\E-d...')
+#3 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#4 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('D:\\\\Projects\\\\E-d...', Array)
+#5 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(72): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\Projects\\\\E-d...', Array)
+#6 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(207): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\Projects\\\\E-d...', Array)
+#7 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(190): Illuminate\\View\\View->getContents()
+#8 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(159): Illuminate\\View\\View->renderContents()
+#9 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#10 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#11 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(918): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#12 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(885): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#13 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(805): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#14 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#16 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#17 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#18 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#19 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#25 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#26 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#27 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(805): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#32 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(784): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#33 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(748): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#34 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(737): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#35 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#36 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#37 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#38 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#40 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#41 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#45 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(99): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#46 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#53 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#54 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#55 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
+#56 {main}
+
+[previous exception] [object] (Symfony\\Component\\Routing\\Exception\\RouteNotFoundException(code: 0): Route [your.route] not defined. at D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\UrlGenerator.php:477)
+[stacktrace]
+#0 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(811): Illuminate\\Routing\\UrlGenerator->route('your.route', Array, true)
+#1 D:\\Projects\\E-docs\\storage\\framework\\views\\b1776ebcde0a683e9845b098aa7060ae.php(256): route('your.route')
+#2 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(123): require('D:\\\\Projects\\\\E-d...')
+#3 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#4 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('D:\\\\Projects\\\\E-d...', Array)
+#5 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(72): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('D:\\\\Projects\\\\E-d...', Array)
+#6 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(207): Illuminate\\View\\Engines\\CompilerEngine->get('D:\\\\Projects\\\\E-d...', Array)
+#7 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(190): Illuminate\\View\\View->getContents()
+#8 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(159): Illuminate\\View\\View->renderContents()
+#9 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#10 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#11 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(918): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#12 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(885): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#13 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(805): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#14 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#16 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#17 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#18 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#19 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#25 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#26 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#27 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(805): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#32 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(784): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#33 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(748): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#34 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(737): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#35 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#36 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#37 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#38 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#40 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#41 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#45 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(99): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#46 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#53 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#54 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#55 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
+#56 {main}
+"} 
+[2024-09-23 08:18:43] local.ERROR: syntax error, unexpected token "=>" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"=>\" at D:\\Projects\\E-docs\\app\\Http\\Controllers\\ProfileController.php:129)
+[stacktrace]
+#0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
+#1 [internal function]: Composer\\Autoload\\ClassLoader->loadClass('App\\\\Http\\\\Contro...')
+#2 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Reflector.php(40): class_exists('App\\\\Http\\\\Contro...')
+#3 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteRegistrar.php(247): Illuminate\\Support\\Reflector::isCallable(Array)
+#4 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteRegistrar.php(226): Illuminate\\Routing\\RouteRegistrar->compileAction(Array)
+#5 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteRegistrar.php(272): Illuminate\\Routing\\RouteRegistrar->registerRoute('post', 'profile/update-...', Array)
+#6 D:\\Projects\\E-docs\\routes\\web.php(128): Illuminate\\Routing\\RouteRegistrar->__call('post', Array)
+#7 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(509): Illuminate\\Routing\\RouteFileRegistrar->{closure}(Object(Illuminate\\Routing\\Router))
+#8 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(465): Illuminate\\Routing\\Router->loadRoutes(Object(Closure))
+#9 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(355): Illuminate\\Routing\\Router->group(Array, Object(Closure))
+#10 D:\\Projects\\E-docs\\routes\\web.php(73): Illuminate\\Support\\Facades\\Facade::__callStatic('group', Array)
+#11 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteFileRegistrar.php(35): require('D:\\\\Projects\\\\E-d...')
+#12 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(511): Illuminate\\Routing\\RouteFileRegistrar->register('D:\\\\Projects\\\\E-d...')
+#13 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(465): Illuminate\\Routing\\Router->loadRoutes('D:\\\\Projects\\\\E-d...')
+#14 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteRegistrar.php(194): Illuminate\\Routing\\Router->group(Array, 'D:\\\\Projects\\\\E-d...')
+#15 D:\\Projects\\E-docs\\app\\Providers\\RouteServiceProvider.php(37): Illuminate\\Routing\\RouteRegistrar->group('D:\\\\Projects\\\\E-d...')
+#16 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Providers\\RouteServiceProvider->App\\Providers\\{closure}()
+#17 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#18 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(81): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#19 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Object(Closure), Object(Closure))
+#20 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Object(Closure), Array, NULL)
+#21 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider.php(120): Illuminate\\Container\\Container->call(Object(Closure))
+#22 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider.php(45): Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider->loadRoutes()
+#23 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider->Illuminate\\Foundation\\Support\\Providers\\{closure}()
+#24 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#25 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(81): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#26 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Object(Closure), Object(Closure))
+#27 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Object(Closure), Array, NULL)
+#28 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\ServiceProvider.php(119): Illuminate\\Container\\Container->call(Object(Closure))
+#29 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1037): Illuminate\\Support\\ServiceProvider->callBootedCallbacks()
+#30 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1015): Illuminate\\Foundation\\Application->bootProvider(Object(App\\Providers\\RouteServiceProvider))
+#31 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}(Object(App\\Providers\\RouteServiceProvider), 27)
+#32 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1014): array_walk(Array, Object(Closure))
+#33 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#34 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(263): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#35 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#36 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#37 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#38 {main}
+"} 
+[2024-09-23 08:18:43] local.ERROR: syntax error, unexpected token "=>" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"=>\" at D:\\Projects\\E-docs\\app\\Http\\Controllers\\ProfileController.php:129)
+[stacktrace]
+#0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
+#1 [internal function]: Composer\\Autoload\\ClassLoader->loadClass('App\\\\Http\\\\Contro...')
+#2 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Reflector.php(40): class_exists('App\\\\Http\\\\Contro...')
+#3 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteRegistrar.php(247): Illuminate\\Support\\Reflector::isCallable(Array)
+#4 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteRegistrar.php(226): Illuminate\\Routing\\RouteRegistrar->compileAction(Array)
+#5 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteRegistrar.php(272): Illuminate\\Routing\\RouteRegistrar->registerRoute('post', 'profile/update-...', Array)
+#6 D:\\Projects\\E-docs\\routes\\web.php(128): Illuminate\\Routing\\RouteRegistrar->__call('post', Array)
+#7 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(509): Illuminate\\Routing\\RouteFileRegistrar->{closure}(Object(Illuminate\\Routing\\Router))
+#8 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(465): Illuminate\\Routing\\Router->loadRoutes(Object(Closure))
+#9 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(355): Illuminate\\Routing\\Router->group(Array, Object(Closure))
+#10 D:\\Projects\\E-docs\\routes\\web.php(73): Illuminate\\Support\\Facades\\Facade::__callStatic('group', Array)
+#11 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteFileRegistrar.php(35): require('D:\\\\Projects\\\\E-d...')
+#12 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(511): Illuminate\\Routing\\RouteFileRegistrar->register('D:\\\\Projects\\\\E-d...')
+#13 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(465): Illuminate\\Routing\\Router->loadRoutes('D:\\\\Projects\\\\E-d...')
+#14 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteRegistrar.php(194): Illuminate\\Routing\\Router->group(Array, 'D:\\\\Projects\\\\E-d...')
+#15 D:\\Projects\\E-docs\\app\\Providers\\RouteServiceProvider.php(37): Illuminate\\Routing\\RouteRegistrar->group('D:\\\\Projects\\\\E-d...')
+#16 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Providers\\RouteServiceProvider->App\\Providers\\{closure}()
+#17 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#18 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(81): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#19 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Object(Closure), Object(Closure))
+#20 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Object(Closure), Array, NULL)
+#21 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider.php(120): Illuminate\\Container\\Container->call(Object(Closure))
+#22 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider.php(45): Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider->loadRoutes()
+#23 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider->Illuminate\\Foundation\\Support\\Providers\\{closure}()
+#24 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#25 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(81): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#26 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Object(Closure), Object(Closure))
+#27 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Object(Closure), Array, NULL)
+#28 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\ServiceProvider.php(119): Illuminate\\Container\\Container->call(Object(Closure))
+#29 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1037): Illuminate\\Support\\ServiceProvider->callBootedCallbacks()
+#30 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1015): Illuminate\\Foundation\\Application->bootProvider(Object(App\\Providers\\RouteServiceProvider))
+#31 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}(Object(App\\Providers\\RouteServiceProvider), 27)
+#32 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1014): array_walk(Array, Object(Closure))
+#33 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#34 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(263): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#35 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#36 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#37 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#38 {main}
+"} 

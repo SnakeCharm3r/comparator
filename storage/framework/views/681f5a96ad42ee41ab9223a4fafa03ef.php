@@ -24,12 +24,12 @@
                                         <tr>
                                             <td><?php echo e($policy->title); ?></td>
                                             <td class="text-center" style="width: 140px;">
+                                                <!-- View Icon -->
                                                 <a href="javascript:void(0);"
-                                                    onclick="viewDescription('<?php echo e($policy->title); ?>', '<?php echo e($policy->content); ?>')"
+                                                    onclick="viewDescription('<?php echo e($policy->title); ?>', '<?php echo e(urlencode($policy->content)); ?>')"
                                                     class="btn btn-sm p-0" title="View Description">
                                                     <i class="fas fa-eye text-info"></i>
                                                 </a>
-
 
                                                 <?php if (\Illuminate\Support\Facades\Blade::check('role', 'hr|admin|super-admin')): ?>
                                                     <!-- Edit Icon -->
@@ -84,8 +84,14 @@
 
     <script>
         function viewDescription(title, content) {
+            // Decode the content to avoid issues with special characters
+            let decodedContent = decodeURIComponent(content);
+
+            // Replace the `+` characters with spaces
+            decodedContent = decodedContent.replace(/\+/g, ' ');
+
             // Set the title and content in the modal, allowing the content to be rendered as HTML
-            document.getElementById('descriptionContent').innerHTML = '<h5>' + title + '</h5>' + content;
+            document.getElementById('descriptionContent').innerHTML = '<h5>' + title + '</h5>' + decodedContent;
 
             // Show the modal
             var descriptionModal = new bootstrap.Modal(document.getElementById('descriptionModal'));
@@ -93,5 +99,6 @@
         }
     </script>
 <?php $__env->stopSection(); ?>
+
 
 <?php echo $__env->make('layouts.template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Projects\E-docs\resources\views/policies/index.blade.php ENDPATH**/ ?>

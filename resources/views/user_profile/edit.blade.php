@@ -77,11 +77,13 @@
                                         </ul>
                                         <div class="tab-content pt-3">
                                             <div class="tab-pane active" id="settings">
-                                                <form action="{{ route('profile.update', $user->id) }}" method="POST" class="form" novalidate="">
+                                                <form action="{{ route('profile.update', $user->id) }}" method="POST"
+                                                    class="form" novalidate="">
                                                     @csrf
                                                     @method('PUT')
                                                     <input type="hidden" name="deptId" value="{{ $user->deptId }}">
-                                                    <input type="hidden" name="employment_typeId" value="{{ $user->employment_typeId }}">
+                                                    <input type="hidden" name="employment_typeId"
+                                                        value="{{ $user->employment_typeId }}">
                                                     <input type="hidden" name="job_title" value="{{ $user->job_title }}">
                                                     <div class="row">
                                                         <div class="col">
@@ -162,10 +164,18 @@
                                                                             name="marital_status">
                                                                             <option value="">Select Marital Status
                                                                             </option>
-                                                                            <option value="single" {{ old('marital_status', $user->marital_status) == 'single' ? 'selected' : '' }}>Single</option>
-                                                                            <option value="married" {{ old('marital_status', $user->marital_status) == 'married' ? 'selected' : '' }}>Married</option>
-                                                                            <option value="divorced" {{ old('marital_status', $user->marital_status) == 'divorced' ? 'selected' : '' }}>Divorced</option>
-                                                                            <option value="widowed" {{ old('marital_status', $user->marital_status) == 'widowed' ? 'selected' : '' }}>Widowed</option>
+                                                                            <option value="single"
+                                                                                {{ old('marital_status', $user->marital_status) == 'single' ? 'selected' : '' }}>
+                                                                                Single</option>
+                                                                            <option value="married"
+                                                                                {{ old('marital_status', $user->marital_status) == 'married' ? 'selected' : '' }}>
+                                                                                Married</option>
+                                                                            <option value="divorced"
+                                                                                {{ old('marital_status', $user->marital_status) == 'divorced' ? 'selected' : '' }}>
+                                                                                Divorced</option>
+                                                                            <option value="widowed"
+                                                                                {{ old('marital_status', $user->marital_status) == 'widowed' ? 'selected' : '' }}>
+                                                                                Widowed</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -236,14 +246,42 @@
                                                                             value="{{ old('professional_reg_number', $user->professional_reg_number) }}">
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-12 col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label>National Identification Number</label>
-                                                                        <input class="form-control" type="text"
-                                                                            name="NIN" placeholder="NIN"
-                                                                            value="{{ old('NIN', $user->NIN) }}">
-                                                                    </div>
-                                                                </div>
+                                                             <!-- Include jQuery and InputMask -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{{ asset('node_modules/jquery.inputmask/dist/min/jquery.inputmask.min.js') }}"></script>
+
+<div class="col-12 col-md-4">
+    <div class="form-group">
+        <label>National Identification Number (NIDA)</label>
+        <input class="form-control" type="text"
+               name="NIN"
+               placeholder="e.g. 19501007-11101-00001-26"
+               value="{{ old('NIN', $user->NIN) }}"
+               pattern="\d{8}-\d{5}-\d{5}-\d{2}"
+               title="Format: 19501007-11101-00001-26"
+               maxlength="23">
+    </div>
+</div>
+
+<!-- InputMask initialization script -->
+<script>
+    $(document).ready(function(){
+        $('input[name="NIN"]').inputmask({
+            mask: "99999999-99999-99999-99",  // Set the format for NIDA
+            placeholder: " ",                // Placeholder for empty fields
+            definitions: {
+                '9': {                         // Restrict to digits only
+                    validator: "[0-9]"
+                }
+            },
+            clearIncomplete: true              // Prevent partial entries from being submitted
+        });
+    });
+</script>
+
+
+
+
                                                                 <div class="col-12 col-md-4">
                                                                     <div class="form-group">
                                                                         <label>NSSF Number</label>
@@ -253,14 +291,20 @@
                                                                     </div>
                                                                 </div>
 
-                                                                <div class="col-12 col-md-4">
+                                                                {{-- <div class="col-12 col-md-4">
                                                                     <div class="form-group">
-                                                                        <label>Employee CV</label>
-                                                                        <input class="form-control" type="text"
-                                                                            name="employee_cv" placeholder="Employee CV"
-                                                                            value="{{ old('employee_cv', $user->employee_cv) }}">
+                                                                        <label for="employee_cv">Employee CV (PDF, max
+                                                                            5MB)</label>
+                                                                        <input class="form-control" type="file"
+                                                                            name="employee_cv" id="employee_cv" required>
+                                                                        @error('employee_cv')
+                                                                            <div class="text-danger">{{ $message }}</div>
+                                                                        @enderror
                                                                     </div>
-                                                                </div>
+                                                                </div> --}}
+
+
+
                                                             </div>
                                                         </div>
                                                     </div>
