@@ -312,4 +312,11 @@ public function getJobTitles($deptId){
         return redirect()->route('user_profile.pass')->with('success', 'Password changed successfully.');
     }
 
+    public function showForgetPasswordForm()
+    {
+        return view('auth.forget'); // Assuming you have a view file for this
+    }
+
+    
+
 }
