@@ -27,7 +27,7 @@
                             Password</h1>
 
                         <!-- Reset Password Form -->
-                        <form action="{{ route('password.forget.submit') }}" method="POST">
+                        <form action="{{ route('password.forgetPassChange') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label>Enter your registered email address <span class="login-danger">*</span></label>

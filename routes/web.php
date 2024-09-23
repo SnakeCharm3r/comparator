@@ -56,17 +56,15 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'handleRegistration'])->name('register.handleRegistration');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-//forget password
+// Show the forget password form
 Route::get('password/forget', [AuthController::class, 'showForgetPasswordForm'])->name('password.forget');
-Route::post('password/forget', [AuthController::class, 'submitForgetPasswordForm'])->name('password.forget.submit');
+// Handle the form submission to send the password reset link
+Route::post('password/forget', [AuthController::class, 'forgetPassChange'])->name('password.forgetPassChange');
+Route::get('password/reset/{token}', [AuthController::class, 'showResetPasswordForm'])->name('password.reset');
+Route::post('password/reset', [AuthController::class, 'resetPassword'])->name('password.update');
 
-Route::group(['middleware'=> 'auth','profile.complete'], function ()
-{});
 
 //route for job title based dept id
-
-
-
 Route::get('/job-titles/{departmentId}', [AuthController::class, 'getJobTitles']);
 Route::get('/departments', [DepartmentController::class, 'index']);
 
