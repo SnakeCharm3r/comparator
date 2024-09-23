@@ -185,6 +185,7 @@ Route::get('/announcements/{id}/edit', [AnnouncementController::class, 'edit'])-
 Route::put('/announcements/{id}', [AnnouncementController::class, 'update'])->name('announcements.update');
 Route::delete('/announcements/{id}', [AnnouncementController::class, 'destroy'])->name('announcements.destroy');
 
+Route::put('/ict-access-form/update/{id}', [RequestController::class, 'updateIctForm'])->name('form.updateIctForm');
 
 Route::post('/approve_clearform', [FormController::class, 'approveClearanceForm'])->name('approve_clearform');
 Route::get('/exit_forms/approvers', [ClearanceFormController::class, 'getApprover'])->name('exit_forms.approvers');
