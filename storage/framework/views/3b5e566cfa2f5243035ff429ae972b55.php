@@ -19,8 +19,6 @@
         <i class="fas fa-bars" style="background-color: #61ce70; padding: 12px; border-radius: 5px;"></i>
     </a>
     <ul class="nav user-menu">
-        
-
         <li class="nav-item zoom-screen me-2">
             <a href="#" class="nav-link header-nav-list">
                 <img src="<?php echo e(asset('assets/img/icons/header-icon-04.svg')); ?>" alt="">
@@ -40,17 +38,17 @@
                     <div class="user-text">
                         <?php if(Auth::check()): ?>
                             <h6><?php echo e(Auth::user()->fname); ?> <?php echo e(Auth::user()->lname); ?></h6>
-                            <p class="text-muted mb-0"><?php echo e(Auth::user()->job_title); ?></p>
+                            <p class="text-muted mb-0"><?php echo e(Auth::user()->jobTitle ? Auth::user()->jobTitle->job_title : 'No job title'); ?></p>
                         <?php else: ?>
                             <h6>Guest</h6>
                             <p class="text-muted mb-0">Not logged in</p>
                         <?php endif; ?>
                     </div>
+
                 </span>
             </a>
             <div class="dropdown-menu">
                 <?php if(Auth::check()): ?>
-                    
                     <a class="dropdown-item" href="<?php echo e(route('profile.index')); ?>">My Profile</a>
                     <a class="dropdown-item" href="<?php echo e(route('logout')); ?>">Logout</a>
                 <?php else: ?>

@@ -179,10 +179,9 @@
                             <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
                             <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
 
-
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Password <span class="text-danger">*</span></label>
+                                    <label for="password">Password <span class="text-danger">*</span></label>
                                     <input class="form-control pass-input" type="password" name="password"
                                         placeholder="*********" id="password" required
                                         style="border-color: #ced4da;">
@@ -190,30 +189,39 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Confirm Password <span class="text-danger">*</span></label>
+                                    <label for="password_confirmation">Confirm Password <span
+                                            class="text-danger">*</span></label>
                                     <input class="form-control pass-input" type="password"
                                         name="password_confirmation" placeholder="*********"
-                                        id="password_confirmation" style="border-color: #ced4da;">
+                                        id="password_confirmation" required style="border-color: #ced4da;">
                                     <small id="password-message" class="text-danger"></small>
                                 </div>
                             </div>
 
                             <script>
-                                const password = document.getElementById('password');
-                                const passwordConfirmation = document.getElementById('password_confirmation');
-                                const message = document.getElementById('password-message');
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    const password = document.getElementById('password');
+                                    const passwordConfirmation = document.getElementById('password_confirmation');
+                                    const message = document.getElementById('password-message');
+                                    const signUpButton = document.getElementById('openAgreementsModal');
 
-                                function checkPasswordMatch() {
-                                    if (password.value !== passwordConfirmation.value) {
-                                        message.textContent = "Passwords do not match!";
-                                    } else {
-                                        message.textContent = "";
-                                    }
-                                }
+                                    signUpButton.addEventListener('click', function(event) {
+                                        if (password.value !== passwordConfirmation.value) {
+                                            message.textContent = "Passwords do not match! Please correct them.";
+                                            passwordConfirmation.focus();
+                                            event.preventDefault(); // Prevent the modal from opening
+                                        } else {
+                                            message.textContent = ""; // Clear message if passwords match
 
-                                password.addEventListener('input', checkPasswordMatch);
-                                passwordConfirmation.addEventListener('input', checkPasswordMatch);
-                            </script>
+                                            // Show the agreements modal only if passwords match
+                                            var modal = new bootstrap.Modal(document.getElementById('userAgreementsModal'));
+                                            modal.show();
+                                        }
+                                    });
+                                });
+                                </script>
+
+
 
                         </div>
 
@@ -295,17 +303,15 @@
                 <!-- Additional Information -->
 
                 <!-- Agreements and Submission -->
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <p style="color: #666;">By clicking Sign Up, you agree to our
-                            <a href="path_to_terms" style="color: #0f813c;">Terms</a> and
-                            <a href="path_to_privacy_policy" style="color: #0f813c;">Privacy Policy</a>.
-                        </p>
-                        <button class="btn btn-primary" type="button" id="openAgreementsModal"
-                            style="background-color: #0f813c; border-color: #0f813c;">Sign Up</button>
-                        <p style="color: #666;">Already registered? <a href="{{ route('login') }}"
-                                style="color: #0f813c;">Login here</a></p>
-                    </div>
+                <div class="col-md-12 text-center">
+                    <p style="color: #666;">By clicking Sign Up, you agree to our
+                        <a href="path_to_terms" style="color: #0f813c;">Terms</a> and
+                        <a href="path_to_privacy_policy" style="color: #0f813c;">Privacy Policy</a>.
+                    </p>
+                    <button class="btn btn-primary" type="button" id="openAgreementsModal"
+                        style="background-color: #0f813c; border-color: #0f813c;">Sign Up</button>
+                    <p style="color: #666;">Already registered? <a href="{{ route('login') }}"
+                            style="color: #0f813c;">Login here</a></p>
                 </div>
                 </form>
             </div>
@@ -402,16 +408,6 @@
 
 @include('includes.scripts')
 <script>
-    document.getElementById('openAgreementsModal').addEventListener('click', function() {
-        var form = document.getElementById('registrationForm');
-        if (form.checkValidity()) {
-            var modal = new bootstrap.Modal(document.getElementById('userAgreementsModal'));
-            modal.show();
-        } else {
-            form.reportValidity();
-        }
-    });
-
     document.getElementById('acceptCheckbox').disabled = true; // Disable the checkbox initially
 
     document.getElementById('acceptCheckbox').addEventListener('change', function() {
