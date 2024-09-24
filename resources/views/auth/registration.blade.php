@@ -193,7 +193,7 @@
                                     <label>Confirm Password <span class="text-danger">*</span></label>
                                     <input class="form-control pass-input" type="password"
                                         name="password_confirmation" placeholder="*********"
-                                        id="password_confirmation" required style="border-color: #ced4da;">
+                                        id="password_confirmation" style="border-color: #ced4da;">
                                     <small id="password-message" class="text-danger"></small>
                                 </div>
                             </div>
@@ -236,7 +236,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="job_title">Job Title</label>
-                                    <select class="form-control" id="job_title" name="job_title"
+                                    <select class="form-control" id="job_title" name="job_title" required
                                         style="border-color: #ced4da;">
                                         <option value="">---Select Job Title---</option>
                                     </select>
@@ -335,7 +335,7 @@
                                         <tbody>
                                             <tr>
                                                 <td colspan="2">
-                                                    <img src="{{ asset('assets/img/ccbrt.JPG') }}" alt="CCBRT Logo"
+                                                    <img src="{{ asset('assets/img/ccbrt.jpg') }}" alt="CCBRT Logo"
                                                         class="img-fluid" style="max-height: 50px;">
                                                     <strong id="policy-title">{{ $policies[0]->title }}</strong>
                                                 </td>
@@ -474,18 +474,6 @@
         }
     });
 
-    function validatePassword() {
-        var password = document.getElementById("password").value;
-        var confirmPassword = document.getElementById("password_confirmation").value;
-
-        if (password !== confirmPassword) {
-            alert("Passwords do not match. Please try again.");
-            return false;
-        }
-
-        return validateAge();
-    }
-
     function validateAge() {
         const dob = document.querySelector('input[name="DOB"]').value;
         const dobDate = new Date(dob);
@@ -505,77 +493,3 @@
         return true;
     }
 </script>
-
-{{-- <script>
-    document.getElementById('openAgreementsModal').addEventListener('click', function() {
-        var form = document.getElementById('registrationForm');
-        if (form.checkValidity()) {
-            var modal = new bootstrap.Modal(document.getElementById('userAgreementsModal'));
-            modal.show();
-        } else {
-            form.reportValidity();
-        }
-    });
-
-    document.addEventListener("DOMContentLoaded", function() {
-    var policies = @json($policies); // Convert Laravel policies collection to JavaScript array
-    var currentPolicyIndex = 0;
-
-    function updatePolicyDisplay() {
-        if (policies.length > 0) {
-            var policy = policies[currentPolicyIndex];
-            document.getElementById('policy-title').textContent = policy.title;
-            document.querySelector('#policy-container tbody').innerHTML = `
-                <tr>
-                    <td colspan="2">
-                        <img src="{{ asset('assets/img/ccbrt.JPG') }}" alt="CCBRT Logo" style="height: 50px;">
-                        <strong id="policy-title">${policy.title}</strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">${policy.content}</td>
-                </tr>
-            `;
-        }
-
-        // Disable/enable buttons based on the current policy index
-        document.getElementById('prev-policy').disabled = currentPolicyIndex === 0;
-        document.getElementById('next-policy').disabled = currentPolicyIndex === policies.length - 1;
-
-        // If it's the last policy, enable the checkbox and accept button
-        if (currentPolicyIndex === policies.length - 1) {
-            document.getElementById('acceptCheckbox').disabled = false;
-        }
-    }
-
-    document.getElementById('next-policy').addEventListener('click', function() {
-        if (currentPolicyIndex < policies.length - 1) {
-            currentPolicyIndex++;
-            updatePolicyDisplay();
-        }
-    });
-
-    document.getElementById('prev-policy').addEventListener('click', function() {
-        if (currentPolicyIndex > 0) {
-            currentPolicyIndex--;
-            updatePolicyDisplay();
-        }
-    });
-
-    // Initially disable the checkbox until the user sees all policies
-    document.getElementById('acceptCheckbox').disabled = true;
-
-    // Initial display
-    updatePolicyDisplay();
-});
-
-document.getElementById('acceptAgreements').addEventListener('click', function() {
-    if (document.getElementById('acceptCheckbox').checked) {
-        document.getElementById('userAgreementsModal').querySelector('.btn-close').click();
-        document.getElementById('registrationForm').submit();
-    } else {
-        alert('You must accept the User Agreements and Policies to register.');
-    }
-});
-
-</script> --}}
