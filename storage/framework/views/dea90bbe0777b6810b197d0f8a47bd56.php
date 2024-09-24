@@ -59,13 +59,46 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="email">Email <span class="text-danger"></span></label>
-                                    <input class="form-control" type="email" name="email" required
+                                    <label for="email">Email <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="email" name="email" id="email" required
                                         placeholder="e.g., abc@gmail.com"
                                         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                                         title="Please enter a valid email address." style="border-color: #ced4da;">
+                                    <small id="email-message" class="text-danger"></small>
                                 </div>
                             </div>
+
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script>
+                                $('#email').on('input', function() {
+                                    let email = $(this).val();
+                                    let emailMessage = $('#email-message');
+
+                                    if (email.length > 0) {
+                                        $.ajax({
+                                            url: '<?php echo e(route('check.email')); ?>',
+                                            method: 'POST',
+                                            data: {
+                                                email: email,
+                                                _token: '<?php echo e(csrf_token()); ?>' // Add CSRF token for Laravel
+                                            },
+                                            success: function(response) {
+                                                if (response.exists) {
+                                                    emailMessage.text('This email is already in use.');
+                                                } else {
+                                                    emailMessage.text('');
+                                                }
+                                            },
+                                            error: function() {
+                                                emailMessage.text('Unable to check the email at the moment.');
+                                            }
+                                        });
+                                    } else {
+                                        emailMessage.text('');
+                                    }
+                                });
+                            </script>
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="dob">Date of Birth <span class="text-danger">*</span></label>
@@ -146,6 +179,7 @@
                             <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
                             <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
 
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Password <span class="text-danger">*</span></label>
@@ -159,9 +193,28 @@
                                     <label>Confirm Password <span class="text-danger">*</span></label>
                                     <input class="form-control pass-input" type="password"
                                         name="password_confirmation" placeholder="*********"
-                                        id="password_confirmation" required style="border-color: #ced4da;">
+                                        id="password_confirmation" style="border-color: #ced4da;">
+                                    <small id="password-message" class="text-danger"></small>
                                 </div>
                             </div>
+
+                            <script>
+                                const password = document.getElementById('password');
+                                const passwordConfirmation = document.getElementById('password_confirmation');
+                                const message = document.getElementById('password-message');
+
+                                function checkPasswordMatch() {
+                                    if (password.value !== passwordConfirmation.value) {
+                                        message.textContent = "Passwords do not match!";
+                                    } else {
+                                        message.textContent = "";
+                                    }
+                                }
+
+                                password.addEventListener('input', checkPasswordMatch);
+                                passwordConfirmation.addEventListener('input', checkPasswordMatch);
+                            </script>
+
                         </div>
 
                         <!-- Department and Job Details -->
@@ -183,7 +236,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="job_title">Job Title</label>
-                                    <select class="form-control" id="job_title" name="job_title"
+                                    <select class="form-control" id="job_title" name="job_title" required
                                         style="border-color: #ced4da;">
                                         <option value="">---Select Job Title---</option>
                                     </select>
@@ -282,7 +335,7 @@
                                         <tbody>
                                             <tr>
                                                 <td colspan="2">
-                                                    <img src="<?php echo e(asset('assets/img/ccbrt.JPG')); ?>" alt="CCBRT Logo"
+                                                    <img src="<?php echo e(asset('assets/img/ccbrt.jpg')); ?>" alt="CCBRT Logo"
                                                         class="img-fluid" style="max-height: 50px;">
                                                     <strong id="policy-title"><?php echo e($policies[0]->title); ?></strong>
                                                 </td>
@@ -360,6 +413,8 @@
         }
     });
 
+    document.getElementById('acceptCheckbox').disabled = true; // Disable the checkbox initially
+
     document.getElementById('acceptCheckbox').addEventListener('change', function() {
         document.getElementById('acceptAgreements').disabled = !this.checked;
     });
@@ -388,6 +443,9 @@
             // Disable/enable buttons based on the current policy index
             document.getElementById('prev-policy').disabled = currentPolicyIndex === 0;
             document.getElementById('next-policy').disabled = currentPolicyIndex === policies.length - 1;
+
+            // Enable checkbox only when on the last policy
+            document.getElementById('acceptCheckbox').disabled = currentPolicyIndex < policies.length - 1;
         }
 
         document.getElementById('next-policy').addEventListener('click', function() {
@@ -417,18 +475,17 @@
         }
     });
 
+    // function validatePassword() {
+    //     var password = document.getElementById("password").value;
+    //     var confirmPassword = document.getElementById("password_confirmation").value;
 
-    function validatePassword() {
-        var password = document.getElementById("password").value;
-        var confirmPassword = document.getElementById("password_confirmation").value;
+    //     if (password !== confirmPassword) {
+    //         alert("Passwords do not match. Please try again.");
+    //         return false;
+    //     }
 
-        if (password !== confirmPassword) {
-            alert("Passwords do not match. Please try again.");
-            return false;
-        }
-
-        return validateAge();
-    }
+    //     return validateAge();
+    // }
 
     function validateAge() {
         const dob = document.querySelector('input[name="DOB"]').value;
@@ -449,5 +506,4 @@
         return true;
     }
 </script>
-
 <?php /**PATH D:\Projects\E-docs\resources\views/auth/registration.blade.php ENDPATH**/ ?>

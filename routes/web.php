@@ -55,6 +55,8 @@ Route::post('/login', [AuthController::class, 'handleLogin'])->name('login.handl
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'handleRegistration'])->name('register.handleRegistration');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/check-email', [AuthController::class, 'checkEmail'])->name('check.email');
+
 
 // Show the forget password form
 Route::get('password/forget', [AuthController::class, 'showForgetPasswordForm'])->name('password.forget');

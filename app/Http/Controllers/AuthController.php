@@ -214,6 +214,15 @@ public function getJobTitles($deptId){
     return view('role-permission/user.edit', compact('user','roles', 'userRoles'));
 }
 
+public function checkEmail(Request $request)
+{
+    $email = $request->input('email');
+    $exists = User::where('email', $email)->exists();
+
+    return response()->json(['exists' => $exists]);
+}
+
+
 //This for user role assigment
     public function editUserRole(Request $request, $userId)
      {
