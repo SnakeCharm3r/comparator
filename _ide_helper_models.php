@@ -55,7 +55,7 @@ namespace App\Models{
  * @property int $userId
  * @property string|null $names
  * @property string|null $position
- * @property string|null $department
+ * @property \App\Models\Departments|null $department
  * @property string|null $relation
  * @property string|null $delete_status
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -677,6 +677,7 @@ namespace App\Models{
  * @property-read \App\Models\EmploymentTypes $employmentType
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\HealthDetails> $healthDetails
  * @property-read int|null $health_details_count
+ * @property-read \App\Models\JobTitle|null $jobTitle
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\LanguageKnowledge> $languageKnowledge
  * @property-read int|null $language_knowledge_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
@@ -687,8 +688,6 @@ namespace App\Models{
  * @property-read int|null $roles_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserAdditionalInfo> $userAdditionalInfo
- * @property-read int|null $user_additional_info_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserFamilyDetails> $userFamilyDetails
  * @property-read int|null $user_family_details_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
@@ -790,7 +789,8 @@ namespace App\Models{
  * @property string $full_name
  * @property string $relationship
  * @property string|null $occupation
- * @property string $DOB
+ * @property string|null $DOB
+ * @property int|null $next_of_kin
  * @property string|null $phone_number
  * @property string|null $delete_status
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -804,6 +804,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|UserFamilyDetails whereDeleteStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserFamilyDetails whereFullName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserFamilyDetails whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserFamilyDetails whereNextOfKin($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserFamilyDetails whereOccupation($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserFamilyDetails wherePhoneNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserFamilyDetails whereRelationship($value)
