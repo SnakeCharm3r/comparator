@@ -57,7 +57,7 @@
         }
 
         .form-group input {
-            width: 100%;
+            width: 96%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
@@ -81,7 +81,7 @@
         }
 
         .footer img {
-            height: 100px;
+            /* height: 100px; */
             width: 100%;
             object-fit: cover;
         }
@@ -145,7 +145,8 @@
 
     <div class="container">
         <div class="header">
-            <img src="https://newsite.ccbrt.org/wp-content/uploads/2021/12/cropped-CCBRT_OFFICIAL_LOGO.jpg" alt="Logo">
+            <img src="https://newsite.ccbrt.org/wp-content/uploads/2021/12/cropped-CCBRT_OFFICIAL_LOGO.jpg"
+                alt="Logo">
             <h2>Reset Your Password</h2>
         </div>
 
@@ -153,20 +154,20 @@
             <p>Dear User,</p>
 
             <p>To reset your password, please fill out the form below:</p>
-            @if(session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-        @endif
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
 
-      
-        @if($errors->any())
-            <div class="alert alert-danger">
-                @foreach($errors->all() as $error)
-                    <p>{{ $error }}</p>
-                @endforeach
-            </div>
-        @endif
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    @foreach ($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                    @endforeach
+                </div>
+            @endif
             <form action="{{ route('password.update') }}" method="POST">
                 @csrf
                 <input type="hidden" name="token" value="{{ $token }}">

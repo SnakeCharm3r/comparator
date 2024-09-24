@@ -193,7 +193,7 @@
                                     <label>Confirm Password <span class="text-danger">*</span></label>
                                     <input class="form-control pass-input" type="password"
                                         name="password_confirmation" placeholder="*********"
-                                        id="password_confirmation" required style="border-color: #ced4da;">
+                                        id="password_confirmation" style="border-color: #ced4da;">
                                     <small id="password-message" class="text-danger"></small>
                                 </div>
                             </div>
@@ -236,7 +236,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="job_title">Job Title</label>
-                                    <select class="form-control" id="job_title" name="job_title"
+                                    <select class="form-control" id="job_title" name="job_title" required
                                         style="border-color: #ced4da;">
                                         <option value="">---Select Job Title---</option>
                                     </select>
@@ -335,7 +335,7 @@
                                         <tbody>
                                             <tr>
                                                 <td colspan="2">
-                                                    <img src="<?php echo e(asset('assets/img/ccbrt.JPG')); ?>" alt="CCBRT Logo"
+                                                    <img src="<?php echo e(asset('assets/img/ccbrt.jpg')); ?>" alt="CCBRT Logo"
                                                         class="img-fluid" style="max-height: 50px;">
                                                     <strong id="policy-title"><?php echo e($policies[0]->title); ?></strong>
                                                 </td>
@@ -475,17 +475,17 @@
         }
     });
 
-    function validatePassword() {
-        var password = document.getElementById("password").value;
-        var confirmPassword = document.getElementById("password_confirmation").value;
+    // function validatePassword() {
+    //     var password = document.getElementById("password").value;
+    //     var confirmPassword = document.getElementById("password_confirmation").value;
 
-        if (password !== confirmPassword) {
-            alert("Passwords do not match. Please try again.");
-            return false;
-        }
+    //     if (password !== confirmPassword) {
+    //         alert("Passwords do not match. Please try again.");
+    //         return false;
+    //     }
 
-        return validateAge();
-    }
+    //     return validateAge();
+    // }
 
     function validateAge() {
         const dob = document.querySelector('input[name="DOB"]').value;
@@ -506,6 +506,4 @@
         return true;
     }
 </script>
-
-
 <?php /**PATH D:\Projects\E-docs\resources\views/auth/registration.blade.php ENDPATH**/ ?>

@@ -57,7 +57,7 @@
         }
 
         .form-group input {
-            width: 100%;
+            width: 96%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
@@ -145,7 +145,8 @@
 
     <div class="container">
         <div class="header">
-            <img src="https://newsite.ccbrt.org/wp-content/uploads/2021/12/cropped-CCBRT_OFFICIAL_LOGO.jpg" alt="Logo">
+            <img src="https://newsite.ccbrt.org/wp-content/uploads/2021/12/cropped-CCBRT_OFFICIAL_LOGO.jpg"
+                alt="Logo">
             <h2>Reset Your Password</h2>
         </div>
 
@@ -154,20 +155,20 @@
 
             <p>To reset your password, please fill out the form below:</p>
             <?php if(session('status')): ?>
-            <div class="alert alert-success">
-                <?php echo e(session('status')); ?>
+                <div class="alert alert-success">
+                    <?php echo e(session('status')); ?>
 
-            </div>
-        <?php endif; ?>
+                </div>
+            <?php endif; ?>
 
-      
-        <?php if($errors->any()): ?>
-            <div class="alert alert-danger">
-                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <p><?php echo e($error); ?></p>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            </div>
-        <?php endif; ?>
+
+            <?php if($errors->any()): ?>
+                <div class="alert alert-danger">
+                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <p><?php echo e($error); ?></p>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </div>
+            <?php endif; ?>
             <form action="<?php echo e(route('password.update')); ?>" method="POST">
                 <?php echo csrf_field(); ?>
                 <input type="hidden" name="token" value="<?php echo e($token); ?>">
