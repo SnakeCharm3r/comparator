@@ -59,8 +59,7 @@
                                                                 aria-label="Close"></button>
                                                         </div>
 
-                                                        
-                                                        <div class="modal-body">
+                                                            <div class="modal-body">
                                                             <!-- Health details form -->
                                                             <form id="healthDetailsForm"
                                                                 action="<?php echo e(route('health-details.addHealthData')); ?>"
@@ -128,32 +127,46 @@ unset($__errorArgs, $__bag); ?>
                                                                     <div class="col-12 col-md-6">
                                                                         <div class="form-group">
                                                                             <label>Health Insurance</label>
-                                                                            <select name="health_insurance"
-                                                                                class="form-control">
-                                                                                <option value="" disabled selected>
-                                                                                    Select an option</option>
-                                                                                <option value="yes"
-                                                                                    <?php echo e(old('health_insurance') == 'yes' ? 'selected' : ''); ?>>
-                                                                                    Yes</option>
-                                                                                <option value="no"
-                                                                                    <?php echo e(old('health_insurance') == 'no' ? 'selected' : ''); ?>>
-                                                                                    No</option>
+                                                                            <select name="health_insurance" class="form-control" id="healthInsuranceSelect">
+                                                                                <option value="" disabled selected>Select an option</option>
+                                                                                <option value="yes" <?php echo e(old('health_insurance') == 'yes' ? 'selected' : ''); ?>>Yes</option>
+                                                                                <option value="no" <?php echo e(old('health_insurance') == 'no' ? 'selected' : ''); ?>>No</option>
                                                                             </select>
                                                                         </div>
-                                                                        <div class="form-group">
+                                                                        <div class="form-group" id="insuranceNameGroup" style="display: none;">
                                                                             <label>Insurance Name</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="insur_name"
-                                                                                value="<?php echo e(old('insur_name')); ?>"
-                                                                                placeholder="E.g., Blue Cross Blue Shield">
+                                                                            <input type="text" class="form-control" name="insur_name" value="<?php echo e(old('insur_name')); ?>" placeholder="E.g., Blue Cross Blue Shield">
                                                                         </div>
-                                                                        <div class="form-group">
+                                                                        <div class="form-group" id="insuranceNumberGroup" style="display: none;">
                                                                             <label>Insurance Number</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="insur_no"
-                                                                                value="<?php echo e(old('insur_no')); ?>"
-                                                                                placeholder="E.g., 1234567890">
+                                                                            <input type="text" class="form-control" name="insur_no" value="<?php echo e(old('insur_no')); ?>" placeholder="E.g., 1234567890">
                                                                         </div>
+
+                                                                        <script>
+                                                                            document.addEventListener('DOMContentLoaded', function() {
+                                                                                const healthInsuranceSelect = document.getElementById('healthInsuranceSelect');
+                                                                                const insuranceNameGroup = document.getElementById('insuranceNameGroup');
+                                                                                const insuranceNumberGroup = document.getElementById('insuranceNumberGroup');
+
+                                                                                function toggleInsuranceFields() {
+                                                                                    if (healthInsuranceSelect.value === 'yes') {
+                                                                                        insuranceNameGroup.style.display = 'block';
+                                                                                        insuranceNumberGroup.style.display = 'block';
+                                                                                    } else {
+                                                                                        insuranceNameGroup.style.display = 'none';
+                                                                                        insuranceNumberGroup.style.display = 'none';
+                                                                                    }
+                                                                                }
+
+                                                                                // Initial check on page load
+                                                                                toggleInsuranceFields();
+
+                                                                                // Add event listener for changes
+                                                                                healthInsuranceSelect.addEventListener('change', toggleInsuranceFields);
+                                                                            });
+                                                                        </script>
+
+
                                                                         <div class="form-group">
                                                                             <label>Allergies</label>
                                                                             <textarea class="form-control" name="allergies" placeholder="E.g., Penicillin"><?php echo e(old('allergies')); ?></textarea>

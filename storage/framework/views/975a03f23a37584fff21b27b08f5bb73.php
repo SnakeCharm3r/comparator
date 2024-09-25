@@ -10,6 +10,7 @@
                             <div class="page-header"
                                 style="padding: 5px; background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;">
                                 <div class="row">
+                                    
                                     <div class="page-sub-header"
                                         style="display: flex; flex-direction: column; align-items: flex-start;">
                                         <!-- Previous Approval Section -->
@@ -227,8 +228,8 @@
 
                                             </td>
                                             <td style="border: 1px solid #000; padding: 1px;">
-                                                <?php if($user->signature): ?>
-                                                    <img src="data:image/png;base64,<?php echo e($user->signature); ?>"
+                                                <?php if($ictForm->signature ): ?>
+                                                    <img src="data:image/png;base64,<?php echo e($ictForm->signature); ?>"
                                                         alt="User Signature" style="max-width: 40%; height: 5%;">
                                                 <?php else: ?>
                                                     No signature available
@@ -237,7 +238,7 @@
 
                                             <td style="border: 1px solid #000; padding: 8px;">
                                                 <?php if($ictForm->status == 1): ?>
-                                                <?php echo e(\Carbon\Carbon::parse($ictForm->updated_at)->format('d F Y')); ?>
+                                                <?php echo e(\Carbon\Carbon::parse($ictForm->created_at)->format('d F Y')); ?>
 
                                             <?php endif; ?>
                                             </td>
@@ -248,7 +249,7 @@
                                         <tr>
                                             <td style="border: 1px solid #000; padding: 6px;">Line Manager Name: <?php echo e($lineManager->username ?? 'Not Available'); ?></td>
                                             <td style="border: 1px solid #000; padding: 1px;">
-                                                <?php if($lineManager->signature): ?>
+                                                <?php if($lineManager): ?>
                                                     <img src="data:image/png;base64,<?php echo e($lineManager->signature); ?>"
                                                         alt="Line Manager Signature" style="max-width: 40%; height: 5%;">
                                                 <?php else: ?>
@@ -257,15 +258,15 @@
                                             </td>
                                             <td style="border: 1px solid #000; padding: 6px;">
                                                 <?php if($ictForm->status == 1): ?>
-                                                    <?php echo e(\Carbon\Carbon::parse($ictForm->updated_at)->format('d F Y')); ?>
+                                                    <?php echo e(\Carbon\Carbon::parse($lineManager->updated_at)->format('d F Y')); ?>
 
                                                 <?php endif; ?>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="border: 1px solid #000; padding: 6px;">IT Officer Name: <?php echo e($itOfficer->fname ?? 'Not Available'); ?></td>
-                                            <td style="border: 1px solid #000; padding: 1px;">
-                                                <?php if($itOfficer->signature): ?>
+                                            <td style="border: 1px solid hsl(0, 0%, 0%); padding: 1px;">
+                                                <?php if($itOfficer): ?>
                                                     <img src="data:image/png;base64,<?php echo e($itOfficer->signature); ?>"
                                                         alt="IT Officer Signature" style="max-width: 40%; height: 5%;">
                                                 <?php else: ?>
@@ -274,7 +275,7 @@
                                             </td>
                                             <td style="border: 1px solid #000; padding: 6px;">
                                                 <?php if($ictForm->status == 1): ?>
-                                                    <?php echo e(\Carbon\Carbon::parse($ictForm->updated_at)->format('d F Y')); ?>
+                                                    <?php echo e(\Carbon\Carbon::parse($itOfficer->updated_at)->format('d F Y')); ?>
 
                                                 <?php endif; ?>
                                             </td>
@@ -282,16 +283,16 @@
                                         <tr>
                                             <td style="border: 1px solid #000; padding: 6px;">HR Officer Name: <?php echo e($hrOfficer->fname ?? 'Not Available'); ?></td>
                                             <td style="border: 1px solid #000; padding: 1px;">
-                                                <?php if($hrOfficer->signature): ?>
+                                                <?php if($hrOfficer): ?>
                                                     <img src="data:image/png;base64,<?php echo e($hrOfficer->signature); ?>"
                                                         alt="HR Officer Signature" style="max-width: 40%; height: 5%;">
-                                                <?php else: ?>
-                                                    No signature available
+
+
                                                 <?php endif; ?>
                                             </td>
                                             <td style="border: 1px solid #000; padding: 6px;">
                                                 <?php if($ictForm->status == 1): ?>
-                                                    <?php echo e(\Carbon\Carbon::parse($ictForm->updated_at)->format('d F Y')); ?>
+                                                    <?php echo e(\Carbon\Carbon::parse($hrOfficer->updated_at)->format('d F Y')); ?>
 
                                                 <?php endif; ?>
                                             </td>
