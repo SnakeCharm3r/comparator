@@ -70,8 +70,6 @@
 
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                             <script>
-                                let emailExists = false;
-
                                 $('#email').on('input', function() {
                                     let email = $(this).val();
                                     let emailMessage = $('#email-message');
@@ -87,10 +85,8 @@
                                             success: function(response) {
                                                 if (response.exists) {
                                                     emailMessage.text('This email is already in use.');
-                                                    emailExists = true; // Set flag if email exists
                                                 } else {
                                                     emailMessage.text('');
-                                                    emailExists = false; // Reset flag if email is available
                                                 }
                                             },
                                             error: function() {
@@ -99,19 +95,9 @@
                                         });
                                     } else {
                                         emailMessage.text('');
-                                        emailExists = false; // Reset flag if email input is empty
-                                    }
-                                });
-
-                                document.getElementById('openAgreementsModal').addEventListener('click', function() {
-                                    if (!emailExists) {
-                                        $('#userAgreementsModal').modal('show');
-                                    } else {
-                                        alert('Please use a different email address.');
                                     }
                                 });
                             </script>
-
 
                             <div class="col-md-4">
                                 <div class="form-group">

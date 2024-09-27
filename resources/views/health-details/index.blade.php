@@ -61,107 +61,7 @@
                                                                 aria-label="Close"></button>
                                                         </div>
 
-                                                        {{-- <div class="modal-body">
-                                                            <!-- Health details form -->
-                                                            <form id="healthDetailsForm"
-                                                                action="{{ route('health-details.addHealthData') }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                <input type="hidden" name="userId"
-                                                                    value="{{ Auth::id() }}">
-                                                                <div class="row">
-                                                                    <div class="col-12 col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label>Physical Disability</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="physical_disability"
-                                                                                value="{{ old('physical_disability') }}">
-                                                                            @error('physical_disability')
-                                                                                <span class="invalid-feedback" role="alert">
-                                                                                    <strong>{{ $message }}</strong>
-                                                                                </span>
-                                                                            @enderror
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label>Blood Group</label>
-                                                                            <select class="form-control" name="blood_group">
-                                                                                <option value="">Select Blood Group
-                                                                                </option>
-                                                                                <option value="A+"
-                                                                                    {{ old('blood_group') == 'A+' ? 'selected' : '' }}>
-                                                                                    A+</option>
-                                                                                <option value="A-"
-                                                                                    {{ old('blood_group') == 'A-' ? 'selected' : '' }}>
-                                                                                    A-</option>
-                                                                                <option value="B+"
-                                                                                    {{ old('blood_group') == 'B+' ? 'selected' : '' }}>
-                                                                                    B+</option>
-                                                                                <option value="B-"
-                                                                                    {{ old('blood_group') == 'B-' ? 'selected' : '' }}>
-                                                                                    B-</option>
-                                                                                <option value="AB+"
-                                                                                    {{ old('blood_group') == 'AB+' ? 'selected' : '' }}>
-                                                                                    AB+</option>
-                                                                                <option value="AB-"
-                                                                                    {{ old('blood_group') == 'AB-' ? 'selected' : '' }}>
-                                                                                    AB-</option>
-                                                                                <option value="O+"
-                                                                                    {{ old('blood_group') == 'O+' ? 'selected' : '' }}>
-                                                                                    O+</option>
-                                                                                <option value="O-"
-                                                                                    {{ old('blood_group') == 'O-' ? 'selected' : '' }}>
-                                                                                    O-</option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label>Illness History</label>
-                                                                            <textarea class="form-control" name="illness_history">{{ old('illness_history') }}</textarea>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-12 col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label>Health Insurance</label>
-                                                                            <select name="health_insurance"
-                                                                                class="form-control">
-                                                                                <option value="" disabled selected>
-                                                                                    Select an option</option>
-                                                                                <option value="yes"
-                                                                                    {{ old('health_insurance') == 'yes' ? 'selected' : '' }}>
-                                                                                    Yes</option>
-                                                                                <option value="no"
-                                                                                    {{ old('health_insurance') == 'no' ? 'selected' : '' }}>
-                                                                                    No</option>
-                                                                            </select>
-                                                                        </div>
-
-                                                                        <div class="form-group">
-                                                                            <label>Insurance Name</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="insur_name"
-                                                                                value="{{ old('insur_name') }}">
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label>Insurance Number</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="insur_no"
-                                                                                value="{{ old('insur_no') }}">
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label>Allergies</label>
-                                                                            <textarea class="form-control" name="allergies">{{ old('allergies') }}</textarea>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-bs-dismiss="modal">Close</button>
-                                                                    <button type="submit"
-                                                                        class="btn btn-primary">Save</button>
-                                                                </div>
-                                                            </form>
-                                                        </div> --}}
-                                                        <div class="modal-body">
+                                                            <div class="modal-body">
                                                             <!-- Health details form -->
                                                             <form id="healthDetailsForm"
                                                                 action="{{ route('health-details.addHealthData') }}"
@@ -222,32 +122,46 @@
                                                                     <div class="col-12 col-md-6">
                                                                         <div class="form-group">
                                                                             <label>Health Insurance</label>
-                                                                            <select name="health_insurance"
-                                                                                class="form-control">
-                                                                                <option value="" disabled selected>
-                                                                                    Select an option</option>
-                                                                                <option value="yes"
-                                                                                    {{ old('health_insurance') == 'yes' ? 'selected' : '' }}>
-                                                                                    Yes</option>
-                                                                                <option value="no"
-                                                                                    {{ old('health_insurance') == 'no' ? 'selected' : '' }}>
-                                                                                    No</option>
+                                                                            <select name="health_insurance" class="form-control" id="healthInsuranceSelect">
+                                                                                <option value="" disabled selected>Select an option</option>
+                                                                                <option value="yes" {{ old('health_insurance') == 'yes' ? 'selected' : '' }}>Yes</option>
+                                                                                <option value="no" {{ old('health_insurance') == 'no' ? 'selected' : '' }}>No</option>
                                                                             </select>
                                                                         </div>
-                                                                        <div class="form-group">
+                                                                        <div class="form-group" id="insuranceNameGroup" style="display: none;">
                                                                             <label>Insurance Name</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="insur_name"
-                                                                                value="{{ old('insur_name') }}"
-                                                                                placeholder="E.g., Blue Cross Blue Shield">
+                                                                            <input type="text" class="form-control" name="insur_name" value="{{ old('insur_name') }}" placeholder="E.g., Blue Cross Blue Shield">
                                                                         </div>
-                                                                        <div class="form-group">
+                                                                        <div class="form-group" id="insuranceNumberGroup" style="display: none;">
                                                                             <label>Insurance Number</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="insur_no"
-                                                                                value="{{ old('insur_no') }}"
-                                                                                placeholder="E.g., 1234567890">
+                                                                            <input type="text" class="form-control" name="insur_no" value="{{ old('insur_no') }}" placeholder="E.g., 1234567890">
                                                                         </div>
+
+                                                                        <script>
+                                                                            document.addEventListener('DOMContentLoaded', function() {
+                                                                                const healthInsuranceSelect = document.getElementById('healthInsuranceSelect');
+                                                                                const insuranceNameGroup = document.getElementById('insuranceNameGroup');
+                                                                                const insuranceNumberGroup = document.getElementById('insuranceNumberGroup');
+
+                                                                                function toggleInsuranceFields() {
+                                                                                    if (healthInsuranceSelect.value === 'yes') {
+                                                                                        insuranceNameGroup.style.display = 'block';
+                                                                                        insuranceNumberGroup.style.display = 'block';
+                                                                                    } else {
+                                                                                        insuranceNameGroup.style.display = 'none';
+                                                                                        insuranceNumberGroup.style.display = 'none';
+                                                                                    }
+                                                                                }
+
+                                                                                // Initial check on page load
+                                                                                toggleInsuranceFields();
+
+                                                                                // Add event listener for changes
+                                                                                healthInsuranceSelect.addEventListener('change', toggleInsuranceFields);
+                                                                            });
+                                                                        </script>
+
+
                                                                         <div class="form-group">
                                                                             <label>Allergies</label>
                                                                             <textarea class="form-control" name="allergies" placeholder="E.g., Penicillin">{{ old('allergies') }}</textarea>

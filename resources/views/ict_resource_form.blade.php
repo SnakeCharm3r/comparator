@@ -12,6 +12,7 @@
                             <div class="page-header"
                                 style="padding: 5px; background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;">
                                 <div class="row">
+                                    {{-- {{dd($ictForm)}} --}}
                                     <div class="page-sub-header"
                                         style="display: flex; flex-direction: column; align-items: flex-start;">
                                         <!-- Previous Approval Section -->
@@ -207,8 +208,8 @@
                                                 <strong>Requester:</strong> {{ $ictForm->fname }} {{ $ictForm->lname }}
                                             </td>
                                             <td style="border: 1px solid #000; padding: 1px;">
-                                                @if ($user->signature)
-                                                    <img src="data:image/png;base64,{{ $user->signature }}"
+                                                @if ($ictForm->signature )
+                                                    <img src="data:image/png;base64,{{ $ictForm->signature }}"
                                                         alt="User Signature" style="max-width: 40%; height: 5%;">
                                                 @else
                                                     No signature available
@@ -217,17 +218,17 @@
 
                                             <td style="border: 1px solid #000; padding: 8px;">
                                                 @if ($ictForm->status == 1)
-                                                {{ \Carbon\Carbon::parse($ictForm->updated_at)->format('d F Y') }}
+                                                {{ \Carbon\Carbon::parse($ictForm->created_at)->format('d F Y') }}
                                             @endif
                                             </td>
                                         </tr>
-
+{{-- {{dd($ictForm)}} --}}
 
 
                                         <tr>
                                             <td style="border: 1px solid #000; padding: 6px;">Line Manager Name: {{ $lineManager->username ?? 'Not Available' }}</td>
                                             <td style="border: 1px solid #000; padding: 1px;">
-                                                @if ($lineManager->signature)
+                                                @if ($lineManager)
                                                     <img src="data:image/png;base64,{{ $lineManager->signature }}"
                                                         alt="Line Manager Signature" style="max-width: 40%; height: 5%;">
                                                 @else
@@ -236,14 +237,14 @@
                                             </td>
                                             <td style="border: 1px solid #000; padding: 6px;">
                                                 @if ($ictForm->status == 1)
-                                                    {{ \Carbon\Carbon::parse($ictForm->updated_at)->format('d F Y') }}
+                                                    {{ \Carbon\Carbon::parse($lineManager->updated_at)->format('d F Y') }}
                                                 @endif
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="border: 1px solid #000; padding: 6px;">IT Officer Name: {{ $itOfficer->fname ?? 'Not Available' }}</td>
-                                            <td style="border: 1px solid #000; padding: 1px;">
-                                                @if ($itOfficer->signature)
+                                            <td style="border: 1px solid hsl(0, 0%, 0%); padding: 1px;">
+                                                @if ($itOfficer)
                                                     <img src="data:image/png;base64,{{ $itOfficer->signature }}"
                                                         alt="IT Officer Signature" style="max-width: 40%; height: 5%;">
                                                 @else
@@ -252,23 +253,23 @@
                                             </td>
                                             <td style="border: 1px solid #000; padding: 6px;">
                                                 @if ($ictForm->status == 1)
-                                                    {{ \Carbon\Carbon::parse($ictForm->updated_at)->format('d F Y') }}
+                                                    {{ \Carbon\Carbon::parse($itOfficer->updated_at)->format('d F Y') }}
                                                 @endif
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="border: 1px solid #000; padding: 6px;">HR Officer Name: {{ $hrOfficer->fname ?? 'Not Available' }}</td>
                                             <td style="border: 1px solid #000; padding: 1px;">
-                                                @if ($hrOfficer->signature)
+                                                @if ($hrOfficer)
                                                     <img src="data:image/png;base64,{{ $hrOfficer->signature }}"
                                                         alt="HR Officer Signature" style="max-width: 40%; height: 5%;">
-                                                @else
-                                                    No signature available
+
+
                                                 @endif
                                             </td>
                                             <td style="border: 1px solid #000; padding: 6px;">
                                                 @if ($ictForm->status == 1)
-                                                    {{ \Carbon\Carbon::parse($ictForm->updated_at)->format('d F Y') }}
+                                                    {{ \Carbon\Carbon::parse($hrOfficer->updated_at)->format('d F Y') }}
                                                 @endif
                                             </td>
                                         </tr>

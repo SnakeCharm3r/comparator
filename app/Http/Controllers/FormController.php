@@ -88,17 +88,36 @@ class FormController extends Controller
 
         // Fetch the approvers based on their roles
         // Assuming you have role ids for Line Manager, IT Officer, and HR
-        $lineManager = User::whereHas('roles', function($query) {
-            $query->where('name', 'line-manager');
-        })->first();
+        $lineManager = User::whereHas('roles', function($query ) {
+            $query->where('name', 'line-manager')
+            ;
+        })
+        ->where('users.deptId', $ictForm->deptId)
+        ->join('work_flow_histories','work_flow_histories.attended_by','=','users.id')
+        ->where('work_flow_histories.work_flow_id',$ictForm->work_flow_id)
+        ->where('work_flow_histories.status',1)
+        ->first();
 
-        $itOfficer = User::whereHas('roles', function($query) {
-            $query->where('name', 'it');
-        })->first();
+
+        // $lineManager = User::where('id', $ictForm->attended_by)->first();
 
         $hrOfficer = User::whereHas('roles', function($query) {
             $query->where('name', 'hr');
-        })->first();
+        })
+        ->join('work_flow_histories','work_flow_histories.attended_by','=','users.id')
+        ->where('work_flow_histories.work_flow_id',$ictForm->work_flow_id)
+        ->where('work_flow_histories.status',1)
+        ->first();
+
+
+        $itOfficer = User::whereHas('roles', function($query) {
+            $query->where('name', 'it');
+        })
+        ->join('work_flow_histories','work_flow_histories.attended_by','=','users.id')
+        ->where('work_flow_histories.work_flow_id',$ictForm->work_flow_id)
+        ->where('work_flow_histories.status',1)
+        ->first();
+
 
         return view('ict_resource_form', compact('ictForm', 'user', 'lineManager', 'itOfficer', 'hrOfficer'));
     }

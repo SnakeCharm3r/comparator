@@ -72,7 +72,7 @@
         }
 
         .footer img {
-            height: 100px;
+            /* height: 100px; */
             /* Increased the height for a larger footer image */
             width: 100%;
             /* Ensures the image spans the entire footer width */
