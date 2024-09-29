@@ -216,10 +216,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th style="border: 1px solid #000; text-align: left; padding: 6px;">Details:
-                                            </th>
-                                            <th style="border: 1px solid #000; text-align: left; padding: 6px;">Signature:
-                                            </th>
+                                            <th style="border: 1px solid #000; text-align: left; padding: 6px;">Details:</th>
+                                            <th style="border: 1px solid #000; text-align: left; padding: 6px;">Signature:</th>
                                             <th style="border: 1px solid #000; text-align: left; padding: 6px;">Date:</th>
                                         </tr>
                                         <tr>
@@ -228,77 +226,71 @@
 
                                             </td>
                                             <td style="border: 1px solid #000; padding: 1px;">
-                                                <?php if($ictForm->signature ): ?>
-                                                    <img src="data:image/png;base64,<?php echo e($ictForm->signature); ?>"
-                                                        alt="User Signature" style="max-width: 40%; height: 5%;">
-                                                <?php else: ?>
-                                                    No signature available
+                                                <?php if($ictForm->signature): ?>
+                                                    <img src="data:image/png;base64,<?php echo e($ictForm->signature); ?>" alt="User Signature" style="max-width: 40%; height: 5%;">
                                                 <?php endif; ?>
                                             </td>
-
                                             <td style="border: 1px solid #000; padding: 8px;">
                                                 <?php if($ictForm->status == 1): ?>
-                                                <?php echo e(\Carbon\Carbon::parse($ictForm->created_at)->format('d F Y')); ?>
+                                                    <?php echo e(\Carbon\Carbon::parse($ictForm->created_at)->format('d F Y')); ?>
 
-                                            <?php endif; ?>
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
 
-
-
                                         <tr>
-                                            <td style="border: 1px solid #000; padding: 6px;">Line Manager Name: <?php echo e($lineManager->username ?? 'Not Available'); ?></td>
-                                            <td style="border: 1px solid #000; padding: 1px;">
+                                            <td style="border: 1px solid #000; padding: 6px;">
+                                                Line Manager Name: <?php echo e(trim(($lineManager->fname ?? '') . ' ' . ($lineManager->lname ?? ''))); ?>
+
+                                            </td>
+                                                                                        <td style="border: 1px solid #000; padding: 1px;">
                                                 <?php if($lineManager): ?>
-                                                    <img src="data:image/png;base64,<?php echo e($lineManager->signature); ?>"
-                                                        alt="Line Manager Signature" style="max-width: 40%; height: 5%;">
-                                                <?php else: ?>
-                                                    No signature available
+                                                    <img src="data:image/png;base64,<?php echo e($lineManager->signature); ?>" alt="Line Manager Signature" style="max-width: 40%; height: 5%;">
                                                 <?php endif; ?>
                                             </td>
                                             <td style="border: 1px solid #000; padding: 6px;">
-                                                <?php if($ictForm->status == 1): ?>
+                                                <?php if($ictForm->status == 1 && $lineManager && $lineManager->updated_at): ?>
                                                     <?php echo e(\Carbon\Carbon::parse($lineManager->updated_at)->format('d F Y')); ?>
 
                                                 <?php endif; ?>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td style="border: 1px solid #000; padding: 6px;">IT Officer Name: <?php echo e($itOfficer->fname ?? 'Not Available'); ?></td>
-                                            <td style="border: 1px solid hsl(0, 0%, 0%); padding: 1px;">
-                                                <?php if($itOfficer): ?>
-                                                    <img src="data:image/png;base64,<?php echo e($itOfficer->signature); ?>"
-                                                        alt="IT Officer Signature" style="max-width: 40%; height: 5%;">
-                                                <?php else: ?>
-                                                    No signature available
-                                                <?php endif; ?>
-                                            </td>
-                                            <td style="border: 1px solid #000; padding: 6px;">
-                                                <?php if($ictForm->status == 1): ?>
-                                                    <?php echo e(\Carbon\Carbon::parse($itOfficer->updated_at)->format('d F Y')); ?>
 
-                                                <?php endif; ?>
-                                            </td>
-                                        </tr>
                                         <tr>
-                                            <td style="border: 1px solid #000; padding: 6px;">HR Officer Name: <?php echo e($hrOfficer->fname ?? 'Not Available'); ?></td>
+                                            <td style="border: 1px solid #000; padding: 6px;">
+                                                HR Officer Name: <?php echo e(trim(($hrOfficer->fname ?? '') . ' ' . ($hrOfficer->lname ?? ''))); ?>
+
+                                            </td>
                                             <td style="border: 1px solid #000; padding: 1px;">
                                                 <?php if($hrOfficer): ?>
-                                                    <img src="data:image/png;base64,<?php echo e($hrOfficer->signature); ?>"
-                                                        alt="HR Officer Signature" style="max-width: 40%; height: 5%;">
-
-
+                                                    <img src="data:image/png;base64,<?php echo e($hrOfficer->signature); ?>" alt="HR Officer Signature" style="max-width: 40%; height: 5%;">
                                                 <?php endif; ?>
                                             </td>
                                             <td style="border: 1px solid #000; padding: 6px;">
-                                                <?php if($ictForm->status == 1): ?>
+                                                <?php if($ictForm->status == 1 && $hrOfficer && $hrOfficer->updated_at): ?>
                                                     <?php echo e(\Carbon\Carbon::parse($hrOfficer->updated_at)->format('d F Y')); ?>
 
                                                 <?php endif; ?>
                                             </td>
                                         </tr>
+                                        
+                                        <tr>
+                                            <td style="border: 1px solid #000; padding: 6px;">
+                                                IT Officer Name: <?php echo e(trim(($itOfficer->fname ?? '') . ' ' . ($itOfficer->lname ?? ''))); ?>
 
+                                            </td>
+                                            <td style="border: 1px solid hsl(0, 0%, 0%); padding: 1px;">
+                                                <?php if($itOfficer): ?>
+                                                    <img src="data:image/png;base64,<?php echo e($itOfficer->signature); ?>" alt="IT Officer Signature" style="max-width: 40%; height: 5%;">
+                                                <?php endif; ?>
+                                            </td>
+                                            <td style="border: 1px solid #000; padding: 6px;">
+                                                <?php if($ictForm->status == 1 && $itOfficer && $itOfficer->updated_at): ?>
+                                                    <?php echo e(\Carbon\Carbon::parse($itOfficer->updated_at)->format('d F Y')); ?>
 
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
 
                                     </tbody>
                                 </table>
