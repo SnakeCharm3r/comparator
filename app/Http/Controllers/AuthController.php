@@ -141,7 +141,8 @@ public function getJobTitles($deptId){
         return view('auth.registration', compact('departments', 'employmentTypes','policies'));
     }
 
-    public function handleRegistration(Request $request){
+    public function handleRegistration(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'fname' => 'required',
             'lname' => 'required',
@@ -151,27 +152,30 @@ public function getJobTitles($deptId){
             'DOB' => 'required',
             'employment_typeId' => 'required',
             'password' => 'required|confirmed|min:6',
-            'mobile' => 'required',  // Ensure mobile number is required
-            'country_code' => 'required',  // Ensure country_code is required
+            'mobile' => 'required',
+            'country_code' => 'required',
         ]);
 
-        if($validator->fails()) {
-            return response()->json([
-                'status' => 400,
-                'error' => $validator->errors()
-            ]);
+        if ($validator->fails()) {
+            \Log::error('Validation failed', ['errors' => $validator->errors()]);
 
+            // Redirect back with input and errors
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error_message', 'We are unable to validate your email because the address is already in use. ');
         }
-        // $dob = \DateTime::createFromFormat('d-m-Y', $request->input('DOB'))->format('Y-m-d');
+
+        // Process the registration if validation passes
         $username = strtolower($request->input('fname')) . '.' . strtolower($request->input('lname'));
         $countryCode = $request->input('country_code');
-       $mobile = $request->input('mobile');
-       $phoneNumber = $countryCode . $mobile;
+        $mobile = $request->input('mobile');
+        $phoneNumber = $countryCode . $mobile;
+
         $user = User::create([
             'fname' => $request->input('fname'),
             'mname' => $request->input('mname'),
             'lname' => $request->input('lname'),
-            // 'username' => $request->input('username'),
             'username' => $username,
             'DOB' => $request->input('DOB'),
             'gender' => $request->input('gender'),
@@ -184,7 +188,7 @@ public function getJobTitles($deptId){
             'district' => $request->input('district'),
             'region' => $request->input('region'),
             'professional_reg_number' => $request->input('professional_reg_number'),
-            'place_of_birth'   => $request->input('place_of_birth'),
+            'place_of_birth' => $request->input('place_of_birth'),
             'house_no' => $request->input('house_no'),
             'street' => $request->input('street'),
             'deptId' => $request->input('deptId'),
@@ -194,14 +198,15 @@ public function getJobTitles($deptId){
             'nssf_no' => $request->input('nssf_no'),
             'domicile' => $request->input('domicile'),
             'password' => Hash::make($request->input('password')),
-
         ]);
-            $user->assignRole('requester');
-            Auth::login($user);
-            Alert::success('User Registered Successful','Please Provide Your Signature');
-        return redirect()->route('login');
 
-}
+        $user->assignRole('requester');
+        Auth::login($user);
+        Alert::success('User Registered Successfully', 'Please Provide Your Signature');
+
+        return redirect()->route('login');
+    }
+
 
    //Function shows edit user form
    public function showEditForm($id){
