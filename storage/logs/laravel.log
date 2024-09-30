@@ -1036,3 +1036,21 @@
 #44 C:\\Users\\FAMILY PC\\Documents\\GitHub\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #45 {main}
 "} 
+[2024-09-23 08:25:18] local.ERROR: Too many arguments to "make:model" command, expected arguments "name". {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): Too many arguments to \"make:model\" command, expected arguments \"name\". at C:\\Users\\FAMILY PC\\Documents\\GitHub\\E-docs\\vendor\\symfony\\console\\Input\\ArgvInput.php:196)
+[stacktrace]
+#0 C:\\Users\\FAMILY PC\\Documents\\GitHub\\E-docs\\vendor\\symfony\\console\\Input\\ArgvInput.php(89): Symfony\\Component\\Console\\Input\\ArgvInput->parseArgument('c')
+#1 C:\\Users\\FAMILY PC\\Documents\\GitHub\\E-docs\\vendor\\symfony\\console\\Input\\ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken('c', true)
+#2 C:\\Users\\FAMILY PC\\Documents\\GitHub\\E-docs\\vendor\\symfony\\console\\Input\\Input.php(56): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#3 C:\\Users\\FAMILY PC\\Documents\\GitHub\\E-docs\\vendor\\symfony\\console\\Command\\Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind(Object(Symfony\\Component\\Console\\Input\\InputDefinition))
+#4 C:\\Users\\FAMILY PC\\Documents\\GitHub\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(180): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#5 C:\\Users\\FAMILY PC\\Documents\\GitHub\\E-docs\\vendor\\symfony\\console\\Application.php(1096): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#6 C:\\Users\\FAMILY PC\\Documents\\GitHub\\E-docs\\vendor\\symfony\\console\\Application.php(324): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Foundation\\Console\\ModelMakeCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 C:\\Users\\FAMILY PC\\Documents\\GitHub\\E-docs\\vendor\\symfony\\console\\Application.php(175): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#8 C:\\Users\\FAMILY PC\\Documents\\GitHub\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#9 C:\\Users\\FAMILY PC\\Documents\\GitHub\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
+[2024-09-23 08:26:45] local.ERROR: syntax error, unexpected token "-", expecting "{" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"-\", expecting \"{\" at C:\\Users\\FAMILY PC\\Documents\\GitHub\\E-docs\\app\\Models\\UserManual-cr.php:8)
+[stacktrace]
+#0 {main}
+"} 
