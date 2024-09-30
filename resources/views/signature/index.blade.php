@@ -65,6 +65,12 @@
                         <button type="submit" id="save" class="btn btn-primary">Save Signature</button>
                     </div>
                 </div>
+                @if (session('message'))
+                    <div class="alert alert-warning">
+                        {{ session('message') }}
+                    </div>
+                @endif
+
                 <form id="signature-form" action="{{ route('signature.store') }}" method="POST">
                     @csrf
                     <input type="hidden" id="signature-input" name="signature">

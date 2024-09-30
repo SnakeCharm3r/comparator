@@ -23,20 +23,18 @@ class ClearanceFormController extends Controller
         // $forms = ClearanceForm::with('user')->get();
         $clearance = ClearanceForm::where('userId', $user->id)->first();
 
+        $hasSignature = !is_null($user->signature);
+        if (!$hasSignature) {
+          return redirect()->route('signature.index')->with([
+              'message' => 'Please add your signature before proceeding.',
+          ]);
+      }
+
    // Check if the user's profile is complete
    $profileComplete = $user->healthDetails()->exists() &&
    $user->userFamilyDetails()->exists() &&
    $user->languageKnowledge()->exists() &&
    $user->ccbrtRelation()->exists();
-
-// Debugging output to check profile completeness
-// dd([
-//     'healthDetails' => $user->healthDetails()->exists(),
-//     'userFamilyDetails' => $user->userFamilyDetails()->exists(),
-//     'languageKnowledge' => $user->languageKnowledge()->exists(),
-//     'ccbrtRelation' => $user->ccbrtRelation()->exists(),
-// ]);
-
 
 // If the profile is not complete, redirect to the profile edit page
 if (!$profileComplete) {
