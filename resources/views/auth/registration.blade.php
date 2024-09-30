@@ -11,6 +11,24 @@
                         <h1 style="font-size: 2rem; color: #0f813c;">Register Your Account</h1>
                     </div>
 
+                    @if (session('error_message'))
+    <div class="alert alert-danger">
+        {{ session('error_message') }}
+    </div>
+@endif
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>Please fix the following issues:</strong>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
                     <form id="registrationForm" action="{{ route('register.handleRegistration') }}" method="POST"
                         onsubmit="return validatePassword()">
                         @csrf

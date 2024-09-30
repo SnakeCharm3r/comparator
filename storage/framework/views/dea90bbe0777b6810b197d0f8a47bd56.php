@@ -11,6 +11,25 @@
                         <h1 style="font-size: 2rem; color: #0f813c;">Register Your Account</h1>
                     </div>
 
+                    <?php if(session('error_message')): ?>
+    <div class="alert alert-danger">
+        <?php echo e(session('error_message')); ?>
+
+    </div>
+<?php endif; ?>
+
+<?php if($errors->any()): ?>
+    <div class="alert alert-danger">
+        <strong>Please fix the following issues:</strong>
+        <ul>
+            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <li><?php echo e($error); ?></li>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </ul>
+    </div>
+<?php endif; ?>
+
+
                     <form id="registrationForm" action="<?php echo e(route('register.handleRegistration')); ?>" method="POST"
                         onsubmit="return validatePassword()">
                         <?php echo csrf_field(); ?>
