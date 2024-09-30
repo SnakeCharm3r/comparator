@@ -5,9 +5,11 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="<?php echo e(route('policies.create')); ?>" class="btn btn-primary float-right">
-                                <i class="fas fa-plus me-2"></i> Create Policy
-                            </a>
+                            <?php if (\Illuminate\Support\Facades\Blade::check('role', 'hr|admin|super-admin')): ?>
+                                <a href="<?php echo e(route('policies.create')); ?>" class="btn btn-primary float-right">
+                                    <i class="fas fa-plus me-2"></i> Create Policy
+                                </a>
+                            <?php endif; ?>
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered">
@@ -22,30 +24,33 @@
                                         <tr>
                                             <td><?php echo e($policy->title); ?></td>
                                             <td class="text-center" style="width: 140px;">
-                                                <!-- View Description Icon -->
                                                 <a href="javascript:void(0);"
                                                     onclick="viewDescription('<?php echo e($policy->title); ?>', '<?php echo e($policy->content); ?>')"
                                                     class="btn btn-sm p-0" title="View Description">
                                                     <i class="fas fa-eye text-info"></i>
                                                 </a>
 
-                                                <!-- Edit Icon -->
-                                                <a href="<?php echo e(route('policies.edit', $policy->id)); ?>"
-                                                    class="btn btn-sm p-0 mx-1" title="Edit">
-                                                    <i class="fas fa-edit text-success"></i>
-                                                </a>
 
-                                                <!-- Delete Icon -->
-                                                <form action="<?php echo e(route('policies.destroy', $policy->id)); ?>" method="POST"
-                                                    style="display:inline;"
-                                                    onsubmit="return confirm('Are you sure you want to delete this policy?');">
-                                                    <?php echo csrf_field(); ?>
-                                                    <?php echo method_field('DELETE'); ?>
-                                                    <button type="submit" class="btn btn-sm p-0"
-                                                        style="border: none; background: none;" title="Delete">
-                                                        <i class="fas fa-trash-alt text-danger"></i>
-                                                    </button>
-                                                </form>
+                                                <?php if (\Illuminate\Support\Facades\Blade::check('role', 'hr|admin|super-admin')): ?>
+                                                    <!-- Edit Icon -->
+                                                    <a href="<?php echo e(route('policies.edit', $policy->id)); ?>"
+                                                        class="btn btn-sm p-0 mx-1" title="Edit">
+                                                        <i class="fas fa-edit text-success"></i>
+                                                    </a>
+
+                                                    <!-- Delete Icon -->
+                                                    <form action="<?php echo e(route('policies.destroy', $policy->id)); ?>" method="POST"
+                                                        style="display:inline;"
+                                                        onsubmit="return confirm('Are you sure you want to delete this policy?');">
+                                                        <?php echo csrf_field(); ?>
+                                                        <?php echo method_field('DELETE'); ?>
+                                                        <button type="submit" class="btn btn-sm p-0"
+                                                            style="border: none; background: none;" title="Delete">
+                                                            <i class="fas fa-trash-alt text-danger"></i>
+                                                        </button>
+                                                    </form>
+                                                <?php endif; ?>
+
                                             </td>
                                         </tr>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -79,8 +84,9 @@
 
     <script>
         function viewDescription(title, content) {
-            // Set the title and content in the modal
-            document.getElementById('descriptionContent').innerHTML = '<h5>' + title + '</h5><p>' + content + '</p>';
+            // Set the title and content in the modal, allowing the content to be rendered as HTML
+            document.getElementById('descriptionContent').innerHTML = '<h5>' + title + '</h5>' + content;
+
             // Show the modal
             var descriptionModal = new bootstrap.Modal(document.getElementById('descriptionModal'));
             descriptionModal.show();

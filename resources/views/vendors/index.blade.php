@@ -22,8 +22,11 @@
 
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <a href="{{ route('vendors.create') }}" class="btn btn-primary ml-auto">Add Vendor</a>
+                    @if (auth()->user()->hasAnyRole(['hr', 'super-admin', 'admin']))
+                        <a href="{{ route('vendors.create') }}" class="btn btn-primary ml-auto">Add Vendor</a>
+                    @endif
                 </div>
+                
 
 
                 <div class="card card-body p-3">
@@ -57,7 +60,7 @@
                                                 title="View">
                                                 <i class="fas fa-eye"></i>
                                             </a>
-
+                                            @if (auth()->user()->hasAnyRole(['hr', 'super-admin', 'admin']))
                                             <!-- Edit Icon -->
                                             <a href="{{ route('vendors.edit', $vendor->id) }}"
                                                 class="btn btn-warning btn-sm" title="Edit">
@@ -74,6 +77,7 @@
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>
+                                            @endif
                                         </td>
 
                                     </tr>

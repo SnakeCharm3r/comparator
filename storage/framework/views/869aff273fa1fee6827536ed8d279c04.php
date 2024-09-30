@@ -43,9 +43,7 @@
                         
                         
                         
-                        <li><a href="<?php echo e(route('card.index')); ?>"
-                                class="<?php echo e(request()->routeIs('card.index') ? 'active' : ''); ?>">ID Card Request Form</a>
-                        </li>
+                        
                         
                     </ul>
                 </li>
@@ -71,14 +69,10 @@
                             class="menu-arrow"></span></a>
                     <ul style="<?php echo e(request()->is('announcements/*') ? 'display: block;' : ''); ?>">
                         <li><a href="<?php echo e(route('announcements.index')); ?>"
-                                class="<?php echo e(request()->routeIs('announcements.index') ? 'active' : ''); ?>">All
+                                class="<?php echo e(request()->routeIs('announcements.index') ? 'active' : ''); ?>">View
                                 Announcements</a></li>
                     </ul>
                 </li>
-
-
-
-
                 
                 <li
                     class="treeview <?php echo e(request()->routeIs('policies.index') || request()->routeIs('sops.index') ? 'active' : ''); ?>">
@@ -119,122 +113,126 @@
                         </a>
                     </li>
                 <?php endif; ?>
+                <?php if(Auth::user()->hasAnyRole('hr', 'super-admin', 'admin')): ?>
+                    <li
+                        class="treeview <?php echo e(request()->routeIs('employee.index', 'signature.index', 'employee.details', 'users.signatures') ? 'active' : ''); ?>">
+                        <a href="#">
+                            <i class="fas fa-user"></i>
+                            <span>User Details</span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul
+                            style="<?php echo e(request()->routeIs('employee.index', 'signature.index', 'employee.details', 'users.signatures') ? 'display: block;' : ''); ?>">
 
-                <li
-                    class="treeview <?php echo e(request()->routeIs('employee.index', 'signature.index', 'employee.details', 'users.signatures') ? 'active' : ''); ?>">
-                    <a href="#">
-                        <i class="fas fa-user"></i>
-                        <span>User Details</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul
-                        style="<?php echo e(request()->routeIs('employee.index', 'signature.index', 'employee.details', 'users.signatures') ? 'display: block;' : ''); ?>">
-                        <li>
-                            <a href="<?php echo e(route('employee.index')); ?>"
-                                class="<?php echo e(request()->routeIs('employee.index') ? 'active' : ''); ?>">
-                                <span>Employee Details</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo e(route('signature.index')); ?>"
-                                class="<?php echo e(request()->routeIs('signature.index') ? 'active' : ''); ?>">
-                                <span>Create Signature</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo e(route('users.signatures')); ?>"
-                                class="<?php echo e(request()->routeIs('users.signatures') ? 'active' : ''); ?>">
-                                <span>Users Signatures</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-
-                <li
-                    class="treeview <?php echo e(request()->routeIs('vendors.index') || request()->routeIs('vendors.create') || request()->routeIs('vendors.show') || request()->routeIs('vendors.edit') ? 'active' : ''); ?>">
-                    <a href="#">
-                        <i class="fas fa-briefcase"></i>
-                        <span>Vendor Contracts</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul
-                        style="<?php echo e(request()->routeIs('vendors.index') || request()->routeIs('vendors.create') || request()->routeIs('vendors.show') || request()->routeIs('vendors.edit') ? 'display: block;' : ''); ?>">
-                        <li>
-                            <a href="<?php echo e(route('vendors.index')); ?>"
-                                class="<?php echo e(request()->routeIs('vendors.index') ? 'active' : ''); ?>">
-                                <span>Vendor List</span>
-                            </a>
-                        </li>
-
-                    </ul>
-                </li>
-
-                <!-- Category Management -->
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fas fa-tasks"></i>
-                        <span>Manage Category</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul
-                        style="<?php echo e(request()->routeIs('department.index') || request()->routeIs('nhif.index') || request()->routeIs('hmis.index') || request()->routeIs('remark.index') || request()->routeIs('privilege.index') || request()->routeIs('employment.index') ? 'display: block;' : ''); ?>">
-
-                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view departments')): ?>
-                            <li class="<?php echo e(request()->routeIs('department.index') ? 'active' : ''); ?>">
-                                <a href="<?php echo e(route('department.index')); ?>">
-                                    <span>Departments</span>
+                            <li>
+                                <a href="<?php echo e(route('employee.index')); ?>"
+                                    class="<?php echo e(request()->routeIs('employee.index') ? 'active' : ''); ?>">
+                                    <span>Employee Details</span>
                                 </a>
                             </li>
-                        <?php endif; ?>
-                        <li class="<?php echo e(request()->routeIs('job-titles.index') ? 'active' : ''); ?>">
-                            <a href="<?php echo e(route('job_titles.index')); ?>">
-                                <span>Job Titles</span>
-                            </a>
-                        </li>
-                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view nhif')): ?>
-                            <li class="<?php echo e(request()->routeIs('nhif.index') ? 'active' : ''); ?>">
-                                <a href="<?php echo e(route('nhif.index')); ?>">
-                                    <span>NHIF Qualifications</span>
+
+                            <li>
+                                <a href="<?php echo e(route('signature.index')); ?>"
+                                    class="<?php echo e(request()->routeIs('signature.index') ? 'active' : ''); ?>">
+                                    <span>Create Signature</span>
                                 </a>
                             </li>
-                        <?php endif; ?>
 
-                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view hmis')): ?>
-                            <li class="<?php echo e(request()->routeIs('hmis.index') ? 'active' : ''); ?>">
-                                <a href="<?php echo e(route('hmis.index')); ?>">
-                                    <span>HMIS Access</span>
+                            <li>
+                                <a href="<?php echo e(route('users.signatures')); ?>"
+                                    class="<?php echo e(request()->routeIs('users.signatures') ? 'active' : ''); ?>">
+                                    <span>Users Signatures</span>
                                 </a>
                             </li>
-                        <?php endif; ?>
 
-                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view remarks')): ?>
-                            <li class="<?php echo e(request()->routeIs('remark.index') ? 'active' : ''); ?>">
-                                <a href="<?php echo e(route('remark.index')); ?>">
-                                    <span>Remark</span>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+
+
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('View vendor')): ?>
+                    <li
+                        class="treeview <?php echo e(request()->routeIs('vendors.index') || request()->routeIs('vendors.create') || request()->routeIs('vendors.show') || request()->routeIs('vendors.edit') ? 'active' : ''); ?>">
+                        <a href="#">
+                            <i class="fas fa-briefcase"></i>
+                            <span>Vendor Contracts</span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul
+                            style="<?php echo e(request()->routeIs('vendors.index') || request()->routeIs('vendors.create') || request()->routeIs('vendors.show') || request()->routeIs('vendors.edit') ? 'display: block;' : ''); ?>">
+                            <li>
+                                <a href="<?php echo e(route('vendors.index')); ?>"
+                                    class="<?php echo e(request()->routeIs('vendors.index') ? 'active' : ''); ?>">
+                                    <span>Vendor List</span>
                                 </a>
                             </li>
-                        <?php endif; ?>
 
-                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view user category')): ?>
-                            <li class="<?php echo e(request()->routeIs('privilege.index') ? 'active' : ''); ?>">
-                                <a href="<?php echo e(route('privilege.index')); ?>">
-                                    <span>User Category</span>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('Manage Category')): ?>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fas fa-tasks"></i>
+                            <span>Manage Category</span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul
+                            style="<?php echo e(request()->routeIs('department.index', 'nhif.index', 'hmis.index', 'remark.index', 'privilege.index', 'employment.index', 'job_titles.index') ? 'display: block;' : ''); ?>">
+
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view departments')): ?>
+                                <li class="<?php echo e(request()->routeIs('department.index') ? 'active' : ''); ?>">
+                                    <a href="<?php echo e(route('department.index')); ?>">
+                                        <span>Departments</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+
+                            <!-- Job Titles -->
+                            <li class="<?php echo e(request()->routeIs('job_titles.index') ? 'active' : ''); ?>">
+                                <a href="<?php echo e(route('job_titles.index')); ?>">
+                                    <span>Job Titles</span>
                                 </a>
                             </li>
-                        <?php endif; ?>
 
-                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view employment type')): ?>
-                            <li class="<?php echo e(request()->routeIs('employment.index') ? 'active' : ''); ?>">
-                                <a href="<?php echo e(route('employment.index')); ?>">
-                                    <span>Employment Type</span>
-                                </a>
-                            </li>
-                        <?php endif; ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view nhif')): ?>
+                                <li class="<?php echo e(request()->routeIs('nhif.index') ? 'active' : ''); ?>">
+                                    <a href="<?php echo e(route('nhif.index')); ?>">
+                                        <span>NHIF Qualifications</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
 
-                    </ul>
-                </li>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view hmis')): ?>
+                                <li class="<?php echo e(request()->routeIs('hmis.index') ? 'active' : ''); ?>">
+                                    <a href="<?php echo e(route('hmis.index')); ?>">
+                                        <span>HMIS Access</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
 
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view user category')): ?>
+                                <li class="<?php echo e(request()->routeIs('privilege.index') ? 'active' : ''); ?>">
+                                    <a href="<?php echo e(route('privilege.index')); ?>">
+                                        <span>User Category</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view employment type')): ?>
+                                <li class="<?php echo e(request()->routeIs('employment.index') ? 'active' : ''); ?>">
+                                    <a href="<?php echo e(route('employment.index')); ?>">
+                                        <span>Employment Type</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+
+                        </ul>
+
+
+                    </li>
+                <?php endif; ?>
 
                 
                 <?php if (\Illuminate\Support\Facades\Blade::check('role', 'super-admin|admin|it')): ?>

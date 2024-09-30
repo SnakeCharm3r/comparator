@@ -25,17 +25,30 @@ class PolicyController extends Controller
         return view('policies.create');
     }
 
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'title' => 'required|string|max:255',
+    //         'content' => 'required|string|max:20000',
+    //     ]);
+
+    //     Policy::create($request->all());
+
+    //     return redirect()->route('policies.index')->with('success', 'Policy created successfully.');
+    // }
     public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string|max:20000',
-        ]);
+{
+    // dd($request->all()); // This will dump the request data and halt the process
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'content' => 'required|string|max:2000000',
+    ]);
 
-        Policy::create($request->all());
+    Policy::create($request->all());
 
-        return redirect()->route('policies.index')->with('success', 'Policy created successfully.');
-    }
+    return redirect()->route('policies.index')->with('success', 'Policy created successfully.');
+}
+
 
     public function show(Policy $policy)
     {

@@ -28,7 +28,7 @@
                                             <label for="openclinic_hms">Aruti HR MIS<span
                                                     class="text-danger">*</span></label>
                                             <select class="form-control" id="privilegeId" name="aruti" required>
-                                                <option value="">---Select an option---</option>
+                                                <option value="" disabled selected> ---Select an option---</option>
                                                 <?php $__currentLoopData = $privileges; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $privilege): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <?php if(in_array($privilege->prv_name, ['User', 'Administrator', 'Super Administrator', 'HR Officer', 'HR Manager'])): ?>
                                                         <option value="<?php echo e($privilege->id); ?>"><?php echo e($privilege->prv_name); ?>
@@ -43,7 +43,7 @@
                                         <div class="form-group">
                                             <label for="openclinic_hms">SAP ERP<span class="text-danger">*</span></label>
                                             <select class="form-control" id="privilegeId" name="sap" required>
-                                                <option value="">---Select an option---</option>
+                                                <option value="" disabled selected> ---Select an option---</option>
                                                 <?php $__currentLoopData = $privileges; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $privilege): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <?php if(
                                                         $privilege->prv_name === 'User' ||
@@ -67,7 +67,7 @@
                                         <div class="form-group">
                                             <label for="openclinic_hms">PABX<span class="text-danger">*</span></label>
                                             <select class="form-control" id="pbax" name="pbax" required>
-                                                <option value="">---Select an option---</option>
+                                                <option value="" disabled selected>---Select an option---</option>
                                                 <?php $__currentLoopData = $privileges; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $privilege): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <?php if($privilege->prv_name === 'User' || $privilege->prv_name === 'Administrator'): ?>
                                                         <option value="<?php echo e($privilege->id); ?>"><?php echo e($privilege->prv_name); ?>
@@ -81,7 +81,7 @@
                                         <div class="form-group">
                                             <label for="openclinic_hms">OpenClinic HMIS Access</label>
                                             <select class="form-control" id="hmisId" name="hmisId" required>
-                                                <option value="">---Select an option---</option>
+                                                <option value="" disabled selected> ---Select an option---</option>
                                                 <?php $__currentLoopData = $hmis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $hmi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <option value="<?php echo e($hmi->id); ?>"><?php echo e($hmi->names); ?></option>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -95,7 +95,7 @@
                                             <label for="openclinic_hms">Active Directory<span
                                                     class="text-danger">*</span></label>
                                             <select class="form-control" id="privilegeId" name="active_drt" required>
-                                                <option value="">---Select an option---</option>
+                                                <option value="" disabled selected> ---Select an option---</option>
                                                 <?php $__currentLoopData = $privileges; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $privilege): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <?php if($privilege->prv_name === 'User' || $privilege->prv_name === 'Administrator'): ?>
                                                         <option value="<?php echo e($privilege->id); ?>"><?php echo e($privilege->prv_name); ?>
@@ -165,7 +165,7 @@
                                         <div class="form-group">
                                             <label for="openclinic_hms">NHIF Qualification</label>
                                             <select class="form-control" id="nhifId" name="nhifId" required>
-                                                <option value="">---Select an option---</option>
+                                                <option value="" disabled selected> ---Select an option---</option>
                                                 <?php $__currentLoopData = $qualifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qualification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <option value="<?php echo e($qualification->id); ?>"><?php echo e($qualification->name); ?>
 
@@ -177,7 +177,7 @@
                                         <div class="form-group">
                                             <label for="openclinic_hms">Network Access VPN</label>
                                             <select class="form-control" id="VPN" name="VPN" required>
-                                                <option value="">---Select an option---</option>
+                                                <option value="" disabled selected> ---Select an option---</option>
                                                 <?php $__currentLoopData = $privileges; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $privilege): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <?php if($privilege->prv_name === 'User' || $privilege->prv_name === 'Administrator'): ?>
                                                         <option value="<?php echo e($privilege->id); ?>"><?php echo e($privilege->prv_name); ?>
@@ -191,7 +191,7 @@
                                         <div class="form-group">
                                             <label for="openclinic_hms">CCBRT Email</label>
                                             <select class="form-control" id="privilegeId" name="privilegeId" required>
-                                                <option value="">---Select an option---</option>
+                                                <option value="" disabled selected> ---Select an option---</option>
                                                 <?php $__currentLoopData = $privileges; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $privilege): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <?php if($privilege->prv_name === 'User' || $privilege->prv_name === 'Administrator'): ?>
                                                         <option value="<?php echo e($privilege->id); ?>"><?php echo e($privilege->prv_name); ?>
@@ -216,9 +216,6 @@
 
     </div>
     </div>
-<?php $__env->stopSection(); ?>
-
-<?php $__env->startSection('content'); ?>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Projects\E-docs\resources\views/ict-access-form/index.blade.php ENDPATH**/ ?>

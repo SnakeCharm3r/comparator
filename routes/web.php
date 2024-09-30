@@ -56,10 +56,26 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'handleRegistration'])->name('register.handleRegistration');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+//forget password
+Route::get('password/forget', [AuthController::class, 'showForgetPasswordForm'])->name('password.forget');
+Route::post('password/forget', [AuthController::class, 'submitForgetPasswordForm'])->name('password.forget.submit');
+
+Route::group(['middleware'=> 'auth','profile.complete'], function ()
+{});
 
 //route for job title based dept id
+
+
+
 Route::get('/job-titles/{departmentId}', [AuthController::class, 'getJobTitles']);
 Route::get('/departments', [DepartmentController::class, 'index']);
+
+Route::group(['middleware'=> 'auth'], function ()
+{
+Route::resource('sops', SopController::class);
+Route::get('/sop', [SopController::class, 'sops'])->name('sops.show');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 
 Route::get('/change-password', [AuthController::class, 'showChangePasswordForm'])->name('user_profile.pass');
 Route::put('/change-password', [AuthController::class, 'changePassword'])->name('change.password.update');
@@ -70,13 +86,6 @@ Route::resource('policies', PolicyController::class);
 Route::get('/user-policies', [PolicyController::class, 'user'])->name('policies.user');
 Route::post('/policies/accept', [PolicyController::class, 'accept'])->name('policies.accept');
 Route::get('/download-policy', [PolicyController::class, 'downloadPolicy'])->name('download.policy');
-
-Route::resource('sops', SopController::class);
-Route::get('/sop', [SopController::class, 'sops'])->name('sops.show');
-
-Route::group(['middleware'=> 'auth'], function ()
-{
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 
 
@@ -142,6 +151,7 @@ Route::post('hslb/hr-confirm/{id}', [HslbController::class, 'hrConfirm'])->name(
 
 
 Route::get('/users', [AuthController::class, 'getAllUser'])->name('users.index');
+Route::delete('/users/{id}', [AuthController::class, 'destroy'])->name('users.destroy');
 Route::get('/employees', [AuthController::class, 'userDetail'])->name('employee.index');
 Route::put('/employee/{id}', [AuthController::class, 'update'])->name('employee.update');
 
@@ -161,6 +171,7 @@ Route::delete('/permission/{id}', 'PermissionController@destroy')->name('permiss
 Route::post('roles/permissions', [PermissionController::class, 'updateRolePermissions'])->name('role.updatePermissions');
 Route::get('role/{roleId}/permissions', [PermissionController::class, 'getRolePermissions']);
 
+
 Route::post('/approve_form', [FormController::class, 'approveForm'])->name('approve_form');
 Route::get('/approver_form', [FormController::class, 'getApprover'])->name('approver_form');
 Route::get('/show_form/{id}', [FormController::class, 'getForm']);
@@ -174,6 +185,7 @@ Route::get('/announcements/{id}/edit', [AnnouncementController::class, 'edit'])-
 Route::put('/announcements/{id}', [AnnouncementController::class, 'update'])->name('announcements.update');
 Route::delete('/announcements/{id}', [AnnouncementController::class, 'destroy'])->name('announcements.destroy');
 
+Route::put('/ict-access-form/update/{id}', [RequestController::class, 'updateIctForm'])->name('form.updateIctForm');
 
 Route::post('/approve_clearform', [FormController::class, 'approveClearanceForm'])->name('approve_clearform');
 Route::get('/exit_forms/approvers', [ClearanceFormController::class, 'getApprover'])->name('exit_forms.approvers');

@@ -22,6 +22,12 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row position-relative">
+                                @php
+                                $user = auth()->user();
+                                $roles = ['hr', 'admin', 'super-admin'];
+                            @endphp
+                            
+                            @if ($user && $user->hasAnyRole($roles))
                                 <div class="col-md-12">
                                     <a href="{{ route('department.create') }}"
                                         class="btn btn-primary position-absolute top-0 end-0 mt-2 me-2"
@@ -29,6 +35,8 @@
                                         <i class="fas fa-plus"></i>
                                     </a>
                                 </div>
+                            @endif
+                            
                             </div>
                             <table class="table table-striped">
                                 <thead>

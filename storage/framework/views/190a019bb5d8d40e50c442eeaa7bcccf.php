@@ -134,22 +134,47 @@
                     </div>
 
                     
-
                     <div class="col-md-3 col-sm-6 col-12 mb-3">
                         <div class="card text-center shadow-sm">
+                            <!-- Link to the Announcements page -->
                             <a href="<?php echo e(route('announcements.index')); ?>" class="text-decoration-none text-warning">
                                 <div class="card-header">
-                                    <i class="fas fa-exclamation-triangle"></i> Urgent Announcement
+                                    <i class="fas fa-exclamation-triangle"></i> Announcement
                                 </div>
                             </a>
-                            <div class="card-body">
-                                <a href="<?php echo e(route('announcements.index')); ?>" class="card-title text-decoration-none">
-                                    <?php echo e($announcements->count()); ?>
 
-                                </a>
+                            <!-- Body of the card showing the total count and new announcements -->
+                            <div class="card-body">
+                                
+
+                                <!-- Fetch the count of new announcements using Eloquent within the Blade template -->
+                                <?php
+                                    $userLastViewed = auth()->user()->last_viewed_announcement;
+                                    // Handle the null case by assuming no announcements have been viewed
+                                    $newAnnouncementsCount = \App\Models\Announcement::when($userLastViewed, function (
+                                        $query,
+                                        $userLastViewed,
+                                    ) {
+                                        return $query->where('created_at', '>', $userLastViewed);
+                                    })->count();
+                                ?>
+
+                                <?php if($newAnnouncementsCount > 0): ?>
+                                    <div class="mt-2">
+                                        <span class="badge bg-warning text-dark d-flex align-items-center">
+                                            <strong><?php echo e($newAnnouncementsCount); ?></strong>
+                                            <a href="<?php echo e(route('announcements.index')); ?>"
+                                                class="ms-1 text-decoration-none text-dark">
+                                                New
+                                            </a>
+                                        </span>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
+
+
 
 
                     <div class="col-md-3 col-sm-6 col-12 mb-3">
@@ -201,78 +226,7 @@
                         </div>
                     </div>
                 </div>
-                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                <div class="col-12 col-lg-12 col-xl-12 d-flex">
-                    <div class="card flex-fill comman-shadow">
-                        <div class="card-header d-flex align-items-center">
-                            <h5 class="card-title">Form Requests Trend</h5>
-                            <ul class="chart-list-out">
-                                <li><span class="circle-blue"></span>ICT Access Form</li>
-                                <li><span class="circle-green"></span>Clearance Form</li>
-                                <li><span class="circle-yellow"></span>Change Request Form</li>
-                                <li class="star-menus"><a href="javascript:;"><i class="fas fa-ellipsis-v"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="formRequestsLineChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        var ctx = document.getElementById('formRequestsLineChart').getContext('2d');
-                        var formRequestsLineChart = new Chart(ctx, {
-                            type: 'line', // Line chart type
-                            data: {
-                                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                                    'Jul'
-                                ], // Replace with dynamic labels
-                                datasets: [{
-                                    label: 'ICT Access Form',
-                                    data: [30, 45, 60, 70, 50, 65, 80], // Replace with dynamic data
-                                    borderColor: 'rgba(54, 162, 235, 1)',
-                                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                                    fill: true
-                                }, {
-                                    label: 'Clearance Form',
-                                    data: [20, 35, 55, 60, 45, 70, 90], // Replace with dynamic data
-                                    borderColor: 'rgba(75, 192, 192, 1)',
-                                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                    fill: true
-                                }, {
-                                    label: 'Change Request Form',
-                                    data: [10, 25, 40, 50, 30, 60, 70], // Replace with dynamic data
-                                    borderColor: 'rgba(255, 159, 64, 1)',
-                                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
-                                    fill: true
-                                }]
-                            },
-                            options: {
-                                responsive: true,
-                                plugins: {
-                                    legend: {
-                                        position: 'top',
-                                    },
-                                    tooltip: {
-                                        callbacks: {
-                                            label: function(tooltipItem) {
-                                                return tooltipItem.dataset.label + ': ' + tooltipItem.raw;
-                                            }
-                                        }
-                                    }
-                                },
-                                scales: {
-                                    x: {
-                                        beginAtZero: true
-                                    },
-                                    y: {
-                                        beginAtZero: true
-                                    }
-                                }
-                            }
-                        });
-                    });
-                </script>
+                
             </div>
         </div>
     </div>

@@ -49,9 +49,9 @@
                                 class="{{ request()->routeIs('change.index') ? 'active' : '' }}">Change Request
                                 Form</a>
                         </li> --}}
-                        <li><a href="{{ route('card.index') }}"
+                        {{-- <li><a href="{{ route('card.index') }}"
                                 class="{{ request()->routeIs('card.index') ? 'active' : '' }}">ID Card Request Form</a>
-                        </li>
+                        </li> --}}
                         {{-- <li><a href="{{ route('hslb.index') }}"
                                 class="{{ request()->routeIs('hslb.index') ? 'active' : '' }}">HESLB</a>
                         </li> --}}
@@ -79,14 +79,10 @@
                             class="menu-arrow"></span></a>
                     <ul style="{{ request()->is('announcements/*') ? 'display: block;' : '' }}">
                         <li><a href="{{ route('announcements.index') }}"
-                                class="{{ request()->routeIs('announcements.index') ? 'active' : '' }}">All
+                                class="{{ request()->routeIs('announcements.index') ? 'active' : '' }}">View
                                 Announcements</a></li>
                     </ul>
                 </li>
-
-
-
-
                 {{-- Policies and SoPs --}}
                 <li
                     class="treeview {{ request()->routeIs('policies.index') || request()->routeIs('sops.index') ? 'active' : '' }}">
@@ -126,122 +122,126 @@
                         </a>
                     </li>
                 @endcan
+                @if (Auth::user()->hasAnyRole('hr', 'super-admin', 'admin'))
+                    <li
+                        class="treeview {{ request()->routeIs('employee.index', 'signature.index', 'employee.details', 'users.signatures') ? 'active' : '' }}">
+                        <a href="#">
+                            <i class="fas fa-user"></i>
+                            <span>User Details</span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul
+                            style="{{ request()->routeIs('employee.index', 'signature.index', 'employee.details', 'users.signatures') ? 'display: block;' : '' }}">
 
-                <li
-                    class="treeview {{ request()->routeIs('employee.index', 'signature.index', 'employee.details', 'users.signatures') ? 'active' : '' }}">
-                    <a href="#">
-                        <i class="fas fa-user"></i>
-                        <span>User Details</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul
-                        style="{{ request()->routeIs('employee.index', 'signature.index', 'employee.details', 'users.signatures') ? 'display: block;' : '' }}">
-                        <li>
-                            <a href="{{ route('employee.index') }}"
-                                class="{{ request()->routeIs('employee.index') ? 'active' : '' }}">
-                                <span>Employee Details</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('signature.index') }}"
-                                class="{{ request()->routeIs('signature.index') ? 'active' : '' }}">
-                                <span>Create Signature</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('users.signatures') }}"
-                                class="{{ request()->routeIs('users.signatures') ? 'active' : '' }}">
-                                <span>Users Signatures</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-
-                <li
-                    class="treeview {{ request()->routeIs('vendors.index') || request()->routeIs('vendors.create') || request()->routeIs('vendors.show') || request()->routeIs('vendors.edit') ? 'active' : '' }}">
-                    <a href="#">
-                        <i class="fas fa-briefcase"></i>
-                        <span>Vendor Contracts</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul
-                        style="{{ request()->routeIs('vendors.index') || request()->routeIs('vendors.create') || request()->routeIs('vendors.show') || request()->routeIs('vendors.edit') ? 'display: block;' : '' }}">
-                        <li>
-                            <a href="{{ route('vendors.index') }}"
-                                class="{{ request()->routeIs('vendors.index') ? 'active' : '' }}">
-                                <span>Vendor List</span>
-                            </a>
-                        </li>
-
-                    </ul>
-                </li>
-
-                <!-- Category Management -->
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fas fa-tasks"></i>
-                        <span>Manage Category</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul
-                        style="{{ request()->routeIs('department.index') || request()->routeIs('nhif.index') || request()->routeIs('hmis.index') || request()->routeIs('remark.index') || request()->routeIs('privilege.index') || request()->routeIs('employment.index') ? 'display: block;' : '' }}">
-
-                        @can('view departments')
-                            <li class="{{ request()->routeIs('department.index') ? 'active' : '' }}">
-                                <a href="{{ route('department.index') }}">
-                                    <span>Departments</span>
+                            <li>
+                                <a href="{{ route('employee.index') }}"
+                                    class="{{ request()->routeIs('employee.index') ? 'active' : '' }}">
+                                    <span>Employee Details</span>
                                 </a>
                             </li>
-                        @endcan
-                        <li class="{{ request()->routeIs('job-titles.index') ? 'active' : '' }}">
-                            <a href="{{ route('job_titles.index') }}">
-                                <span>Job Titles</span>
-                            </a>
-                        </li>
-                        @can('view nhif')
-                            <li class="{{ request()->routeIs('nhif.index') ? 'active' : '' }}">
-                                <a href="{{ route('nhif.index') }}">
-                                    <span>NHIF Qualifications</span>
+
+                            <li>
+                                <a href="{{ route('signature.index') }}"
+                                    class="{{ request()->routeIs('signature.index') ? 'active' : '' }}">
+                                    <span>Create Signature</span>
                                 </a>
                             </li>
-                        @endcan
 
-                        @can('view hmis')
-                            <li class="{{ request()->routeIs('hmis.index') ? 'active' : '' }}">
-                                <a href="{{ route('hmis.index') }}">
-                                    <span>HMIS Access</span>
+                            <li>
+                                <a href="{{ route('users.signatures') }}"
+                                    class="{{ request()->routeIs('users.signatures') ? 'active' : '' }}">
+                                    <span>Users Signatures</span>
                                 </a>
                             </li>
-                        @endcan
 
-                        @can('view remarks')
-                            <li class="{{ request()->routeIs('remark.index') ? 'active' : '' }}">
-                                <a href="{{ route('remark.index') }}">
-                                    <span>Remark</span>
+                        </ul>
+                    </li>
+                @endif
+
+
+                @can('View vendor')
+                    <li
+                        class="treeview {{ request()->routeIs('vendors.index') || request()->routeIs('vendors.create') || request()->routeIs('vendors.show') || request()->routeIs('vendors.edit') ? 'active' : '' }}">
+                        <a href="#">
+                            <i class="fas fa-briefcase"></i>
+                            <span>Vendor Contracts</span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul
+                            style="{{ request()->routeIs('vendors.index') || request()->routeIs('vendors.create') || request()->routeIs('vendors.show') || request()->routeIs('vendors.edit') ? 'display: block;' : '' }}">
+                            <li>
+                                <a href="{{ route('vendors.index') }}"
+                                    class="{{ request()->routeIs('vendors.index') ? 'active' : '' }}">
+                                    <span>Vendor List</span>
                                 </a>
                             </li>
-                        @endcan
 
-                        @can('view user category')
-                            <li class="{{ request()->routeIs('privilege.index') ? 'active' : '' }}">
-                                <a href="{{ route('privilege.index') }}">
-                                    <span>User Category</span>
+                        </ul>
+                    </li>
+                @endcan
+
+                @can('Manage Category')
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fas fa-tasks"></i>
+                            <span>Manage Category</span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul
+                            style="{{ request()->routeIs('department.index', 'nhif.index', 'hmis.index', 'remark.index', 'privilege.index', 'employment.index', 'job_titles.index') ? 'display: block;' : '' }}">
+
+                            @can('view departments')
+                                <li class="{{ request()->routeIs('department.index') ? 'active' : '' }}">
+                                    <a href="{{ route('department.index') }}">
+                                        <span>Departments</span>
+                                    </a>
+                                </li>
+                            @endcan
+
+                            <!-- Job Titles -->
+                            <li class="{{ request()->routeIs('job_titles.index') ? 'active' : '' }}">
+                                <a href="{{ route('job_titles.index') }}">
+                                    <span>Job Titles</span>
                                 </a>
                             </li>
-                        @endcan
 
-                        @can('view employment type')
-                            <li class="{{ request()->routeIs('employment.index') ? 'active' : '' }}">
-                                <a href="{{ route('employment.index') }}">
-                                    <span>Employment Type</span>
-                                </a>
-                            </li>
-                        @endcan
+                            @can('view nhif')
+                                <li class="{{ request()->routeIs('nhif.index') ? 'active' : '' }}">
+                                    <a href="{{ route('nhif.index') }}">
+                                        <span>NHIF Qualifications</span>
+                                    </a>
+                                </li>
+                            @endcan
 
-                    </ul>
-                </li>
+                            @can('view hmis')
+                                <li class="{{ request()->routeIs('hmis.index') ? 'active' : '' }}">
+                                    <a href="{{ route('hmis.index') }}">
+                                        <span>HMIS Access</span>
+                                    </a>
+                                </li>
+                            @endcan
 
+                            @can('view user category')
+                                <li class="{{ request()->routeIs('privilege.index') ? 'active' : '' }}">
+                                    <a href="{{ route('privilege.index') }}">
+                                        <span>User Category</span>
+                                    </a>
+                                </li>
+                            @endcan
+
+                            @can('view employment type')
+                                <li class="{{ request()->routeIs('employment.index') ? 'active' : '' }}">
+                                    <a href="{{ route('employment.index') }}">
+                                        <span>Employment Type</span>
+                                    </a>
+                                </li>
+                            @endcan
+
+                        </ul>
+
+
+                    </li>
+                @endcan
 
                 {{-- User Management --}}
                 @role('super-admin|admin|it')

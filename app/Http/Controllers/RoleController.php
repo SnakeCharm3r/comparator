@@ -7,6 +7,8 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class RoleController extends Controller
 {
@@ -37,7 +39,7 @@ class RoleController extends Controller
         Role::create([
             'name' => $request->name
         ]);
-
+      
         return redirect('role')->with('status', 'Role Created Successfully');
     }
 
@@ -67,10 +69,15 @@ class RoleController extends Controller
 
     public function destroy($roleId)
     {
-        $role = Role::find($roleId);
-        $role->delete();
-        return redirect('role')->with('status', 'Role Deleted Successfully');
+        try {
+            $role = Role::findOrFail($roleId);
+            $role->delete();
+            return redirect('role')->with('status', 'Role Deleted Successfully');
+        } catch (\Exception $e) {
+            return redirect('role')->with('error', 'Failed to delete the role.');
+        }
     }
+    
 
     public function addPermissionToRole($roleId)
     {
@@ -96,17 +103,16 @@ class RoleController extends Controller
 
         $role = Role::findOrFail($roleId);
         $role->syncPermissions($request->permission);
-
+      
         return redirect()->back()->with('status', 'Permissions added to role');
     }
 
-    // Function shows edit user form
     public function showEditForm($id)
     {
         $user = User::findOrFail($id);
         $roles = Role::all(); // Fetch all roles
         $userRoles = $user->roles->pluck('name')->toArray(); // Get roles assigned to the user
-
+        
         return view('role-permission.user.edit', compact('user', 'roles', 'userRoles'));
     }
     

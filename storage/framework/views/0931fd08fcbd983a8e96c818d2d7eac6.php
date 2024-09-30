@@ -50,8 +50,6 @@
                                             </div>
                                         </div>
 
-                                        <!-- Add Relation Modal -->
-                                        
                                         <div class="modal fade" id="addRelationModal" tabindex="-1" role="dialog"
                                             aria-labelledby="addRelationModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -193,7 +191,7 @@
                                                                     <tr>
                                                                         <td><?php echo e($relation->names); ?></td>
                                                                         <td><?php echo e($relation->relation); ?></td>
-                                                                        <td><?php echo e($relation->department); ?></td>
+                                                                        <td><?php echo e($relation->department_name); ?></td>
                                                                         <td><?php echo e($relation->position); ?></td>
                                                                         <td>
                                                                             <!-- Edit button -->

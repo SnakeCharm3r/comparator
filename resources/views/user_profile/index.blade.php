@@ -76,7 +76,7 @@
                                                             <small>Joined {{ $user->created_at->format('d F Y') }}</small>
                                                         </div>
                                                     </div>
-                                                    
+
                                                 </div>
                                                 <script>
                                                     function handleProfilePictureChange(input) {

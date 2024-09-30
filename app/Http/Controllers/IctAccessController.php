@@ -6,6 +6,7 @@ use App\Mail\ApprovalRequestNotification;
 use App\Models\IctAccessResource;
 use App\Models\WorkFlowHistory;
 use App\Models\HMISAccessLevel;
+use App\Models\HealthDetails;
 use App\Models\NhifQualification;
 use App\Models\PrivilegeLevel;
 use App\Models\Remark;
@@ -21,29 +22,43 @@ use Illuminate\Support\Facades\Mail;
 
 class IctAccessController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
+        // Load the authenticated user with their related models
         $user = Auth::user()->load('department', 'employmentType');
+
+        // Fetch the necessary resources
         $qualifications = NhifQualification::where('delete_status', 0)->get();
         $privileges = PrivilegeLevel::where('delete_status', 0)->get();
         $rmk = Remark::where('delete_status', 0)->get();
         $hmis = HMISAccessLevel::where('delete_status', 0)->get();
         $ictAccessResources = IctAccessResource::where('delete_status', 0)->get();
 
-        return view('ict-access-form.index', compact(
-            'user',
-            'qualifications',
-            'privileges',
-            'rmk',
-            'hmis',
-            'ictAccessResources'
-        ));
+         // Check if the user's profile is complete
+         $profileComplete = $user->healthDetails()->exists() &&
+            $user->userFamilyDetails()->exists() &&
+            $user->languageKnowledge()->exists() &&
+            $user->ccbrtRelation()->exists();
+
+        // If the profile is not complete, redirect to the profile edit page
+         if (!$profileComplete) {
+            return view('user_profile.index')->with([
+                'user' => $user,
+                'message' => 'Please complete your profile before proceeding.',
+            ]);
+         } else {
+            // If the profile is complete, show the ICT access form
+            return view('ict-access-form.index', compact(
+                'user',
+                'qualifications',
+                'privileges',
+                'rmk',
+                'hmis',
+                'ictAccessResources'
+            ));
+        }
     }
-
-
 
     public function create()
     {
@@ -53,7 +68,7 @@ class IctAccessController extends Controller
         $privileges = PrivilegeLevel::where('delete_status', 0)->get();
         $hmis = HMISAccessLevel::where('delete_status', 0)->get();
 
-        return view('ict-access-form.create', compact('qualifications', 'privileges', 'rmk', 'hmis', 'user'));
+        return view('ict-access-form.index', compact('qualifications', 'privileges', 'rmk', 'hmis', 'user'));
     }
 
     public function store(Request $request)
@@ -145,7 +160,6 @@ class IctAccessController extends Controller
                         'requestDate' => Carbon::now()->format('d F Y'),
                     ];
 
-//  dd($requestDetails );
                     if ($approver) {
                         $mail = new ApprovalRequestNotification();
                         $mail->approver = $approver;
@@ -171,19 +185,17 @@ class IctAccessController extends Controller
                     'parent_id' => $workflow->id,
                 ]);
                 // dd(12345);
-
-                // Success alert and redirect
-
-                Alert::success('IT access form request submitted successfully', 'IT access Request Added');
-
-                // Redirect to the view route
-                return redirect()->route('form.index'); // Make sure you have a named route 'ict-access-form.index'
+               
 
             });
+
+            Alert::success('IT access form request submitted successfully', 'IT access Request Added');
+                return redirect()->route('request.index')->with('success', 'IT access form request submitted successfully');
+
         } catch (\Exception $e) {
 
             // Log the exact error message for better debugging
-            \Log::error('Error storing ICT Access Resource: ' . $e->getMessage(), ['exception' => $e]);
+            \Log::error('Error storing IT Access Resource: ' . $e->getMessage(), ['exception' => $e]);
             Alert::error('Failed to submit IT access form request', 'Error');
             return back()->withInput()->withErrors(['error' => 'Failed to process request. Please try again.']);
         }
@@ -231,8 +243,6 @@ public function findLineManagerForRequesterDepartment()
     }
 }
 
-
-
     public function forwardWorkflowHistory($input)
     {
         return WorkFlowHistory::create($input);
@@ -252,11 +262,13 @@ public function findLineManagerForRequesterDepartment()
      */
     public function edit(string $id)
     {
+        dd(123);
         $ictAccessResource = IctAccessResource::findOrFail($id);
         $qualifications = NhifQualification::where('delete_status', 0)->get();
         $privileges = PrivilegeLevel::where('delete_status', 0)->get();
         $rmk = Remark::where('delete_status', 0)->get();
         $hmis = HMISAccessLevel::where('delete_status', 0)->get();
+
 
         return view('ict-access-form.edit', compact('ictAccessResource', 'qualifications', 'privileges', 'rmk', 'hmis'));
     }

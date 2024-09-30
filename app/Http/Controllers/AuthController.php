@@ -222,7 +222,7 @@ public function getJobTitles($deptId){
         ]);
         $user = User::findOrFail($userId);
         $user->syncRoles([$request->roles]);  // Changed to syncRoles to remove any previous roles
-        return redirect('role')->with('status', 'Role assigned successfully');
+        return redirect('users')->with('status', 'Role assigned successfully');
     }
 
     // Show Assign Role Form
@@ -255,6 +255,19 @@ public function getJobTitles($deptId){
         return redirect()->back()->with('status', 'Role removed successfully');
     }
 
+        public function destroy($id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return redirect()->route('users.index')->with('error', 'User not found.');
+        }
+
+        $user->delete();
+        return redirect()->route('users.index')->with('status', 'User deleted successfully.');
+    }
+
+
     public function logout() {
         Auth::logout();
         return redirect()->route('login');
@@ -265,13 +278,6 @@ public function getJobTitles($deptId){
         $user_id = session('userId');
         return view('auth.next_of_kins', compact('userId'));
     }
-    public function changePass($id){
-        $user = User::findOrFail($id);
-
-        return view('password.index', compact('user'));
-    }
-
-
 
     public function showChangePasswordForm()
     {
@@ -298,5 +304,12 @@ public function getJobTitles($deptId){
         Alert::success('Password changed Successful','Please proceed');
         return redirect()->route('user_profile.pass')->with('success', 'Password changed successfully.');
     }
+
+    public function showForgetPasswordForm()
+    {
+        return view('auth.forget'); // Assuming you have a view file for this
+    }
+
+
 
 }

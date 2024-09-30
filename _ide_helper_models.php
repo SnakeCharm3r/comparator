@@ -15,6 +15,30 @@ namespace App\Models{
 /**
  * 
  *
+ * @property int $id
+ * @property string $title
+ * @property string $pdf_path
+ * @property int $userId
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement wherePdfPath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcement whereUserId($value)
+ */
+	class Announcement extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
  * @property-read \App\Models\IctAccessResource|null $ictAccessResource
  * @method static \Illuminate\Database\Eloquent\Builder|Approval newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Approval newQuery()
@@ -413,6 +437,28 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property int $deptId
+ * @property string $job_title
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Departments $department
+ * @method static \Illuminate\Database\Eloquent\Builder|JobTitle newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|JobTitle newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|JobTitle query()
+ * @method static \Illuminate\Database\Eloquent\Builder|JobTitle whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|JobTitle whereDeptId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|JobTitle whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|JobTitle whereJobTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|JobTitle whereUpdatedAt($value)
+ */
+	class JobTitle extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property int $userId
  * @property string $language
  * @property string $speaking
@@ -572,7 +618,7 @@ namespace App\Models{
  * @property string|null $pdf_path
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Departments|null $departments
+ * @property-read \App\Models\Departments $departments
  * @method static \Illuminate\Database\Eloquent\Builder|Sop newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Sop newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Sop query()
@@ -620,30 +666,31 @@ namespace App\Models{
  * @property string|null $domicile
  * @property mixed $password
  * @property string|null $signature
+ * @property string|null $profile_picture
  * @property string|null $delete_status
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CcbrtRelation> $ccbrtRelation
+ * @property-read int|null $ccbrt_relation_count
  * @property-read \App\Models\Departments $department
  * @property-read \App\Models\EmploymentTypes $employmentType
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserFamilyDetails> $familyData
- * @property-read int|null $family_data_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\HealthDetails> $healthInfo
- * @property-read int|null $health_info_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\LanguageKnowledge> $language
- * @property-read int|null $language_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserAdditionalInfo> $nextOfKins
- * @property-read int|null $next_of_kins_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\HealthDetails> $healthDetails
+ * @property-read int|null $health_details_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\LanguageKnowledge> $languageKnowledge
+ * @property-read int|null $language_knowledge_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Permission> $permissions
  * @property-read int|null $permissions_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CcbrtRelation> $relation
- * @property-read int|null $relation_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Role> $roles
  * @property-read int|null $roles_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserAdditionalInfo> $userAdditionalInfo
+ * @property-read int|null $user_additional_info_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserFamilyDetails> $userFamilyDetails
+ * @property-read int|null $user_family_details_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
@@ -676,6 +723,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePlaceOfBirth($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereProfessionalRegNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereProfilePicture($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRegion($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereReligion($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
@@ -843,6 +891,7 @@ namespace App\Models{
  * @property int|null $forwarded_by
  * @property int|null $attended_by
  * @property string|null $status
+ * @property string|null $rejection_reason
  * @property string|null $remark
  * @property string|null $attend_date
  * @property int|null $parent_id
@@ -857,6 +906,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|WorkFlowHistory whereForwardedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|WorkFlowHistory whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|WorkFlowHistory whereParentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|WorkFlowHistory whereRejectionReason($value)
  * @method static \Illuminate\Database\Eloquent\Builder|WorkFlowHistory whereRemark($value)
  * @method static \Illuminate\Database\Eloquent\Builder|WorkFlowHistory whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|WorkFlowHistory whereUpdatedAt($value)
