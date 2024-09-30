@@ -35,13 +35,19 @@ class IctAccessController extends Controller
         $hmis = HMISAccessLevel::where('delete_status', 0)->get();
         $ictAccessResources = IctAccessResource::where('delete_status', 0)->get();
 
+          $hasSignature = !is_null($user->signature);
+          if (!$hasSignature) {
+            return redirect()->route('signature.index')->with([
+                'message' => 'Please add your signature before proceeding.',
+            ]);
+        }
          // Check if the user's profile is complete
          $profileComplete = $user->healthDetails()->exists() &&
             $user->userFamilyDetails()->exists() &&
             $user->languageKnowledge()->exists() &&
             $user->ccbrtRelation()->exists();
 
-        // If the profile is not complete, redirect to the profile edit page
+           // If the profile is not complete, redirect to the profile edit page
          if (!$profileComplete) {
             return view('user_profile.index')->with([
                 'user' => $user,
@@ -185,7 +191,7 @@ class IctAccessController extends Controller
                     'parent_id' => $workflow->id,
                 ]);
                 // dd(12345);
-               
+
 
             });
 
