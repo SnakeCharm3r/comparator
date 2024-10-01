@@ -71,11 +71,7 @@
                                                         </div>
                                                     </div>
                                                     
-                                                    <div class="text-sm-right ml-auto">
-                                                        <div class="text-muted">
-                                                            <small>Joined <?php echo e($user->created_at->format('d F Y')); ?></small>
-                                                        </div>
-                                                    </div>
+                                                    
 
 
                                                 </div>
