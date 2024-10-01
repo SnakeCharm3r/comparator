@@ -137,7 +137,7 @@
 
                                                         <tr>
                                                             <th scope="row">District</th>
-                                                            <td>{{ $user->DOB }}</td>
+                                                            <td>{{ $user->district }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">Marital Status</th>
@@ -145,7 +145,7 @@
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">Box No</th>
-                                                            <td>{{ $user->box_no }}   </td>
+                                                            <td>{{ $user->box_no }} </td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">Plot No</th>
@@ -154,7 +154,7 @@
                                                         <tr>
                                                             <th scope="row">Popular Landmark</th>
                                                             <td>{{ $user->popular_landmark }} </td>
-                                                           </tr>
+                                                        </tr>
                                                         <tr>
                                                             <th scope="row">Home Address</th>
                                                             <td>{{ $user->home_address }}</td>
