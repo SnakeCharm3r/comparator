@@ -140,8 +140,19 @@ public function update(Request $request, string $id)
 }
 
 
-    public function destroy(string $id)
-    {
-        //
+public function deletePicture(User $user)
+{
+    if ($user->profile_picture) {
+        // Delete the profile picture from storage
+        Storage::delete($user->profile_picture);
+        
+        // Update user record to nullify the profile picture
+        $user->update(['profile_picture' => null]);
+
+        return redirect()->back()->with('success', 'Profile picture deleted successfully.');
     }
+
+    return redirect()->back()->with('error', 'No profile picture to delete.');
+}
+
 }

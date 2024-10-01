@@ -61,7 +61,7 @@
                                                                 aria-label="Close"></button>
                                                         </div>
 
-                                                            <div class="modal-body">
+                                                        <div class="modal-body">
                                                             <!-- Health details form -->
                                                             <form id="healthDetailsForm"
                                                                 action="{{ route('health-details.addHealthData') }}"
@@ -122,19 +122,34 @@
                                                                     <div class="col-12 col-md-6">
                                                                         <div class="form-group">
                                                                             <label>Health Insurance</label>
-                                                                            <select name="health_insurance" class="form-control" id="healthInsuranceSelect">
-                                                                                <option value="" disabled selected>Select an option</option>
-                                                                                <option value="yes" {{ old('health_insurance') == 'yes' ? 'selected' : '' }}>Yes</option>
-                                                                                <option value="no" {{ old('health_insurance') == 'no' ? 'selected' : '' }}>No</option>
+                                                                            <select name="health_insurance"
+                                                                                class="form-control"
+                                                                                id="healthInsuranceSelect">
+                                                                                <option value="" disabled selected>
+                                                                                    Select an option</option>
+                                                                                <option value="yes"
+                                                                                    {{ old('health_insurance') == 'yes' ? 'selected' : '' }}>
+                                                                                    Yes</option>
+                                                                                <option value="no"
+                                                                                    {{ old('health_insurance') == 'no' ? 'selected' : '' }}>
+                                                                                    No</option>
                                                                             </select>
                                                                         </div>
-                                                                        <div class="form-group" id="insuranceNameGroup" style="display: none;">
+                                                                        <div class="form-group" id="insuranceNameGroup"
+                                                                            style="display: none;">
                                                                             <label>Insurance Name</label>
-                                                                            <input type="text" class="form-control" name="insur_name" value="{{ old('insur_name') }}" placeholder="E.g., Blue Cross Blue Shield">
+                                                                            <input type="text" class="form-control"
+                                                                                name="insur_name"
+                                                                                value="{{ old('insur_name') }}"
+                                                                                placeholder="E.g., Blue Cross Blue Shield">
                                                                         </div>
-                                                                        <div class="form-group" id="insuranceNumberGroup" style="display: none;">
+                                                                        <div class="form-group" id="insuranceNumberGroup"
+                                                                            style="display: none;">
                                                                             <label>Insurance Number</label>
-                                                                            <input type="text" class="form-control" name="insur_no" value="{{ old('insur_no') }}" placeholder="E.g., 1234567890">
+                                                                            <input type="text" class="form-control"
+                                                                                name="insur_no"
+                                                                                value="{{ old('insur_no') }}"
+                                                                                placeholder="E.g., 1234567890">
                                                                         </div>
 
                                                                         <script>
@@ -278,59 +293,62 @@
                                             <!-- Health details table (existing data) -->
                                             <div class="mt-4">
                                                 <h4>Health Details</h4>
-                                                <table class="table table-bordered" id="healthDetailsTable">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Physical Disability</th>
-                                                            <th>Blood Group</th>
-                                                            <th>Illness History</th>
-                                                            <th>Health Insurance</th>
-                                                            <th>Insurance Name</th>
-                                                            <th>Insurance Number</th>
-                                                            <th>Allergies</th>
-                                                            <th>Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <!-- Loop through user's health details here -->
-                                                        @foreach ($healthDetails as $health)
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered" id="healthDetailsTable">
+                                                        <thead>
                                                             <tr>
-                                                                <td>{{ $health->physical_disability }}</td>
-                                                                <td>{{ $health->blood_group }}</td>
-                                                                <td>{{ $health->illness_history }}</td>
-                                                                <td>{{ $health->health_insurance }}</td>
-                                                                <td>{{ $health->insur_name }}</td>
-                                                                <td>{{ $health->insur_no }}</td>
-                                                                <td>{{ $health->allergies }}</td>
-                                                                <td>
-                                                                    <button type="button" class="btn btn-sm p-0"
-                                                                        style="border: none; background: none;"
-                                                                        title="Edit"
-                                                                        onclick="editHealthDetail({{ $health }})">
-                                                                        <i class="fas fa-edit text-primary"></i>
-                                                                    </button>
-
-                                                                    <button type="button" class="btn btn-sm p-0"
-                                                                        style="border: none; background: none;"
-                                                                        title="Delete"
-                                                                        onclick="confirmDelete('{{ route('health-details.delete', $health->id) }}')">
-                                                                        <i class="fas fa-trash-alt text-danger"></i>
-                                                                    </button>
-
-                                                                    <!-- Add this form for delete action -->
-                                                                    <form id="delete-form-{{ $health->id }}"
-                                                                        method="POST"
-                                                                        action="{{ route('health-details.delete', $health->id) }}"
-                                                                        style="display: none;">
-                                                                        @csrf
-                                                                        @method('DELETE')
-                                                                    </form>
-                                                                </td>
+                                                                <th>Physical Disability</th>
+                                                                <th>Blood Group</th>
+                                                                <th>Illness History</th>
+                                                                <th>Health Insurance</th>
+                                                                <th>Insurance Name</th>
+                                                                <th>Insurance Number</th>
+                                                                <th>Allergies</th>
+                                                                <th>Action</th>
                                                             </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
+                                                        </thead>
+                                                        <tbody>
+                                                            <!-- Loop through user's health details here -->
+                                                            @foreach ($healthDetails as $health)
+                                                                <tr>
+                                                                    <td>{{ $health->physical_disability }}</td>
+                                                                    <td>{{ $health->blood_group }}</td>
+                                                                    <td>{{ $health->illness_history }}</td>
+                                                                    <td>{{ $health->health_insurance }}</td>
+                                                                    <td>{{ $health->insur_name }}</td>
+                                                                    <td>{{ $health->insur_no }}</td>
+                                                                    <td>{{ $health->allergies }}</td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-sm p-0"
+                                                                            style="border: none; background: none;"
+                                                                            title="Edit"
+                                                                            onclick="editHealthDetail({{ $health }})">
+                                                                            <i class="fas fa-edit text-primary"></i>
+                                                                        </button>
+
+                                                                        <button type="button" class="btn btn-sm p-0"
+                                                                            style="border: none; background: none;"
+                                                                            title="Delete"
+                                                                            onclick="confirmDelete('{{ route('health-details.delete', $health->id) }}')">
+                                                                            <i class="fas fa-trash-alt text-danger"></i>
+                                                                        </button>
+
+                                                                        <!-- Add this form for delete action -->
+                                                                        <form id="delete-form-{{ $health->id }}"
+                                                                            method="POST"
+                                                                            action="{{ route('health-details.delete', $health->id) }}"
+                                                                            style="display: none;">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                        </form>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
+
                                         </div>
 
                                         <script>
