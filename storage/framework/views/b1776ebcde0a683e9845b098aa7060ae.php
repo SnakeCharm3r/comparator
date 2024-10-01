@@ -220,6 +220,31 @@
                                                                             value="<?php echo e(old('home_address', $user->home_address)); ?>">
                                                                     </div>
                                                                 </div>
+                                                                  </div>
+                                                                <div class="col-12 col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label>Box No</label>
+                                                                        <input class="form-control" type="text"
+                                                                            name="box_no" placeholder="Box No"
+                                                                            value="<?php echo e(old('box_no', $user->box_no)); ?>">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label>Plot No</label>
+                                                                        <input class="form-control" type="text"
+                                                                            name="plot_no" placeholder="Plot No"
+                                                                            value="<?php echo e(old('plot_no', $user->plot_no)); ?>">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label>Popular Landmark</label>
+                                                                        <input class="form-control" type="text"
+                                                                            name="popular_landmark" placeholder="Popular Landmark"
+                                                                            value="<?php echo e(old('popular_landmark', $user->plot_no)); ?>">
+                                                                    </div>
+                                                                </div>
                                                                 <div class="col-12 col-md-4">
                                                                     <div class="form-group">
                                                                         <label>Domicile</label>

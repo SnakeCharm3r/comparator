@@ -80,64 +80,6 @@ class ProfileController extends Controller
         return view('user_profile.edit', compact('user'));
     }
 
-  /**
- * Update the specified resource in storage.
- */
-// public function update(Request $request, string $id)
-// {
-//     // Validate the incoming request data
-//     $validator = Validator::make($request->all(), [
-//         'fname' => 'required',
-//         'lname' => 'required',
-//         'email' => 'required|email|:users,email',
-//         'DOB' => 'required',
-//     ]);
-
-//     if ($validator->fails()) {
-//         return response()->json([
-//             'status' => 400,
-//             'error' => $validator->errors()
-//         ]);
-//     }
-
-//     // Find the user by ID
-//     $user = User::findOrFail($id);
-
-//     // Update the user details
-//     $user->fname = $request->input('fname');
-//     $user->mname = $request->input('mname');
-//     $user->lname = $request->input('lname');
-//     $user->username = $request->input('username');
-//     $user->DOB = $request->input('DOB');
-//     $user->gender = $request->input('gender');
-//     $user->marital_status = $request->input('marital_status');
-//     $user->email = $request->input('email');
-//     $user->religion = $request->input('religion');
-//     $user->mobile = $request->input('mobile');
-//     // $user->job_title = $request->input('job_title');
-//     $user->home_address = $request->input('home_address');
-//     $user->district = $request->input('district');
-//     $user->region = $request->input('region');
-//     $user->professional_reg_number = $request->input('professional_reg_number');
-//     $user->place_of_birth = $request->input('place_of_birth');
-//     $user->house_no = $request->input('house_no');
-//     $user->street = $request->input('street');
-//     // $user->deptId = $request->input('deptId');
-//     // $user->employment_typeId = $request->input('employment_typeId');
-//     // $user->health_info_Id = $request->input('health_info_Id');
-//     $user->employee_cv = $request->input('employee_cv');
-    
-//     $user->NIN = $request->input('NIN');
-//     $user->nssf_no = $request->input('nssf_no');
-//     $user->domicile = $request->input('domicile');
-
-//     // Save the updated user record
-//     $user->save();
-
-//     // Redirect or respond with success message
-//     return redirect()->route('profile.index')->with('success', 'User updated successfully.');
-// }
-
 public function update(Request $request, string $id)
 {
     // Validate the incoming request data
@@ -172,6 +114,9 @@ public function update(Request $request, string $id)
     $user->home_address = $request->input('home_address');
     $user->district = $request->input('district');
     $user->region = $request->input('region');
+    $user->box_no = $request->input('box_no');
+    $user->plot_no = $request->input('plot_no');
+    $user->popular_landmark = $request->input('popular_landmark');
     $user->professional_reg_number = $request->input('professional_reg_number');
     $user->place_of_birth = $request->input('place_of_birth');
     $user->house_no = $request->input('house_no');
