@@ -71,7 +71,7 @@
                                             </td>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
                                                 <strong>Middle Name:</strong> {{ $ictForm->mname }}
-                                               
+
                                             </td>
                                         </tr>
                                         <tr>
@@ -212,14 +212,12 @@
                                                 @endif
                                             </td>
                                             <td style="border: 1px solid #000; padding: 8px;">
+
                                                 @if ($ictForm->created_at)
                                                     {{ \Carbon\Carbon::parse($ictForm->created_at)->format('d F Y') }}
-                                                @else
-                                                    N/A
+
                                                 @endif
-                                                @if ($ictForm->status == 1)
-                                                    <div>Status: Active</div>
-                                                @endif
+
                                             </td>
                                         </tr>
 
@@ -228,17 +226,19 @@
                                             <td style="border: 1px solid #000; padding: 6px;">
                                                 Line Manager Name: {{ trim(($lineManager->fname ?? '') . ' ' . ($lineManager->lname ?? '')) }}
                                             </td>
-                                                                                        <td style="border: 1px solid #000; padding: 1px;">
-                                                @if ($lineManager)
+                                            <td style="border: 1px solid #000; padding: 1px;">
+                                                @if ($lineManager && $lineManager->signature)
                                                     <img src="data:image/png;base64,{{ $lineManager->signature }}" alt="Line Manager Signature" style="max-width: 40%; height: 5%;">
                                                 @endif
                                             </td>
                                             <td style="border: 1px solid #000; padding: 6px;">
                                                 @if ($ictForm->status == 1 && $lineManager && $lineManager->updated_at)
                                                     {{ \Carbon\Carbon::parse($lineManager->updated_at)->format('d F Y') }}
+
                                                 @endif
                                             </td>
                                         </tr>
+
 
                                         <tr>
                                             <td style="border: 1px solid #000; padding: 6px;">
@@ -250,6 +250,7 @@
                                                 @endif
                                             </td>
                                             <td style="border: 1px solid #000; padding: 6px;">
+                                                {{-- {{dd($hrOfficer->updated_at)}} --}}
                                                 @if ($ictForm->status == 1 && $hrOfficer && $hrOfficer->updated_at)
                                                     {{ \Carbon\Carbon::parse($hrOfficer->updated_at)->format('d F Y') }}
                                                 @endif
