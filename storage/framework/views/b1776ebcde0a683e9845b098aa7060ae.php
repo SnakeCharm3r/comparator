@@ -56,12 +56,13 @@
                                                                 onclick="document.getElementById('profile_picture').click()">
                                                                 <i class="fa fa-fw fa-camera"></i>
                                                                 <span>Change Photo</span>
+
                                                             </button>
                                                         </div>
+
+
                                                     </div>
-                                                    <div class="text-sm-right ml-auto">
-                                                        <div class="text-muted"><small>Joined 09 July 2024</small></div>
-                                                    </div>
+                                                    
                                                 </div>
                                                 <script>
                                                     function handleProfilePictureChange(input) {
@@ -206,23 +207,6 @@
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
                                                                     <div class="form-group">
-                                                                        <label>House Number</label>
-                                                                        <input class="form-control" type="text"
-                                                                            name="house_no" placeholder="House Number"
-                                                                            value="<?php echo e(old('house_no', $user->house_no)); ?>">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-12 col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label>Home Address</label>
-                                                                        <input class="form-control" type="text"
-                                                                            name="home_address" placeholder="Home Address"
-                                                                            value="<?php echo e(old('home_address', $user->home_address)); ?>">
-                                                                    </div>
-                                                                </div>
-                                                                  </div>
-                                                                <div class="col-12 col-md-4">
-                                                                    <div class="form-group">
                                                                         <label>Box No</label>
                                                                         <input class="form-control" type="text"
                                                                             name="box_no" placeholder="Box No"
@@ -241,8 +225,25 @@
                                                                     <div class="form-group">
                                                                         <label>Popular Landmark</label>
                                                                         <input class="form-control" type="text"
-                                                                            name="popular_landmark" placeholder="Popular Landmark"
+                                                                            name="popular_landmark"
+                                                                            placeholder="Popular Landmark"
                                                                             value="<?php echo e(old('popular_landmark', $user->plot_no)); ?>">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label>House Number</label>
+                                                                        <input class="form-control" type="text"
+                                                                            name="house_no" placeholder="House Number"
+                                                                            value="<?php echo e(old('house_no', $user->house_no)); ?>">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label>Home Address</label>
+                                                                        <input class="form-control" type="text"
+                                                                            name="home_address" placeholder="Home Address"
+                                                                            value="<?php echo e(old('home_address', $user->home_address)); ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
@@ -270,41 +271,6 @@
                                                                             value="<?php echo e(old('professional_reg_number', $user->professional_reg_number)); ?>">
                                                                     </div>
                                                                 </div>
-                                                             <!-- Include jQuery and InputMask -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="<?php echo e(asset('node_modules/jquery.inputmask/dist/min/jquery.inputmask.min.js')); ?>"></script>
-
-<div class="col-12 col-md-4">
-    <div class="form-group">
-        <label>National Identification Number (NIDA)</label>
-        <input class="form-control" type="text"
-               name="NIN"
-               placeholder="e.g. 19501007-11101-00001-26"
-               value="<?php echo e(old('NIN', $user->NIN)); ?>"
-               pattern="\d{8}-\d{5}-\d{5}-\d{2}"
-               title="Format: 19501007-11101-00001-26"
-               maxlength="23">
-    </div>
-</div>
-
-<!-- InputMask initialization script -->
-<script>
-    $(document).ready(function(){
-        $('input[name="NIN"]').inputmask({
-            mask: "99999999-99999-99999-99",  // Set the format for NIDA
-            placeholder: " ",                // Placeholder for empty fields
-            definitions: {
-                '9': {                         // Restrict to digits only
-                    validator: "[0-9]"
-                }
-            },
-            clearIncomplete: true              // Prevent partial entries from being submitted
-        });
-    });
-</script>
-
-
-
 
                                                                 <div class="col-12 col-md-4">
                                                                     <div class="form-group">
@@ -314,44 +280,76 @@
                                                                             value="<?php echo e(old('nssf_no', $user->nssf_no)); ?>">
                                                                     </div>
                                                                 </div>
-
-                                                                
-
-
-
                                                             </div>
+
+
+
+
+                                                            <!-- Include jQuery and InputMask -->
+                                                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                                            <script src="<?php echo e(asset('node_modules/jquery.inputmask/dist/min/jquery.inputmask.min.js')); ?>"></script>
+
+                                                            <div class="col-12 col-md-4">
+                                                                <div class="form-group">
+                                                                    <label>National Identification Number (NIDA)</label>
+                                                                    <input class="form-control" type="text"
+                                                                        name="NIN"
+                                                                        placeholder="e.g. 19501007-11101-00001-26"
+                                                                        value="<?php echo e(old('NIN', $user->NIN)); ?>"
+                                                                        pattern="\d{8}-\d{5}-\d{5}-\d{2}"
+                                                                        title="Format: 19501007-11101-00001-26"
+                                                                        maxlength="23">
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- InputMask initialization script -->
+                                                            <script>
+                                                                $(document).ready(function() {
+                                                                    $('input[name="NIN"]').inputmask({
+                                                                        mask: "99999999-99999-99999-99", // Set the format for NIDA
+                                                                        placeholder: " ", // Placeholder for empty fields
+                                                                        definitions: {
+                                                                            '9': { // Restrict to digits only
+                                                                                validator: "[0-9]"
+                                                                            }
+                                                                        },
+                                                                        clearIncomplete: true // Prevent partial entries from being submitted
+                                                                    });
+                                                                });
+                                                            </script>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col d-flex justify-content-end">
-                                                            <a href="#" class="btn btn-secondary"
-                                                                onclick="goBack()">Back</a>
-                                                            <button class="btn btn-primary ml-2" type="submit">Save
-                                                                Changes</button>
-                                                        </div>
-                                                    </div>
-                                                    <script>
-                                                        function redirectToEditProfile(userId) {
-                                                            window.location.href = `/profile/edit/${userId}`;
-                                                        }
-                                                    </script>
-                                                    <script>
-                                                        function goBack() {
-                                                            window.history.back();
-                                                        }
-                                                    </script>
-                                                </form>
                                             </div>
+                                            <div class="row">
+                                                <div class="col d-flex justify-content-end">
+                                                    <a href="#" class="btn btn-secondary"
+                                                        onclick="goBack()">Back</a>
+                                                    <button class="btn btn-primary ml-2" type="submit">Save
+                                                        Changes</button>
+                                                </div>
+                                            </div>
+                                            <script>
+                                                function redirectToEditProfile(userId) {
+                                                    window.location.href = `/profile/edit/${userId}`;
+                                                }
+                                            </script>
+                                            <script>
+                                                function goBack() {
+                                                    window.history.back();
+                                                }
+                                            </script>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Add other content for profile page here -->
                         </div>
+                        <!-- Add other content for profile page here -->
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 <?php $__env->stopSection(); ?>
 
