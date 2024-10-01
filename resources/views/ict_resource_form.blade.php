@@ -71,6 +71,7 @@
                                             </td>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
                                                 <strong>Middle Name:</strong> {{ $ictForm->mname }}
+                                               
                                             </td>
                                         </tr>
                                         <tr>
@@ -211,11 +212,17 @@
                                                 @endif
                                             </td>
                                             <td style="border: 1px solid #000; padding: 8px;">
-                                                @if ($ictForm->status == 1)
+                                                @if ($ictForm->created_at)
                                                     {{ \Carbon\Carbon::parse($ictForm->created_at)->format('d F Y') }}
+                                                @else
+                                                    N/A
+                                                @endif
+                                                @if ($ictForm->status == 1)
+                                                    <div>Status: Active</div>
                                                 @endif
                                             </td>
                                         </tr>
+
 
                                         <tr>
                                             <td style="border: 1px solid #000; padding: 6px;">
@@ -248,7 +255,7 @@
                                                 @endif
                                             </td>
                                         </tr>
-                                        
+
                                         <tr>
                                             <td style="border: 1px solid #000; padding: 6px;">
                                                 IT Officer Name: {{ trim(($itOfficer->fname ?? '') . ' ' . ($itOfficer->lname ?? '')) }}
