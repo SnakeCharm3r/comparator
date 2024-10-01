@@ -656,6 +656,9 @@ namespace App\Models{
  * @property string|null $place_of_birth
  * @property string|null $house_no
  * @property string|null $street
+ * @property string|null $box_no
+ * @property string|null $plot_no
+ * @property string|null $popular_landmark
  * @property string|null $emp_id
  * @property int $deptId
  * @property int $employment_typeId
@@ -696,6 +699,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User permission($permissions, $without = false)
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User role($roles, $guard = null, $without = false)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereBoxNo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereDOB($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereDeleteStatus($value)
@@ -721,6 +725,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereNssfNo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePlaceOfBirth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePlotNo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePopularLandmark($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereProfessionalRegNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereProfilePicture($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRegion($value)

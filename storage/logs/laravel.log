@@ -11932,3 +11932,51 @@
 #71 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #72 {main}
 "} 
+[2024-10-01 04:58:04] local.ERROR: syntax error, unexpected single-quoted string "emp_id", expecting "]" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected single-quoted string \"emp_id\", expecting \"]\" at D:\\Projects\\E-docs\\app\\Models\\User.php:41)
+[stacktrace]
+#0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.[2024-10-01 04:58:04] local.ERROR: syntax error, unexpected single-quoted string "emp_id", expecting "]" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected single-quoted string \"emp_id\", expecting \"]\" at D:\\Projects\\E-docs\\app\\Models\\User.php:41)
+[stacktrace]
+#0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
+#1 [internal function]: Composer\\Autoload\\ClassLoader->loadClass('App\\\\Models\\\\User')
+#2 D:\\Projects\\E-docs\\vendor\\barryvdh\\laravel-ide-helper\\src\\Console\\ModelsCommand.php(270): class_exists('App\\\\Models\\\\User')
+#3 D:\\Projects\\E-docs\\vendor\\barryvdh\\laravel-ide-helper\\src\\Console\\ModelsCommand.php(180): Barryvdh\\LaravelIdeHelper\\Console\\ModelsCommand->generateDocs(Array, Array)
+#4 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Barryvdh\\LaravelIdeHelper\\Console\\ModelsCommand->handle()
+#5 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#6 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#7 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#8 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#9 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(211): Illuminate\\Container\\Container->call(Array)
+#10 D:\\Projects\\E-docs\\vendor\\symfony\\console\\Command\\Command.php(326): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#11 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(180): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#12 D:\\Projects\\E-docs\\vendor\\symfony\\console\\Application.php(1096): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 D:\\Projects\\E-docs\\vendor\\symfony\\console\\Application.php(324): Symfony\\Component\\Console\\Application->doRunCommand(Object(Barryvdh\\LaravelIdeHelper\\Console\\ModelsCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 D:\\Projects\\E-docs\\vendor\\symfony\\console\\Application.php(175): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#17 {main}
+"} 
+[2024-10-01 04:58:12] local.ERROR: syntax error, unexpected single-quoted string "emp_id", expecting "]" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected single-quoted string \"emp_id\", expecting \"]\" at D:\\Projects\\E-docs\\app\\Models\\User.php:42)
+[stacktrace]
+#0 {main}
+"} 
+[2024-10-01 04:58:14] local.ERROR: syntax error, unexpected single-quoted string "emp_id", expecting "]" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected single-quoted string \"emp_id\", expecting \"]\" at D:\\Projects\\E-docs\\app\\Models\\User.php:42)
+[stacktrace]
+#0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
+#1 [internal function]: Composer\\Autoload\\ClassLoader->loadClass('App\\\\Models\\\\User')
+#2 D:\\Projects\\E-docs\\vendor\\barryvdh\\laravel-ide-helper\\src\\Console\\ModelsCommand.php(270): class_exists('App\\\\Models\\\\User')
+#3 D:\\Projects\\E-docs\\vendor\\barryvdh\\laravel-ide-helper\\src\\Console\\ModelsCommand.php(180): Barryvdh\\LaravelIdeHelper\\Console\\ModelsCommand->generateDocs(Array, Array)
+#4 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Barryvdh\\LaravelIdeHelper\\Console\\ModelsCommand->handle()
+#5 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#6 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#7 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#8 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#9 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(211): Illuminate\\Container\\Container->call(Array)
+#10 D:\\Projects\\E-docs\\vendor\\symfony\\console\\Command\\Command.php(326): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#11 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(180): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#12 D:\\Projects\\E-docs\\vendor\\symfony\\console\\Application.php(1096): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 D:\\Projects\\E-docs\\vendor\\symfony\\console\\Application.php(324): Symfony\\Component\\Console\\Application->doRunCommand(Object(Barryvdh\\LaravelIdeHelper\\Console\\ModelsCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 D:\\Projects\\E-docs\\vendor\\symfony\\console\\Application.php(175): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#17 {main}
+"} 
