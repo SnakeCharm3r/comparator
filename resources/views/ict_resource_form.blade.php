@@ -132,7 +132,7 @@
                                                 <strong>OpenClinic HMS:</strong> {{ $ictForm->names }}
                                             </td>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>Aruti HR MIS:</strong> {{ $ictForm->aruti_hr_mis }}
+                                                <strong>Aruti HR MIS:</strong> {{ $ictForm->prv_name }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -154,7 +154,7 @@
                                         <tr>
                                             <td colspan="2"
                                                 style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>Network Directory Access:</strong> {{ $ictForm->physical_access }}
+                                                <strong>Network Directory Access:</strong> {{ $ictForm->network_folder }}
                                             </td>
                                         </tr>
                                     </tbody>

@@ -145,7 +145,7 @@
 
                                             </td>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>Aruti HR MIS:</strong> <?php echo e($ictForm->aruti_hr_mis); ?>
+                                                <strong>Aruti HR MIS:</strong> <?php echo e($ictForm->prv_name); ?>
 
                                             </td>
                                         </tr>
@@ -172,7 +172,7 @@
                                         <tr>
                                             <td colspan="2"
                                                 style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>Network Directory Access:</strong> <?php echo e($ictForm->physical_access); ?>
+                                                <strong>Network Directory Access:</strong> <?php echo e($ictForm->network_folder); ?>
 
                                             </td>
                                         </tr>
