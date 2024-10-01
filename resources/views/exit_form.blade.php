@@ -34,37 +34,37 @@
                                     <div class="form-group">
                                         <label for="first_name"><strong>First Name:</strong></label>
                                         <input type="text" class="form-control" id="first_name"
-                                            value="{{ $user->fname }}" readonly>
+                                            value="{{ $clearance->fname }}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="last_name"><strong>Last Name:</strong></label>
                                         <input type="text" class="form-control" id="last_name"
-                                            value="{{ $user->lname }}" readonly>
+                                            value="{{ $clearance->lname }}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="job_title"><strong>Job Title:</strong></label>
                                         <input type="text" class="form-control" id="job_title"
-                                            value="{{ $user->job_title }}" readonly>
+                                            value="{{ $clearance->job_title }}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="department"><strong>Department:</strong></label>
                                         <input type="text" class="form-control" id="department"
-                                            value="{{ $user->department->dept_name }}" readonly>
+                                            value="{{ $clearance->dept_name }}" readonly>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                {{-- <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="date"><strong>Date:</strong></label>
-                                        <input type="date" class="form-control" id="date" name="date"
-                                            value="{{ $clearance->date }}" readonly>
+                                        <label for="created_at"><strong>Date:</strong></label>
+                                        <input type="date" class="form-control" id="date" name="created_at"
+                                            value="{{ $clearance->created_at }}" readonly>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
 
                             <!-- Section II A: Items Collection -->

@@ -72,6 +72,7 @@
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
                                                 <strong>Middle Name:</strong> <?php echo e($ictForm->mname); ?>
 
+
                                             </td>
                                         </tr>
                                         <tr>
@@ -231,20 +232,24 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td style="border: 1px solid #000; padding: 8px;">
-                                                <?php if($ictForm->status == 1): ?>
+
+                                                <?php if($ictForm->created_at): ?>
                                                     <?php echo e(\Carbon\Carbon::parse($ictForm->created_at)->format('d F Y')); ?>
 
+
                                                 <?php endif; ?>
+
                                             </td>
                                         </tr>
+
 
                                         <tr>
                                             <td style="border: 1px solid #000; padding: 6px;">
                                                 Line Manager Name: <?php echo e(trim(($lineManager->fname ?? '') . ' ' . ($lineManager->lname ?? ''))); ?>
 
                                             </td>
-                                                                                        <td style="border: 1px solid #000; padding: 1px;">
-                                                <?php if($lineManager): ?>
+                                            <td style="border: 1px solid #000; padding: 1px;">
+                                                <?php if($lineManager && $lineManager->signature): ?>
                                                     <img src="data:image/png;base64,<?php echo e($lineManager->signature); ?>" alt="Line Manager Signature" style="max-width: 40%; height: 5%;">
                                                 <?php endif; ?>
                                             </td>
@@ -252,9 +257,11 @@
                                                 <?php if($ictForm->status == 1 && $lineManager && $lineManager->updated_at): ?>
                                                     <?php echo e(\Carbon\Carbon::parse($lineManager->updated_at)->format('d F Y')); ?>
 
+
                                                 <?php endif; ?>
                                             </td>
                                         </tr>
+
 
                                         <tr>
                                             <td style="border: 1px solid #000; padding: 6px;">
@@ -267,13 +274,14 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td style="border: 1px solid #000; padding: 6px;">
+                                                
                                                 <?php if($ictForm->status == 1 && $hrOfficer && $hrOfficer->updated_at): ?>
                                                     <?php echo e(\Carbon\Carbon::parse($hrOfficer->updated_at)->format('d F Y')); ?>
 
                                                 <?php endif; ?>
                                             </td>
                                         </tr>
-                                        
+
                                         <tr>
                                             <td style="border: 1px solid #000; padding: 6px;">
                                                 IT Officer Name: <?php echo e(trim(($itOfficer->fname ?? '') . ' ' . ($itOfficer->lname ?? ''))); ?>
