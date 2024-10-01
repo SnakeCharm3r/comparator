@@ -136,7 +136,7 @@
 
                                                         <tr>
                                                             <th scope="row">District</th>
-                                                            <td><?php echo e($user->DOB); ?></td>
+                                                            <td><?php echo e($user->district); ?></td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">Marital Status</th>
@@ -144,7 +144,7 @@
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">Box No</th>
-                                                            <td><?php echo e($user->box_no); ?>   </td>
+                                                            <td><?php echo e($user->box_no); ?> </td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">Plot No</th>
@@ -153,7 +153,7 @@
                                                         <tr>
                                                             <th scope="row">Popular Landmark</th>
                                                             <td><?php echo e($user->popular_landmark); ?> </td>
-                                                           </tr>
+                                                        </tr>
                                                         <tr>
                                                             <th scope="row">Home Address</th>
                                                             <td><?php echo e($user->home_address); ?></td>
