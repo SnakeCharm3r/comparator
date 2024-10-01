@@ -12,21 +12,21 @@
                     </div>
 
                     @if (session('error_message'))
-    <div class="alert alert-danger">
-        {{ session('error_message') }}
-    </div>
-@endif
+                        <div class="alert alert-danger">
+                            {{ session('error_message') }}
+                        </div>
+                    @endif
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>Please fix the following issues:</strong>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <strong>Please fix the following issues:</strong>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
 
                     <form id="registrationForm" action="{{ route('register.handleRegistration') }}" method="POST"
@@ -79,12 +79,50 @@
                                 <div class="form-group">
                                     <label for="email">Email <span class="text-danger">*</span></label>
                                     <input class="form-control" type="email" name="email" id="email" required
-                                        placeholder="e.g., abc@gmail.com"
-                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                                        title="Please enter a valid email address." style="border-color: #ced4da;">
-                                    <small id="email-message" class="text-danger"></small>
+                                           placeholder="e.g., abc@gmail.com"
+                                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                           title="Please enter a valid email address."
+                                           style="border-color: #ced4da;">
+                                    <small id="email-message" class="text-danger" style="visibility: hidden;"></small>
                                 </div>
                             </div>
+
+                            <script>
+                                const emailInput = document.getElementById('email');
+                                const emailMessage = document.getElementById('email-message');
+                                const pattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+                                function validateEmail() {
+                                    if (!pattern.test(emailInput.value)) {
+                                        emailMessage.textContent = 'Please enter a valid email address.';
+                                        emailMessage.style.visibility = 'visible'; 
+                                        emailInput.style.borderColor = 'red';
+                                    } else {
+                                        emailMessage.textContent = '';
+                                        emailMessage.style.visibility = 'hidden';
+                                        emailInput.style.borderColor = '#28a745';
+                                    }
+                                }
+
+                                window.onload = function() {
+                                    validateEmail();
+                                };
+
+                                emailInput.addEventListener('input', validateEmail);
+
+                                document.querySelector('form').addEventListener('submit', function(event) {
+                                    if (!pattern.test(emailInput.value)) {
+                                        emailMessage.textContent = 'Please enter a valid email address.';
+                                        emailMessage.style.visibility = 'visible';
+                                        emailInput.style.borderColor = 'red';
+                                        event.preventDefault();
+                                    }
+                                });
+                            </script>
+
+
+
+
 
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                             <script>
@@ -237,7 +275,7 @@
                                         }
                                     });
                                 });
-                                </script>
+                            </script>
 
 
 

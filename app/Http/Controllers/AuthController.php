@@ -163,7 +163,7 @@ public function getJobTitles($deptId){
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput()
-                ->with('error_message', 'We are unable to validate your email because the address is already in use. ');
+                ->with('error_message', 'We are unable to validate your email. ');
         }
 
         // Process the registration if validation passes

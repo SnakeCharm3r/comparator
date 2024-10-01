@@ -12,22 +12,22 @@
                     </div>
 
                     <?php if(session('error_message')): ?>
-    <div class="alert alert-danger">
-        <?php echo e(session('error_message')); ?>
+                        <div class="alert alert-danger">
+                            <?php echo e(session('error_message')); ?>
 
-    </div>
-<?php endif; ?>
+                        </div>
+                    <?php endif; ?>
 
-<?php if($errors->any()): ?>
-    <div class="alert alert-danger">
-        <strong>Please fix the following issues:</strong>
-        <ul>
-            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <li><?php echo e($error); ?></li>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </ul>
-    </div>
-<?php endif; ?>
+                    <?php if($errors->any()): ?>
+                        <div class="alert alert-danger">
+                            <strong>Please fix the following issues:</strong>
+                            <ul>
+                                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li><?php echo e($error); ?></li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
 
 
                     <form id="registrationForm" action="<?php echo e(route('register.handleRegistration')); ?>" method="POST"
@@ -80,12 +80,50 @@
                                 <div class="form-group">
                                     <label for="email">Email <span class="text-danger">*</span></label>
                                     <input class="form-control" type="email" name="email" id="email" required
-                                        placeholder="e.g., abc@gmail.com"
-                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                                        title="Please enter a valid email address." style="border-color: #ced4da;">
-                                    <small id="email-message" class="text-danger"></small>
+                                           placeholder="e.g., abc@gmail.com"
+                                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                           title="Please enter a valid email address."
+                                           style="border-color: #ced4da;">
+                                    <small id="email-message" class="text-danger" style="visibility: hidden;"></small>
                                 </div>
                             </div>
+
+                            <script>
+                                const emailInput = document.getElementById('email');
+                                const emailMessage = document.getElementById('email-message');
+                                const pattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+                                function validateEmail() {
+                                    if (!pattern.test(emailInput.value)) {
+                                        emailMessage.textContent = 'Please enter a valid email address.';
+                                        emailMessage.style.visibility = 'visible'; 
+                                        emailInput.style.borderColor = 'red';
+                                    } else {
+                                        emailMessage.textContent = '';
+                                        emailMessage.style.visibility = 'hidden';
+                                        emailInput.style.borderColor = '#28a745';
+                                    }
+                                }
+
+                                window.onload = function() {
+                                    validateEmail();
+                                };
+
+                                emailInput.addEventListener('input', validateEmail);
+
+                                document.querySelector('form').addEventListener('submit', function(event) {
+                                    if (!pattern.test(emailInput.value)) {
+                                        emailMessage.textContent = 'Please enter a valid email address.';
+                                        emailMessage.style.visibility = 'visible';
+                                        emailInput.style.borderColor = 'red';
+                                        event.preventDefault();
+                                    }
+                                });
+                            </script>
+
+
+
+
 
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                             <script>
@@ -238,7 +276,7 @@
                                         }
                                     });
                                 });
-                                </script>
+                            </script>
 
 
 
