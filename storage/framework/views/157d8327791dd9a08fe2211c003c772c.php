@@ -33,37 +33,31 @@
                                     <div class="form-group">
                                         <label for="first_name"><strong>First Name:</strong></label>
                                         <input type="text" class="form-control" id="first_name"
-                                            value="<?php echo e($user->fname); ?>" readonly>
+                                            value="<?php echo e($clearance->fname); ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="last_name"><strong>Last Name:</strong></label>
                                         <input type="text" class="form-control" id="last_name"
-                                            value="<?php echo e($user->lname); ?>" readonly>
+                                            value="<?php echo e($clearance->lname); ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="job_title"><strong>Job Title:</strong></label>
                                         <input type="text" class="form-control" id="job_title"
-                                            value="<?php echo e($user->job_title); ?>" readonly>
+                                            value="<?php echo e($clearance->job_title); ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="department"><strong>Department:</strong></label>
                                         <input type="text" class="form-control" id="department"
-                                            value="<?php echo e($user->department->dept_name); ?>" readonly>
+                                            value="<?php echo e($clearance->dept_name); ?>" readonly>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="date"><strong>Date:</strong></label>
-                                        <input type="date" class="form-control" id="date" name="date"
-                                            value="<?php echo e($clearance->date); ?>" readonly>
-                                    </div>
-                                </div>
+                                
                             </div>
 
                             <!-- Section II A: Items Collection -->

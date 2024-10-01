@@ -108,7 +108,7 @@ class FormController extends Controller
         ->where('work_flow_histories.work_flow_id',$ictForm->work_flow_id)
         ->where('work_flow_histories.status',1)
         ->first();
-
+//  dd($hrOfficer);
 
         $itOfficer = User::whereHas('roles', function($query) {
             $query->where('name', 'it');
@@ -253,15 +253,23 @@ $forwadUser=User::join('workflows','workflows.user_id','=','users.id')
         $clearance = ClearanceForm::join('users', 'users.id', '=', 'clearance_forms.userId')
             ->join('clearance_work_flows', 'clearance_work_flows.requested_resource_id', '=', 'clearance_forms.id')
             ->join('clearance_work_flow_histories', 'clearance_work_flow_histories.work_flow_id', '=', 'clearance_work_flows.id')
-            ->join('users as user_forwarded', 'user_forwarded.id', '=', 'clearance_work_flow_histories.forwarded_by')
+            ->join('departments', 'departments.id', '=', 'users.deptId')
+            ->join('job_titles', 'job_titles.id', '=', 'users.job_title')
             ->where('clearance_forms.id', $request->id)
+            ->where('clearance_work_flow_histories.attended_by', $user->id)
+
             ->first([
                 'clearance_forms.*',
                 'users.*',
                 'clearance_work_flows.*',
+                'departments.dept_name',
+                'job_titles.job_title',
                 'clearance_work_flow_histories.*',
-                'clearance_forms.id as access_id'
+                'clearance_forms.id as access_id',
+                'clearance_work_flow_histories.forwarded_by'
             ]);
+
+            //  dd($clearance);
         return view('exit_form', compact('clearance', 'user'));
     }
 
