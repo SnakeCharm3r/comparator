@@ -109,7 +109,8 @@
                                                                             name="familyData[0][next_of_kin]"
                                                                             value="1"
                                                                             {{ old('familyData.0.next_of_kin') ? 'checked' : '' }}>
-                                                                        <small class="form-text text-muted">Check if this person is your Next of Kin.</small>
+                                                                        <small class="form-text text-muted">Check if this
+                                                                            person is your Next of Kin.</small>
                                                                     </div>
 
 
@@ -125,6 +126,13 @@
                                                     </div>
                                                 </div>
 
+
+
+                                                @if (session('error'))
+                                                    <div class="alert alert-danger">
+                                                        {{ session('error') }}
+                                                    </div>
+                                                @endif
 
 
                                                 <!-- Modal for editing family data -->

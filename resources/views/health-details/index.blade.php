@@ -198,6 +198,23 @@
                                                 </div>
                                             </div>
 
+                                            @if (session('error'))
+                                                <div class="alert alert-danger">
+                                                    {{ session('error') }}
+                                                </div>
+                                            @endif
+
+                                            @if ($errors->any())
+                                                <div class="alert alert-danger">
+                                                    <ul>
+                                                        @foreach ($errors->all() as $error)
+                                                            <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            @endif
+
+
                                             <!-- Modal for editing health details -->
                                             <div class="modal fade" id="editHealthModal" tabindex="-1"
                                                 aria-labelledby="editHealthModalLabel" aria-hidden="true">

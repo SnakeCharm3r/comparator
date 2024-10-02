@@ -37,6 +37,11 @@ class VendorController extends Controller
             // other fields...
         ]);
     
+        // Calculate overall risk score
+        if (!empty($validatedData['likelihood_rating']) && !empty($validatedData['impact_rating'])) {
+            $validatedData['overall_risk_score'] = $validatedData['likelihood_rating'] * $validatedData['impact_rating'];
+        }
+    
         // Handle file upload
         if ($request->hasFile('contract_file')) {
             $validatedData['contract_file'] = $request->file('contract_file')->store('contracts');
@@ -50,6 +55,7 @@ class VendorController extends Controller
         return redirect()->route('vendors.index')->with('success', 'Vendor created successfully.');
     }
     
+    
 
     public function show(Vendor $vendor)
     {
@@ -62,26 +68,39 @@ class VendorController extends Controller
     }
 
     public function update(Request $request, Vendor $vendor)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'contact_person' => 'required|string|max:255',
-            'phone' => 'required|string|max:15',
-            'email' => 'required|string|email|max:255|unique:vendors,email,' . $vendor->id,
-            'address' => 'required|string|max:255',
-            'contract_file' => 'nullable|file|mimes:pdf,doc,docx',
-            'contract_start_date' => 'required|date',
-            'contract_end_date' => 'required|date|after:contract_start_date',
-        ]);
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'contact_person' => 'required|string|max:255',
+        'phone' => 'required|string|max:15',
+        'email' => 'required|string|email|max:255|unique:vendors,email,' . $vendor->id,
+        'address' => 'required|string|max:255',
+        'contract_file' => 'nullable|file|mimes:pdf,doc,docx',
+        'contract_start_date' => 'required|date',
+        'contract_end_date' => 'required|date|after:contract_start_date',
+        'likelihood_rating' => 'nullable|integer',
+        'impact_rating' => 'nullable|integer',
+        // other fields...
+    ]);
 
-        $vendor->update($request->all());
+    $data = $request->all();
 
-        if ($request->hasFile('contract_file')) {
-            $vendor->contract_file = $request->file('contract_file')->store('contracts');
-        }
-
-        return redirect()->route('vendors.index')->with('success', 'Vendor updated successfully.');
+    // Calculate overall risk score
+    if (!empty($data['likelihood_rating']) && !empty($data['impact_rating'])) {
+        $data['overall_risk_score'] = $data['likelihood_rating'] * $data['impact_rating'];
     }
+
+    // Update vendor data
+    $vendor->update($data);
+
+    // Handle file upload
+    if ($request->hasFile('contract_file')) {
+        $vendor->contract_file = $request->file('contract_file')->store('contracts');
+    }
+
+    return redirect()->route('vendors.index')->with('success', 'Vendor updated successfully.');
+}
+
 
     public function destroy(Vendor $vendor)
     {
