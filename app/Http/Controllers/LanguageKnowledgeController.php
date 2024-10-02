@@ -43,11 +43,18 @@ class LanguageKnowledgeController extends Controller
             'reading' => 'required|string|max:255',
             'writing' => 'required|string|max:255',
         ]);
-
+    
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
+    
+        // Check if the user already has 4 language knowledge entries
+        $languageCount = LanguageKnowledge::where('userId', Auth::id())->count();
+    
+        if ($languageCount >= 4) {
+            return redirect()->back()->with('error', 'You can only add up to 4 language knowledge entries.')->withInput();
+        }
+    
         LanguageKnowledge::create([
             'userId' => Auth::id(),
             'language' => $request->input('language'),
@@ -56,9 +63,11 @@ class LanguageKnowledgeController extends Controller
             'writing' => $request->input('writing'),
             'delete_status' => 0,
         ]);
+        
         Alert::success('Successful', 'Language knowledge added successfully');
         return redirect()->route('language_knowledge.index')->with('success', 'Language knowledge added successfully.');
     }
+    
 
     /**
      * Show the form for editing the specified language knowledge.

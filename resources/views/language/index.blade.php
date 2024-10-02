@@ -139,6 +139,12 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
 
                                             <!-- Table for displaying language knowledge -->
                                             <h3>Language Knowledge</h3>

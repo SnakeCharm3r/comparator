@@ -5,20 +5,14 @@
 
             <!-- Header with Logo -->
             <div class="page-header d-flex justify-content-between align-items-center">
-                
-                <div>
-                    <h3 class="page-title text-center">Vendor Details</h3>
-                </div>
-                <div>
-                    <!-- Empty div to balance the layout -->
-                </div>
+                <h3 class="page-title text-center">Vendor Details</h3>
+                <a href="<?php echo e(route('vendors.index')); ?>" class="btn btn-secondary">Back to List</a>
             </div>
 
             <!-- Vendor Information Section -->
             <div class="card mt-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5>Vendor Information</h5>
-                    <a href="<?php echo e(route('vendors.index')); ?>" class="btn btn-secondary">Back to List</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">
@@ -66,22 +60,34 @@
                             </tr>
                             <tr>
                                 <th>Likelihood Rating</th>
-                                <td><?php echo e($vendor->likelihood_rating); ?></td>
+                                <td
+                                    class="<?php if($vendor->likelihood_rating <= 3): ?> table-success <?php elseif($vendor->likelihood_rating <= 6): ?> table-warning <?php else: ?> table-danger <?php endif; ?>">
+                                    <?php echo e($vendor->likelihood_rating); ?>
+
+                                </td>
                             </tr>
                             <tr>
                                 <th>Impact Rating</th>
-                                <td><?php echo e($vendor->impact_rating); ?></td>
+                                <td
+                                    class="<?php if($vendor->impact_rating <= 3): ?> table-success <?php elseif($vendor->impact_rating <= 6): ?> table-warning <?php else: ?> table-danger <?php endif; ?>">
+                                    <?php echo e($vendor->impact_rating); ?>
+
+                                </td>
                             </tr>
                             <tr>
                                 <th>Overall Risk Score</th>
-                                <td><?php echo e($vendor->overall_risk_score); ?></td>
+                                <td
+                                    class="<?php if($vendor->overall_risk_score <= 3): ?> table-success <?php elseif($vendor->overall_risk_score <= 6): ?> table-warning <?php else: ?> table-danger <?php endif; ?>">
+                                    <?php echo e($vendor->overall_risk_score); ?>
+
+                                </td>
                             </tr>
                             <?php if($vendor->contract_file): ?>
                                 <tr>
                                     <th>Contract File</th>
                                     <td>
                                         <a href="<?php echo e(Storage::url($vendor->contract_file)); ?>" class="btn btn-info"
-                                            target="_blank">Download</a>
+                                            target="_blank">Download Contract</a>
                                     </td>
                                 </tr>
                             <?php endif; ?>
@@ -89,6 +95,7 @@
                     </table>
                 </div>
             </div>
+
         </div>
     </div>
 <?php $__env->stopSection(); ?>
