@@ -26,6 +26,11 @@
                             <div class="col mb-3">
                                 <div class="card">
                                     <div class="card-body">
+                                          @if (session('message'))
+                                            <div class="alert alert-warning">
+                                                {{ session('message') }}
+                                            </div>
+                                        @endif
                                         <div class="e-profile">
                                             <div class="row">
                                                 <div class="col-12 col-sm-auto mb-3">

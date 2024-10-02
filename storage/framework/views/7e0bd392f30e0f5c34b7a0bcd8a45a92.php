@@ -26,6 +26,12 @@
                             <div class="col mb-3">
                                 <div class="card">
                                     <div class="card-body">
+                                          <?php if(session('message')): ?>
+                                            <div class="alert alert-warning">
+                                                <?php echo e(session('message')); ?>
+
+                                            </div>
+                                        <?php endif; ?>
                                         <div class="e-profile">
                                             <div class="row">
                                                 <div class="col-12 col-sm-auto mb-3">
