@@ -19,36 +19,47 @@ class UserFamilyDetailsController extends Controller
         return view('family-details.index', compact('familyData', 'user'));
     }
 
+public function addFamilyData(Request $request)
+{
+    $user = Auth::user();
+    $existingCount = UserFamilyDetails::where('userId', $user->id)->count();
+    $remainingCount = 5 - $existingCount;
 
-  // Method to store new family member
-  public function addFamilyData(Request $request)
-  {
-    // dd($request);
+    if ($existingCount >= 5) {
+        return redirect()->back()->with('error', 'You cannot add more than 5 family details.');
+    }
+
     $request->validate([
-        //   'familyData.*.full_name' => 'required|string',
-        //   'familyData.*.relationship' => 'required|string',
-        //   'familyData.*.phone_number' => 'nullable|string',
-        //   'familyData.*.occupation' => 'nullable|string',
-        //   'familyData.*.next_of_kin' => 'nullable|boolean',
+        'familyData' => 'required|array|max:' . $remainingCount,
+    ]);
 
-          ]);
+    Log::info('Received request', $request->all());
 
-          Log::info('Received request', $request->all());
+    foreach ($request->familyData as $data) {
+        if ($existingCount < 5) {
+            $familyDetail = new UserFamilyDetails();
+            $familyDetail->userId = $user->id;
+            $familyDetail->full_name = $data['full_name'];
+            $familyDetail->relationship = $data['relationship'];
+            $familyDetail->phone_number = $data['phone_number'];
+            $familyDetail->occupation = $data['occupation'];
+            $familyDetail->next_of_kin = isset($data['next_of_kin']) ? (bool) $data['next_of_kin'] : false;
+            $familyDetail->save();
+            $existingCount++;
+        }
+    }
 
-         $user = Auth::user();
-         foreach ($request->familyData as $data) {
-          $familyDetail = new UserFamilyDetails();
-          $familyDetail->userId = $user->id;
-          $familyDetail->full_name = $data['full_name'];
-          $familyDetail->relationship = $data['relationship'];
-          $familyDetail->phone_number = $data['phone_number'];
-          $familyDetail->occupation = $data['occupation'];
-          $familyDetail->next_of_kin = isset($data['next_of_kin']) ? (bool) $data['next_of_kin'] : false;
-          $familyDetail->save();
-           }
-          Alert::success('Successful', 'Family details added successfully');
-         return redirect()->route('family-details.index')->with('success', 'Family details added successfully.');
-  }
+    $remainingCount = 5 - $existingCount;
+    if ($remainingCount > 0) {
+        Alert::success('Successful', "Family details added successfully. You can add $remainingCount more.");
+    } else {
+        Alert::success('Successful', 'Family details added successfully. You have reached the limit of 5.');
+    }
+
+    return redirect()->route('family-details.index')->with('success', 'Family details added successfully.');
+}
+
+
 
     public function edit($id)
     {

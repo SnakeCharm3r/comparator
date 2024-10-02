@@ -203,6 +203,24 @@ unset($__errorArgs, $__bag); ?>
                                                 </div>
                                             </div>
 
+                                            <?php if(session('error')): ?>
+                                                <div class="alert alert-danger">
+                                                    <?php echo e(session('error')); ?>
+
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <?php if($errors->any()): ?>
+                                                <div class="alert alert-danger">
+                                                    <ul>
+                                                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <li><?php echo e($error); ?></li>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    </ul>
+                                                </div>
+                                            <?php endif; ?>
+
+
                                             <!-- Modal for editing health details -->
                                             <div class="modal fade" id="editHealthModal" tabindex="-1"
                                                 aria-labelledby="editHealthModalLabel" aria-hidden="true">
@@ -296,7 +314,6 @@ unset($__errorArgs, $__bag); ?>
                                             </div>
 
                                             <!-- Health details table (existing data) -->
-                                            
                                             <div class="mt-4">
                                                 <h4>Health Details</h4>
                                                 <div class="table-responsive">

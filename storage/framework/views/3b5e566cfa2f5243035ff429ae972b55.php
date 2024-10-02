@@ -38,7 +38,8 @@
                     <div class="user-text">
                         <?php if(Auth::check()): ?>
                             <h6><?php echo e(Auth::user()->fname); ?> <?php echo e(Auth::user()->lname); ?></h6>
-                            <p class="text-muted mb-0"><?php echo e(Auth::user()->jobTitle ? Auth::user()->jobTitle->job_title : 'No job title'); ?></p>
+                            <p class="text-muted mb-0">
+                                <?php echo e(Auth::user()->jobTitle ? Auth::user()->jobTitle->job_title : 'No job title'); ?></p>
                         <?php else: ?>
                             <h6>Guest</h6>
                             <p class="text-muted mb-0">Not logged in</p>

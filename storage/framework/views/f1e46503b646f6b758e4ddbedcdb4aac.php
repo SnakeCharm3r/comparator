@@ -107,7 +107,8 @@
                                                                             name="familyData[0][next_of_kin]"
                                                                             value="1"
                                                                             <?php echo e(old('familyData.0.next_of_kin') ? 'checked' : ''); ?>>
-                                                                        <small class="form-text text-muted">Check if this person is your Next of Kin.</small>
+                                                                        <small class="form-text text-muted">Check if this
+                                                                            person is your Next of Kin.</small>
                                                                     </div>
 
 
@@ -123,6 +124,14 @@
                                                     </div>
                                                 </div>
 
+
+
+                                                <?php if(session('error')): ?>
+                                                    <div class="alert alert-danger">
+                                                        <?php echo e(session('error')); ?>
+
+                                                    </div>
+                                                <?php endif; ?>
 
 
                                                 <!-- Modal for editing family data -->

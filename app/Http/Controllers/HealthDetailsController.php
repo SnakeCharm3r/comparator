@@ -27,22 +27,26 @@ class HealthDetailsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function addHealthData(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'userId' => 'required|exists:users,id',
             'physical_disability' => 'required',
             'health_insurance' => 'required',
-
         ]);
-
+    
         if ($validator->fails()) {
-            return response()->json([
-                'status' => 400,
-                'error' => $validator->errors()
-            ]);
+            return redirect()->back()->withErrors($validator)->withInput();
         }
-
+    
+        // Check if the user already has a health detail
+        $existingHealthDetail = HealthDetails::where('userId', $request->input('userId'))->first();
+    
+        if ($existingHealthDetail) {
+            return redirect()->back()->with('error', 'You can only add one health detail.')->withInput();
+        }
+    
         HealthDetails::create([
             'userId' => $request->input('userId'),
             'physical_disability' => $request->input('physical_disability'),
@@ -52,16 +56,13 @@ class HealthDetailsController extends Controller
             'insur_name' => $request->input('insur_name'),
             'insur_no' => $request->input('insur_no'),
             'allergies' => $request->input('allergies'),
-            'delete_status' =>0,
+            'delete_status' => 0,
         ]);
+    
         Alert::success('Successful', 'Health Details added successfully');
         return redirect()->route('health-details.index')->with('success', 'Health details added successfully.');
     }
-
-    // public function edit(string $id){
-    //     $healthData = HealthDetails::findOrFail($id);
-    //     return view('health-details.edit', compact('healthData'));
-    // }
+    
 
     public function edit($id)
     {
