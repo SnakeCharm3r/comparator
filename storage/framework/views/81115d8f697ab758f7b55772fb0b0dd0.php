@@ -85,7 +85,8 @@ unset($__errorArgs, $__bag); ?>
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
-                                    <a href="#" style="color: #0f813c;">Forgot Password?</a>
+                                    <a href="<?php echo e(route('password.forget')); ?>" style="color: #0f813c;">Forgot Password?</a>
+
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-primary btn-block" type="submit"
