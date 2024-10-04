@@ -134,8 +134,8 @@ public function getJobTitles($deptId){
 
     public function register() {
         $policies = Policy::all();
-        $departments = Departments::all('name', 'asc');
-        $employmentTypes = EmploymentTypes::all('name', 'asc');
+        $departments = Departments::orderBy('dept_name', 'asc')->get();
+        $employmentTypes = EmploymentTypes::orderBy('employment_type', 'asc')->get();
         // $jobTitles = JobTitle::all();
 
         return view('auth.registration', compact('departments', 'employmentTypes','policies'));
