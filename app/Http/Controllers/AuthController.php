@@ -13,6 +13,7 @@ use App\Models\UserAdditionalInfo;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
@@ -140,7 +141,8 @@ public function getJobTitles($deptId){
         return view('auth.registration', compact('departments', 'employmentTypes','policies'));
     }
 
-    public function handleRegistration(Request $request){
+    public function handleRegistration(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'fname' => 'required',
             'lname' => 'required',
@@ -149,31 +151,33 @@ public function getJobTitles($deptId){
             'deptId' => 'required',
             'DOB' => 'required',
             'employment_typeId' => 'required',
-            'password' => 'required|min:6',
-            'mobile' => 'required',  // Ensure mobile number is required
-            'country_code' => 'required',  // Ensure country_code is required
+            'password' => 'required|confirmed|min:6',
+            'mobile' => 'required',
+            'country_code' => 'required',
         ]);
 
-        if($validator->fails()) {
-            return response()->json([
-                'status' => 400,
-                'error' => $validator->errors()
-            ]);
+        if ($validator->fails()) {
+            \Log::error('Validation failed', ['errors' => $validator->errors()]);
 
+            // Redirect back with input and errors
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error_message', 'We are unable to validate your email because the address is already in use. ');
         }
-        // $dob = \DateTime::createFromFormat('d-m-Y', $request->input('DOB'))->format('Y-m-d');
+
+        // Process the registration if validation passes
         $username = strtolower($request->input('fname')) . '.' . strtolower($request->input('lname'));
         $countryCode = $request->input('country_code');
-       $mobile = $request->input('mobile');
-       $phoneNumber = $countryCode . $mobile;
+        $mobile = $request->input('mobile');
+        $phoneNumber = $countryCode . $mobile;
+
         $user = User::create([
             'fname' => $request->input('fname'),
             'mname' => $request->input('mname'),
             'lname' => $request->input('lname'),
-            // 'username' => $request->input('username'),
             'username' => $username,
             'DOB' => $request->input('DOB'),
-            // 'DOB' => $request->input('DOB'),
             'gender' => $request->input('gender'),
             'marital_status' => $request->input('marital_status'),
             'email' => $request->input('email'),
@@ -184,25 +188,25 @@ public function getJobTitles($deptId){
             'district' => $request->input('district'),
             'region' => $request->input('region'),
             'professional_reg_number' => $request->input('professional_reg_number'),
-            'place_of_birth'   => $request->input('place_of_birth'),
+            'place_of_birth' => $request->input('place_of_birth'),
             'house_no' => $request->input('house_no'),
             'street' => $request->input('street'),
             'deptId' => $request->input('deptId'),
             'employment_typeId' => $request->input('employment_typeId'),
-            // 'health_info_Id' => $request->input('health_info_Id'),
             'employee_cv' => $request->input('employee_cv'),
             'NIN' => $request->input('NIN'),
             'nssf_no' => $request->input('nssf_no'),
             'domicile' => $request->input('domicile'),
             'password' => Hash::make($request->input('password')),
-
         ]);
-            $user->assignRole('requester');
-            Auth::login($user);
-            Alert::success('User Registered Successful','Please Provide Your Signature');
-        return redirect()->route('login');
 
-}
+        $user->assignRole('requester');
+        Auth::login($user);
+        Alert::success('User Registered Successfully', 'Please Provide Your Signature');
+
+        return redirect()->route('login');
+    }
+
 
    //Function shows edit user form
    public function showEditForm($id){
@@ -212,6 +216,15 @@ public function getJobTitles($deptId){
 
     return view('role-permission/user.edit', compact('user','roles', 'userRoles'));
 }
+
+public function checkEmail(Request $request)
+{
+    $email = $request->input('email');
+    $exists = User::where('email', $email)->exists();
+
+    return response()->json(['exists' => $exists]);
+}
+
 
 //This for user role assigment
     public function editUserRole(Request $request, $userId)
@@ -273,12 +286,6 @@ public function getJobTitles($deptId){
         return redirect()->route('login');
     }
 
-    public function nextOfKins()
-    {
-        $user_id = session('userId');
-        return view('auth.next_of_kins', compact('userId'));
-    }
-
     public function showChangePasswordForm()
     {
         return view('user_profile.pass');
@@ -310,6 +317,41 @@ public function getJobTitles($deptId){
         return view('auth.forget'); // Assuming you have a view file for this
     }
 
+    public function forgetPassChange(Request $request){
+        $this->validate($request, [
+            'email' => 'required|email|exists:users,email',
+        ]);
 
+        $res = Password::sendResetLink($request->only('email'));
+
+        return $res === Password::RESET_LINK_SENT
+        ? back()->with('status', trans($res)) : back()
+        ->withErrors(['email' => trans($res)]);
+    }
+
+    public function showResetPasswordForm($token){
+        return view('auth.reset', ['token' => $token]);
+    }
+
+    public function resetPassword(Request $request){
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|confirmed|min:6',
+            'token' => 'required',
+        ]);
+        //Attempt to reset password
+        $res = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function($user, $password) {
+                $user->password = bcrypt($password);
+                $user->save();
+            }
+        );
+
+        // Check the response and return appropriate message
+    return $res === Password::PASSWORD_RESET
+    ? redirect()->route('login')->with('status', trans($res))
+    : back()->withErrors(['email' => trans($res)]);
+    }
 
 }

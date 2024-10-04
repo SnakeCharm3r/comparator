@@ -26,8 +26,26 @@
                         <h1 style=" font-family: 'Roboto', sans-serif; font-size: large; color: #0f813c;">Reset
                             Password</h1>
 
+
+                        <!-- Display Success Message -->
+                        <?php if(session('status')): ?>
+                        <div class="alert alert-success">
+                            <?php echo e(session('status')); ?>
+
+                        </div>
+                    <?php endif; ?>
+
+                    <!-- Display Error Messages -->
+                    <?php if($errors->any()): ?>
+                        <div class="alert alert-danger">
+                            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <p><?php echo e($error); ?></p>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </div>
+                    <?php endif; ?>
+
                         <!-- Reset Password Form -->
-                        <form action="<?php echo e(route('password.forget.submit')); ?>" method="POST">
+                        <form action="<?php echo e(route('password.forgetPassChange')); ?>" method="POST">
                             <?php echo csrf_field(); ?>
                             <div class="form-group">
                                 <label>Enter your registered email address <span class="login-danger">*</span></label>
@@ -53,7 +71,6 @@
     </div>
 </div>
 
-<!-- Scripts -->
 <script src="<?php echo e(asset('assets/js/jquery-3.6.0.min.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/js/feather.min.js')); ?>"></script>

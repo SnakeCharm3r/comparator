@@ -26,8 +26,25 @@
                         <h1 style=" font-family: 'Roboto', sans-serif; font-size: large; color: #0f813c;">Reset
                             Password</h1>
 
+
+                        <!-- Display Success Message -->
+                        @if(session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    <!-- Display Error Messages -->
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            @foreach($errors->all() as $error)
+                                <p>{{ $error }}</p>
+                            @endforeach
+                        </div>
+                    @endif
+
                         <!-- Reset Password Form -->
-                        <form action="{{ route('password.forget.submit') }}" method="POST">
+                        <form action="{{ route('password.forgetPassChange') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label>Enter your registered email address <span class="login-danger">*</span></label>
@@ -53,7 +70,6 @@
     </div>
 </div>
 
-<!-- Scripts -->
 <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('assets/js/feather.min.js') }}"></script>

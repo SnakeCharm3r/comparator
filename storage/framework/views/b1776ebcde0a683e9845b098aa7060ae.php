@@ -76,11 +76,13 @@
                                         </ul>
                                         <div class="tab-content pt-3">
                                             <div class="tab-pane active" id="settings">
-                                                <form action="<?php echo e(route('profile.update', $user->id)); ?>" method="POST" class="form" novalidate="">
+                                                <form action="<?php echo e(route('profile.update', $user->id)); ?>" method="POST"
+                                                    class="form" novalidate="">
                                                     <?php echo csrf_field(); ?>
                                                     <?php echo method_field('PUT'); ?>
                                                     <input type="hidden" name="deptId" value="<?php echo e($user->deptId); ?>">
-                                                    <input type="hidden" name="employment_typeId" value="<?php echo e($user->employment_typeId); ?>">
+                                                    <input type="hidden" name="employment_typeId"
+                                                        value="<?php echo e($user->employment_typeId); ?>">
                                                     <input type="hidden" name="job_title" value="<?php echo e($user->job_title); ?>">
                                                     <div class="row">
                                                         <div class="col">
@@ -161,10 +163,18 @@
                                                                             name="marital_status">
                                                                             <option value="">Select Marital Status
                                                                             </option>
-                                                                            <option value="single" <?php echo e(old('marital_status', $user->marital_status) == 'single' ? 'selected' : ''); ?>>Single</option>
-                                                                            <option value="married" <?php echo e(old('marital_status', $user->marital_status) == 'married' ? 'selected' : ''); ?>>Married</option>
-                                                                            <option value="divorced" <?php echo e(old('marital_status', $user->marital_status) == 'divorced' ? 'selected' : ''); ?>>Divorced</option>
-                                                                            <option value="widowed" <?php echo e(old('marital_status', $user->marital_status) == 'widowed' ? 'selected' : ''); ?>>Widowed</option>
+                                                                            <option value="single"
+                                                                                <?php echo e(old('marital_status', $user->marital_status) == 'single' ? 'selected' : ''); ?>>
+                                                                                Single</option>
+                                                                            <option value="married"
+                                                                                <?php echo e(old('marital_status', $user->marital_status) == 'married' ? 'selected' : ''); ?>>
+                                                                                Married</option>
+                                                                            <option value="divorced"
+                                                                                <?php echo e(old('marital_status', $user->marital_status) == 'divorced' ? 'selected' : ''); ?>>
+                                                                                Divorced</option>
+                                                                            <option value="widowed"
+                                                                                <?php echo e(old('marital_status', $user->marital_status) == 'widowed' ? 'selected' : ''); ?>>
+                                                                                Widowed</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -235,14 +245,42 @@
                                                                             value="<?php echo e(old('professional_reg_number', $user->professional_reg_number)); ?>">
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-12 col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label>National Identification Number</label>
-                                                                        <input class="form-control" type="text"
-                                                                            name="NIN" placeholder="NIN"
-                                                                            value="<?php echo e(old('NIN', $user->NIN)); ?>">
-                                                                    </div>
-                                                                </div>
+                                                             <!-- Include jQuery and InputMask -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="<?php echo e(asset('node_modules/jquery.inputmask/dist/min/jquery.inputmask.min.js')); ?>"></script>
+
+<div class="col-12 col-md-4">
+    <div class="form-group">
+        <label>National Identification Number (NIDA)</label>
+        <input class="form-control" type="text"
+               name="NIN"
+               placeholder="e.g. 19501007-11101-00001-26"
+               value="<?php echo e(old('NIN', $user->NIN)); ?>"
+               pattern="\d{8}-\d{5}-\d{5}-\d{2}"
+               title="Format: 19501007-11101-00001-26"
+               maxlength="23">
+    </div>
+</div>
+
+<!-- InputMask initialization script -->
+<script>
+    $(document).ready(function(){
+        $('input[name="NIN"]').inputmask({
+            mask: "99999999-99999-99999-99",  // Set the format for NIDA
+            placeholder: " ",                // Placeholder for empty fields
+            definitions: {
+                '9': {                         // Restrict to digits only
+                    validator: "[0-9]"
+                }
+            },
+            clearIncomplete: true              // Prevent partial entries from being submitted
+        });
+    });
+</script>
+
+
+
+
                                                                 <div class="col-12 col-md-4">
                                                                     <div class="form-group">
                                                                         <label>NSSF Number</label>
@@ -252,14 +290,10 @@
                                                                     </div>
                                                                 </div>
 
-                                                                <div class="col-12 col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label>Employee CV</label>
-                                                                        <input class="form-control" type="text"
-                                                                            name="employee_cv" placeholder="Employee CV"
-                                                                            value="<?php echo e(old('employee_cv', $user->employee_cv)); ?>">
-                                                                    </div>
-                                                                </div>
+                                                                
+
+
+
                                                             </div>
                                                         </div>
                                                     </div>
