@@ -12,7 +12,7 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">Create Policy</h5>
+                            <h5 class="card-title mb-0">Update Policy</h5>
                         </div>
                         <br>
                         <div class="container">

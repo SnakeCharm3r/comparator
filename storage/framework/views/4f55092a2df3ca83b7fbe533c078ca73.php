@@ -95,8 +95,8 @@
                                                                 </td>
                                                                 <td rowspan="<?php echo e(count($approvalDetails)); ?>"></td>
                                                                 <td rowspan="<?php echo e(count($approvalDetails)); ?>">
-                                                                    <a href="<?php echo e(route('request.edit', $aform->id)); ?>"
-                                                                        class="btn btn-rounded btn-outline-info">Modify</a>
+
+
                                                                     
                                                                 </td>
                                                             <?php endif; ?>

@@ -13,12 +13,19 @@ class DepartmentController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // public function index1()
+    // {
+    //     $departments = Departments::all();
+    //     return view('department.index', compact('departments'));
+
+    // }
     public function index1()
     {
-        $departments = Departments::all();
+        $departments = Departments::orderBy('dept_name', 'asc')->get();
         return view('department.index', compact('departments'));
-
     }
+    
+
 
     public function index()
 {

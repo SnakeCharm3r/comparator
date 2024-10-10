@@ -95,8 +95,8 @@
                                                                 </td>
                                                                 <td rowspan="{{ count($approvalDetails) }}"></td>
                                                                 <td rowspan="{{ count($approvalDetails) }}">
-                                                                    <a href="{{ route('request.edit', $aform->id) }}"
-                                                                        class="btn btn-rounded btn-outline-info">Modify</a>
+{{--                                                                    <a href="{{ route('request.edit', $aform->id) }}"--}}
+{{--                                                                        class="btn btn-rounded btn-outline-info">Modify</a>--}}
                                                                     {{-- <form action="{{ route('request.destroy', $aform->id) }}" method="POST" style="display:inline-block;">
                                                                         @csrf
                                                                         @method('DELETE')

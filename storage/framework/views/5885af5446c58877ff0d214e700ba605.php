@@ -38,9 +38,72 @@
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
                                         </div>
-
-
                                         <div class="form-group">
+                                            <label for="starting_date">Starting Date</label>
+                                            <input type="date" class="form-control" id="starting_date" name="starting_date" required>
+                                            <div id="error-message" style="color: red; display: none;"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="ending_date">Ending Date</label>
+                                            <input type="date" class="form-control" id="ending_date" name="ending_date" required>
+                                            <div id="end-error-message" style="color: red; display: none;"></div>
+                                        </div>
+
+                                        <script>
+                                            const today = new Date();
+                                            const todayString = today.toISOString().split('T')[0]; // Format YYYY-MM-DD
+
+                                            const startingDateInput = document.getElementById('starting_date');
+                                            const endingDateInput = document.getElementById('ending_date');
+                                            const startErrorMessage = document.getElementById('start-error-message');
+                                            const endErrorMessage = document.getElementById('end-error-message');
+
+                                            // Set the min attribute for the starting date
+                                            startingDateInput.setAttribute('min', todayString);
+
+                                            startingDateInput.addEventListener('input', function() {
+                                                const selectedStartDate = new Date(startingDateInput.value);
+                                                if (selectedStartDate < today) {
+                                                    startErrorMessage.textContent = "Starting date cannot be in the past.";
+                                                    startErrorMessage.style.display = 'block';
+                                                    startingDateInput.setCustomValidity("Invalid date");
+                                                } else {
+                                                    startErrorMessage.style.display = 'none';
+                                                    startingDateInput.setCustomValidity("");
+
+                                                    // Set the minimum ending date to more than 3 months from the selected starting date
+                                                    const minEndingDate = new Date(selectedStartDate);
+                                                    minEndingDate.setMonth(selectedStartDate.getMonth() + 3);
+                                                    const minEndingDateString = minEndingDate.toISOString().split('T')[0];
+                                                    endingDateInput.setAttribute('min', minEndingDateString);
+
+                                                    // Validate ending date immediately if already set
+                                                    if (endingDateInput.value) {
+                                                        validateEndingDate();
+                                                    }
+                                                }
+                                            });
+
+                                            endingDateInput.addEventListener('input', validateEndingDate);
+
+                                            function validateEndingDate() {
+                                                const selectedEndDate = new Date(endingDateInput.value);
+                                                const minEndingDate = endingDateInput.getAttribute('min');
+
+                                                if (selectedEndDate <= new Date(minEndingDate)) {
+                                                    endErrorMessage.textContent = "Ending date must be more than 3 months after the starting date.";
+                                                    endErrorMessage.style.display = 'block';
+                                                    endingDateInput.setCustomValidity("Invalid date");
+                                                } else if (startingDateInput.value && selectedEndDate <= new Date(startingDateInput.value)) {
+                                                    endErrorMessage.textContent = "Ending date must be after the starting date.";
+                                                    endErrorMessage.style.display = 'block';
+                                                    endingDateInput.setCustomValidity("Invalid date");
+                                                } else {
+                                                    endErrorMessage.style.display = 'none';
+                                                    endingDateInput.setCustomValidity("");
+                                                }
+                                            }
+                                        </script>                                        <div class="form-group">
                                             <label for="openclinic_hms">SAP ERP<span class="text-danger">*</span></label>
                                             <select class="form-control" id="privilegeId" name="sap" required>
                                                 <option value="" disabled selected> ---Select an option---</option>
@@ -78,15 +141,7 @@
                                             </select>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="openclinic_hms">OpenClinic HMIS Access</label>
-                                            <select class="form-control" id="hmisId" name="hmisId" required>
-                                                <option value="" disabled selected> ---Select an option---</option>
-                                                <?php $__currentLoopData = $hmis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $hmi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <option value="<?php echo e($hmi->id); ?>"><?php echo e($hmi->names); ?></option>
-                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                            </select>
-                                        </div>
+
                                     </div>
 
                                     <!-- Column 2 -->
@@ -135,9 +190,20 @@
 
                                                 <div class="form-group">
                                                     <label for="network_folder">Network Folder</label>
-                                                    <input type="text" class="form-control" name="network_folder"
-                                                        placeholder="e.g., HR_Documents" required>
+                                                    <select class="form-control" name="network_folder" required>
+                                                        <option value="" disabled selected>Select a network folder</option>
+                                                        <option value="Academy">Academy</option>
+                                                        <option value="HR">HR</option>
+                                                        <option value="ICT & Business Application">ICT & Business Application</option>
+                                                        <option value="Insurances Validated Master">Insurances Validated Master</option>
+                                                        <option value="LAB">LAB</option>
+                                                        <option value="Mendeley">Mendeley</option>
+                                                        <option value="Procurement">Procurement</option>
+                                                        <option value="Q&S">Q&S</option>
+                                                        <option value="SOP">SOP</option>
+                                                    </select>
                                                 </div>
+
 
                                                 <div class="form-group">
                                                     <label>Network Folder Access</label>
@@ -156,8 +222,18 @@
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </div>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label for="openclinic_hms">OpenClinic HMIS Access</label>
+                                                    <select class="form-control" id="hmisId" name="hmisId" required>
+                                                        <option value="" disabled selected> ---Select an option---</option>
+                                                        <?php $__currentLoopData = $hmis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $hmi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <option value="<?php echo e($hmi->id); ?>"><?php echo e($hmi->names); ?></option>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
+
                                     </div>
 
                                     <!-- Column 3 -->
@@ -173,6 +249,7 @@
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
                                         </div>
+
 
                                         <div class="form-group">
                                             <label for="openclinic_hms">Network Access VPN</label>

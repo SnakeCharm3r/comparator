@@ -134,7 +134,8 @@ public function getJobTitles($deptId){
 
     public function register() {
         $policies = Policy::all();
-        $departments = Departments::all();
+        $departments = Departments::orderBy('dept_name', 'asc')->get();
+
         $employmentTypes = EmploymentTypes::all();
         // $jobTitles = JobTitle::all();
 
@@ -153,6 +154,8 @@ public function getJobTitles($deptId){
             'employment_typeId' => 'required',
             'password' => 'required|confirmed|min:6',
             'mobile' => 'required',
+            'starting_date' => 'required|date',
+            'ending_date' => 'required|date|after:starting_date',
             'country_code' => 'required',
         ]);
 
@@ -197,8 +200,11 @@ public function getJobTitles($deptId){
             'NIN' => $request->input('NIN'),
             'nssf_no' => $request->input('nssf_no'),
             'domicile' => $request->input('domicile'),
+            'starting_date' => $request->input('starting_date'),
+            'ending_date' => $request->input('ending_date'),
             'password' => Hash::make($request->input('password')),
         ]);
+
 
         $user->assignRole('requester');
         Auth::login($user);
@@ -213,7 +219,6 @@ public function getJobTitles($deptId){
     $user = User::findOrFail($id);
     $roles = Role::get();
     $userRoles = $user->roles->pluck('name')->toArray(); // Get user roles
-
     return view('role-permission/user.edit', compact('user','roles', 'userRoles'));
 }
 

@@ -26,7 +26,7 @@
                                 $user = auth()->user();
                                 $roles = ['hr', 'admin', 'super-admin'];
                             @endphp
-                            
+
                             @if ($user && $user->hasAnyRole($roles))
                                 <div class="col-md-12">
                                     <a href="{{ route('department.create') }}"
@@ -36,7 +36,7 @@
                                     </a>
                                 </div>
                             @endif
-                            
+
                             </div>
                             <table class="table table-striped">
                                 <thead>
@@ -58,15 +58,15 @@
                                                     class="btn btn-sm edit-btn" data-id="{{ $department->dept_id }}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <form action="{{ route('department.destroy', $department->dept_id) }}"
-                                                    method="POST" style="display:inline-block;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-delete"
-                                                        onclick="return confirm('Are you sure you want to delete this department?');">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </button>
-                                                </form>
+{{--                                                <form action="{{ route('department.destroy', $department->dept_id) }}"--}}
+{{--                                                    method="POST" style="display:inline-block;">--}}
+{{--                                                    @csrf--}}
+{{--                                                    @method('DELETE')--}}
+{{--                                                    <button type="submit" class="btn btn-sm btn-delete"--}}
+{{--                                                        onclick="return confirm('Are you sure you want to delete this department?');">--}}
+{{--                                                        <i class="fas fa-trash-alt"></i>--}}
+{{--                                                    </button>--}}
+{{--                                                </form>--}}
                                             </td>
                                         </tr>
                                     @endforeach

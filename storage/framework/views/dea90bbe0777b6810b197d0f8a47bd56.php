@@ -76,49 +76,35 @@
                                         placeholder="e.g., 12345678" style="border-color: #ced4da;">
                                 </div>
                             </div>
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="email">Email <span class="text-danger">*</span></label>
                                     <input class="form-control" type="email" name="email" id="email" required
-                                           placeholder="e.g., abc@gmail.com"
-                                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                                           title="Please enter a valid email address."
-                                           style="border-color: #ced4da;">
-                                    <small id="email-message" class="text-danger" style="visibility: hidden;"></small>
+                                        placeholder="e.g., abc@gmail.com"
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                        title="Please enter a valid email address. Format: name@example.com"
+                                        style="border-color: #ced4da;" oninput="validateEmail()">
+                                    <small id="email-message" class="text-danger" style="visibility: hidden;">Invalid
+                                        email address format.</small>
                                 </div>
                             </div>
 
                             <script>
-                                const emailInput = document.getElementById('email');
-                                const emailMessage = document.getElementById('email-message');
-                                const pattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-
                                 function validateEmail() {
-                                    if (!pattern.test(emailInput.value)) {
-                                        emailMessage.textContent = 'Please enter a valid email address.';
-                                        emailMessage.style.visibility = 'visible'; 
+                                    const emailInput = document.getElementById('email');
+                                    const message = document.getElementById('email-message');
+                                    const regex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+                                    if (!regex.test(emailInput.value)) {
+                                        message.style.visibility = 'visible';
+                                        message.innerText = 'Invalid email address format.';
                                         emailInput.style.borderColor = 'red';
                                     } else {
-                                        emailMessage.textContent = '';
-                                        emailMessage.style.visibility = 'hidden';
-                                        emailInput.style.borderColor = '#28a745';
+                                        message.style.visibility = 'hidden';
+                                        emailInput.style.borderColor = '#ced4da';
                                     }
                                 }
-
-                                window.onload = function() {
-                                    validateEmail();
-                                };
-
-                                emailInput.addEventListener('input', validateEmail);
-
-                                document.querySelector('form').addEventListener('submit', function(event) {
-                                    if (!pattern.test(emailInput.value)) {
-                                        emailMessage.textContent = 'Please enter a valid email address.';
-                                        emailMessage.style.visibility = 'visible';
-                                        emailInput.style.borderColor = 'red';
-                                        event.preventDefault();
-                                    }
-                                });
                             </script>
 
 
@@ -319,6 +305,77 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <label for="starting_date">Starting Date</label>
+                                    <input type="date" class="form-control" id="starting_date" name="starting_date" required>
+                                    <div id="error-message" style="color: red; display: none;"></div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="ending_date">Ending Date</label>
+                                    <input type="date" class="form-control" id="ending_date" name="ending_date" required>
+                                    <div id="end-error-message" style="color: red; display: none;"></div>
+                                </div>
+                            </div>
+
+
+
+                            <script>
+                                const today = new Date();
+                                const todayString = today.toISOString().split('T')[0]; // Format YYYY-MM-DD
+
+                                const startingDateInput = document.getElementById('starting_date');
+                                const endingDateInput = document.getElementById('ending_date');
+                                const startErrorMessage = document.getElementById('start-error-message');
+                                const endErrorMessage = document.getElementById('end-error-message');
+
+                                // Set the min attribute for the starting date
+                                startingDateInput.setAttribute('min', todayString);
+
+                                startingDateInput.addEventListener('input', function() {
+                                    const selectedStartDate = new Date(startingDateInput.value);
+                                    if (selectedStartDate < today) {
+                                        startErrorMessage.textContent = "Starting date cannot be in the past.";
+                                        startErrorMessage.style.display = 'block';
+                                        startingDateInput.setCustomValidity("Invalid date");
+                                    } else {
+                                        startErrorMessage.style.display = 'none';
+                                        startingDateInput.setCustomValidity("");
+
+                                        // Set the minimum ending date to more than 3 months from the selected starting date
+                                        const minEndingDate = new Date(selectedStartDate);
+                                        minEndingDate.setMonth(selectedStartDate.getMonth() + 3);
+                                        const minEndingDateString = minEndingDate.toISOString().split('T')[0];
+                                        endingDateInput.setAttribute('min', minEndingDateString);
+
+                                        // Validate ending date immediately if already set
+                                        if (endingDateInput.value) {
+                                            validateEndingDate();
+                                        }
+                                    }
+                                });
+
+                                endingDateInput.addEventListener('input', validateEndingDate);
+
+                                function validateEndingDate() {
+                                    const selectedEndDate = new Date(endingDateInput.value);
+                                    const minEndingDate = endingDateInput.getAttribute('min');
+
+                                    if (selectedEndDate <= new Date(minEndingDate)) {
+                                        endErrorMessage.textContent = "Ending date must be more than 3 months after the starting date.";
+                                        endErrorMessage.style.display = 'block';
+                                        endingDateInput.setCustomValidity("Invalid date");
+                                    } else if (startingDateInput.value && selectedEndDate <= new Date(startingDateInput.value)) {
+                                        endErrorMessage.textContent = "Ending date must be after the starting date.";
+                                        endErrorMessage.style.display = 'block';
+                                        endingDateInput.setCustomValidity("Invalid date");
+                                    } else {
+                                        endErrorMessage.style.display = 'none';
+                                        endingDateInput.setCustomValidity("");
+                                    }
+                                }
+                            </script>
 
 
                         </div>

@@ -95,7 +95,7 @@
                                                 <strong>Starting Date:</strong> {{ $ictForm->starting_date }}
                                             </td>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>End Date:</strong> {{ $ictForm->end_date }}
+                                                <strong>End Date:</strong> {{ $ictForm->ending_date }}
                                             </td>
                                         </tr>
                                         <tr>
