@@ -128,6 +128,7 @@ Route::resource('/profile', ProfileController::class);
 Route::middleware(['auth'])->post('profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
 Route::post('picture', [ProfileController::class, 'updateProfilePicture'])->name('profile.update.picture');
 Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::delete('/profile/{user}/picture', [ProfileController::class, 'deletePicture'])->name('profile.picture.delete');
 Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
 
 //ict-access controller

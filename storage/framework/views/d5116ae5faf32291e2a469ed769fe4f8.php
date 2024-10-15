@@ -137,6 +137,13 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <?php if(session('error')): ?>
+    <div class="alert alert-danger">
+        <?php echo e(session('error')); ?>
+
+    </div>
+<?php endif; ?>
+
 
                                             <!-- Table for displaying language knowledge -->
                                             <h3>Language Knowledge</h3>

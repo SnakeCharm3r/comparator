@@ -38,7 +38,8 @@
                     <div class="user-text">
                         @if (Auth::check())
                             <h6>{{ Auth::user()->fname }} {{ Auth::user()->lname }}</h6>
-                            <p class="text-muted mb-0">{{ Auth::user()->jobTitle ? Auth::user()->jobTitle->job_title : 'No job title' }}</p>
+                            <p class="text-muted mb-0">
+                                {{ Auth::user()->jobTitle ? Auth::user()->jobTitle->job_title : 'No job title' }}</p>
                         @else
                             <h6>Guest</h6>
                             <p class="text-muted mb-0">Not logged in</p>

@@ -63,6 +63,13 @@
                         <button type="submit" id="save" class="btn btn-primary">Save Signature</button>
                     </div>
                 </div>
+                <?php if(session('message')): ?>
+                    <div class="alert alert-warning">
+                        <?php echo e(session('message')); ?>
+
+                    </div>
+                <?php endif; ?>
+
                 <form id="signature-form" action="<?php echo e(route('signature.store')); ?>" method="POST">
                     <?php echo csrf_field(); ?>
                     <input type="hidden" id="signature-input" name="signature">

@@ -59,7 +59,7 @@
                                                                 aria-label="Close"></button>
                                                         </div>
 
-                                                            <div class="modal-body">
+                                                        <div class="modal-body">
                                                             <!-- Health details form -->
                                                             <form id="healthDetailsForm"
                                                                 action="<?php echo e(route('health-details.addHealthData')); ?>"
@@ -127,19 +127,34 @@ unset($__errorArgs, $__bag); ?>
                                                                     <div class="col-12 col-md-6">
                                                                         <div class="form-group">
                                                                             <label>Health Insurance</label>
-                                                                            <select name="health_insurance" class="form-control" id="healthInsuranceSelect">
-                                                                                <option value="" disabled selected>Select an option</option>
-                                                                                <option value="yes" <?php echo e(old('health_insurance') == 'yes' ? 'selected' : ''); ?>>Yes</option>
-                                                                                <option value="no" <?php echo e(old('health_insurance') == 'no' ? 'selected' : ''); ?>>No</option>
+                                                                            <select name="health_insurance"
+                                                                                class="form-control"
+                                                                                id="healthInsuranceSelect">
+                                                                                <option value="" disabled selected>
+                                                                                    Select an option</option>
+                                                                                <option value="yes"
+                                                                                    <?php echo e(old('health_insurance') == 'yes' ? 'selected' : ''); ?>>
+                                                                                    Yes</option>
+                                                                                <option value="no"
+                                                                                    <?php echo e(old('health_insurance') == 'no' ? 'selected' : ''); ?>>
+                                                                                    No</option>
                                                                             </select>
                                                                         </div>
-                                                                        <div class="form-group" id="insuranceNameGroup" style="display: none;">
+                                                                        <div class="form-group" id="insuranceNameGroup"
+                                                                            style="display: none;">
                                                                             <label>Insurance Name</label>
-                                                                            <input type="text" class="form-control" name="insur_name" value="<?php echo e(old('insur_name')); ?>" placeholder="E.g., Blue Cross Blue Shield">
+                                                                            <input type="text" class="form-control"
+                                                                                name="insur_name"
+                                                                                value="<?php echo e(old('insur_name')); ?>"
+                                                                                placeholder="E.g., Blue Cross Blue Shield">
                                                                         </div>
-                                                                        <div class="form-group" id="insuranceNumberGroup" style="display: none;">
+                                                                        <div class="form-group" id="insuranceNumberGroup"
+                                                                            style="display: none;">
                                                                             <label>Insurance Number</label>
-                                                                            <input type="text" class="form-control" name="insur_no" value="<?php echo e(old('insur_no')); ?>" placeholder="E.g., 1234567890">
+                                                                            <input type="text" class="form-control"
+                                                                                name="insur_no"
+                                                                                value="<?php echo e(old('insur_no')); ?>"
+                                                                                placeholder="E.g., 1234567890">
                                                                         </div>
 
                                                                         <script>
@@ -187,6 +202,24 @@ unset($__errorArgs, $__bag); ?>
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <?php if(session('error')): ?>
+                                                <div class="alert alert-danger">
+                                                    <?php echo e(session('error')); ?>
+
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <?php if($errors->any()): ?>
+                                                <div class="alert alert-danger">
+                                                    <ul>
+                                                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <li><?php echo e($error); ?></li>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    </ul>
+                                                </div>
+                                            <?php endif; ?>
+
 
                                             <!-- Modal for editing health details -->
                                             <div class="modal fade" id="editHealthModal" tabindex="-1"
@@ -283,59 +316,62 @@ unset($__errorArgs, $__bag); ?>
                                             <!-- Health details table (existing data) -->
                                             <div class="mt-4">
                                                 <h4>Health Details</h4>
-                                                <table class="table table-bordered" id="healthDetailsTable">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Physical Disability</th>
-                                                            <th>Blood Group</th>
-                                                            <th>Illness History</th>
-                                                            <th>Health Insurance</th>
-                                                            <th>Insurance Name</th>
-                                                            <th>Insurance Number</th>
-                                                            <th>Allergies</th>
-                                                            <th>Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <!-- Loop through user's health details here -->
-                                                        <?php $__currentLoopData = $healthDetails; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $health): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered" id="healthDetailsTable">
+                                                        <thead>
                                                             <tr>
-                                                                <td><?php echo e($health->physical_disability); ?></td>
-                                                                <td><?php echo e($health->blood_group); ?></td>
-                                                                <td><?php echo e($health->illness_history); ?></td>
-                                                                <td><?php echo e($health->health_insurance); ?></td>
-                                                                <td><?php echo e($health->insur_name); ?></td>
-                                                                <td><?php echo e($health->insur_no); ?></td>
-                                                                <td><?php echo e($health->allergies); ?></td>
-                                                                <td>
-                                                                    <button type="button" class="btn btn-sm p-0"
-                                                                        style="border: none; background: none;"
-                                                                        title="Edit"
-                                                                        onclick="editHealthDetail(<?php echo e($health); ?>)">
-                                                                        <i class="fas fa-edit text-primary"></i>
-                                                                    </button>
-
-                                                                    <button type="button" class="btn btn-sm p-0"
-                                                                        style="border: none; background: none;"
-                                                                        title="Delete"
-                                                                        onclick="confirmDelete('<?php echo e(route('health-details.delete', $health->id)); ?>')">
-                                                                        <i class="fas fa-trash-alt text-danger"></i>
-                                                                    </button>
-
-                                                                    <!-- Add this form for delete action -->
-                                                                    <form id="delete-form-<?php echo e($health->id); ?>"
-                                                                        method="POST"
-                                                                        action="<?php echo e(route('health-details.delete', $health->id)); ?>"
-                                                                        style="display: none;">
-                                                                        <?php echo csrf_field(); ?>
-                                                                        <?php echo method_field('DELETE'); ?>
-                                                                    </form>
-                                                                </td>
+                                                                <th>Physical Disability</th>
+                                                                <th>Blood Group</th>
+                                                                <th>Illness History</th>
+                                                                <th>Health Insurance</th>
+                                                                <th>Insurance Name</th>
+                                                                <th>Insurance Number</th>
+                                                                <th>Allergies</th>
+                                                                <th>Action</th>
                                                             </tr>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                    </tbody>
-                                                </table>
+                                                        </thead>
+                                                        <tbody>
+                                                            <!-- Loop through user's health details here -->
+                                                            <?php $__currentLoopData = $healthDetails; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $health): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <tr>
+                                                                    <td><?php echo e($health->physical_disability); ?></td>
+                                                                    <td><?php echo e($health->blood_group); ?></td>
+                                                                    <td><?php echo e($health->illness_history); ?></td>
+                                                                    <td><?php echo e($health->health_insurance); ?></td>
+                                                                    <td><?php echo e($health->insur_name); ?></td>
+                                                                    <td><?php echo e($health->insur_no); ?></td>
+                                                                    <td><?php echo e($health->allergies); ?></td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-sm p-0"
+                                                                            style="border: none; background: none;"
+                                                                            title="Edit"
+                                                                            onclick="editHealthDetail(<?php echo e($health); ?>)">
+                                                                            <i class="fas fa-edit text-primary"></i>
+                                                                        </button>
+
+                                                                        <button type="button" class="btn btn-sm p-0"
+                                                                            style="border: none; background: none;"
+                                                                            title="Delete"
+                                                                            onclick="confirmDelete('<?php echo e(route('health-details.delete', $health->id)); ?>')">
+                                                                            <i class="fas fa-trash-alt text-danger"></i>
+                                                                        </button>
+
+                                                                        <!-- Add this form for delete action -->
+                                                                        <form id="delete-form-<?php echo e($health->id); ?>"
+                                                                            method="POST"
+                                                                            action="<?php echo e(route('health-details.delete', $health->id)); ?>"
+                                                                            style="display: none;">
+                                                                            <?php echo csrf_field(); ?>
+                                                                            <?php echo method_field('DELETE'); ?>
+                                                                        </form>
+                                                                    </td>
+                                                                </tr>
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
+
                                         </div>
 
                                         <script>

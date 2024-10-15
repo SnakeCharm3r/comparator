@@ -52,6 +52,7 @@
                                             </div>
                                         </div>
 
+
                                         <div class="modal fade" id="addRelationModal" tabindex="-1" role="dialog"
                                             aria-labelledby="addRelationModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -110,6 +111,13 @@
                                                 </div>
                                             </div>
                                         </div>
+
+
+                                        @if (session('error'))
+                                            <div class="alert alert-danger">
+                                                {{ session('error') }}
+                                            </div>
+                                        @endif
 
 
                                         <!-- Edit Relation Modal -->
@@ -174,7 +182,10 @@
                                         <div class="row">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h3>Existing Relations</h3>
+                                                    <p class="text-dark" style="margin-top: 10px;">
+                                                        Names of persons at CCBRT whom i am related to or with whom i have a
+                                                        close.
+                                                    </p>
                                                     <div class="table-responsive">
                                                         <table class="table table-striped">
                                                             <thead>
@@ -191,7 +202,7 @@
                                                                     <tr>
                                                                         <td>{{ $relation->names }}</td>
                                                                         <td>{{ $relation->relation }}</td>
-                                                                        <td>{{ $relation->department_name  }}</td>
+                                                                        <td>{{ $relation->department_name }}</td>
                                                                         <td>{{ $relation->position }}</td>
                                                                         <td>
                                                                             <!-- Edit button -->

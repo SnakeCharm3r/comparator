@@ -71,6 +71,7 @@
                                             </td>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
                                                 <strong>Middle Name:</strong> {{ $ictForm->mname }}
+
                                             </td>
                                         </tr>
                                         <tr>
@@ -131,7 +132,7 @@
                                                 <strong>OpenClinic HMS:</strong> {{ $ictForm->names }}
                                             </td>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>Aruti HR MIS:</strong> {{ $ictForm->aruti_hr_mis }}
+                                                <strong>Aruti HR MIS:</strong> {{ $ictForm->prv_name }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -153,7 +154,7 @@
                                         <tr>
                                             <td colspan="2"
                                                 style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>Network Directory Access:</strong> {{ $ictForm->physical_access }}
+                                                <strong>Network Directory Access:</strong> {{ $ictForm->network_folder }}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -211,27 +212,33 @@
                                                 @endif
                                             </td>
                                             <td style="border: 1px solid #000; padding: 8px;">
-                                                @if ($ictForm->status == 1)
+
+                                                @if ($ictForm->created_at)
                                                     {{ \Carbon\Carbon::parse($ictForm->created_at)->format('d F Y') }}
+
                                                 @endif
+
                                             </td>
                                         </tr>
+
 
                                         <tr>
                                             <td style="border: 1px solid #000; padding: 6px;">
                                                 Line Manager Name: {{ trim(($lineManager->fname ?? '') . ' ' . ($lineManager->lname ?? '')) }}
                                             </td>
-                                                                                        <td style="border: 1px solid #000; padding: 1px;">
-                                                @if ($lineManager)
+                                            <td style="border: 1px solid #000; padding: 1px;">
+                                                @if ($lineManager && $lineManager->signature)
                                                     <img src="data:image/png;base64,{{ $lineManager->signature }}" alt="Line Manager Signature" style="max-width: 40%; height: 5%;">
                                                 @endif
                                             </td>
                                             <td style="border: 1px solid #000; padding: 6px;">
                                                 @if ($ictForm->status == 1 && $lineManager && $lineManager->updated_at)
                                                     {{ \Carbon\Carbon::parse($lineManager->updated_at)->format('d F Y') }}
+
                                                 @endif
                                             </td>
                                         </tr>
+
 
                                         <tr>
                                             <td style="border: 1px solid #000; padding: 6px;">
@@ -243,12 +250,13 @@
                                                 @endif
                                             </td>
                                             <td style="border: 1px solid #000; padding: 6px;">
+                                                {{-- {{dd($hrOfficer->updated_at)}} --}}
                                                 @if ($ictForm->status == 1 && $hrOfficer && $hrOfficer->updated_at)
                                                     {{ \Carbon\Carbon::parse($hrOfficer->updated_at)->format('d F Y') }}
                                                 @endif
                                             </td>
                                         </tr>
-                                        
+
                                         <tr>
                                             <td style="border: 1px solid #000; padding: 6px;">
                                                 IT Officer Name: {{ trim(($itOfficer->fname ?? '') . ' ' . ($itOfficer->lname ?? '')) }}

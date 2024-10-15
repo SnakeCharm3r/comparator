@@ -26,6 +26,12 @@
                             <div class="col mb-3">
                                 <div class="card">
                                     <div class="card-body">
+                                          <?php if(session('message')): ?>
+                                            <div class="alert alert-warning">
+                                                <?php echo e(session('message')); ?>
+
+                                            </div>
+                                        <?php endif; ?>
                                         <div class="e-profile">
                                             <div class="row">
                                                 <div class="col-12 col-sm-auto mb-3">
@@ -41,6 +47,8 @@
                                                                     alt="Default User Icon" class="img-fluid rounded-circle"
                                                                     style="max-width: 160px; height: 140px; #ccc; padding: 1px; object-fit: cover;">
                                                             <?php endif; ?>
+
+
                                                             <form id="profilePictureForm"
                                                                 action="<?php echo e(route('profile.update.picture')); ?>"
                                                                 method="POST" enctype="multipart/form-data"
@@ -69,11 +77,8 @@
                                                         </div>
                                                     </div>
                                                     
-                                                    <div class="text-sm-right ml-auto">
-                                                        <div class="text-muted">
-                                                            <small>Joined <?php echo e($user->created_at->format('d F Y')); ?></small>
-                                                        </div>
-                                                    </div>
+                                                    
+
 
                                                 </div>
                                                 <script>
@@ -133,17 +138,23 @@
 
                                                         <tr>
                                                             <th scope="row">District</th>
-                                                            <td><?php echo e($user->DOB); ?></td>
+                                                            <td><?php echo e($user->district); ?></td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">Marital Status</th>
                                                             <td><?php echo e($user->marital_status); ?></td>
                                                         </tr>
                                                         <tr>
-                                                            <th scope="row">Address</th>
-                                                            <td><?php echo e($user->region); ?> <?php echo e($user->district); ?>
-
-                                                                <?php echo e($user->street); ?> <?php echo e($user->house_no); ?></td>
+                                                            <th scope="row">Box No</th>
+                                                            <td><?php echo e($user->box_no); ?> </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Plot No</th>
+                                                            <td><?php echo e($user->plot_no); ?> </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Popular Landmark</th>
+                                                            <td><?php echo e($user->popular_landmark); ?> </td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">Home Address</th>
@@ -157,10 +168,7 @@
                                                             <th scope="row">Religion</th>
                                                             <td><?php echo e($user->religion); ?></td>
                                                         </tr>
-                                                        <tr>
-                                                            <th scope="row">Marital Status</th>
-                                                            <td><?php echo e($user->marital_status); ?></td>
-                                                        </tr>
+
                                                         
                                                         <tr>
                                                             <th scope="row">House Number</th>

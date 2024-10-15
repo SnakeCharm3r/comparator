@@ -58,32 +58,37 @@ class CcbrtRelationController extends Controller
             'userId' => 'required|exists:users,id',
             'names' => 'required|string|max:255',
             'position' => 'required',
-            'department' => 'required', // Ensure deptId is required
+            'department' => 'required',
             'relation' => 'required',
         ]);
-
+    
         if ($validator->fails()) {
-            return response()->json([
-                'status' => 400,
-                'error' => $validator->errors()
-            ]);
+            return redirect()->back()->withErrors($validator)->withInput();
         }
-
+    
+        // Check if the user already has 5 relations
+        $relationCount = CcbrtRelation::where('userId', $request->input('userId'))->count();
+    
+        if ($relationCount >= 5) {
+            return redirect()->back()->with('error', 'You can only add up to 5 relations.')->withInput();
+        }
+    
         // Create the relation record
-        $relate = CcbrtRelation::create([
+        CcbrtRelation::create([
             'userId' => $request->input('userId'),
             'names' => $request->input('names'),
             'position' => $request->input('position'),
-            'department' => $request->input('department'), // Ensure deptId is saved correctly
+            'department' => $request->input('department'),
             'relation' => $request->input('relation'),
         ]);
-
+    
         // Optionally, add a success alert
-        Alert::success('Relationship added successful', 'CCbrt Related user added');
-
+        Alert::success('Relationship added successfully', 'CCBRT related user added');
+    
         // Redirect with success message
         return redirect()->route('ccbrt_relation.index')->with('success', 'Relation details added successfully.');
     }
+    
 
 
 // Show form to edit a family member's details

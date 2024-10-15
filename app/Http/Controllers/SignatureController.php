@@ -14,15 +14,15 @@ class SignatureController extends Controller
     {
         return view('signature.index');
     }
-    
+
     public function showUsersWithSignatures()
-    {
+    {dd(123);
         $users = User::all();
 
         // Return the view with the list of users and their signatures
         return view('signature.users', compact('users'));
     }
-    
+
     public function store(Request $request)
     {
         $signature = $request->input('signature');
