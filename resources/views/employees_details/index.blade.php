@@ -2,11 +2,11 @@
 
 @section('breadcrumb')
     @include('sweetalert::alert')
-    @if(session('error'))
-    <div class="alert alert-danger">
-        {!! session('error') !!}
-    </div>
-@endif
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {!! session('error') !!}
+        </div>
+    @endif
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.2/css/dataTables.dataTables.css" />

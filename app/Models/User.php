@@ -40,6 +40,8 @@ class User extends Authenticatable
         'plot_no',
         'popular_landmark',
         'emp_id',
+        'starting_date',
+        'ending_date',
         'employee_cv',
         'NIN',
         'nssf_no',

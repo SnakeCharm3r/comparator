@@ -16,7 +16,7 @@ class SignatureController extends Controller
     }
 
     public function showUsersWithSignatures()
-    {dd(123);
+    {
         $users = User::all();
 
         // Return the view with the list of users and their signatures

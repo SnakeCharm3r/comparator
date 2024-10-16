@@ -17,7 +17,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            @if (auth()->user()->hasRole('hr'))
+                            @if (auth()->user()->hasAnyRole('hr', 'super-admin'))
                                 <div class="row position-relative">
                                     <div class="col-md-12">
                                         <a href="{{ route('employment.create') }}"

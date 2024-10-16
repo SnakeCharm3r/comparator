@@ -38,9 +38,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-
-
-                                        <div class="form-group">
+                                                                          <div class="form-group">
                                             <label for="openclinic_hms">SAP ERP<span class="text-danger">*</span></label>
                                             <select class="form-control" id="privilegeId" name="sap" required>
                                                 <option value="" disabled selected> ---Select an option---</option>
@@ -76,15 +74,7 @@
                                             </select>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="openclinic_hms">OpenClinic HMIS Access</label>
-                                            <select class="form-control" id="hmisId" name="hmisId" required>
-                                                <option value="" disabled selected> ---Select an option---</option>
-                                                @foreach ($hmis as $hmi)
-                                                    <option value="{{ $hmi->id }}">{{ $hmi->names }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+
                                     </div>
 
                                     <!-- Column 2 -->
@@ -132,9 +122,20 @@
 
                                                 <div class="form-group">
                                                     <label for="network_folder">Network Folder</label>
-                                                    <input type="text" class="form-control" name="network_folder"
-                                                        placeholder="e.g., HR_Documents" required>
+                                                    <select class="form-control" name="network_folder" required>
+                                                        <option value="" disabled selected>Select a network folder</option>
+                                                        <option value="Academy">Academy</option>
+                                                        <option value="HR">HR</option>
+                                                        <option value="ICT & Business Application">ICT & Business Application</option>
+                                                        <option value="Insurances Validated Master">Insurances Validated Master</option>
+                                                        <option value="LAB">LAB</option>
+                                                        <option value="Mendeley">Mendeley</option>
+                                                        <option value="Procurement">Procurement</option>
+                                                        <option value="Q&S">Q&S</option>
+                                                        <option value="SOP">SOP</option>
+                                                    </select>
                                                 </div>
+
 
                                                 <div class="form-group">
                                                     <label>Network Folder Access</label>
@@ -153,8 +154,18 @@
                                                         @endforeach
                                                     </div>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label for="openclinic_hms">OpenClinic HMIS Access</label>
+                                                    <select class="form-control" id="hmisId" name="hmisId" required>
+                                                        <option value="" disabled selected> ---Select an option---</option>
+                                                        @foreach ($hmis as $hmi)
+                                                            <option value="{{ $hmi->id }}">{{ $hmi->names }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
+
                                     </div>
 
                                     <!-- Column 3 -->
@@ -169,6 +180,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
+
 
                                         <div class="form-group">
                                             <label for="openclinic_hms">Network Access VPN</label>
