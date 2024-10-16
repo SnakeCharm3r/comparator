@@ -1,5 +1,11 @@
 <?php $__env->startSection('breadcrumb'); ?>
     <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php if(session('error')): ?>
+    <div class="alert alert-danger">
+        <?php echo session('error'); ?>
+
+    </div>
+<?php endif; ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.2/css/dataTables.dataTables.css" />
@@ -17,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="card card-body p-3">
                 <div class="table-responsive">
                     <table id="example" class="display nowrap" style="width:100%">
@@ -28,23 +34,11 @@
                                 <th>Department</th>
                                 <th>Job Title</th>
                                 
-                                
                                 <th>CCBRT Code</th>
                                 <th>Phone Number</th>
                                 
                                 <th>Birth Date</th>
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
                                 <th>Actions</th>
-                                
 
 
                             </tr>
@@ -55,23 +49,11 @@
                                     <td><?php echo e($loop->iteration); ?></td>
                                     <td><?php echo e($user->fname); ?> <?php echo e($user->lname); ?></td>
                                     <td><?php echo e($user->department->dept_name); ?></td>
-                                    <td><?php echo e($user->job_title); ?></td>
-                                    
+                                    <td><?php echo e($user->jobTitle->job_title); ?></td>
+                                    <td><?php echo e($user->professional_reg_number); ?></td>
                                     <td><?php echo e($user->ccbrt_Code); ?></td>
-                                    
                                     <td><?php echo e($user->mobile); ?></td>
-                                    
                                     <td><?php echo e(\Carbon\Carbon::parse($user->DOB)->format('d-m-Y')); ?></td>
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
                                     <td class="text-center" style="width: 100px;">
                                         <!-- View Icon -->
 
@@ -98,24 +80,11 @@
                                 <th>Department</th>
                                 <th>Job Title</th>
                                 
-                                
                                 <th>CCBRT Code</th>
                                 <th>Phone Number</th>
-                                
                                 <th>Birth Date</th>
-                                
-                                
-                                
-                                
-                                
-                                
-                                
 
-                                
-                                
-                                
                                 <th>Actions</th>
-                                
                             </tr>
                         </tfoot>
                     </table>

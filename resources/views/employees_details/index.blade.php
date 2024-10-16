@@ -2,6 +2,11 @@
 
 @section('breadcrumb')
     @include('sweetalert::alert')
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {!! session('error') !!}
+    </div>
+@endif
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.2/css/dataTables.dataTables.css" />
@@ -19,32 +24,7 @@
                     </div>
                 </div>
             </div>
-            {{-- <table id="example" class="display nowrap" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  
-                   
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                    </tr>
-                </tfoot>
-            </table> --}}
+
             <div class="card card-body p-3">
                 <div class="table-responsive">
                     <table id="example" class="display nowrap" style="width:100%">
@@ -54,25 +34,12 @@
                                 <th>User Name</th>
                                 <th>Department</th>
                                 <th>Job Title</th>
-                                {{-- <th>Professional No</th> --}}
                                 {{-- <th>Appointend Date</th> --}}
                                 <th>CCBRT Code</th>
                                 <th>Phone Number</th>
                                 {{-- <th>Gender</th> --}}
                                 <th>Birth Date</th>
-                                {{-- <th>Marital Status</th> --}}
-                                {{-- <th>Birth Ward</th> --}}
-                                {{-- <th>Birth State</th> --}}
-                                {{-- <th>Birth Country</th> --}}
-                                {{-- <th>Nationality</th> --}}
-                                {{-- <th>Languages</th> --}}
-                                {{-- <th>Present Address</th> --}}
-                                {{-- <th>Emer. Con. names</th> --}}
-                                {{-- <th>Emer. Con. Address</th>
-                                <th>Emer. Con. State</th> --}}
-                                {{-- <th>Emergency Mobile</th> --}}
                                 <th>Actions</th>
-                                {{-- <th>Emer. Con. Email</th> --}}
 
 
                             </tr>
@@ -83,24 +50,11 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $user->fname }} {{ $user->lname }}</td>
                                     <td>{{ $user->department->dept_name }}</td>
-                                    <td>{{ $user->job_title }}</td>
-                                    {{-- <td>{{ $user->professional_reg_number }}</td> --}}
+                                    <td>{{ $user->jobTitle->job_title }}</td>
+                                    <td>{{ $user->professional_reg_number }}</td>
                                     <td>{{ $user->ccbrt_Code }}</td>
-                                    {{-- <td>{{ $user->appointed_date }}</td> --}}
                                     <td>{{ $user->mobile }}</td>
-                                    {{-- <td>{{ $user->gender }}</td> --}}
                                     <td>{{ \Carbon\Carbon::parse($user->DOB)->format('d-m-Y') }}</td>
-                                    {{-- <td>{{ $user->marital_status }}</td> --}}
-                                    {{-- <td>{{ $user->birth_ward }}</td> --}}
-                                    {{-- <td>{{ $user->birth_state }}</td> --}}
-                                    {{-- <td>{{ $user->birth_country }}</td> --}}
-                                    {{-- <td>{{ $user->nationality }}</td> --}}
-                                    {{-- <td>{{ $user->language }}</td> --}}
-                                    {{-- <td>{{ $user->present_address }}</td> --}}
-                                    {{-- <td>{{ $user->full_name }}</td> --}}
-                                    {{-- <td>{{ $user->Emer_c_address }}</td>
-                                    <td>{{ $user->Emer_c_state }}</td> --}}
-                                    {{-- <td>{{ $user->phone_number }}</td> --}}
                                     <td class="text-center" style="width: 100px;">
                                         <!-- View Icon -->
 
@@ -127,25 +81,11 @@
                                 <th>Department</th>
                                 <th>Job Title</th>
                                 {{-- <th>Professional No</th> --}}
-                                {{-- <th>Appointed Date</th> --}}
                                 <th>CCBRT Code</th>
                                 <th>Phone Number</th>
-                                {{-- <th>Gender</th> --}}
                                 <th>Birth Date</th>
-                                {{-- <th>Marital Status</th> --}}
-                                {{-- <th>Birth Ward</th> --}}
-                                {{-- <th>Birth State</th> --}}
-                                {{-- <th>Birth Country</th> --}}
-                                {{-- <th>Nationality</th> --}}
-                                {{-- <th>Languages</th> --}}
-                                {{-- <th>Present Address</th> --}}
 
-                                {{-- <th>Emer. Con. names</th> --}}
-                                {{-- <th>Emer. Con. Address</th>
-                                <th>Emer. Con. State</th> --}}
-                                {{-- <th>Emergency Mobile</th> --}}
                                 <th>Actions</th>
-                                {{-- <th>Emer. Con. Email</th> --}}
                             </tr>
                         </tfoot>
                     </table>
