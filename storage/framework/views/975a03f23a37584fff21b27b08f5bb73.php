@@ -101,7 +101,7 @@
 
                                             </td>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>End Date:</strong> <?php echo e($ictForm->end_date); ?>
+                                                <strong>End Date:</strong> <?php echo e($ictForm->ending_date); ?>
 
                                             </td>
                                         </tr>

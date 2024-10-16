@@ -16,7 +16,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <?php if(auth()->user()->hasRole('hr')): ?>
+                            <?php if(auth()->user()->hasAnyRole('hr', 'super-admin')): ?>
                                 <div class="row position-relative">
                                     <div class="col-md-12">
                                         <a href="<?php echo e(route('employment.create')); ?>"

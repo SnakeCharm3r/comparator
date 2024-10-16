@@ -14,16 +14,24 @@
             </div>
             <style>
                 .signature-container {
-                    max-width: 600px;
+                    max-width: 400px;
                     margin: 0 auto;
+                    padding: 20px;
+                    background-color: #f9f9f9;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
                 }
 
                 #signature-pad {
-                    border: 2px solid #ccc;
+                    border: 2px solid #007bff;
+                    /* Blue border */
                     border-radius: 10px;
                     width: 100%;
-                    height: 200px;
+                    height: 50px;
+                    /* Height adjusted for better visibility */
                     margin-top: 10px;
+                    background-color: #fff;
+                    /* White background for clarity */
                 }
 
                 .signature-actions {
@@ -34,10 +42,13 @@
 
                 .signature-actions button {
                     width: 48%;
+                    padding: 10px;
+                    font-size: 16px;
                 }
 
                 .signature-title {
-                    font-size: 18px;
+                    font-size: 24px;
+                    /* Larger title */
                     margin-bottom: 5px;
                     color: #333;
                     text-align: center;
@@ -48,6 +59,10 @@
                     font-size: 14px;
                     color: #666;
                     margin-bottom: 15px;
+                }
+
+                .alert {
+                    margin-top: 20px;
                 }
             </style>
 
@@ -60,7 +75,7 @@
                     </div>
                     <div class="col-md-12 signature-actions">
                         <button type="button" id="clear" class="btn btn-outline-danger">Clear</button>
-                        <button type="submit" id="save" class="btn btn-primary">Save Signature</button>
+                        <button type="button" id="save" class="btn btn-primary">Save Signature</button>
                     </div>
                 </div>
                 <?php if(session('message')): ?>
@@ -92,8 +107,9 @@
                     const ratio = Math.max(window.devicePixelRatio || 1, 1);
                     canvas.width = canvas.offsetWidth * ratio;
                     canvas.height = canvas.offsetHeight * ratio;
-                    canvas.getContext('2d').scale(ratio, ratio);
-                    signaturePad.clear(); // otherwise isEmpty() might return incorrect value
+                    const ctx = canvas.getContext('2d');
+                    ctx.scale(ratio, ratio);
+                    signaturePad.clear(); // Clear canvas to avoid incorrect isEmpty() results
                 }
 
                 window.addEventListener('resize', resizeCanvas);
@@ -110,87 +126,51 @@
                     }
 
                     const dataURL = signaturePad.toDataURL('image/png');
-                    const img = new Image();
-                    img.src = dataURL;
-                    img.onload = function() {
-                        const imgWidth = img.width;
-                        const imgHeight = img.height;
-                        const offscreenCanvas = document.createElement('canvas');
-                        const offscreenCtx = offscreenCanvas.getContext('2d');
-
-                        offscreenCanvas.width = imgWidth;
-                        offscreenCanvas.height = imgHeight;
-                        offscreenCtx.drawImage(img, 0, 0);
-
-                        const boundingBox = {
-                            left: imgWidth,
-                            top: imgHeight,
-                            right: 0,
-                            bottom: 0
-                        };
-
-                        const imgData = offscreenCtx.getImageData(0, 0, imgWidth, imgHeight);
-                        const data = imgData.data;
-
-                        for (let y = 0; y < imgHeight; y++) {
-                            for (let x = 0; x < imgWidth; x++) {
-                                const index = (y * imgWidth + x) * 4;
-                                if (data[index + 3] > 0) {
-                                    boundingBox.left = Math.min(boundingBox.left, x);
-                                    boundingBox.top = Math.min(boundingBox.top, y);
-                                    boundingBox.right = Math.max(boundingBox.right, x);
-                                    boundingBox.bottom = Math.max(boundingBox.bottom, y);
-                                }
-                            }
-                        }
-
-                        const {
-                            left,
-                            top,
-                            right,
-                            bottom
-                        } = boundingBox;
-                        const width = right - left;
-                        const height = bottom - top;
-
-                        const croppedCanvas = document.createElement('canvas');
-                        const croppedCtx = croppedCanvas.getContext('2d');
-                        croppedCanvas.width = width;
-                        croppedCanvas.height = height;
-                        croppedCtx.drawImage(
-                            img,
-                            left, top, width, height, // Source rectangle
-                            0, 0, width, height // Destination rectangle
-                        );
-
-                        const croppedDataURL = croppedCanvas.toDataURL('image/png');
-                        signatureInput.value = croppedDataURL;
-                        signatureForm.submit();
-                    };
+                    signatureInput.value = dataURL;
+                    signatureForm.submit();
                 });
 
-                // Add touch event support for mobile devices
+                // Adjusting for pointer alignment
+                function getMousePosition(event) {
+                    const rect = canvas.getBoundingClientRect();
+                    return {
+                        x: (event.clientX - rect.left) * (canvas.width / rect.width),
+                        y: (event.clientY - rect.top) * (canvas.height / rect.height)
+                    };
+                }
+
+                // Mouse events
+                canvas.addEventListener('mousedown', (event) => {
+                    signaturePad.beginStroke(getMousePosition(event));
+                });
+
+                canvas.addEventListener('mousemove', (event) => {
+                    if (!signaturePad.isEmpty()) {
+                        signaturePad.stroke(getMousePosition(event));
+                    }
+                });
+
+                canvas.addEventListener('mouseup', () => {
+                    signaturePad.endStroke();
+                });
+
+                // Touch events for mobile devices
                 canvas.addEventListener('touchstart', (event) => {
                     const touch = event.touches[0];
-                    const mouseEvent = new MouseEvent('mousedown', {
-                        clientX: touch.clientX,
-                        clientY: touch.clientY
-                    });
-                    canvas.dispatchEvent(mouseEvent);
+                    signaturePad.beginStroke(getMousePosition(touch));
+                    event.preventDefault();
                 }, false);
 
                 canvas.addEventListener('touchmove', (event) => {
-                    const touch = event.touches[0];
-                    const mouseEvent = new MouseEvent('mousemove', {
-                        clientX: touch.clientX,
-                        clientY: touch.clientY
-                    });
-                    canvas.dispatchEvent(mouseEvent);
+                    if (!signaturePad.isEmpty()) {
+                        const touch = event.touches[0];
+                        signaturePad.stroke(getMousePosition(touch));
+                    }
+                    event.preventDefault();
                 }, false);
 
-                canvas.addEventListener('touchend', (event) => {
-                    const mouseEvent = new MouseEvent('mouseup', {});
-                    canvas.dispatchEvent(mouseEvent);
+                canvas.addEventListener('touchend', () => {
+                    signaturePad.endStroke();
                 }, false);
             </script>
 

@@ -89,6 +89,8 @@ class IctAccessController extends Controller
             'active_drt' => 'required|exists:privilege_levels,id',
             'VPN' => 'required|exists:privilege_levels,id',
             'pbax' => 'required|exists:privilege_levels,id',
+            'starting_date' => 'required|date',
+            'ending_date' => 'required|date|after:starting_date',
         ]);
         // dd( $validator);
 
@@ -125,6 +127,8 @@ class IctAccessController extends Controller
                     'pbax' => $request->input('pbax'),
                     'status' => $request->input('status'),
                     'physical_access' => $request->input('physical_access'),
+                    'starting_date' => $request->input('starting_date'),
+                    'ending_date' => $request->input('ending_date'),
                     'delete_status' => 0,
                 ]);
 

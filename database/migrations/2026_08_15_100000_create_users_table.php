@@ -41,6 +41,8 @@ return new class extends Migration
             $table->string('domicile')->nullable();
             $table->string('profile_picture')->nullable();
             $table->text('signature')->nullable();
+            $table->date('starting_date')->nullable();
+            $table->date('ending_date')->nullable();
             $table->string('password');
             $table->foreign('deptId')->references('id')->on('departments');
             $table->foreign('employment_typeId')->references('id')->on('employment_types');

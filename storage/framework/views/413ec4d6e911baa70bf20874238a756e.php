@@ -24,7 +24,7 @@
                                 $user = auth()->user();
                                 $roles = ['hr', 'admin', 'super-admin'];
                             ?>
-                            
+
                             <?php if($user && $user->hasAnyRole($roles)): ?>
                                 <div class="col-md-12">
                                     <a href="<?php echo e(route('department.create')); ?>"
@@ -34,7 +34,7 @@
                                     </a>
                                 </div>
                             <?php endif; ?>
-                            
+
                             </div>
                             <table class="table table-striped">
                                 <thead>
@@ -56,15 +56,15 @@
                                                     class="btn btn-sm edit-btn" data-id="<?php echo e($department->dept_id); ?>">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <form action="<?php echo e(route('department.destroy', $department->dept_id)); ?>"
-                                                    method="POST" style="display:inline-block;">
-                                                    <?php echo csrf_field(); ?>
-                                                    <?php echo method_field('DELETE'); ?>
-                                                    <button type="submit" class="btn btn-sm btn-delete"
-                                                        onclick="return confirm('Are you sure you want to delete this department?');">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </button>
-                                                </form>
+
+
+
+
+
+
+
+
+
                                             </td>
                                         </tr>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
