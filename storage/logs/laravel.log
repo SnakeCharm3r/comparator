@@ -1587,7 +1587,7 @@
 #52 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #53 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #54 {main}
-"} 
+"}
 [2024-09-23 14:43:25] local.ERROR: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it (Connection: mysql, SQL: select * from `users` where `username` = tfu limit 1) {"exception":"[object] (Illuminate\\Database\\QueryException(code: 2002): SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it (Connection: mysql, SQL: select * from `users` where `username` = tfu limit 1) at D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:829)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(983): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
@@ -1728,7 +1728,7 @@
 #70 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #71 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #72 {main}
-"} 
+"}
 [2024-09-23 15:09:32] local.ERROR: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it (Connection: mysql, SQL: select * from `users` where `username` = tfu limit 1) {"exception":"[object] (Illuminate\\Database\\QueryException(code: 2002): SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it (Connection: mysql, SQL: select * from `users` where `username` = tfu limit 1) at D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:829)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(983): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
@@ -1869,7 +1869,7 @@
 #70 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #71 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #72 {main}
-"} 
+"}
 [2024-09-23 15:39:34] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at D:\\Projects\\E-docs\\vendor\\symfony\\console\\Input\\ArgvInput.php:223)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\symfony\\console\\Input\\ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption('columns', 'uri,name,action...')
@@ -1884,7 +1884,7 @@
 #9 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #10 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #11 {main}
-"} 
+"}
 [2024-09-23 15:39:37] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at D:\\Projects\\E-docs\\vendor\\symfony\\console\\Input\\ArgvInput.php:223)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\symfony\\console\\Input\\ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption('columns', 'uri,name,action...')
@@ -1899,7 +1899,7 @@
 #9 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #10 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #11 {main}
-"} 
+"}
 [2024-09-23 15:39:41] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at D:\\Projects\\E-docs\\vendor\\symfony\\console\\Input\\ArgvInput.php:223)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\symfony\\console\\Input\\ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption('columns', 'uri,name,action...')
@@ -1914,7 +1914,7 @@
 #9 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #10 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #11 {main}
-"} 
+"}
 [2024-09-24 11:51:19] local.ERROR: syntax error, unexpected token "}", expecting variable {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting variable at D:\\Projects\\E-docs\\app\\Models\\User.php:139)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -1935,7 +1935,7 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:51:20] local.ERROR: syntax error, unexpected token "}" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\" at D:\\Projects\\E-docs\\app\\Models\\User.php:139)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -1956,7 +1956,7 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:51:25] local.ERROR: syntax error, unexpected token "}", expecting "(" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \"(\" at D:\\Projects\\E-docs\\app\\Models\\User.php:139)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -1977,7 +1977,7 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:51:27] local.ERROR: syntax error, unexpected token "}", expecting "(" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \"(\" at D:\\Projects\\E-docs\\app\\Models\\User.php:139)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -1998,7 +1998,7 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:51:31] local.ERROR: syntax error, unexpected token "}", expecting ";" or "{" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \";\" or \"{\" at D:\\Projects\\E-docs\\app\\Models\\User.php:139)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2019,7 +2019,7 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:51:34] local.ERROR: syntax error, unexpected token "}", expecting ";" or "{" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \";\" or \"{\" at D:\\Projects\\E-docs\\app\\Models\\User.php:139)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2040,7 +2040,7 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:51:48] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2061,7 +2061,7 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:51:51] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2082,7 +2082,7 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:51:52] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2103,11 +2103,11 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:51:53] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-09-24 11:51:54] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2128,7 +2128,7 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:51:57] local.ERROR: syntax error, unexpected token "}", expecting identifier or variable or "{" or "$" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting identifier or variable or \"{\" or \"$\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2149,7 +2149,7 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:51:57] local.ERROR: syntax error, unexpected token "}", expecting identifier or variable or "{" or "$" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting identifier or variable or \"{\" or \"$\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2170,7 +2170,7 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:51:58] local.ERROR: syntax error, unexpected token "}", expecting identifier or variable or "{" or "$" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting identifier or variable or \"{\" or \"$\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2191,11 +2191,11 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:52:01] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-09-24 11:52:04] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2216,11 +2216,11 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:52:04] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-09-24 11:52:07] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2241,11 +2241,11 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:52:13] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-09-24 11:52:13] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2266,7 +2266,7 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:52:14] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2287,7 +2287,7 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:52:20] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2308,11 +2308,11 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:52:21] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-09-24 11:52:24] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2333,7 +2333,7 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:52:28] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2354,7 +2354,7 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:52:33] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2375,11 +2375,11 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:52:34] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-09-24 11:52:35] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2400,7 +2400,7 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:52:44] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2421,11 +2421,11 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:52:44] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-09-24 11:52:45] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2446,7 +2446,7 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:52:46] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2467,11 +2467,11 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:52:53] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-09-24 11:52:54] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2492,7 +2492,7 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-09-24 11:52:56] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -2541,11 +2541,11 @@
 #43 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #44 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #45 {main}
-"} 
+"}
 [2024-09-24 11:53:01] local.ERROR: syntax error, unexpected token "}", expecting ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"}\", expecting \";\" at D:\\Projects\\E-docs\\app\\Models\\User.php:97)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-09-24 12:11:14] local.ERROR: Call to undefined relationship [jobTitle] on model [App\Models\User]. {"userId":19,"exception":"[object] (Illuminate\\Database\\Eloquent\\RelationNotFoundException(code: 0): Call to undefined relationship [jobTitle] on model [App\\Models\\User]. at D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\RelationNotFoundException.php:35)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(806): Illuminate\\Database\\Eloquent\\RelationNotFoundException::make(Object(App\\Models\\User), 'jobTitle')
@@ -2603,7 +2603,7 @@
 #52 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #53 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #54 {main}
-"} 
+"}
 [2024-09-24 12:11:48] local.ERROR: Call to undefined relationship [job_title] on model [App\Models\User]. {"userId":19,"exception":"[object] (Illuminate\\Database\\Eloquent\\RelationNotFoundException(code: 0): Call to undefined relationship [job_title] on model [App\\Models\\User]. at D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\RelationNotFoundException.php:35)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(806): Illuminate\\Database\\Eloquent\\RelationNotFoundException::make(Object(App\\Models\\User), 'job_title')
@@ -2661,7 +2661,7 @@
 #52 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #53 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #54 {main}
-"} 
+"}
 [2024-09-24 12:13:37] local.ERROR: Call to undefined relationship [job_title] on model [App\Models\User]. {"userId":19,"exception":"[object] (Illuminate\\Database\\Eloquent\\RelationNotFoundException(code: 0): Call to undefined relationship [job_title] on model [App\\Models\\User]. at D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\RelationNotFoundException.php:35)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(806): Illuminate\\Database\\Eloquent\\RelationNotFoundException::make(Object(App\\Models\\User), 'job_title')
@@ -2719,7 +2719,7 @@
 #52 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #53 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #54 {main}
-"} 
+"}
 [2024-09-24 12:16:03] local.ERROR: Call to undefined relationship [job_title] on model [App\Models\User]. {"userId":19,"exception":"[object] (Illuminate\\Database\\Eloquent\\RelationNotFoundException(code: 0): Call to undefined relationship [job_title] on model [App\\Models\\User]. at D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\RelationNotFoundException.php:35)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(806): Illuminate\\Database\\Eloquent\\RelationNotFoundException::make(Object(App\\Models\\User), 'job_title')
@@ -2777,7 +2777,7 @@
 #52 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #53 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #54 {main}
-"} 
+"}
 [2024-09-24 12:18:13] local.ERROR: Call to undefined relationship [jobTitle] on model [App\Models\User]. {"userId":19,"exception":"[object] (Illuminate\\Database\\Eloquent\\RelationNotFoundException(code: 0): Call to undefined relationship [jobTitle] on model [App\\Models\\User]. at D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\RelationNotFoundException.php:35)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(806): Illuminate\\Database\\Eloquent\\RelationNotFoundException::make(Object(App\\Models\\User), 'jobTitle')
@@ -2835,7 +2835,7 @@
 #52 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #53 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #54 {main}
-"} 
+"}
 [2024-09-24 12:25:30] local.ERROR: Call to undefined relationship [job_title] on model [App\Models\User]. {"userId":19,"exception":"[object] (Illuminate\\Database\\Eloquent\\RelationNotFoundException(code: 0): Call to undefined relationship [job_title] on model [App\\Models\\User]. at D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\RelationNotFoundException.php:35)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(806): Illuminate\\Database\\Eloquent\\RelationNotFoundException::make(Object(App\\Models\\User), 'job_title')
@@ -2893,7 +2893,7 @@
 #52 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #53 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #54 {main}
-"} 
+"}
 [2024-09-25 08:39:04] local.ERROR: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it (Connection: mysql, SQL: select * from `users` where `username` = chuma limit 1) {"exception":"[object] (Illuminate\\Database\\QueryException(code: 2002): SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it (Connection: mysql, SQL: select * from `users` where `username` = chuma limit 1) at D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:829)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(983): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
@@ -3034,14 +3034,14 @@
 #70 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #71 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #72 {main}
-"} 
-[2024-09-25 08:48:20] local.INFO: Received request {"_token":"GO9VUkgiYL5n1BeSwphYR8PyKeLIsypqwJxk8Fbz","familyData":[{"full_name":"Quin Mueller","relationship":"Ut totam quia conseq","phone_number":"+1 (245) 796-6324","occupation":"Suscipit consequuntu","next_of_kin":"1"}]} 
-[2024-09-25 09:08:09] local.INFO: Received request {"_token":"XdpfCbds0kBpBtKUw7vN40E1dMZutrCeG66JTmOE","familyData":[{"full_name":"Salvador Townsend","relationship":"Reprehenderit ullam","phone_number":"+1 (146) 428-2743","occupation":"Irure reiciendis con","next_of_kin":"1"}]} 
-[2024-09-25 09:09:49] local.INFO: Hardware request processed {"hardware_request":"Desktop computer,Telephone"} 
-[2024-09-25 09:09:49] local.INFO: ICT Access Resource created {"ict":{"App\\Models\\IctAccessResource":{"privilegeId":"2","email":null,"userId":"19","hmisId":"1","aruti":"2","sap":"2","nhifId":"3","hardware_request":"Desktop computer,Telephone","network_folder":"Fuga Lorem neque lo","active_drt":"2","VPN":"2","pbax":"2","status":null,"physical_access":null,"delete_status":0,"updated_at":"2024-09-25T09:09:49.000000Z","created_at":"2024-09-25T09:09:49.000000Z","id":42}}} 
-[2024-09-25 09:09:49] local.INFO: Workflow saved {"workflow":{"App\\Models\\Workflow":{"user_id":19,"ict_request_resource_id":42,"work_flow_status":"sent to approval","work_flow_completed":0,"updated_at":"2024-09-25T09:09:49.000000Z","created_at":"2024-09-25T09:09:49.000000Z","id":42}}} 
-[2024-09-25 09:09:49] local.INFO: Initial workflow history saved  
-[2024-09-25 09:09:54] local.INFO: Approver found {"approver":{"App\\Models\\User":{"id":20,"fname":"demo1","mname":"demo","lname":"demo","DOB":"2006-09-25","username":"demo1.demo","gender":null,"marital_status":"Married","email":"demo@gmail.com","email_verified_at":null,"religion":"islm","mobile":"255+255 678909090","job_title":"3","home_address":"dar1","district":"dare","region":"dar","professional_reg_number":"null","place_of_birth":"dar","house_no":"no3","street":"dara","emp_id":null,"deptId":2,"employment_typeId":2,"role_id":null,"employee_cv":null,"NIN":null,"nssf_no":"34r56","domicile":"dur","signature":"iVBORw0KGgoAAAANSUhEUgAAADoAAAAgCAYAAABD9mvVAAAAAXNSR0IArs4c6QAABKZJREFUWEfVmF2oVUUUx38rfSvBAokQy0pBSrOPG1kZKgTqQ71EFxIhgshQM60gDCKNCB8CQ/FqBXIFK0qICsrCh6Qoo5KMsg8rFIWCEDKKXse95s7ed/Y6M2efc7jn4hm4XM6eNTPrP2ut/1prhNpwj4z9lFfr3wf/l4xDcE8D28LvNYMJ1t0fDHXAmiYG6qLJrSBbBseOHuCu4m9G0PkIyB2x/gGo2wOsCRP/gEwfIJBvA8GSNa2XgRwuvwi4J4GXIpEtIFsHA6hTr3suo+t2kCdioC8Dj0fCB0CGL3ygbjZwskHPGSBnPb2CU1BvmQULQH64sMG674AbGnQcBvHEpEA1iNeaBYdBlk0+ULc0sGYVW2kd3GbgRTN3BphlvlWkqkAfBl5LbLgBZOfkgXVfAbeG834s/itXtKSJsXl3BFhkdBtJGKwiJAU6B/g1Aeg4sD5mrv6B9ulB2dOO4yDz6x/dYuAzI3iu8E4l0O3m+6YigygHedddCBzLgJgkYnIaOhpCqWFyutsBPGYElWcuBV4x36vCR4HeA7zfYK3dIDaOJ9jALi5Y7N5RTnRfArdFAkdBhsDH9yet7izrSos+DzzbgdYaLyP9ceWs65Zq/QEyMxNmIe8ngVakqhZ9AHijA6Aq0qe47ShVlFnAWm0diBKRktQ3wC2t1h6L0WmABvNFkcAvBRFpor0zcQETlHq8BS4HXgCUEJuGko3qZDPBYpDPA1C9hJCiqu2825e17qfAXeYkVWJJhg1HQR5q0iw/71SxWtGdkP0eWBB9/w14F3jKyA6BHA1AXwdWmfnNINtKoJp8NQnHIxBANn56BNsYj6UO+4oS70Gjk+bX6+rfJO7AUoS0E2RDCXQl8KHZdC3I7nBTueL5YpD/u7Ns20K83EoLgmcSLGqPSuXZr4Ehexkl0EuKwv7vIl6mRgI7QKJi36mr7jUn9dC3JtlRt1VWV5f+GeTjcMFab1/f5iITfJEsaYdjs38ELI82PQNyZf0QdxBYYQ5eBfJm51Z184CfInm1nnpPomjxTzu2CIiPSryEJENjJAaaKBxi/9f9k61Rwn1iXWyh7pT+NQ2Uo9Ygm4vVwkALhNzIeFRL8XEiBjq3YKwT+UAvZ5IxVrVDRtEYVGBH67r2MmuXpE8jfwJTMkjvA3mnda5Vxwiot5gtwyLqroBeUeTXQyZ2ToNclTgwZsG4jIvOaQfU6/QFcHsaaG6ts55Q5tEKhAWacSunTy/6BBOP2tPF+IR3Ve0fQq7zyutF3R1kGl4c27J0O7e/GdgUqrlRa1FbWeRiQBvc04lb7jC3uo1RS1W1UmmruVTqC6JN3jC+owVq82Wbci/Z/OrOV4OcakMgYcqtDpbe34GsVkmmL/WNecePeBbovcB70cGhBcqp4pT6w+t+JdOHx2/3aFEXh+KlOqeN27bqa4GmSijtGv4NS7UBUCb8r8h9fwH623YT50C0CZ7g4X4HrgmbNqS0RqCeKFIdQLdKzwFRxSZ4uGuDu3e9t7GoB3oZMApoAdHr6DBOe92++3UJoB6sPjIpM/YyjoHc1MvCfq7JAb0R+LbLg7Uo3wfyQZfrJkX8PDOnPsO7RJVEAAAAAElFTkSuQmCC","profile_picture":null,"delete_status":null,"created_at":"2024-09-25T08:46:03.000000Z","updated_at":"2024-09-25T08:47:54.000000Z"}}} 
+"}
+[2024-09-25 08:48:20] local.INFO: Received request {"_token":"GO9VUkgiYL5n1BeSwphYR8PyKeLIsypqwJxk8Fbz","familyData":[{"full_name":"Quin Mueller","relationship":"Ut totam quia conseq","phone_number":"+1 (245) 796-6324","occupation":"Suscipit consequuntu","next_of_kin":"1"}]}
+[2024-09-25 09:08:09] local.INFO: Received request {"_token":"XdpfCbds0kBpBtKUw7vN40E1dMZutrCeG66JTmOE","familyData":[{"full_name":"Salvador Townsend","relationship":"Reprehenderit ullam","phone_number":"+1 (146) 428-2743","occupation":"Irure reiciendis con","next_of_kin":"1"}]}
+[2024-09-25 09:09:49] local.INFO: Hardware request processed {"hardware_request":"Desktop computer,Telephone"}
+[2024-09-25 09:09:49] local.INFO: ICT Access Resource created {"ict":{"App\\Models\\IctAccessResource":{"privilegeId":"2","email":null,"userId":"19","hmisId":"1","aruti":"2","sap":"2","nhifId":"3","hardware_request":"Desktop computer,Telephone","network_folder":"Fuga Lorem neque lo","active_drt":"2","VPN":"2","pbax":"2","status":null,"physical_access":null,"delete_status":0,"updated_at":"2024-09-25T09:09:49.000000Z","created_at":"2024-09-25T09:09:49.000000Z","id":42}}}
+[2024-09-25 09:09:49] local.INFO: Workflow saved {"workflow":{"App\\Models\\Workflow":{"user_id":19,"ict_request_resource_id":42,"work_flow_status":"sent to approval","work_flow_completed":0,"updated_at":"2024-09-25T09:09:49.000000Z","created_at":"2024-09-25T09:09:49.000000Z","id":42}}}
+[2024-09-25 09:09:49] local.INFO: Initial workflow history saved
+[2024-09-25 09:09:54] local.INFO: Approver found {"approver":{"App\\Models\\User":{"id":20,"fname":"demo1","mname":"demo","lname":"demo","DOB":"2006-09-25","username":"demo1.demo","gender":null,"marital_status":"Married","email":"demo@gmail.com","email_verified_at":null,"religion":"islm","mobile":"255+255 678909090","job_title":"3","home_address":"dar1","district":"dare","region":"dar","professional_reg_number":"null","place_of_birth":"dar","house_no":"no3","street":"dara","emp_id":null,"deptId":2,"employment_typeId":2,"role_id":null,"employee_cv":null,"NIN":null,"nssf_no":"34r56","domicile":"dur","signature":"iVBORw0KGgoAAAANSUhEUgAAADoAAAAgCAYAAABD9mvVAAAAAXNSR0IArs4c6QAABKZJREFUWEfVmF2oVUUUx38rfSvBAokQy0pBSrOPG1kZKgTqQ71EFxIhgshQM60gDCKNCB8CQ/FqBXIFK0qICsrCh6Qoo5KMsg8rFIWCEDKKXse95s7ed/Y6M2efc7jn4hm4XM6eNTPrP2ut/1prhNpwj4z9lFfr3wf/l4xDcE8D28LvNYMJ1t0fDHXAmiYG6qLJrSBbBseOHuCu4m9G0PkIyB2x/gGo2wOsCRP/gEwfIJBvA8GSNa2XgRwuvwi4J4GXIpEtIFsHA6hTr3suo+t2kCdioC8Dj0fCB0CGL3ygbjZwskHPGSBnPb2CU1BvmQULQH64sMG674AbGnQcBvHEpEA1iNeaBYdBlk0+ULc0sGYVW2kd3GbgRTN3BphlvlWkqkAfBl5LbLgBZOfkgXVfAbeG834s/itXtKSJsXl3BFhkdBtJGKwiJAU6B/g1Aeg4sD5mrv6B9ulB2dOO4yDz6x/dYuAzI3iu8E4l0O3m+6YigygHedddCBzLgJgkYnIaOhpCqWFyutsBPGYElWcuBV4x36vCR4HeA7zfYK3dIDaOJ9jALi5Y7N5RTnRfArdFAkdBhsDH9yet7izrSos+DzzbgdYaLyP9ceWs65Zq/QEyMxNmIe8ngVakqhZ9AHijA6Aq0qe47ShVlFnAWm0diBKRktQ3wC2t1h6L0WmABvNFkcAvBRFpor0zcQETlHq8BS4HXgCUEJuGko3qZDPBYpDPA1C9hJCiqu2825e17qfAXeYkVWJJhg1HQR5q0iw/71SxWtGdkP0eWBB9/w14F3jKyA6BHA1AXwdWmfnNINtKoJp8NQnHIxBANn56BNsYj6UO+4oS70Gjk+bX6+rfJO7AUoS0E2RDCXQl8KHZdC3I7nBTueL5YpD/u7Ns20K83EoLgmcSLGqPSuXZr4Ehexkl0EuKwv7vIl6mRgI7QKJi36mr7jUn9dC3JtlRt1VWV5f+GeTjcMFab1/f5iITfJEsaYdjs38ELI82PQNyZf0QdxBYYQ5eBfJm51Z184CfInm1nnpPomjxTzu2CIiPSryEJENjJAaaKBxi/9f9k61Rwn1iXWyh7pT+NQ2Uo9Ygm4vVwkALhNzIeFRL8XEiBjq3YKwT+UAvZ5IxVrVDRtEYVGBH67r2MmuXpE8jfwJTMkjvA3mnda5Vxwiot5gtwyLqroBeUeTXQyZ2ToNclTgwZsG4jIvOaQfU6/QFcHsaaG6ts55Q5tEKhAWacSunTy/6BBOP2tPF+IR3Ve0fQq7zyutF3R1kGl4c27J0O7e/GdgUqrlRa1FbWeRiQBvc04lb7jC3uo1RS1W1UmmruVTqC6JN3jC+owVq82Wbci/Z/OrOV4OcakMgYcqtDpbe34GsVkmmL/WNecePeBbovcB70cGhBcqp4pT6w+t+JdOHx2/3aFEXh+KlOqeN27bqa4GmSijtGv4NS7UBUCb8r8h9fwH623YT50C0CZ7g4X4HrgmbNqS0RqCeKFIdQLdKzwFRxSZ4uGuDu3e9t7GoB3oZMApoAdHr6DBOe92++3UJoB6sPjIpM/YyjoHc1MvCfq7JAb0R+LbLg7Uo3wfyQZfrJkX8PDOnPsO7RJVEAAAAAElFTkSuQmCC","profile_picture":null,"delete_status":null,"created_at":"2024-09-25T08:46:03.000000Z","updated_at":"2024-09-25T08:47:54.000000Z"}}}
 [2024-09-25 12:32:25] local.ERROR: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'work_flow_histories.atteded_by' in 'on clause' (Connection: mysql, SQL: select * from `users` inner join `work_flow_histories` on `work_flow_histories`.`atteded_by` = `users`.`id` where exists (select * from `roles` inner join `model_has_roles` on `roles`.`id` = `model_has_roles`.`role_id` where `users`.`id` = `model_has_roles`.`model_id` and `model_has_roles`.`model_type` = App\Models\User and `name` = line-manager) and `users`.`deptId` = 2 and `work_flow_histories`.`work_flow_id` = 42 and `work_flow_histories`.`status` = 1 limit 1) {"userId":20,"exception":"[object] (Illuminate\\Database\\QueryException(code: 42S22): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'work_flow_histories.atteded_by' in 'on clause' (Connection: mysql, SQL: select * from `users` inner join `work_flow_histories` on `work_flow_histories`.`atteded_by` = `users`.`id` where exists (select * from `roles` inner join `model_has_roles` on `roles`.`id` = `model_has_roles`.`role_id` where `users`.`id` = `model_has_roles`.`model_id` and `model_has_roles`.`model_type` = App\\Models\\User and `name` = line-manager) and `users`.`deptId` = 2 and `work_flow_histories`.`work_flow_id` = 42 and `work_flow_histories`.`status` = 1 limit 1) at D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:829)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(783): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
@@ -3165,7 +3165,7 @@
 #57 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #58 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #59 {main}
-"} 
+"}
 [2024-09-25 12:33:19] local.ERROR: Attempt to read property "signature" on null {"view":{"view":"D:\\Projects\\E-docs\\resources\\views\\ict_resource_form.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1423653736 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1616</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -3791,7 +3791,7 @@
 #54 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #56 {main}
-"} 
+"}
 [2024-09-25 12:37:13] local.ERROR: Attempt to read property "signature" on null {"view":{"view":"D:\\Projects\\E-docs\\resources\\views\\ict_resource_form.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1845532089 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1616</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -4417,7 +4417,7 @@
 #54 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #56 {main}
-"} 
+"}
 [2024-09-25 12:39:26] local.ERROR: Attempt to read property "signature" on null {"view":{"view":"D:\\Projects\\E-docs\\resources\\views\\ict_resource_form.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1655020701 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1616</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -5203,7 +5203,7 @@
 #54 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #56 {main}
-"} 
+"}
 [2024-09-25 12:44:15] local.ERROR: Attempt to read property "signature" on null {"view":{"view":"D:\\Projects\\E-docs\\resources\\views\\ict_resource_form.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1138572592 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1616</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -5989,7 +5989,7 @@
 #54 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #56 {main}
-"} 
+"}
 [2024-09-25 12:48:52] local.ERROR: Attempt to read property "signature" on null {"view":{"view":"D:\\Projects\\E-docs\\resources\\views\\ict_resource_form.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1486108684 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1616</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -6615,7 +6615,7 @@
 #54 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #56 {main}
-"} 
+"}
 [2024-09-25 12:48:58] local.ERROR: Attempt to read property "signature" on null {"view":{"view":"D:\\Projects\\E-docs\\resources\\views\\ict_resource_form.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1131691721 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1616</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -7241,7 +7241,7 @@
 #54 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #56 {main}
-"} 
+"}
 [2024-09-25 12:59:43] local.ERROR: Call to a member function format() on bool {"view":{"view":"D:\\Projects\\E-docs\\resources\\views\\ict_resource_form.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1637618223 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1616</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -8169,7 +8169,7 @@
 #52 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #53 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #54 {main}
-"} 
+"}
 [2024-09-27 07:53:59] local.ERROR: Attempt to read property "updated_at" on null {"view":{"view":"D:\\Projects\\E-docs\\resources\\views\\ict_resource_form.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1654372883 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1616</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -8795,7 +8795,7 @@
 #54 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #56 {main}
-"} 
+"}
 [2024-09-27 07:57:33] local.ERROR: Attempt to read property "updated_at" on null {"view":{"view":"D:\\Projects\\E-docs\\resources\\views\\ict_resource_form.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1134296431 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1616</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -9421,7 +9421,7 @@
 #54 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #56 {main}
-"} 
+"}
 [2024-09-27 07:58:07] local.ERROR: Attempt to read property "updated_at" on null {"view":{"view":"D:\\Projects\\E-docs\\resources\\views\\ict_resource_form.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1866112276 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1616</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -10047,7 +10047,7 @@
 #54 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #56 {main}
-"} 
+"}
 [2024-09-29 10:49:31] local.ERROR: Attempt to read property "updated_at" on null {"view":{"view":"D:\\Projects\\E-docs\\resources\\views\\ict_resource_form.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-791857532 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1616</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -10673,7 +10673,7 @@
 #54 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #56 {main}
-"} 
+"}
 [2024-09-29 10:57:08] local.ERROR: Attempt to read property "updated_at" on null {"view":{"view":"D:\\Projects\\E-docs\\resources\\views\\ict_resource_form.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1519977800 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1614</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -11299,7 +11299,7 @@
 #54 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #56 {main}
-"} 
+"}
 [2024-09-29 11:22:24] local.ERROR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'shabani.chuma@ccbrt.org' for key 'users_email_unique' (Connection: mysql, SQL: insert into `users` (`fname`, `mname`, `lname`, `username`, `DOB`, `gender`, `marital_status`, `email`, `religion`, `mobile`, `job_title`, `home_address`, `district`, `professional_reg_number`, `place_of_birth`, `house_no`, `street`, `deptId`, `employment_typeId`, `employee_cv`, `NIN`, `nssf_no`, `domicile`, `password`, `updated_at`, `created_at`) values (Erasmus, Byron Gentry, Lang, erasmus.lang, 1975-10-11, ?, ?, shabani.chuma@ccbrt.org, ?, 255+255 (425) 926-9507, 5, ?, ?, 10, ?, ?, ?, 4, 1, ?, ?, ?, ?, $2y$12$.42wLYEdi4rKYOVgY/7Hje.pXxwCc8dYS7Ogjwel/Rss2I6MX/u4m, 2024-09-29 11:22:23, 2024-09-29 11:22:23)) {"exception":"[object] (Illuminate\\Database\\UniqueConstraintViolationException(code: 23000): SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'shabani.chuma@ccbrt.org' for key 'users_email_unique' (Connection: mysql, SQL: insert into `users` (`fname`, `mname`, `lname`, `username`, `DOB`, `gender`, `marital_status`, `email`, `religion`, `mobile`, `job_title`, `home_address`, `district`, `professional_reg_number`, `place_of_birth`, `house_no`, `street`, `deptId`, `employment_typeId`, `employee_cv`, `NIN`, `nssf_no`, `domicile`, `password`, `updated_at`, `created_at`) values (Erasmus, Byron Gentry, Lang, erasmus.lang, 1975-10-11, ?, ?, shabani.chuma@ccbrt.org, ?, 255+255 (425) 926-9507, 5, ?, ?, 10, ?, ?, ?, 4, 1, ?, ?, ?, ?, $2y$12$.42wLYEdi4rKYOVgY/7Hje.pXxwCc8dYS7Ogjwel/Rss2I6MX/u4m, 2024-09-29 11:22:23, 2024-09-29 11:22:23)) at D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:824)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(783): Illuminate\\Database\\Connection->runQueryCallback('insert into `us...', Array, Object(Closure))
@@ -11429,12 +11429,12 @@
 #60 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #61 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #62 {main}
-"} 
-[2024-09-29 11:29:47] local.ERROR: Validation failed {"errors":{"Illuminate\\Support\\MessageBag":{"email":["The email has already been taken."]}}} 
-[2024-09-29 11:41:43] local.ERROR: Validation failed {"errors":{"Illuminate\\Support\\MessageBag":{"email":["The email has already been taken."]}}} 
-[2024-09-29 11:42:46] local.ERROR: Validation failed {"errors":{"Illuminate\\Support\\MessageBag":{"email":["The email has already been taken."]}}} 
-[2024-09-29 11:43:34] local.ERROR: Validation failed {"errors":{"Illuminate\\Support\\MessageBag":{"job_title":["The job title field is required."],"email":["The email has already been taken."]}}} 
-[2024-09-29 11:51:35] local.ERROR: Validation failed {"errors":{"Illuminate\\Support\\MessageBag":{"job_title":["The job title field is required."],"email":["The email has already been taken."]}}} 
+"}
+[2024-09-29 11:29:47] local.ERROR: Validation failed {"errors":{"Illuminate\\Support\\MessageBag":{"email":["The email has already been taken."]}}}
+[2024-09-29 11:41:43] local.ERROR: Validation failed {"errors":{"Illuminate\\Support\\MessageBag":{"email":["The email has already been taken."]}}}
+[2024-09-29 11:42:46] local.ERROR: Validation failed {"errors":{"Illuminate\\Support\\MessageBag":{"email":["The email has already been taken."]}}}
+[2024-09-29 11:43:34] local.ERROR: Validation failed {"errors":{"Illuminate\\Support\\MessageBag":{"job_title":["The job title field is required."],"email":["The email has already been taken."]}}}
+[2024-09-29 11:51:35] local.ERROR: Validation failed {"errors":{"Illuminate\\Support\\MessageBag":{"job_title":["The job title field is required."],"email":["The email has already been taken."]}}}
 [2024-09-29 12:09:22] local.ERROR: Call to undefined relationship [jobTitle] on model [App\Models\User]. {"userId":5,"exception":"[object] (Illuminate\\Database\\Eloquent\\RelationNotFoundException(code: 0): Call to undefined relationship [jobTitle] on model [App\\Models\\User]. at D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\RelationNotFoundException.php:35)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(806): Illuminate\\Database\\Eloquent\\RelationNotFoundException::make(Object(App\\Models\\User), 'jobTitle')
@@ -11492,9 +11492,9 @@
 #52 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #53 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #54 {main}
-"} 
-[2024-09-30 07:39:48] local.ERROR: Validation failed {"errors":{"Illuminate\\Support\\MessageBag":{"email":["The email field must be a valid email address."]}}} 
-[2024-09-30 07:43:38] local.ERROR: Validation failed {"errors":{"Illuminate\\Support\\MessageBag":{"email":["The email field must be a valid email address."]}}} 
+"}
+[2024-09-30 07:39:48] local.ERROR: Validation failed {"errors":{"Illuminate\\Support\\MessageBag":{"email":["The email field must be a valid email address."]}}}
+[2024-09-30 07:43:38] local.ERROR: Validation failed {"errors":{"Illuminate\\Support\\MessageBag":{"email":["The email field must be a valid email address."]}}}
 [2024-09-30 08:33:39] local.ERROR: Connection could not be established with host "ssl://smtp.hostinger.com:465": stream_socket_client(): php_network_getaddresses: getaddrinfo for smtp.hostinger.com failed: No such host is known.  {"userId":2,"exception":"[object] (Symfony\\Component\\Mailer\\Exception\\TransportException(code: 0): Connection could not be established with host \"ssl://smtp.hostinger.com:465\": stream_socket_client(): php_network_getaddresses: getaddrinfo for smtp.hostinger.com failed: No such host is known.  at D:\\Projects\\E-docs\\vendor\\symfony\\mailer\\Transport\\Smtp\\Stream\\SocketStream.php:154)
 [stacktrace]
 #0 [internal function]: Symfony\\Component\\Mailer\\Transport\\Smtp\\Stream\\SocketStream->Symfony\\Component\\Mailer\\Transport\\Smtp\\Stream\\{closure}(2, 'stream_socket_c...', 'D:\\\\Projects\\\\E-d...', 157)
@@ -11560,7 +11560,7 @@
 #60 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #61 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #62 {main}
-"} 
+"}
 [2024-09-30 08:35:13] local.ERROR: Connection could not be established with host "ssl://smtp.hostinger.com:465": stream_socket_client(): SSL: An existing connection was forcibly closed by the remote host {"userId":2,"exception":"[object] (Symfony\\Component\\Mailer\\Exception\\TransportException(code: 0): Connection could not be established with host \"ssl://smtp.hostinger.com:465\": stream_socket_client(): SSL: An existing connection was forcibly closed by the remote host at D:\\Projects\\E-docs\\vendor\\symfony\\mailer\\Transport\\Smtp\\Stream\\SocketStream.php:154)
 [stacktrace]
 #0 [internal function]: Symfony\\Component\\Mailer\\Transport\\Smtp\\Stream\\SocketStream->Symfony\\Component\\Mailer\\Transport\\Smtp\\Stream\\{closure}(2, 'stream_socket_c...', 'D:\\\\Projects\\\\E-d...', 157)
@@ -11626,12 +11626,12 @@
 #60 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #61 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #62 {main}
-"} 
-[2024-09-30 08:36:42] local.INFO: Hardware request processed {"hardware_request":"Desktop computer,Drive"} 
-[2024-09-30 08:36:42] local.INFO: ICT Access Resource created {"ict":{"App\\Models\\IctAccessResource":{"privilegeId":"2","email":null,"userId":"1","hmisId":"1","aruti":"2","sap":"2","nhifId":"3","hardware_request":"Desktop computer,Drive","network_folder":"Sed eveniet perfere","active_drt":"2","VPN":"2","pbax":"2","status":null,"physical_access":null,"delete_status":0,"updated_at":"2024-09-30T08:36:42.000000Z","created_at":"2024-09-30T08:36:42.000000Z","id":43}}} 
-[2024-09-30 08:36:42] local.INFO: Workflow saved {"workflow":{"App\\Models\\Workflow":{"user_id":1,"ict_request_resource_id":43,"work_flow_status":"sent to approval","work_flow_completed":0,"updated_at":"2024-09-30T08:36:42.000000Z","created_at":"2024-09-30T08:36:42.000000Z","id":43}}} 
-[2024-09-30 08:36:42] local.INFO: Initial workflow history saved  
-[2024-09-30 08:36:46] local.INFO: Approver found {"approver":{"App\\Models\\User":{"id":2,"fname":"paul","mname":null,"lname":"sanga","DOB":null,"username":"paul","gender":null,"marital_status":null,"email":"paul.kasanga@ccbrt.org","email_verified_at":null,"religion":null,"mobile":null,"job_title":"head of IT","home_address":null,"district":null,"region":null,"professional_reg_number":"4r","place_of_birth":null,"house_no":null,"street":null,"emp_id":null,"deptId":1,"employment_typeId":2,"role_id":5,"employee_cv":null,"NIN":null,"nssf_no":null,"domicile":null,"signature":"iVBORw0KGgoAAAANSUhEUgAAAEAAAAApCAYAAACFki9MAAAAAXNSR0IArs4c6QAABUpJREFUaEPtmlns3FMUxz/nhRBrmlaVWotoCaGIeqDKgy2x1oM+WBJNJBJbQkRiiQei2icSTdAKsVRUQuLF0odGEYJQS1JR1F5LiCUhrt935t5xf3fuzPx+v5nOf5o4b/P7nXvOud/fuWe7Y4yM3AXAPOAqYK9I7EbgEeBVsPUjUzciQdZMjpsOXATMAE4GjgL2rCDrL2AZ2M0VeMfCUhMAdwuwCDhlSOtWgV02pIyRLI8AcFe2JdrKbsnuauAOYI+RaG0LWQNcAfbr6GT220NeiwegtfABz7IU2Nm79QHAHGDfGkb+AGwA3gIOBg4FjhOyGRlngr1QQ3YfVncNsOK/PeQ+ZPfyAEC8+DHgkppGfQU8CdwD9nV+bQnkwLIC7Lqaunqwu4892Hp/E9jdVeTmPOBRYMmAxT8BjxeBUBF+HdgHVZSBuw24tcxrNeNQTlNJ7kawI6rZ03FLJ6NknEhHQHQs8C7wuv+9K3Ap8DTY81UVlPncjcBdydoFYDoyDcntB7wRpd7bi22FvQw6MuFculeiyK4vurChNQOWOYH6ZsKkQPhQM31OQVleOCtaPwAA9xQw19csHQB+B3byQv4AUxDcBuQOAz5KBA8BuDu3CNZrE3mrweSpETnVHUcDp6X1ioFTwNO5j2kJmILhNiAnD5AnBFpZBM5w7GrqK3luWHs62IvtH26HdgVa0hf49Hy1AIhTYHi5NF8P1LQvy+5UDp8UvRrGA1xGxQyw7z0AZxebfy7D0zkmUwHAL4ACaqCGVaFTNarYFVMCpnvbu37MswFsQXgwZgDcYl8vxAY1rAWyAERgOhV2vrrtqJNnzAf7PAYgk5upmErqHgl3OfBgskoGqWqsSVkwB8no2te4PSAH9kKwdYMs736f9YB+YjaDHZgyCIDcWWpoVD/9TrlXOTsmldBHgv3YAIAcmBIjb4qzTCx6MZiasA4JgMOBtJSdC/ZhfaN6rXAnAk8AqtpiWlOU0YoLDSibveYDasY+7SHwWbDzUgBy1dkXwJ0ezYOAs4BViVC1sXq3D/AOENraEOFV42tYcnxRTp/Rw6AhPK0XAIon7mFftufUlnTKA3IANPgitZcM8fWlK9dY4TfXOm7yrAtDyRtZNxEAbCoqzUNqQ1Za4JYD1yYyLgZTre/JLSs88/qE516wG8KzXkFwONv6r+4KRM2UZT03OVJZLymlwnEdAcWH5dXa1KpwVMleg6tFAaDhwXuJ2nPaFRNKU2o1NRpT8xC3nfG7zX59eKYZwp86qO3g2KTQGQREJQA0vf4ukVQamAiAmcUQJB1jzQT7dpAJ43/f2rTGi+uq1y/u/Uwg7DRMAkBf9ctkM3uDfTP+DfbTWDrz8k6l27QZyqRVd5+/rImFd/gEwP5FzgwuHJhm9R5uThUsJZcPE6sqAPTNFgJgNtDpjvz2ZoNtmaqt9tbb8gIdARU7pwIvJbyLwF4uP+s/hhMAKk8/SwRNKACxlVXSoPizPUinCBMAuvRQ6RvTdLCtk+cBJQBqNHFdgXALmDxfQ9FsEJzWrEMbJ2RV0mCwJ1sQtQoyAaBb3bQd3QXst3Fup76uWgD0HJ8JgN2BnxMDdhvtpWX97Q1eUQeAVixQj6Ar/YhM11JO9wH62uGK6h9gR7C/BxsxlRy1ATgBeC2yuDU/DHeDCnjT/MutYCohJ5yy0X1e/3tKd4zvIDUZvt8HwZZ7JPP1UVxYjgO/UnSvdSkarAsesL0CIE8N1+vqNv2FSHXwt3MAqm+0F+f/AIDT31g2JQjNAftkeHwnX0LwgGeKP0OEcfFasPMn3/TRWPgv+mV3CWZwEpAAAAAASUVORK5CYII=","profile_picture":null,"delete_status":null,"created_at":"2024-07-11T13:46:16.000000Z","updated_at":"2024-09-25T12:00:49.000000Z"}}} 
+"}
+[2024-09-30 08:36:42] local.INFO: Hardware request processed {"hardware_request":"Desktop computer,Drive"}
+[2024-09-30 08:36:42] local.INFO: ICT Access Resource created {"ict":{"App\\Models\\IctAccessResource":{"privilegeId":"2","email":null,"userId":"1","hmisId":"1","aruti":"2","sap":"2","nhifId":"3","hardware_request":"Desktop computer,Drive","network_folder":"Sed eveniet perfere","active_drt":"2","VPN":"2","pbax":"2","status":null,"physical_access":null,"delete_status":0,"updated_at":"2024-09-30T08:36:42.000000Z","created_at":"2024-09-30T08:36:42.000000Z","id":43}}}
+[2024-09-30 08:36:42] local.INFO: Workflow saved {"workflow":{"App\\Models\\Workflow":{"user_id":1,"ict_request_resource_id":43,"work_flow_status":"sent to approval","work_flow_completed":0,"updated_at":"2024-09-30T08:36:42.000000Z","created_at":"2024-09-30T08:36:42.000000Z","id":43}}}
+[2024-09-30 08:36:42] local.INFO: Initial workflow history saved
+[2024-09-30 08:36:46] local.INFO: Approver found {"approver":{"App\\Models\\User":{"id":2,"fname":"paul","mname":null,"lname":"sanga","DOB":null,"username":"paul","gender":null,"marital_status":null,"email":"paul.kasanga@ccbrt.org","email_verified_at":null,"religion":null,"mobile":null,"job_title":"head of IT","home_address":null,"district":null,"region":null,"professional_reg_number":"4r","place_of_birth":null,"house_no":null,"street":null,"emp_id":null,"deptId":1,"employment_typeId":2,"role_id":5,"employee_cv":null,"NIN":null,"nssf_no":null,"domicile":null,"signature":"iVBORw0KGgoAAAANSUhEUgAAAEAAAAApCAYAAACFki9MAAAAAXNSR0IArs4c6QAABUpJREFUaEPtmlns3FMUxz/nhRBrmlaVWotoCaGIeqDKgy2x1oM+WBJNJBJbQkRiiQei2icSTdAKsVRUQuLF0odGEYJQS1JR1F5LiCUhrt935t5xf3fuzPx+v5nOf5o4b/P7nXvOud/fuWe7Y4yM3AXAPOAqYK9I7EbgEeBVsPUjUzciQdZMjpsOXATMAE4GjgL2rCDrL2AZ2M0VeMfCUhMAdwuwCDhlSOtWgV02pIyRLI8AcFe2JdrKbsnuauAOYI+RaG0LWQNcAfbr6GT220NeiwegtfABz7IU2Nm79QHAHGDfGkb+AGwA3gIOBg4FjhOyGRlngr1QQ3YfVncNsOK/PeQ+ZPfyAEC8+DHgkppGfQU8CdwD9nV+bQnkwLIC7Lqaunqwu4892Hp/E9jdVeTmPOBRYMmAxT8BjxeBUBF+HdgHVZSBuw24tcxrNeNQTlNJ7kawI6rZ03FLJ6NknEhHQHQs8C7wuv+9K3Ap8DTY81UVlPncjcBdydoFYDoyDcntB7wRpd7bi22FvQw6MuFculeiyK4vurChNQOWOYH6ZsKkQPhQM31OQVleOCtaPwAA9xQw19csHQB+B3byQv4AUxDcBuQOAz5KBA8BuDu3CNZrE3mrweSpETnVHUcDp6X1ioFTwNO5j2kJmILhNiAnD5AnBFpZBM5w7GrqK3luWHs62IvtH26HdgVa0hf49Hy1AIhTYHi5NF8P1LQvy+5UDp8UvRrGA1xGxQyw7z0AZxebfy7D0zkmUwHAL4ACaqCGVaFTNarYFVMCpnvbu37MswFsQXgwZgDcYl8vxAY1rAWyAERgOhV2vrrtqJNnzAf7PAYgk5upmErqHgl3OfBgskoGqWqsSVkwB8no2te4PSAH9kKwdYMs736f9YB+YjaDHZgyCIDcWWpoVD/9TrlXOTsmldBHgv3YAIAcmBIjb4qzTCx6MZiasA4JgMOBtJSdC/ZhfaN6rXAnAk8AqtpiWlOU0YoLDSibveYDasY+7SHwWbDzUgBy1dkXwJ0ezYOAs4BViVC1sXq3D/AOENraEOFV42tYcnxRTp/Rw6AhPK0XAIon7mFftufUlnTKA3IANPgitZcM8fWlK9dY4TfXOm7yrAtDyRtZNxEAbCoqzUNqQ1Za4JYD1yYyLgZTre/JLSs88/qE516wG8KzXkFwONv6r+4KRM2UZT03OVJZLymlwnEdAcWH5dXa1KpwVMleg6tFAaDhwXuJ2nPaFRNKU2o1NRpT8xC3nfG7zX59eKYZwp86qO3g2KTQGQREJQA0vf4ukVQamAiAmcUQJB1jzQT7dpAJ43/f2rTGi+uq1y/u/Uwg7DRMAkBf9ctkM3uDfTP+DfbTWDrz8k6l27QZyqRVd5+/rImFd/gEwP5FzgwuHJhm9R5uThUsJZcPE6sqAPTNFgJgNtDpjvz2ZoNtmaqt9tbb8gIdARU7pwIvJbyLwF4uP+s/hhMAKk8/SwRNKACxlVXSoPizPUinCBMAuvRQ6RvTdLCtk+cBJQBqNHFdgXALmDxfQ9FsEJzWrEMbJ2RV0mCwJ1sQtQoyAaBb3bQd3QXst3Fup76uWgD0HJ8JgN2BnxMDdhvtpWX97Q1eUQeAVixQj6Ar/YhM11JO9wH62uGK6h9gR7C/BxsxlRy1ATgBeC2yuDU/DHeDCnjT/MutYCohJ5yy0X1e/3tKd4zvIDUZvt8HwZZ7JPP1UVxYjgO/UnSvdSkarAsesL0CIE8N1+vqNv2FSHXwt3MAqm+0F+f/AIDT31g2JQjNAftkeHwnX0LwgGeKP0OEcfFasPMn3/TRWPgv+mV3CWZwEpAAAAAASUVORK5CYII=","profile_picture":null,"delete_status":null,"created_at":"2024-07-11T13:46:16.000000Z","updated_at":"2024-09-25T12:00:49.000000Z"}}}
 [2024-09-30 08:46:08] local.ERROR: Attempt to read property "id" on null {"userId":2,"exception":"[object] (ErrorException(code: 0): Attempt to read property \"id\" on null at D:\\Projects\\E-docs\\app\\Http\\Controllers\\FormController.php:313)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Attempt to read...', 'D:\\\\Projects\\\\E-d...', 313)
@@ -11684,7 +11684,7 @@
 #47 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #48 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #49 {main}
-"} 
+"}
 [2024-09-30 08:47:44] local.ERROR: Attempt to read property "id" on null {"userId":2,"exception":"[object] (ErrorException(code: 0): Attempt to read property \"id\" on null at D:\\Projects\\E-docs\\app\\Http\\Controllers\\FormController.php:313)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Attempt to read...', 'D:\\\\Projects\\\\E-d...', 313)
@@ -11737,7 +11737,7 @@
 #47 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #48 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #49 {main}
-"} 
+"}
 [2024-09-30 11:29:10] local.ERROR: Attempt to read property "id" on null {"userId":2,"exception":"[object] (ErrorException(code: 0): Attempt to read property \"id\" on null at D:\\Projects\\E-docs\\app\\Http\\Controllers\\FormController.php:313)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Attempt to read...', 'D:\\\\Projects\\\\E-d...', 313)
@@ -11790,7 +11790,7 @@
 #47 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #48 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #49 {main}
-"} 
+"}
 [2024-10-01 04:29:14] local.ERROR: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it (Connection: mysql, SQL: select * from `users` where `username` = chuma limit 1) {"exception":"[object] (Illuminate\\Database\\QueryException(code: 2002): SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it (Connection: mysql, SQL: select * from `users` where `username` = chuma limit 1) at D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:829)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(983): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
@@ -11931,7 +11931,7 @@
 #70 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #71 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #72 {main}
-"} 
+"}
 [2024-10-01 04:58:04] local.ERROR: syntax error, unexpected single-quoted string "emp_id", expecting "]" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected single-quoted string \"emp_id\", expecting \"]\" at D:\\Projects\\E-docs\\app\\Models\\User.php:41)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.[2024-10-01 04:58:04] local.ERROR: syntax error, unexpected single-quoted string "emp_id", expecting "]" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected single-quoted string \"emp_id\", expecting \"]\" at D:\\Projects\\E-docs\\app\\Models\\User.php:41)
@@ -11954,11 +11954,11 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-10-01 04:58:12] local.ERROR: syntax error, unexpected single-quoted string "emp_id", expecting "]" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected single-quoted string \"emp_id\", expecting \"]\" at D:\\Projects\\E-docs\\app\\Models\\User.php:42)
 [stacktrace]
 #0 {main}
-"} 
+"}
 [2024-10-01 04:58:14] local.ERROR: syntax error, unexpected single-quoted string "emp_id", expecting "]" {"exception":"[object] (ParseError(code: 0): syntax error, unexpected single-quoted string \"emp_id\", expecting \"]\" at D:\\Projects\\E-docs\\app\\Models\\User.php:42)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('D:\\\\Projects\\\\E-d...')
@@ -11979,7 +11979,7 @@
 #15 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #16 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #17 {main}
-"} 
+"}
 [2024-10-01 08:10:03] local.ERROR: Route [profile.pgicture.delete] not defined. {"view":{"view":"D:\\Projects\\E-docs\\resources\\views\\user_profile\\edit.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-45228521 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1541</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -12292,7 +12292,7 @@
 #54 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #56 {main}
-"} 
+"}
 [2024-10-01 08:11:53] local.ERROR: Route [profile.picture.update] not defined. {"view":{"view":"D:\\Projects\\E-docs\\resources\\views\\user_profile\\edit.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-2056311346 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1541</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -12605,7 +12605,7 @@
 #54 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #56 {main}
-"} 
+"}
 [2024-10-01 08:12:17] local.ERROR: Route [profile.pgicture.delete] not defined. {"view":{"view":"D:\\Projects\\E-docs\\resources\\views\\user_profile\\edit.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-160246992 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1541</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -12918,7 +12918,7 @@
 #54 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #56 {main}
-"} 
+"}
 [2024-10-01 08:19:30] local.ERROR: Route [profile.picture.update] not defined. {"view":{"view":"D:\\Projects\\E-docs\\resources\\views\\user_profile\\edit.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-126894273 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1541</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -13231,7 +13231,7 @@
 #54 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #56 {main}
-"} 
+"}
 [2024-10-01 12:05:17] local.ERROR: Attempt to read property "dept_name" on null {"view":{"view":"D:\\Projects\\E-docs\\resources\\views\\exit_form.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-737947321 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1623</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -13721,7 +13721,7 @@
 #54 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #56 {main}
-"} 
+"}
 [2024-10-01 12:08:04] local.ERROR: Attempt to read property "dept_name" on null {"view":{"view":"D:\\Projects\\E-docs\\resources\\views\\exit_form.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-870321525 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1623</a><samp data-depth=1 class=sf-dump-expanded>
   #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
 </samp>}
@@ -14211,7 +14211,7 @@
 #54 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #55 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #56 {main}
-"} 
+"}
 [2024-10-01 12:23:57] local.ERROR: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'clearance_work_flow_histories.forwaded_by' in 'field list' (Connection: mysql, SQL: select `clearance_forms`.*, `users`.*, `clearance_work_flows`.*, `departments`.`dept_name`, `clearance_work_flow_histories`.*, `clearance_forms`.`id` as `access_id`, `clearance_work_flow_histories`.`forwaded_by` from `clearance_forms` inner join `users` on `users`.`id` = `clearance_forms`.`userId` inner join `clearance_work_flows` on `clearance_work_flows`.`requested_resource_id` = `clearance_forms`.`id` inner join `clearance_work_flow_histories` on `clearance_work_flow_histories`.`work_flow_id` = `clearance_work_flows`.`id` inner join `departments` on `departments`.`id` = `users`.`deptId` where `clearance_forms`.`id` = 1 and `clearance_work_flow_histories`.`attended_by` = 4 limit 1) {"userId":4,"exception":"[object] (Illuminate\\Database\\QueryException(code: 42S22): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'clearance_work_flow_histories.forwaded_by' in 'field list' (Connection: mysql, SQL: select `clearance_forms`.*, `users`.*, `clearance_work_flows`.*, `departments`.`dept_name`, `clearance_work_flow_histories`.*, `clearance_forms`.`id` as `access_id`, `clearance_work_flow_histories`.`forwaded_by` from `clearance_forms` inner join `users` on `users`.`id` = `clearance_forms`.`userId` inner join `clearance_work_flows` on `clearance_work_flows`.`requested_resource_id` = `clearance_forms`.`id` inner join `clearance_work_flow_histories` on `clearance_work_flow_histories`.`work_flow_id` = `clearance_work_flows`.`id` inner join `departments` on `departments`.`id` = `users`.`deptId` where `clearance_forms`.`id` = 1 and `clearance_work_flow_histories`.`attended_by` = 4 limit 1) at D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:829)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(783): Illuminate\\Database\\Connection->runQueryCallback('select `clearan...', Array, Object(Closure))
@@ -14335,7 +14335,7 @@
 #57 D:\\Projects\\E-docs\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #58 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('D:\\\\Projects\\\\E-d...')
 #59 {main}
-"} 
+"}
 [2024-10-02 05:41:07] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at D:\\Projects\\E-docs\\vendor\\symfony\\console\\Input\\ArgvInput.php:223)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\symfony\\console\\Input\\ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption('columns', 'uri,name,action...')
@@ -14350,7 +14350,7 @@
 #9 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #10 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #11 {main}
-"} 
+"}
 [2024-10-02 05:41:12] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at D:\\Projects\\E-docs\\vendor\\symfony\\console\\Input\\ArgvInput.php:223)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\symfony\\console\\Input\\ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption('columns', 'uri,name,action...')
@@ -14365,7 +14365,7 @@
 #9 D:\\Projects\\E-docs\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #10 D:\\Projects\\E-docs\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #11 {main}
-"} 
+"}
 [2024-10-02 05:41:19] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at D:\\Projects\\E-docs\\vendor\\symfony\\console\\Input\\ArgvInput.php:223)
 [stacktrace]
 #0 D:\\Projects\\E-docs\\vendor\\symfony\\console\\Input\\ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption('columns', 'uri,name,action...')

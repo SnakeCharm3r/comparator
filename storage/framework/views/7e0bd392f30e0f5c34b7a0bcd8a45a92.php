@@ -23,24 +23,26 @@
             <div class="container">
                 <div class="row flex-lg-nowrap">
                     <div class="col">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <div class="e-profile">
-                                    <div class="row">
-                                        <!-- Profile Picture Section -->
-                                        <div class="col-12 col-sm-auto mb-3 text-center">
-                                            <div class="mx-auto" style="width: 140px;">
-                                                <div class="d-flex justify-content-center align-items-center rounded"
-                                                    style="height: 140px; background-color: rgb(233, 236, 239);">
-                                                    <?php if($user->profile_picture): ?>
-                                                        <img src="<?php echo e(asset('storage/' . $user->profile_picture)); ?>"
-                                                            alt="Profile Picture" class="img-fluid rounded-circle"
-                                                            style="max-width: 140px; height: 140px; border: 2px solid #ccc; padding: 5px; object-fit: cover;">
-                                                    <?php else: ?>
-                                                        <img src="<?php echo e(asset('assets/img/icon.png')); ?>"
-                                                            alt="Default User Icon" class="img-fluid rounded-circle"
-                                                            style="max-width: 160px; height: 140px; padding: 1px; object-fit: cover;">
-                                                    <?php endif; ?>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="e-profile">
+                                            <div class="row">
+                                                <div class="col-12 col-sm-auto mb-3">
+                                                    <div class="mx-auto" style="width: 140px;">
+                                                        <div class="d-flex justify-content-center align-items-center rounded"
+                                                            style="height: 140px; background-color: rgb(233, 236, 239); position: relative;">
+                                                            <?php if($user->profile_picture): ?>
+                                                                <img src="<?php echo e(asset('storage/' . $user->profile_picture)); ?>"
+                                                                    alt="Profile Picture" class="img-fluid rounded-circle"
+                                                                    style="max-width: 140px; height: 140px; border: 2px solid #ccc; padding: 5px; object-fit: cover;">
+                                                            <?php else: ?>
+                                                                <img src="<?php echo e(asset('assets/img/icon.png')); ?>"
+                                                                    alt="Default User Icon" class="img-fluid rounded-circle"
+                                                                    style="max-width: 160px; height: 140px; #ccc; padding: 1px; object-fit: cover;">
+                                                            <?php endif; ?>
+
 
                                                     <form id="profilePictureForm"
                                                         action="<?php echo e(route('profile.update.picture')); ?>" method="POST"

@@ -176,8 +176,24 @@ $forwadUser=User::join('workflows','workflows.user_id','=','users.id')
         }
 
         // Find the next approver
+        $ict = new IctAccessController();
+        if(  $nextApproverRole =='hr' || $nextApproverRole =='it' ){
+            $approver = User::role( $nextApproverRole)->get()->pluck('id');
+            foreach($approver as $aprId){
+                $input = [
+                    'work_flow_id' => $workflow->id,
+                    'forwarded_by' => Auth::user()->id,
+                    'attended_by' =>$aprId,
+                    'status' => '0',
+                    'remark' => 'Forwarded for approval',
+                    'attend_date' => Carbon::now()->format('d F Y'),
+                    'parent_id' => $workflowHistory->id
+                ];
+                $workflowHistory = $ict->saveWorkflowHistory($input);
+            }
+            // dd( $approver->pluck('id'));
+        }
         $approver = User::role($nextApproverRole)->first();
-
         if (!$approver) {
             return response()->json(['error' => "Next approver with role {$nextApproverRole} not found."], 404);
         }

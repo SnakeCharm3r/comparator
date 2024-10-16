@@ -113,6 +113,7 @@
                                                 @endforeach
 
                                                 {{-- Display Clearance Forms --}}
+
                                                 @foreach ($clearForm as $exit)
                                                     @php
                                                         $clearApprovalDetails = [];
