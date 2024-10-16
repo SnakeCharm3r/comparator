@@ -86,11 +86,11 @@ public function update(Request $request, $id)
 public function userDetail() {
     $users = User::with('department', 'jobTitle')->get();
     //dd($users);
-    // foreach ($users as $user) {
-    //     if ($user->department->id !== $user->jobTitle->deptId) {
-    //         throw new \Exception("User '{$user->fname} {$user->lname}' job title does not match their department.");
-    //     }
-    // }
+    foreach ($users as $user) {
+        if ($user->department->id !== $user->jobTitle->deptId) {
+            throw new \Exception("User '{$user->fname} {$user->lname}' job title does not match their department.");
+        }
+    }
 
     return view('employees_details.index', compact('users'));
 }
