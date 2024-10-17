@@ -97,7 +97,19 @@
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
                                                 <strong>End Date:</strong> {{ $ictForm->ending_date }}
                                             </td>
+                                            {{-- <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                                <form action="{{ route('update.dates', $ictForm->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <label for="starting_date">New Starting Date:</label>
+                                                    <input type="date" name="starting_date" id="starting_date" required>
+                                                    <label for="ending_date">New End Date:</label>
+                                                    <input type="date" name="ending_date" id="ending_date" required>
+                                                    <button type="submit">Update Dates</button>
+                                                </form>
+                                            </td> --}}
                                         </tr>
+
                                         <tr>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
                                                 <strong>User Category:</strong> {{ $ictForm->prv_name }}

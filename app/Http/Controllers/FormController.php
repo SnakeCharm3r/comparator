@@ -150,10 +150,10 @@ class FormController extends Controller
         // Determine the role of the current approver
         $user = Auth::user();
         $roles = $user->getRoleNames()->first();
-$forwadUser=User::join('workflows','workflows.user_id','=','users.id')
-->where('workflows.ict_request_resource_id',$request->access_id)
-->select('users.username')
-->first();
+        $forwadUser=User::join('workflows','workflows.user_id','=','users.id')
+        ->where('workflows.ict_request_resource_id',$request->access_id)
+        ->select('users.username')
+        ->first();
         // Determine the next approver based on the current role
         switch ($roles) {
             case 'line-manager':
@@ -247,7 +247,7 @@ $forwadUser=User::join('workflows','workflows.user_id','=','users.id')
             if ($workflowHistory) {
                 // Update the status to rejected and save the reason
                 $workflowHistory->status = -1;
-                $workflowHistory->attended_by = $workflow->user_id;
+                $workflowHistory->attended_by = Auth::user()->id;
                 $workflowHistory->rejection_reason = $request->reason; // Store the reason
                 $workflowHistory->save();
 
