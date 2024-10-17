@@ -1,5 +1,5 @@
-@include('includes.head')
-@include('sweetalert::alert')
+<?php echo $__env->make('includes.head', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <div class="main-wrapper login-body" style="background-color: hsl(0, 0%, 100%);">
 
@@ -11,27 +11,28 @@
                         <h1 style="font-size: 2rem; color: #0f813c;">Register Your Account</h1>
                     </div>
 
-                    @if (session('error_message'))
+                    <?php if(session('error_message')): ?>
                         <div class="alert alert-danger">
-                            {{ session('error_message') }}
-                        </div>
-                    @endif
+                            <?php echo e(session('error_message')); ?>
 
-                    @if ($errors->any())
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if($errors->any()): ?>
                         <div class="alert alert-danger">
                             <strong>Please fix the following issues:</strong>
                             <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
+                                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li><?php echo e($error); ?></li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
                         </div>
-                    @endif
+                    <?php endif; ?>
 
 
-                    <form id="registrationForm" action="{{ route('register.handleRegistration') }}" method="POST"
+                    <form id="registrationForm" action="<?php echo e(route('register.handleRegistration')); ?>" method="POST"
                         onsubmit="return validatePassword()">
-                        @csrf
+                        <?php echo csrf_field(); ?>
 
                         <div class="alert alert-info" role="alert" style="background-color: #eaf3fc; color: #0f813c;">
                             Please fill in your names as they appear on your National Identification Number (NIDA).
@@ -118,11 +119,11 @@
 
                                     if (email.length > 0) {
                                         $.ajax({
-                                            url: '{{ route('check.email') }}',
+                                            url: '<?php echo e(route('check.email')); ?>',
                                             method: 'POST',
                                             data: {
                                                 email: email,
-                                                _token: '{{ csrf_token() }}' // Add CSRF token for Laravel
+                                                _token: '<?php echo e(csrf_token()); ?>' // Add CSRF token for Laravel
                                             },
                                             success: function(response) {
                                                 if (response.exists) {
@@ -275,9 +276,9 @@
                                     <select class="form-control" name="deptId" id="deptId" required
                                         style="border-color: #ced4da;">
                                         <option value="">---Select Department---</option>
-                                        @foreach ($departments as $department)
-                                            <option value="{{ $department->id }}">{{ $department->dept_name }}</option>
-                                        @endforeach
+                                        <?php $__currentLoopData = $departments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $department): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($department->id); ?>"><?php echo e($department->dept_name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
                             </div>
@@ -297,10 +298,10 @@
                                     <label>Employment Type<span class="login-danger">*</span></label>
                                     <select class="form-control" name="employment_typeId" required>
                                         <option value="">----Select----</option>
-                                        @foreach ($employmentTypes as $employmentType)
-                                            <option value="{{ $employmentType->id }}">
-                                                {{ $employmentType->employment_type }}</option>
-                                        @endforeach
+                                        <?php $__currentLoopData = $employmentTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employmentType): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($employmentType->id); ?>">
+                                                <?php echo e($employmentType->employment_type); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
                             </div>
@@ -423,7 +424,7 @@
                     </p>
                     <button class="btn btn-primary" type="button" id="openAgreementsModal"
                         style="background-color: #0f813c; border-color: #0f813c;">Sign Up</button>
-                    <p style="color: #666;">Already registered? <a href="{{ route('login') }}"
+                    <p style="color: #666;">Already registered? <a href="<?php echo e(route('login')); ?>"
                             style="color: #0f813c;">Login here</a></p>
                 </div>
                 </form>
@@ -448,31 +449,32 @@
                     <div class="tab-pane">
                         <div id="policy-container" class="table-responsive">
                             <!-- Display only one policy at a time -->
-                            @if ($policies->isNotEmpty())
+                            <?php if($policies->isNotEmpty()): ?>
                                 <div class="policy-item">
                                     <table class="table table-bordered">
                                         <tbody>
                                             <tr>
                                                 <td colspan="2">
-                                                    <img src="{{ asset('assets/img/ccbrt.jpg') }}" alt="CCBRT Logo"
+                                                    <img src="<?php echo e(asset('assets/img/ccbrt.jpg')); ?>" alt="CCBRT Logo"
                                                         class="img-fluid" style="max-height: 50px;">
-                                                    <strong id="policy-title">{{ $policies[0]->title }}</strong>
+                                                    <strong id="policy-title"><?php echo e($policies[0]->title); ?></strong>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2">
-                                                    {!! $policies[0]->content !!}
+                                                    <?php echo $policies[0]->content; ?>
+
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                            @endif
+                            <?php endif; ?>
                         </div>
                         <div class="d-flex justify-content-between mt-4">
                             <button id="prev-policy" class="btn btn-primary" disabled>Back</button>
                             <button id="next-policy" class="btn btn-primary"
-                                {{ $policies->count() > 1 ? '' : 'disabled' }}>Next</button>
+                                <?php echo e($policies->count() > 1 ? '' : 'disabled'); ?>>Next</button>
                         </div>
                     </div>
                     <div class="form-check mt-3">
@@ -519,7 +521,7 @@
 </style>
 
 
-@include('includes.scripts')
+<?php echo $__env->make('includes.scripts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <script>
     document.getElementById('acceptCheckbox').disabled = true; // Disable the checkbox initially
 
@@ -528,7 +530,7 @@
     });
 
     document.addEventListener("DOMContentLoaded", function() {
-        var policies = @json($policies); // Convert Laravel policies collection to JavaScript array
+        var policies = <?php echo json_encode($policies, 15, 512) ?>; // Convert Laravel policies collection to JavaScript array
         var currentPolicyIndex = 0;
 
         function updatePolicyDisplay() {
@@ -538,7 +540,7 @@
                 document.querySelector('#policy-container tbody').innerHTML = `
                 <tr>
                     <td colspan="2">
-                        <img src="{{ asset('assets/img/ccbrt.JPG') }}" alt="CCBRT Logo" style="height: 50px;">
+                        <img src="<?php echo e(asset('assets/img/ccbrt.JPG')); ?>" alt="CCBRT Logo" style="height: 50px;">
                         <strong id="policy-title">${policy.title}</strong>
                     </td>
                 </tr>
@@ -602,3 +604,4 @@
         return true;
     }
 </script>
+<?php /**PATH D:\Projects\E-docs\resources\views/auth/registration.blade.php ENDPATH**/ ?>

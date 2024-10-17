@@ -1,7 +1,5 @@
-@extends('layouts.template')
-
-@section('breadcrumb')
-    @include('sweetalert::alert')
+<?php $__env->startSection('breadcrumb'); ?>
+    <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div class="page-wrapper">
         <div class="content container">
             <div class="row">
@@ -12,16 +10,17 @@
                             <div class="page-header"
                                 style="padding: 5px; background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;">
                                 <div class="row">
-                                    {{-- {{dd($ictForm)}} --}}
+                                    
                                     <div class="page-sub-header"
                                         style="display: flex; flex-direction: column; align-items: flex-start;">
                                         <!-- Previous Approval Section -->
                                         <p style="font-size: 14px; color: #6c757d;">
                                             <strong>Previous Approval:</strong>
-                                            @php
+                                            <?php
                                                 $forwardedBy = \App\Models\User::find($ictForm->forwarded_by);
-                                            @endphp
-                                            {{ $forwardedBy ? $forwardedBy->fname . ' ' . $forwardedBy->lname : 'N/A' }}
+                                            ?>
+                                            <?php echo e($forwardedBy ? $forwardedBy->fname . ' ' . $forwardedBy->lname : 'N/A'); ?>
+
                                         </p>
                                     </div>
                                 </div>
@@ -43,7 +42,7 @@
                                         <tr>
                                             <td rowspan="3"
                                                 style="border: 1px solid #000; text-align: center; vertical-align: middle;">
-                                                <img src="{{ asset('assets/img/logo-small.png') }}" alt="Logo"
+                                                <img src="<?php echo e(asset('assets/img/logo-small.png')); ?>" alt="Logo"
                                                     style="max-width: 100px;">
                                             </td>
                                             <td style="border: 1px solid #000; text-align: center; padding: 6px;">Document
@@ -67,43 +66,53 @@
                                         </tr>
                                         <tr>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>First Name:</strong> {{ $ictForm->fname }}
+                                                <strong>First Name:</strong> <?php echo e($ictForm->fname); ?>
+
                                             </td>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>Middle Name:</strong> {{ $ictForm->mname }}
+                                                <strong>Middle Name:</strong> <?php echo e($ictForm->mname); ?>
+
 
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>Last Name:</strong> {{ $ictForm->lname }}
+                                                <strong>Last Name:</strong> <?php echo e($ictForm->lname); ?>
+
                                             </td>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>Employee ID:</strong> {{ $ictForm->emp_id }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>Department:</strong> {{ $ictForm->dept_name }}
-                                            </td>
-                                            <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>Mobile Number:</strong> {{ $ictForm->mobile }}
+                                                <strong>Employee ID:</strong> <?php echo e($ictForm->emp_id); ?>
+
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>Starting Date:</strong> {{ $ictForm->starting_date }}
+                                                <strong>Department:</strong> <?php echo e($ictForm->dept_name); ?>
+
                                             </td>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>End Date:</strong> {{ $ictForm->ending_date }}
+                                                <strong>Mobile Number:</strong> <?php echo e($ictForm->mobile); ?>
+
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>User Category:</strong> {{ $ictForm->prv_name }}
+                                                <strong>Starting Date:</strong> <?php echo e($ictForm->starting_date); ?>
+
                                             </td>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>Employment Type:</strong> {{ $ictForm->employment_type }}
+                                                <strong>End Date:</strong> <?php echo e($ictForm->ending_date); ?>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                                <strong>User Category:</strong> <?php echo e($ictForm->prv_name); ?>
+
+                                            </td>
+                                            <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                                <strong>Employment Type:</strong> <?php echo e($ictForm->employment_type); ?>
+
                                             </td>
                                         </tr>
                                         <!-- IT Assets and Access Section -->
@@ -116,45 +125,55 @@
                                         <tr>
                                             <td colspan="2"
                                                 style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>Hardware:</strong> {{ $ictForm->hardware_request }}
+                                                <strong>Hardware:</strong> <?php echo e($ictForm->hardware_request); ?>
+
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>Active Directory:</strong> {{ $ictForm->prv_name }}
+                                                <strong>Active Directory:</strong> <?php echo e($ictForm->prv_name); ?>
+
                                             </td>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>Email:</strong> {{ $ictForm->email }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>OpenClinic HMS:</strong> {{ $ictForm->names }}
-                                            </td>
-                                            <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>Aruti HR MIS:</strong> {{ $ictForm->prv_name }}
+                                                <strong>Email:</strong> <?php echo e($ictForm->email); ?>
+
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>SAP ERP:</strong> {{ $ictForm->prv_name }}
+                                                <strong>OpenClinic HMS:</strong> <?php echo e($ictForm->names); ?>
+
                                             </td>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>Network Access (VPN):</strong> {{ $ictForm->prv_name }}
+                                                <strong>Aruti HR MIS:</strong> <?php echo e($ictForm->prv_name); ?>
+
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>Call Manager - PABX:</strong> {{ $ictForm->prv_name }}
+                                                <strong>SAP ERP:</strong> <?php echo e($ictForm->prv_name); ?>
+
                                             </td>
                                             <td style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>NHIF Qualifications:</strong> {{ $ictForm->name }}
+                                                <strong>Network Access (VPN):</strong> <?php echo e($ictForm->prv_name); ?>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                                <strong>Call Manager - PABX:</strong> <?php echo e($ictForm->prv_name); ?>
+
+                                            </td>
+                                            <td style="border: 1px solid #000; text-align: left; padding: 6px;">
+                                                <strong>NHIF Qualifications:</strong> <?php echo e($ictForm->name); ?>
+
                                             </td>
                                         </tr>
                                         <tr>
                                             <td colspan="2"
                                                 style="border: 1px solid #000; text-align: left; padding: 6px;">
-                                                <strong>Network Directory Access:</strong> {{ $ictForm->network_folder }}
+                                                <strong>Network Directory Access:</strong> <?php echo e($ictForm->network_folder); ?>
+
                                             </td>
                                         </tr>
                                     </tbody>
@@ -204,19 +223,21 @@
                                         </tr>
                                         <tr>
                                             <td style="border: 1px solid #000; padding: 8px;">
-                                                <strong>Requester:</strong> {{ $ictForm->fname }} {{ $ictForm->lname }}
+                                                <strong>Requester:</strong> <?php echo e($ictForm->fname); ?> <?php echo e($ictForm->lname); ?>
+
                                             </td>
                                             <td style="border: 1px solid #000; padding: 1px;">
-                                                @if ($ictForm->signature)
-                                                    <img src="data:image/png;base64,{{ $ictForm->signature }}" alt="User Signature" style="max-width: 40%; height: 5%;">
-                                                @endif
+                                                <?php if($ictForm->signature): ?>
+                                                    <img src="data:image/png;base64,<?php echo e($ictForm->signature); ?>" alt="User Signature" style="max-width: 40%; height: 5%;">
+                                                <?php endif; ?>
                                             </td>
                                             <td style="border: 1px solid #000; padding: 8px;">
 
-                                                @if ($ictForm->created_at)
-                                                    {{ \Carbon\Carbon::parse($ictForm->created_at)->format('d F Y') }}
+                                                <?php if($ictForm->created_at): ?>
+                                                    <?php echo e(\Carbon\Carbon::parse($ictForm->created_at)->format('d F Y')); ?>
 
-                                                @endif
+
+                                                <?php endif; ?>
 
                                             </td>
                                         </tr>
@@ -224,52 +245,58 @@
 
                                         <tr>
                                             <td style="border: 1px solid #000; padding: 6px;">
-                                                Line Manager Name: {{ trim(($lineManager->fname ?? '') . ' ' . ($lineManager->lname ?? '')) }}
+                                                Line Manager Name: <?php echo e(trim(($lineManager->fname ?? '') . ' ' . ($lineManager->lname ?? ''))); ?>
+
                                             </td>
                                             <td style="border: 1px solid #000; padding: 1px;">
-                                                @if ($lineManager && $lineManager->signature)
-                                                    <img src="data:image/png;base64,{{ $lineManager->signature }}" alt="Line Manager Signature" style="max-width: 40%; height: 5%;">
-                                                @endif
+                                                <?php if($lineManager && $lineManager->signature): ?>
+                                                    <img src="data:image/png;base64,<?php echo e($lineManager->signature); ?>" alt="Line Manager Signature" style="max-width: 40%; height: 5%;">
+                                                <?php endif; ?>
                                             </td>
                                             <td style="border: 1px solid #000; padding: 6px;">
-                                                @if ($ictForm->status == 1 && $lineManager && $lineManager->updated_at)
-                                                    {{ \Carbon\Carbon::parse($lineManager->updated_at)->format('d F Y') }}
+                                                <?php if($ictForm->status == 1 && $lineManager && $lineManager->updated_at): ?>
+                                                    <?php echo e(\Carbon\Carbon::parse($lineManager->updated_at)->format('d F Y')); ?>
 
-                                                @endif
+
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
 
 
                                         <tr>
                                             <td style="border: 1px solid #000; padding: 6px;">
-                                                HR Officer Name: {{ trim(($hrOfficer->fname ?? '') . ' ' . ($hrOfficer->lname ?? '')) }}
+                                                HR Officer Name: <?php echo e(trim(($hrOfficer->fname ?? '') . ' ' . ($hrOfficer->lname ?? ''))); ?>
+
                                             </td>
                                             <td style="border: 1px solid #000; padding: 1px;">
-                                                @if ($hrOfficer)
-                                                    <img src="data:image/png;base64,{{ $hrOfficer->signature }}" alt="HR Officer Signature" style="max-width: 40%; height: 5%;">
-                                                @endif
+                                                <?php if($hrOfficer): ?>
+                                                    <img src="data:image/png;base64,<?php echo e($hrOfficer->signature); ?>" alt="HR Officer Signature" style="max-width: 40%; height: 5%;">
+                                                <?php endif; ?>
                                             </td>
                                             <td style="border: 1px solid #000; padding: 6px;">
-                                                {{-- {{dd($hrOfficer->updated_at)}} --}}
-                                                @if ($ictForm->status == 1 && $hrOfficer && $hrOfficer->updated_at)
-                                                    {{ \Carbon\Carbon::parse($hrOfficer->updated_at)->format('d F Y') }}
-                                                @endif
+                                                
+                                                <?php if($ictForm->status == 1 && $hrOfficer && $hrOfficer->updated_at): ?>
+                                                    <?php echo e(\Carbon\Carbon::parse($hrOfficer->updated_at)->format('d F Y')); ?>
+
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
 
                                         <tr>
                                             <td style="border: 1px solid #000; padding: 6px;">
-                                                IT Officer Name: {{ trim(($itOfficer->fname ?? '') . ' ' . ($itOfficer->lname ?? '')) }}
+                                                IT Officer Name: <?php echo e(trim(($itOfficer->fname ?? '') . ' ' . ($itOfficer->lname ?? ''))); ?>
+
                                             </td>
                                             <td style="border: 1px solid hsl(0, 0%, 0%); padding: 1px;">
-                                                @if ($itOfficer)
-                                                    <img src="data:image/png;base64,{{ $itOfficer->signature }}" alt="IT Officer Signature" style="max-width: 40%; height: 5%;">
-                                                @endif
+                                                <?php if($itOfficer): ?>
+                                                    <img src="data:image/png;base64,<?php echo e($itOfficer->signature); ?>" alt="IT Officer Signature" style="max-width: 40%; height: 5%;">
+                                                <?php endif; ?>
                                             </td>
                                             <td style="border: 1px solid #000; padding: 6px;">
-                                                @if ($ictForm->status == 1 && $itOfficer && $itOfficer->updated_at)
-                                                    {{ \Carbon\Carbon::parse($itOfficer->updated_at)->format('d F Y') }}
-                                                @endif
+                                                <?php if($ictForm->status == 1 && $itOfficer && $itOfficer->updated_at): ?>
+                                                    <?php echo e(\Carbon\Carbon::parse($itOfficer->updated_at)->format('d F Y')); ?>
+
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
 
@@ -282,9 +309,9 @@
                             <div class="buttons-container"
                                 style="margin-top: 15px; display: flex; justify-content: flex-end; gap: 10px; padding-right: 3%;">
                                 <button type="button" class="btn btn-success"
-                                    onclick="approveForm('{{ $ictForm->access_id }}')">Approve</button>
+                                    onclick="approveForm('<?php echo e($ictForm->access_id); ?>')">Approve</button>
                                 <button type="button" class="btn btn-danger"
-                                    onclick="rejectForm('{{$ictForm->access_id}}')">Reject</button>
+                                    onclick="rejectForm('<?php echo e($ictForm->access_id); ?>')">Reject</button>
                                 <button type="button" class="btn btn-primary" onclick="generatePDF()">Download</button>
                             </div>
 
@@ -431,4 +458,6 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Projects\E-docs\resources\views/ict_resource_form.blade.php ENDPATH**/ ?>

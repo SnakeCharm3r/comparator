@@ -83,15 +83,40 @@ public function update(Request $request, $id)
 }
 
 
-    public function userDetail(){
-
-            $users = User::select('users.*', 'language_knowledge.language')
-            ->leftJoin('language_knowledge', 'users.id', '=', 'language_knowledge.userId')
-            ->get();
-
-            // dd($users);
-        return view('employees_details.index', compact('users'));
+public function userDetail() {
+    $users = User::with('department', 'jobTitle')->get();
+    //dd($users);
+    foreach ($users as $user) {
+        if ($user->department->id !== $user->jobTitle->deptId) {
+            throw new \Exception("User '{$user->fname} {$user->lname}' job title does not match their department.");
+        }
     }
+
+    return view('employees_details.index', compact('users'));
+}
+
+// public function userDetail() {
+//     $users = User::with('department', 'jobTitle')->get();
+//     $errorMessages = [];
+
+//     foreach ($users as $user) {
+//         // Check if both relationships are loaded and not null
+//         if ($user->department && $user->jobTitle) {
+//             // dd( $user->jobTitle);
+//             if ($user->department->id !== $user->jobTitle->deptId) {
+//                 $errorMessages[] = "User '{$user->fname} {$user->lname}' job title does not match their department.";
+//             }
+//         } else {
+//             $errorMessages[] = "User '{$user->fname} {$user->lname}' is missing department or job title information.";
+//         }
+//     }
+
+//     // Render the view and pass any error messages
+//     return view('employees_details.index', compact('users', 'errorMessages'));
+// }
+
+
+
 
 
 
@@ -134,7 +159,8 @@ public function getJobTitles($deptId){
 
     public function register() {
         $policies = Policy::all();
-        $departments = Departments::all();
+        $departments = Departments::orderBy('dept_name', 'asc')->get();
+
         $employmentTypes = EmploymentTypes::all();
         // $jobTitles = JobTitle::all();
 
@@ -153,6 +179,8 @@ public function getJobTitles($deptId){
             'employment_typeId' => 'required',
             'password' => 'required|confirmed|min:6',
             'mobile' => 'required',
+            'starting_date' => 'required|date',
+            'ending_date' => 'required|date|after:starting_date',
             'country_code' => 'required',
         ]);
 
@@ -197,8 +225,11 @@ public function getJobTitles($deptId){
             'NIN' => $request->input('NIN'),
             'nssf_no' => $request->input('nssf_no'),
             'domicile' => $request->input('domicile'),
+            'starting_date' => $request->input('starting_date'),
+            'ending_date' => $request->input('ending_date'),
             'password' => Hash::make($request->input('password')),
         ]);
+
 
         $user->assignRole('requester');
         Auth::login($user);
@@ -213,7 +244,6 @@ public function getJobTitles($deptId){
     $user = User::findOrFail($id);
     $roles = Role::get();
     $userRoles = $user->roles->pluck('name')->toArray(); // Get user roles
-
     return view('role-permission/user.edit', compact('user','roles', 'userRoles'));
 }
 

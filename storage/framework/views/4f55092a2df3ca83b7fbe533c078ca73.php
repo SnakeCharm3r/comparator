@@ -1,10 +1,8 @@
-@extends('layouts.template')
+<?php $__env->startSection('breadcrumb'); ?>
+    <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php $__env->stopSection(); ?>
 
-@section('breadcrumb')
-    @include('sweetalert::alert')
-@endsection
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="page-wrapper">
         <div class="content container-fluid">
             <div class="row">
@@ -29,14 +27,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @php
+                                                <?php
                                                     $previousRequestId = null; // Initialize the variable here
                                                     $counter = 1; // Initialize counter for numbering
-                                                @endphp
+                                                ?>
 
-                                                {{-- Display ICT Forms --}}
-                                                @foreach ($form as $aform)
-                                                    @php
+                                                
+                                                <?php $__currentLoopData = $form; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $aform): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <?php
                                                         $approvalDetails = [];
                                                         foreach ($histories[$aform->id] as $ahistory) {
                                                             $roles = \App\Models\User::findOrFail(
@@ -68,54 +66,52 @@
                                                                 }
                                                             }
                                                         }
-                                                    @endphp
+                                                    ?>
 
-                                                    @foreach ($approvalDetails as $detail)
+                                                    <?php $__currentLoopData = $approvalDetails; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $detail): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <tr
-                                                            class="{{ $aform->id !== $previousRequestId ? 'request-row' : '' }}">
-                                                            @if ($loop->first)
-                                                                <td rowspan="{{ count($approvalDetails) }}">
-                                                                    {{ $counter++ }} <!-- Display the counter value -->
+                                                            class="<?php echo e($aform->id !== $previousRequestId ? 'request-row' : ''); ?>">
+                                                            <?php if($loop->first): ?>
+                                                                <td rowspan="<?php echo e(count($approvalDetails)); ?>">
+                                                                    <?php echo e($counter++); ?> <!-- Display the counter value -->
                                                                 </td>
-                                                                <td rowspan="{{ count($approvalDetails) }}">
+                                                                <td rowspan="<?php echo e(count($approvalDetails)); ?>">
                                                                     ICT Access Form
                                                                 </td>
-                                                            @endif
-                                                            <td>{{ $detail['role'] }}</td>
-                                                            <td>{!! $detail['status'] !!}</td>
+                                                            <?php endif; ?>
+                                                            <td><?php echo e($detail['role']); ?></td>
+                                                            <td><?php echo $detail['status']; ?></td>
                                                             <td>
-                                                                {{-- Only display the rejection reason if the status is Rejected --}}
-                                                                @if ($detail['status'] == "<span class='badge bg-danger'>Rejected</span>")
-                                                                    {{ $detail['rejectionReason'] }}
-                                                                @endif
+                                                                
+                                                                <?php if($detail['status'] == "<span class='badge bg-danger'>Rejected</span>"): ?>
+                                                                    <?php echo e($detail['rejectionReason']); ?>
+
+                                                                <?php endif; ?>
                                                             </td>
-                                                            @if ($loop->first)
-                                                                <td rowspan="{{ count($approvalDetails) }}">
-                                                                    {{ $aform->created_at }}
+                                                            <?php if($loop->first): ?>
+                                                                <td rowspan="<?php echo e(count($approvalDetails)); ?>">
+                                                                    <?php echo e($aform->created_at); ?>
+
                                                                 </td>
-                                                                <td rowspan="{{ count($approvalDetails) }}"></td>
-                                                                <td rowspan="{{ count($approvalDetails) }}">
-{{--                                                                    <a href="{{ route('request.edit', $aform->id) }}"--}}
-{{--                                                                        class="btn btn-rounded btn-outline-info">Modify</a>--}}
-                                                                    {{-- <form action="{{ route('request.destroy', $aform->id) }}" method="POST" style="display:inline-block;">
-                                                                        @csrf
-                                                                        @method('DELETE')
-                                                                        <button type="submit" class="btn btn-rounded btn-outline-danger">Revoke</button>
-                                                                    </form> --}}
+                                                                <td rowspan="<?php echo e(count($approvalDetails)); ?>"></td>
+                                                                <td rowspan="<?php echo e(count($approvalDetails)); ?>">
+
+
+                                                                    
                                                                 </td>
-                                                            @endif
+                                                            <?php endif; ?>
                                                         </tr>
 
-                                                        @php
+                                                        <?php
                                                             $previousRequestId = $aform->id; // Update the variable after each iteration
-                                                        @endphp
-                                                    @endforeach
-                                                @endforeach
+                                                        ?>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                                                {{-- Display Clearance Forms --}}
+                                                
 
-                                                @foreach ($clearForm as $exit)
-                                                    @php
+                                                <?php $__currentLoopData = $clearForm; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $exit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <?php
                                                         $clearApprovalDetails = [];
                                                         foreach ($clearHistories[$exit->id] as $clearHistory) {
                                                             $roles = \App\Models\User::findOrFail(
@@ -148,52 +144,53 @@
                                                                 }
                                                             }
                                                         }
-                                                    @endphp
+                                                    ?>
 
-                                                    @foreach ($clearApprovalDetails as $detail)
+                                                    <?php $__currentLoopData = $clearApprovalDetails; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $detail): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <tr
-                                                            class="{{ $exit->id !== $previousRequestId ? 'request-row' : '' }}">
-                                                            @if ($loop->first)
-                                                                <td rowspan="{{ count($clearApprovalDetails) }}">
-                                                                    {{ $counter++ }} <!-- Display the counter value -->
+                                                            class="<?php echo e($exit->id !== $previousRequestId ? 'request-row' : ''); ?>">
+                                                            <?php if($loop->first): ?>
+                                                                <td rowspan="<?php echo e(count($clearApprovalDetails)); ?>">
+                                                                    <?php echo e($counter++); ?> <!-- Display the counter value -->
                                                                 </td>
-                                                                <td rowspan="{{ count($clearApprovalDetails) }}">
+                                                                <td rowspan="<?php echo e(count($clearApprovalDetails)); ?>">
                                                                     Clearance Form
                                                                 </td>
-                                                            @endif
-                                                            <td>{{ $detail['role'] }}</td>
-                                                            <td>{!! $detail['status'] !!}</td>
+                                                            <?php endif; ?>
+                                                            <td><?php echo e($detail['role']); ?></td>
+                                                            <td><?php echo $detail['status']; ?></td>
                                                             <td>
-                                                                {{-- Only display the rejection reason if the status is Rejected --}}
-                                                                @if ($detail['status'] == "<span class='badge bg-danger'>Rejected</span>")
-                                                                    {{ $detail['rejectionReason'] }}
-                                                                @endif
+                                                                
+                                                                <?php if($detail['status'] == "<span class='badge bg-danger'>Rejected</span>"): ?>
+                                                                    <?php echo e($detail['rejectionReason']); ?>
+
+                                                                <?php endif; ?>
                                                             </td>
-                                                            @if ($loop->first)
-                                                                <td rowspan="{{ count($clearApprovalDetails) }}">
-                                                                    {{ $exit->created_at }}
+                                                            <?php if($loop->first): ?>
+                                                                <td rowspan="<?php echo e(count($clearApprovalDetails)); ?>">
+                                                                    <?php echo e($exit->created_at); ?>
+
                                                                 </td>
-                                                                <td rowspan="{{ count($clearApprovalDetails) }}"></td>
-                                                                <td rowspan="{{ count($clearApprovalDetails) }}">
-                                                                    <a href="{{ route('clearance.edit', $exit->id) }}"
+                                                                <td rowspan="<?php echo e(count($clearApprovalDetails)); ?>"></td>
+                                                                <td rowspan="<?php echo e(count($clearApprovalDetails)); ?>">
+                                                                    <a href="<?php echo e(route('clearance.edit', $exit->id)); ?>"
                                                                         class="btn btn-rounded btn-outline-info">Modify</a>
                                                                     <form
-                                                                        action="{{ route('request.destroy', $exit->id) }}"
+                                                                        action="<?php echo e(route('request.destroy', $exit->id)); ?>"
                                                                         method="POST" style="display:inline-block;">
-                                                                        @csrf
-                                                                        @method('DELETE')
-                                                                        {{-- <button type="submit"
-                                                                            class="btn btn-rounded btn-outline-danger">Revoke</button> --}}
+                                                                        <?php echo csrf_field(); ?>
+                                                                        <?php echo method_field('DELETE'); ?>
+                                                                        
                                                                     </form>
                                                                 </td>
-                                                            @endif
+                                                            <?php endif; ?>
                                                         </tr>
 
-                                                        @php
+                                                        <?php
                                                             $previousRequestId = $exit->id; // Update the variable after each iteration
-                                                        @endphp
-                                                    @endforeach
-                                                @endforeach
+                                                        ?>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                             </tbody>
                                         </table>
@@ -206,9 +203,9 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('styles')
+<?php $__env->startPush('styles'); ?>
     <style>
         .table-hover tbody tr:hover {
             background-color: #f8f9fa;
@@ -228,4 +225,6 @@
     <script>
         new DataTable('#example');
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Projects\E-docs\resources\views/myrequest/index.blade.php ENDPATH**/ ?>

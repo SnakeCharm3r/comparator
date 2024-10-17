@@ -1,6 +1,5 @@
-@extends('layouts.template')
-@section('breadcrumb')
-    @include('sweetalert::alert')
+<?php $__env->startSection('breadcrumb'); ?>
+    <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div class="page-wrapper">
         <div class="content container-fluid">
             <div class="page-header">
@@ -17,17 +16,17 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            @if (auth()->user()->hasAnyRole('hr', 'super-admin'))
+                            <?php if(auth()->user()->hasAnyRole('hr', 'super-admin')): ?>
                                 <div class="row position-relative">
                                     <div class="col-md-12">
-                                        <a href="{{ route('employment.create') }}"
+                                        <a href="<?php echo e(route('employment.create')); ?>"
                                             class="btn btn-primary position-absolute top-0 end-0 mt-2 me-2"
                                             style="background-color: #61ce70; border-color: #61ce70;">
                                             <i class="fas fa-plus"></i>
                                         </a>
                                     </div>
                                 </div>
-                            @endif
+                            <?php endif; ?>
 
                             <table class="table table-striped">
                                 <thead>
@@ -38,24 +37,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($emp as $employments)
+                                    <?php $__currentLoopData = $emp; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employments): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
-                                            <td>{{ $employments->employment_type }}</td>
-                                            <td>{{ $employments->description }}</td>
+                                            <td><?php echo e($employments->employment_type); ?></td>
+                                            <td><?php echo e($employments->description); ?></td>
                                             <td>
-                                                <a href="{{ route('employment.edit', $employments->id) }}"
-                                                    class="btn btn-sm edit-btn" data-id="{{ $employments->id }}"><i
+                                                <a href="<?php echo e(route('employment.edit', $employments->id)); ?>"
+                                                    class="btn btn-sm edit-btn" data-id="<?php echo e($employments->id); ?>"><i
                                                         class="fas fa-edit"></i></a>
-                                                <form action="{{ route('employment.destroy', $employments->id) }}"
+                                                <form action="<?php echo e(route('employment.destroy', $employments->id)); ?>"
                                                     method="POST" style="display: inline;">
-                                                    @csrf
-                                                    @method('DELETE')
+                                                    <?php echo csrf_field(); ?>
+                                                    <?php echo method_field('DELETE'); ?>
                                                     <button type="submit" class="btn btn-sm"><i
                                                             class="fas fa-trash-alt"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
                             </table>
                         </div>
@@ -65,7 +64,9 @@
 
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
-@endsection
+<?php $__env->startSection('content'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Projects\E-docs\resources\views/employment-type/index.blade.php ENDPATH**/ ?>

@@ -18,7 +18,7 @@
                         <div class="card-body">
                             <p>Please update the following form.</p>
 
-                            <form method="POST" action="{{ route('form.updateIctForm', $ictForm->id) }}">
+                            <form method="POST" action="{{ route('form.update', $ictForm->id) }}">
                                 @csrf
                                 @method('PUT') <!-- Use PUT for updating -->
 

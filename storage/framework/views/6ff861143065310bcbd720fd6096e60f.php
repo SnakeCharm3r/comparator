@@ -1,12 +1,11 @@
-@extends('layouts.template')
-
-@section('breadcrumb')
-    @include('sweetalert::alert')
-    @if (session('error'))
+<?php $__env->startSection('breadcrumb'); ?>
+    <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php if(session('error')): ?>
         <div class="alert alert-danger">
-            {!! session('error') !!}
+            <?php echo session('error'); ?>
+
         </div>
-    @endif
+    <?php endif; ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.2/css/dataTables.dataTables.css" />
@@ -34,10 +33,10 @@
                                 <th>User Name</th>
                                 <th>Department</th>
                                 <th>Job Title</th>
-                                {{-- <th>Appointend Date</th> --}}
+                                
                                 <th>CCBRT Code</th>
                                 <th>Phone Number</th>
-                                {{-- <th>Gender</th> --}}
+                                
                                 <th>Birth Date</th>
                                 <th>Actions</th>
 
@@ -45,20 +44,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $user)
+                            <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $user->fname }} {{ $user->lname }}</td>
-                                    <td>{{ $user->department->dept_name }}</td>
-                                    <td>{{ $user->jobTitle->job_title }}</td>
-                                    <td>{{ $user->professional_reg_number }}</td>
-                                    <td>{{ $user->ccbrt_Code }}</td>
-                                    <td>{{ $user->mobile }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($user->DOB)->format('d-m-Y') }}</td>
+                                    <td><?php echo e($loop->iteration); ?></td>
+                                    <td><?php echo e($user->fname); ?> <?php echo e($user->lname); ?></td>
+                                    <td><?php echo e($user->department->dept_name); ?></td>
+                                    <td><?php echo e($user->jobTitle->job_title); ?></td>
+                                    <td><?php echo e($user->professional_reg_number); ?></td>
+                                    <td><?php echo e($user->ccbrt_Code); ?></td>
+                                    <td><?php echo e($user->mobile); ?></td>
+                                    <td><?php echo e(\Carbon\Carbon::parse($user->DOB)->format('d-m-Y')); ?></td>
                                     <td class="text-center" style="width: 100px;">
                                         <!-- View Icon -->
 
-                                        <a href="{{ route('employees_details.edit', ['id' => $user->id]) }}"
+                                        <a href="<?php echo e(route('employees_details.edit', ['id' => $user->id])); ?>"
                                             class="btn btn-sm btn-outline-success d-flex align-items-center"
                                             title="View Details">
                                             <i class="fas fa-eye mr-2" aria-hidden="true"></i> View
@@ -67,12 +66,12 @@
 
 
                                     </td>
-                                    {{-- <td>{{ $user->Emer_c_email }}</td> --}}
+                                    
 
 
-                                    {{-- <td>{{ $user->start_date->format('Y-m-d') }}</td> --}}
+                                    
                                 </tr>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
                         <tfoot>
                             <tr>
@@ -80,7 +79,7 @@
                                 <th>User Name</th>
                                 <th>Department</th>
                                 <th>Job Title</th>
-                                {{-- <th>Professional No</th> --}}
+                                
                                 <th>CCBRT Code</th>
                                 <th>Phone Number</th>
                                 <th>Birth Date</th>
@@ -115,4 +114,6 @@
             }
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Projects\E-docs\resources\views/employees_details/index.blade.php ENDPATH**/ ?>

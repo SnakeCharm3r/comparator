@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 
 class IctAccessController extends Controller
 {
@@ -89,6 +91,8 @@ class IctAccessController extends Controller
             'active_drt' => 'required|exists:privilege_levels,id',
             'VPN' => 'required|exists:privilege_levels,id',
             'pbax' => 'required|exists:privilege_levels,id',
+            'starting_date' => 'required|date',
+            'ending_date' => 'required|date|after:starting_date',
         ]);
         // dd( $validator);
 
@@ -125,6 +129,8 @@ class IctAccessController extends Controller
                     'pbax' => $request->input('pbax'),
                     'status' => $request->input('status'),
                     'physical_access' => $request->input('physical_access'),
+                    'starting_date' => $request->input('starting_date'),
+                    'ending_date' => $request->input('ending_date'),
                     'delete_status' => 0,
                 ]);
 
@@ -268,14 +274,22 @@ public function findLineManagerForRequesterDepartment()
     public function edit(string $id)
     {
         dd(123);
-        $ictAccessResource = IctAccessResource::findOrFail($id);
+        $user = Auth::user();
         $qualifications = NhifQualification::where('delete_status', 0)->get();
         $privileges = PrivilegeLevel::where('delete_status', 0)->get();
         $rmk = Remark::where('delete_status', 0)->get();
         $hmis = HMISAccessLevel::where('delete_status', 0)->get();
+        $form = Workflow::findOrFail($id);
 
+        try {
+            $ictForm = IctAccessResource::findOrFail($id);
+            $ictForm->hardware_request = explode(',', $ictForm->hardware_request);
 
-        return view('ict-access-form.edit', compact('ictAccessResource', 'qualifications', 'privileges', 'rmk', 'hmis'));
+        } catch (ModelNotFoundException $e) {
+            return redirect()->route('some.error.route')->with('error', 'Clearance form not found.');
+        }
+
+        return view('ict-access-form.edit', compact('ictForm','form', 'user', 'qualifications', 'privileges', 'hmis'));
     }
 
     /**
@@ -283,8 +297,128 @@ public function findLineManagerForRequesterDepartment()
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Validate incoming request
+        $validator = Validator::make($request->all(), [
+            'privilegeId' => 'required|exists:privilege_levels,id',
+            'userId' => 'required|exists:users,id',
+            'hmisId' => 'required|exists:h_m_i_s_access_levels,id',
+            'aruti' => 'required|exists:privilege_levels,id',
+            'sap' => 'required|exists:privilege_levels,id',
+            'nhifId' => 'required|exists:nhif_qualifications,id',
+            'active_drt' => 'required|exists:privilege_levels,id',
+            'VPN' => 'required|exists:privilege_levels,id',
+            'pbax' => 'required|exists:privilege_levels,id',
+            'starting_date' => 'required|date',
+            'ending_date' => 'required|date|after:starting_date',
+        ]);
+
+        if ($validator->fails()) {
+            \Log::error('Validation failed', ['errors' => $validator->errors()]);
+            return response()->json([
+                'status' => 400,
+                'errors' => $validator->errors(),
+            ]);
+        }
+
+        // Start a database transaction
+        try {
+            \DB::transaction(function () use ($request, $id) {
+                // Find the existing ICT Access Resource
+                $ict = IctAccessResource::findOrFail($id);
+
+                // Update the existing record with new data
+                $hardwareRequest = $request->input('hardware_request') ? implode(',', $request->input('hardware_request')) : null;
+
+                $ict->update([
+                    'privilegeId' => $request->input('privilegeId'),
+                    'email' => $request->input('email'),
+                    'userId' => $request->input('userId'),
+                    'hmisId' => $request->input('hmisId'),
+                    'aruti' => $request->input('aruti'),
+                    'sap' => $request->input('sap'),
+                    'nhifId' => $request->input('nhifId'),
+                    'hardware_request' => $hardwareRequest,
+                    'network_folder' => $request->input('network_folder'),
+                    'folder_privilege' => $request->input('folder_privilege'),
+                    'active_drt' => $request->input('active_drt'),
+                    'VPN' => $request->input('VPN'),
+                    'pbax' => $request->input('pbax'),
+                    'status' => $request->input('status'),
+                    'physical_access' => $request->input('physical_access'),
+                    'starting_date' => $request->input('starting_date'),
+                    'ending_date' => $request->input('ending_date'),
+                    'delete_status' => 0,
+                ]);
+
+                \Log::info('ICT Access Resource updated', ['ict' => $ict]);
+
+                // Save new workflow for updated ICT Access Resource
+                $workflow = $this->saveWorkflow([
+                    'user_id' => Auth::user()->id,
+                    'ict_request_resource_id' => $ict->id,
+                    'work_flow_status' => 'sent to approval',
+                    'work_flow_completed' => 0,
+                ]);
+
+                \Log::info('New Workflow saved for update', ['workflow' => $workflow]);
+
+                // Save workflow history for the updated request
+                $this->saveWorkflowHistory([
+                    'work_flow_id' => $workflow->id,
+                    'forwarded_by' => Auth::user()->id,
+                    'attended_by' => Auth::user()->id,
+                    'status' => '1',
+                    'remark' => 'Updated ICT Access Resource',
+                    'attend_date' => Carbon::now()->format('d F Y'),
+                    'parent_id' => null,
+                ]);
+
+                \Log::info('Workflow history saved for update');
+
+                // Find the approver based on role (e.g., Line Manager)
+                $approver = $this->findLineManagerForRequesterDepartment();
+                $user = Auth::user();
+
+                // Send notification email to approver
+                $requestDetails = [
+                    'forwarded_by' => $user->username,
+                    'request' => "IT Access Form (Updated)",
+                    'requestDate' => Carbon::now()->format('d F Y'),
+                ];
+
+                if ($approver) {
+                    $mail = new ApprovalRequestNotification();
+                    $mail->approver = $approver;
+                    $mail->requestDetails = $requestDetails;
+                    Mail::to($approver->email)->send($mail);
+                } else {
+                    throw new \Exception('Approver not found');
+                }
+
+                \Log::info('Approver found for update', ['approver' => $approver]);
+
+                // Forward for approval
+                $this->forwardWorkflowHistory([
+                    'work_flow_id' => $workflow->id,
+                    'forwarded_by' => Auth::user()->id,
+                    'attended_by' => $approver->id,
+                    'status' => '0',
+                    'remark' => 'Forwarded for approval after update',
+                    'attend_date' => Carbon::now()->format('d F Y'),
+                    'parent_id' => $workflow->id,
+                ]);
+            });
+
+            Alert::success('IT access form updated and submitted for approval', 'IT access Request Updated');
+            return redirect()->route('request.index')->with('success', 'IT access form updated and submitted for approval');
+
+        } catch (\Exception $e) {
+            \Log::error('Error updating IT Access Resource: ' . $e->getMessage(), ['exception' => $e]);
+            Alert::error('Failed to update IT access form request', 'Error');
+            return back()->withInput()->withErrors(['error' => 'Failed to process request. Please try again.']);
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.

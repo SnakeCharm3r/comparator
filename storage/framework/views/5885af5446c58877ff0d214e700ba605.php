@@ -1,6 +1,5 @@
-@extends('layouts.template')
-@section('breadcrumb')
-    @include('sweetalert::alert')
+<?php $__env->startSection('breadcrumb'); ?>
+    <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div class="page-wrapper">
         <div class="content container-fluid">
             <div class="page-header">
@@ -18,9 +17,9 @@
                         <div class="card-body">
                             <p>Please fill out the following form.</p>
 
-                            <form method="POST" action="{{ route('form.store') }}">
-                                @csrf
-                                <input type="hidden" name="userId" value="{{ $user->id }}">
+                            <form method="POST" action="<?php echo e(route('form.store')); ?>">
+                                <?php echo csrf_field(); ?>
+                                <input type="hidden" name="userId" value="<?php echo e($user->id); ?>">
 
                                 <div class="row">
                                     <!-- Column 1 -->
@@ -30,20 +29,21 @@
                                                     class="text-danger">*</span></label>
                                             <select class="form-control" id="privilegeId" name="aruti" required>
                                                 <option value="" disabled selected> ---Select an option---</option>
-                                                @foreach ($privileges as $privilege)
-                                                    @if (in_array($privilege->prv_name, ['User', 'Administrator', 'Super Administrator', 'HR Officer', 'HR Manager']))
-                                                        <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
+                                                <?php $__currentLoopData = $privileges; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $privilege): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <?php if(in_array($privilege->prv_name, ['User', 'Administrator', 'Super Administrator', 'HR Officer', 'HR Manager'])): ?>
+                                                        <option value="<?php echo e($privilege->id); ?>"><?php echo e($privilege->prv_name); ?>
+
                                                         </option>
-                                                    @endif
-                                                @endforeach
+                                                    <?php endif; ?>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
                                         </div>
                                                                           <div class="form-group">
                                             <label for="openclinic_hms">SAP ERP<span class="text-danger">*</span></label>
                                             <select class="form-control" id="privilegeId" name="sap" required>
                                                 <option value="" disabled selected> ---Select an option---</option>
-                                                @foreach ($privileges as $privilege)
-                                                    @if (
+                                                <?php $__currentLoopData = $privileges; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $privilege): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <?php if(
                                                         $privilege->prv_name === 'User' ||
                                                             $privilege->prv_name === 'Administrator' ||
                                                             $privilege->prv_name === 'Finance' ||
@@ -52,11 +52,12 @@
                                                             $privilege->prv_name === 'HR' ||
                                                             $privilege->prv_name === 'HR Manager' ||
                                                             $privilege->prv_name === 'HR Biodata' ||
-                                                            $privilege->prv_name === 'Director of HR COO')
-                                                        <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
+                                                            $privilege->prv_name === 'Director of HR COO'): ?>
+                                                        <option value="<?php echo e($privilege->id); ?>"><?php echo e($privilege->prv_name); ?>
+
                                                         </option>
-                                                    @endif
-                                                @endforeach
+                                                    <?php endif; ?>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
 
                                         </div>
@@ -65,12 +66,13 @@
                                             <label for="openclinic_hms">PABX<span class="text-danger">*</span></label>
                                             <select class="form-control" id="pbax" name="pbax" required>
                                                 <option value="" disabled selected>---Select an option---</option>
-                                                @foreach ($privileges as $privilege)
-                                                    @if ($privilege->prv_name === 'User' || $privilege->prv_name === 'Administrator')
-                                                        <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
+                                                <?php $__currentLoopData = $privileges; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $privilege): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <?php if($privilege->prv_name === 'User' || $privilege->prv_name === 'Administrator'): ?>
+                                                        <option value="<?php echo e($privilege->id); ?>"><?php echo e($privilege->prv_name); ?>
+
                                                         </option>
-                                                    @endif
-                                                @endforeach
+                                                    <?php endif; ?>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
                                         </div>
 
@@ -84,12 +86,13 @@
                                                     class="text-danger">*</span></label>
                                             <select class="form-control" id="privilegeId" name="active_drt" required>
                                                 <option value="" disabled selected> ---Select an option---</option>
-                                                @foreach ($privileges as $privilege)
-                                                    @if ($privilege->prv_name === 'User' || $privilege->prv_name === 'Administrator')
-                                                        <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
+                                                <?php $__currentLoopData = $privileges; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $privilege): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <?php if($privilege->prv_name === 'User' || $privilege->prv_name === 'Administrator'): ?>
+                                                        <option value="<?php echo e($privilege->id); ?>"><?php echo e($privilege->prv_name); ?>
+
                                                         </option>
-                                                    @endif
-                                                @endforeach
+                                                    <?php endif; ?>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -140,27 +143,27 @@
                                                 <div class="form-group">
                                                     <label>Network Folder Access</label>
                                                     <div class="d-flex">
-                                                        @foreach ($privileges as $privilege)
-                                                            @if (in_array($privilege->prv_name, ['Read', 'Write', 'Full Access']))
+                                                        <?php $__currentLoopData = $privileges; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $privilege): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <?php if(in_array($privilege->prv_name, ['Read', 'Write', 'Full Access'])): ?>
                                                                 <div class="form-check form-check-inline">
                                                                     <input class="form-check-input" type="radio"
                                                                         name="folder_privilege"
-                                                                        id="privilege_{{ $privilege->id }}"value="{{ $privilege->id }}"
+                                                                        id="privilege_<?php echo e($privilege->id); ?>"value="<?php echo e($privilege->id); ?>"
                                                                         required>
                                                                     <label class="form-check-label"
-                                                                        for="privilege_{{ $privilege->id }}">{{ $privilege->prv_name }}</label>
+                                                                        for="privilege_<?php echo e($privilege->id); ?>"><?php echo e($privilege->prv_name); ?></label>
                                                                 </div>
-                                                            @endif
-                                                        @endforeach
+                                                            <?php endif; ?>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="openclinic_hms">OpenClinic HMIS Access</label>
                                                     <select class="form-control" id="hmisId" name="hmisId" required>
                                                         <option value="" disabled selected> ---Select an option---</option>
-                                                        @foreach ($hmis as $hmi)
-                                                            <option value="{{ $hmi->id }}">{{ $hmi->names }}</option>
-                                                        @endforeach
+                                                        <?php $__currentLoopData = $hmis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $hmi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <option value="<?php echo e($hmi->id); ?>"><?php echo e($hmi->names); ?></option>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -174,10 +177,11 @@
                                             <label for="openclinic_hms">NHIF Qualification</label>
                                             <select class="form-control" id="nhifId" name="nhifId" required>
                                                 <option value="" disabled selected> ---Select an option---</option>
-                                                @foreach ($qualifications as $qualification)
-                                                    <option value="{{ $qualification->id }}">{{ $qualification->name }}
+                                                <?php $__currentLoopData = $qualifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qualification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option value="<?php echo e($qualification->id); ?>"><?php echo e($qualification->name); ?>
+
                                                     </option>
-                                                @endforeach
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
                                         </div>
 
@@ -186,12 +190,13 @@
                                             <label for="openclinic_hms">Network Access VPN</label>
                                             <select class="form-control" id="VPN" name="VPN" required>
                                                 <option value="" disabled selected> ---Select an option---</option>
-                                                @foreach ($privileges as $privilege)
-                                                    @if ($privilege->prv_name === 'User' || $privilege->prv_name === 'Administrator')
-                                                        <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
+                                                <?php $__currentLoopData = $privileges; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $privilege): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <?php if($privilege->prv_name === 'User' || $privilege->prv_name === 'Administrator'): ?>
+                                                        <option value="<?php echo e($privilege->id); ?>"><?php echo e($privilege->prv_name); ?>
+
                                                         </option>
-                                                    @endif
-                                                @endforeach
+                                                    <?php endif; ?>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
                                         </div>
 
@@ -199,12 +204,13 @@
                                             <label for="openclinic_hms">CCBRT Email</label>
                                             <select class="form-control" id="privilegeId" name="privilegeId" required>
                                                 <option value="" disabled selected> ---Select an option---</option>
-                                                @foreach ($privileges as $privilege)
-                                                    @if ($privilege->prv_name === 'User' || $privilege->prv_name === 'Administrator')
-                                                        <option value="{{ $privilege->id }}">{{ $privilege->prv_name }}
+                                                <?php $__currentLoopData = $privileges; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $privilege): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <?php if($privilege->prv_name === 'User' || $privilege->prv_name === 'Administrator'): ?>
+                                                        <option value="<?php echo e($privilege->id); ?>"><?php echo e($privilege->prv_name); ?>
+
                                                         </option>
-                                                    @endif
-                                                @endforeach
+                                                    <?php endif; ?>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
                                         </div>
 
@@ -222,4 +228,6 @@
 
     </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Projects\E-docs\resources\views/ict-access-form/index.blade.php ENDPATH**/ ?>
