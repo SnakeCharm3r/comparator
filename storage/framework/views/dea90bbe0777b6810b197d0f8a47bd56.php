@@ -185,36 +185,40 @@
                                 </div>
                             </div>
 
-                            <script>
-                                document.addEventListener('DOMContentLoaded', function() {
-                                    var input = document.querySelector("#phone");
-                                    var countryCodeInput = document.querySelector("#country_code");
 
-                                    var iti = intlTelInput(input, {
-                                        initialCountry: "tz", // Set Tanzania as the default country
-                                        nationalMode: false, // Allows the user to enter the full international format
-                                        autoPlaceholder: "polite", // Provides a placeholder based on country
-                                        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js" // Utility script for formatting and validation
-                                    });
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var input = document.querySelector("#phone");
+        var countryCodeInput = document.querySelector("#country_code");
 
-                                    function updateCountryCode() {
-                                        var selectedCountryCode = iti.getSelectedCountryData().dialCode;
-                                        countryCodeInput.value = selectedCountryCode;
+        var iti = intlTelInput(input, {
+            initialCountry: "tz", // Set Tanzania as the default country
+            nationalMode: false,  // Allows the user to enter the full international format
+            autoPlaceholder: "polite", // Provides a placeholder based on country
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js" // Utility script for formatting and validation
+        });
 
-                                        // Automatically update the phone input with the country code if it's not already there
-                                        if (!input.value.startsWith("+" + selectedCountryCode)) {
-                                            input.value = "+" + selectedCountryCode + " " + input.value.replace(/^(\+\d+\s*)?/, '');
-                                        }
-                                    }
+        function updateCountryCode() {
+            var selectedCountryCode = iti.getSelectedCountryData().dialCode;
+            countryCodeInput.value = selectedCountryCode;
 
-                                    // Event listeners
-                                    input.addEventListener('countrychange', updateCountryCode); // Update when the country is changed
-                                    input.addEventListener('change', updateCountryCode); // Update when the phone input is changed
-                                    input.addEventListener('keyup', updateCountryCode); // Update on keyup in case of manual changes
+            // Check if the phone input already starts with the country code
+            var currentPhoneNumber = input.value.trim();
+            var cleanPhoneNumber = currentPhoneNumber.replace(/^\+?\d+\s*/, ''); // Remove existing country code
 
-                                    updateCountryCode();
-                                });
-                            </script>
+            // Update the phone input with the country code if it's not already there
+           // input.value = "+" + selectedCountryCode + " " + cleanPhoneNumber;
+        }
+
+        // Event listeners
+        input.addEventListener('countrychange', updateCountryCode); // Update when the country is changed
+        input.addEventListener('change', updateCountryCode);        // Update when the phone input is changed
+        input.addEventListener('keyup', updateCountryCode);         // Update on keyup in case of manual changes
+
+        updateCountryCode(); // Initial call to set the country code on page load
+    });
+
+</script>
 
                             <link rel="stylesheet"
                                 href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
@@ -318,9 +322,6 @@
                                     <div id="end-error-message" style="color: red; display: none;"></div>
                                 </div>
                             </div>
-
-
-
                             <script>
                                 const today = new Date();
                                 const todayString = today.toISOString().split('T')[0]; // Format YYYY-MM-DD
@@ -376,11 +377,8 @@
                                     }
                                 }
                             </script>
-
-
                         </div>
                 </div>
-
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                 <script>
                     $(document).ready(function() {
@@ -477,7 +475,8 @@
                                 <?php echo e($policies->count() > 1 ? '' : 'disabled'); ?>>Next</button>
                         </div>
                     </div>
-                    <div class="form-check mt-3">
+
+                    <div class="form-check mt-3" id="accept-container" style="display: none;">
                         <input class="form-check-input" type="checkbox" id="acceptCheckbox">
                         <label class="form-check-label" for="acceptCheckbox">
                             I have read and accept the User Agreements and Policies.
@@ -523,12 +522,6 @@
 
 <?php echo $__env->make('includes.scripts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <script>
-    document.getElementById('acceptCheckbox').disabled = true; // Disable the checkbox initially
-
-    document.getElementById('acceptCheckbox').addEventListener('change', function() {
-        document.getElementById('acceptAgreements').disabled = !this.checked;
-    });
-
     document.addEventListener("DOMContentLoaded", function() {
         var policies = <?php echo json_encode($policies, 15, 512) ?>; // Convert Laravel policies collection to JavaScript array
         var currentPolicyIndex = 0;
@@ -538,24 +531,28 @@
                 var policy = policies[currentPolicyIndex];
                 document.getElementById('policy-title').textContent = policy.title;
                 document.querySelector('#policy-container tbody').innerHTML = `
-                <tr>
-                    <td colspan="2">
-                        <img src="<?php echo e(asset('assets/img/ccbrt.JPG')); ?>" alt="CCBRT Logo" style="height: 50px;">
-                        <strong id="policy-title">${policy.title}</strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">${policy.content}</td>
-                </tr>
-            `;
+                    <tr>
+                        <td colspan="2">
+                            <img src="<?php echo e(asset('assets/img/ccbrt.JPG')); ?>" alt="CCBRT Logo" style="height: 50px;">
+                            <strong id="policy-title">${policy.title}</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">${policy.content}</td>
+                    </tr>
+                `;
             }
 
             // Disable/enable buttons based on the current policy index
             document.getElementById('prev-policy').disabled = currentPolicyIndex === 0;
             document.getElementById('next-policy').disabled = currentPolicyIndex === policies.length - 1;
 
-            // Enable checkbox only when on the last policy
-            document.getElementById('acceptCheckbox').disabled = currentPolicyIndex < policies.length - 1;
+            // Show the checkbox only when on the last policy
+            if (currentPolicyIndex === policies.length - 1) {
+                document.getElementById('accept-container').style.display = 'block'; // Show checkbox
+            } else {
+                document.getElementById('accept-container').style.display = 'none'; // Hide checkbox
+            }
         }
 
         document.getElementById('next-policy').addEventListener('click', function() {
@@ -576,6 +573,12 @@
         updatePolicyDisplay();
     });
 
+    // Enable the submit button only if the checkbox is checked
+    document.getElementById('acceptCheckbox').addEventListener('change', function() {
+        document.getElementById('acceptAgreements').disabled = !this.checked;
+    });
+
+    // Handle the submit button click
     document.getElementById('acceptAgreements').addEventListener('click', function() {
         if (document.getElementById('acceptCheckbox').checked) {
             document.getElementById('userAgreementsModal').querySelector('.btn-close').click();
@@ -584,24 +587,6 @@
             alert('You must accept the User Agreements and Policies to register.');
         }
     });
-
-    function validateAge() {
-        const dob = document.querySelector('input[name="DOB"]').value;
-        const dobDate = new Date(dob);
-        const today = new Date();
-        let age = today.getFullYear() - dobDate.getFullYear();
-        const monthDifference = today.getMonth() - dobDate.getMonth();
-
-        if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < dobDate.getDate())) {
-            age--;
-        }
-
-        if (age < 18) {
-            alert("You must be at least 18 years old to register.");
-            return false;
-        }
-
-        return true;
-    }
 </script>
+
 <?php /**PATH D:\Projects\E-docs\resources\views/auth/registration.blade.php ENDPATH**/ ?>

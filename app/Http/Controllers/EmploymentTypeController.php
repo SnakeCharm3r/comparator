@@ -14,7 +14,7 @@ class EmploymentTypeController extends Controller
      */
     public function index()
     {
-        $emp = EmploymentTypes::where('delete_status', 0)->get();
+        $emp = EmploymentTypes::all();
 
         return view('employment-type.index', compact('emp'));
     }
@@ -50,7 +50,7 @@ class EmploymentTypeController extends Controller
                 'status' => 400,
                 'message' => 'Employment type is already exist',
                 'data' => $request->all()
-            ]);  
+            ]);
          }
 
          $emp = EmploymentTypes::create([
@@ -77,7 +77,7 @@ class EmploymentTypeController extends Controller
     public function edit(string $id)
     {
         $emp = EmploymentTypes::findOrFail($id);
-        
+
         return view('employment-type.edit', compact('emp'));
 
     }
@@ -91,25 +91,25 @@ class EmploymentTypeController extends Controller
             'employment_type' => 'required',
             'description' => 'required',
         ]);
-    
+
         $validator = Validator::make($request->all(), [
             'employment_type' => 'required',
             'description' => 'required',
         ]);
-    
+
         if ($validator->fails()) {
             return response()->json([
                 'status' => 400,
                 'errors' => $validator->errors(),
             ]);
         }
-    
+
         $empl = EmploymentTypes::findOrFail($id);
         $empl->update([
             'employment_type' => $request->input('employment_type'),
             'description' => $request->input('description'),
         ]);
-    
+
         Alert::success('Employment type updated successful','Employment type updated');
         return redirect()->route('employment.index')->with('success', 'Employment type updated successfully.');
     }
@@ -121,18 +121,9 @@ class EmploymentTypeController extends Controller
     {
         $emp = EmploymentTypes::find($id);
 
-    if (!$emp) {
-        return response()->json([
-            'status' => 404,
-            'message' => 'Employmeny type not found',
-        ]);
-    }
-
-    $emp->update([
-        'delete_status' => 1
-    ]);
+    $emp->delete();
 
     return redirect()->route('employment.index')->with('success', 'Employment type deleted successfully.');
     }
-    
+
 }

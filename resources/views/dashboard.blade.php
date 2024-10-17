@@ -65,51 +65,51 @@
 
             <div class="row">
 
-                @php
-                    $filledFieldsWeight = 0;
-                    $totalWeight = 100;
+{{--                @php--}}
+{{--                    $filledFieldsWeight = 0;--}}
+{{--                    $totalWeight = 100;--}}
 
-                    // Define the weights for each field
-                    $weights = [
-                        'professional_reg_number' => 30,
-                        'marital_status' => 20,
-                        'health_insurance' => 25,
-                        'language' => 25,
-                    ];
+{{--                    // Define the weights for each field--}}
+{{--                    $weights = [--}}
+{{--                        'professional_reg_number' => 30,--}}
+{{--                        'marital_status' => 20,--}}
+{{--                        'health_insurance' => 25,--}}
+{{--                        'language' => 25,--}}
+{{--                    ];--}}
 
-                    // Check each field and increment the filled fields weight if filled
-                    if (!empty($user->professional_reg_number)) {
-                        $filledFieldsWeight += $weights['professional_reg_number'];
-                    }
+{{--                    // Check each field and increment the filled fields weight if filled--}}
+{{--                    if (!empty($user->professional_reg_number)) {--}}
+{{--                        $filledFieldsWeight += $weights['professional_reg_number'];--}}
+{{--                    }--}}
 
-                    if (!empty($user->marital_status)) {
-                        $filledFieldsWeight += $weights['marital_status'];
-                    }
+{{--                    if (!empty($user->marital_status)) {--}}
+{{--                        $filledFieldsWeight += $weights['marital_status'];--}}
+{{--                    }--}}
 
-                    if (!empty($user->health_insurance)) {
-                        $filledFieldsWeight += $weights['health_insurance'];
-                    }
+{{--                    if (!empty($user->health_insurance)) {--}}
+{{--                        $filledFieldsWeight += $weights['health_insurance'];--}}
+{{--                    }--}}
 
-                    if (!empty($language_knowledge->language)) {
-                        $filledFieldsWeight += $weights['language'];
-                    }
+{{--                    if (!empty($language_knowledge->language)) {--}}
+{{--                        $filledFieldsWeight += $weights['language'];--}}
+{{--                    }--}}
 
-                    // Calculate the percentage filled
-                    $percentageFilled = min($filledFieldsWeight, $totalWeight);
-                @endphp
+{{--                    // Calculate the percentage filled--}}
+{{--                    $percentageFilled = min($filledFieldsWeight, $totalWeight);--}}
+{{--                @endphp--}}
 
-                @if ($percentageFilled < 50)
-                    <div class="progress" style="height: 20px; position: relative;">
-                        <div class="progress-bar" role="progressbar" style="width: {{ $percentageFilled }}%;"
-                            aria-valuenow="{{ $percentageFilled }}" aria-valuemin="0" aria-valuemax="100">
-                            {{ $percentageFilled }}%
-                            <span
-                                style="position: absolute; left: 0; right: 0; text-align: center; top: 50%; transform: translateY(-50%); font-size: 12px; color: rgb(0, 0, 0);">
-                                User profile details filled percentage
-                            </span>
-                        </div>
-                    </div>
-                @endif
+{{--                @if ($percentageFilled < 50)--}}
+{{--                    <div class="progress" style="height: 20px; position: relative;">--}}
+{{--                        <div class="progress-bar" role="progressbar" style="width: {{ $percentageFilled }}%;"--}}
+{{--                            aria-valuenow="{{ $percentageFilled }}" aria-valuemin="0" aria-valuemax="100">--}}
+{{--                            {{ $percentageFilled }}%--}}
+{{--                            <span--}}
+{{--                                style="position: absolute; left: 0; right: 0; text-align: center; top: 50%; transform: translateY(-50%); font-size: 12px; color: rgb(0, 0, 0);">--}}
+{{--                                User profile details filled percentage--}}
+{{--                            </span>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                @endif--}}
                 <br><br>
                 <div class="row">
                     <div class="col-md-3 col-sm-6 col-12 mb-3">
@@ -133,17 +133,6 @@
                             </div>
                         </div>
                     </div>
-
-                    {{-- <div class="col-md-3 col-sm-6 col-12 mb-3">
-                        <div class="card text-center shadow-sm">
-                            <div class="card-header text-warning ">
-                                <i class="fas fa-exclamation-triangle"></i> Urgent Announcement
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">2</h5>
-                            </div>
-                        </div>
-                    </div> --}}
                     <div class="col-md-3 col-sm-6 col-12 mb-3">
                         <div class="card text-center shadow-sm">
                             <!-- Link to the Announcements page -->
@@ -155,9 +144,6 @@
 
                             <!-- Body of the card showing the total count and new announcements -->
                             <div class="card-body">
-                                {{-- <a href="{{ route('announcements.index') }}" class="card-title text-decoration-none">
-                                    Total: {{ $announcements->count() }}
-                                </a> --}}
 
                                 <!-- Fetch the count of new announcements using Eloquent within the Blade template -->
                                 @php
@@ -185,9 +171,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
 
                     <div class="col-md-3 col-sm-6 col-12 mb-3">
                         <div class="card text-center shadow-sm">
@@ -238,78 +221,6 @@
                         </div>
                     </div>
                 </div>
-                {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                <div class="col-12 col-lg-12 col-xl-12 d-flex">
-                    <div class="card flex-fill comman-shadow">
-                        <div class="card-header d-flex align-items-center">
-                            <h5 class="card-title">Form Requests Trend</h5>
-                            <ul class="chart-list-out">
-                                <li><span class="circle-blue"></span>ICT Access Form</li>
-                                <li><span class="circle-green"></span>Clearance Form</li>
-                                <li><span class="circle-yellow"></span>Change Request Form</li>
-                                <li class="star-menus"><a href="javascript:;"><i class="fas fa-ellipsis-v"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="formRequestsLineChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        var ctx = document.getElementById('formRequestsLineChart').getContext('2d');
-                        var formRequestsLineChart = new Chart(ctx, {
-                            type: 'line', // Line chart type
-                            data: {
-                                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                                    'Jul'
-                                ], // Replace with dynamic labels
-                                datasets: [{
-                                    label: 'ICT Access Form',
-                                    data: [30, 45, 60, 70, 50, 65, 80], // Replace with dynamic data
-                                    borderColor: 'rgba(54, 162, 235, 1)',
-                                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                                    fill: true
-                                }, {
-                                    label: 'Clearance Form',
-                                    data: [20, 35, 55, 60, 45, 70, 90], // Replace with dynamic data
-                                    borderColor: 'rgba(75, 192, 192, 1)',
-                                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                    fill: true
-                                }, {
-                                    label: 'Change Request Form',
-                                    data: [10, 25, 40, 50, 30, 60, 70], // Replace with dynamic data
-                                    borderColor: 'rgba(255, 159, 64, 1)',
-                                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
-                                    fill: true
-                                }]
-                            },
-                            options: {
-                                responsive: true,
-                                plugins: {
-                                    legend: {
-                                        position: 'top',
-                                    },
-                                    tooltip: {
-                                        callbacks: {
-                                            label: function(tooltipItem) {
-                                                return tooltipItem.dataset.label + ': ' + tooltipItem.raw;
-                                            }
-                                        }
-                                    }
-                                },
-                                scales: {
-                                    x: {
-                                        beginAtZero: true
-                                    },
-                                    y: {
-                                        beginAtZero: true
-                                    }
-                                }
-                            }
-                        });
-                    });
-                </script> --}}
             </div>
         </div>
     </div>
