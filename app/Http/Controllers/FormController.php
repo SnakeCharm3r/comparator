@@ -236,7 +236,7 @@ class FormController extends Controller
 
     public function rejectForm(Request $request)
     {
-
+        // dd($request);
         $workflow = Workflow::where('ict_request_resource_id', $request->access_id)->first();
         // dd($workflow);
         if ($workflow) {
