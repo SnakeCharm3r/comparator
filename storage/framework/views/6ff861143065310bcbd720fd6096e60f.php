@@ -1,11 +1,11 @@
 <?php $__env->startSection('breadcrumb'); ?>
     <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php if(session('error')): ?>
-    <div class="alert alert-danger">
-        <?php echo session('error'); ?>
+        <div class="alert alert-danger">
+            <?php echo session('error'); ?>
 
-    </div>
-<?php endif; ?>
+        </div>
+    <?php endif; ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.2/css/dataTables.dataTables.css" />

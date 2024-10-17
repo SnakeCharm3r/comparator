@@ -50,7 +50,7 @@
                                                                     <tbody>
                                                                         <tr>
                                                                             <td colspan="2">
-                                                                                <img src="<?php echo e(asset('assets/img/ccbrt.JPG')); ?>"
+                                                                                <img src="<?php echo e(asset('assets/img/ccbrt.jpg')); ?>"
                                                                                     alt="CCBRT Logo" style="height: 50px;">
                                                                                 <strong
                                                                                     id="policy-title"><?php echo e($policies[0]->title); ?></strong>
@@ -118,7 +118,7 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <td colspan="2">
-                                                                            <img src="<?php echo e(asset('assets/img/ccbrt.JPG')); ?>" alt="CCBRT Logo" style="height: 50px;">
+                                                                            <img src="<?php echo e(asset('assets/img/ccbrt.jpg')); ?>" alt="CCBRT Logo" style="height: 50px;">
                                                                             <strong>${currentPolicyIndex + 1}. ${policy.title}</strong>
                                                                         </td>
                                                                     </tr>
