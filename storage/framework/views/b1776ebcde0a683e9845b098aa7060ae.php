@@ -27,9 +27,21 @@
                                                     <div class="mx-auto" style="width: 140px;">
                                                         <div class="d-flex justify-content-center align-items-center rounded"
                                                             style="height: 140px; background-color: rgb(233, 236, 239); position: relative;">
-                                                            <img src="<?php echo e(asset('storage/' . $user->profile_picture)); ?>"
-                                                                alt="Profile Picture" class="img-fluid rounded-circle"
-                                                                style="max-width: 140px; height: 140px; border: 2px solid #ccc; padding: 5px; object-fit: cover;">
+
+
+
+                                                            <?php if($user->profile_picture): ?>
+                                                                <img src="<?php echo e(asset('storage/' . $user->profile_picture)); ?>"
+                                                                     alt="Profile Picture"
+                                                                     class="img-fluid rounded-circle"
+                                                                     style="max-width: 150px; height: 150px; border: 2px solid #ccc; padding: 5px; object-fit: cover;">
+                                                            <?php else: ?>
+                                                                <img src="<?php echo e(asset('assets/img/icon.png')); ?>"
+                                                                     alt="Default User Icon"
+                                                                     class="rounded-circle"
+                                                                     style="max-width: 150px; height: 150px; padding: 5px; object-fit: cover;">
+                                                            <?php endif; ?>
+
                                                             <form id="profilePictureForm"
                                                                 action="<?php echo e(route('profile.update.picture')); ?>"
                                                                 method="POST" enctype="multipart/form-data"
@@ -62,7 +74,7 @@
 
 
                                                     </div>
-                                                    
+
                                                 </div>
                                                 <script>
                                                     function handleProfilePictureChange(input) {
