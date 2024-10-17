@@ -91,8 +91,8 @@ class IctAccessController extends Controller
             'active_drt' => 'required|exists:privilege_levels,id',
             'VPN' => 'required|exists:privilege_levels,id',
             'pbax' => 'required|exists:privilege_levels,id',
-            'starting_date' => 'required|date',
-            'ending_date' => 'required|date|after:starting_date',
+            // 'starting_date' => 'required|date',
+            // 'ending_date' => 'required|date|after:starting_date',
         ]);
         // dd( $validator);
 
@@ -308,8 +308,8 @@ public function findLineManagerForRequesterDepartment()
             'active_drt' => 'required|exists:privilege_levels,id',
             'VPN' => 'required|exists:privilege_levels,id',
             'pbax' => 'required|exists:privilege_levels,id',
-            'starting_date' => 'required|date',
-            'ending_date' => 'required|date|after:starting_date',
+
+
         ]);
 
         if ($validator->fails()) {

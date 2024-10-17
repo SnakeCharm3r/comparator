@@ -74,7 +74,7 @@
 
 
                                                     </div>
-                                                    
+
                                                 </div>
                                                 <script>
                                                     function handleProfilePictureChange(input) {
