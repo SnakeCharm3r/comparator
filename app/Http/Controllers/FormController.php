@@ -250,7 +250,7 @@ class FormController extends Controller
                 $workflowHistory->attended_by = Auth::user()->id;
                 $workflowHistory->rejection_reason = $request->reason; // Store the reason
                 $workflowHistory->save();
-
+                // dd($workflowHistory);
 
             } else {
                 // Handle case where no WorkflowHistory is found
