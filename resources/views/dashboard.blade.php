@@ -38,7 +38,7 @@
                             </div>
                         @endif
 
-                        <script>
+                        {{-- <script>
                             document.addEventListener('DOMContentLoaded', function() {
                                 // Select the alert element
                                 var alert = document.getElementById('success-alert');
@@ -56,7 +56,7 @@
                                     }, 4000);
                                 }
                             });
-                        </script>
+                        </script> --}}
 
                     </div>
 

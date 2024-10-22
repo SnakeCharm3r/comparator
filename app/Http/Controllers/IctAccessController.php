@@ -36,13 +36,16 @@ class IctAccessController extends Controller
         $rmk = Remark::where('delete_status', 0)->get();
         $hmis = HMISAccessLevel::where('delete_status', 0)->get();
         $ictAccessResources = IctAccessResource::where('delete_status', 0)->get();
-
+        
+         //check if the user has a signature!!
           $hasSignature = !is_null($user->signature);
-          if (!$hasSignature) {
+          if (!$hasSignature) 
+          {
             return redirect()->route('signature.index')->with([
                 'message' => 'Please add your signature before proceeding.',
             ]);
-        }
+            
+          } 
          // Check if the user's profile is complete
          $profileComplete = $user->userFamilyDetails()->exists()&&
             $user->languageKnowledge()->exists();

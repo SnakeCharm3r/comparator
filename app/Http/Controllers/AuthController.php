@@ -230,10 +230,10 @@ public function getJobTitles($deptId){
             'password' => Hash::make($request->input('password')),
         ]);
 
-
+        //Assigning roles initally from the first registration
         $user->assignRole('requester');
         Auth::login($user);
-        Alert::success('User Registered Successfully', 'Please Provide Your Signature');
+        Alert::success('User Registered Successfully', 'Please fill your personal details');
 
         return redirect()->route('login');
     }

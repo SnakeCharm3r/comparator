@@ -79,7 +79,7 @@
         </ul>
 
         <p>Please log in to the e-Docs system to approve or reject the request using the following link:</p>
-        <p><a href="http://192.168.14.244:8000/">e-Docs System</a></p>
+        <p><a href="http://192.168.2.93">e-Docs System</a></p>
 
         <p>Regards,</p>
         <p><strong>CCBRT IT Support Desk</strong></p>
