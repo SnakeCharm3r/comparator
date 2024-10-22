@@ -81,10 +81,9 @@ public function update(Request $request, $id)
         'message' => 'User details updated successfully.',
     ]);
 }
-
-
 public function userDetail() {
     $users = User::with('department', 'jobTitle')->get();
+
     //dd($users);
     foreach ($users as $user) {
         if ($user->department->id !== $user->jobTitle->deptId) {
@@ -92,37 +91,10 @@ public function userDetail() {
         }
     }
 
+
     return view('employees_details.index', compact('users'));
 }
 
-// public function userDetail() {
-//     $users = User::with('department', 'jobTitle')->get();
-//     $errorMessages = [];
-
-//     foreach ($users as $user) {
-//         // Check if both relationships are loaded and not null
-//         if ($user->department && $user->jobTitle) {
-//             // dd( $user->jobTitle);
-//             if ($user->department->id !== $user->jobTitle->deptId) {
-//                 $errorMessages[] = "User '{$user->fname} {$user->lname}' job title does not match their department.";
-//             }
-//         } else {
-//             $errorMessages[] = "User '{$user->fname} {$user->lname}' is missing department or job title information.";
-//         }
-//     }
-
-//     // Render the view and pass any error messages
-//     return view('employees_details.index', compact('users', 'errorMessages'));
-// }
-
-
-
-
-
-
-
-
-    // find user by ID
     public function getUserById($id) {
         $user = User::find($id);
         if (!$user) {

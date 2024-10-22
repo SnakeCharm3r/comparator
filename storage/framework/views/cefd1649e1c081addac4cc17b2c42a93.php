@@ -1,7 +1,5 @@
-@extends('layouts.template')
-
-@section('breadcrumb')
-    @include('sweetalert::alert')
+<?php $__env->startSection('breadcrumb'); ?>
+    <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <div class="page-wrapper">
         <div class="content container-fluid">
@@ -24,19 +22,19 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <ul class="nav nav-tabs">
-                                            <li class="nav-item"><a href="{{ route('profile.index') }}"
+                                            <li class="nav-item"><a href="<?php echo e(route('profile.index')); ?>"
                                                     class="nav-link">User Info</a></li>
-                                            <li class="nav-item"><a href="{{ route('policies.user') }}"
+                                            <li class="nav-item"><a href="<?php echo e(route('policies.user')); ?>"
                                                     class="active nav-link">Policies</a></li>
-                                            <li class="nav-item"><a href="{{ route('user_profile.pass') }}"
+                                            <li class="nav-item"><a href="<?php echo e(route('user_profile.pass')); ?>"
                                                     class="nav-link">Password</a></li>
-                                            <li class="nav-item"><a href="{{ route('family-details.index') }}"
+                                            <li class="nav-item"><a href="<?php echo e(route('family-details.index')); ?>"
                                                     class="nav-link">Family Details</a></li>
-                                            <li class="nav-item"><a href="{{ route('health-details.index') }}"
+                                            <li class="nav-item"><a href="<?php echo e(route('health-details.index')); ?>"
                                                     class=" nav-link">Health Details</a></li>
-                                            <li class="nav-item"><a href="{{ route('ccbrt_relation.index') }}"
+                                            <li class="nav-item"><a href="<?php echo e(route('ccbrt_relation.index')); ?>"
                                                     class="nav-link">CCBRT Reation</a></li>
-                                            <li class="nav-item"><a href="{{ route('language_knowledge.index') }}"
+                                            <li class="nav-item"><a href="<?php echo e(route('language_knowledge.index')); ?>"
                                                     class="nav-link">Language</a> </li>
 
                                         </ul>
@@ -46,21 +44,22 @@
                                                     <h4>CCBRT Policies</h4>
                                                     <div id="policy-container">
                                                         <!-- Display only one policy at a time -->
-                                                        @if ($policies->isNotEmpty())
+                                                        <?php if($policies->isNotEmpty()): ?>
                                                             <div class="policy-item">
                                                                 <table class="table table-bordered">
                                                                     <tbody>
                                                                         <tr>
                                                                             <td colspan="2">
-                                                                                <img src="{{ asset('assets/img/ccbrt.jpg') }}"
+                                                                                <img src="<?php echo e(asset('assets/img/ccbrt.jpg')); ?>"
                                                                                     alt="CCBRT Logo" style="height: 50px;">
                                                                                 <strong
-                                                                                    id="policy-title">{{ $policies[0]->title }}</strong>
+                                                                                    id="policy-title"><?php echo e($policies[0]->title); ?></strong>
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td colspan="2">
-                                                                                {!! $policies[0]->content !!}
+                                                                                <?php echo $policies[0]->content; ?>
+
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
@@ -70,31 +69,33 @@
                                                                         <strong>Names:</strong>
                                                                         <span
                                                                             style="text-decoration: underline; margin-right: 20px;">
-                                                                            {{ $user->fname }} {{ $user->lname }}
+                                                                            <?php echo e($user->fname); ?> <?php echo e($user->lname); ?>
+
                                                                         </span>
                                                                         <strong>Signature:</strong>
-                                                                        @if ($user->signature)
-                                                                            <img src="data:image/png;base64,{{ $user->signature }}"
+                                                                        <?php if($user->signature): ?>
+                                                                            <img src="data:image/png;base64,<?php echo e($user->signature); ?>"
                                                                                 alt="User Signature"
                                                                                 style="max-width: 40%; height: auto; margin-right: 20px;">
-                                                                        @else
+                                                                        <?php else: ?>
                                                                             <span
                                                                                 style="text-decoration: underline; margin-right: 20px;">______________________________</span>
-                                                                        @endif
+                                                                        <?php endif; ?>
                                                                         <strong>Date:</strong>
                                                                         <span style="text-decoration: underline;">
-                                                                            {{ $user->created_at->format('d-m-Y') }}
+                                                                            <?php echo e($user->created_at->format('d-m-Y')); ?>
+
                                                                         </span>
                                                                     </p>
                                                                 </div>
                                                             </div>
-                                                        @endif
+                                                        <?php endif; ?>
                                                     </div>
                                                     <div class="mt-4">
                                                         <button id="prev-policy" class="btn btn-primary"
                                                             disabled>Back</button>
                                                         <button id="next-policy" class="btn btn-primary"
-                                                            {{ $policies->count() > 1 ? '' : 'disabled' }}>Next</button>
+                                                            <?php echo e($policies->count() > 1 ? '' : 'disabled'); ?>>Next</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -103,7 +104,7 @@
                                         <script>
                                             document.addEventListener('DOMContentLoaded', function() {
                                                 let currentPolicyIndex = 0;
-                                                const policies = @json($policies);
+                                                const policies = <?php echo json_encode($policies, 15, 512) ?>;
                                                 const totalPolicies = policies.length;
                                                 const prevButton = document.getElementById('prev-policy');
                                                 const nextButton = document.getElementById('next-policy');
@@ -117,7 +118,7 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <td colspan="2">
-                                                                            <img src="{{ asset('assets/img/ccbrt.jpg') }}" alt="CCBRT Logo" style="height: 50px;">
+                                                                            <img src="<?php echo e(asset('assets/img/ccbrt.jpg')); ?>" alt="CCBRT Logo" style="height: 50px;">
                                                                             <strong>${currentPolicyIndex + 1}. ${policy.title}</strong>
                                                                         </td>
                                                                     </tr>
@@ -132,17 +133,19 @@
                                                                 <p>
                                                                     <strong>Names:</strong>
                                                                     <span style="text-decoration: underline; margin-right: 20px;">
-                                                                        {{ $user->fname }} {{ $user->lname }}
+                                                                        <?php echo e($user->fname); ?> <?php echo e($user->lname); ?>
+
                                                                     </span>
                                                                     <strong>Signature:</strong>
-                                                                    @if ($user->signature)
-                                                                        <img src="data:image/png;base64,{{ $user->signature }}" alt="User Signature" style="max-width: 40%; height: auto; margin-right: 20px;">
-                                                                    @else
+                                                                    <?php if($user->signature): ?>
+                                                                        <img src="data:image/png;base64,<?php echo e($user->signature); ?>" alt="User Signature" style="max-width: 40%; height: auto; margin-right: 20px;">
+                                                                    <?php else: ?>
                                                                         <span style="text-decoration: underline; margin-right: 20px;">______________________________</span>
-                                                                    @endif
+                                                                    <?php endif; ?>
                                                                     <strong>Date:</strong>
                                                                     <span style="text-decoration: underline;">
-                                                                        {{ $user->created_at->format('d-m-Y') }}
+                                                                        <?php echo e($user->created_at->format('d-m-Y')); ?>
+
                                                                     </span>
                                                                 </p>
                                                             </div>
@@ -183,4 +186,6 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Projects\E-docs\resources\views/policies/user.blade.php ENDPATH**/ ?>

@@ -1,7 +1,5 @@
-@extends('layouts.template')
-
-@section('breadcrumb')
-    @include('sweetalert::alert')
+<?php $__env->startSection('breadcrumb'); ?>
+    <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <div class="page-wrapper">
         <div class="content container-fluid">
@@ -29,26 +27,26 @@
                                                     <div class="mx-auto" style="width: 140px;">
                                                         <div class="d-flex justify-content-center align-items-center rounded"
                                                             style="height: 140px; background-color: rgb(233, 236, 239); position: relative;">
-{{--                                                            <img src="{{ asset('storage/' . $user->profile_picture) }}"--}}
-{{--                                                                alt="Profile Picture" class="img-fluid rounded-circle"--}}
-{{--                                                                style="max-width: 140px; height: 140px; border: 2px solid #ccc; padding: 5px; object-fit: cover;">--}}
-                                                            @if ($user->profile_picture)
-                                                                <img src="{{ asset('storage/' . $user->profile_picture) }}"
+
+
+
+                                                            <?php if($user->profile_picture): ?>
+                                                                <img src="<?php echo e(asset('storage/' . $user->profile_picture)); ?>"
                                                                      alt="Profile Picture"
                                                                      class="img-fluid rounded-circle"
                                                                      style="max-width: 150px; height: 150px; border: 2px solid #ccc; padding: 5px; object-fit: cover;">
-                                                            @else
-                                                                <img src="{{ asset('assets/img/icon.png') }}"
+                                                            <?php else: ?>
+                                                                <img src="<?php echo e(asset('assets/img/icon.png')); ?>"
                                                                      alt="Default User Icon"
                                                                      class="rounded-circle"
                                                                      style="max-width: 150px; height: 150px; padding: 5px; object-fit: cover;">
-                                                            @endif
+                                                            <?php endif; ?>
 
                                                             <form id="profilePictureForm"
-                                                                action="{{ route('profile.update.picture') }}"
+                                                                action="<?php echo e(route('profile.update.picture')); ?>"
                                                                 method="POST" enctype="multipart/form-data"
                                                                 style="display: none;">
-                                                                @csrf
+                                                                <?php echo csrf_field(); ?>
                                                                 <input type="file" class="form-control"
                                                                     id="profile_picture" name="profile_picture"
                                                                     accept="image/*"
@@ -60,10 +58,11 @@
                                                 <div
                                                     class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                                                     <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ $user->username }}
+                                                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"><?php echo e($user->username); ?>
+
                                                         </h4>
-                                                        <p class="mb-0">{{ $user->email }}</p>
-                                                        <p class="mb-0">{{ $user->department->name }}</p>
+                                                        <p class="mb-0"><?php echo e($user->email); ?></p>
+                                                        <p class="mb-0"><?php echo e($user->department->name); ?></p>
                                                         <div class="mt-2">
                                                             <button class="btn btn-primary" type="button"
                                                                 onclick="document.getElementById('profile_picture').click()">
@@ -75,9 +74,7 @@
 
 
                                                     </div>
-                                                    {{-- <div class="text-sm-right ml-auto">
-                                                        <div class="text-muted"><small>Joined 09 July 2024</small></div>
-                                                    </div> --}}
+
                                                 </div>
                                                 <script>
                                                     function handleProfilePictureChange(input) {
@@ -92,14 +89,14 @@
                                         </ul>
                                         <div class="tab-content pt-3">
                                             <div class="tab-pane active" id="settings">
-                                                <form action="{{ route('profile.update', $user->id) }}" method="POST"
+                                                <form action="<?php echo e(route('profile.update', $user->id)); ?>" method="POST"
                                                     class="form" novalidate="">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <input type="hidden" name="deptId" value="{{ $user->deptId }}">
+                                                    <?php echo csrf_field(); ?>
+                                                    <?php echo method_field('PUT'); ?>
+                                                    <input type="hidden" name="deptId" value="<?php echo e($user->deptId); ?>">
                                                     <input type="hidden" name="employment_typeId"
-                                                        value="{{ $user->employment_typeId }}">
-                                                    <input type="hidden" name="job_title" value="{{ $user->job_title }}">
+                                                        value="<?php echo e($user->employment_typeId); ?>">
+                                                    <input type="hidden" name="job_title" value="<?php echo e($user->job_title); ?>">
                                                     <div class="row">
                                                         <div class="col">
                                                             <div class="row">
@@ -108,7 +105,7 @@
                                                                         <label>First Name</label>
                                                                         <input class="form-control" type="text"
                                                                             name="fname" placeholder="John Smith"
-                                                                            value="{{ old('fname', $user->fname) }}">
+                                                                            value="<?php echo e(old('fname', $user->fname)); ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col">
@@ -116,7 +113,7 @@
                                                                         <label>Middle Name</label>
                                                                         <input class="form-control" type="text"
                                                                             name="mname" placeholder="Middle Name"
-                                                                            value="{{ old('mname', $user->mname) }}">
+                                                                            value="<?php echo e(old('mname', $user->mname)); ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col">
@@ -124,7 +121,7 @@
                                                                         <label>Last Name</label>
                                                                         <input class="form-control" type="text"
                                                                             name="lname" placeholder="John Smith"
-                                                                            value="{{ old('lname', $user->lname) }}">
+                                                                            value="<?php echo e(old('lname', $user->lname)); ?>">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -135,7 +132,7 @@
                                                                         <label>Username</label>
                                                                         <input class="form-control" type="text"
                                                                             name="username" placeholder="johnny.s"
-                                                                            value="{{ old('username', $user->username) }}">
+                                                                            value="<?php echo e(old('username', $user->username)); ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
@@ -143,7 +140,7 @@
                                                                         <label>Email</label>
                                                                         <input class="form-control" type="text"
                                                                             name="email" placeholder="user@example.com"
-                                                                            value="{{ old('email', $user->email) }}">
+                                                                            value="<?php echo e(old('email', $user->email)); ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
@@ -151,7 +148,7 @@
                                                                         <label>Mobile Number</label>
                                                                         <input class="form-control" type="text"
                                                                             name="mobile" placeholder="123-456-7890"
-                                                                            value="{{ old('mobile', $user->mobile) }}">
+                                                                            value="<?php echo e(old('mobile', $user->mobile)); ?>">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -161,7 +158,7 @@
                                                                         <label>Date of Birth</label>
                                                                         <input class="form-control" type="date"
                                                                             name="DOB"
-                                                                            value="{{ old('DOB', $user->DOB) }}">
+                                                                            value="<?php echo e(old('DOB', $user->DOB)); ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
@@ -169,7 +166,7 @@
                                                                         <label>Place of Birth</label>
                                                                         <input class="form-control" type="text"
                                                                             name="place_of_birth"
-                                                                            value="{{ old('place_of_birth', $user->place_of_birth) }}">
+                                                                            value="<?php echo e(old('place_of_birth', $user->place_of_birth)); ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
@@ -180,16 +177,16 @@
                                                                             <option value="">Select Marital Status
                                                                             </option>
                                                                             <option value="single"
-                                                                                {{ old('marital_status', $user->marital_status) == 'single' ? 'selected' : '' }}>
+                                                                                <?php echo e(old('marital_status', $user->marital_status) == 'single' ? 'selected' : ''); ?>>
                                                                                 Single</option>
                                                                             <option value="married"
-                                                                                {{ old('marital_status', $user->marital_status) == 'married' ? 'selected' : '' }}>
+                                                                                <?php echo e(old('marital_status', $user->marital_status) == 'married' ? 'selected' : ''); ?>>
                                                                                 Married</option>
                                                                             <option value="divorced"
-                                                                                {{ old('marital_status', $user->marital_status) == 'divorced' ? 'selected' : '' }}>
+                                                                                <?php echo e(old('marital_status', $user->marital_status) == 'divorced' ? 'selected' : ''); ?>>
                                                                                 Divorced</option>
                                                                             <option value="widowed"
-                                                                                {{ old('marital_status', $user->marital_status) == 'widowed' ? 'selected' : '' }}>
+                                                                                <?php echo e(old('marital_status', $user->marital_status) == 'widowed' ? 'selected' : ''); ?>>
                                                                                 Widowed</option>
                                                                         </select>
                                                                     </div>
@@ -201,7 +198,7 @@
                                                                         <label>Region</label>
                                                                         <input class="form-control" type="text"
                                                                             name="region" placeholder="Region"
-                                                                            value="{{ old('region', $user->region) }}">
+                                                                            value="<?php echo e(old('region', $user->region)); ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
@@ -209,7 +206,7 @@
                                                                         <label>District</label>
                                                                         <input class="form-control" type="text"
                                                                             name="district" placeholder="District"
-                                                                            value="{{ old('district', $user->district) }}">
+                                                                            value="<?php echo e(old('district', $user->district)); ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
@@ -217,7 +214,7 @@
                                                                         <label>Street</label>
                                                                         <input class="form-control" type="text"
                                                                             name="street" placeholder="Street"
-                                                                            value="{{ old('street', $user->street) }}">
+                                                                            value="<?php echo e(old('street', $user->street)); ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
@@ -225,7 +222,7 @@
                                                                         <label>Box No</label>
                                                                         <input class="form-control" type="text"
                                                                             name="box_no" placeholder="Box No"
-                                                                            value="{{ old('box_no', $user->box_no) }}">
+                                                                            value="<?php echo e(old('box_no', $user->box_no)); ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
@@ -233,7 +230,7 @@
                                                                         <label>Plot No</label>
                                                                         <input class="form-control" type="text"
                                                                             name="plot_no" placeholder="Plot No"
-                                                                            value="{{ old('plot_no', $user->plot_no) }}">
+                                                                            value="<?php echo e(old('plot_no', $user->plot_no)); ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
@@ -242,7 +239,7 @@
                                                                         <input class="form-control" type="text"
                                                                             name="popular_landmark"
                                                                             placeholder="Popular Landmark"
-                                                                            value="{{ old('popular_landmark', $user->plot_no) }}">
+                                                                            value="<?php echo e(old('popular_landmark', $user->plot_no)); ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
@@ -250,7 +247,7 @@
                                                                         <label>House Number</label>
                                                                         <input class="form-control" type="text"
                                                                             name="house_no" placeholder="House Number"
-                                                                            value="{{ old('house_no', $user->house_no) }}">
+                                                                            value="<?php echo e(old('house_no', $user->house_no)); ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
@@ -258,7 +255,7 @@
                                                                         <label>Home Address</label>
                                                                         <input class="form-control" type="text"
                                                                             name="home_address" placeholder="Home Address"
-                                                                            value="{{ old('home_address', $user->home_address) }}">
+                                                                            value="<?php echo e(old('home_address', $user->home_address)); ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
@@ -266,7 +263,7 @@
                                                                         <label>Domicile</label>
                                                                         <input class="form-control" type="text"
                                                                             name="domicile" placeholder="Domicile"
-                                                                            value="{{ old('domicile', $user->domicile) }}">
+                                                                            value="<?php echo e(old('domicile', $user->domicile)); ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
@@ -274,7 +271,7 @@
                                                                         <label>Religion</label>
                                                                         <input class="form-control" type="text"
                                                                             name="religion" placeholder="Religion"
-                                                                            value="{{ old('religion', $user->religion) }}">
+                                                                            value="<?php echo e(old('religion', $user->religion)); ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 col-md-4">
@@ -283,7 +280,7 @@
                                                                         <input class="form-control" type="text"
                                                                             name="professional_reg_number"
                                                                             placeholder="Professional Reg Number"
-                                                                            value="{{ old('professional_reg_number', $user->professional_reg_number) }}">
+                                                                            value="<?php echo e(old('professional_reg_number', $user->professional_reg_number)); ?>">
                                                                     </div>
                                                                 </div>
 
@@ -292,7 +289,7 @@
                                                                         <label>NSSF Number</label>
                                                                         <input class="form-control" type="text"
                                                                             name="nssf_no" placeholder="NSSF Number"
-                                                                            value="{{ old('nssf_no', $user->nssf_no) }}">
+                                                                            value="<?php echo e(old('nssf_no', $user->nssf_no)); ?>">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -302,7 +299,7 @@
 
                                                             <!-- Include jQuery and InputMask -->
                                                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                                                            <script src="{{ asset('node_modules/jquery.inputmask/dist/min/jquery.inputmask.min.js') }}"></script>
+                                                            <script src="<?php echo e(asset('node_modules/jquery.inputmask/dist/min/jquery.inputmask.min.js')); ?>"></script>
 
                                                             <div class="col-12 col-md-4">
                                                                 <div class="form-group">
@@ -310,7 +307,7 @@
                                                                     <input class="form-control" type="text"
                                                                         name="NIN"
                                                                         placeholder="e.g. 19501007-11101-00001-26"
-                                                                        value="{{ old('NIN', $user->NIN) }}"
+                                                                        value="<?php echo e(old('NIN', $user->NIN)); ?>"
                                                                         pattern="\d{8}-\d{5}-\d{5}-\d{2}"
                                                                         title="Format: 19501007-11101-00001-26"
                                                                         maxlength="23">
@@ -366,4 +363,6 @@
         </div>
     </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Projects\E-docs\resources\views/user_profile/edit.blade.php ENDPATH**/ ?>

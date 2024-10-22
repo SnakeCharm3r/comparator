@@ -46,51 +46,20 @@
 
             <div class="row">
 
-                <?php
-                    $filledFieldsWeight = 0;
-                    $totalWeight = 100;
 
-                    // Define the weights for each field
-                    $weights = [
-                        'professional_reg_number' => 30,
-                        'marital_status' => 20,
-                        'health_insurance' => 25,
-                        'language' => 25,
-                    ];
 
-                    // Check each field and increment the filled fields weight if filled
-                    if (!empty($user->professional_reg_number)) {
-                        $filledFieldsWeight += $weights['professional_reg_number'];
-                    }
 
-                    if (!empty($user->marital_status)) {
-                        $filledFieldsWeight += $weights['marital_status'];
-                    }
 
-                    if (!empty($user->health_insurance)) {
-                        $filledFieldsWeight += $weights['health_insurance'];
-                    }
 
-                    if (!empty($language_knowledge->language)) {
-                        $filledFieldsWeight += $weights['language'];
-                    }
 
-                    // Calculate the percentage filled
-                    $percentageFilled = min($filledFieldsWeight, $totalWeight);
-                ?>
 
-                <?php if($percentageFilled < 50): ?>
-                    <div class="progress" style="height: 20px; position: relative;">
-                        <div class="progress-bar" role="progressbar" style="width: <?php echo e($percentageFilled); ?>%;"
-                            aria-valuenow="<?php echo e($percentageFilled); ?>" aria-valuemin="0" aria-valuemax="100">
-                            <?php echo e($percentageFilled); ?>%
-                            <span
-                                style="position: absolute; left: 0; right: 0; text-align: center; top: 50%; transform: translateY(-50%); font-size: 12px; color: rgb(0, 0, 0);">
-                                User profile details filled percentage
-                            </span>
-                        </div>
-                    </div>
-                <?php endif; ?>
+
+
+
+
+
+
+
                 <br><br>
                 <div class="row">
                     <div class="col-md-3 col-sm-6 col-12 mb-3">
@@ -114,8 +83,6 @@
                             </div>
                         </div>
                     </div>
-
-                    
                     <div class="col-md-3 col-sm-6 col-12 mb-3">
                         <div class="card text-center shadow-sm">
                             <!-- Link to the Announcements page -->
@@ -127,7 +94,6 @@
 
                             <!-- Body of the card showing the total count and new announcements -->
                             <div class="card-body">
-                                
 
                                 <!-- Fetch the count of new announcements using Eloquent within the Blade template -->
                                 <?php
@@ -155,9 +121,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
 
                     <div class="col-md-3 col-sm-6 col-12 mb-3">
                         <div class="card text-center shadow-sm">
@@ -208,7 +171,6 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>
