@@ -143,3 +143,87 @@
 #33 C:\\Users\\PC\\Documents\\GitHub\\E-docs\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #34 {main}
 "} 
+[2024-11-14 12:46:30] local.ERROR: syntax error, unexpected token "class" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\" at C:\\Users\\PC\\Documents\\GitHub\\E-docs\\app\\Models\\userz.php:9)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-14 12:46:47] local.ERROR: syntax error, unexpected token "class", expecting "{" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \"{\" at C:\\Users\\PC\\Documents\\GitHub\\E-docs\\app\\Models\\userz.php:9)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-14 12:47:30] local.ERROR: syntax error, unexpected token "class", expecting "{" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \"{\" at C:\\Users\\PC\\Documents\\GitHub\\E-docs\\app\\Models\\userz.php:11)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-14 12:47:35] local.ERROR: syntax error, unexpected token "class", expecting "{" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \"{\" at C:\\Users\\PC\\Documents\\GitHub\\E-docs\\app\\Models\\userz.php:11)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-14 12:48:22] local.ERROR: syntax error, unexpected token "@", expecting "function" or "const" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" or \"const\" at C:\\Users\\PC\\Documents\\GitHub\\E-docs\\app\\Models\\userz.php:17)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-14 12:48:28] local.ERROR: syntax error, unexpected token "@", expecting "function" or "const" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" or \"const\" at C:\\Users\\PC\\Documents\\GitHub\\E-docs\\app\\Models\\userz.php:17)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-14 12:48:30] local.ERROR: syntax error, unexpected token "@", expecting "function" or "const" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" or \"const\" at C:\\Users\\PC\\Documents\\GitHub\\E-docs\\app\\Models\\userz.php:17)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-14 12:48:38] local.ERROR: syntax error, unexpected token "@", expecting "function" or "const" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" or \"const\" at C:\\Users\\PC\\Documents\\GitHub\\E-docs\\app\\Models\\userz.php:17)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-14 12:49:20] local.ERROR: syntax error, unexpected token "@", expecting "function" or "const" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" or \"const\" at C:\\Users\\PC\\Documents\\GitHub\\E-docs\\app\\Models\\userz.php:17)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-14 12:49:30] local.ERROR: syntax error, unexpected token "@", expecting "function" or "const" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" or \"const\" at C:\\Users\\PC\\Documents\\GitHub\\E-docs\\app\\Models\\userz.php:17)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-14 12:50:45] local.ERROR: syntax error, unexpected token "@", expecting "function" or "const" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" or \"const\" at C:\\Users\\PC\\Documents\\GitHub\\E-docs\\app\\Models\\userz.php:22)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-14 12:51:03] local.ERROR: syntax error, unexpected token "@", expecting "function" or "const" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" or \"const\" at C:\\Users\\PC\\Documents\\GitHub\\E-docs\\app\\Models\\userz.php:22)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-14 12:51:30] local.ERROR: syntax error, unexpected token "@", expecting "function" or "const" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" or \"const\" at C:\\Users\\PC\\Documents\\GitHub\\E-docs\\app\\Models\\userz.php:22)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-14 12:52:30] local.ERROR: syntax error, unexpected token "@", expecting "function" or "const" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" or \"const\" at C:\\Users\\PC\\Documents\\GitHub\\E-docs\\app\\Models\\userz.php:22)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-14 12:52:32] local.ERROR: syntax error, unexpected token "@", expecting "function" or "const" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" or \"const\" at C:\\Users\\PC\\Documents\\GitHub\\E-docs\\app\\Models\\userz.php:22)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-14 12:53:42] local.ERROR: syntax error, unexpected token "@", expecting "function" or "const" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" or \"const\" at C:\\Users\\PC\\Documents\\GitHub\\E-docs\\app\\Models\\userz.php:22)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-14 12:55:30] local.ERROR: syntax error, unexpected token "[", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"[\", expecting \",\" or \";\" at C:\\Users\\PC\\Documents\\GitHub\\E-docs\\app\\Models\\userz.php:26)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-14 12:55:51] local.ERROR: syntax error, unexpected token "[", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"[\", expecting \",\" or \";\" at C:\\Users\\PC\\Documents\\GitHub\\E-docs\\app\\Models\\userz.php:26)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-14 12:56:09] local.ERROR: syntax error, unexpected token "[", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"[\", expecting \",\" or \";\" at C:\\Users\\PC\\Documents\\GitHub\\E-docs\\app\\Models\\userz.php:26)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-14 12:56:30] local.ERROR: syntax error, unexpected token "[", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"[\", expecting \",\" or \";\" at C:\\Users\\PC\\Documents\\GitHub\\E-docs\\app\\Models\\userz.php:26)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-14 12:56:36] local.ERROR: syntax error, unexpected token "[", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"[\", expecting \",\" or \";\" at C:\\Users\\PC\\Documents\\GitHub\\E-docs\\app\\Models\\userz.php:26)
+[stacktrace]
+#0 {main}
+"} 
